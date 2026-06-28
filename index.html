@@ -31,7 +31,7 @@
   button.zoom-btn:hover{border-color:#5ec8f0;}
 
   .chart-card{background:var(--card);border:1px solid var(--bord);border-radius:12px;padding:14px 12px 10px;position:relative;}
-  #svgHolder{width:100%;overflow:hidden;cursor:grab;}
+  #svgHolder{width:100%;overflow:hidden;cursor:grab;touch-action:none;}
   #svgHolder.dragging{cursor:grabbing;}
   svg{display:block;width:100%;height:auto;user-select:none;}
 
@@ -52,11 +52,25 @@
 
   .src-note{font-size:10.5px;color:#6b7180;margin:14px 0;line-height:1.6;background:var(--bg2);border:1px solid var(--bord);border-radius:8px;padding:11px 13px;}
   .src-note b{color:#aeb4bf;}
+
+  .backlink{display:inline-block;font-size:11.5px;color:#5ec8f0;text-decoration:none;margin-bottom:10px;}
+  .backlink:hover{text-decoration:underline;}
+
+  @media (max-width:640px){
+    body{padding:12px 8px;}
+    h1{font-size:16px;}
+    .controls{gap:6px;}
+    .ctrl-group{padding:5px 7px;gap:4px;}
+    button.toggle, button.zoom-btn{font-size:10px;padding:6px 8px;}
+    .hint{font-size:9.5px;}
+    .tooltip{font-size:10px;min-width:130px;padding:7px 9px;}
+  }
 </style>
 </head>
 <body>
 <div class="wrap">
 
+<a href="index.html" class="backlink">&larr; All reports</a>
 <h1>BTC Framework Dashboard — Interactive</h1>
 <div class="meta">Crypto Reconnaissance Engine · <b>Jan 2018 → Jun 2026</b> · drag to pan, scroll/pinch to zoom, hover for values, toggle layers below</div>
 
@@ -87,7 +101,7 @@
     <svg id="chart" viewBox="0 0 1360 480"></svg>
   </div>
   <div class="tooltip" id="tooltip"></div>
-  <div class="hint">Scroll to zoom · drag to pan · click a layer button to show/hide it</div>
+  <div class="hint">Drag/swipe to pan · pinch or scroll to zoom · tap or hover for values</div>
 </div>
 
 <div class="legend-row">
@@ -476,6 +490,83 @@ holder.addEventListener('wheel', (e)=>{
   state.viewStart=Math.max(0,ns); state.viewEnd=Math.min(N,ne);
   render();
 }, {passive:false});
+
+// ── TOUCH: pan (1 finger) + pinch-zoom (2 fingers) + tap-tooltip ──
+let touchMode=null; // 'pan' | 'pinch'
+let touchStartView=[0,N];
+let touchStartX=0;
+let pinchStartDist=0, pinchStartSpan=0, pinchStartMidFrac=0.5, pinchStartViewStart=0;
+let lastTapTime=0, tapHoldTimer=null;
+
+function touchDist(t0,t1){
+  const dx=t0.clientX-t1.clientX, dy=t0.clientY-t1.clientY;
+  return Math.sqrt(dx*dx+dy*dy);
+}
+
+holder.addEventListener('touchstart', (e)=>{
+  if(e.touches.length===1){
+    touchMode='pan';
+    touchStartX = e.touches[0].clientX;
+    touchStartView = [state.viewStart, state.viewEnd];
+    // also treat as a potential tap for tooltip
+    handleTouchPoint(e.touches[0]);
+  } else if(e.touches.length===2){
+    touchMode='pinch';
+    pinchStartDist = touchDist(e.touches[0], e.touches[1]);
+    pinchStartSpan = state.viewEnd - state.viewStart;
+    pinchStartViewStart = state.viewStart;
+    const rect = holder.getBoundingClientRect();
+    const midX = (e.touches[0].clientX + e.touches[1].clientX)/2;
+    pinchStartMidFrac = (midX - rect.left)/rect.width;
+    tooltip.style.display='none';
+  }
+}, {passive:true});
+
+holder.addEventListener('touchmove', (e)=>{
+  if(touchMode==='pan' && e.touches.length===1){
+    e.preventDefault();
+    tooltip.style.display='none';
+    const rect = holder.getBoundingClientRect();
+    const dxPx = e.touches[0].clientX - touchStartX;
+    const span = touchStartView[1]-touchStartView[0];
+    const dxMonths = -(dxPx / rect.width) * span * (W/plotW);
+    let ns = touchStartView[0]+dxMonths, ne = touchStartView[1]+dxMonths;
+    if(ns<0){ ne-=ns; ns=0; }
+    if(ne>N){ ns-=(ne-N); ne=N; }
+    state.viewStart=Math.max(0,ns); state.viewEnd=Math.min(N,ne);
+    render();
+  } else if(touchMode==='pinch' && e.touches.length===2){
+    e.preventDefault();
+    const dist = touchDist(e.touches[0], e.touches[1]);
+    const ratio = pinchStartDist / Math.max(dist, 1);
+    let newSpan = Math.min(N, Math.max(6, pinchStartSpan*ratio));
+    const mouseIdx = pinchStartViewStart + pinchStartMidFrac*pinchStartSpan;
+    let ns = mouseIdx - pinchStartMidFrac*newSpan;
+    let ne = ns + newSpan;
+    if(ns<0){ ne-=ns; ns=0; }
+    if(ne>N){ ns-=(ne-N); ne=N; }
+    state.viewStart=Math.max(0,ns); state.viewEnd=Math.min(N,ne);
+    render();
+  }
+}, {passive:false});
+
+holder.addEventListener('touchend', (e)=>{
+  touchMode=null;
+}, {passive:true});
+
+function handleTouchPoint(touch){
+  // find nearest data column under the touch point and show tooltip
+  const rect = holder.getBoundingClientRect();
+  const xFrac = (touch.clientX - rect.left)/rect.width;
+  const svgX = xFrac * W;
+  const span = state.viewEnd - state.viewStart;
+  const colW = plotW/span;
+  let idx = Math.floor(state.viewStart + (svgX - padL)/colW);
+  idx = Math.max(0, Math.min(N-1, idx));
+  showTip({clientX: touch.clientX, clientY: touch.clientY}, idx);
+  clearTimeout(tapHoldTimer);
+  tapHoldTimer = setTimeout(()=>{ tooltip.style.display='none'; }, 2500);
+}
 
 render();
 </script>
