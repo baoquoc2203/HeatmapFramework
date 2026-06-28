@@ -288,7 +288,7 @@ function render(){
       for(let i=Math.max(0,Math.floor(vs)); i<Math.min(N,Math.ceil(ve)); i++){
         const block=wyckoffLabelFor(i); if(!block) continue;
         const x0=idxToX(i); const isLive=i>=liveStartIdx;
-        const r=el('rect',{x:x0,y:row.top,width:colW+0.5,height:row.h-3,fill:wyckoffColor[block.kind],opacity:0.88});
+        const r=el('rect',{x:x0,y:row.top,width:colW+0.5,height:row.h-3,fill:wyckoffColor[block.kind],opacity:0.88,'data-idx':i});
         if(isLive){ r.setAttribute('stroke','#5ec8f0'); r.setAttribute('stroke-width','1.4'); }
         plotGroup.appendChild(r);
       }
@@ -310,7 +310,7 @@ function render(){
       for(let i=Math.max(0,Math.floor(vs)); i<Math.min(N,Math.ceil(ve)); i++){
         const mo=months[i]; const key=`${mo.y}-${mo.m}`;
         const x0=idxToX(i); const on=dataSet.has(key);
-        plotGroup.appendChild(el('rect',{x:x0,y:row.top,width:colW+0.4,height:row.h-3,fill:on?'#e0a83f':'#eeece5'}));
+        plotGroup.appendChild(el('rect',{x:x0,y:row.top,width:colW+0.4,height:row.h-3,fill:on?'#e0a83f':'#eeece5','data-idx':i}));
       }
     }
     if(row.key==='fng'){
@@ -318,7 +318,7 @@ function render(){
       svg.appendChild(el('text',{x:padL-8,y:row.top+row.h/2+9,'text-anchor':'end','font-size':7.6,fill:'#7a7872','dominant-baseline':'middle'},'crypto-wide'));
       for(let i=Math.max(0,Math.floor(vs)); i<Math.min(N,Math.ceil(ve)); i++){
         const x0=idxToX(i);
-        plotGroup.appendChild(el('rect',{x:x0,y:row.top,width:colW+0.4,height:row.h-3,fill:fngColor(fng[i])}));
+        plotGroup.appendChild(el('rect',{x:x0,y:row.top,width:colW+0.4,height:row.h-3,fill:fngColor(fng[i]),'data-idx':i}));
       }
     }
   });
