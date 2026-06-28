@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BTC Framework Dashboard — Interactive</title>
+<style>
+  :root{
+    --bg:#f7f6f2; --bg2:#ffffff; --card:#ffffff; --bord:#e1ded6; --txt:#1c1b18; --txt2:#6b6a64;
+    --amber:#b07e20; --price:#2f6fb0;
+    --acc:#2f6fb0; --markup:#1e8a52; --dist:#a32d2d; --markdown:#cc5236;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--txt);padding:18px 14px;}
+  .wrap{max-width:1360px;margin:0 auto;}
+  h1{font-size:18px;font-weight:700;letter-spacing:-.01em;}
+  .meta{font-size:11.5px;color:var(--txt2);margin-top:3px;}
+  .meta b{color:var(--txt);}
+
+  .controls{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0;align-items:center;}
+  .ctrl-group{display:flex;gap:6px;align-items:center;background:var(--card);border:1px solid var(--bord);border-radius:9px;padding:6px 9px;}
+  .ctrl-label{font-size:10px;color:var(--txt2);text-transform:uppercase;letter-spacing:.05em;font-weight:700;margin-right:2px;}
+  button.toggle{
+    font-size:11px;font-weight:600;padding:5px 10px;border-radius:6px;border:1px solid var(--bord);
+    background:#f0eee8;color:var(--txt2);cursor:pointer;transition:all .12s;
+  }
+  button.toggle.active{background:var(--amber);color:#1a1408;border-color:var(--amber);}
+  button.toggle:hover{border-color:#2f6fb0;}
+  button.zoom-btn{font-size:11px;font-weight:600;padding:5px 11px;border-radius:6px;border:1px solid var(--bord);background:#f0eee8;color:var(--txt2);cursor:pointer;}
+  button.zoom-btn.active{background:#2f6fb0;color:#fff;border-color:#2f6fb0;}
+  button.zoom-btn:hover{border-color:#2f6fb0;}
+
+  .chart-card{background:var(--card);border:1px solid var(--bord);border-radius:12px;padding:14px 12px 10px;position:relative;}
+  #svgHolder{width:100%;overflow:hidden;cursor:grab;touch-action:none;}
+  #svgHolder.dragging{cursor:grabbing;}
+  svg{display:block;width:100%;height:auto;user-select:none;}
+
+  .tooltip{
+    position:absolute;pointer-events:none;background:#ffffff;border:1px solid #d8d5cc;border-radius:8px;
+    padding:8px 11px;font-size:11px;line-height:1.5;color:var(--txt);box-shadow:0 4px 16px rgba(0,0,0,.12);
+    display:none;z-index:10;min-width:150px;
+  }
+  .tooltip b{color:#2f6fb0;}
+  .tooltip .tt-row{display:flex;justify-content:space-between;gap:10px;}
+  .tooltip .tt-label{color:var(--txt2);}
+
+  .hint{font-size:10.5px;color:var(--txt2);margin-top:8px;text-align:center;}
+
+  .legend-row{display:flex;flex-wrap:wrap;gap:13px;font-size:10.5px;color:var(--txt2);margin:14px 0 4px;align-items:center;}
+  .legend-row span{display:flex;align-items:center;gap:5px;}
+  .legend-row i{width:11px;height:11px;border-radius:3px;display:inline-block;}
+
+  .src-note{font-size:10.5px;color:#6b7180;margin:14px 0;line-height:1.6;background:var(--bg2);border:1px solid var(--bord);border-radius:8px;padding:11px 13px;}
+  .src-note b{color:#aeb4bf;}
+
+  .backlink{display:inline-block;font-size:11.5px;color:#2f6fb0;text-decoration:none;margin-bottom:10px;}
+  .backlink:hover{text-decoration:underline;}
+
+  @media (max-width:640px){
+    body{padding:12px 8px;}
+    h1{font-size:16px;}
+    .controls{gap:6px;}
+    .ctrl-group{padding:5px 7px;gap:4px;}
+    button.toggle, button.zoom-btn{font-size:10px;padding:6px 8px;}
+    .hint{font-size:9.5px;}
+    .tooltip{font-size:10px;min-width:130px;padding:7px 9px;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<a href="index.html" class="backlink">&larr; All reports</a> &nbsp;&middot;&nbsp; <a href="btc-dashboard.html" class="backlink">Dark version &rarr;</a>
+<h1>BTC Framework Dashboard — Interactive</h1>
+<div class="meta">Crypto Reconnaissance Engine · <b>Jan 2018 → Jun 2026</b> · drag to pan, scroll/pinch to zoom, hover for values, toggle layers below</div>
+
+<div class="controls">
+  <div class="ctrl-group">
+    <span class="ctrl-label">Layers</span>
+    <button class="toggle active" data-layer="wyckoff">Wyckoff</button>
+    <button class="toggle active" data-layer="shmita">Shmita</button>
+    <button class="toggle active" data-layer="mercury">Mercury Rx</button>
+    <button class="toggle active" data-layer="fng">Fear &amp; Greed</button>
+  </div>
+  <div class="ctrl-group">
+    <span class="ctrl-label">Zoom</span>
+    <button class="zoom-btn active" data-zoom="all">2018–Now</button>
+    <button class="zoom-btn" data-zoom="cycle22">2021–23</button>
+    <button class="zoom-btn" data-zoom="live">Live (Jun'26)</button>
+    <button class="zoom-btn" data-zoom="reset">Reset</button>
+  </div>
+  <div class="ctrl-group">
+    <span class="ctrl-label">Scale</span>
+    <button class="zoom-btn active" data-scale="log">Log</button>
+    <button class="zoom-btn" data-scale="linear">Linear</button>
+  </div>
+</div>
+
+<div class="chart-card">
+  <div id="svgHolder">
+    <svg id="chart" viewBox="0 0 1360 480"></svg>
+  </div>
+  <div class="tooltip" id="tooltip"></div>
+  <div class="hint">Drag/swipe to pan · pinch or scroll to zoom · tap or hover for values</div>
+</div>
+
+<div class="legend-row">
+  <span style="font-weight:700;color:var(--txt)">Wyckoff:</span>
+  <span><i style="background:var(--acc)"></i>Accumulation</span>
+  <span><i style="background:var(--markup)"></i>Markup</span>
+  <span><i style="background:var(--dist)"></i>Distribution</span>
+  <span><i style="background:var(--markdown)"></i>Markdown</span>
+</div>
+<div class="legend-row">
+  <span style="font-weight:700;color:var(--txt)">Fear &amp; Greed:</span>
+  <span><i style="background:#7b1f1a"></i>Extreme fear</span>
+  <span><i style="background:#d0573a"></i>Fear</span>
+  <span><i style="background:#e8c97a"></i>Neutral</span>
+  <span><i style="background:#5bbf86"></i>Greed</span>
+  <span><i style="background:#2f6fb0"></i>Extreme greed</span>
+  <span style="margin-left:12px"><i style="background:var(--amber)"></i>Mercury Rx / Shmita (on)</span>
+  <span><i style="background:#1a1d24;border:1px solid #5ec8f0"></i>BTC price</span>
+</div>
+
+<div class="src-note">
+  <b>What's real:</b> BTC price = real monthly closes (Jun 2026 month-to-date, live exchange data). Fear &amp; Greed = real Alternative.me index, regime-anchored to documented extremes. Mercury = real astronomical retrograde windows. Shmita = real Hebrew-calendar year (5782, Sep'21–Sep'22).
+  <b>Wyckoff row:</b> retrospective phase labels re-derived month-by-month directly from this price line (corrected after review) — left of the cyan dashed seam (Jun 12, 2026) this is independent structural reading of known history, <b>not</b> your framework's calls. Right of the seam is the framework's own live read (Phase D → Spring fired Jun 24 → confirming).
+  <b>No buy/sell signal layer, no liquidity-regime row, no hit-rate statistics</b> are shown — those would require either fabricated data or an n too small to mean anything, so they're left out rather than dressed up.
+</div>
+
+</div>
+
+<script>
+// ── DATA ─────────────────────────────────────────────────────────
+const yearNames=['2018','2019','2020','2021','2022','2023','2024','2025','2026'];
+const monthsPerYear={2026:6};
+const months=[];
+for(const y of yearNames){const cnt=monthsPerYear[+y]||12;for(let m=0;m<cnt;m++)months.push({y:+y,m});}
+const N=months.length;
+const monthNames=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+
+const price=[
+  10000,10400,6900,9200,7500,6400,7700,7000,6600,6300,4000,3700,
+  3450,3850,4100,5300,8600,10800,10100,9600,8300,9200,7550,7200,
+  9350,8550,6400,8650,9450,9150,11100,11650,10780,13800,19700,29000,
+  33100,45200,58800,57700,37300,35000,41500,47100,43800,61300,57000,46200,
+  38500,43200,45500,37700,31800,19900,23300,20050,19400,20500,17200,16500,
+  23100,23100,28500,29200,27200,30500,29200,25900,26900,34500,37700,42300,
+  42600,61200,71300,60600,67500,62700,64600,58900,63300,70200,96400,93400,
+  102000,84000,82000,94000,104000,107000,117000,112000,114000,126000,95000,87000,
+  88000,65000,70000,67000,71000,60376
+];
+
+const fng=[
+  null,18,24,30,38,30,40,22,35,30,15,14,
+  30,40,45,60,70,80,60,45,42,38,30,30,
+  55,45,12,35,45,42,55,70,48,65,80,88,
+  75,88,78,70,25,25,30,60,50,75,80,40,
+  25,35,45,30,14,10,25,30,22,25,18,26,
+  45,55,50,62,50,55,58,40,45,55,65,70,
+  60,75,85,65,70,55,60,35,50,72,88,75,
+  75,45,40,55,70,65,75,68,60,70,30,25,
+  60,30,45,45,35,18
+];
+
+const merc=new Set([
+  '2018-2','2018-3','2018-6','2018-7','2018-10','2018-11',
+  '2019-2','2019-6','2019-7','2019-9','2019-10',
+  '2020-1','2020-2','2020-5','2020-6','2020-9','2020-10',
+  '2021-0','2021-1','2021-4','2021-5','2021-8','2021-9',
+  '2022-0','2022-1','2022-4','2022-5','2022-8','2022-9','2022-11',
+  '2023-0','2023-3','2023-4','2023-7','2023-8','2023-11',
+  '2024-3','2024-7','2024-10','2024-11',
+  '2025-2','2025-3','2025-6','2025-7','2025-10',
+  '2026-1','2026-2','2026-5'
+]);
+
+const shmita=new Set([
+  '2021-8','2021-9','2021-10','2021-11',
+  '2022-0','2022-1','2022-2','2022-3','2022-4','2022-5','2022-6','2022-7','2022-8'
+]);
+
+const wyckoff = [
+  {s:0,  e:10, kind:'markdown',label:'2018 bear / markdown'},
+  {s:10, e:14, kind:'acc',     label:'2018-19 accumulation'},
+  {s:14, e:17, kind:'markup',  label:'2019 markup'},
+  {s:17, e:26, kind:'markdown',label:'2019-20 markdown → COVID'},
+  {s:26, e:32, kind:'acc',     label:'2020 reaccumulation'},
+  {s:32, e:38, kind:'markup',  label:'2020-21 markup'},
+  {s:38, e:41, kind:'markdown',label:'May-21 drop'},
+  {s:41, e:45, kind:'markup',  label:'2021 markup to ATH'},
+  {s:45, e:48, kind:'dist',    label:'2021 distribution'},
+  {s:48, e:59, kind:'markdown',label:'2022 bear market'},
+  {s:59, e:62, kind:'acc',     label:'2022-23 accumulation'},
+  {s:62, e:74, kind:'markup',  label:'2023-24 markup'},
+  {s:74, e:80, kind:'dist',    label:'2024 distribution range'},
+  {s:80, e:84, kind:'markup',  label:'late-2024 markup'},
+  {s:84, e:86, kind:'markdown',label:'early-25 crash'},
+  {s:86, e:93, kind:'markup',  label:'2025 markup to ATH'},
+  {s:93, e:101,kind:'markdown',label:'post-ATH markdown'},
+  {s:101,e:102,kind:'markdown',label:'live: Phase D + Spring'},
+];
+const liveStartIdx = 101;
+const wyckoffColor = {acc:'#2f6fb0', markup:'#1e8a52', dist:'#a32d2d', markdown:'#cc5236'};
+
+function lerp(a,b,t){return a+(b-a)*t;}
+function rgb(r,g,b){return `rgb(${Math.round(r)},${Math.round(g)},${Math.round(b)})`;}
+function fngColor(v){
+  if(v==null)return '#e8e5dd';
+  const s=v/100;
+  const stops=[[0,[123,31,26]],[0.25,[208,87,58]],[0.5,[232,201,122]],[0.75,[91,191,134]],[1,[47,111,176]]];
+  for(let i=0;i<stops.length-1;i++){const [s0,c0]=stops[i],[s1,c1]=stops[i+1];
+    if(s>=s0&&s<=s1){const t=(s-s0)/(s1-s0);return rgb(lerp(c0[0],c1[0],t),lerp(c0[1],c1[1],t),lerp(c0[2],c1[2],t));}}
+  return rgb(...stops[4][1]);
+}
+function wyckoffLabelFor(monthIdx){
+  for(const b of wyckoff) if(monthIdx>=b.s && monthIdx<b.e) return b;
+  return null;
+}
+
+// ── STATE ──
+const state = {
+  layers: { wyckoff:true, shmita:true, mercury:true, fng:true },
+  viewStart: 0, viewEnd: N,   // month index window currently shown
+  scale: 'log',
+};
+
+const NS='http://www.w3.org/2000/svg';
+function el(tag,attrs,text){const e=document.createElementNS(NS,tag);for(const k in attrs)e.setAttribute(k,attrs[k]);if(text!=null)e.textContent=text;return e;}
+
+const svg = document.getElementById('chart');
+const holder = document.getElementById('svgHolder');
+const tooltip = document.getElementById('tooltip');
+
+const W=1360, H=480;
+const padL=110, padR=60, padT=10, padB=34;
+const plotW = W - padL - padR;
+
+function layout(){
+  // dynamically compute row tops based on active layers
+  let y = padT;
+  const rows = [];
+  if(state.layers.wyckoff){ rows.push({key:'wyckoff', top:y, h:42}); y += 42+5; }
+  if(state.layers.shmita){ rows.push({key:'shmita', top:y, h:30}); y += 30+3; }
+  if(state.layers.mercury){ rows.push({key:'mercury', top:y, h:30}); y += 30+3; }
+  if(state.layers.fng){ rows.push({key:'fng', top:y, h:34}); y += 34+3; }
+  const priceTop = y + 8;
+  const priceH = H - padB - priceTop;
+  return {rows, priceTop, priceH};
+}
+
+function render(){
+  svg.innerHTML='';
+  svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+  const {rows, priceTop, priceH} = layout();
+
+  const vs = state.viewStart, ve = state.viewEnd;
+  const span = ve - vs;
+  const colW = plotW / span;
+  const idxToX = i => padL + (i - vs) * colW;
+
+  // clip path so dragging/zoom doesn't draw outside plot
+  const clip = el('clipPath',{id:'plotClip'});
+  clip.appendChild(el('rect',{x:padL,y:0,width:plotW,height:H}));
+  svg.appendChild(clip);
+
+  const plotGroup = el('g',{'clip-path':'url(#plotClip)'});
+  svg.appendChild(plotGroup);
+
+  // ── row rendering ──
+  rows.forEach(row=>{
+    if(row.key==='wyckoff'){
+      svg.appendChild(el('text',{x:padL-8,y:row.top+row.h/2-4,'text-anchor':'end','font-size':11,fill:'#1c1b18','font-weight':600,'dominant-baseline':'middle'},'Wyckoff'));
+      svg.appendChild(el('text',{x:padL-8,y:row.top+row.h/2+10,'text-anchor':'end','font-size':8,fill:'#7a7872','dominant-baseline':'middle'},'retro→live'));
+      for(let i=Math.max(0,Math.floor(vs)); i<Math.min(N,Math.ceil(ve)); i++){
+        const block = wyckoffLabelFor(i);
+        if(!block) continue;
+        const x0 = idxToX(i);
+        const isLive = i>=liveStartIdx;
+        const rectEl = el('rect',{x:x0,y:row.top,width:colW+0.5,height:row.h-3,fill:wyckoffColor[block.kind],opacity:0.88,
+          'data-row':'wyckoff','data-idx':i});
+        if(isLive){ rectEl.setAttribute('stroke','#5ec8f0'); rectEl.setAttribute('stroke-width','1.4'); }
+        plotGroup.appendChild(rectEl);
+      }
+      // block labels (only if wide enough on screen)
+      wyckoff.forEach(block=>{
+        const bs=Math.max(block.s,vs), be=Math.min(block.e,ve);
+        if(be<=bs) return;
+        const x0=idxToX(bs), w=(be-bs)*colW;
+        if(w>55){
+          const fits = block.label.length*5.0 < w;
+          plotGroup.appendChild(el('text',{x:x0+w/2,y:row.top+row.h/2+2,'text-anchor':'middle','font-size':7.4,fill:'#0b0d0f','font-weight':700,'pointer-events':'none'},
+            fits?block.label:block.label.slice(0,Math.floor(w/5.2))+'…'));
+        }
+      });
+    }
+    if(row.key==='shmita'||row.key==='mercury'){
+      const dataSet = row.key==='shmita'?shmita:merc;
+      const label = row.key==='shmita'?'Shmita':'Mercury Rx';
+      svg.appendChild(el('text',{x:padL-8,y:row.top+row.h/2-3,'text-anchor':'end','font-size':10.5,fill:'#1c1b18','font-weight':600,'dominant-baseline':'middle'},label));
+      svg.appendChild(el('text',{x:padL-8,y:row.top+row.h/2+9,'text-anchor':'end','font-size':7.6,fill:'#7a7872','dominant-baseline':'middle'},'calendar'));
+      for(let i=Math.max(0,Math.floor(vs)); i<Math.min(N,Math.ceil(ve)); i++){
+        const mo = months[i]; const key=`${mo.y}-${mo.m}`;
+        const x0 = idxToX(i);
+        const on = dataSet.has(key);
+        plotGroup.appendChild(el('rect',{x:x0,y:row.top,width:colW+0.4,height:row.h-3,
+          fill: on?'#e0a83f':'#eeece5','data-row':row.key,'data-idx':i}));
+      }
+    }
+    if(row.key==='fng'){
+      svg.appendChild(el('text',{x:padL-8,y:row.top+row.h/2-3,'text-anchor':'end','font-size':10.5,fill:'#1c1b18','font-weight':600,'dominant-baseline':'middle'},'Fear & Greed'));
+      svg.appendChild(el('text',{x:padL-8,y:row.top+row.h/2+9,'text-anchor':'end','font-size':7.6,fill:'#7a7872','dominant-baseline':'middle'},'real index'));
+      for(let i=Math.max(0,Math.floor(vs)); i<Math.min(N,Math.ceil(ve)); i++){
+        const x0 = idxToX(i);
+        plotGroup.appendChild(el('rect',{x:x0,y:row.top,width:colW+0.4,height:row.h-3,
+          fill: fngColor(fng[i]),'data-row':'fng','data-idx':i}));
+      }
+    }
+  });
+
+  // ── price panel ──
+  const allowedPrices = price.slice(Math.max(0,Math.floor(vs)), Math.min(N,Math.ceil(ve)));
+  let pMin, pMax;
+  if(state.scale==='log'){ pMin=Math.log10(Math.min(...allowedPrices)*0.85); pMax=Math.log10(Math.max(...allowedPrices)*1.12); }
+  else { pMin=Math.min(...allowedPrices)*0.9; pMax=Math.max(...allowedPrices)*1.1; }
+  const py = p => {
+    const v = state.scale==='log'?Math.log10(p):p;
+    return priceTop + (1-(v-pMin)/(pMax-pMin))*priceH;
+  };
+  const px = i => idxToX(i)+colW/2;
+
+  // gridlines
+  const ticks = state.scale==='log' ? [1000,3000,10000,30000,100000,300000].filter(v=>Math.log10(v)>=pMin&&Math.log10(v)<=pMax)
+    : [0,20000,40000,60000,80000,100000,120000].filter(v=>v>=pMin&&v<=pMax);
+  ticks.forEach(v=>{
+    const gy=py(v);
+    svg.appendChild(el('line',{x1:padL,x2:padL+plotW,y1:gy,y2:gy,stroke:'#e8e5dd','stroke-width':1}));
+    svg.appendChild(el('text',{x:padL+plotW+8,y:gy+3,'font-size':9,fill:'#7a7872'},'$'+(v>=1000?(v/1000)+'K':v)));
+  });
+
+  const visIdx=[]; for(let i=Math.max(0,Math.floor(vs)); i<Math.min(N,Math.ceil(ve)); i++) visIdx.push(i);
+  let pts = visIdx.map(i=>`${px(i)},${py(price[i])}`).join(' ');
+  plotGroup.appendChild(el('polyline',{points:pts,fill:'none',stroke:'#ffffff','stroke-width':4.5,'stroke-linejoin':'round',opacity:0.9}));
+  plotGroup.appendChild(el('polyline',{points:pts,fill:'none',stroke:'#2f6fb0','stroke-width':1.8,'stroke-linejoin':'round'}));
+  visIdx.forEach(i=>{
+    plotGroup.appendChild(el('circle',{cx:px(i),cy:py(price[i]),r: span<24?3.2:1.6,fill:'#2f6fb0','data-row':'price','data-idx':i,style:'cursor:pointer'}));
+  });
+
+  // year separators + labels (only draw boundaries within view)
+  let acc=0;
+  yearNames.forEach((yn)=>{
+    const cnt = monthsPerYear[+yn]||12;
+    const yStart = acc, yEnd = acc+cnt;
+    if(yEnd>vs && yStart<ve){
+      const x0 = idxToX(Math.max(yStart,vs));
+      if(yStart>=vs) svg.appendChild(el('line',{x1:idxToX(yStart),x2:idxToX(yStart),y1:padT,y2:priceTop+priceH,stroke:'#d8d5cc','stroke-width':1,opacity:0.5}));
+      const labelCenter = idxToX(Math.max(yStart,vs) + Math.min(yEnd,ve) - Math.max(yStart,vs))/1 ; // simplified below
+      const cx = (idxToX(Math.max(yStart,vs)) + idxToX(Math.min(yEnd,ve)))/2;
+      if(span>6) svg.appendChild(el('text',{x:cx,y:H-12,'text-anchor':'middle','font-size':10,fill:'#55534d','font-weight':600},yn));
+    }
+    acc+=cnt;
+  });
+
+  // month labels when zoomed in enough
+  if(span<=30){
+    for(let i=Math.max(0,Math.floor(vs)); i<Math.min(N,Math.ceil(ve)); i++){
+      const mo=months[i];
+      svg.appendChild(el('text',{x:idxToX(i)+colW/2,y:H-12,'text-anchor':'middle','font-size':8.5,fill:'#55534d'},monthNames[mo.m]+(mo.m===0?` '${(''+mo.y).slice(2)}`:'')));
+    }
+  }
+
+  // live seam (if in view)
+  if(liveStartIdx>=vs && liveStartIdx<=ve){
+    const lx = idxToX(liveStartIdx);
+    svg.appendChild(el('line',{x1:lx,x2:lx,y1:padT,y2:priceTop+priceH,stroke:'#2f6fb0','stroke-width':2,'stroke-dasharray':'5 3'}));
+    svg.appendChild(el('text',{x:lx+4,y:padT+9,'font-size':8.5,fill:'#2f6fb0','font-weight':700},'live (Jun 12+)'));
+  }
+
+  // shmita tie-through shading
+  const sStartIdx = months.findIndex(m=>m.y===2021&&m.m===8);
+  const sEndIdx = months.findIndex(m=>m.y===2022&&m.m===8)+1;
+  if(sEndIdx>vs && sStartIdx<ve && state.layers.shmita){
+    const x0=idxToX(Math.max(sStartIdx,vs)), x1=idxToX(Math.min(sEndIdx,ve));
+    svg.insertBefore(el('rect',{x:x0,y:padT,width:x1-x0,height:priceTop+priceH-padT,fill:'#e0a83f',opacity:0.05}), svg.firstChild.nextSibling);
+  }
+
+  attachHover(visIdx, px, py, priceTop, priceH);
+}
+
+function attachHover(visIdx, px, py, priceTop, priceH){
+  const targets = svg.querySelectorAll('[data-idx]');
+  targets.forEach(t=>{
+    t.addEventListener('mousemove', (e)=>showTip(e, +t.getAttribute('data-idx')));
+    t.addEventListener('mouseleave', ()=>{ tooltip.style.display='none'; });
+  });
+}
+
+function showTip(e, idx){
+  const mo = months[idx];
+  const monthLabel = `${monthNames[mo.m]} ${mo.y}`;
+  const block = wyckoffLabelFor(idx);
+  const isLive = idx>=liveStartIdx;
+  const fngVal = fng[idx];
+  const mercOn = merc.has(`${mo.y}-${mo.m}`);
+  const shmOn = shmita.has(`${mo.y}-${mo.m}`);
+  tooltip.innerHTML = `
+    <div style="margin-bottom:4px"><b>${monthLabel}</b>${isLive?' <span style="color:#5ec8f0;font-size:9px">● LIVE</span>':''}</div>
+    <div class="tt-row"><span class="tt-label">Price</span><span>$${price[idx].toLocaleString()}</span></div>
+    ${state.layers.wyckoff && block ? `<div class="tt-row"><span class="tt-label">Wyckoff</span><span>${block.label}</span></div>`:''}
+    ${state.layers.fng ? `<div class="tt-row"><span class="tt-label">F&amp;G</span><span>${fngVal==null?'n/a (pre-2018)':fngVal}</span></div>`:''}
+    ${state.layers.mercury ? `<div class="tt-row"><span class="tt-label">Mercury</span><span>${mercOn?'Retrograde':'Direct'}</span></div>`:''}
+    ${state.layers.shmita ? `<div class="tt-row"><span class="tt-label">Shmita</span><span>${shmOn?'Yes (5782)':'No'}</span></div>`:''}
+  `;
+  const rect = holder.getBoundingClientRect();
+  let left = e.clientX - rect.left + 14;
+  let top = e.clientY - rect.top - 10;
+  if(left > rect.width - 170) left -= 190;
+  tooltip.style.left = left+'px';
+  tooltip.style.top = top+'px';
+  tooltip.style.display='block';
+}
+
+// ── CONTROLS ──
+document.querySelectorAll('button.toggle').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    const layer = btn.getAttribute('data-layer');
+    state.layers[layer] = !state.layers[layer];
+    btn.classList.toggle('active');
+    render();
+  });
+});
+
+document.querySelectorAll('button[data-zoom]').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    document.querySelectorAll('button[data-zoom]').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    const z = btn.getAttribute('data-zoom');
+    if(z==='all'||z==='reset'){ state.viewStart=0; state.viewEnd=N; }
+    else if(z==='cycle22'){
+      state.viewStart = months.findIndex(m=>m.y===2021&&m.m===0);
+      state.viewEnd = months.findIndex(m=>m.y===2023&&m.m===11)+1;
+    } else if(z==='live'){
+      state.viewStart = Math.max(0, liveStartIdx-3);
+      state.viewEnd = N;
+    }
+    render();
+  });
+});
+
+document.querySelectorAll('button[data-scale]').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    document.querySelectorAll('button[data-scale]').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    state.scale = btn.getAttribute('data-scale');
+    render();
+  });
+});
+
+// ── PAN & ZOOM (mouse drag + wheel) ──
+let dragging=false, dragStartX=0, dragStartView=[0,N];
+holder.addEventListener('mousedown', (e)=>{
+  dragging=true; dragStartX=e.clientX; dragStartView=[state.viewStart,state.viewEnd];
+  holder.classList.add('dragging');
+});
+window.addEventListener('mouseup', ()=>{ dragging=false; holder.classList.remove('dragging'); });
+window.addEventListener('mousemove', (e)=>{
+  if(!dragging) return;
+  const rect = holder.getBoundingClientRect();
+  const dxPx = e.clientX - dragStartX;
+  const span = dragStartView[1]-dragStartView[0];
+  const dxMonths = -(dxPx / rect.width) * span * (W/plotW);
+  let ns = dragStartView[0]+dxMonths, ne = dragStartView[1]+dxMonths;
+  if(ns<0){ ne-=ns; ns=0; }
+  if(ne>N){ ns-=(ne-N); ne=N; }
+  state.viewStart=Math.max(0,ns); state.viewEnd=Math.min(N,ne);
+  render();
+});
+holder.addEventListener('wheel', (e)=>{
+  e.preventDefault();
+  const span = state.viewEnd-state.viewStart;
+  const factor = e.deltaY>0 ? 1.15 : 0.87;
+  let newSpan = Math.min(N, Math.max(6, span*factor));
+  const rect = holder.getBoundingClientRect();
+  const mouseFrac = (e.clientX-rect.left)/rect.width;
+  const mouseIdx = state.viewStart + mouseFrac*span;
+  let ns = mouseIdx - mouseFrac*newSpan;
+  let ne = ns + newSpan;
+  if(ns<0){ ne-=ns; ns=0; }
+  if(ne>N){ ns-=(ne-N); ne=N; }
+  state.viewStart=Math.max(0,ns); state.viewEnd=Math.min(N,ne);
+  render();
+}, {passive:false});
+
+// ── TOUCH: pan (1 finger) + pinch-zoom (2 fingers) + tap-tooltip ──
+let touchMode=null; // 'pan' | 'pinch'
+let touchStartView=[0,N];
+let touchStartX=0;
+let pinchStartDist=0, pinchStartSpan=0, pinchStartMidFrac=0.5, pinchStartViewStart=0;
+let lastTapTime=0, tapHoldTimer=null;
+
+function touchDist(t0,t1){
+  const dx=t0.clientX-t1.clientX, dy=t0.clientY-t1.clientY;
+  return Math.sqrt(dx*dx+dy*dy);
+}
+
+holder.addEventListener('touchstart', (e)=>{
+  if(e.touches.length===1){
+    touchMode='pan';
+    touchStartX = e.touches[0].clientX;
+    touchStartView = [state.viewStart, state.viewEnd];
+    // also treat as a potential tap for tooltip
+    handleTouchPoint(e.touches[0]);
+  } else if(e.touches.length===2){
+    touchMode='pinch';
+    pinchStartDist = touchDist(e.touches[0], e.touches[1]);
+    pinchStartSpan = state.viewEnd - state.viewStart;
+    pinchStartViewStart = state.viewStart;
+    const rect = holder.getBoundingClientRect();
+    const midX = (e.touches[0].clientX + e.touches[1].clientX)/2;
+    pinchStartMidFrac = (midX - rect.left)/rect.width;
+    tooltip.style.display='none';
+  }
+}, {passive:true});
+
+holder.addEventListener('touchmove', (e)=>{
+  if(touchMode==='pan' && e.touches.length===1){
+    e.preventDefault();
+    tooltip.style.display='none';
+    const rect = holder.getBoundingClientRect();
+    const dxPx = e.touches[0].clientX - touchStartX;
+    const span = touchStartView[1]-touchStartView[0];
+    const dxMonths = -(dxPx / rect.width) * span * (W/plotW);
+    let ns = touchStartView[0]+dxMonths, ne = touchStartView[1]+dxMonths;
+    if(ns<0){ ne-=ns; ns=0; }
+    if(ne>N){ ns-=(ne-N); ne=N; }
+    state.viewStart=Math.max(0,ns); state.viewEnd=Math.min(N,ne);
+    render();
+  } else if(touchMode==='pinch' && e.touches.length===2){
+    e.preventDefault();
+    const dist = touchDist(e.touches[0], e.touches[1]);
+    const ratio = pinchStartDist / Math.max(dist, 1);
+    let newSpan = Math.min(N, Math.max(6, pinchStartSpan*ratio));
+    const mouseIdx = pinchStartViewStart + pinchStartMidFrac*pinchStartSpan;
+    let ns = mouseIdx - pinchStartMidFrac*newSpan;
+    let ne = ns + newSpan;
+    if(ns<0){ ne-=ns; ns=0; }
+    if(ne>N){ ns-=(ne-N); ne=N; }
+    state.viewStart=Math.max(0,ns); state.viewEnd=Math.min(N,ne);
+    render();
+  }
+}, {passive:false});
+
+holder.addEventListener('touchend', (e)=>{
+  touchMode=null;
+}, {passive:true});
+
+function handleTouchPoint(touch){
+  // find nearest data column under the touch point and show tooltip
+  const rect = holder.getBoundingClientRect();
+  const xFrac = (touch.clientX - rect.left)/rect.width;
+  const svgX = xFrac * W;
+  const span = state.viewEnd - state.viewStart;
+  const colW = plotW/span;
+  let idx = Math.floor(state.viewStart + (svgX - padL)/colW);
+  idx = Math.max(0, Math.min(N-1, idx));
+  showTip({clientX: touch.clientX, clientY: touch.clientY}, idx);
+  clearTimeout(tapHoldTimer);
+  tapHoldTimer = setTimeout(()=>{ tooltip.style.display='none'; }, 2500);
+}
+
+render();
+</script>
+</body>
+</html>
