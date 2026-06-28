@@ -9,6 +9,15 @@
     --bg:#0b0d0f; --bg2:#12151a; --card:#13171d; --bord:#262b33; --txt:#e8eaed; --txt2:#878f9c;
     --amber:#e0a83f; --price:#5ec8f0;
     --acc:#2f6fb0; --markup:#39b873; --dist:#c0291f; --markdown:#cf5b42;
+    --btn-bg:#1a1e25; --btn-hover:#5ec8f0; --tt-bg:#1a1e25; --tt-bord:#3a4150; --tt-shadow:rgba(0,0,0,.5);
+    --tt-accent:#5ec8f0; --link:#5ec8f0; --srcnote:#6b7180; --srcnote-b:#aeb4bf;
+  }
+  :root[data-theme="light"]{
+    --bg:#f7f6f2; --bg2:#ffffff; --card:#ffffff; --bord:#e1ded6; --txt:#1c1b18; --txt2:#6b6a64;
+    --amber:#b07e20; --price:#2f6fb0;
+    --acc:#2f6fb0; --markup:#1e8a52; --dist:#a32d2d; --markdown:#cc5236;
+    --btn-bg:#f0eee8; --btn-hover:#2f6fb0; --tt-bg:#ffffff; --tt-bord:#d8d5cc; --tt-shadow:rgba(0,0,0,.12);
+    --tt-accent:#2f6fb0; --link:#2f6fb0; --srcnote:#6b7180; --srcnote-b:#55534d;
   }
   *{box-sizing:border-box;margin:0;padding:0;}
   body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--txt);padding:18px 14px;}
@@ -22,13 +31,13 @@
   .ctrl-label{font-size:10px;color:var(--txt2);text-transform:uppercase;letter-spacing:.05em;font-weight:700;margin-right:2px;}
   button.toggle{
     font-size:11px;font-weight:600;padding:5px 10px;border-radius:6px;border:1px solid var(--bord);
-    background:#1a1e25;color:var(--txt2);cursor:pointer;transition:all .12s;
+    background:var(--btn-bg);color:var(--txt2);cursor:pointer;transition:all .12s;
   }
   button.toggle.active{background:var(--amber);color:#1a1408;border-color:var(--amber);}
-  button.toggle:hover{border-color:#5ec8f0;}
-  button.zoom-btn{font-size:11px;font-weight:600;padding:5px 11px;border-radius:6px;border:1px solid var(--bord);background:#1a1e25;color:var(--txt2);cursor:pointer;}
+  button.toggle:hover{border-color:var(--btn-hover);}
+  button.zoom-btn{font-size:11px;font-weight:600;padding:5px 11px;border-radius:6px;border:1px solid var(--bord);background:var(--btn-bg);color:var(--txt2);cursor:pointer;}
   button.zoom-btn.active{background:#2f6fb0;color:#fff;border-color:#2f6fb0;}
-  button.zoom-btn:hover{border-color:#5ec8f0;}
+  button.zoom-btn:hover{border-color:var(--btn-hover);}
 
   .chart-card{background:var(--card);border:1px solid var(--bord);border-radius:12px;padding:14px 12px 10px;position:relative;}
   #svgHolder{width:100%;overflow:hidden;cursor:grab;touch-action:none;}
@@ -36,11 +45,11 @@
   svg{display:block;width:100%;height:auto;user-select:none;}
 
   .tooltip{
-    position:absolute;pointer-events:none;background:#1a1e25;border:1px solid #3a4150;border-radius:8px;
-    padding:8px 11px;font-size:11px;line-height:1.5;color:var(--txt);box-shadow:0 4px 18px rgba(0,0,0,.5);
+    position:absolute;pointer-events:none;background:var(--tt-bg);border:1px solid var(--tt-bord);border-radius:8px;
+    padding:8px 11px;font-size:11px;line-height:1.5;color:var(--txt);box-shadow:0 4px 18px var(--tt-shadow);
     display:none;z-index:10;min-width:150px;
   }
-  .tooltip b{color:#5ec8f0;}
+  .tooltip b{color:var(--tt-accent);}
   .tooltip .tt-row{display:flex;justify-content:space-between;gap:10px;}
   .tooltip .tt-label{color:var(--txt2);}
 
@@ -50,10 +59,11 @@
   .legend-row span{display:flex;align-items:center;gap:5px;}
   .legend-row i{width:11px;height:11px;border-radius:3px;display:inline-block;}
 
-  .src-note{font-size:10.5px;color:#6b7180;margin:14px 0;line-height:1.6;background:var(--bg2);border:1px solid var(--bord);border-radius:8px;padding:11px 13px;}
-  .src-note b{color:#aeb4bf;}
+  .src-note{font-size:10.5px;color:var(--srcnote);margin:14px 0;line-height:1.6;background:var(--bg2);border:1px solid var(--bord);border-radius:8px;padding:11px 13px;}
+  .src-note b{color:var(--srcnote-b);}
 
-  .backlink{display:inline-block;font-size:11.5px;color:#5ec8f0;text-decoration:none;margin-bottom:10px;}
+  .backlink{display:inline-block;font-size:11.5px;color:var(--link);}
+  .backlink-x{display:inline-block;font-size:11.5px;color:var(--link);text-decoration:none;margin-bottom:10px;}
   .backlink:hover{text-decoration:underline;}
 
   @media (max-width:640px){
@@ -65,12 +75,15 @@
     .hint{font-size:9.5px;}
     .tooltip{font-size:10px;min-width:130px;padding:7px 9px;}
   }
+  .theme-toggle{font-size:11px;font-weight:600;padding:5px 11px;border-radius:6px;border:1px solid var(--bord);
+    background:var(--btn-bg);color:var(--txt2);cursor:pointer;}
+  .theme-toggle:hover{border-color:var(--btn-hover);}
 </style>
 </head>
 <body>
 <div class="wrap">
 
-<a href="ada-dashboard.html" class="backlink">&larr; ADA DashBoard</a> &nbsp;&middot;&nbsp; <a href="btc-dashboard-light.html" class="backlink">Light version &rarr;</a>
+<a href="reports.html" class="backlink">&larr; All reports</a> 
 <h1>BTC Framework Dashboard — Interactive</h1>
 <div class="meta">Crypto Reconnaissance Engine · <b>Jan 2018 → Jun 2026</b> · drag to pan, scroll/pinch to zoom, hover for values, toggle layers below</div>
 
@@ -93,6 +106,10 @@
     <span class="ctrl-label">Scale</span>
     <button class="zoom-btn active" data-scale="log">Log</button>
     <button class="zoom-btn" data-scale="linear">Linear</button>
+  </div>
+  <div class="ctrl-group">
+    <span class="ctrl-label">Theme</span>
+    <button class="theme-toggle" id="themeToggle">☀ Light</button>
   </div>
 </div>
 
@@ -201,12 +218,24 @@ const wyckoff = [
   {s:101,e:102,kind:'markdown',label:'live: Phase D + Spring'},
 ];
 const liveStartIdx = 101;
-const wyckoffColor = {acc:'#2f6fb0', markup:'#39b873', dist:'#c0291f', markdown:'#cf5b42'};
+let currentTheme = 'dark';
+const THEMES = {
+  dark:  { halo:'#0b0d0f', priceLine:'#5ec8f0', grid:'#262b33', yearSep:'#333a44',
+           rowLabel:'#e8eaed', subLabel:'#878f9c', axisLabel:'#aeb4bf', seam:'#5ec8f0',
+           fngNoData:'#2a2f37', offCell:'#1b1f26',
+           wyckoff:{acc:'#2f6fb0', markup:'#39b873', dist:'#c0291f', markdown:'#cf5b42'} },
+  light: { halo:'#ffffff', priceLine:'#2f6fb0', grid:'#e8e5dd', yearSep:'#d8d5cc',
+           rowLabel:'#1c1b18', subLabel:'#7a7872', axisLabel:'#55534d', seam:'#2f6fb0',
+           fngNoData:'#e8e5dd', offCell:'#eeece5',
+           wyckoff:{acc:'#2f6fb0', markup:'#1e8a52', dist:'#a32d2d', markdown:'#cc5236'} }
+};
+function TH(){ return THEMES[currentTheme]; }
+function wyckoffColorOf(kind){ return TH().wyckoff[kind]; }
 
 function lerp(a,b,t){return a+(b-a)*t;}
 function rgb(r,g,b){return `rgb(${Math.round(r)},${Math.round(g)},${Math.round(b)})`;}
 function fngColor(v){
-  if(v==null)return '#2a2f37';
+  if(v==null)return TH().fngNoData;
   const s=v/100;
   const stops=[[0,[123,31,26]],[0.25,[208,87,58]],[0.5,[232,201,122]],[0.75,[91,191,134]],[1,[47,111,176]]];
   for(let i=0;i<stops.length-1;i++){const [s0,c0]=stops[i],[s1,c1]=stops[i+1];
@@ -270,14 +299,14 @@ function render(){
   // ── row rendering ──
   rows.forEach(row=>{
     if(row.key==='wyckoff'){
-      svg.appendChild(el('text',{x:padL-8,y:row.top+row.h/2-4,'text-anchor':'end','font-size':11,fill:'#e8eaed','font-weight':600,'dominant-baseline':'middle'},'Wyckoff'));
-      svg.appendChild(el('text',{x:padL-8,y:row.top+row.h/2+10,'text-anchor':'end','font-size':8,fill:'#878f9c','dominant-baseline':'middle'},'retro→live'));
+      svg.appendChild(el('text',{x:padL-8,y:row.top+row.h/2-4,'text-anchor':'end','font-size':11,fill:TH().rowLabel,'font-weight':600,'dominant-baseline':'middle'},'Wyckoff'));
+      svg.appendChild(el('text',{x:padL-8,y:row.top+row.h/2+10,'text-anchor':'end','font-size':8,fill:TH().subLabel,'dominant-baseline':'middle'},'retro→live'));
       for(let i=Math.max(0,Math.floor(vs)); i<Math.min(N,Math.ceil(ve)); i++){
         const block = wyckoffLabelFor(i);
         if(!block) continue;
         const x0 = idxToX(i);
         const isLive = i>=liveStartIdx;
-        const rectEl = el('rect',{x:x0,y:row.top,width:colW+0.5,height:row.h-3,fill:wyckoffColor[block.kind],opacity:0.88,
+        const rectEl = el('rect',{x:x0,y:row.top,width:colW+0.5,height:row.h-3,fill:wyckoffColorOf(block.kind),opacity:0.88,
           'data-row':'wyckoff','data-idx':i});
         if(isLive){ rectEl.setAttribute('stroke','#5ec8f0'); rectEl.setAttribute('stroke-width','1.4'); }
         plotGroup.appendChild(rectEl);
@@ -297,19 +326,19 @@ function render(){
     if(row.key==='shmita'||row.key==='mercury'){
       const dataSet = row.key==='shmita'?shmita:merc;
       const label = row.key==='shmita'?'Shmita':'Mercury Rx';
-      svg.appendChild(el('text',{x:padL-8,y:row.top+row.h/2-3,'text-anchor':'end','font-size':10.5,fill:'#e8eaed','font-weight':600,'dominant-baseline':'middle'},label));
-      svg.appendChild(el('text',{x:padL-8,y:row.top+row.h/2+9,'text-anchor':'end','font-size':7.6,fill:'#878f9c','dominant-baseline':'middle'},'calendar'));
+      svg.appendChild(el('text',{x:padL-8,y:row.top+row.h/2-3,'text-anchor':'end','font-size':10.5,fill:TH().rowLabel,'font-weight':600,'dominant-baseline':'middle'},label));
+      svg.appendChild(el('text',{x:padL-8,y:row.top+row.h/2+9,'text-anchor':'end','font-size':7.6,fill:TH().subLabel,'dominant-baseline':'middle'},'calendar'));
       for(let i=Math.max(0,Math.floor(vs)); i<Math.min(N,Math.ceil(ve)); i++){
         const mo = months[i]; const key=`${mo.y}-${mo.m}`;
         const x0 = idxToX(i);
         const on = dataSet.has(key);
         plotGroup.appendChild(el('rect',{x:x0,y:row.top,width:colW+0.4,height:row.h-3,
-          fill: on?'#e0a83f':'#1b1f26','data-row':row.key,'data-idx':i}));
+          fill: on?'#e0a83f':TH().offCell,'data-row':row.key,'data-idx':i}));
       }
     }
     if(row.key==='fng'){
-      svg.appendChild(el('text',{x:padL-8,y:row.top+row.h/2-3,'text-anchor':'end','font-size':10.5,fill:'#e8eaed','font-weight':600,'dominant-baseline':'middle'},'Fear & Greed'));
-      svg.appendChild(el('text',{x:padL-8,y:row.top+row.h/2+9,'text-anchor':'end','font-size':7.6,fill:'#878f9c','dominant-baseline':'middle'},'real index'));
+      svg.appendChild(el('text',{x:padL-8,y:row.top+row.h/2-3,'text-anchor':'end','font-size':10.5,fill:TH().rowLabel,'font-weight':600,'dominant-baseline':'middle'},'Fear & Greed'));
+      svg.appendChild(el('text',{x:padL-8,y:row.top+row.h/2+9,'text-anchor':'end','font-size':7.6,fill:TH().subLabel,'dominant-baseline':'middle'},'real index'));
       for(let i=Math.max(0,Math.floor(vs)); i<Math.min(N,Math.ceil(ve)); i++){
         const x0 = idxToX(i);
         plotGroup.appendChild(el('rect',{x:x0,y:row.top,width:colW+0.4,height:row.h-3,
@@ -334,16 +363,16 @@ function render(){
     : [0,20000,40000,60000,80000,100000,120000].filter(v=>v>=pMin&&v<=pMax);
   ticks.forEach(v=>{
     const gy=py(v);
-    svg.appendChild(el('line',{x1:padL,x2:padL+plotW,y1:gy,y2:gy,stroke:'#262b33','stroke-width':1}));
-    svg.appendChild(el('text',{x:padL+plotW+8,y:gy+3,'font-size':9,fill:'#878f9c'},'$'+(v>=1000?(v/1000)+'K':v)));
+    svg.appendChild(el('line',{x1:padL,x2:padL+plotW,y1:gy,y2:gy,stroke:TH().grid,'stroke-width':1}));
+    svg.appendChild(el('text',{x:padL+plotW+8,y:gy+3,'font-size':9,fill:TH().subLabel},'$'+(v>=1000?(v/1000)+'K':v)));
   });
 
   const visIdx=[]; for(let i=Math.max(0,Math.floor(vs)); i<Math.min(N,Math.ceil(ve)); i++) visIdx.push(i);
   let pts = visIdx.map(i=>`${px(i)},${py(price[i])}`).join(' ');
-  plotGroup.appendChild(el('polyline',{points:pts,fill:'none',stroke:'#0b0d0f','stroke-width':4,'stroke-linejoin':'round',opacity:0.7}));
-  plotGroup.appendChild(el('polyline',{points:pts,fill:'none',stroke:'#5ec8f0','stroke-width':1.8,'stroke-linejoin':'round'}));
+  plotGroup.appendChild(el('polyline',{points:pts,fill:'none',stroke:TH().halo,'stroke-width':4,'stroke-linejoin':'round',opacity:0.7}));
+  plotGroup.appendChild(el('polyline',{points:pts,fill:'none',stroke:TH().priceLine,'stroke-width':1.8,'stroke-linejoin':'round'}));
   visIdx.forEach(i=>{
-    plotGroup.appendChild(el('circle',{cx:px(i),cy:py(price[i]),r: span<24?3.2:1.6,fill:'#5ec8f0','data-row':'price','data-idx':i,style:'cursor:pointer'}));
+    plotGroup.appendChild(el('circle',{cx:px(i),cy:py(price[i]),r: span<24?3.2:1.6,fill:TH().priceLine,'data-row':'price','data-idx':i,style:'cursor:pointer'}));
   });
 
   // year separators + labels (only draw boundaries within view)
@@ -352,9 +381,11 @@ function render(){
     const cnt = monthsPerYear[+yn]||12;
     const yStart = acc, yEnd = acc+cnt;
     if(yEnd>vs && yStart<ve){
-      if(yStart>=vs) svg.appendChild(el('line',{x1:idxToX(yStart),x2:idxToX(yStart),y1:padT,y2:priceTop+priceH,stroke:'#333a44','stroke-width':1,opacity:0.5}));
+      const x0 = idxToX(Math.max(yStart,vs));
+      if(yStart>=vs) svg.appendChild(el('line',{x1:idxToX(yStart),x2:idxToX(yStart),y1:padT,y2:priceTop+priceH,stroke:TH().yearSep,'stroke-width':1,opacity:0.5}));
+      const labelCenter = idxToX(Math.max(yStart,vs) + Math.min(yEnd,ve) - Math.max(yStart,vs))/1 ; // simplified below
       const cx = (idxToX(Math.max(yStart,vs)) + idxToX(Math.min(yEnd,ve)))/2;
-      if(span>6) svg.appendChild(el('text',{x:cx,y:H-12,'text-anchor':'middle','font-size':10,fill:'#aeb4bf','font-weight':600},yn));
+      if(span>6) svg.appendChild(el('text',{x:cx,y:H-12,'text-anchor':'middle','font-size':10,fill:TH().axisLabel,'font-weight':600},yn));
     }
     acc+=cnt;
   });
@@ -363,15 +394,15 @@ function render(){
   if(span<=30){
     for(let i=Math.max(0,Math.floor(vs)); i<Math.min(N,Math.ceil(ve)); i++){
       const mo=months[i];
-      svg.appendChild(el('text',{x:idxToX(i)+colW/2,y:H-12,'text-anchor':'middle','font-size':8.5,fill:'#aeb4bf'},monthNames[mo.m]+(mo.m===0?` '${(''+mo.y).slice(2)}`:'')));
+      svg.appendChild(el('text',{x:idxToX(i)+colW/2,y:H-12,'text-anchor':'middle','font-size':8.5,fill:TH().axisLabel},monthNames[mo.m]+(mo.m===0?` '${(''+mo.y).slice(2)}`:'')));
     }
   }
 
   // live seam (if in view)
   if(liveStartIdx>=vs && liveStartIdx<=ve){
     const lx = idxToX(liveStartIdx);
-    svg.appendChild(el('line',{x1:lx,x2:lx,y1:padT,y2:priceTop+priceH,stroke:'#5ec8f0','stroke-width':2,'stroke-dasharray':'5 3'}));
-    svg.appendChild(el('text',{x:lx+4,y:padT+9,'font-size':8.5,fill:'#5ec8f0','font-weight':700},'live (Jun 12+)'));
+    svg.appendChild(el('line',{x1:lx,x2:lx,y1:padT,y2:priceTop+priceH,stroke:TH().seam,'stroke-width':2,'stroke-dasharray':'5 3'}));
+    svg.appendChild(el('text',{x:lx+4,y:padT+9,'font-size':8.5,fill:TH().seam,'font-weight':700},'live (Jun 12+)'));
   }
 
   // shmita tie-through shading
@@ -566,7 +597,23 @@ function handleTouchPoint(touch){
   tapHoldTimer = setTimeout(()=>{ tooltip.style.display='none'; }, 2500);
 }
 
-render();
+// ---- theme toggle ----
+function applyTheme(t){
+  currentTheme = t;
+  if(t==='light') document.documentElement.setAttribute('data-theme','light');
+  else document.documentElement.removeAttribute('data-theme');
+  const btn = document.getElementById('themeToggle');
+  if(btn) btn.textContent = (t==='light') ? '\u263E Dark' : '\u2600 Light';
+  try{ localStorage.setItem('cre-theme', t); }catch(e){}
+  render();
+}
+document.getElementById('themeToggle').addEventListener('click', ()=>{
+  applyTheme(currentTheme==='light' ? 'dark' : 'light');
+});
+// restore saved preference (falls back silently if storage unavailable)
+let savedTheme = 'dark';
+try{ const s = localStorage.getItem('cre-theme'); if(s==='light'||s==='dark') savedTheme = s; }catch(e){}
+applyTheme(savedTheme);
 </script>
 </body>
 </html>
