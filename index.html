@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Crypto Reconnaissance Engine — Dashboard</title>
+<style>
+  :root{
+    --bg:#07070b; --panel:#0e0e15; --panel2:#13131c; --bord:#21212e; --txt:#eef0f5; --txt2:#8b8ca0;
+    --green:#34d39a; --purple:#a87ff0; --gold:#f5c451;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--txt);min-height:100vh;
+    background-image:radial-gradient(1200px 500px at 70% -10%, rgba(80,70,160,.12), transparent);}
+
+  /* top nav */
+  .nav{display:flex;align-items:center;gap:18px;padding:14px 22px;border-bottom:1px solid var(--bord);}
+  .brand{display:flex;align-items:center;gap:10px;}
+  .brand .logo{width:30px;height:30px;border-radius:8px;background:radial-gradient(circle at 35% 30%, #4a7fff, #2540b0);display:flex;align-items:center;justify-content:center;font-size:15px;}
+  .brand .name{font-size:15px;font-weight:700;letter-spacing:-.01em;}
+  .brand .name small{display:block;font-size:8.5px;font-weight:500;color:var(--txt2);letter-spacing:.04em;text-transform:uppercase;}
+  .nav-spacer{flex:1;}
+  .badge-free{font-size:10px;font-weight:700;letter-spacing:.05em;color:var(--txt2);border:1px solid var(--bord);border-radius:6px;padding:3px 8px;}
+  .nav-user{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;}
+  .nav-user .ava{width:26px;height:26px;border-radius:50%;background:#3a3550;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;}
+
+  .container{max-width:1180px;margin:0 auto;padding:24px 22px 60px;}
+
+  /* token selector */
+  .selector-row{display:flex;align-items:center;gap:12px;margin-bottom:28px;}
+  .token-select{position:relative;}
+  select{
+    appearance:none;-webkit-appearance:none;background:var(--panel);color:var(--txt);border:1px solid var(--bord);
+    border-radius:12px;padding:12px 18px;font-size:15px;font-weight:600;cursor:pointer;min-width:200px;
+    font-family:inherit;
+  }
+  select:focus{outline:none;border-color:#4a7fff;}
+
+  /* token hero */
+  .hero{display:flex;align-items:center;gap:18px;margin-bottom:30px;flex-wrap:wrap;}
+  .hero .avatar{width:72px;height:72px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+    font-size:38px;font-weight:700;color:#fff;flex-shrink:0;box-shadow:0 0 0 1px rgba(255,255,255,.08), 0 6px 24px rgba(0,0,0,.5);}
+  .hero .h-text .ticker{font-size:44px;font-weight:800;letter-spacing:-.02em;line-height:1;}
+  .hero .h-text .full{font-size:13px;color:var(--txt2);font-weight:500;margin-top:2px;}
+  .hero .h-text .tagline{font-size:14px;color:var(--txt2);margin-top:8px;max-width:560px;line-height:1.5;}
+
+  /* stat cards */
+  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:8px;}
+  @media(max-width:760px){ .cards{grid-template-columns:1fr;} }
+  .card{background:var(--panel);border:1px solid var(--bord);border-radius:16px;padding:20px 22px;position:relative;overflow:hidden;}
+  .card .c-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:12px;}
+  .card .c-val{font-size:34px;font-weight:800;letter-spacing:-.01em;line-height:1;}
+  .card .c-sub{font-size:12px;color:var(--txt2);margin-top:8px;}
+  .card .c-icon{position:absolute;top:18px;right:18px;width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;}
+  .card.green .c-label{color:var(--green);} .card.green .c-icon{background:rgba(52,211,154,.12);}
+  .card.purple .c-label{color:var(--purple);} .card.purple .c-icon{background:rgba(168,127,240,.12);}
+  .card.gold .c-label{color:var(--gold);} .card.gold .c-val{color:var(--gold);} .card.gold .c-icon{background:rgba(245,196,81,.12);}
+
+  /* below area */
+  .below{margin-top:30px;border:1px solid var(--bord);border-radius:16px;background:var(--panel);min-height:180px;padding:20px 22px;}
+  .below .b-title{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--txt2);margin-bottom:14px;}
+  .report-links{display:flex;flex-wrap:wrap;gap:10px;}
+  .report-links a{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600;color:var(--txt);
+    background:var(--panel2);border:1px solid var(--bord);border-radius:10px;padding:10px 14px;text-decoration:none;transition:border-color .12s;}
+  .report-links a:hover{border-color:#4a7fff;}
+  .report-links a .arr{color:var(--txt2);font-size:12px;}
+
+  .snapshot-note{font-size:11px;color:var(--txt2);margin-top:18px;line-height:1.6;}
+  .snapshot-note b{color:#aeb0c0;}
+</style>
+</head>
+<body>
+
+<div class="nav">
+  <a href="index.html" class="brand" style="text-decoration:none;" title="Home">
+    <div class="logo">📡</div>
+  </a>
+</div>
+
+<div class="container">
+
+  <div class="selector-row">
+    <div class="token-select">
+      <select id="tokenSelect">
+        <option value="BTC">₿  BTC — Bitcoin</option>
+        <option value="ADA">₳  ADA — Cardano</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="hero">
+    <div class="avatar" id="avatar">₿</div>
+    <div class="h-text">
+      <div class="ticker" id="ticker">BTC</div>
+      <div class="full" id="fullname">Bitcoin</div>
+      <div class="tagline" id="tagline"></div>
+    </div>
+  </div>
+
+  <div class="cards">
+    <div class="card green">
+      <div class="c-icon">📈</div>
+      <div class="c-label">Wyckoff Phase</div>
+      <div class="c-val" id="phaseVal"></div>
+      <div class="c-sub" id="phaseSub"></div>
+    </div>
+    <div class="card purple">
+      <div class="c-icon">⚡</div>
+      <div class="c-label">Model Confidence</div>
+      <div class="c-val" id="confVal"></div>
+      <div class="c-sub" id="confSub"></div>
+    </div>
+    <div class="card gold">
+      <div class="c-icon">$</div>
+      <div class="c-label">Latest Tracked Price</div>
+      <div class="c-val" id="priceVal"></div>
+      <div class="c-sub" id="priceSub"></div>
+    </div>
+  </div>
+
+  <div class="below">
+    <div class="b-title">Reports for <span id="belowToken">BTC</span></div>
+    <div class="report-links" id="reportLinks"></div>
+    <div class="snapshot-note">
+      <b>Note:</b> prices and scores are the latest <b>tracked snapshots</b> from this project's dated reports — not a live feed (this is a static page). Wyckoff phase, confidence, and stance are the framework's own most recent reported calls. Structural analysis — not financial advice.
+    </div>
+  </div>
+
+</div>
+
+<script>
+const tokens = {
+  BTC: {
+    full:'Bitcoin', symbol:'₿', color:'#F7931A',
+    tagline:'Phase D markdown — a Spring / BUY 2 fired Jun 24 at $59,020 and is confirming above $59K, but has not reclaimed the $63K macro override.',
+    phase:'Phase D', phaseSub:'Spring fired, confirming',
+    conf:38, confSub:'Aggressiveness 2/10 · stance WAIT',
+    price:'$60,376', priceSub:'as of Jun 28, 2026 (snapshot)',
+    reports:[
+      {label:'Heatmap', href:'btc-dashboard.html'},
+    ]
+  },
+  ADA: {
+    full:'Cardano', symbol:'₳', color:'#2a52d4',
+    tagline:'Phase D markdown — the Phase C Spring thesis stopped out Jun 24 on a close at $0.1477. Stance is flat; re-entry needs BTC >$63K and ADA SOS >$0.1840 on volume >35M.',
+    phase:'Phase D', phaseSub:'Markdown · stopped out Jun 24',
+    conf:10, confSub:'Aggressiveness 0/10 · stance FLAT / WAIT',
+    price:'$0.145', priceSub:'as of Jun 28, 2026 (snapshot)',
+    reports:[
+      {label:'Heatmap', href:'ada-dashboard.html'},
+    ]
+  }
+};
+
+function applyToken(key){
+  const t = tokens[key];
+  document.getElementById('avatar').textContent = t.symbol;
+  document.getElementById('avatar').style.background = t.color;
+  document.getElementById('ticker').textContent = key;
+  document.getElementById('fullname').textContent = t.full;
+  document.getElementById('tagline').textContent = t.tagline;
+  document.getElementById('phaseVal').textContent = t.phase;
+  document.getElementById('phaseSub').textContent = t.phaseSub;
+  document.getElementById('confVal').textContent = t.conf + ' / 100';
+  document.getElementById('confSub').textContent = t.confSub;
+  document.getElementById('priceVal').textContent = t.price;
+  document.getElementById('priceSub').textContent = t.priceSub;
+  document.getElementById('belowToken').textContent = key;
+  const linksEl = document.getElementById('reportLinks');
+  linksEl.innerHTML = t.reports.map(r=>`<a href="${r.href}">${r.label} <span class="arr">&rarr;</span></a>`).join('');
+}
+
+document.getElementById('tokenSelect').addEventListener('change', e=>applyToken(e.target.value));
+applyToken('BTC');
+</script>
+</body>
+</html>
