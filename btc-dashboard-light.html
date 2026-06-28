@@ -352,9 +352,7 @@ function render(){
     const cnt = monthsPerYear[+yn]||12;
     const yStart = acc, yEnd = acc+cnt;
     if(yEnd>vs && yStart<ve){
-      const x0 = idxToX(Math.max(yStart,vs));
       if(yStart>=vs) svg.appendChild(el('line',{x1:idxToX(yStart),x2:idxToX(yStart),y1:padT,y2:priceTop+priceH,stroke:'#d8d5cc','stroke-width':1,opacity:0.5}));
-      const labelCenter = idxToX(Math.max(yStart,vs) + Math.min(yEnd,ve) - Math.max(yStart,vs))/1 ; // simplified below
       const cx = (idxToX(Math.max(yStart,vs)) + idxToX(Math.min(yEnd,ve)))/2;
       if(span>6) svg.appendChild(el('text',{x:cx,y:H-12,'text-anchor':'middle','font-size':10,fill:'#55534d','font-weight':600},yn));
     }
