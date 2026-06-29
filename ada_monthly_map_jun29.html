@@ -165,15 +165,6 @@
   </div>
 </div>
 
-<!-- DETAIL TABLE -->
-<div class="section">
-  <h2>Detailed month-by-month execution playbook</h2>
-  <table>
-    <thead><tr><th>Month</th><th>Action</th><th>Price range</th><th>Wyckoff / Cycle rationale</th><th>Key risk</th></tr></thead>
-    <tbody id="detailTable"></tbody>
-  </table>
-</div>
-
 <!-- HALVING -->
 <div class="section">
   <h2>Bitcoin halving cycle clock — where are we?</h2>
@@ -389,26 +380,6 @@ seasonal.forEach(s => {
   lbl.style.background = 'transparent'; lbl.style.color = '#6b6b67'; lbl.style.fontSize = '10px';
   lbl.textContent = s.m;
   labelsEl.appendChild(lbl);
-});
-
-const tbody = document.getElementById('detailTable');
-months.forEach(m => {
-  const tr = document.createElement('tr');
-  const actionBg = m.actClass.includes('strong-buy') ? '#d1fae5' : m.actClass.includes('buy') ? '#dcfce7' :
-                   m.actClass.includes('accum') ? '#e0f2fe' : m.actClass.includes('hold') ? '#f1f5f9' :
-                   m.actClass.includes('wait') ? '#fef9c3' : m.actClass.includes('strong-sell') ? '#fecaca' :
-                   m.actClass.includes('sell') ? '#fee2e2' : '#ffedd5';
-  const actionColor = m.actClass.includes('strong-buy') ? '#065f46' : m.actClass.includes('buy') ? '#166534' :
-                      m.actClass.includes('accum') ? '#075985' : m.actClass.includes('hold') ? '#334155' :
-                      m.actClass.includes('wait') ? '#713f12' : m.actClass.includes('strong-sell') ? '#7f1d1d' :
-                      m.actClass.includes('sell') ? '#991b1b' : '#9a3412';
-  tr.innerHTML = `
-    <td style="font-weight:600;white-space:nowrap">${m.label}${m.now ? ' <span style="font-size:9px;background:#a32d2d;color:#fff;padding:1px 4px;border-radius:3px">NOW</span>' : (m.cond ? ' <span style="font-size:8px;background:#94a3b8;color:#fff;padding:1px 4px;border-radius:3px">COND</span>' : '')}</td>
-    <td><span style="background:${actionBg};color:${actionColor};padding:2px 8px;border-radius:99px;font-size:11px;font-weight:700;white-space:nowrap">${m.action}</span></td>
-    <td style="font-weight:500;white-space:nowrap">${m.priceRange}</td>
-    <td>${m.rationale}</td>
-    <td style="color:#9a3412">${m.risk}</td>`;
-  tbody.appendChild(tr);
 });
 
 const trajLabels = ['Jun\'26','Jul','Aug','Sep','Oct','Nov','Dec','Jan\'27','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec\'27'];
