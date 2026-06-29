@@ -70,10 +70,44 @@
   .legend span { display: flex; align-items: center; gap: 4px; }
   .legend span i { display: inline-block; width: 10px; height: 10px; border-radius: 2px; }
   .disclaimer { font-size: 11px; color: #9ca3af; margin-top: 20px; line-height: 1.6; border-top: 1px solid #e5e7eb; padding-top: 14px; }
+
+  /* back link */
+  .backlink { display: inline-flex; align-items: center; gap: 5px; font-size: 12px; color: #2f6fb0; text-decoration: none; margin-bottom: 14px; font-weight: 500; }
+  .backlink:hover { text-decoration: underline; }
+
+  /* filter chips */
+  .filters { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
+  .chip { font-size: 11px; font-weight: 600; padding: 5px 11px; border-radius: 99px; border: 1px solid rgba(0,0,0,.12); background: #fff; color: #444; cursor: pointer; transition: all .12s; }
+  .chip:hover { border-color: #2f6fb0; }
+  .chip.active { background: #1a1a18; color: #fff; border-color: #1a1a18; }
+
+  /* clickable cards */
+  .month-card { cursor: pointer; transition: transform .12s, box-shadow .12s; }
+  .month-card:hover { transform: translateY(-2px); box-shadow: 0 4px 14px rgba(0,0,0,.08); }
+  .month-card.dimmed { opacity: .28; filter: grayscale(.4); }
+  .mc-more { font-size: 10px; color: #9ca3af; margin-top: 6px; }
+
+  /* modal */
+  .modal-bg { position: fixed; inset: 0; background: rgba(0,0,0,.45); display: none; align-items: center; justify-content: center; padding: 20px; z-index: 50; }
+  .modal-bg.open { display: flex; }
+  .modal { background: #fff; border-radius: 14px; max-width: 460px; width: 100%; padding: 22px 24px; box-shadow: 0 20px 60px rgba(0,0,0,.3); max-height: 88vh; overflow-y: auto; }
+  .modal-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 14px; }
+  .modal-head .m-title { font-size: 18px; font-weight: 600; }
+  .modal-close { background: none; border: none; font-size: 22px; line-height: 1; color: #9ca3af; cursor: pointer; padding: 2px 6px; border-radius: 6px; }
+  .modal-close:hover { background: #f1f5f9; color: #444; }
+  .m-action { font-size: 12px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; padding: 3px 10px; border-radius: 99px; display: inline-block; margin-bottom: 14px; }
+  .m-stats { display: flex; gap: 18px; margin-bottom: 16px; flex-wrap: wrap; }
+  .m-stat .s-label { font-size: 10px; text-transform: uppercase; letter-spacing: .05em; color: #9ca3af; margin-bottom: 3px; }
+  .m-stat .s-val { font-size: 15px; font-weight: 600; }
+  .m-block { margin-bottom: 14px; }
+  .m-block .b-label { font-size: 10px; text-transform: uppercase; letter-spacing: .05em; color: #9ca3af; margin-bottom: 4px; font-weight: 600; }
+  .m-block .b-text { font-size: 13px; line-height: 1.55; color: #333; }
+  .m-block.risk .b-text { color: #9a3412; }
 </style>
 </head>
 <body>
 
+<a class="backlink" href="ada-dashboard.html">← ADA Dashboard</a>
 <h1>ADA Cardano — Monthly Buy / Sell Strategy Map</h1>
 <div class="meta">Reconnaissance Engine Output · Updated: June 29, 2026 · Price: $0.1437 · ATH: $3.09 (Sep 2021)</div>
 
@@ -103,7 +137,14 @@
 
 <!-- MONTHLY CALENDAR -->
 <div class="grid-title">Monthly action map — Jun 2026 to Dec 2027</div>
+<div class="filters" id="filters">
+  <button class="chip active" data-filter="all">All</button>
+  <button class="chip" data-filter="buy">Buy / Accumulate</button>
+  <button class="chip" data-filter="hold">Wait / Hold</button>
+  <button class="chip" data-filter="sell">Reduce / Sell</button>
+</div>
 <div class="month-grid" id="monthGrid"></div>
+<p style="font-size:11px;color:#9ca3af;margin:-18px 0 28px">Tap any month for the full rationale, risk, and confidence.</p>
 
 <!-- SEASONALITY -->
 <div class="section strip-section">
@@ -162,6 +203,23 @@
 
 <div class="disclaimer">
   ⚠️ This is a structural analysis output from the Crypto Reconnaissance Engine — not financial advice. The hard invalidation level ($0.1480) was breached on the June 24 daily close; a one-day reclaim on June 26 failed on the June 27 close, confirming Phase D markdown and flipping $0.1480 to overhead resistance. The immediate floor is the $0.1383 swing low; the next structural reference below is $0.1274, with deeper support toward $0.10–$0.13 if BTC loses its $59K floor. Any bullish re-engagement requires ADA to reclaim $0.1480 (then $0.156) on convincing daily closes AND BTC to reclaim $63,000 — ideally after Mercury direct (Jul 23). Until then, the disciplined stance is flat/wait. All price ranges are scenario bands derived from Wyckoff structure, historical seasonality, and halving-cycle context as of June 29, 2026. Cryptocurrency markets are highly volatile. Past seasonal patterns do not guarantee future results. Always use stop-losses, size appropriately, and consult a licensed financial advisor before making investment decisions.
+</div>
+
+<!-- DETAIL MODAL -->
+<div class="modal-bg" id="modalBg">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="mTitle">
+    <div class="modal-head">
+      <span class="m-title" id="mTitle"></span>
+      <button class="modal-close" id="modalClose" aria-label="Close">×</button>
+    </div>
+    <span class="m-action" id="mAction"></span>
+    <div class="m-stats">
+      <div class="m-stat"><div class="s-label">Price range</div><div class="s-val" id="mPrice"></div></div>
+      <div class="m-stat"><div class="s-label">Confidence</div><div class="s-val" id="mScore"></div></div>
+    </div>
+    <div class="m-block"><div class="b-label">Wyckoff / cycle rationale</div><div class="b-text" id="mRationale"></div></div>
+    <div class="m-block risk"><div class="b-label">Key risk</div><div class="b-text" id="mRisk"></div></div>
+  </div>
 </div>
 
 <script>
@@ -250,10 +308,27 @@ const seasonal = [
   { m:'Sep', avg:+22 }, { m:'Oct', avg:+11 }, { m:'Nov', avg:+9 }, { m:'Dec', avg:-6 },
 ];
 
+// categorise each action into a filter bucket
+function categoryOf(actClass){
+  if (actClass.includes('buy') || actClass.includes('accum')) return 'buy';
+  if (actClass.includes('sell') || actClass.includes('reduce')) return 'sell';
+  return 'hold'; // wait + hold
+}
+
+const actBg = m => m.actClass.includes('strong-buy') ? '#d1fae5' : m.actClass.includes('buy') ? '#dcfce7' :
+                   m.actClass.includes('accum') ? '#e0f2fe' : m.actClass.includes('hold') ? '#f1f5f9' :
+                   m.actClass.includes('wait') ? '#fef9c3' : m.actClass.includes('strong-sell') ? '#fecaca' :
+                   m.actClass.includes('sell') ? '#fee2e2' : '#ffedd5';
+const actColor = m => m.actClass.includes('strong-buy') ? '#065f46' : m.actClass.includes('buy') ? '#166534' :
+                      m.actClass.includes('accum') ? '#075985' : m.actClass.includes('hold') ? '#334155' :
+                      m.actClass.includes('wait') ? '#713f12' : m.actClass.includes('strong-sell') ? '#7f1d1d' :
+                      m.actClass.includes('sell') ? '#991b1b' : '#9a3412';
+
 const grid = document.getElementById('monthGrid');
-months.forEach(m => {
+months.forEach((m, i) => {
   const card = document.createElement('div');
   card.className = 'month-card' + (m.now ? ' card-now' : '');
+  card.dataset.cat = categoryOf(m.actClass);
   const barWidth = Math.round(m.score);
   let badge = '';
   if (m.now) badge = '<span class="now-badge">NOW</span>';
@@ -263,9 +338,42 @@ months.forEach(m => {
     <div class="mc-action ${m.actClass}">${m.action}</div>
     <div class="mc-score">Confidence: ${m.score}/100</div>
     <div class="mc-note">${m.rationale.substring(0,90)}…</div>
-    <div class="mc-bar ${m.barClass}" style="width:${barWidth}%"></div>`;
+    <div class="mc-bar ${m.barClass}" style="width:${barWidth}%"></div>
+    <div class="mc-more">Tap for detail →</div>`;
+  card.addEventListener('click', () => openModal(i));
   grid.appendChild(card);
 });
+
+// ---- modal ----
+const modalBg = document.getElementById('modalBg');
+function openModal(i){
+  const m = months[i];
+  document.getElementById('mTitle').textContent = m.label + (m.now ? '  · NOW' : (m.cond ? '  · CONDITIONAL' : ''));
+  const aEl = document.getElementById('mAction');
+  aEl.textContent = m.action;
+  aEl.style.background = actBg(m);
+  aEl.style.color = actColor(m);
+  document.getElementById('mPrice').textContent = m.priceRange;
+  document.getElementById('mScore').textContent = m.score + ' / 100';
+  document.getElementById('mRationale').textContent = m.rationale;
+  document.getElementById('mRisk').textContent = m.risk;
+  modalBg.classList.add('open');
+}
+function closeModal(){ modalBg.classList.remove('open'); }
+document.getElementById('modalClose').addEventListener('click', closeModal);
+modalBg.addEventListener('click', e => { if (e.target === modalBg) closeModal(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+// ---- filters ----
+const chips = document.querySelectorAll('#filters .chip');
+chips.forEach(chip => chip.addEventListener('click', () => {
+  chips.forEach(c => c.classList.remove('active'));
+  chip.classList.add('active');
+  const f = chip.dataset.filter;
+  grid.querySelectorAll('.month-card').forEach(card => {
+    card.classList.toggle('dimmed', f !== 'all' && card.dataset.cat !== f);
+  });
+}));
 
 const barsEl = document.getElementById('seasonBars');
 const labelsEl = document.getElementById('monthLabels');
