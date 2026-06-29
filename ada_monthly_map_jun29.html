@@ -23,7 +23,9 @@
   .grid-title { font-size: 13px; font-weight: 600; margin-bottom: 10px; text-transform: uppercase; letter-spacing: .06em; color: #6b6b67; }
   .month-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px; margin-bottom: 28px; }
   @media(max-width:700px){ .month-grid { grid-template-columns: repeat(3,1fr); } }
-  .month-card { border-radius: 10px; padding: 12px 10px; border: 1px solid rgba(0,0,0,.09); position: relative; background: #fff; }
+  @media(max-width:480px){ .month-grid { grid-template-columns: repeat(2,1fr); } }
+  /* min-width:0 lets grid tracks shrink below content size so cards never force horizontal overflow */
+  .month-card { border-radius: 10px; padding: 12px 10px; border: 1px solid rgba(0,0,0,.09); position: relative; background: #fff; min-width: 0; }
   .mc-month { font-size: 13px; font-weight: 600; margin-bottom: 4px; }
   .mc-action { font-size: 11px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; padding: 2px 7px; border-radius: 99px; display: inline-block; margin-bottom: 6px; }
   .mc-score { font-size: 11px; color: #6b6b67; margin-bottom: 4px; }
@@ -54,11 +56,25 @@
 
   .strip-section { margin-bottom: 28px; }
   .strip-row { display: flex; align-items: center; gap: 6px; margin-bottom: 6px; }
-  .strip-label { font-size: 11px; color: #6b6b67; min-width: 70px; }
-  .strip-bars { display: flex; flex: 1; gap: 3px; }
-  .strip-cell { flex: 1; height: 28px; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 600; }
+  .strip-label { font-size: 11px; color: #6b6b67; min-width: 70px; flex-shrink: 0; }
+  .strip-bars { display: flex; flex: 1; gap: 3px; min-width: 0; }
+  .strip-cell { flex: 1; min-width: 0; height: 28px; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 600; overflow: hidden; }
+  @media(max-width:480px){
+    .strip-label { min-width: 42px; font-size: 9px; }
+    .strip-cell { font-size: 8px; gap: 2px; }
+    .strip-bars { gap: 2px; }
+  }
 
+  /* table scrolls inside its own box on narrow screens instead of pushing the page wide */
+  .table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .table-wrap table { min-width: 340px; }
   .section { background: #fff; border-radius: 12px; border: 1px solid rgba(0,0,0,.08); padding: 18px 20px; margin-bottom: 20px; }
+  @media(max-width:480px){
+    body { padding: 16px 12px; }
+    .section { padding: 14px 14px; }
+    h1 { font-size: 16px; }
+    .ph-price { font-size: 26px; }
+  }
   .section h2 { font-size: 14px; font-weight: 600; margin-bottom: 12px; }
   table { width: 100%; border-collapse: collapse; font-size: 12px; }
   th { text-align: left; padding: 6px 8px; background: #f8f7f4; font-size: 11px; font-weight: 600; color: #6b6b67; text-transform: uppercase; letter-spacing: .05em; }
@@ -177,6 +193,7 @@
 <!-- CATALYSTS -->
 <div class="section">
   <h2>Critical catalysts to monitor — what changes the map</h2>
+  <div class="table-wrap">
   <table>
     <thead><tr><th>Catalyst</th><th>Status / timing</th><th>Impact on map</th><th>Direction</th></tr></thead>
     <tbody>
@@ -190,6 +207,7 @@
       <tr><td>BTC daily close below $59,000</td><td>Watch daily</td><td>CRO tail trigger: breaks BTC's structural floor, drags ADA toward $0.10–$0.12. Bear scenario activates fully.</td><td style="color:#991b1b;font-weight:600">Hard bear trigger</td></tr>
     </tbody>
   </table>
+  </div>
 </div>
 
 <div class="disclaimer">
