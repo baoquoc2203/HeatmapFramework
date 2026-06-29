@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ADA Cardano — Monthly Buy/Sell Strategy Map (Updated Jun 29, 2026)</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f8f7f4; color: #1a1a18; padding: 24px; }
+  h1 { font-size: 18px; font-weight: 600; margin-bottom: 4px; }
+  .meta { font-size: 12px; color: #6b6b67; margin-bottom: 24px; }
+  .price-hero { display: flex; gap: 16px; align-items: baseline; margin-bottom: 24px; flex-wrap: wrap; }
+  .ph-price { font-size: 32px; font-weight: 600; }
+  .ph-dn { font-size: 14px; color: #a32d2d; }
+  .ph-detail { font-size: 12px; color: #6b6b67; }
+
+  /* invalidation banner */
+  .invalidation { background: #fceaea; border: 1.5px solid #a32d2d; border-radius: 10px; padding: 12px 16px; margin-bottom: 24px; font-size: 12.5px; line-height: 1.6; color: #5a1818; }
+  .invalidation strong { color: #7f1d1d; }
+
+  /* Monthly grid */
+  .grid-title { font-size: 13px; font-weight: 600; margin-bottom: 10px; text-transform: uppercase; letter-spacing: .06em; color: #6b6b67; }
+  .month-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px; margin-bottom: 28px; }
+  @media(max-width:700px){ .month-grid { grid-template-columns: repeat(3,1fr); } }
+  .month-card { border-radius: 10px; padding: 12px 10px; border: 1px solid rgba(0,0,0,.09); position: relative; background: #fff; }
+  .mc-month { font-size: 13px; font-weight: 600; margin-bottom: 4px; }
+  .mc-action { font-size: 11px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; padding: 2px 7px; border-radius: 99px; display: inline-block; margin-bottom: 6px; }
+  .mc-score { font-size: 11px; color: #6b6b67; margin-bottom: 4px; }
+  .mc-note { font-size: 11px; line-height: 1.45; color: #444; }
+  .mc-bar { height: 4px; border-radius: 99px; margin-top: 8px; }
+
+  .act-strong-buy { background: #d1fae5; color: #065f46; }
+  .act-buy        { background: #dcfce7; color: #166534; }
+  .act-accumulate { background: #e0f2fe; color: #075985; }
+  .act-hold       { background: #f1f5f9; color: #334155; }
+  .act-wait       { background: #fef9c3; color: #713f12; }
+  .act-reduce     { background: #ffedd5; color: #9a3412; }
+  .act-sell       { background: #fee2e2; color: #991b1b; }
+  .act-strong-sell{ background: #fecaca; color: #7f1d1d; }
+
+  .bar-sbuy  { background: #10b981; }
+  .bar-buy   { background: #34d399; }
+  .bar-accum { background: #38bdf8; }
+  .bar-hold  { background: #94a3b8; }
+  .bar-wait  { background: #fbbf24; }
+  .bar-reduce{ background: #fb923c; }
+  .bar-sell  { background: #f87171; }
+  .bar-ssell { background: #ef4444; }
+
+  .card-now { border: 2px solid #a32d2d; }
+  .now-badge { position:absolute; top:8px; right:8px; font-size:9px; background:#a32d2d; color:#fff; padding:1px 5px; border-radius:99px; font-weight:700; }
+  .cond-badge { position:absolute; top:8px; right:8px; font-size:8.5px; background:#94a3b8; color:#fff; padding:1px 5px; border-radius:99px; font-weight:700; }
+
+  .strip-section { margin-bottom: 28px; }
+  .strip-row { display: flex; align-items: center; gap: 6px; margin-bottom: 6px; }
+  .strip-label { font-size: 11px; color: #6b6b67; min-width: 70px; }
+  .strip-bars { display: flex; flex: 1; gap: 3px; }
+  .strip-cell { flex: 1; height: 28px; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 600; }
+
+  .section { background: #fff; border-radius: 12px; border: 1px solid rgba(0,0,0,.08); padding: 18px 20px; margin-bottom: 20px; }
+  .section h2 { font-size: 14px; font-weight: 600; margin-bottom: 12px; }
+  table { width: 100%; border-collapse: collapse; font-size: 12px; }
+  th { text-align: left; padding: 6px 8px; background: #f8f7f4; font-size: 11px; font-weight: 600; color: #6b6b67; text-transform: uppercase; letter-spacing: .05em; }
+  td { padding: 7px 8px; border-top: 1px solid #f0eeea; vertical-align: top; line-height: 1.4; }
+  tr:last-child td { border-bottom: none; }
+
+  .chart-wrap { position: relative; width: 100%; height: 220px; }
+  .legend { display: flex; flex-wrap: wrap; gap: 12px; font-size: 11px; color: #6b6b67; margin-top: 12px; }
+  .legend span { display: flex; align-items: center; gap: 4px; }
+  .legend span i { display: inline-block; width: 10px; height: 10px; border-radius: 2px; }
+  .disclaimer { font-size: 11px; color: #9ca3af; margin-top: 20px; line-height: 1.6; border-top: 1px solid #e5e7eb; padding-top: 14px; }
+</style>
+</head>
+<body>
+
+<h1>ADA Cardano — Monthly Buy / Sell Strategy Map</h1>
+<div class="meta">Reconnaissance Engine Output · Updated: June 29, 2026 · Price: $0.1437 · ATH: $3.09 (Sep 2021)</div>
+
+<div class="price-hero">
+  <span class="ph-price">$0.1437</span>
+  <span class="ph-dn">▼ −1.2% (24h)</span>
+  <span class="ph-detail">−95.5% from ATH · Wyckoff Phase D Markdown · Mercury Rx active (station today) · Fear &amp; Greed: ~17</span>
+</div>
+
+<div class="invalidation">
+  <strong>⛔ Thesis invalidated · reclaim failed · markdown reaffirmed.</strong> The accumulation thesis broke June 24 ($0.1477 close, below the $0.1480 hard stop). A one-day reclaim on June 26 failed immediately — June 27 closed back below at $0.1453, and price has stayed under the line since ($0.1437 now). <strong>$0.1480 has flipped from stop to overhead resistance.</strong> The June 26 bounce is confirmed as a relief move inside a downtrend, not a bear-trap reversal. Mercury retrograde <strong>stations today (Jun 29)</strong> alongside the Full Moon — the peak-fakeout window is now active through Jul 23. Stance remains flat. Near-term months are WAIT / markdown; later "buy" months stay <strong>conditional</strong> on a structural reclaim — see the re-entry gate below.
+</div>
+
+<!-- CHART -->
+<div class="section">
+  <h2>Structural price trajectory — Jun 2026 → Dec 2027 (re-based)</h2>
+  <p style="font-size:12px;color:#6b6b67;margin-bottom:14px">Re-based after the failed reclaim. Base case now assumes a summer markdown bottom near the $0.1274 reference, then a slow, conditional recovery. Dashed = bull/bear envelope. The bull path requires ADA to reclaim $0.1480 / $0.156 and BTC to reclaim $63,000.</p>
+  <div class="chart-wrap">
+    <canvas id="trajectoryChart" role="img" aria-label="ADA price trajectory Jun 2026 to Dec 2027, re-based after the failed reclaim. Base case dips from 0.144 toward 0.12 over summer then recovers slowly toward 0.29 by end 2027.">Base case: ADA dips from $0.144 toward ~$0.12 over summer 2026, recovering slowly toward ~$0.29 by Dec 2027.</canvas>
+  </div>
+  <div class="legend">
+    <span><i style="background:#10b981"></i> Bull scenario (requires reclaim)</span>
+    <span><i style="background:#6366f1"></i> Base case</span>
+    <span><i style="background:#f87171"></i> Bear scenario</span>
+  </div>
+</div>
+
+<!-- MONTHLY CALENDAR -->
+<div class="grid-title">Monthly action map — Jun 2026 to Dec 2027</div>
+<div class="month-grid" id="monthGrid"></div>
+
+<!-- SEASONALITY -->
+<div class="section strip-section">
+  <h2>Historical seasonality heat — 7-year average (2018–2024)</h2>
+  <p style="font-size:12px;color:#6b6b67;margin-bottom:14px">Historical monthly return data — unchanged. Green = historically bullish. Red = historically bearish. These are tendencies, not predictions; they only matter if the structure is reclaimed first.</p>
+  <div class="strip-row">
+    <div class="strip-label">Avg return</div>
+    <div class="strip-bars" id="seasonBars"></div>
+  </div>
+  <div class="strip-row" style="margin-top:6px">
+    <div class="strip-label" style="font-size:10px;color:#9ca3af">Month</div>
+    <div class="strip-bars" id="monthLabels"></div>
+  </div>
+  <div class="legend" style="margin-top:6px">
+    <span><i style="background:#10b981"></i> Historically bullish</span>
+    <span><i style="background:#94a3b8"></i> Neutral</span>
+    <span><i style="background:#f87171"></i> Historically bearish</span>
+  </div>
+</div>
+
+<!-- DETAIL TABLE -->
+<div class="section">
+  <h2>Detailed month-by-month execution playbook</h2>
+  <table>
+    <thead><tr><th>Month</th><th>Action</th><th>Price range</th><th>Wyckoff / Cycle rationale</th><th>Key risk</th></tr></thead>
+    <tbody id="detailTable"></tbody>
+  </table>
+</div>
+
+<!-- HALVING -->
+<div class="section">
+  <h2>Bitcoin halving cycle clock — where are we?</h2>
+  <p style="font-size:12px;color:#6b6b67;margin-bottom:14px">ADA's historical correlation to BTC is 0.65–0.85. Post-2024 halving, we are ~month 26 — inside the historical altcoin window, but rotation has not arrived. BTC is grinding at ~$60K, below its $63K override and pinned at its $59,129 floor.</p>
+  <div class="chart-wrap" style="height:180px">
+    <canvas id="halvingChart" role="img" aria-label="Bitcoin halving cycle phase chart, post-halving month 26, altcoin window highlighted but rotation not activated">Post-halving month 26: inside the altcoin window, rotation not activated.</canvas>
+  </div>
+</div>
+
+<!-- CATALYSTS -->
+<div class="section">
+  <h2>Critical catalysts to monitor — what changes the map</h2>
+  <table>
+    <thead><tr><th>Catalyst</th><th>Status / timing</th><th>Impact on map</th><th>Direction</th></tr></thead>
+    <tbody>
+      <tr><td><strong>RE-ENTRY GATE:</strong> ADA reclaims $0.1480 (then $0.156) daily close + BTC reclaims $63,000</td><td>Both legs currently FAILED</td><td>Both conditions required to re-activate any bullish thesis. Until then, every "buy" month below is suspended.</td><td style="color:#065f46;font-weight:600">Bullish unlock (both)</td></tr>
+      <tr><td>Mercury retrograde (station → direct)</td><td>ACTIVE Jun 29 → Jul 23</td><td>Peak fakeout window now live. The Jun 26 reclaim that failed Jun 27 fits the pattern. No re-entry signal trusted until Mercury direct Jul 23.</td><td style="color:#713f12;font-weight:600">Caution / fakeout</td></tr>
+      <tr><td>$0.1480 — role change</td><td>Now overhead resistance</td><td>Flipped from stop → pivot → resistance after the failed reclaim. Bulls must close back above it (and $0.156) to re-open any thesis.</td><td style="color:#9a3412;font-weight:600">Bearish until reclaimed</td></tr>
+      <tr><td>FOMC meeting</td><td>Jul 29, 2026</td><td>Macro test. A dovish surprise (rate-cut path restored) would be the first real tailwind in weeks; a hold/hawkish keeps risk-off intact.</td><td style="color:#713f12;font-weight:600">Binary macro</td></tr>
+      <tr><td>SecondFi wallet exploit fallout</td><td>Ongoing</td><td>$2.4M / 16M ADA drained from 374 wallets. Patched + 129M ADA secured + claims process. Confidence damage at multi-year lows.</td><td style="color:#991b1b;font-weight:600">Bearish</td></tr>
+      <tr><td>Governance / treasury gridlock</td><td>Ongoing</td><td>600M ADA in funding requests vs. 350M ADA net-change cap. Structural coordination failure. Keeps a lid on recovery.</td><td style="color:#9a3412;font-weight:600">Bearish overhang</td></tr>
+      <tr><td>Leios public testnet</td><td>LAUNCHED Jun 23 ✓</td><td>Shipped on schedule (2–5x throughput). Market shrugged — "buy the rumour, sell the news" confirmed. No longer a forward catalyst.</td><td style="color:#6b6b67;font-weight:600">Priced in / ignored</td></tr>
+      <tr><td>BTC daily close below $59,000</td><td>Watch daily</td><td>CRO tail trigger: breaks BTC's structural floor, drags ADA toward $0.10–$0.12. Bear scenario activates fully.</td><td style="color:#991b1b;font-weight:600">Hard bear trigger</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="disclaimer">
+  ⚠️ This is a structural analysis output from the Crypto Reconnaissance Engine — not financial advice. The hard invalidation level ($0.1480) was breached on the June 24 daily close; a one-day reclaim on June 26 failed on the June 27 close, confirming Phase D markdown and flipping $0.1480 to overhead resistance. The immediate floor is the $0.1383 swing low; the next structural reference below is $0.1274, with deeper support toward $0.10–$0.13 if BTC loses its $59K floor. Any bullish re-engagement requires ADA to reclaim $0.1480 (then $0.156) on convincing daily closes AND BTC to reclaim $63,000 — ideally after Mercury direct (Jul 23). Until then, the disciplined stance is flat/wait. All price ranges are scenario bands derived from Wyckoff structure, historical seasonality, and halving-cycle context as of June 29, 2026. Cryptocurrency markets are highly volatile. Past seasonal patterns do not guarantee future results. Always use stop-losses, size appropriately, and consult a licensed financial advisor before making investment decisions.
+</div>
+
+<script>
+const months = [
+  { label:'Jun 2026', action:'WAIT', actClass:'act-wait', barClass:'bar-wait',
+    score:10, priceRange:'$0.138–$0.150', now:true, cond:false,
+    rationale:'$0.1480 reclaim FAILED on Jun 27 close. Phase D markdown reaffirmed; $0.1480 now overhead resistance. Mercury Rx station today = peak fakeout. Flat, no entry. Immediate floor $0.1383.',
+    risk:'Break of $0.1383 opens $0.1274; Mercury fakeout; BTC at $59K floor' },
+  { label:'Jul 2026', action:'WAIT', actClass:'act-wait', barClass:'bar-wait',
+    score:22, priceRange:'$0.115–$0.150', now:false, cond:false,
+    rationale:'Mercury Rx through Jul 23 = fakeout window. Markdown / attempted basing near $0.1274. No re-entry until BTC>$63K AND ADA reclaims $0.1480 then $0.156. FOMC Jul 29 = macro test.',
+    risk:'Retrograde fakeout, deeper markdown to $0.1274, governance unresolved' },
+  { label:'Aug 2026', action:'WATCH FOR BASE', actClass:'act-hold', barClass:'bar-hold',
+    score:36, priceRange:'$0.12–$0.18', now:false, cond:true,
+    rationale:'Mercury direct Jul 23 clears fakeout risk. Watch for a new Phase A base to form. Only act on a confirmed $0.1480/$0.156 reclaim + BTC stability. Solar Eclipse Aug 12 = macro pivot.',
+    risk:'False bottom, base may not form, macro risk-off persists, no reclaim = no trade' },
+  { label:'Sep 2026', action:'BUY (conditional)', actClass:'act-buy', barClass:'bar-buy',
+    score:50, priceRange:'$0.14–$0.26', now:false, cond:true,
+    rationale:'September is historically ADA\'s strongest month (ATH Sep 2021). Halving-cycle altcoin window. ONLY valid if a base confirmed in Aug and the re-entry gate is cleared. Otherwise stay flat.',
+    risk:'Conditionality not met = no trade. Post-breakdown, seasonal pattern may not repeat' },
+  { label:'Oct 2026', action:'BUY (conditional)', actClass:'act-buy', barClass:'bar-buy',
+    score:54, priceRange:'$0.17–$0.33', now:false, cond:true,
+    rationale:'Q4 historically strongest quarter. Add before Mercury Rx Oct 24 IF structure reclaimed. Altcoin rotation still requires BTC dominance to fall — not yet happening.',
+    risk:'Mercury Rx Oct 24. Reclaim must hold first. Rotation precondition may not arrive' },
+  { label:'Nov 2026', action:'HOLD', actClass:'act-hold', barClass:'bar-hold',
+    score:46, priceRange:'$0.17–$0.36', now:false, cond:true,
+    rationale:'Mercury Rx Oct 24–Nov 13 fakeout window. FTX anniversary (Nov 11) volatility. Hold any reclaimed position; take partial profit if Sep–Oct ran. No new size during Rx.',
+    risk:'Retrograde fakeout, profit-taking cascade, macro risk-off surprise' },
+  { label:'Dec 2026', action:'REDUCE', actClass:'act-reduce', barClass:'bar-reduce',
+    score:40, priceRange:'$0.15–$0.33', now:false, cond:true,
+    rationale:'Year-end profit-taking and tax-loss harvesting. If a recovery ran, begin distribution. If still in markdown, accumulate weakness only with confirmed structure.',
+    risk:'Year-end selling pressure, institutional rebalancing, low liquidity' },
+  { label:'Jan 2027', action:'ACCUMULATE', actClass:'act-accumulate', barClass:'bar-accum',
+    score:50, priceRange:'$0.15–$0.32', now:false, cond:true,
+    rationale:'New-year capital deployment. ADA historically positive in Jan. Re-accumulation if a base held through winter. Conditional on structure being intact.',
+    risk:'If 2026 ended in deep bear resumption, Jan bounce may fail' },
+  { label:'Feb 2027', action:'BUY', actClass:'act-buy', barClass:'bar-buy',
+    score:55, priceRange:'$0.18–$0.40', now:false, cond:true,
+    rationale:'February historically strong for ADA. Pre-upgrade hype cycle likely. Mercury Rx Feb 2027 = mind exact dates. Conditional on recovery structure.',
+    risk:'Mercury retrograde dates (check Feb 2027 window). Governance/founder risk' },
+  { label:'Mar 2027', action:'BUY', actClass:'act-buy', barClass:'bar-buy',
+    score:58, priceRange:'$0.22–$0.48', now:false, cond:true,
+    rationale:'March has a bullish Cardano record since 2022 (green except 2024). Protocol upgrade delivery window. Strong seasonal pattern if structure holds.',
+    risk:'2024 was an exception (closed red). Upgrade-delay risk' },
+  { label:'Apr 2027', action:'STRONG BUY', actClass:'act-strong-buy', barClass:'bar-sbuy',
+    score:64, priceRange:'$0.26–$0.58', now:false, cond:true,
+    rationale:'April is historically ADA\'s BEST month (6/10 positive closes). Pre-halving cycle echo. Maximum probability of a large monthly candle — if the recovery is real.',
+    risk:'If Q1 ran too far, Apr may be distribution. Watch volume' },
+  { label:'May 2027', action:'REDUCE', actClass:'act-reduce', barClass:'bar-reduce',
+    score:40, priceRange:'$0.24–$0.50', now:false, cond:true,
+    rationale:'"Sell in May" pattern. Terra/LUNA collapse was May 2022. Historically weak for altcoins. Begin reducing long exposure.',
+    risk:'Flash-crash risk (May historically has crypto black swans)' },
+  { label:'Jun 2027', action:'SELL', actClass:'act-sell', barClass:'bar-sell',
+    score:24, priceRange:'$0.18–$0.42', now:false, cond:true,
+    rationale:'June is ADA\'s WORST historical month — 8 of 9 years closed lower. Distribution zone if prior months ran. Strong historical sell pressure.',
+    risk:'June 2021 was the only bullish exception. Do not hold heavy bags into June' },
+  { label:'Jul 2027', action:'WAIT', actClass:'act-wait', barClass:'bar-wait',
+    score:42, priceRange:'$0.17–$0.40', now:false, cond:true,
+    rationale:'Post-June consolidation / bottom. Watch for new accumulation structure. Shelley launched Jul 2020 = possible upgrade-catalyst echo.',
+    risk:'Extended markdown from May–Jun, no clear bottom yet' },
+  { label:'Aug 2027', action:'ACCUMULATE', actClass:'act-accumulate', barClass:'bar-accum',
+    score:55, priceRange:'$0.18–$0.42', now:false, cond:true,
+    rationale:'August has an improving seasonal pattern. Pre-halving-2028 positioning begins. DCA accumulation if Jun–Jul lows held.',
+    risk:'2028 halving cycle may reset the macro clock differently' },
+  { label:'Sep 2027', action:'BUY', actClass:'act-buy', barClass:'bar-buy',
+    score:60, priceRange:'$0.22–$0.48', now:false, cond:true,
+    rationale:'September seasonally strong for ADA. Sep/Oct historically the start of major rally legs. Pre-2028-halving accumulation window.',
+    risk:'Pattern may not repeat. BTC dominance may still be elevated' },
+  { label:'Oct 2027', action:'STRONG BUY', actClass:'act-strong-buy', barClass:'bar-sbuy',
+    score:65, priceRange:'$0.28–$0.58', now:false, cond:true,
+    rationale:'Q4 2027 = pre-halving-2028 positioning. Historically strong Q4 for ADA. Add size before Mercury Rx if structure confirmed.',
+    risk:'Pre-halving pump-dump risk. Market may price 2028 halving early' },
+  { label:'Nov 2027', action:'HOLD', actClass:'act-hold', barClass:'bar-hold',
+    score:50, priceRange:'$0.32–$0.65', now:false, cond:true,
+    rationale:'Mercury Rx pattern may repeat. Hold positions. Monitor for Signs of Weakness before any Q1 2028 pre-halving surge.',
+    risk:'Mercury retrograde volatility. FTX-anniversary volatility pattern' },
+  { label:'Dec 2027', action:'REDUCE', actClass:'act-reduce', barClass:'bar-reduce',
+    score:42, priceRange:'$0.35–$0.75', now:false, cond:true,
+    rationale:'Year-end profit-taking, tax-loss harvesting, institutional rebalancing. If ADA recovered multiples from the 2026 lows, this is meaningful distribution territory.',
+    risk:'If significantly in profit, failure to reduce = emotional holding' },
+];
+
+const seasonal = [
+  { m:'Jan', avg:+18 }, { m:'Feb', avg:+31 }, { m:'Mar', avg:+12 }, { m:'Apr', avg:+29 },
+  { m:'May', avg:-14 }, { m:'Jun', avg:-18 }, { m:'Jul', avg:+8 }, { m:'Aug', avg:+15 },
+  { m:'Sep', avg:+22 }, { m:'Oct', avg:+11 }, { m:'Nov', avg:+9 }, { m:'Dec', avg:-6 },
+];
+
+const grid = document.getElementById('monthGrid');
+months.forEach(m => {
+  const card = document.createElement('div');
+  card.className = 'month-card' + (m.now ? ' card-now' : '');
+  const barWidth = Math.round(m.score);
+  let badge = '';
+  if (m.now) badge = '<span class="now-badge">NOW</span>';
+  else if (m.cond) badge = '<span class="cond-badge">COND</span>';
+  card.innerHTML = `${badge}
+    <div class="mc-month">${m.label}</div>
+    <div class="mc-action ${m.actClass}">${m.action}</div>
+    <div class="mc-score">Confidence: ${m.score}/100</div>
+    <div class="mc-note">${m.rationale.substring(0,90)}…</div>
+    <div class="mc-bar ${m.barClass}" style="width:${barWidth}%"></div>`;
+  grid.appendChild(card);
+});
+
+const barsEl = document.getElementById('seasonBars');
+const labelsEl = document.getElementById('monthLabels');
+seasonal.forEach(s => {
+  const bg = s.avg >= 0 ? `rgb(${Math.round(20+s.avg*2)},${Math.round(160+s.avg)},100)` : `rgb(${Math.round(200+Math.abs(s.avg)*2)},80,80)`;
+  const cell = document.createElement('div');
+  cell.className = 'strip-cell';
+  cell.style.background = bg; cell.style.color = '#fff';
+  cell.textContent = (s.avg >= 0 ? '+' : '') + s.avg + '%';
+  barsEl.appendChild(cell);
+  const lbl = document.createElement('div');
+  lbl.className = 'strip-cell';
+  lbl.style.background = 'transparent'; lbl.style.color = '#6b6b67'; lbl.style.fontSize = '10px';
+  lbl.textContent = s.m;
+  labelsEl.appendChild(lbl);
+});
+
+const tbody = document.getElementById('detailTable');
+months.forEach(m => {
+  const tr = document.createElement('tr');
+  const actionBg = m.actClass.includes('strong-buy') ? '#d1fae5' : m.actClass.includes('buy') ? '#dcfce7' :
+                   m.actClass.includes('accum') ? '#e0f2fe' : m.actClass.includes('hold') ? '#f1f5f9' :
+                   m.actClass.includes('wait') ? '#fef9c3' : m.actClass.includes('strong-sell') ? '#fecaca' :
+                   m.actClass.includes('sell') ? '#fee2e2' : '#ffedd5';
+  const actionColor = m.actClass.includes('strong-buy') ? '#065f46' : m.actClass.includes('buy') ? '#166534' :
+                      m.actClass.includes('accum') ? '#075985' : m.actClass.includes('hold') ? '#334155' :
+                      m.actClass.includes('wait') ? '#713f12' : m.actClass.includes('strong-sell') ? '#7f1d1d' :
+                      m.actClass.includes('sell') ? '#991b1b' : '#9a3412';
+  tr.innerHTML = `
+    <td style="font-weight:600;white-space:nowrap">${m.label}${m.now ? ' <span style="font-size:9px;background:#a32d2d;color:#fff;padding:1px 4px;border-radius:3px">NOW</span>' : (m.cond ? ' <span style="font-size:8px;background:#94a3b8;color:#fff;padding:1px 4px;border-radius:3px">COND</span>' : '')}</td>
+    <td><span style="background:${actionBg};color:${actionColor};padding:2px 8px;border-radius:99px;font-size:11px;font-weight:700;white-space:nowrap">${m.action}</span></td>
+    <td style="font-weight:500;white-space:nowrap">${m.priceRange}</td>
+    <td>${m.rationale}</td>
+    <td style="color:#9a3412">${m.risk}</td>`;
+  tbody.appendChild(tr);
+});
+
+const trajLabels = ['Jun\'26','Jul','Aug','Sep','Oct','Nov','Dec','Jan\'27','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec\'27'];
+const baseCase = [0.144, 0.127, 0.122, 0.135, 0.165, 0.160, 0.150, 0.170, 0.195, 0.220, 0.255, 0.215, 0.190, 0.200, 0.235, 0.275, 0.330, 0.305, 0.285];
+const bullCase = [0.145, 0.140, 0.165, 0.235, 0.330, 0.310, 0.285, 0.330, 0.410, 0.490, 0.580, 0.470, 0.395, 0.430, 0.540, 0.660, 0.820, 0.730, 0.700];
+const bearCase = [0.140, 0.118, 0.105, 0.100, 0.108, 0.098, 0.085, 0.092, 0.100, 0.110, 0.120, 0.105, 0.088, 0.092, 0.105, 0.122, 0.140, 0.130, 0.122];
+
+new Chart(document.getElementById('trajectoryChart'), {
+  type: 'line',
+  data: { labels: trajLabels, datasets: [
+    { label: 'Bull scenario', data: bullCase, borderColor: '#10b981', borderWidth: 1.5, borderDash: [4,3], pointRadius: 0, fill: false, tension: 0.35 },
+    { label: 'Base case', data: baseCase, borderColor: '#6366f1', borderWidth: 2.5, pointRadius: 3, pointBackgroundColor: '#6366f1', fill: false, tension: 0.35 },
+    { label: 'Bear scenario', data: bearCase, borderColor: '#f87171', borderWidth: 1.5, borderDash: [4,3], pointRadius: 0, fill: false, tension: 0.35 },
+  ]},
+  options: { responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { display: false }, tooltip: { callbacks: { label: ctx => `${ctx.dataset.label}: $${ctx.parsed.y.toFixed(3)}` } } },
+    scales: {
+      x: { grid: { color: 'rgba(0,0,0,0.04)' }, ticks: { font: { size: 10 }, color: '#9ca3af', maxRotation: 45 } },
+      y: { grid: { color: 'rgba(0,0,0,0.04)' }, ticks: { font: { size: 10 }, color: '#9ca3af', callback: v => '$' + v.toFixed(2) } }
+    }
+  }
+});
+
+const halvingLabels = [];
+for(let i=1; i<=48; i++) halvingLabels.push('M'+i);
+const halvingData = halvingLabels.map((_,i) => {
+  const m = i+1;
+  if(m <= 12) return 1 + (m/12)*0.8;
+  if(m <= 18) return 1.8 - (m-12)/6*0.3;
+  if(m <= 30) return 1.5 + (m-18)/12*2.5;
+  if(m <= 36) return 4.0 - (m-30)/6*1.5;
+  if(m <= 42) return 2.5 - (m-36)/6*0.8;
+  return 1.7 + (m-42)/6*0.6;
+});
+const altcoinPlugin = {
+  id: 'altcoinWindow',
+  beforeDraw(chart) {
+    const {ctx, scales: {x, y}} = chart;
+    const x1 = x.getPixelForValue(17), x2 = x.getPixelForValue(29);
+    ctx.save();
+    ctx.fillStyle = 'rgba(16,185,129,0.10)';
+    ctx.fillRect(x1, y.top, x2-x1, y.bottom - y.top);
+    ctx.fillStyle = '#10b981'; ctx.font = '10px sans-serif';
+    ctx.fillText('Altcoin season window (rotation not yet active)', x1+4, y.top+14);
+    const xNow = x.getPixelForValue(25);
+    ctx.fillStyle = '#a32d2d';
+    ctx.beginPath(); ctx.arc(xNow, y.top+8, 5, 0, Math.PI*2); ctx.fill();
+    ctx.fillText('NOW (M26)', xNow-22, y.top+24);
+    ctx.restore();
+  }
+};
+new Chart(document.getElementById('halvingChart'), {
+  type: 'line', plugins: [altcoinPlugin],
+  data: { labels: halvingLabels, datasets: [{ label: 'BTC cycle multiplier', data: halvingData, borderColor: '#f59e0b', backgroundColor: 'rgba(245,158,11,0.06)', borderWidth: 2, pointRadius: 0, fill: true, tension: 0.4 }] },
+  options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } },
+    scales: {
+      x: { ticks: { font: { size: 9 }, color: '#9ca3af', maxTicksLimit: 12 }, grid: { display: false } },
+      y: { ticks: { font: { size: 10 }, color: '#9ca3af', callback: v => v.toFixed(1) + 'x' }, grid: { color: 'rgba(0,0,0,0.04)' } }
+    }
+  }
+});
+</script>
+</body>
+</html>
