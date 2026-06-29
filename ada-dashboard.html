@@ -88,6 +88,9 @@
     background:var(--btn-bg);color:var(--txt2);cursor:pointer;}
   .theme-toggle:hover{border-color:var(--btn-hover);}
 
+  .ada-logo{filter:brightness(0) invert(1);}
+  :root[data-theme="light"] .ada-logo{filter:none;}
+
   .nav{display:flex;align-items:center;gap:18px;padding:10px 0 14px;border-bottom:1px solid var(--bord);margin-bottom:14px;}
   .brand{display:flex;align-items:center;gap:10px;text-decoration:none;}
   .brand .logo{width:30px;height:30px;border-radius:8px;background:radial-gradient(circle at 35% 30%, #4a7fff, #2540b0);display:flex;align-items:center;justify-content:center;font-size:15px;}
@@ -103,7 +106,10 @@
     <div class="logo">📡</div>
   </a>
 </div>
-<h1>ADA Framework Dashboard — Interactive</h1>
+<h1 style="display:flex;align-items:center;gap:10px;">
+  <img src="cardano-logo.svg" class="ada-logo" style="width:26px;height:26px;object-fit:contain;">
+  ADA Framework Dashboard — Interactive
+</h1>
 <div class="meta">Crypto Reconnaissance Engine · <b>Sep 2017 → Jun 2026</b> · drag to pan, scroll/pinch to zoom, hover/tap for values, toggle layers below</div>
 
 <div class="controls">
