@@ -110,7 +110,7 @@
   <img src="cardano-logo.svg" class="ada-logo" style="width:26px;height:26px;object-fit:contain;">
   ADA Framework Dashboard — Interactive
 </h1>
-<div class="meta">Crypto Reconnaissance Engine · <b>Sep 2017 → Jun 2026</b> · drag to pan, scroll/pinch to zoom, hover/tap for values, toggle layers below</div>
+<div class="meta">Crypto Reconnaissance Engine · <b>Sep 2017 → Jul 2026</b> · drag to pan, scroll/pinch to zoom, hover/tap for values, toggle layers below</div>
 
 <div class="controls">
   <div class="ctrl-group">
@@ -124,7 +124,7 @@
     <span class="ctrl-label">Zoom</span>
     <button class="zoom-btn active" data-zoom="all">2017–Now</button>
     <button class="zoom-btn" data-zoom="cycle21">2020–22</button>
-    <button class="zoom-btn" data-zoom="live">Live (Jun'26)</button>
+    <button class="zoom-btn" data-zoom="live">Live (Jul'26)</button>
     <button class="zoom-btn" data-zoom="reset">Reset</button>
   </div>
   <div class="ctrl-group">
@@ -138,7 +138,7 @@
   </div>
   <div class="ctrl-group">
     <span class="ctrl-label">Report</span>
-    <a class="zoom-btn" href="ada_monthly_map_jun29.html" style="text-decoration:none;">🗺 Monthly Map (Jun 29)</a>
+    <a class="zoom-btn" href="ada_monthly_map_jul01.html" style="text-decoration:none;">🗺 Monthly Map (Jul 1)</a>
   </div>
 </div>
 
@@ -169,8 +169,8 @@
 </div>
 
 <div class="src-note">
-  <b>What's real:</b> ADA price = real monthly closes, anchored to public price history (launch ~$0.02 Sep'17, 2019 high $0.0977, 2020 year-end >$0.19, ATH $3.09 Sep'21, 2023 year-end high $0.6655, late-2024 pop >$1.00, current ~$0.144 live exchange data, as of Jun 29, 2026). <b>Fear &amp; Greed shown here is the crypto-market-wide index (BTC-driven)</b> — there is no separate, established ADA-specific fear/greed index, so this row reflects overall crypto sentiment, not an ADA-only signal; read it as market-wide context, not ADA-specific. Mercury = real astronomical retrograde windows. Shmita = real Hebrew-calendar year (5782, Sep'21–Sep'22) — notably the <b>same year as ADA's own all-time high</b>, which is visually striking but still n=1.
-  <b>Wyckoff row:</b> retrospective phase labeling derived month-by-month from ADA's own price line — <b>not</b> a backtest of your framework, which only began live ADA tracking Jun 12, 2026 (cyan dashed seam). Left of the seam is independent structural reading of known history; right of it is the framework's actual reported calls, including the Jun 24 stop-out at $0.1477 and the failed Jun 27 reclaim — $0.1480 has now flipped to overhead resistance (Phase D markdown reaffirmed as of Jun 29).
+  <b>What's real:</b> ADA price = real monthly closes, anchored to public price history (launch ~$0.02 Sep'17, 2019 high $0.0977, 2020 year-end >$0.19, ATH $3.09 Sep'21, 2023 year-end high $0.6655, late-2024 pop >$1.00, Jun 2026 closed $0.1443, current ~$0.1531 live exchange data, as of Jul 1, 2026). <b>Fear &amp; Greed shown here is the crypto-market-wide index (BTC-driven)</b> — there is no separate, established ADA-specific fear/greed index, so this row reflects overall crypto sentiment, not an ADA-only signal; read it as market-wide context, not ADA-specific. Mercury = real astronomical retrograde windows. Shmita = real Hebrew-calendar year (5782, Sep'21–Sep'22) — notably the <b>same year as ADA's own all-time high</b>, which is visually striking but still n=1.
+  <b>Wyckoff row:</b> retrospective phase labeling derived month-by-month from ADA's own price line — <b>not</b> a backtest of your framework, which only began live ADA tracking Jun 12, 2026 (cyan dashed seam). Left of the seam is independent structural reading of known history; right of it is the framework's actual reported calls, including the Jun 24 stop-out at $0.1477, the failed Jun 27 reclaim, and Jul 1's sharp +6.3% reclaim attempt testing $0.156 — a move diverging from Bitcoin, which broke its own $59,129 floor to a 652-day low the same day. The re-entry gate stays shut: ADA's leg is closest yet, BTC's leg is failing harder.
   No buy/sell signal layer, no liquidity-regime row, no hit-rate statistics — left out rather than fabricated.
 </div>
 
@@ -190,7 +190,7 @@
 <script>
 // ── DATA: Sep 2017 → Jun 2026 ──
 const yearNames=['2017','2018','2019','2020','2021','2022','2023','2024','2025','2026'];
-const monthsPerYear={2017:4, 2026:6}; // 2017 starts Sep (4 months: Sep-Dec)
+const monthsPerYear={2017:4, 2026:7}; // 2017 starts Sep (4 months: Sep-Dec)
 const months=[];
 for(const y of yearNames){
   const cnt = monthsPerYear[+y]||12;
@@ -211,7 +211,7 @@ const price=[
   0.32,0.36,0.345,0.36,0.375,0.275,0.285,0.255,0.255,0.30,0.345,0.585, // 2023 (Dec high 0.6655, using 0.585 close)
   0.51,0.52,0.62,0.46,0.43,0.385,0.34,0.32,0.355,0.36,0.55,0.92,  // 2024 (late-2024 pop >1.00 post-election; Nov/Dec rally)
   0.99,0.65,0.62,0.58,0.68,0.62,0.71,0.78,0.81,0.62,0.42,0.38,    // 2025 (subdued, declining)
-  0.30,0.24,0.205,0.19,0.1797,0.1437                              // 2026 Jan-Jun (May=framework's tracked starting point Jun16; Jun=live current $0.1437 as of Jun29, stopped out $0.1477 Jun24, reclaim attempt failed Jun27)
+  0.30,0.24,0.205,0.19,0.1797,0.1443,0.1531                       // 2026 Jan-Jul (May=framework's tracked starting point Jun16; Jun closed $0.1443, down ~40% intramonth, stopped out $0.1477 Jun24; Jul=live current $0.1531 as of Jul1, +6.3% reclaiming $0.1480/testing $0.156)
 ];
 
 // ── Fear & Greed monthly (real index, BTC-driven, same series as BTC dashboard) ──
@@ -225,9 +225,9 @@ const fng=[
   45,55,50,62,50,55,58,40,45,55,65,70,
   60,75,85,65,70,55,60,35,50,72,88,75,
   75,45,40,55,70,65,75,68,60,70,30,25,
-  60,30,45,45,35,17
+  60,30,45,45,35,17,12
 ];
-// length is exactly N (106) by construction; no defensive padding needed
+// length is exactly N (107) by construction; no defensive padding needed
 
 const merc=new Set([
   '2017-9','2017-10',
@@ -263,7 +263,7 @@ const wyckoff = [
   {s:86, e:88, kind:'markup',  label:'Nov24-Jan25 election rally'},
   {s:88, e:99, kind:'markdown',label:'2025 markdown'},
   {s:99, e:105,kind:'markdown',label:'2025-26 continued markdown'},
-  {s:105,e:106,kind:'markdown',label:'live: Phase D markdown, reclaim failed Jun27'},
+  {s:105,e:107,kind:'markdown',label:'live: Phase D, reclaim test (+6.3% Jul1) diverging from a breaking BTC'},
 ];
 const liveStartIdx = 105; // June 2026 — verified index, framework's real live tracking window
 let currentTheme = 'dark';
