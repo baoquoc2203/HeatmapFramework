@@ -95,7 +95,7 @@
   </a>
 </div>
 <h1>BTC Framework Dashboard — Interactive</h1>
-<div class="meta">Crypto Reconnaissance Engine · <b>Jan 2018 → Jul 2026</b> · drag to pan, scroll/pinch to zoom, hover for values, toggle layers below</div>
+<div class="meta">Crypto Reconnaissance Engine · <b>Jan 2018 → Jul 2026 live</b> (Jul 1 level map &amp; cycle window to Dec 2027) · drag to pan, scroll/pinch to zoom, double-click to reset, hover for values, toggle layers below</div>
 
 <div class="controls">
   <div class="ctrl-group">
@@ -104,6 +104,7 @@
     <button class="toggle active" data-layer="shmita">Shmita</button>
     <button class="toggle active" data-layer="mercury">Mercury Rx</button>
     <button class="toggle active" data-layer="fng">Fear &amp; Greed</button>
+    <button class="toggle active" data-layer="levels">Jul 1 Levels</button>
   </div>
   <div class="ctrl-group">
     <span class="ctrl-label">Zoom</span>
@@ -120,6 +121,10 @@
   <div class="ctrl-group">
     <span class="ctrl-label">Theme</span>
     <button class="theme-toggle" id="themeToggle">☀ Light</button>
+  </div>
+  <div class="ctrl-group">
+    <span class="ctrl-label">Report</span>
+    <a class="zoom-btn" href="btc_lookback_forecast_jul1.html" style="text-decoration:none;">📊 Look-back &amp; Forecast (Jul 1)</a>
   </div>
 </div>
 
@@ -147,11 +152,18 @@
   <span><i style="background:#2f6fb0"></i>Extreme greed</span>
   <span style="margin-left:12px"><i style="background:var(--amber)"></i>Mercury Rx / Shmita (on)</span>
   <span><i style="background:#1a1d24;border:1px solid #5ec8f0"></i>BTC price</span>
+  <span style="margin-left:8px;border-left:1px solid var(--bord);padding-left:12px;font-weight:700;color:var(--amber)">Jul 1 levels:</span>
+  <span><i style="background:rgba(224,129,95,.5)"></i>Resistance / bear targets</span>
+  <span><i style="background:rgba(91,191,134,.5)"></i>Support / entry zone</span>
+  <span><i style="background:rgba(224,168,63,.5)"></i>$63K gate</span>
+  <span style="display:flex;align-items:center;gap:4px"><span style="display:inline-block;width:18px;border-top:2px dashed #79b3e6"></span>200-wk EMA</span>
+  <span><i style="background:rgba(91,191,134,.25)"></i>Autumn '26 window</span>
 </div>
 
 <div class="src-note">
   <b>What's real:</b> BTC price = real monthly closes (Jun 2026 closed $58,494; Jul 2026 month-to-date $61,261 live exchange data, as of Jul 2, 2026). Fear &amp; Greed = real Alternative.me index, regime-anchored to documented extremes. Mercury = real astronomical retrograde windows. Shmita = real Hebrew-calendar year (5782, Sep'21–Sep'22).
   <b>Wyckoff row:</b> retrospective phase labels re-derived month-by-month directly from this price line (corrected after review) — left of the cyan dashed seam (Jun 12, 2026) this is independent structural reading of known history, <b>not</b> your framework's calls. Right of the seam is the framework's own live read (Phase D → Spring fired Jun 24, then <b>failed</b>: the Jun 28 weekly close (~$59,578) flipped $59–60K from support to resistance, and price undercut to a fresh 652-day low ($57,803–$57,950) on Jul 1. On Jul 2 price rebounded sharply to ~$61,261 (+4.5%), back above the flipped $59–60K zone intraday — a retest of that flip, not yet a confirmed reclaim. The $63K macro override remains the gate; stance stays flat, watched entry zone $52–55K unless the reclaim confirms.).
+  <b>Jul 1 Levels layer:</b> the horizontal lines/zones and the shaded autumn-2026 band are quoted from the framework's own Jul 1, 2026 look-back &amp; forecast report (200-wk EMA $69K, 200-wk MA $62,457 + $63K override, flipped $59–60K, $55K options cluster, $53.7K shelf, $52–55K watched entry zone, $50–51K measured move, $44–45K Fib tail, and the autumn-2026 cycle-thesis bottom window). They are the report's forward-looking references, <b>not</b> price history — Aug 2026 onward has no real price data.
   <b>No buy/sell signal layer, no liquidity-regime row, no hit-rate statistics</b> are shown — those would require either fabricated data or an n too small to mean anything, so they're left out rather than dressed up.
 </div>
 
@@ -159,8 +171,8 @@
 
 <script>
 // ── DATA ─────────────────────────────────────────────────────────
-const yearNames=['2018','2019','2020','2021','2022','2023','2024','2025','2026'];
-const monthsPerYear={2026:7};
+const yearNames=['2018','2019','2020','2021','2022','2023','2024','2025','2026','2027'];
+const monthsPerYear={}; // all years full 12 months; Aug 2026+ is future (null price/fng) — used by the Jul 1 level-map & cycle-window overlay
 const months=[];
 for(const y of yearNames){const cnt=monthsPerYear[+y]||12;for(let m=0;m<cnt;m++)months.push({y:+y,m});}
 const N=months.length;
@@ -175,7 +187,9 @@ const price=[
   23100,23100,28500,29200,27200,30500,29200,25900,26900,34500,37700,42300,
   42600,61200,71300,60600,67500,62700,64600,58900,63300,70200,96400,93400,
   102000,84000,82000,94000,104000,107000,117000,112000,114000,126000,95000,87000,
-  88000,65000,70000,67000,71000,58494,61261
+  88000,65000,70000,67000,71000,58494,61261,
+  null,null,null,null,null,                                        // 2026 Aug-Dec: future, no real price data yet
+  null,null,null,null,null,null,null,null,null,null,null,null      // 2027: future, no real price data
 ];
 // Jun 2026 closed $58,494; Jul = live $61,261 as of Jul 2 (bounced +4.5% off the $57.8K low, back above the flipped $59-60K zone, still below the $63K override)
 
@@ -188,7 +202,9 @@ const fng=[
   45,55,50,62,50,55,58,40,45,55,65,70,
   60,75,85,65,70,55,60,35,50,72,88,75,
   75,45,40,55,70,65,75,68,60,70,30,25,
-  60,30,45,45,35,17,12
+  60,30,45,45,35,17,12,
+  null,null,null,null,null,
+  null,null,null,null,null,null,null,null,null,null,null,null
 ];
 
 const merc=new Set([
@@ -200,7 +216,9 @@ const merc=new Set([
   '2023-0','2023-3','2023-4','2023-7','2023-8','2023-11',
   '2024-3','2024-7','2024-10','2024-11',
   '2025-2','2025-3','2025-6','2025-7','2025-10',
-  '2026-1','2026-2','2026-5'
+  '2026-1','2026-2','2026-5',
+  '2026-6','2026-9','2026-10', // remaining 2026 (real ephemeris): Cancer Rx Jul, Scorpio Rx Oct-Nov
+  '2027-1','2027-2','2027-5','2027-6','2027-9' // 2027 (real ephemeris): Aquarius Rx Feb-Mar, Gemini Rx Jun-Jul, Libra Rx Oct
 ]);
 
 const shmita=new Set([
@@ -229,15 +247,35 @@ const wyckoff = [
   {s:101,e:103,kind:'markdown',label:'live: Spring failed → $57.8K low → sharp bounce, retesting $59-60K flip'},
 ];
 const liveStartIdx = 101;
+
+// ── Jul 1, 2026 report level map — the framework's own forecast references, not price history ──
+// Lines and zones are quoted verbatim from the Jul 1 look-back & forecast report's "Level map".
+const levelLines = [
+  {p:69000, kind:'ema',  label:'200-wk EMA $69K — pressure relief'},
+  {p:55000, kind:'sup',  label:'$55K options-cluster support'},
+  {p:53700, kind:'sup',  label:'$53.7K technical shelf'},
+];
+const levelZones = [
+  {lo:62457, hi:63000, kind:'gate', label:'$62.5–63K · 200-wk MA + macro override'},
+  {lo:59000, hi:60000, kind:'res',  label:'$59–60K · flipped support→resistance'},
+  {lo:52000, hi:55000, kind:'entry',label:'$52–55K · watched entry zone'},
+  {lo:50000, hi:51000, kind:'res',  label:'$50–51K · measured move'},
+  {lo:44000, hi:45000, kind:'tail', label:'$44–45K · Fib-extension tail'},
+];
+// Cycle-timing thesis: autumn 2026 (core Oct–Nov) highest-conviction bottom window
+const autumnStart = 105, autumnEnd = 107; // Oct 2026 .. Nov 2026 (exclusive end)
+
 let currentTheme = 'dark';
 const THEMES = {
   dark:  { halo:'#0b0d0f', priceLine:'#5ec8f0', grid:'#262b33', yearSep:'#333a44',
            rowLabel:'#e8eaed', subLabel:'#878f9c', axisLabel:'#aeb4bf', seam:'#5ec8f0',
            fngNoData:'#2a2f37', offCell:'#1b1f26',
+           lvlRes:'#e0815f', lvlSup:'#5bbf86', lvlGate:'#e0a83f', lvlEma:'#79b3e6',
            wyckoff:{acc:'#2f6fb0', markup:'#39b873', dist:'#c0291f', markdown:'#cf5b42'} },
   light: { halo:'#ffffff', priceLine:'#2f6fb0', grid:'#e8e5dd', yearSep:'#d8d5cc',
            rowLabel:'#1c1b18', subLabel:'#7a7872', axisLabel:'#55534d', seam:'#2f6fb0',
            fngNoData:'#e8e5dd', offCell:'#eeece5',
+           lvlRes:'#c0432a', lvlSup:'#1e8a52', lvlGate:'#b07e20', lvlEma:'#2f6fb0',
            wyckoff:{acc:'#2f6fb0', markup:'#1e8a52', dist:'#a32d2d', markdown:'#cc5236'} }
 };
 function TH(){ return THEMES[currentTheme]; }
@@ -260,10 +298,11 @@ function wyckoffLabelFor(monthIdx){
 
 // ── STATE ──
 const state = {
-  layers: { wyckoff:true, shmita:true, mercury:true, fng:true },
+  layers: { wyckoff:true, shmita:true, mercury:true, fng:true, levels:true },
   viewStart: 0, viewEnd: N,   // month index window currently shown
   scale: 'log',
 };
+function lvlColor(kind){ const t=TH(); return kind==='ema'?t.lvlEma : kind==='gate'?t.lvlGate : (kind==='sup'||kind==='entry')?t.lvlSup : t.lvlRes; }
 
 const NS='http://www.w3.org/2000/svg';
 function el(tag,attrs,text){const e=document.createElementNS(NS,tag);for(const k in attrs)e.setAttribute(k,attrs[k]);if(text!=null)e.textContent=text;return e;}
@@ -359,9 +398,13 @@ function render(){
   });
 
   // ── price panel ──
-  const allowedPrices = price.slice(Math.max(0,Math.floor(vs)), Math.min(N,Math.ceil(ve)));
+  const visIdx=[]; for(let i=Math.max(0,Math.floor(vs)); i<Math.min(N,Math.ceil(ve)); i++) visIdx.push(i);
+  const allowedPrices = visIdx.map(i=>price[i]).filter(p=>p!=null);
+  // include the level-map extremes so the Jul 1 ladder is never clipped off-scale when the layer is on
+  if(state.layers.levels){ allowedPrices.push(44000, 69000); }
   let pMin, pMax;
-  if(state.scale==='log'){ pMin=Math.log10(Math.min(...allowedPrices)*0.85); pMax=Math.log10(Math.max(...allowedPrices)*1.12); }
+  if(allowedPrices.length===0){ pMin=0; pMax=1; }
+  else if(state.scale==='log'){ pMin=Math.log10(Math.min(...allowedPrices)*0.85); pMax=Math.log10(Math.max(...allowedPrices)*1.12); }
   else { pMin=Math.min(...allowedPrices)*0.9; pMax=Math.max(...allowedPrices)*1.1; }
   const py = p => {
     const v = state.scale==='log'?Math.log10(p):p;
@@ -378,11 +421,39 @@ function render(){
     svg.appendChild(el('text',{x:padL+plotW+8,y:gy+3,'font-size':9,fill:TH().subLabel},'$'+(v>=1000?(v/1000)+'K':v)));
   });
 
-  const visIdx=[]; for(let i=Math.max(0,Math.floor(vs)); i<Math.min(N,Math.ceil(ve)); i++) visIdx.push(i);
-  let pts = visIdx.map(i=>`${px(i)},${py(price[i])}`).join(' ');
-  plotGroup.appendChild(el('polyline',{points:pts,fill:'none',stroke:TH().halo,'stroke-width':4,'stroke-linejoin':'round',opacity:0.7}));
-  plotGroup.appendChild(el('polyline',{points:pts,fill:'none',stroke:TH().priceLine,'stroke-width':1.8,'stroke-linejoin':'round'}));
-  visIdx.forEach(i=>{
+  // ── Jul 1 report level map + autumn '26 cycle window (drawn under the price line) ──
+  if(state.layers.levels){
+    const yTop=priceTop, yBot=priceTop+priceH;
+    const showLabels = span<=40; // labels only when zoomed in enough to read them
+    levelZones.forEach(z=>{
+      let y1=py(z.hi), y2=py(z.lo);
+      if(y2<yTop || y1>yBot) return;
+      y1=Math.max(y1,yTop); y2=Math.min(y2,yBot);
+      plotGroup.appendChild(el('rect',{x:padL,y:y1,width:plotW,height:Math.max(y2-y1,1.5),fill:lvlColor(z.kind),opacity:0.10,'pointer-events':'none'}));
+      if(showLabels){
+        const ly = z.kind==='entry' ? y2-4 : Math.min(Math.max((y1+y2)/2+2.5,yTop+8),yBot-3);
+        plotGroup.appendChild(el('text',{x:padL+plotW-6,y:ly,'text-anchor':'end','font-size':7.8,fill:lvlColor(z.kind),'font-weight':700,'pointer-events':'none'},z.label));
+      }
+    });
+    levelLines.forEach(L=>{
+      const y=py(L.p);
+      if(y<yTop||y>yBot) return;
+      plotGroup.appendChild(el('line',{x1:padL,x2:padL+plotW,y1:y,y2:y,stroke:lvlColor(L.kind),'stroke-width':1,'stroke-dasharray':'6 4',opacity:0.75,'pointer-events':'none'}));
+      if(showLabels) plotGroup.appendChild(el('text',{x:padL+plotW-6,y:y-3,'text-anchor':'end','font-size':7.8,fill:lvlColor(L.kind),'font-weight':700,'pointer-events':'none'},L.label));
+    });
+    if(autumnEnd>vs && autumnStart<ve){
+      const x0=idxToX(Math.max(autumnStart,vs)), x1=idxToX(Math.min(autumnEnd,ve));
+      plotGroup.appendChild(el('rect',{x:x0,y:yTop,width:x1-x0,height:priceH,fill:TH().lvlSup,opacity:0.07,'pointer-events':'none'}));
+      if(x1-x0>60) plotGroup.appendChild(el('text',{x:(x0+x1)/2,y:yTop+12,'text-anchor':'middle','font-size':8,fill:TH().lvlSup,'font-weight':700,'pointer-events':'none'},"autumn '26 · cycle-thesis bottom window"));
+    }
+  }
+
+  let pts = visIdx.filter(i=>price[i]!=null).map(i=>`${px(i)},${py(price[i])}`).join(' ');
+  if(pts){
+    plotGroup.appendChild(el('polyline',{points:pts,fill:'none',stroke:TH().halo,'stroke-width':4,'stroke-linejoin':'round',opacity:0.7}));
+    plotGroup.appendChild(el('polyline',{points:pts,fill:'none',stroke:TH().priceLine,'stroke-width':1.8,'stroke-linejoin':'round'}));
+  }
+  visIdx.filter(i=>price[i]!=null).forEach(i=>{
     plotGroup.appendChild(el('circle',{cx:px(i),cy:py(price[i]),r: span<24?3.2:1.6,fill:TH().priceLine,'data-row':'price','data-idx':i,style:'cursor:pointer'}));
   });
 
@@ -439,15 +510,19 @@ function showTip(e, idx){
   const block = wyckoffLabelFor(idx);
   const isLive = idx>=liveStartIdx;
   const fngVal = fng[idx];
+  const priceVal = price[idx];
+  const isFuture = priceVal==null && idx>liveStartIdx;
+  const inAutumn = idx>=autumnStart && idx<autumnEnd;
   const mercOn = merc.has(`${mo.y}-${mo.m}`);
   const shmOn = shmita.has(`${mo.y}-${mo.m}`);
   tooltip.innerHTML = `
-    <div style="margin-bottom:4px"><b>${monthLabel}</b>${isLive?' <span style="color:#5ec8f0;font-size:9px">● LIVE</span>':''}</div>
-    <div class="tt-row"><span class="tt-label">Price</span><span>$${price[idx].toLocaleString()}</span></div>
+    <div style="margin-bottom:4px"><b>${monthLabel}</b>${isLive&&!isFuture?' <span style="color:#5ec8f0;font-size:9px">● LIVE</span>':''}${isFuture?' <span style="color:var(--txt2);font-size:9px">future</span>':''}</div>
+    <div class="tt-row"><span class="tt-label">Price</span><span>${priceVal==null?'no data yet':'$'+priceVal.toLocaleString()}</span></div>
     ${state.layers.wyckoff && block ? `<div class="tt-row"><span class="tt-label">Wyckoff</span><span>${block.label}</span></div>`:''}
-    ${state.layers.fng ? `<div class="tt-row"><span class="tt-label">F&amp;G</span><span>${fngVal==null?'n/a (pre-2018)':fngVal}</span></div>`:''}
+    ${state.layers.fng ? `<div class="tt-row"><span class="tt-label">F&amp;G</span><span>${fngVal==null?(isFuture?'n/a (future)':'n/a (pre-2018)'):fngVal}</span></div>`:''}
     ${state.layers.mercury ? `<div class="tt-row"><span class="tt-label">Mercury</span><span>${mercOn?'Retrograde':'Direct'}</span></div>`:''}
     ${state.layers.shmita ? `<div class="tt-row"><span class="tt-label">Shmita</span><span>${shmOn?'Yes (5782)':'No'}</span></div>`:''}
+    ${state.layers.levels && inAutumn ? `<div class="tt-row" style="border-top:1px solid rgba(128,128,128,.2);margin-top:4px;padding-top:4px;"><span class="tt-label" style="color:#5bbf86">Cycle thesis</span><span style="color:#5bbf86">bottom window (Oct–Nov '26)</span></div>`:''}
   `;
   const rect = holder.getBoundingClientRect();
   let left = e.clientX - rect.left + 14;
@@ -501,6 +576,7 @@ holder.addEventListener('mousedown', (e)=>{
   holder.classList.add('dragging');
 });
 window.addEventListener('mouseup', ()=>{ dragging=false; holder.classList.remove('dragging'); });
+holder.addEventListener('dblclick', ()=>{ state.viewStart=0; state.viewEnd=N; render(); }); // double-click anywhere on the chart to reset the view
 window.addEventListener('mousemove', (e)=>{
   if(!dragging) return;
   const rect = holder.getBoundingClientRect();
