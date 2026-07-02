@@ -95,7 +95,7 @@
   </a>
 </div>
 <h1>BTC Framework Dashboard — Interactive</h1>
-<div class="meta">Crypto Reconnaissance Engine · <b>Jan 2018 → Jul 2026 live</b> (Jul 1 level map &amp; cycle window to Dec 2027) · drag to pan, scroll/pinch to zoom, double-click to reset, hover for values, toggle layers below</div>
+<div class="meta">Crypto Reconnaissance Engine · <b>Jan 2014 → Jul 2026 live</b> (Jul 1 level map &amp; cycle window to Dec 2027) · drag to pan, scroll/pinch to zoom, double-click to reset, hover for values, toggle layers below</div>
 
 <div class="controls">
   <div class="ctrl-group">
@@ -108,7 +108,8 @@
   </div>
   <div class="ctrl-group">
     <span class="ctrl-label">Zoom</span>
-    <button class="zoom-btn active" data-zoom="all">2018–Now</button>
+    <button class="zoom-btn active" data-zoom="all">2014–Now</button>
+    <button class="zoom-btn" data-zoom="cycle14">2014–17</button>
     <button class="zoom-btn" data-zoom="cycle22">2021–23</button>
     <button class="zoom-btn" data-zoom="live">Live (Jul'26)</button>
     <button class="zoom-btn" data-zoom="reset">Reset</button>
@@ -161,7 +162,7 @@
 </div>
 
 <div class="src-note">
-  <b>What's real:</b> BTC price = real monthly closes (Jun 2026 closed $58,494; Jul 2026 month-to-date $61,261 live exchange data, as of Jul 2, 2026). Fear &amp; Greed = real Alternative.me index, regime-anchored to documented extremes. Mercury = real astronomical retrograde windows. Shmita = real Hebrew-calendar year (5782, Sep'21–Sep'22).
+  <b>What's real:</b> BTC price = real monthly closes (2014–17 are rounded public-history anchors: Mt.Gox bear, the ~$152 intraday cycle low Jan 14 2015, the Jul 2016 halving grind, the $19.7K Dec 2017 peak; Jun 2026 closed $58,494; Jul 2026 month-to-date $61,261 live exchange data, as of Jul 2, 2026). Fear &amp; Greed = real Alternative.me index (launched Feb 2018 — earlier months genuinely have no reading), regime-anchored to documented extremes. Mercury = real astronomical retrograde windows. Shmita = both real Hebrew-calendar release years in range: <b>5775 (Sep'14–Sep'15)</b>, inside which the 2015 cycle low printed, and <b>5782 (Sep'21–Sep'22)</b>, which opened at a fresh ATH and was consumed by the crash — per the Jul 1 look-back, the only two observations produced <b>opposite</b> outcomes, which is the empirical case for zero-weighting Shmita directionally.
   <b>Wyckoff row:</b> retrospective phase labels re-derived month-by-month directly from this price line (corrected after review) — left of the cyan dashed seam (Jun 12, 2026) this is independent structural reading of known history, <b>not</b> your framework's calls. Right of the seam is the framework's own live read (Phase D → Spring fired Jun 24, then <b>failed</b>: the Jun 28 weekly close (~$59,578) flipped $59–60K from support to resistance, and price undercut to a fresh 652-day low ($57,803–$57,950) on Jul 1. On Jul 2 price rebounded sharply to ~$61,261 (+4.5%), back above the flipped $59–60K zone intraday — a retest of that flip, not yet a confirmed reclaim. The $63K macro override remains the gate; stance stays flat, watched entry zone $52–55K unless the reclaim confirms.).
   <b>Jul 1 Levels layer:</b> the horizontal lines/zones and the shaded autumn-2026 band are quoted from the framework's own Jul 1, 2026 look-back &amp; forecast report (200-wk EMA $69K, 200-wk MA $62,457 + $63K override, flipped $59–60K, $55K options cluster, $53.7K shelf, $52–55K watched entry zone, $50–51K measured move, $44–45K Fib tail, and the autumn-2026 cycle-thesis bottom window). They are the report's forward-looking references, <b>not</b> price history — Aug 2026 onward has no real price data.
   <b>No buy/sell signal layer, no liquidity-regime row, no hit-rate statistics</b> are shown — those would require either fabricated data or an n too small to mean anything, so they're left out rather than dressed up.
@@ -171,7 +172,7 @@
 
 <script>
 // ── DATA ─────────────────────────────────────────────────────────
-const yearNames=['2018','2019','2020','2021','2022','2023','2024','2025','2026','2027'];
+const yearNames=['2014','2015','2016','2017','2018','2019','2020','2021','2022','2023','2024','2025','2026','2027'];
 const monthsPerYear={}; // all years full 12 months; Aug 2026+ is future (null price/fng) — used by the Jul 1 level-map & cycle-window overlay
 const months=[];
 for(const y of yearNames){const cnt=monthsPerYear[+y]||12;for(let m=0;m<cnt;m++)months.push({y:+y,m});}
@@ -179,6 +180,10 @@ const N=months.length;
 const monthNames=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 
 const price=[
+  806,550,454,446,627,640,583,478,387,338,378,320,                 // 2014 (post-ATH bear, Mt.Gox Feb; rounded public-history closes)
+  217,254,244,236,230,263,284,230,236,314,377,430,                 // 2015 (cycle low Jan 14 ~$152 intraday — inside Shmita 5775; Q4 recovery)
+  369,437,416,448,531,673,624,575,610,700,745,964,                 // 2016 (halving Jul 9; steady grind up)
+  970,1180,1080,1350,2290,2480,2875,4700,4340,6470,9950,14160,     // 2017 (markup to $19.7K intraday ATH mid-Dec)
   10000,10400,6900,9200,7500,6400,7700,7000,6600,6300,4000,3700,
   3450,3850,4100,5300,8600,10800,10100,9600,8300,9200,7550,7200,
   9350,8550,6400,8650,9450,9150,11100,11650,10780,13800,19700,29000,
@@ -194,6 +199,10 @@ const price=[
 // Jun 2026 closed $58,494; Jul = live $61,261 as of Jul 2 (bounced +4.5% off the $57.8K low, back above the flipped $59-60K zone, still below the $63K override)
 
 const fng=[
+  null,null,null,null,null,null,null,null,null,null,null,null,     // 2014 — Alternative.me index did not exist yet
+  null,null,null,null,null,null,null,null,null,null,null,null,     // 2015
+  null,null,null,null,null,null,null,null,null,null,null,null,     // 2016
+  null,null,null,null,null,null,null,null,null,null,null,null,     // 2017
   null,18,24,30,38,30,40,22,35,30,15,14,
   30,40,45,60,70,80,60,45,42,38,30,30,
   55,45,12,35,45,42,55,70,48,65,80,88,
@@ -208,6 +217,10 @@ const fng=[
 ];
 
 const merc=new Set([
+  '2014-1','2014-5','2014-6','2014-9',
+  '2015-0','2015-1','2015-4','2015-5','2015-8','2015-9',
+  '2016-0','2016-3','2016-4','2016-7','2016-8','2016-11',
+  '2017-0','2017-3','2017-4','2017-7','2017-8','2017-11',
   '2018-2','2018-3','2018-6','2018-7','2018-10','2018-11',
   '2019-2','2019-6','2019-7','2019-9','2019-10',
   '2020-1','2020-2','2020-5','2020-6','2020-9','2020-10',
@@ -222,31 +235,39 @@ const merc=new Set([
 ]);
 
 const shmita=new Set([
+  // 5775: Sep 25, 2014 → Sep 13, 2015 — the cycle low (Jan 14, 2015) printed inside this window
+  '2014-8','2014-9','2014-10','2014-11',
+  '2015-0','2015-1','2015-2','2015-3','2015-4','2015-5','2015-6','2015-7','2015-8',
+  // 5782: Sep 7, 2021 → Sep 25, 2022 — opened at a fresh ATH, consumed by the crash
   '2021-8','2021-9','2021-10','2021-11',
   '2022-0','2022-1','2022-2','2022-3','2022-4','2022-5','2022-6','2022-7','2022-8'
 ]);
 
 const wyckoff = [
-  {s:0,  e:10, kind:'markdown',label:'2018 bear / markdown'},
-  {s:10, e:14, kind:'acc',     label:'2018-19 accumulation'},
-  {s:14, e:17, kind:'markup',  label:'2019 markup'},
-  {s:17, e:26, kind:'markdown',label:'2019-20 markdown → COVID'},
-  {s:26, e:32, kind:'acc',     label:'2020 reaccumulation'},
-  {s:32, e:38, kind:'markup',  label:'2020-21 markup'},
-  {s:38, e:41, kind:'markdown',label:'May-21 drop'},
-  {s:41, e:45, kind:'markup',  label:'2021 markup to ATH'},
-  {s:45, e:48, kind:'dist',    label:'2021 distribution'},
-  {s:48, e:59, kind:'markdown',label:'2022 bear market'},
-  {s:59, e:62, kind:'acc',     label:'2022-23 accumulation'},
-  {s:62, e:74, kind:'markup',  label:'2023-24 markup'},
-  {s:74, e:80, kind:'dist',    label:'2024 distribution range'},
-  {s:80, e:84, kind:'markup',  label:'late-2024 markup'},
-  {s:84, e:86, kind:'markdown',label:'early-25 crash'},
-  {s:86, e:93, kind:'markup',  label:'2025 markup to ATH'},
-  {s:93, e:101,kind:'markdown',label:'post-ATH markdown'},
-  {s:101,e:103,kind:'markdown',label:'live: Spring failed → $57.8K low → sharp bounce, retesting $59-60K flip'},
+  {s:0,  e:12, kind:'markdown',label:'2014 bear / Mt.Gox markdown'},
+  {s:12, e:24, kind:'acc',     label:'2015 bottoming (low Jan 14, inside Shmita 5775)'},
+  {s:24, e:36, kind:'markup',  label:'2016 recovery + halving'},
+  {s:36, e:48, kind:'markup',  label:'2017 markup to $19.7K ATH'},
+  {s:48, e:58, kind:'markdown',label:'2018 bear / markdown'},
+  {s:58, e:62, kind:'acc',     label:'2018-19 accumulation'},
+  {s:62, e:65, kind:'markup',  label:'2019 markup'},
+  {s:65, e:74, kind:'markdown',label:'2019-20 markdown → COVID'},
+  {s:74, e:80, kind:'acc',     label:'2020 reaccumulation'},
+  {s:80, e:86, kind:'markup',  label:'2020-21 markup'},
+  {s:86, e:89, kind:'markdown',label:'May-21 drop'},
+  {s:89, e:93, kind:'markup',  label:'2021 markup to ATH'},
+  {s:93, e:96, kind:'dist',    label:'2021 distribution'},
+  {s:96, e:107,kind:'markdown',label:'2022 bear market'},
+  {s:107,e:110,kind:'acc',     label:'2022-23 accumulation'},
+  {s:110,e:122,kind:'markup',  label:'2023-24 markup'},
+  {s:122,e:128,kind:'dist',    label:'2024 distribution range'},
+  {s:128,e:132,kind:'markup',  label:'late-2024 markup'},
+  {s:132,e:134,kind:'markdown',label:'early-25 crash'},
+  {s:134,e:141,kind:'markup',  label:'2025 markup to ATH'},
+  {s:141,e:149,kind:'markdown',label:'post-ATH markdown'},
+  {s:149,e:151,kind:'markdown',label:'live: Spring failed → $57.8K low → sharp bounce, retesting $59-60K flip'},
 ];
-const liveStartIdx = 101;
+const liveStartIdx = 149; // June 2026 (Jan 2014 base: 12*12 + 5)
 
 // ── Jul 1, 2026 report level map — the framework's own forecast references, not price history ──
 // Lines and zones are quoted verbatim from the Jul 1 look-back & forecast report's "Level map".
@@ -263,7 +284,7 @@ const levelZones = [
   {lo:44000, hi:45000, kind:'tail', label:'$44–45K · Fib-extension tail'},
 ];
 // Cycle-timing thesis: autumn 2026 (core Oct–Nov) highest-conviction bottom window
-const autumnStart = 105, autumnEnd = 107; // Oct 2026 .. Nov 2026 (exclusive end)
+const autumnStart = 153, autumnEnd = 155; // Oct 2026 .. Nov 2026 (exclusive end)
 
 let currentTheme = 'dark';
 const THEMES = {
@@ -413,7 +434,7 @@ function render(){
   const px = i => idxToX(i)+colW/2;
 
   // gridlines
-  const ticks = state.scale==='log' ? [1000,3000,10000,30000,100000,300000].filter(v=>Math.log10(v)>=pMin&&Math.log10(v)<=pMax)
+  const ticks = state.scale==='log' ? [100,300,1000,3000,10000,30000,100000,300000].filter(v=>Math.log10(v)>=pMin&&Math.log10(v)<=pMax)
     : [0,20000,40000,60000,80000,100000,120000].filter(v=>v>=pMin&&v<=pMax);
   ticks.forEach(v=>{
     const gy=py(v);
@@ -485,12 +506,16 @@ function render(){
     svg.appendChild(el('text',{x:lx+4,y:padT+9,'font-size':8.5,fill:TH().seam,'font-weight':700},'live (Jun 12+)'));
   }
 
-  // shmita tie-through shading
-  const sStartIdx = months.findIndex(m=>m.y===2021&&m.m===8);
-  const sEndIdx = months.findIndex(m=>m.y===2022&&m.m===8)+1;
-  if(sEndIdx>vs && sStartIdx<ve && state.layers.shmita){
-    const x0=idxToX(Math.max(sStartIdx,vs)), x1=idxToX(Math.min(sEndIdx,ve));
-    svg.insertBefore(el('rect',{x:x0,y:padT,width:x1-x0,height:priceTop+priceH-padT,fill:'#e0a83f',opacity:0.05}), svg.firstChild.nextSibling);
+  // shmita tie-through shading — both real Shmita years in range (5775 and 5782)
+  if(state.layers.shmita){
+    [[2014,8,2015,8],[2021,8,2022,8]].forEach(([y0,m0,y1,m1])=>{
+      const sStartIdx = months.findIndex(m=>m.y===y0&&m.m===m0);
+      const sEndIdx = months.findIndex(m=>m.y===y1&&m.m===m1)+1;
+      if(sEndIdx>vs && sStartIdx<ve){
+        const x0=idxToX(Math.max(sStartIdx,vs)), x1=idxToX(Math.min(sEndIdx,ve));
+        svg.insertBefore(el('rect',{x:x0,y:padT,width:x1-x0,height:priceTop+priceH-padT,fill:'#e0a83f',opacity:0.05}), svg.firstChild.nextSibling);
+      }
+    });
   }
 
   attachHover(visIdx, px, py, priceTop, priceH);
@@ -521,7 +546,7 @@ function showTip(e, idx){
     ${state.layers.wyckoff && block ? `<div class="tt-row"><span class="tt-label">Wyckoff</span><span>${block.label}</span></div>`:''}
     ${state.layers.fng ? `<div class="tt-row"><span class="tt-label">F&amp;G</span><span>${fngVal==null?(isFuture?'n/a (future)':'n/a (pre-2018)'):fngVal}</span></div>`:''}
     ${state.layers.mercury ? `<div class="tt-row"><span class="tt-label">Mercury</span><span>${mercOn?'Retrograde':'Direct'}</span></div>`:''}
-    ${state.layers.shmita ? `<div class="tt-row"><span class="tt-label">Shmita</span><span>${shmOn?'Yes (5782)':'No'}</span></div>`:''}
+    ${state.layers.shmita ? `<div class="tt-row"><span class="tt-label">Shmita</span><span>${shmOn?(mo.y<=2015?'Yes (5775)':'Yes (5782)'):'No'}</span></div>`:''}
     ${state.layers.levels && inAutumn ? `<div class="tt-row" style="border-top:1px solid rgba(128,128,128,.2);margin-top:4px;padding-top:4px;"><span class="tt-label" style="color:#5bbf86">Cycle thesis</span><span style="color:#5bbf86">bottom window (Oct–Nov '26)</span></div>`:''}
   `;
   const rect = holder.getBoundingClientRect();
@@ -549,6 +574,10 @@ document.querySelectorAll('button[data-zoom]').forEach(btn=>{
     btn.classList.add('active');
     const z = btn.getAttribute('data-zoom');
     if(z==='all'||z==='reset'){ state.viewStart=0; state.viewEnd=N; }
+    else if(z==='cycle14'){
+      state.viewStart = 0;
+      state.viewEnd = months.findIndex(m=>m.y===2018&&m.m===0);
+    }
     else if(z==='cycle22'){
       state.viewStart = months.findIndex(m=>m.y===2021&&m.m===0);
       state.viewEnd = months.findIndex(m=>m.y===2023&&m.m===11)+1;
