@@ -162,8 +162,8 @@
 </div>
 
 <div class="src-note">
-  <b>What's real:</b> BTC price = real monthly closes (2014–17 are rounded public-history anchors: Mt.Gox bear, the ~$152 intraday cycle low Jan 14 2015, the Jul 2016 halving grind, the $19.7K Dec 2017 peak; Jun 2026 closed $58,494; Jul 2026 month-to-date $61,261 live exchange data, as of Jul 2, 2026). Fear &amp; Greed = real Alternative.me index (launched Feb 2018 — earlier months genuinely have no reading), regime-anchored to documented extremes. Mercury = real astronomical retrograde windows. Shmita = all real Hebrew-calendar release years in range: <b>5775 (Sep'14–Sep'15)</b>, inside which the 2015 cycle low printed, <b>5782 (Sep'21–Sep'22)</b>, which opened at a fresh ATH and was consumed by the crash, and the upcoming <b>5789 (Sep 21, 2028 – Sep 9, 2029)</b>, plotted forward as pure calendar (no price data) — per the Jul 1 look-back, the only two completed observations produced <b>opposite</b> outcomes, which is the empirical case for zero-weighting Shmita directionally.
-  <b>Wyckoff row:</b> retrospective phase labels re-derived month-by-month directly from this price line (corrected after review) — left of the cyan dashed seam (Jul 1, 2026) this is independent structural reading of known history, <b>not</b> your framework's calls. Right of the seam is the framework's own live read (Phase D → Spring fired Jun 24, then <b>failed</b>: the Jun 28 weekly close (~$59,578) flipped $59–60K from support to resistance, and price undercut to a fresh 652-day low ($57,803–$57,950) on Jul 1. On Jul 2 price rebounded sharply to ~$61,261 (+4.5%), back above the flipped $59–60K zone intraday — a retest of that flip, not yet a confirmed reclaim. The $63K macro override remains the gate; stance stays flat, watched entry zone $52–55K unless the reclaim confirms.).
+  <b>What's real:</b> BTC price = real monthly closes (2014–17 are rounded public-history anchors: Mt.Gox bear, the ~$152 intraday cycle low Jan 14 2015, the Jul 2016 halving grind, the $19.7K Dec 2017 peak; Jun 2026 closed $58,494; Jul 2026 month-to-date ~$61,900, as of the Jul 4, 2026 Market GPS session). Fear &amp; Greed = real Alternative.me index (launched Feb 2018 — earlier months genuinely have no reading), regime-anchored to documented extremes. Mercury = real astronomical retrograde windows. Shmita = all real Hebrew-calendar release years in range: <b>5775 (Sep'14–Sep'15)</b>, inside which the 2015 cycle low printed, <b>5782 (Sep'21–Sep'22)</b>, which opened at a fresh ATH and was consumed by the crash, and the upcoming <b>5789 (Sep 21, 2028 – Sep 9, 2029)</b>, plotted forward as pure calendar (no price data) — per the Jul 1 look-back, the only two completed observations produced <b>opposite</b> outcomes, which is the empirical case for zero-weighting Shmita directionally.
+  <b>Wyckoff row:</b> retrospective phase labels re-derived month-by-month directly from this price line (corrected after review) — left of the cyan dashed seam (Jul 1, 2026) this is independent structural reading of known history, <b>not</b> your framework's calls. Right of the seam is the framework's own live read (Phase D → Spring fired Jun 24, then <b>failed</b>: the Jun 28 weekly close (~$59,578) flipped $59–60K from support to resistance, and price undercut to a fresh 652-day low ($57,803–$57,950) on Jul 1. Price then rebounded sharply — ~$61,900 by Jul 4 on the Warsh dovish repricing and a $221.7M spot-ETF inflow — back above the flipped $59–60K zone but still below the ~$62,500 20-day SMA and the firmer $63,800 resistance: a retest of the flip, not yet a confirmed reclaim. The $63K macro override remains the gate; stance stays flat, watched entry zone $52–55K unless the reclaim confirms.).
   <b>Jul 1 Levels layer:</b> the horizontal lines/zones and the shaded autumn-2026 band are quoted from the framework's own Jul 1, 2026 look-back &amp; forecast report (200-wk EMA $69K, 200-wk MA $62,457 + $63K override, flipped $59–60K, $55K options cluster, $53.7K shelf, $52–55K watched entry zone, $50–51K measured move, $44–45K Fib tail, and the autumn-2026 cycle-thesis bottom window). They are the report's forward-looking references, <b>not</b> price history — Aug 2026 onward has no real price data.
   <b>No buy/sell signal layer, no liquidity-regime row, no hit-rate statistics</b> are shown — those would require either fabricated data or an n too small to mean anything, so they're left out rather than dressed up.
 </div>
@@ -192,7 +192,7 @@ const price=[
   23100,23100,28500,29200,27200,30500,29200,25900,26900,34500,37700,42300,
   42600,61200,71300,60600,67500,62700,64600,58900,63300,70200,96400,93400,
   102000,84000,82000,94000,104000,107000,117000,112000,114000,126000,95000,87000,
-  88000,65000,70000,67000,71000,58494,61261,
+  88000,65000,70000,67000,71000,58494,61900,
   null,null,null,null,null,                                        // 2026 Aug-Dec: future, no real price data yet
   null,null,null,null,null,null,null,null,null,null,null,null,     // 2027: future, no real price data
   null,null,null,null,null,null,null,null,null,null,null,null,     // 2028: future (Shmita 5789 opens Sep 21)
@@ -213,7 +213,7 @@ const fng=[
   45,55,50,62,50,55,58,40,45,55,65,70,
   60,75,85,65,70,55,60,35,50,72,88,75,
   75,45,40,55,70,65,75,68,60,70,30,25,
-  60,30,45,45,35,17,12,
+  60,30,45,45,35,17,19,
   null,null,null,null,null,
   null,null,null,null,null,null,null,null,null,null,null,null,
   null,null,null,null,null,null,null,null,null,null,null,null,
@@ -274,7 +274,7 @@ const wyckoff = [
   {s:132,e:134,kind:'markdown',label:'early-25 crash'},
   {s:134,e:141,kind:'markup',  label:'2025 markup to ATH'},
   {s:141,e:150,kind:'markdown',label:'post-ATH markdown'},
-  {s:150,e:151,kind:'markdown',label:'live: Spring failed → $57.8K low → sharp bounce, retesting $59-60K flip'},
+  {s:150,e:151,kind:'markdown',label:'live: Spring failed → $57.8K low → bounce to ~$62K, below 20-day SMA gate'},
 ];
 const liveStartIdx = 150; // July 2026 (Jan 2014 base: 12*12 + 6)
 
