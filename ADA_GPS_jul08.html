@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ADA — Market GPS · Jul 8, 2026</title>
+<style>
+  :root{
+    --bg:#1c1b18; --bg2:#252420; --bg3:#2e2c27; --txt:#f0ede4; --txt2:#a9a69b; --bord:#3a3833;
+    --red:#f0997b; --red-bg:#3a1a0e; --amber:#f7c873; --amber-bg:#3a2a0a;
+    --green:#9bcf6a; --green-bg:#1c2e0f; --blue:#8bb8ee; --blue-bg:#132a42;
+    --gray:#9a978d; --gray-bg:#2c2a25; --mono: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;padding:22px;background:var(--bg);color:var(--txt);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;font-size:13.5px;line-height:1.55;max-width:920px;margin-inline:auto;}
+  h1{font-size:20px;font-weight:700;margin:0 0 4px;letter-spacing:-.01em;}
+  .sub{font-size:11.5px;color:var(--txt2);margin-bottom:12px;}
+  .statusbar{font-family:var(--mono);font-size:10.8px;color:var(--red);background:var(--bg2);border:1px solid var(--bord);
+    border-radius:7px;padding:7px 11px;margin-bottom:18px;letter-spacing:.01em;}
+  .statusbar b{color:var(--amber);}
+  .part{font-size:11px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--txt);background:var(--bg3);
+    border-radius:8px;padding:8px 12px;margin:26px 0 12px;}
+  .part span{color:var(--txt2);font-weight:500;text-transform:none;letter-spacing:0;}
+  .card{background:var(--bg2);border:1px solid var(--bord);border-radius:12px;padding:15px 17px;margin-bottom:11px;}
+  .card-amber{border-left:3px solid var(--amber);} .card-red{border-left:3px solid var(--red);}
+  .card-green{border-left:3px solid var(--green);} .card-gray{border-left:3px solid var(--gray);}
+  .card-blue{border-left:3px solid var(--blue);}
+  .badge{display:inline-block;padding:2px 9px;border-radius:5px;font-size:10.5px;font-weight:700;white-space:nowrap;}
+  .b-red{background:var(--red-bg);color:var(--red);} .b-amber{background:var(--amber-bg);color:var(--amber);}
+  .b-green{background:var(--green-bg);color:var(--green);} .b-blue{background:var(--blue-bg);color:var(--blue);}
+  .b-gray{background:var(--gray-bg);color:var(--gray);}
+
+  .head3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:6px;}
+  .hb{text-align:center;padding:13px 8px;border-radius:10px;border:1px solid var(--bord);background:var(--bg2);}
+  .hb .l{font-size:10px;color:var(--txt2);text-transform:uppercase;letter-spacing:.05em;}
+  .hb .m{font-size:19px;font-weight:700;margin:4px 0 2px;}
+  .hb .s{font-size:10.5px;color:var(--txt2);}
+
+  /* wyckoff stage track */
+  .track{display:flex;border-radius:9px;overflow:hidden;margin-bottom:8px;height:34px;}
+  .track div{flex:1;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;letter-spacing:.04em;}
+  .stg-a{background:#233a12;color:#b7e08a;} .stg-b{background:#123a35;color:#8fdfd0;}
+  .stg-c{background:#3a2f10;color:#f0cf82;} .stg-d{background:#3a1712;color:#f0a58a;}
+  .stg-active{outline:2px solid var(--txt);outline-offset:-2px;}
+  .marker{position:relative;height:0;}
+  .marker-arrow{position:absolute;top:-6px;font-size:13px;transform:translateX(-50%);}
+  .phaseline{font-size:12.5px;margin-top:10px;}
+  .phaseline b{color:var(--txt);}
+
+  /* position matrix */
+  .matrix{display:flex;align-items:flex-start;gap:0;margin:6px 0 4px;}
+  .mstep{flex:1;text-align:center;position:relative;padding-top:4px;}
+  .mstep .dot{width:26px;height:26px;border-radius:50%;margin:0 auto 6px;display:flex;align-items:center;justify-content:center;
+    font-size:13px;font-weight:800;border:2px solid var(--bord);}
+  .mstep .lbl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.03em;}
+  .mstep .sub2{font-size:9.5px;color:var(--txt2);margin-top:1px;}
+  .mstep:not(:last-child)::after{content:'';position:absolute;top:17px;left:63%;width:75%;height:2px;background:var(--bord);z-index:0;}
+  .dot-done{background:var(--green-bg);color:var(--green);border-color:var(--green);}
+  .dot-pending{background:var(--amber-bg);color:var(--amber);border-color:var(--amber);}
+  .dot-open{background:var(--gray-bg);color:var(--gray);border-color:var(--bord);}
+  .classif{font-size:12.5px;margin-top:12px;padding-top:11px;border-top:1px solid var(--bord);}
+
+  /* probability tree */
+  .probar{display:flex;height:10px;border-radius:5px;overflow:hidden;margin-bottom:14px;}
+  .trow{display:flex;gap:11px;padding:9px 0;border-bottom:1px solid var(--bord);font-size:12.5px;}
+  .trow:last-child{border-bottom:none;}
+  .td{width:10px;height:10px;border-radius:50%;flex-shrink:0;margin-top:4px;}
+  .tp{width:46px;flex-shrink:0;font-weight:800;font-family:var(--mono);}
+
+  /* audit layer kv */
+  .persona{font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--blue);margin-bottom:9px;}
+  .kv{display:grid;grid-template-columns:168px 1fr;gap:4px 12px;font-size:12.3px;margin-bottom:6px;}
+  .kv .k{color:var(--txt2);font-size:10.8px;text-transform:uppercase;letter-spacing:.03em;padding-top:1px;}
+  .kv .v{line-height:1.5;}
+  .altbox{background:var(--bg3);border-radius:8px;padding:9px 11px;margin-top:6px;font-size:12px;color:var(--txt2);}
+  .altbox b{color:var(--amber);}
+
+  /* risk engineering */
+  .riskgrid{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:10px;}
+  .riskbox{background:var(--bg3);border-radius:9px;padding:10px 12px;}
+  .riskbox .l{font-size:10px;color:var(--txt2);text-transform:uppercase;letter-spacing:.04em;margin-bottom:3px;}
+  .riskbox .v{font-size:16px;font-weight:700;}
+  .trigrow{display:flex;gap:10px;padding:8px 0;border-bottom:1px solid var(--bord);font-size:12.3px;}
+  .trigrow:last-child{border-bottom:none;}
+  .trigrow .tl{width:150px;flex-shrink:0;color:var(--txt2);font-size:10.8px;text-transform:uppercase;letter-spacing:.03em;padding-top:1px;}
+
+  .brief{font-size:13.5px;line-height:1.75;}
+
+  table{width:100%;border-collapse:collapse;font-size:11.8px;}
+  th{text-align:left;padding:7px 8px;background:var(--bg3);font-size:9.5px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:var(--txt2);border-bottom:1px solid var(--bord);}
+  td{padding:8px 8px;border-bottom:1px solid var(--bord);vertical-align:top;line-height:1.45;}
+  tr:last-child td{border-bottom:none;}
+  .delta-up{color:var(--green);} .delta-down{color:var(--red);} .delta-flat{color:var(--txt2);}
+
+  .foot{font-size:11px;color:var(--txt2);line-height:1.6;margin-top:14px;border-top:1px solid var(--bord);padding-top:12px;}
+</style>
+</head>
+<body>
+
+<h1>ADA — Market GPS</h1>
+<div class="sub">Crypto Reconnaissance Engine · Wed Jul 8, 2026 · 07:58 UTC · spot $0.1692 · Jul 8 UTC candle in progress (33% elapsed)</div>
+
+<div class="statusbar">[SYSTEM STATUS: OPERATIONAL // FEED: Crypto.com MCP not callable this session (attempted, disclosed) — CoinGecko verified UTC daily OHLC/spot, cross-referenced vs. Cryptonews derivatives data (Jul 7) and CryptoRank EMAs (last verified ~Jul 5)] <b>// GATE HOLDING · BUY 1 STRESS-TESTING INTRADAY</b></div>
+
+<div class="head3">
+  <div class="hb" style="border-color:#8a3a1f;"><div class="l">Spot</div><div class="m">$0.1692</div><div class="s">−5.78% 24h · Jul 7 close $0.1842</div></div>
+  <div class="hb" style="border-color:#8a3a1f;"><div class="l">Wyckoff</div><div class="m" style="color:var(--red);">D late</div><div class="s">BU accelerating to SOW</div></div>
+  <div class="hb" style="border-color:#6b5a1f;"><div class="l">Action</div><div class="m" style="color:var(--amber);">HOLD</div><div class="s">BUY 1 held · no add</div></div>
+</div>
+
+<!-- ══════════ WYCKOFF CYCLE MAP ══════════ -->
+<div class="part">Wyckoff Cycle Map</div>
+<div class="card">
+  <div class="track">
+    <div class="stg-a">A · ACCUMULATION</div>
+    <div class="stg-b">B · MARKUP</div>
+    <div class="stg-c">C · DISTRIBUTION</div>
+    <div class="stg-d stg-active">D · MARKDOWN</div>
+  </div>
+  <div class="marker"><div class="marker-arrow" style="left:80%;">▲</div></div>
+  <div class="phaseline">
+    <b>Current location:</b> Late Phase D — Back-Up (BU) retest of the recent reclaim, now accelerating toward a Sign-of-Weakness read.<br>
+    <b>Current phase:</b> Three lower closes since the Jul 5 high ($0.1921 → $0.1895 → $0.1842), then a sharp −5.8% intraday break through the $0.17 level flagged in the last session, now testing toward the $0.1596 Leg-1 trigger.<br>
+    <b>Current action:</b> <span class="badge b-amber">HOLD</span> BUY 1 (quarter-size, held) · <span class="badge b-red">NO ADD</span> — watch the $0.1596 hard stop
+  </div>
+</div>
+
+<!-- ══════════ POSITION PROGRESSION MATRIX ══════════ -->
+<div class="part">Position Progression Matrix <span>· Quant PM Sizing Layer</span></div>
+<div class="card">
+  <div class="matrix">
+    <div class="mstep"><div class="dot dot-done">✓</div><div class="lbl">Buy 1</div><div class="sub2">held · qtr-size</div></div>
+    <div class="mstep"><div class="dot dot-pending">⧗</div><div class="lbl">Buy 2</div><div class="sub2">needs $0.19 close</div></div>
+    <div class="mstep"><div class="dot dot-open">—</div><div class="lbl">Buy 3</div><div class="sub2">Test</div></div>
+    <div class="mstep"><div class="dot dot-open">—</div><div class="lbl">Buy 4</div><div class="sub2">LPS</div></div>
+    <div class="mstep"><div class="dot dot-open">—</div><div class="lbl">Buy 5</div><div class="sub2">Pullback</div></div>
+  </div>
+  <div class="classif">
+    <b>Current Matrix Classification: BUY 1 held</b> (quarter-size, filled on the Jul 7 close ≥$0.17). Re-entry gate — <b>Leg 1</b> (ADA four consecutive closes above $0.1596) and <b>Leg 2</b> (BTC two consecutive closes above the $62,457–$62,589 confluence) — remains <span class="badge b-green">CLEARED &amp; HOLDING</span>. BUY 2 stays un-triggered: today's move is away from, not toward, the ~$0.19 reclaim it requires.
+  </div>
+</div>
+
+<!-- ══════════ PROBABILITY PATH TREES ══════════ -->
+<div class="part">Probability Path Trees <span>· MSA Structural Trajectories</span></div>
+<div class="card">
+  <div class="probar">
+    <div style="width:35%;background:#3b6d11;"></div>
+    <div style="width:30%;background:#854f0b;"></div>
+    <div style="width:35%;background:#7f1d1d;"></div>
+  </div>
+  <div style="font-size:11px;color:var(--txt2);margin-bottom:10px;">Current spot $0.1692 (CoinGecko, −5.78% 24h) · Jul 7 closed $0.1842 · today's range so far $0.1741–$0.1846, and spot has since traded through that recorded low</div>
+  <div class="trow">
+    <div class="td" style="background:#6fa02c;"></div>
+    <div class="tp" style="color:var(--green);">35%</div>
+    <div><strong>Primary — Back-Up holds above $0.1596.</strong> A deep-but-orderly retest of the breakout; digestion completes and ADA re-attacks the $0.1885 50-day MA and the $0.19 reclaim trigger over the sessions ahead.</div>
+  </div>
+  <div class="trow">
+    <div class="td" style="background:#f7c873;"></div>
+    <div class="tp" style="color:var(--amber);">30%</div>
+    <div><strong>Secondary — extended chop $0.1596–$0.18.</strong> The derivatives unwind (open interest −8%, funding rate collapsed) keeps bleeding out leveraged length with no clean resolution before the van Rossem fork window (Jul 8/13/18/23) or the Aug 9 ETF-review clock.</div>
+  </div>
+  <div class="trow">
+    <div class="td" style="background:#993c1d;"></div>
+    <div class="tp" style="color:var(--red);">35%</div>
+    <div><strong>Tail — Leg 1 trigger breaks.</strong> A verified close below $0.1596 breaks the gate trigger and the BOS, opening the Jun 26 structural low (~$0.1385) and resuming markdown toward $0.14–$0.15 — this invalidates BUY 1.</div>
+  </div>
+  <div style="font-size:10.5px;color:var(--txt2);margin-top:6px;">35 + 30 + 35 = 100 ✓ · tail widened from 15% → 35% given today's acceleration through $0.17 — provisional pending the Jul 8 UTC close</div>
+</div>
+
+<!-- ══════════ LAYERS OF ANALYTICAL AUDIT ══════════ -->
+<div class="part">Layers of Analytical Audit</div>
+
+<div class="card">
+  <div class="persona">Global Macro Strategist · Macro Context</div>
+  <div class="kv">
+    <div class="k">Shmita Cycle Stage</div><div class="v">Year 4 of 7, mid-cycle. <span class="badge b-gray">Zero-weight</span></div>
+    <div class="k">Institutional Flow</div><div class="v">BTC's ETF inflow streak is modestly supportive of broad risk sentiment, but ADA's own derivatives and on-chain flows are deteriorating today — the two layers have decoupled.</div>
+    <div class="k">Macro Environment Bias</div><div class="v">Neutral-to-cautious. Rate-cut odds are rising broadly, but that has not translated into ADA-specific strength today.</div>
+    <div class="k">Strategic Context Note</div><div class="v">The BTC leg of the re-entry gate (Leg 2) remains cleared and holding — ADA's own structure, not macro, is the swing factor right now.</div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="persona">Lead Market Structure Analyst · Market Structure &amp; Liquidity</div>
+  <div class="kv">
+    <div class="k">Primary Wyckoff Read</div><div class="v">Back-Up (BU) test of the breakout — three lower closes since the $0.1921 Jul 5 high, now accelerating intraday through $0.17 toward the $0.1596 Leg-1 trigger / 20-day EMA. Still consistent with a deep-but-orderly digestion if $0.1596 holds on the close.</div>
+    <div class="k">Liquidity Matrix Status</div><div class="v">Derivatives unwind in progress: ADA futures open interest down ~8% in 24h to ~$434M, funding rate collapsed from 0.0093% to 0.0029%, ~$1.26M of long liquidations (Cryptonews, Jul 7). A de-leveraging / stop-hunt signature, not fresh distribution — but it removes the cushion that supported the recent bounce.</div>
+    <div class="k">Smart Money Footprint</div><div class="v">Divergent by cohort — mid-size whales (10–100M ADA) added share through the June selloff, but the largest cohort (100M–1B ADA) has flatlined since Jul 2 with no accumulation signal visible. Net: sidelined into today's weakness, not buying it.</div>
+  </div>
+  <div class="altbox"><b>Alternate Wyckoff Interpretation (mandatory):</b> The reclaim above $0.1596–$0.19 may itself have been an Upthrust-style fakeout with no real sponsorship. Today's acceleration through $0.17 — alongside the derivatives unwind and absent whale demand — would confirm a genuine Break of Structure back into markdown if $0.1596 fails on the close, meaning the Jul 5–7 rally was a bull trap rather than genuine markup.</div>
+</div>
+
+<div class="card">
+  <div class="persona">Alternative Data Quant · Temporal Timing &amp; Sentiment</div>
+  <div class="kv">
+    <div class="k">Lunar Cycle Window</div><div class="v">New Moon mid-July. <span class="badge b-gray">Zero-weight, no signal.</span></div>
+    <div class="k">Mercury Retrograde</div><div class="v">Retrograde through ~Jul 23. <span class="badge b-gray">Zero-weight directionally</span> — flagged only because today's breakdown falls inside the fakeout-risk window.</div>
+    <div class="k">Behavioral Risk Flags</div><div class="v">Fakeout risk elevated: the van Rossem hard fork enactment window includes today (Jul 8) among its remaining candidate dates (Jul 8/13/18/23; consensus leans late-July) — a governance surprise either way could move price sharply into the close.</div>
+    <div class="k">Crowd Psychology</div><div class="v">Fear &amp; Greed ~24 (Extreme Fear), last independently verified Jul 6 and not reconfirmed today. Contrarian-supportive in isolation, but the derivatives unwind argues capitulation may not be finished.</div>
+  </div>
+</div>
+
+<!-- ══════════ RISK ENGINEERING ══════════ -->
+<div class="part">Risk Engineering &amp; Execution Commands <span>· CRO &amp; Quant PM Sign-Off</span></div>
+<div class="card">
+  <div class="riskgrid">
+    <div class="riskbox"><div class="l">System Action</div><div class="v" style="color:var(--amber);">HOLD</div></div>
+    <div class="riskbox"><div class="l">Aggressiveness</div><div class="v">1 / 10</div></div>
+    <div class="riskbox"><div class="l">Composite Confidence</div><div class="v">48 / 100</div></div>
+    <div class="riskbox"><div class="l">Structural Risk Profile</div><div class="v" style="color:var(--red);">High</div></div>
+  </div>
+  <div class="trigrow"><div class="tl">Immediate Trigger</div><div>None mid-candle. Jul 8 is ~33% through the UTC day — the no-mid-candle-pull rule applies even though spot has already pierced the $0.17 level flagged last session.</div></div>
+  <div class="trigrow"><div class="tl">Confirmation (Buy 2)</div><div>Daily close back above <b>~$0.19</b> (unchanged).</div></div>
+  <div class="trigrow"><div class="tl">Hard Invalidation</div><div>A verified daily close below <b>$0.1596</b> breaks the Leg-1 gate trigger and the BOS — closes BUY 1, no averaging down. Interim: a close below <b>$0.17</b> (without breaking $0.1596) keeps BUY 1 open but downgrades the read to Sign-of-Weakness for the next session.</div></div>
+</div>
+
+<!-- ══════════ FINAL EXECUTIVE BRIEF ══════════ -->
+<div class="part">Final Executive Brief</div>
+<div class="card card-red">
+  <div class="brief">
+    ADA's Back-Up from the Jul 5 high has turned sharp — down 5.8% intraday and through the $0.17 level flagged last session — now testing toward the $0.1596 gate trigger with derivatives data (falling open interest, collapsed funding, no whale accumulation) offering no sponsorship for a bounce. The next verified UTC close is the swing event: holding above $0.1596 keeps BUY 1 intact as an orderly-if-deep digestion, while a close beneath it breaks the Leg 1 trigger and invalidates the position. The enforced action is to hold the quarter-size BUY 1 unchanged, take no new tranche, and let the close — not the intraday wick — make the next call.
+  </div>
+</div>
+
+<!-- ══════════ STANDING RECORD UPDATE ══════════ -->
+<div class="part">Standing Record Update <span>· deltas vs. Jul 8 00:23 UTC session</span></div>
+<div class="card" style="padding:6px 10px;">
+  <table>
+    <tr><th>Metric</th><th>Prior (00:23 UTC)</th><th>Now (07:58 UTC)</th><th>Δ</th></tr>
+    <tr><td>Spot</td><td>$0.1750 (−4.9% 24h)</td><td>$0.1692 (−5.78% 24h)</td><td class="delta-down">accelerating lower</td></tr>
+    <tr><td>Last verified close</td><td>Jul 7 · $0.1842</td><td>Jul 7 · $0.1842 (unchanged, final)</td><td class="delta-flat">no new close yet</td></tr>
+    <tr><td>Gate state</td><td>CLEARED &amp; HOLDING</td><td>CLEARED &amp; HOLDING (unchanged)</td><td class="delta-flat">—</td></tr>
+    <tr><td>Position</td><td>BUY 1 held</td><td>BUY 1 held (unchanged)</td><td class="delta-flat">—</td></tr>
+    <tr><td>Aggressiveness</td><td>2 / 10</td><td>1 / 10</td><td class="delta-down">−1</td></tr>
+    <tr><td>Composite confidence</td><td>60 / 100</td><td>48 / 100</td><td class="delta-down">−12</td></tr>
+    <tr><td>Structural read</td><td>Rejected at 50-day MA, 3 lower closes</td><td>Broke below $0.17 intraday; derivatives unwind newly flagged (OI −8%, funding collapsed, whale flatline)</td><td class="delta-down">deteriorating</td></tr>
+  </table>
+</div>
+
+<div class="foot">
+  Evidence tiering unchanged and non-negotiable: Wyckoff, liquidity, the halving cycle, and macro/FOMC carry the analytical weight. Shmita, Mercury retrograde, and lunar cycles are disclosed in full but carry zero predictive weight, per the standing independent audit. No-mid-candle-pull rule applied throughout — the Jul 8 UTC candle is in progress and excluded from all gate determinations despite the intraday break of $0.17. Structural orientation, not financial advice — size positions yourself and consult a licensed advisor.
+</div>
+
+</body>
+</html>
