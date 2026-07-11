@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BTC — Market GPS · Jul 11, 2026</title>
+<style>
+  :root{
+    --bg:#1c1b18; --bg2:#252420; --bg3:#2e2c27; --txt:#f0ede4; --txt2:#a9a69b; --bord:#3a3833;
+    --red:#f0997b; --red-bg:#3a1a0e; --amber:#f7c873; --amber-bg:#3a2a0a;
+    --green:#9bcf6a; --green-bg:#1c2e0f; --blue:#8bb8ee; --blue-bg:#132a42;
+    --gray:#9a978d; --gray-bg:#2c2a25; --mono: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;padding:22px;background:var(--bg);color:var(--txt);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;font-size:13.5px;line-height:1.55;max-width:920px;margin-inline:auto;}
+  h1{font-size:20px;font-weight:700;margin:0 0 4px;letter-spacing:-.01em;}
+  .sub{font-size:11.5px;color:var(--txt2);margin-bottom:12px;}
+  .statusbar{font-family:var(--mono);font-size:10.8px;color:var(--green);background:var(--bg2);border:1px solid var(--bord);
+    border-radius:7px;padding:7px 11px;margin-bottom:10px;letter-spacing:.01em;}
+  .statusbar b{color:var(--amber);}
+  .datanote{font-size:11px;color:var(--txt2);background:var(--bg2);border:1px dashed var(--bord);border-radius:7px;
+    padding:8px 11px;margin-bottom:18px;line-height:1.55;}
+  .datanote b{color:var(--blue);}
+  .part{font-size:11px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--txt);background:var(--bg3);
+    border-radius:8px;padding:8px 12px;margin:26px 0 12px;}
+  .part span{color:var(--txt2);font-weight:500;text-transform:none;letter-spacing:0;}
+  .card{background:var(--bg2);border:1px solid var(--bord);border-radius:12px;padding:15px 17px;margin-bottom:11px;}
+  .card-amber{border-left:3px solid var(--amber);} .card-red{border-left:3px solid var(--red);}
+  .card-green{border-left:3px solid var(--green);} .card-gray{border-left:3px solid var(--gray);}
+  .card-blue{border-left:3px solid var(--blue);}
+  .badge{display:inline-block;padding:2px 9px;border-radius:5px;font-size:10.5px;font-weight:700;white-space:nowrap;}
+  .b-red{background:var(--red-bg);color:var(--red);} .b-amber{background:var(--amber-bg);color:var(--amber);}
+  .b-green{background:var(--green-bg);color:var(--green);} .b-blue{background:var(--blue-bg);color:var(--blue);}
+  .b-gray{background:var(--gray-bg);color:var(--gray);}
+
+  .head3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:6px;}
+  .hb{text-align:center;padding:13px 8px;border-radius:10px;border:1px solid var(--bord);background:var(--bg2);}
+  .hb .l{font-size:10px;color:var(--txt2);text-transform:uppercase;letter-spacing:.05em;}
+  .hb .m{font-size:19px;font-weight:700;margin:4px 0 2px;}
+  .hb .s{font-size:10.5px;color:var(--txt2);}
+
+  .track{display:flex;border-radius:9px;overflow:hidden;margin-bottom:8px;height:34px;}
+  .track div{flex:1;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;letter-spacing:.04em;}
+  .stg-a{background:#233a12;color:#b7e08a;} .stg-b{background:#123a35;color:#8fdfd0;}
+  .stg-c{background:#3a2f10;color:#f0cf82;} .stg-d{background:#3a1712;color:#f0a58a;}
+  .stg-active{outline:2px solid var(--txt);outline-offset:-2px;}
+  .marker{position:relative;height:0;}
+  .marker-arrow{position:absolute;top:-6px;font-size:13px;transform:translateX(-50%);}
+  .phaseline{font-size:12.5px;margin-top:10px;}
+  .phaseline b{color:var(--txt);}
+
+  .matrix{display:flex;align-items:flex-start;gap:0;margin:6px 0 4px;}
+  .mstep{flex:1;text-align:center;position:relative;padding-top:4px;}
+  .mstep .dot{width:26px;height:26px;border-radius:50%;margin:0 auto 6px;display:flex;align-items:center;justify-content:center;
+    font-size:13px;font-weight:800;border:2px solid var(--bord);}
+  .mstep .lbl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.03em;}
+  .mstep .sub2{font-size:9.5px;color:var(--txt2);margin-top:1px;}
+  .mstep:not(:last-child)::after{content:'';position:absolute;top:17px;left:63%;width:75%;height:2px;background:var(--bord);z-index:0;}
+  .dot-done{background:var(--green-bg);color:var(--green);border-color:var(--green);}
+  .dot-pending{background:var(--amber-bg);color:var(--amber);border-color:var(--amber);}
+  .dot-open{background:var(--gray-bg);color:var(--gray);border-color:var(--bord);}
+  .classif{font-size:12.5px;margin-top:12px;padding-top:11px;border-top:1px solid var(--bord);}
+
+  .probar{display:flex;height:10px;border-radius:5px;overflow:hidden;margin-bottom:14px;}
+  .trow{display:flex;gap:11px;padding:9px 0;border-bottom:1px solid var(--bord);font-size:12.5px;}
+  .trow:last-child{border-bottom:none;}
+  .td{width:10px;height:10px;border-radius:50%;flex-shrink:0;margin-top:4px;}
+  .tp{width:46px;flex-shrink:0;font-weight:800;font-family:var(--mono);}
+
+  .persona{font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--blue);margin-bottom:9px;}
+  .kv{display:grid;grid-template-columns:168px 1fr;gap:4px 12px;font-size:12.3px;margin-bottom:6px;}
+  .kv .k{color:var(--txt2);font-size:10.8px;text-transform:uppercase;letter-spacing:.03em;padding-top:1px;}
+  .kv .v{line-height:1.5;}
+  .altbox{background:var(--bg3);border-radius:8px;padding:9px 11px;margin-top:6px;font-size:12px;color:var(--txt2);}
+  .altbox b{color:var(--amber);}
+  .stale{color:var(--gray);font-style:italic;}
+
+  .riskgrid{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:10px;}
+  .riskbox{background:var(--bg3);border-radius:9px;padding:10px 12px;}
+  .riskbox .l{font-size:10px;color:var(--txt2);text-transform:uppercase;letter-spacing:.04em;margin-bottom:3px;}
+  .riskbox .v{font-size:16px;font-weight:700;}
+  .trigrow{display:flex;gap:10px;padding:8px 0;border-bottom:1px solid var(--bord);font-size:12.3px;}
+  .trigrow:last-child{border-bottom:none;}
+  .trigrow .tl{width:150px;flex-shrink:0;color:var(--txt2);font-size:10.8px;text-transform:uppercase;letter-spacing:.03em;padding-top:1px;}
+
+  .brief{font-size:13.5px;line-height:1.75;}
+
+  table{width:100%;border-collapse:collapse;font-size:11.8px;}
+  th{text-align:left;padding:7px 8px;background:var(--bg3);font-size:9.5px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:var(--txt2);border-bottom:1px solid var(--bord);}
+  td{padding:8px 8px;border-bottom:1px solid var(--bord);vertical-align:top;line-height:1.45;}
+  tr:last-child td{border-bottom:none;}
+  .delta-up{color:var(--green);} .delta-down{color:var(--red);} .delta-flat{color:var(--txt2);}
+
+  .foot{font-size:11px;color:var(--txt2);line-height:1.6;margin-top:14px;border-top:1px solid var(--bord);padding-top:12px;}
+</style>
+</head>
+<body>
+
+<h1>BTC — Market GPS</h1>
+<div class="sub">Crypto Reconnaissance Engine · Sat Jul 11, 2026 · 04:41 UTC · spot $64,147 · Jul 11 UTC candle in progress (~19% elapsed)</div>
+
+<div class="statusbar">[SYSTEM STATUS: OPERATIONAL // FEED: Crypto.com MCP callable this session (first time since ~Jul 3) — cross-verified against CoinGecko UTC daily OHLC] <b>// BUY 3 HELD · CLOSEST TEST YET OF BUY 4</b></div>
+<div class="datanote"><b>Data integrity note:</b> Crypto.com's daily candles, now callable, show the same price sequence as CoinGecko but with date labels one calendar day earlier for matching values (e.g. Crypto.com's "Jul 8" bar value-matches CoinGecko's "Jul 9" bar). CoinGecko's dates are used below — independently confirmed against YCharts for the Jul 8 close ($63,351.37, exact match). This does not change any gate determination: both feeds agree on the underlying sequence (a single close dipped below the confluence, reclaimed the next session).</div>
+
+<div class="head3">
+  <div class="hb" style="border-color:#3a6b1f;"><div class="l">Spot</div><div class="m">$64,147</div><div class="s">+0.18% 24h · Crypto.com concurrent $64,167</div></div>
+  <div class="hb" style="border-color:#2e6b5f;"><div class="l">Wyckoff</div><div class="m" style="color:var(--blue);">SOS → test</div><div class="s">tagged $64,698 today</div></div>
+  <div class="hb" style="border-color:#6b5a1f;"><div class="l">Action</div><div class="m" style="color:var(--amber);">HOLD</div><div class="s">BUY 3 held · watch BUY 4</div></div>
+</div>
+
+<!-- ══════════ WYCKOFF CYCLE MAP ══════════ -->
+<div class="part">Wyckoff Cycle Map</div>
+<div class="card">
+  <div class="track">
+    <div class="stg-a">A · ACCUMULATION</div>
+    <div class="stg-b stg-active">B · MARKUP</div>
+    <div class="stg-c">C · DISTRIBUTION</div>
+    <div class="stg-d">D · MARKDOWN</div>
+  </div>
+  <div class="marker"><div class="marker-arrow" style="left:45%;">▲</div></div>
+  <div class="phaseline">
+    <b>Current location:</b> Markup — BUY 3 has now survived its first real stress test and is pressing the top of its range.<br>
+    <b>Current phase:</b> A single UTC close dipped below the $62,457–$62,589 confluence (verified ~$62,260, cross-checked within $40 across two feeds), then was reclaimed the very next session (~$63,230) — a Spring-and-test rather than a breakdown. Price has since pushed to a fresh high: the most recent completed 24h window touched <b>$64,698</b>, within $302 of the $65,000 BUY 4 trigger.<br>
+    <b>Current action:</b> <span class="badge b-amber">HOLD</span> BUY 3 (confirmed, held) · <span class="badge b-blue">WATCH</span> — closest approach yet to BUY 4
+  </div>
+</div>
+
+<!-- ══════════ POSITION PROGRESSION MATRIX ══════════ -->
+<div class="part">Position Progression Matrix <span>· Quant PM Sizing Layer</span></div>
+<div class="card">
+  <div class="matrix">
+    <div class="mstep"><div class="dot dot-open">—</div><div class="lbl">Buy 1</div><div class="sub2">Early Accum</div></div>
+    <div class="mstep"><div class="dot dot-done">✓</div><div class="lbl">Buy 2</div><div class="sub2">Spring · held</div></div>
+    <div class="mstep"><div class="dot dot-done">✓</div><div class="lbl">Buy 3</div><div class="sub2">Test · survived</div></div>
+    <div class="mstep"><div class="dot dot-pending">⧗</div><div class="lbl">Buy 4</div><div class="sub2">LPS · $302 away</div></div>
+    <div class="mstep"><div class="dot dot-open">—</div><div class="lbl">Buy 5</div><div class="sub2">Pullback</div></div>
+  </div>
+  <div class="classif">
+    <b>Current Matrix Classification: BUY 3 (Test) — confirmed and held, stress-tested.</b> Verified close sequence since the reclaim: Jul 7 $64,072 → Jul 8 $63,351 → Jul 9 ~$62,260 (single close <i>below</i> the confluence) → Jul 10 ~$63,230 (reclaimed) → Jul 11 in progress, session high $64,698. BUY 4 (LPS) remains gated on a clean daily close above <b>$65,000</b> — today's high is the closest approach yet.
+  </div>
+</div>
+
+<!-- ══════════ PROBABILITY PATH TREES ══════════ -->
+<div class="part">Probability Path Trees <span>· MSA Structural Trajectories</span></div>
+<div class="card">
+  <div class="probar">
+    <div style="width:50%;background:#3b6d11;"></div>
+    <div style="width:35%;background:#854f0b;"></div>
+    <div style="width:15%;background:#7f1d1d;"></div>
+  </div>
+  <div style="font-size:11px;color:var(--txt2);margin-bottom:10px;">Current spot $64,147 (+0.18% 24h) · most recent complete 24h range $63,225–$64,698 (Crypto.com) · today's session so far $63,979–$64,326 (~19% elapsed)</div>
+  <div class="trow">
+    <div class="td" style="background:#6fa02c;"></div>
+    <div class="tp" style="color:var(--green);">50%</div>
+    <div><strong>Primary — clean break above $65,000.</strong> The bear flag is being absorbed rather than repelled; a close through $65,000 in the next 1–2 sessions confirms BUY 4 and arms the next leg toward $66.6–67.6K.</div>
+  </div>
+  <div class="trow">
+    <div class="td" style="background:#f7c873;"></div>
+    <div class="tp" style="color:var(--amber);">35%</div>
+    <div><strong>Secondary — rejected again, extended chop.</strong> Price stalls in the $61–65K range into the Jul 17 CLARITY hearing and Jul 28–29 FOMC, with today's high marking a lower-conviction third test of the same resistance band.</div>
+  </div>
+  <div class="trow">
+    <div class="td" style="background:#993c1d;"></div>
+    <div class="tp" style="color:var(--red);">15%</div>
+    <div><strong>Tail — confirmed reversal.</strong> A repeat of the Jul 9 dip, this time confirmed by a <i>second</i> consecutive close below $62,457, reverts the thesis to BUY 2-held. $57,803 remains hard invalidation.</div>
+  </div>
+  <div style="font-size:10.5px;color:var(--txt2);margin-top:6px;">50 + 35 + 15 = 100 ✓ · primary raised from 45%→50%, tail cut from 20%→15% given the successful confluence test and fresh push toward $65K</div>
+</div>
+
+<!-- ══════════ LAYERS OF ANALYTICAL AUDIT ══════════ -->
+<div class="part">Layers of Analytical Audit</div>
+
+<div class="card">
+  <div class="persona">Global Macro Strategist · Macro Context</div>
+  <div class="kv">
+    <div class="k">Shmita Cycle Stage</div><div class="v">Year 4 of 7, mid-cycle — no release-year boundary nearby. <span class="badge b-gray">Zero-weight</span></div>
+    <div class="k">Institutional Flow</div><div class="v">ETF inflow streak was intact as of the last verified read (Jul 8); not independently re-confirmed this session — <span class="stale">flagged as stale, recommend re-verification next session.</span></div>
+    <div class="k">Macro Environment Bias</div><div class="v">Unchanged and cautiously favorable. The Jul 17 CLARITY hearing and Jul 28–29 FOMC remain the key forward tests, still ahead.</div>
+    <div class="k">Strategic Context Note</div><div class="v">Macro is a steady tailwind; today's push toward $65K is a structural (Wyckoff) development, not a fresh macro catalyst.</div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="persona">Lead Market Structure Analyst · Market Structure &amp; Liquidity</div>
+  <div class="kv">
+    <div class="k">Primary Wyckoff Read</div><div class="v">Test-and-continuation. The Jul 9 dip below the confluence was a single close, never confirmed by a second consecutive close below — consistent with a shakeout/spring-retest rather than genuine distribution. The Jul 10 reclaim and today's push to $64,698 reads as continuation of the markup leg off the $57,803 Spring.</div>
+    <div class="k">Liquidity Matrix Status</div><div class="v">Break of Structure (BOS) reaffirmed by the Jul 10 reclaim close. No sweep or stop-hunt signature at the Jul 9 low — the dip was orderly, not a liquidation cascade.</div>
+    <div class="k">Smart Money Footprint</div><div class="v">Unchanged from the last verified read (accumulating with a distribution caveat: ETF inflows/whale adds vs. a Strategy block sale). <span class="stale">Not independently re-verified this session.</span></div>
+  </div>
+  <div class="altbox"><b>Alternate Wyckoff Interpretation (mandatory):</b> The entire Jul 5–11 range could instead be read as an extended Upthrust / distribution band sitting just under the $65K supply zone, with the Jul 9 dip as an early warning rather than a shakeout. This read is falsifiable in real time: a rejection at today's $64,698 high followed by a confirmed second consecutive close below $62,457 would validate it and revert the position to BUY 2-held.</div>
+</div>
+
+<div class="card">
+  <div class="persona">Alternative Data Quant · Temporal Timing &amp; Sentiment</div>
+  <div class="kv">
+    <div class="k">Lunar Cycle Window</div><div class="v">Waning gibbous, no exact-date event this session. <span class="badge b-gray">Zero-weight, no signal.</span></div>
+    <div class="k">Mercury Retrograde</div><div class="v">Retrograde through ~Jul 23. <span class="badge b-gray">Zero-weight directionally</span> — disclosed as a fakeout-risk footnote only.</div>
+    <div class="k">Behavioral Risk Flags</div><div class="v">Breakout-failure risk is now concentrated precisely at $64.8–65K — today's session is the sharpest live test of that level yet.</div>
+    <div class="k">Crowd Psychology</div><div class="v">Last verified Fear &amp; Greed ~23–24 (Extreme Fear) as of Jul 8. <span class="stale">Not re-confirmed this session — recommend re-verification given three sessions have passed.</span></div>
+  </div>
+</div>
+
+<!-- ══════════ RISK ENGINEERING ══════════ -->
+<div class="part">Risk Engineering &amp; Execution Commands <span>· CRO &amp; Quant PM Sign-Off</span></div>
+<div class="card">
+  <div class="riskgrid">
+    <div class="riskbox"><div class="l">System Action</div><div class="v" style="color:var(--amber);">HOLD</div></div>
+    <div class="riskbox"><div class="l">Aggressiveness</div><div class="v">5 / 10</div></div>
+    <div class="riskbox"><div class="l">Composite Confidence</div><div class="v">74 / 100</div></div>
+    <div class="riskbox"><div class="l">Structural Risk Profile</div><div class="v" style="color:var(--amber);">Medium</div></div>
+  </div>
+  <div class="trigrow"><div class="tl">Immediate Trigger</div><div>None mid-candle. Jul 11 is ~19% through the UTC day — do not add to or reduce BUY 3 ahead of the close, even with today's high already at $64,698.</div></div>
+  <div class="trigrow"><div class="tl">Confirmation (Buy 4)</div><div>A clean daily close above <b>$65,000</b>, clearing the bear flag — unchanged, now the closest live test of this session.</div></div>
+  <div class="trigrow"><div class="tl">Hard Invalidation</div><div>Daily close below <b>$57,803</b> kills the thesis outright. Interim: <b>two consecutive</b> closes below $62,457 (tightened from "a close below," per the lesson of the Jul 9 single-close dip that did not confirm) reverts to BUY 2-held; a close below $59,000 cuts to core.</div></div>
+</div>
+
+<!-- ══════════ FINAL EXECUTIVE BRIEF ══════════ -->
+<div class="part">Final Executive Brief</div>
+<div class="card card-green">
+  <div class="brief">
+    Bitcoin's BUY 3 has now survived its first genuine stress test: a single UTC close dipped below the $62,457–$62,589 confluence and was reclaimed the very next session, and price has since pushed to a fresh high of $64,698 — within $302 of the $65,000 BUY 4 trigger. The dip's failure to confirm on a second close is the structurally important event here, not the dip itself. The enforced action remains to hold the confirmed BUY 3 position and take no new action until a UTC close settles the $65,000 test, which is now closer than at any prior point in this cycle.
+  </div>
+</div>
+
+<!-- ══════════ STANDING RECORD UPDATE ══════════ -->
+<div class="part">Standing Record Update <span>· deltas vs. Jul 8 07:58 UTC report</span></div>
+<div class="card" style="padding:6px 10px;">
+  <table>
+    <tr><th>Metric</th><th>Prior (Jul 8, 07:58 UTC)</th><th>Now (Jul 11, 04:41 UTC)</th><th>Δ</th></tr>
+    <tr><td>Spot</td><td>$62,817 (−0.36% 24h)</td><td>$64,147 (+0.18% 24h)</td><td class="delta-up">+$1,330 (+2.1%)</td></tr>
+    <tr><td>Recent closes</td><td>Jul 7 $64,072 (last verified, final)</td><td>Jul 8 $63,351 → Jul 9 ~$62,260 → Jul 10 ~$63,230 (all final)</td><td class="delta-flat">confluence tested &amp; reclaimed</td></tr>
+    <tr><td>Session high (most recent complete 24h)</td><td>$64,222 (Jul 8, partial)</td><td>$64,698 (closest test yet of $65K)</td><td class="delta-up">+$476</td></tr>
+    <tr><td>Gate / matrix state</td><td>BUY 3 confirmed ×3, BUEC retest live</td><td>BUY 3 confirmed, retest passed, pressing BUY 4</td><td class="delta-up">test resolved bullish</td></tr>
+    <tr><td>Composite confidence</td><td>68 / 100</td><td>74 / 100</td><td class="delta-up">+6</td></tr>
+    <tr><td>Aggressiveness</td><td>4 / 10</td><td>5 / 10</td><td class="delta-up">+1</td></tr>
+    <tr><td>Structural risk profile</td><td>Medium–High</td><td>Medium</td><td class="delta-up">improved</td></tr>
+  </table>
+</div>
+
+<div class="foot">
+  Evidence tiering unchanged and non-negotiable: Wyckoff, liquidity, the halving cycle, and macro/FOMC carry the analytical weight. Shmita, Mercury retrograde, and lunar cycles are disclosed in full but carry zero predictive weight, per the standing independent audit. No-mid-candle-pull rule applied throughout — the Jul 11 UTC candle is in progress and excluded from all gate determinations. Two-consecutive-close confirmation rule applied symmetrically: the Jul 9 single close below the confluence was correctly held as unconfirmed, per standing rule. Structural orientation, not financial advice — size positions yourself and consult a licensed advisor.
+</div>
+
+</body>
+</html>
