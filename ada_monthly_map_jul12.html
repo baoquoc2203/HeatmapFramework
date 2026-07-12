@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ADA Cardano — Monthly Buy/Sell Strategy Map (Updated Jul 12, 2026)</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f8f7f4; color: #1a1a18; padding: 24px; }
+  h1 { font-size: 18px; font-weight: 600; margin-bottom: 4px; }
+  .meta { font-size: 12px; color: #6b6b67; margin-bottom: 24px; }
+  .price-hero { display: flex; gap: 16px; align-items: baseline; margin-bottom: 24px; flex-wrap: wrap; }
+  .ph-price { font-size: 32px; font-weight: 600; }
+  .ph-up { font-size: 14px; color: #15803d; }
+  .ph-detail { font-size: 12px; color: #6b6b67; }
+  .banner { background: #eef6e5; border: 1.5px solid #7bab4c; border-radius: 10px; padding: 12px 16px; margin-bottom: 24px; font-size: 12.5px; line-height: 1.6; color: #395423; }
+  .banner strong { color: #2d5010; }
+
+  .grid-title { font-size: 13px; font-weight: 600; margin-bottom: 10px; text-transform: uppercase; letter-spacing: .06em; color: #6b6b67; }
+  .month-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px; margin-bottom: 28px; }
+  @media(max-width:700px){ .month-grid { grid-template-columns: repeat(3,1fr); } }
+  /* min-width:0 lets grid tracks shrink below content size so cards never force horizontal overflow */
+  .month-card { border-radius: 10px; padding: 12px 10px; border: 1px solid rgba(0,0,0,.09); position: relative; background: #fff; min-width: 0; }
+  .mc-month { font-size: 13px; font-weight: 600; margin-bottom: 4px; }
+  .mc-action { font-size: 11px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; padding: 2px 7px; border-radius: 99px; display: inline-block; margin-bottom: 6px; }
+  .mc-score { font-size: 11px; color: #6b6b67; margin-bottom: 4px; }
+  .mc-note { font-size: 11px; line-height: 1.45; color: #444; }
+  .mc-bar { height: 4px; border-radius: 99px; margin-top: 8px; }
+
+  .act-strong-buy { background: #d1fae5; color: #065f46; }
+  .act-buy        { background: #dcfce7; color: #166534; }
+  .act-accumulate { background: #e0f2fe; color: #075985; }
+  .act-hold       { background: #f1f5f9; color: #334155; }
+  .act-wait       { background: #fef9c3; color: #713f12; }
+  .act-reduce     { background: #ffedd5; color: #9a3412; }
+  .act-sell       { background: #fee2e2; color: #991b1b; }
+  .act-strong-sell{ background: #fecaca; color: #7f1d1d; }
+
+  .bar-sbuy  { background: #10b981; } .bar-buy   { background: #34d399; }
+  .bar-accum { background: #38bdf8; } .bar-hold  { background: #94a3b8; }
+  .bar-wait  { background: #fbbf24; } .bar-reduce{ background: #fb923c; }
+  .bar-sell  { background: #f87171; } .bar-ssell { background: #ef4444; }
+
+  .card-now { border: 2px solid #7bab4c; }
+  .now-badge { position:absolute; top:8px; right:8px; font-size:9px; background:#7bab4c; color:#fff; padding:1px 5px; border-radius:99px; font-weight:700; }
+  .cond-badge { position:absolute; top:8px; right:8px; font-size:8.5px; background:#94a3b8; color:#fff; padding:1px 5px; border-radius:99px; font-weight:700; }
+  .past-badge { position:absolute; top:8px; right:8px; font-size:8.5px; background:#cbd5e1; color:#475569; padding:1px 5px; border-radius:99px; font-weight:700; }
+
+  .strip-section { margin-bottom: 28px; }
+  .strip-row { display: flex; align-items: center; gap: 6px; margin-bottom: 6px; }
+  .strip-label { font-size: 11px; color: #6b6b67; min-width: 70px; flex-shrink: 0; }
+  .strip-bars { display: flex; flex: 1; gap: 3px; min-width: 0; }
+  .strip-cell { flex: 1; min-width: 0; height: 28px; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 600; overflow: hidden; }
+
+  .section { background: #fff; border-radius: 12px; border: 1px solid rgba(0,0,0,.08); padding: 18px 20px; margin-bottom: 20px; }
+  .section h2 { font-size: 14px; font-weight: 600; margin-bottom: 12px; }
+  table { width: 100%; border-collapse: collapse; font-size: 12px; }
+  th { text-align: left; padding: 6px 8px; background: #f8f7f4; font-size: 11px; font-weight: 600; color: #6b6b67; text-transform: uppercase; letter-spacing: .05em; }
+  td { padding: 7px 8px; border-top: 1px solid #f0eeea; vertical-align: top; line-height: 1.4; }
+  tr:last-child td { border-bottom: none; }
+
+  .chart-wrap { position: relative; width: 100%; height: 220px; }
+  .legend { display: flex; flex-wrap: wrap; gap: 12px; font-size: 11px; color: #6b6b67; margin-top: 12px; }
+  .legend span { display: flex; align-items: center; gap: 4px; }
+  .legend span i { display: inline-block; width: 10px; height: 10px; border-radius: 2px; }
+  .disclaimer { font-size: 11px; color: #9ca3af; margin-top: 20px; line-height: 1.6; border-top: 1px solid #e5e7eb; padding-top: 14px; }
+
+  /* back link */
+  .backlink { display: inline-flex; align-items: center; gap: 5px; font-size: 12px; color: #2f6fb0; text-decoration: none; margin-bottom: 14px; font-weight: 500; }
+  .backlink:hover { text-decoration: underline; }
+
+  /* filter chips */
+  .filters { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
+  .chip { font-size: 11px; font-weight: 600; padding: 5px 11px; border-radius: 99px; border: 1px solid rgba(0,0,0,.12); background: #fff; color: #444; cursor: pointer; transition: all .12s; }
+  .chip:hover { border-color: #2f6fb0; }
+  .chip.active { background: #1a1a18; color: #fff; border-color: #1a1a18; }
+
+  /* clickable cards */
+  .month-card { cursor: pointer; transition: transform .12s, box-shadow .12s; }
+  .month-card:hover { transform: translateY(-2px); box-shadow: 0 4px 14px rgba(0,0,0,.08); }
+  .month-card.dimmed { opacity: .28; filter: grayscale(.4); }
+  .mc-more { font-size: 10px; color: #9ca3af; margin-top: 6px; }
+
+  /* modal */
+  .modal-bg { position: fixed; inset: 0; background: rgba(0,0,0,.45); display: none; align-items: center; justify-content: center; padding: 20px; z-index: 50; }
+  .modal-bg.open { display: flex; }
+  .modal { background: #fff; border-radius: 14px; max-width: 460px; width: 100%; padding: 22px 24px; box-shadow: 0 20px 60px rgba(0,0,0,.3); max-height: 88vh; overflow-y: auto; }
+  .modal-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 14px; }
+  .modal-head .m-title { font-size: 18px; font-weight: 600; }
+  .modal-close { background: none; border: none; font-size: 22px; line-height: 1; color: #9ca3af; cursor: pointer; padding: 2px 6px; border-radius: 6px; }
+  .modal-close:hover { background: #f1f5f9; color: #444; }
+  .m-action { font-size: 12px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; padding: 3px 10px; border-radius: 99px; display: inline-block; margin-bottom: 14px; }
+  .m-stats { display: flex; gap: 18px; margin-bottom: 16px; flex-wrap: wrap; }
+  .m-stat .s-label { font-size: 10px; text-transform: uppercase; letter-spacing: .05em; color: #9ca3af; margin-bottom: 3px; }
+  .m-stat .s-val { font-size: 15px; font-weight: 600; }
+  .m-block { margin-bottom: 14px; }
+  .m-block .b-label { font-size: 10px; text-transform: uppercase; letter-spacing: .05em; color: #9ca3af; margin-bottom: 4px; font-weight: 600; }
+  .m-block .b-text { font-size: 13px; line-height: 1.55; color: #333; }
+  .m-block.risk .b-text { color: #9a3412; }
+
+  /* table scrolls inside its own box on narrow screens instead of pushing the page wide */
+  .table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .table-wrap table { min-width: 340px; }
+
+  @media(max-width:480px){
+    .month-grid { grid-template-columns: repeat(2,1fr); }
+    body { padding: 16px 12px; }
+    .section { padding: 14px 14px; }
+    h1 { font-size: 16px; }
+    .ph-price { font-size: 26px; }
+    .strip-label { min-width: 42px; font-size: 9px; }
+    .strip-cell { font-size: 8px; gap: 2px; }
+    .strip-bars { gap: 2px; }
+  }
+</style>
+</head>
+<body>
+
+<a class="backlink" href="ada-dashboard.html">← ADA Dashboard</a>
+<h1>ADA Cardano — Monthly Buy / Sell Strategy Map</h1>
+<div class="meta">Reconnaissance Engine Output · Updated: July 12, 2026 (Jul 11, 17:20 UTC) · <strong>rev. 6 — full Wyckoff re-classification: Phase A complete → early Phase B</strong> · Crypto.com authoritative, cross-verified vs. CoinGecko (one-day label offset re-verified) · ATH $3.09 (Sep 2021) · 2025 cycle peak $1.20</div>
+
+<div style="background:#fdf3df;border:1.5px solid #d99a2b;border-radius:10px;padding:12px 16px;margin-bottom:16px;font-size:12.5px;line-height:1.65;color:#5a3a0e;">
+<strong>rev. 2 corrections — close-data audit (Jul 4):</strong> (1) The original claimed ADA was "holding above $0.156 for a 3rd session." Wrong — July 1 closed <strong>$0.1542</strong>, below $0.156 (intraday high $0.1577); only July 2 had actually closed above at publication. (2) The original claimed "neither leg of the re-entry gate has closed above target." Wrong — <strong>July 2 closed $0.1615, above the $0.1596 trigger on qualifying volume: the ADA leg had already confirmed</strong> the night before this map was built. The exchange feed was down and the completed close went unchecked — a mid-session quote was used instead. (3) June's monthly close was <strong>$0.1444 (−38.7%)</strong>, not $0.1453 — a carryover transposition of June 27's close. All three are corrected below.
+</div>
+
+<div class="price-hero">
+  <span class="ph-price">$0.1705</span>
+  <span class="ph-up" style="color:#15803d">▲ +2.2% (24h) — live $0.17 reclaim attempt (UNCLOSED); last settled close Jul 10 $0.16655</span>
+  <span class="ph-detail">−94.5% from ATH / −85.8% from the 2025 peak $1.20 · <strong>early Phase B accumulation</strong> — SC $0.1387 (Jun 23) → AR $0.1986 (Jul 4, +43%) → ST $0.1648–0.1667 (Jul 8–10, held above the SC on rising lows) · BUY 1 ¼-size held, basis ≈$0.189 (≈−10%) · hard stop $0.1596 (2 closes) · <strong style="color:#991b1b">whales distributing ~190M ADA since Jul 1</strong></span>
+</div>
+
+<div class="banner" style="background:#fdf3df;border-color:#d99a2b;color:#5a3a0e;">
+  <strong style="color:#7a4910">◆ The structure says accumulate; the flow says they're selling it to you — and that contradiction is exactly why size stays frozen.</strong> ADA has printed a clean early-Phase-B sequence — Selling Climax $0.1387 (Jun 23) → Automatic Rally $0.1986 (Jul 4, +43%) → a Secondary Test at $0.1648–0.1667 that <strong>held above the SC low on three days of rising lows</strong> — a constructive, textbook base. But the order book is hostile: Santiment shows whale cohorts <strong>distributing ~190M ADA since Jul 1</strong> (after buying ~150M at the June bottom), long/short 0.79 (a one-month low), and ADA has bled <strong>−14.7% against a BTC that just confirmed its LPS and is pressing $65K</strong>. The $0.17 reclaim is live but <strong>UNCLOSED</strong> (last settled close Jul 10 $0.16655) — no mid-candle decisions. Composite confidence 48/100 (Jul 1 map: 28), aggressiveness 2/10, structural risk <strong>HIGH</strong> (6.4% above the stop with smart money selling strength). <strong>Stance: HOLD the ¼-size BUY 1, no add, no trim; defend $0.1596 on a two-close basis; preserve 75% dry powder for the Oct–Nov cycle-bottom window.</strong>
+</div>
+
+<!-- CHART -->
+<div class="section">
+  <h2>Structural price trajectory — Jul 2026 → Dec 2027 (re-based)</h2>
+  <p style="font-size:12px;color:#6b6b67;margin-bottom:14px"><strong>Materially rebuilt.</strong> The old base case (a summer markdown toward the stale $0.1274 reference, then a steady climb through autumn) is void — ADA bottomed at $0.1387 and rallied +43% off it. The new base case is shaped by the framework's own BTC thesis: a choppy Phase B summer, a <strong>drawdown into the Oct–Nov 2026 cycle-bottom window</strong> (BTC's 363–376-day post-peak interval from the Oct 2025 ATH), and real markup only <em>after</em> that bottom confirms — the old map's rise into autumn quietly contradicted the framework's single highest-conviction view. <strong>Jul 12 probability tree:</strong> 44% the Secondary Test holds as a higher low above $0.1596 and a Phase B range builds, 30% the $0.17 reclaim fails and ADA grinds toward a deeper test at $0.1596, 26% tail — two closes below $0.1596 exit BUY 1 and markdown resumes to $0.1387 → $0.10–0.12. Log scale. Scenario bands, not forecasts.</p>
+  <div class="chart-wrap">
+    <canvas id="trajectoryChart" role="img" aria-label="ADA price trajectory Jul 2026 to Dec 2027, re-based to 0.17. Base case chops through summer, draws down into the Oct-Nov 2026 BTC cycle-bottom window near 0.15, then grinds up toward 0.33 by end 2027; bear case flushes toward 0.10-0.12 in autumn if the stop breaks.">Base case: choppy summer → autumn drawdown near $0.15 into the BTC cycle-bottom window → markup toward ~$0.33 by Dec 2027. Bear case flushes to $0.10–0.12 if the stop breaks.</canvas>
+  </div>
+  <div class="legend">
+    <span><i style="background:#10b981"></i> Bull — Jul 1 BTC Spring was THE low; no autumn retest</span>
+    <span><i style="background:#6366f1"></i> Base — chop, autumn drawdown, then markup</span>
+    <span><i style="background:#f87171"></i> Bear — stop breaks; autumn prints a lower low</span>
+  </div>
+</div>
+
+<!-- MONTHLY CALENDAR -->
+<div class="grid-title">Monthly action map — Jun 2026 to Dec 2027</div>
+<div class="filters" id="filters">
+  <button class="chip active" data-filter="all">All</button>
+  <button class="chip" data-filter="buy">Buy / Accumulate</button>
+  <button class="chip" data-filter="hold">Wait / Hold</button>
+  <button class="chip" data-filter="sell">Reduce / Sell</button>
+</div>
+<div class="month-grid" id="monthGrid"></div>
+<p style="font-size:11px;color:#9ca3af;margin:-18px 0 28px">Tap any month for the full rationale, risk, and confidence.</p>
+
+<!-- SEASONALITY -->
+<div class="section strip-section">
+  <h2>Historical seasonality heat — 7-year average (2018–2024)</h2>
+  <p style="font-size:12px;color:#6b6b67;margin-bottom:14px">Historical monthly return data — unchanged. July averages <strong>+11.2%</strong> (6 of last 9 green) and ADA <em>is</em> +17% MTD — the seasonal tailwind is real and it is <strong>working</strong>. But seasonality is a low-tier layer: it modifies confidence, it never overrides Wyckoff, and it cannot authorize an add while smart money distributes and price sits below its 50-DMA. Green = bullish, red = bearish.</p>
+  <div class="strip-row">
+    <div class="strip-label">Avg return</div>
+    <div class="strip-bars" id="seasonBars"></div>
+  </div>
+  <div class="strip-row" style="margin-top:6px">
+    <div class="strip-label" style="font-size:10px;color:#9ca3af">Month</div>
+    <div class="strip-bars" id="monthLabels"></div>
+  </div>
+  <div class="legend" style="margin-top:6px">
+    <span><i style="background:#10b981"></i> Historically bullish</span>
+    <span><i style="background:#94a3b8"></i> Neutral</span>
+    <span><i style="background:#f87171"></i> Historically bearish</span>
+  </div>
+</div>
+
+<!-- HALVING -->
+<div class="section">
+  <h2>Bitcoin halving cycle clock — where are we?</h2>
+  <p style="font-size:12px;color:#6b6b67;margin-bottom:14px"><strong>The altseason never came.</strong> Post-2024 halving we sit at <strong>~M27</strong> (halving Apr'24 → ATH $126K Oct'25 at M18 → markdown). The M12–M30 "altcoin rotation window" has all but elapsed with ADA <strong>−94.5% from its 2021 ATH</strong> and <strong>−85.8% from its own 2025 peak of $1.20</strong>, printing a fresh cycle low in June — rotation <em>never activated</em>. The framework's real forward marker is not an altseason but the <strong>BTC cycle bottom projected for Oct–Nov 2026 (M30–31)</strong>, 363–376 days past the Oct 2025 ATH — the same window shaded in the trajectory above. That is ADA's next real catalyst.</p>
+  <div class="chart-wrap" style="height:180px">
+    <canvas id="halvingChart" role="img" aria-label="Bitcoin halving cycle phase chart, post-halving month 27, altcoin rotation window elapsed without activating, cycle bottom projected Oct-Nov 2026 at M30-31">Post-halving month 27: the altcoin rotation window elapsed without activating; the framework's projected cycle bottom is Oct–Nov 2026 (M30–31).</canvas>
+  </div>
+</div>
+
+<!-- CATALYSTS -->
+<div class="section">
+  <h2>Critical catalysts to monitor — what changes the map</h2>
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th>Catalyst</th><th>Status / timing</th><th>Impact on map</th><th>Direction</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Whale distribution</strong></td><td>LIVE — ~190M ADA shed since Jul 1</td><td>The dominant near-term force. Explains the five lower closes and the ADA/BTC bleed. Watch for it to <em>stop</em> — that, not price, is the real tell.</td><td style="color:#991b1b;font-weight:600">Bearish (active)</td></tr>
+      <tr><td><strong>$0.17 daily close</strong></td><td>ATTEMPTING — unclosed</td><td>Shifts the read from defensive to constructive; opens the run at the $0.1858 50-DMA. <strong>Does not by itself authorize an add.</strong></td><td style="color:#065f46;font-weight:600">Bullish threshold</td></tr>
+      <tr><td><strong>BTC $65,000 close</strong></td><td>Pressing — high $64,520</td><td>Triggers BTC BUY 4 and would put a strong bid under the whole complex. ADA's single best external tailwind.</td><td style="color:#065f46;font-weight:600">Bullish unlock</td></tr>
+      <tr><td><strong>Cardano governance</strong></td><td>UNRESOLVED — Hoskinson's DAO/treasury audit still open</td><td><strong>Binary and underrated.</strong> Failed treasury votes were a named driver of the June collapse. A clean resolution lifts the governance discount; another failure reopens it. Hoskinson denied exit rumours Jul 10.</td><td style="color:#9a3412;font-weight:600">Binary</td></tr>
+      <tr><td><strong>Leios upgrade</strong></td><td>Musashi Dojo testnet live; mainnet push later 2026</td><td>~60× throughput target. The only genuine <em>fundamental</em> re-rating catalyst ADA has. Slow-burn, not a trade trigger.</td><td style="color:#065f46;font-weight:600">Bullish (structural)</td></tr>
+      <tr><td>SecondFi recovery</td><td>UNVERIFIED — $2.4M / 16M ADA, due ~mid-July</td><td>Overhang lifting if delivered. <strong>Not re-verified this session — do not weight until confirmed.</strong></td><td style="color:#6b7280;font-weight:600">Pending</td></tr>
+      <tr><td>FOMC meeting</td><td>Jul 29, 2026</td><td>The macro test. A dovish surprise would be the first real tailwind in months.</td><td style="color:#713f12;font-weight:600">Binary macro</td></tr>
+      <tr><td><strong>BTC autumn cycle bottom</strong></td><td>Oct–Nov 2026 window</td><td><strong>The single most important line on this map.</strong> ADA's real deployment window — preserve dry powder for it.</td><td style="color:#065f46;font-weight:600">Core thesis</td></tr>
+    </tbody>
+  </table>
+  </div>
+</div>
+
+<div class="disclaimer">
+  ⚠️ This is a structural analysis output from the Crypto Reconnaissance Engine — not financial advice. ADA sits in <strong>early Phase B accumulation</strong>: a Selling Climax at $0.1387 (Jun 23; the month closed $0.1444, −38.7% per our rev.2 audit), a +43% Automatic Rally to $0.1986 (Jul 4), and a Secondary Test at $0.1648–0.1667 (Jul 8–10) that held above the SC low on three days of rising lows. A quarter-size BUY 1 is held (basis ≈$0.189, ≈−10%). The mandatory alternate read stays live: this could still be a Phase D markdown rally / bear flag — and whale distribution of ~190M ADA since Jul 1, with ADA/BTC −14.7% since Jul 4, is strong evidence for it. Immediate resistance is the $0.1858–0.1885 50-DMA, then $0.19 (BUY 2, two closes) and the $0.1986 AR high; support is $0.1596 (the hard stop, two consecutive closes), then the $0.1387 SC low, then $0.10–0.12 only if the SC fails. Stance is HOLD the ¼-size BUY 1, no add / no trim (composite confidence 48/100, aggressiveness 2/10, structural risk HIGH). Hard invalidation: two consecutive UTC closes below $0.1596 — the two-close standard applies symmetrically, to negation as to entry. The $0.17 print is live and UNCLOSED; no mid-candle decisions. Zero-weight layers (Shmita, Mercury, lunar) are disclosed but never generate, gate, or veto a signal. Stale points (whale supply-share %, SecondFi delivery) are flagged, not carried as current, as of July 12, 2026. Cryptocurrency markets are highly volatile. Past seasonal patterns do not guarantee future results. Always use stop-losses, size appropriately, and consult a licensed financial advisor before making investment decisions.
+</div>
+
+<!-- DETAIL MODAL -->
+<div class="modal-bg" id="modalBg">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="mTitle">
+    <div class="modal-head">
+      <span class="m-title" id="mTitle"></span>
+      <button class="modal-close" id="modalClose" aria-label="Close">×</button>
+    </div>
+    <span class="m-action" id="mAction"></span>
+    <div class="m-stats">
+      <div class="m-stat"><div class="s-label">Price range</div><div class="s-val" id="mPrice"></div></div>
+      <div class="m-stat"><div class="s-label">Confidence</div><div class="s-val" id="mScore"></div></div>
+    </div>
+    <div class="m-block"><div class="b-label">Wyckoff / cycle rationale</div><div class="b-text" id="mRationale"></div></div>
+    <div class="m-block risk"><div class="b-label">Key risk</div><div class="b-text" id="mRisk"></div></div>
+  </div>
+</div>
+
+<script>
+const months = [
+  { label:'Jun 2026', action:'CLOSED −38.7%', actClass:'act-sell', barClass:'bar-sell',
+    score:0, priceRange:'closed $0.1444', now:false, past:true, cond:false,
+    rationale:'The Selling Climax. BUY 3 stopped out Jun 24 ($0.1477); the month closed $0.1444 (−38.7%, per our rev.2 close-data audit — the wider report\'s "$0.1453 / −40%" is the transposition rev.2 corrected). The $0.1387 low (Jun 23) is the SC that anchors the entire current structure — driven by failed treasury votes, a cancelled summit and Hoskinson\'s ecosystem-failure warnings, not just macro.',
+    risk:'Worst month of the cycle — realised loss on the BUY 3 stop-out.' },
+  { label:'Jul 2026', action:'HOLD — defensive', actClass:'act-wait', barClass:'bar-wait',
+    score:48, priceRange:'$0.1596–$0.1986', now:true, past:false, cond:false,
+    rationale:'NOW. Gate cleared Jul 4–5; a +43% Automatic Rally to $0.1986; quarter-size BUY 1 taken on the confirmation candle (a chase — logged). Five lower closes, then a 3-day Secondary Test base at ~$0.1665 with RISING lows ($0.1648→$0.1651→$0.1652), holding above the SC low — a constructive early-Phase-B sequence. The $0.17 reclaim is live but UNCLOSED (last settled close Jul 10 $0.16655). BTC confirmed its LPS. Seasonality (+11.2% avg July) is working: ADA is +17% MTD.',
+    risk:'Whales distributing ~190M ADA since Jul 1; ADA/BTC −14.7% since Jul 4; long/short 0.79. Two consecutive closes below $0.1596 = exit.' },
+  { label:'Aug 2026', action:'HOLD / cond. add', actClass:'act-hold', barClass:'bar-hold',
+    score:52, priceRange:'$0.155–$0.21', now:false, past:false, cond:true,
+    rationale:'Phase B range-building between the ST ($0.1596–$0.1667) and the AR high ($0.1986). BUY 2 arms ONLY on a confirmed higher low PLUS two consecutive closes above $0.19 (reclaiming the $0.1858–$0.1885 50-DMA). Otherwise simply hold the quarter and do nothing — doing nothing is a position.',
+    risk:'Range fails lower; a deeper second test breaks the stop. Whale supply keeps hitting bids.' },
+  { label:'Sep 2026', action:'HOLD / scale in slowly', actClass:'act-hold', barClass:'bar-hold',
+    score:50, priceRange:'$0.15–$0.24', now:false, past:false, cond:true,
+    rationale:'ADA\'s strongest seasonal month (+22% avg; the 2021 ATH printed in September). BUT the cycle-bottom window is AHEAD, not behind — do not deploy full size into the month immediately preceding the framework\'s own bottom estimate. Seasonality is a low-tier layer; it cannot pull the trigger.',
+    risk:'The seasonal siren song — chasing September strength directly into an October flush.' },
+  { label:'Oct 2026', action:'CORE ACCUMULATE', actClass:'act-buy', barClass:'bar-buy',
+    score:62, priceRange:'$0.13–$0.26', now:false, past:false, cond:true,
+    rationale:'THE WINDOW. BTC\'s 363–376-day post-peak interval from the Oct 2025 ATH ($126K) centres here — the framework\'s single highest-conviction forward view, never moved by price. If a capitulation and Spring print, this is the primary deployment zone. Buy weakness, not strength.',
+    risk:'The bottom may print well BELOW current levels. Do not pre-position — wait for the flush AND the reclaim.' },
+  { label:'Nov 2026', action:'CORE ACCUMULATE', actClass:'act-buy', barClass:'bar-buy',
+    score:62, priceRange:'$0.13–$0.28', now:false, past:false, cond:true,
+    rationale:'Second half of the cycle-bottom window. Scale BUY 2 / BUY 3 on a confirmed Spring plus a Sign of Strength. Upgraded HOLD → ACCUMULATE: the prior HOLD rested entirely on a zero-weight (Mercury) layer — that illegitimate justification is stripped and the month re-anchored to the cycle structure.',
+    risk:'If no bottom confirms, the window extends. Patience over forcing — WAIT remains a valid position.' },
+  { label:'Dec 2026', action:'HOLD / add on confirm', actClass:'act-hold', barClass:'bar-hold',
+    score:55, priceRange:'$0.15–$0.30', now:false, past:false, cond:true,
+    rationale:'Early markup if the autumn bottom confirmed — add on the first LPS / back-up to the edge of the creek. If no bottom formed, stay defensive and carry dry powder into 2027. Not a reduce month: you do not distribute a position you have only just accumulated.',
+    risk:'Thin year-end liquidity. False starts are common off a fresh low.' },
+  { label:'Jan 2027', action:'ACCUMULATE', actClass:'act-accumulate', barClass:'bar-accum',
+    score:56, priceRange:'$0.17–$0.34', now:false, past:false, cond:true,
+    rationale:'New-year capital deployment; ADA historically positive in January (+18% avg). Re-accumulate into Phase B/C markup if the autumn bottom held.',
+    risk:'Wholly conditional on a confirmed autumn bottom. No bottom = no trade.' },
+  { label:'Feb 2027', action:'BUY', actClass:'act-buy', barClass:'bar-buy',
+    score:60, priceRange:'$0.20–$0.42', now:false, past:false, cond:true,
+    rationale:'ADA\'s second-strongest seasonal month (+31% avg). Markup continuation. Add on pullbacks, not on strength.',
+    risk:'Overheating if January ran hard. Watch for a lower high.' },
+  { label:'Mar 2027', action:'BUY', actClass:'act-buy', barClass:'bar-buy',
+    score:58, priceRange:'$0.22–$0.48', now:false, past:false, cond:true,
+    rationale:'Green every year since 2022 bar 2024. Protocol-upgrade delivery window — Leios mainnet is the fundamental catalyst to watch.',
+    risk:'2024 was the exception (closed red). Upgrade-delay risk is real for Cardano specifically.' },
+  { label:'Apr 2027', action:'STRONG BUY', actClass:'act-strong-buy', barClass:'bar-sbuy',
+    score:63, priceRange:'$0.26–$0.58', now:false, past:false, cond:true,
+    rationale:'ADA\'s best historical month (+29% avg). Pre-2028-halving cycle echo begins. Maximum probability of a large monthly candle — if the recovery is real.',
+    risk:'If Q1 ran too far, April flips to distribution. Watch volume, not price.' },
+  { label:'May 2027', action:'REDUCE', actClass:'act-reduce', barClass:'bar-reduce',
+    score:40, priceRange:'$0.24–$0.52', now:false, past:false, cond:true,
+    rationale:'"Sell in May." Historically weak for alts (−14% avg). May has hosted crypto\'s black swans — Terra/LUNA collapsed in May 2022. Begin trimming.',
+    risk:'Flash-crash risk. Do not marry a position that has multiplied.' },
+  { label:'Jun 2027', action:'SELL / REDUCE', actClass:'act-sell', barClass:'bar-sell',
+    score:26, priceRange:'$0.18–$0.44', now:false, past:false, cond:true,
+    rationale:'ADA\'s worst month — 8 of 9 years closed lower (−18% avg). Distribution zone if the prior months ran. The seasonal edge here is the strongest on the entire calendar.',
+    risk:'June 2021 was the sole bullish exception. Do not hold heavy size into June.' },
+  { label:'Jul 2027', action:'WAIT', actClass:'act-wait', barClass:'bar-wait',
+    score:44, priceRange:'$0.17–$0.42', now:false, past:false, cond:true,
+    rationale:'Post-June consolidation. Watch for a new accumulation base to form. WAIT is a position — do not force a re-entry.',
+    risk:'Extended markdown from May–June with no clear bottom yet.' },
+  { label:'Aug 2027', action:'ACCUMULATE', actClass:'act-accumulate', barClass:'bar-accum',
+    score:55, priceRange:'$0.18–$0.44', now:false, past:false, cond:true,
+    rationale:'Pre-2028-halving positioning begins in earnest. DCA if the June–July lows held.',
+    risk:'The 2028 halving may reset the macro clock on a different schedule than 2024\'s.' },
+  { label:'Sep 2027', action:'BUY', actClass:'act-buy', barClass:'bar-buy',
+    score:60, priceRange:'$0.22–$0.50', now:false, past:false, cond:true,
+    rationale:'Seasonally strong (+22% avg). September–October has historically launched major rally legs. Pre-halving accumulation window.',
+    risk:'Pattern may not repeat. BTC dominance may still be elevated, starving alts.' },
+  { label:'Oct 2027', action:'STRONG BUY', actClass:'act-strong-buy', barClass:'bar-sbuy',
+    score:65, priceRange:'$0.28–$0.60', now:false, past:false, cond:true,
+    rationale:'Q4 2027 = full pre-halving-2028 positioning. Historically the strongest Q4 setup. Add size on a confirmed structure.',
+    risk:'Pre-halving pump-and-dump risk. The market may price the 2028 halving early, then unwind.' },
+  { label:'Nov 2027', action:'HOLD', actClass:'act-hold', barClass:'bar-hold',
+    score:52, priceRange:'$0.32–$0.68', now:false, past:false, cond:true,
+    rationale:'Hold the markup. Monitor for Signs of Weakness / UTAD before any Q1 2028 surge. Let the position work.',
+    risk:'Profit-taking cascade. FTX-anniversary volatility is a recurring November pattern.' },
+  { label:'Dec 2027', action:'REDUCE', actClass:'act-reduce', barClass:'bar-reduce',
+    score:44, priceRange:'$0.35–$0.78', now:false, past:false, cond:true,
+    rationale:'Year-end profit-taking, tax-loss harvesting, institutional rebalancing. If ADA has multiplied off the 2026 lows, this is meaningful distribution territory.',
+    risk:'If significantly in profit, failure to reduce IS the risk. Emotional holding kills cycles.' },
+];
+
+const seasonal = [
+  { m:'Jan', avg:+18 }, { m:'Feb', avg:+31 }, { m:'Mar', avg:+12 }, { m:'Apr', avg:+29 },
+  { m:'May', avg:-14 }, { m:'Jun', avg:-18 }, { m:'Jul', avg:+11 }, { m:'Aug', avg:+15 },
+  { m:'Sep', avg:+22 }, { m:'Oct', avg:+11 }, { m:'Nov', avg:+9 }, { m:'Dec', avg:-6 },
+];
+
+// categorise each action into a filter bucket
+function categoryOf(actClass){
+  if (actClass.includes('buy') || actClass.includes('accum')) return 'buy';
+  if (actClass.includes('sell') || actClass.includes('reduce')) return 'sell';
+  return 'hold'; // wait + hold
+}
+
+const actBg = m => m.actClass.includes('strong-buy') ? '#d1fae5' : m.actClass.includes('buy') ? '#dcfce7' :
+                   m.actClass.includes('accum') ? '#e0f2fe' : m.actClass.includes('hold') ? '#f1f5f9' :
+                   m.actClass.includes('wait') ? '#fef9c3' : m.actClass.includes('strong-sell') ? '#fecaca' :
+                   m.actClass.includes('sell') ? '#fee2e2' : '#ffedd5';
+const actColor = m => m.actClass.includes('strong-buy') ? '#065f46' : m.actClass.includes('buy') ? '#166534' :
+                      m.actClass.includes('accum') ? '#075985' : m.actClass.includes('hold') ? '#334155' :
+                      m.actClass.includes('wait') ? '#713f12' : m.actClass.includes('strong-sell') ? '#7f1d1d' :
+                      m.actClass.includes('sell') ? '#991b1b' : '#9a3412';
+
+const grid = document.getElementById('monthGrid');
+months.forEach((m, i) => {
+  const card = document.createElement('div');
+  card.className = 'month-card' + (m.now ? ' card-now' : '');
+  card.dataset.cat = categoryOf(m.actClass);
+  const barWidth = Math.max(2, Math.round(m.score));
+  let badge = '';
+  if (m.now) badge = '<span class="now-badge">NOW</span>';
+  else if (m.past) badge = '<span class="past-badge">PAST</span>';
+  else if (m.cond) badge = '<span class="cond-badge">COND</span>';
+  card.innerHTML = `${badge}
+    <div class="mc-month">${m.label}</div>
+    <div class="mc-action ${m.actClass}">${m.action}</div>
+    <div class="mc-score">Confidence: ${m.score}/100</div>
+    <div class="mc-note">${m.rationale.substring(0,90)}…</div>
+    <div class="mc-bar ${m.barClass}" style="width:${barWidth}%"></div>
+    <div class="mc-more">Tap for detail →</div>`;
+  card.addEventListener('click', () => openModal(i));
+  grid.appendChild(card);
+});
+
+// ---- modal ----
+const modalBg = document.getElementById('modalBg');
+function openModal(i){
+  const m = months[i];
+  document.getElementById('mTitle').textContent = m.label + (m.now ? '  · NOW' : (m.past ? '  · PAST' : (m.cond ? '  · CONDITIONAL' : '')));
+  const aEl = document.getElementById('mAction');
+  aEl.textContent = m.action;
+  aEl.style.background = actBg(m);
+  aEl.style.color = actColor(m);
+  document.getElementById('mPrice').textContent = m.priceRange;
+  document.getElementById('mScore').textContent = m.score + ' / 100';
+  document.getElementById('mRationale').textContent = m.rationale;
+  document.getElementById('mRisk').textContent = m.risk;
+  modalBg.classList.add('open');
+}
+function closeModal(){ modalBg.classList.remove('open'); }
+document.getElementById('modalClose').addEventListener('click', closeModal);
+modalBg.addEventListener('click', e => { if (e.target === modalBg) closeModal(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+// ---- filters ----
+const chips = document.querySelectorAll('#filters .chip');
+chips.forEach(chip => chip.addEventListener('click', () => {
+  chips.forEach(c => c.classList.remove('active'));
+  chip.classList.add('active');
+  const f = chip.dataset.filter;
+  grid.querySelectorAll('.month-card').forEach(card => {
+    card.classList.toggle('dimmed', f !== 'all' && card.dataset.cat !== f);
+  });
+}));
+
+const barsEl = document.getElementById('seasonBars');
+const labelsEl = document.getElementById('monthLabels');
+seasonal.forEach(s => {
+  const bg = s.avg >= 0 ? `rgb(${Math.round(20+s.avg*2)},${Math.round(160+s.avg)},100)` : `rgb(${Math.round(200+Math.abs(s.avg)*2)},80,80)`;
+  const cell = document.createElement('div');
+  cell.className = 'strip-cell';
+  cell.style.background = bg; cell.style.color = '#fff';
+  cell.textContent = (s.avg >= 0 ? '+' : '') + s.avg + '%';
+  barsEl.appendChild(cell);
+  const lbl = document.createElement('div');
+  lbl.className = 'strip-cell';
+  lbl.style.background = 'transparent'; lbl.style.color = '#6b6b67'; lbl.style.fontSize = '10px';
+  lbl.textContent = s.m;
+  labelsEl.appendChild(lbl);
+});
+
+const trajLabels = ['Jul\'26','Aug','Sep','Oct','Nov','Dec','Jan\'27','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec\'27'];
+// Rebuilt from the Jul 12 map's own scenario chart (Jul'26→Dec'27): a choppy Phase B summer, a
+// DRAWDOWN into the Oct–Nov 2026 BTC cycle-bottom window, then markup only after that bottom confirms.
+// Supersedes the void Jul 6 bands (which wrongly rose into autumn, contradicting the framework's thesis).
+const baseCase = [0.170, 0.175, 0.165, 0.150, 0.160, 0.180, 0.200, 0.235, 0.265, 0.300, 0.270, 0.240, 0.250, 0.280, 0.320, 0.375, 0.355, 0.335];
+const bullCase = [0.175, 0.205, 0.245, 0.280, 0.310, 0.350, 0.400, 0.470, 0.530, 0.610, 0.545, 0.480, 0.505, 0.570, 0.650, 0.760, 0.720, 0.680];
+const bearCase = [0.165, 0.148, 0.132, 0.112, 0.105, 0.118, 0.128, 0.142, 0.155, 0.172, 0.155, 0.138, 0.145, 0.162, 0.185, 0.215, 0.205, 0.195];
+
+new Chart(document.getElementById('trajectoryChart'), {
+  type: 'line',
+  data: { labels: trajLabels, datasets: [
+    { label: 'Bull scenario', data: bullCase, borderColor: '#10b981', borderWidth: 1.5, borderDash: [4,3], pointRadius: 0, fill: false, tension: 0.35 },
+    { label: 'Base case', data: baseCase, borderColor: '#6366f1', borderWidth: 2.5, pointRadius: 3, pointBackgroundColor: '#6366f1', fill: false, tension: 0.35 },
+    { label: 'Bear scenario', data: bearCase, borderColor: '#f87171', borderWidth: 1.5, borderDash: [4,3], pointRadius: 0, fill: false, tension: 0.35 },
+  ]},
+  options: { responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { display: false }, tooltip: { callbacks: { label: ctx => `${ctx.dataset.label}: $${ctx.parsed.y.toFixed(3)}` } } },
+    scales: {
+      x: { grid: { color: 'rgba(0,0,0,0.04)' }, ticks: { font: { size: 10 }, color: '#9ca3af', maxRotation: 45 } },
+      y: { grid: { color: 'rgba(0,0,0,0.04)' }, ticks: { font: { size: 10 }, color: '#9ca3af', callback: v => '$' + v.toFixed(2) } }
+    }
+  }
+});
+
+const halvingLabels = [];
+for(let i=1; i<=48; i++) halvingLabels.push('M'+i);
+const halvingData = halvingLabels.map((_,i) => {
+  const m = i+1;
+  if(m <= 12) return 1 + (m/12)*0.8;
+  if(m <= 18) return 1.8 - (m-12)/6*0.3;
+  if(m <= 30) return 1.5 + (m-18)/12*2.5;
+  if(m <= 36) return 4.0 - (m-30)/6*1.5;
+  if(m <= 42) return 2.5 - (m-36)/6*0.8;
+  return 1.7 + (m-42)/6*0.6;
+});
+const altcoinPlugin = {
+  id: 'altcoinWindow',
+  beforeDraw(chart) {
+    const {ctx, scales: {x, y}} = chart;
+    // altcoin rotation window (M12–M30) — greyed out: it elapsed without activating
+    const x1 = x.getPixelForValue(11), x2 = x.getPixelForValue(29);
+    ctx.save();
+    ctx.fillStyle = 'rgba(154,152,143,0.10)';
+    ctx.fillRect(x1, y.top, x2-x1, y.bottom - y.top);
+    ctx.fillStyle = '#9a988f'; ctx.font = '10px sans-serif';
+    ctx.fillText('Altcoin rotation window — NEVER activated (ADA made new lows)', x1+4, y.top+14);
+    // projected BTC cycle-bottom window (M30–M31, Oct–Nov 2026)
+    const xb1 = x.getPixelForValue(29), xb2 = x.getPixelForValue(31);
+    ctx.fillStyle = 'rgba(111,160,44,0.22)';
+    ctx.fillRect(xb1, y.top, xb2-xb1, y.bottom - y.top);
+    ctx.fillStyle = '#6FA02C';
+    ctx.fillText('CYCLE BOTTOM', xb1-8, y.top+28);
+    ctx.fillText('Oct–Nov ’26 (M30–31)', xb1-8, y.top+40);
+    // NOW marker at M27
+    const xNow = x.getPixelForValue(26);
+    ctx.fillStyle = '#d99a2b';
+    ctx.beginPath(); ctx.arc(xNow, y.top+8, 5, 0, Math.PI*2); ctx.fill();
+    ctx.fillText('NOW (M27)', xNow-22, y.top+24);
+    ctx.restore();
+  }
+};
+new Chart(document.getElementById('halvingChart'), {
+  type: 'line', plugins: [altcoinPlugin],
+  data: { labels: halvingLabels, datasets: [{ label: 'BTC cycle multiplier', data: halvingData, borderColor: '#f59e0b', backgroundColor: 'rgba(245,158,11,0.06)', borderWidth: 2, pointRadius: 0, fill: true, tension: 0.4 }] },
+  options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } },
+    scales: {
+      x: { ticks: { font: { size: 9 }, color: '#9ca3af', maxTicksLimit: 12 }, grid: { display: false } },
+      y: { ticks: { font: { size: 10 }, color: '#9ca3af', callback: v => v.toFixed(1) + 'x' }, grid: { color: 'rgba(0,0,0,0.04)' } }
+    }
+  }
+});
+</script>
+</body>
+</html>
