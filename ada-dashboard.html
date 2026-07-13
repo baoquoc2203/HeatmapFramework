@@ -231,11 +231,11 @@ const fng=[
   45,55,50,62,50,55,58,40,45,55,65,70,
   60,75,85,65,70,55,60,35,50,72,88,75,
   75,45,40,55,70,65,75,68,60,70,30,25,
-  60,30,45,45,35,17,26,
+  60,30,45,45,35,17,24,
   null,null,null,null,null,
   null,null,null,null,null,null,null,null,null,null,null,null
 ];
-// length is exactly N (124) by construction; no defensive padding needed. Jul F&G ~23 per Jul 8 GPS (Extreme Fear, rising off a recent low of 13 — crypto-wide, BTC-driven)
+// length is exactly N (124) by construction; no defensive padding needed. Jul F&G ~24 per Jul 8 GPS (Extreme Fear, rising off a recent low of 13 — crypto-wide, BTC-driven)
 
 const merc=new Set([
   '2017-9','2017-10',
@@ -280,9 +280,9 @@ const liveStartIdx = 105; // June 2026 — verified index, framework's real live
 // ── ADA scenario trajectory (Jul 2026 -> Dec 2027, 18 months, framework's Jul 12, 2026 map — materially rebuilt) ──
 // New shape: choppy Phase B summer, a DRAWDOWN into the Oct-Nov 2026 BTC cycle-bottom window, then markup after.
 // Supersedes the void Jul 6 bands (which wrongly rose into autumn, contradicting the framework's own thesis).
-// Re-based after the Jul 2 close ($0.1615) confirmed the ADA leg of the re-entry gate on qualifying
-// volume. Bull path still requires the BTC leg: a daily close above the ~$62.5K 20-day SMA toward
-// $63,000. Base case nudged up on three sessions of confirmed strength + the Warsh dovish catalyst.
+// Re-anchored to the Jul 12 map's early-Phase-B read: SC $0.1387 (Jun 23) → +43% AR to $0.1986
+// (Jul 4) → ST base $0.1648-0.1667. The bull path still needs the BTC leg — BTC has now confirmed
+// its LPS and is pressing the $65K BUY 4 gate. Base case stays capped by whale distribution (~190M ADA since Jul 1).
 const trajBaseCase = [0.170,0.175,0.165,0.150,0.160,0.180,0.200,0.235,0.265,0.300,0.270,0.240,0.250,0.280,0.320,0.375,0.355,0.335];
 const trajBull     = [0.175,0.205,0.245,0.280,0.310,0.350,0.400,0.470,0.530,0.610,0.545,0.480,0.505,0.570,0.650,0.760,0.720,0.680];
 const trajBear     = [0.165,0.148,0.132,0.112,0.105,0.118,0.128,0.142,0.155,0.172,0.155,0.138,0.145,0.162,0.185,0.215,0.205,0.195];
