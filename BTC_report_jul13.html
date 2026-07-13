@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BTC Framework — Look-Back &amp; Forecast, July 1 2026</title>
+<style>
+  :root{
+    --bg:#ffffff; --bg2:#f6f4ee; --bg3:#efece3; --txt:#2c2c2a; --txt2:#5f5e5a; --bord:#e3e0d6;
+    --red:#993C1D; --red-bg:#FAECE7; --amber:#854F0B; --amber-bg:#FAEEDA;
+    --green:#3B6D11; --green-bg:#EAF3DE; --blue:#185FA5; --blue-bg:#E6F1FB;
+    --rd:#D85A30; --gn:#6FA02C; --gray:#8b8a84; --gray-bg:#ECEAE2;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#1f1e1c; --bg2:#2a2926; --bg3:#323029; --txt:#f1efe8; --txt2:#b4b2a9; --bord:#3a3935;
+      --red:#F0997B; --red-bg:#4A1B0C; --amber:#FAC775; --amber-bg:#412402;
+      --green:#97C459; --green-bg:#173404; --blue:#85B7EB; --blue-bg:#042C53;
+      --gn:#97C459; --gray:#9a988f; --gray-bg:#302e2a;
+    }
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;padding:18px;background:var(--bg);color:var(--txt);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;font-size:13px;line-height:1.5;}
+  h1{font-size:18px;font-weight:700;margin:0 0 3px;}
+  .sub{font-size:11.5px;color:var(--txt2);margin-bottom:6px;}
+  .part{font-size:11.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--txt);background:var(--bg3);border-radius:8px;padding:8px 12px;margin:20px 0 11px;}
+  .lbl{font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--txt2);margin:14px 0 8px;}
+  .card{background:var(--bg2);border:1px solid var(--bord);border-radius:12px;padding:14px 16px;margin-bottom:10px;}
+  .card-amber{border-left:3px solid #BA7517;} .card-red{border-left:3px solid var(--rd);}
+  .card-green{border-left:3px solid #1D9E75;} .card-gray{border-left:3px solid var(--gray);}
+  .badge{display:inline-block;padding:2px 8px;border-radius:5px;font-size:10.5px;font-weight:700;white-space:nowrap;}
+  .b-red{background:var(--red-bg);color:var(--red);} .b-amber{background:var(--amber-bg);color:var(--amber);}
+  .b-green{background:var(--green-bg);color:var(--green);} .b-blue{background:var(--blue-bg);color:var(--blue);}
+  .b-gray{background:var(--gray-bg);color:var(--gray);}
+  .head3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:4px;}
+  .hb{text-align:center;padding:11px 6px;border-radius:10px;border:1px solid var(--bord);background:var(--bg2);}
+  .hb .l{font-size:10px;color:var(--txt2);text-transform:uppercase;letter-spacing:.04em;}
+  .hb .m{font-size:18px;font-weight:600;margin:3px 0 1px;}
+  .hb .s{font-size:10.5px;color:var(--txt2);}
+  /* era timeline */
+  .era{display:flex;gap:8px;align-items:flex-start;padding:10px 0;border-bottom:1px solid var(--bord);}
+  .era:last-child{border-bottom:none;}
+  .era-yr{width:78px;flex-shrink:0;font-weight:700;font-size:12px;padding-top:1px;}
+  .era-yr small{display:block;font-weight:400;font-size:9.5px;color:var(--txt2);}
+  .era-txt{font-size:12px;line-height:1.55;}
+  /* verdict table */
+  table{width:100%;border-collapse:collapse;font-size:11.8px;}
+  th{text-align:left;padding:7px 8px;background:var(--bg3);font-size:9.5px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:var(--txt2);border-bottom:1px solid var(--bord);}
+  td{padding:9px 8px;border-bottom:1px solid var(--bord);vertical-align:top;line-height:1.45;}
+  tr:last-child td{border-bottom:none;}
+  tr.zero td{opacity:0.88;}
+  .tiername{font-weight:600;}
+  /* tree */
+  .trow{display:flex;gap:10px;padding:7px 0;border-bottom:1px solid var(--bord);font-size:12px;}
+  .trow:last-child{border-bottom:none;}
+  .td{width:9px;height:9px;border-radius:50%;flex-shrink:0;margin-top:4px;}
+  .tp{width:42px;flex-shrink:0;font-weight:700;}
+  /* ladder */
+  .lad{font-size:11.5px;}
+  .lr{display:flex;align-items:center;gap:9px;padding:6px 0;border-bottom:1px solid var(--bord);}
+  .lr:last-child{border-bottom:none;}
+  .lr.spot{background:var(--bg3);border-radius:6px;padding:6px 8px;}
+  .lr .px{width:98px;flex-shrink:0;font-weight:700;font-family:ui-monospace,monospace;}
+  /* drawdown compare */
+  .dd-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:6px;}
+  .dd{border:1px solid var(--bord);border-radius:9px;padding:9px 10px;text-align:center;background:var(--bg2);}
+  .dd .cyc{font-size:10px;color:var(--txt2);text-transform:uppercase;letter-spacing:.04em;}
+  .dd .pct{font-size:16px;font-weight:700;margin:3px 0 1px;}
+  .dd .rng{font-size:9.5px;color:var(--txt2);}
+  .brief{font-size:13px;line-height:1.7;}
+  .foot{font-size:11px;color:var(--txt2);line-height:1.55;margin-top:10px;border-top:1px solid var(--bord);padding-top:10px;}
+</style>
+</head>
+<body>
+
+<h1>BTC Framework — BUY 4 Failed, Coiling Into CPI</h1>
+<div class="sub">Mon Jul 13, 2026 · 01:38 UTC · last settled close $63,746 · spot $63,609 · 4+ rejections at the $65K shelf · ~30-day run, 15th major review · supersedes the prior BTC report</div>
+
+<div class="head3">
+  <div class="hb" style="border-color:#BA7517;"><div class="l">Spot</div><div class="m">$63,609</div><div class="s">last close $63,746</div></div>
+  <div class="hb" style="border-color:#D85A30;"><div class="l">Wyckoff</div><div class="m" style="color:var(--amber);">Coil at ceiling</div><div class="s">A / C contested</div></div>
+  <div class="hb" style="border-color:#D85A30;"><div class="l">Stance</div><div class="m" style="color:var(--amber);">HOLD BUY 3</div><div class="s">BUY 4 ✘ not triggered</div></div>
+</div>
+
+<!-- ══════════ PART 0: DELTA + CORRECTIONS ══════════ -->
+<div class="part">Part 0 · Delta · correction log · data provenance</div>
+<div class="card card-red">
+  <div style="font-size:13px;line-height:1.6;font-weight:600;margin-bottom:8px;">The BUY 4 test failed. The $64.8K/$65K shelf has now rejected four-plus times without a single close through it — and the flow thesis that supported the last three sessions requires material qualification.</div>
+  <table>
+    <tr><th>Metric</th><th>Prior report</th><th>Now</th><th>Delta</th></tr>
+    <tr><td>BUY 4 (SOS)</td><td>ARMING — imminent</td><td><strong>NOT TRIGGERED — stalled</strong></td><td style="color:var(--red);font-weight:600;">Failed</td></tr>
+    <tr><td>Highest close achieved</td><td>—</td><td>$64,082 (vs $65,000 needed)</td><td>Never closed through</td></tr>
+    <tr><td>Composite confidence</td><td>72 / 100</td><td>64 / 100</td><td style="color:var(--red);font-weight:600;">−8 (largest cut of the run)</td></tr>
+    <tr><td>Aggressiveness</td><td>4 / 10</td><td>3 / 10</td><td style="color:var(--red);font-weight:600;">−1</td></tr>
+    <tr><td>Primary path</td><td>49%</td><td>38%</td><td style="color:var(--red);font-weight:600;">−11</td></tr>
+    <tr><td>Tail-risk path</td><td>12%</td><td>27%</td><td style="color:var(--red);font-weight:600;">+15</td></tr>
+    <tr><td>Structural risk</td><td>Medium-High</td><td><strong>High</strong></td><td style="color:var(--red);font-weight:600;">Raised</td></tr>
+    <tr><td>Smart money footprint</td><td>Accumulating</td><td>Passive / Neutral inventory</td><td style="color:var(--red);font-weight:600;">Downgraded</td></tr>
+  </table>
+</div>
+<div class="card card-red">
+  <div style="font-size:12px;line-height:1.6;"><strong>⚠ CORRECTION LOG #1 — FLOW THESIS:</strong> for three sessions this framework framed the ETF flow turn as the designated "bottom-begins" signal, and on Jul 8 called it <em>the most important development</em>. That now requires material qualification. BTC/ETH ETFs did break an 8-week negative streak (<strong>$281.8M weekly net inflows</strong>) — genuinely positive. But those inflows recovered only <strong>2.4% of the capital lost in the preceding 8-week drawdown</strong>, and arrived on <strong>$8.41B ETF volume — the lowest five-session volume since October 2024</strong>. The inflow/volume divergence is consistent with <strong>passive algorithmic rebalancing into price compression, not conviction demand</strong>. <strong>Flow layer downgraded from constructive-confirming to positive-but-hollow. Revised standard: an inflow print only counts as confirming if it arrives on expanding volume.</strong></div>
+</div>
+<div class="card card-amber">
+  <div style="font-size:12px;line-height:1.6;"><strong>⚠ CORRECTION LOG #2 — DATE LABELS:</strong> price-value cross-matching against the last session's record confirms the framework's documented rule — <strong>CoinGecko's daily bar labels run one calendar day ahead of true UTC-midnight closes</strong>. The LPS shakeout-and-reclaim sequence ($62,2xx → $63,2xx → $64,0xx) is therefore <strong>true Jul 8–10</strong>, not the Jul 9–11 prior reports labeled it. <strong>Structure, levels, gates and every decision are unaffected</strong> — the two-close rule operates on the <em>sequence</em> of closes, not the labels — but the date attribution in prior reports ran one day ahead. Logged, not silently fixed. Re-verify against Crypto.com when it reconnects.</div>
+</div>
+<div class="card card-gray">
+  <div style="font-size:11.5px;line-height:1.6;"><strong>Feed:</strong> Crypto.com connector tools not callable (the confirmed connected-≠-callable pattern). CoinGecko UTC daily OHLC, cross-verified against Farside, CryptoSlate, CoinStats, FXLeaders. Last three settled closes are reported <strong>by price value</strong> (label-independent) precisely because of Correction #2.</div>
+</div>
+
+<!-- ══════════ PART 1: THE COIL ══════════ -->
+<div class="part">Part 1 · The coil — settled closes, compression, and the hardened ceiling</div>
+<div class="card lad">
+  <div class="lr"><span class="px">C−5</span><span>$62,249 — LPS undercut (1 close below confluence) <span class="badge b-amber">fakeout</span></span></div>
+  <div class="lr"><span class="px">C−4</span><span>$63,221 — reclaimed <span class="badge b-green">LPS confirmed</span></span></div>
+  <div class="lr"><span class="px">C−3</span><span><strong>$64,082</strong> — high $64,554 · <span class="badge b-red">rejection #3</span> · highest close of the whole attempt</span></div>
+  <div class="lr"><span class="px">C−2</span><span><strong>$63,893</strong> — high $64,419 · <span class="badge b-red">rejection #4</span> · lower high, lower close</span></div>
+  <div class="lr"><span class="px">C−1</span><span><strong>$63,746</strong> — high $64,199 · <span class="badge b-red">rejection #5</span> · lower high, lower close again</span></div>
+  <div class="lr spot"><span class="px">NOW</span><span><strong>$63,609</strong> · in-progress session — excluded from all gate determination</span></div>
+</div>
+<div class="card" style="padding:6px 10px;">
+  <table>
+    <tr><th>Compression evidence</th><th>Reading</th><th>Interpretation</th></tr>
+    <tr><td><strong>Daily range collapsing</strong></td><td>$1,599 → $583 → $546</td><td>Volatility coil — pre-expansion or pre-rollover</td></tr>
+    <tr><td><strong>Highs descending</strong></td><td>$64,554 → $64,419 → $64,199</td><td>Sellers stepping in progressively lower</td></tr>
+    <tr><td><strong>Closes descending</strong></td><td>$64,082 → $63,893 → $63,746</td><td>Three straight lower closes — demand fading</td></tr>
+    <tr><td><strong>Spot volume</strong></td><td>$18.9B (from $25–31B)</td><td>Bulls not showing up to the fight</td></tr>
+    <tr><td><strong>ETF volume</strong></td><td>$8.41B — lowest 5-session since Oct 2024</td><td>The inflows are passive, not conviction</td></tr>
+  </table>
+</div>
+<div class="card" style="padding:6px 10px;">
+  <table>
+    <tr><th>Gate</th><th>Rule</th><th>Status</th></tr>
+    <tr><td><strong>BTC BUY 4 (SOS)</strong></td><td>Clean daily CLOSE &gt; $65,000 + inflows on expanding volume</td><td><span class="badge b-red">NOT TRIGGERED</span> — 5 rejections, 0 closes through</td></tr>
+    <tr><td><strong>BTC BUY 3</strong></td><td>Held unless negated</td><td><span class="badge b-green">HELD</span> — floor intact on every close</td></tr>
+    <tr><td><strong>Distribution confirm</strong></td><td>2 consecutive closes &lt; $62,457</td><td><span class="badge b-amber">0 of 2</span> — the line that flips the read</td></tr>
+    <tr><td><strong>ADA (downstream)</strong></td><td>Hard stop: close &lt; $0.1596</td><td><span class="badge b-amber">Quarter BUY 1 held</span> — breaks first if BTC rolls</td></tr>
+    <tr><td><strong>AERO</strong></td><td>Re-arm: 2 closes &gt; $0.63 on expanding volume</td><td><span class="badge b-red">SELL 2 — no new longs</span> ($0.54–$0.63 supply zone)</td></tr>
+  </table>
+</div>
+
+<!-- ══════════ PART 2: INDICATOR VERDICTS ══════════ -->
+<div class="part">Part 2 · Indicator-by-indicator verdict</div>
+<div class="card" style="padding:6px 10px;">
+  <table>
+    <tr><th>Indicator</th><th>Tier</th><th>Current state</th><th>Verdict</th></tr>
+    <tr>
+      <td class="tiername">Wyckoff</td><td><span class="badge b-red">LOAD-BEARING</span></td>
+      <td><strong>Two competing reads — the alternate strengthened materially.</strong> Primary: coiling LPS / re-accumulation — the $62,457 floor held every close, higher lows into a tightening range; compression before a scheduled catalyst is textbook pre-expansion. Alternate: <strong>distribution / rounding top</strong> — 5 rejections at $64.8K with descending highs AND three straight descending closes, on declining volume, with passive-only inflows and miner supply hitting the tape.</td>
+      <td><span class="badge b-amber">Coil — directionally NEUTRAL</span></td>
+    </tr>
+    <tr>
+      <td class="tiername">Macro / CPI</td><td><span class="badge b-red">LOAD-BEARING</span></td>
+      <td><strong>Pre-catalyst paralysis.</strong> Participants explicitly declining to deploy directional capital ahead of <strong>June CPI (Jul 14, 8:30am ET)</strong> and Middle East risk. PPI Jul 15. CLARITY hearing Jul 17. FOMC Jul 28–29.</td>
+      <td><span class="badge b-amber">CPI is the release mechanism</span></td>
+    </tr>
+    <tr>
+      <td class="tiername">Liquidity / flows</td><td><span class="badge b-red">LOAD-BEARING</span></td>
+      <td><strong>Positive-but-hollow (downgraded).</strong> $281.8M weekly inflows broke an 8-week negative streak — but recovered just <strong>2.4%</strong> of the drawdown on the <strong>lowest ETF volume since Oct 2024</strong>. Reads as passive rebalancing. Reporting describes "distribution algorithms capping morning rallies."</td>
+      <td><span class="badge b-amber">Insufficient to authorize a tranche</span></td>
+    </tr>
+    <tr>
+      <td class="tiername">Miner supply</td><td><span class="badge b-red">LOAD-BEARING</span></td>
+      <td><strong>NEW overhang.</strong> Miner Cycle Stress Composite at historic lows; ~20% of the network mines at a net loss; BTC trades below the ~$78K aggregate production cost; public miners liquidated 32,000 BTC in Q1.</td>
+      <td><span class="badge b-red">Structural sell pressure</span></td>
+    </tr>
+    <tr>
+      <td class="tiername">Halving cycle</td><td><span class="badge b-amber">CONTEXT</span></td>
+      <td>~Month 27 post-halving. The Oct–Nov 2026 bottom window (363–376 days from the Oct '25 ATH) is untouched — and independently echoed by cycle models placing the bottom in late 2026. <strong>75% dry powder still reserved for that CORE window.</strong></td>
+      <td><span class="badge b-green">Thesis intact</span></td>
+    </tr>
+    <tr>
+      <td class="tiername">Sentiment (F&amp;G)</td><td><span class="badge b-amber">CONTEXT</span></td>
+      <td>~23–25 (Extreme Fear). The strongest remaining bull argument — contrarian-supportive.</td>
+      <td><span class="badge b-green">Supportive</span></td>
+    </tr>
+    <tr>
+      <td class="tiername">Prediction markets</td><td><span class="badge b-amber">CONTEXT</span></td>
+      <td><strong>⚠ Trap flagged.</strong> Polymarket: 87.5% odds of <em>touching</em> $65K in July — but a touch is a <strong>wick</strong>, and this framework requires a <strong>CLOSE</strong>. Do not read 87.5% as the BUY 4 trigger odds. The same board prices ↓$62,500 at 73.5% — the market expects <em>both</em> lines tagged.</td>
+      <td><span class="badge b-amber">Range-bound consensus</span></td>
+    </tr>
+    <tr class="zero">
+      <td class="tiername">Shmita</td><td><span class="badge b-gray">ZERO-WEIGHT</span></td>
+      <td>Year 4 of 7, mid-cycle.</td>
+      <td><span class="badge b-gray">NO SIGNAL</span></td>
+    </tr>
+    <tr class="zero">
+      <td class="tiername">Mercury Rx</td><td><span class="badge b-gray">ZERO-WEIGHT</span></td>
+      <td>Retrograde through ~Jul 23. <strong>Actively policed:</strong> generates, gates, delays and vetoes nothing here.</td>
+      <td><span class="badge b-gray">NO SIGNAL</span></td>
+    </tr>
+    <tr class="zero">
+      <td class="tiername">Lunar</td><td><span class="badge b-gray">ZERO-WEIGHT</span></td>
+      <td>Monthly cycle.</td>
+      <td><span class="badge b-gray">NO SIGNAL</span></td>
+    </tr>
+  </table>
+</div>
+
+<!-- ══════════ PART 3: FORECAST ══════════ -->
+<div class="part">Part 3 · Forecast</div>
+
+<div class="lbl">Probability tree · spot $63,609 · paths sum to 100%</div>
+<div class="card">
+  <div class="trow">
+    <div class="td" style="background:#6FA02C;"></div>
+    <div class="tp" style="color:var(--green);">38%</div>
+    <div><strong>Primary — coil resolves up.</strong> A benign Jul 14 CPI releases the compression upward; a close above $65K completes the SOS and fires BUY 4 toward $66.6–67.6K.</div>
+  </div>
+  <div class="trow">
+    <div class="td" style="background:#BA7517;"></div>
+    <div class="tp" style="color:var(--amber);">35%</div>
+    <div><strong>Secondary — range persists.</strong> $62.5–64.8K chop survives CPI/PPI and the Jul 17 CLARITY hearing, deferring all resolution to the Jul 28–29 FOMC.</div>
+  </div>
+  <div class="trow">
+    <div class="td" style="background:#D85A30;"></div>
+    <div class="tp" style="color:var(--red);">27%</div>
+    <div><strong>Tail — distribution confirms.</strong> Descending highs + dead volume + passive-only inflows resolve as a rounding top; a hot CPI tips it; two closes below $62,457 revive markdown → $59K → $57,803.</div>
+  </div>
+</div>
+
+<div class="lbl">Level map</div>
+<div class="card lad">
+  <div class="lr"><span class="px" style="color:var(--blue);">$66.6–67.6K</span><span><span class="badge b-blue">Objective only if the SOS confirms on a close</span></span></div>
+  <div class="lr"><span class="px" style="color:var(--red);">$65,000</span><span><span class="badge b-red">THE HARDENED CEILING — 5 rejections, 0 closes through. BUY 4 needs a CLOSE, not a wick.</span></span></div>
+  <div class="lr"><span class="px" style="color:var(--amber);">$64,200–64,550</span><span><span class="badge b-amber">Descending equal-highs — where sellers keep appearing</span></span></div>
+  <div class="lr spot"><span class="px">$63,609</span><span><strong>SPOT</strong> · coiling · last close $63,746</span></div>
+  <div class="lr"><span class="px" style="color:var(--red);">$62,457–62,589</span><span><span class="badge b-red">THE FLOOR — LPS held here. TWO closes below = distribution confirmed → trim.</span></span></div>
+  <div class="lr"><span class="px" style="color:var(--red);">$59,000</span><span><span class="badge b-red">Defensive trigger — close below cuts to core</span></span></div>
+  <div class="lr"><span class="px" style="color:var(--red);">$57,803</span><span><span class="badge b-red">HARD INVALIDATION — kills the thesis (BTC + ADA)</span></span></div>
+</div>
+
+<div class="lbl">Risk engineering — CRO / Quant PM sign-off</div>
+<div class="card card-red">
+  <table>
+    <tr><td style="width:44%;"><strong>System action</strong></td><td>HOLD BUY 3 · WAIT (no BUY 4 — trigger not met)</td></tr>
+    <tr><td><strong>Aggressiveness</strong></td><td>3 / 10 (from 4 — resistance hardened, flow quality degraded)</td></tr>
+    <tr><td><strong>Composite confidence</strong></td><td>64 / 100 (from 72 — largest cut of the run: −4 flow reframe, −2 fivefold resistance failure + descending closes, −2 volume collapse + miner supply; floor holding and Extreme Fear prevent a deeper cut)</td></tr>
+    <tr><td><strong>Structural risk</strong></td><td>HIGH (raised from Medium-High)</td></tr>
+    <tr><td><strong>Immediate trigger</strong></td><td><strong>NONE — explicitly do not act.</strong> CRO veto on any pre-CPI add: sizing into a volatility coil immediately before a binary macro print is gambling on a coin flip, not positioning.</td></tr>
+    <tr><td><strong>Confirmation trigger (BUY 4)</strong></td><td>Clean daily CLOSE &gt; $65,000 — <em>not a wick</em> — AND an ETF inflow print on <em>expanding</em> volume. Both, or no tranche.</td></tr>
+    <tr><td><strong>Hard invalidation</strong></td><td>Daily close &lt; $57,803. Interim: TWO consecutive closes &lt; $62,457 → trim BUY 3 to core; close &lt; $59,000 → cut to core.</td></tr>
+  </table>
+</div>
+
+<!-- BRIEF -->
+<div class="lbl">Bottom line</div>
+<div class="card card-amber">
+  <div class="brief">
+    Bitcoin failed the BUY 4 test — the $64.8K/$65K shelf has now rejected five times without a single close through it, and price is coiling into a tightening range on collapsing volume with descending highs and three straight lower closes, while the ETF inflow story that underpinned the last three sessions turns out to be passive rebalancing that recovered just 2.4% of the drawdown on the thinnest ETF volume since October 2024. The structure is not broken — the $62,457 LPS floor has held every close — but the coil is directionally neutral, and the June CPI print on July 14 is the compressed spring's release mechanism, resolving it up through $65K or down toward $62,457. Hold BUY 3, add nothing into a binary event, and let the close — not the wick, not the headline — dictate the next tranche.
+  </div>
+</div>
+
+<div class="foot">
+  Evidence tiering unchanged and non-negotiable: Wyckoff, liquidity/flows, miner supply, the halving cycle, and the macro/CPI-FOMC read carry the analytical weight. Shmita, Mercury, and lunar cycles are disclosed in full but carry zero predictive weight — never a directional call, actively policed. Data provenance: CoinGecko UTC daily OHLC (labels run one day ahead — see Correction #2), cross-verified against Farside, CryptoSlate, CoinStats and FXLeaders; Crypto.com feed unavailable this session — substitution flagged, not silent. Structural orientation, not financial advice — size positions yourself and consult a licensed advisor.
+</div>
+
+</body>
+</html>
