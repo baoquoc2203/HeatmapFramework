@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ADA Cardano — Monthly Buy/Sell Strategy Map (Updated Jul 15, 2026)</title>
+<style>
+  :root{
+    --bg:#1c1b19; --bg2:#26251f; --bg3:#2f2e27; --txt:#f1efe8; --txt2:#b4b2a9; --txt3:#8a887f;
+    --bord:#3a3935;
+    --red:#F0997B; --red-bg:#4A1B0C; --amber:#FAC775; --amber-bg:#412402;
+    --green:#97C459; --green-bg:#173404; --blue:#85B7EB; --blue-bg:#042C53;
+    --gray:#9a988f; --gray-bg:#302e2a;
+    --rd:#D85A30; --gn:#6FA02C; --am:#BA7517; --bl:#3B82C4;
+  }
+  @media (prefers-color-scheme: light){
+    :root{
+      --bg:#ffffff; --bg2:#f6f4ee; --bg3:#efece3; --txt:#2c2c2a; --txt2:#5f5e5a; --txt3:#84837d;
+      --bord:#e3e0d6;
+      --red:#993C1D; --red-bg:#FAECE7; --amber:#854F0B; --amber-bg:#FAEEDA;
+      --green:#3B6D11; --green-bg:#EAF3DE; --blue:#185FA5; --blue-bg:#E6F1FB;
+      --gray:#8b8a84; --gray-bg:#ECEAE2;
+    }
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{background:var(--bg);color:var(--txt);padding:20px;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    font-size:13px;line-height:1.5;max-width:960px;margin:0 auto;}
+  h1{font-size:19px;font-weight:700;margin-bottom:3px;}
+  .meta{font-size:11.5px;color:var(--txt2);margin-bottom:14px;}
+  .part{font-size:11px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--txt);
+    background:var(--bg3);border-radius:8px;padding:8px 12px;margin:22px 0 11px;}
+  .card{background:var(--bg2);border:1px solid var(--bord);border-radius:12px;padding:14px 16px;margin-bottom:10px;}
+  .c-amber{border-left:3px solid var(--am);} .c-red{border-left:3px solid var(--rd);}
+  .c-green{border-left:3px solid var(--gn);} .c-gray{border-left:3px solid var(--gray);}
+  .c-blue{border-left:3px solid var(--bl);}
+  .flag{background:var(--green-bg);border:2px solid var(--gn);border-radius:12px;padding:14px 16px;margin-bottom:10px;}
+  .badge{display:inline-block;padding:2px 8px;border-radius:5px;font-size:10.5px;font-weight:700;white-space:nowrap;}
+  .b-red{background:var(--red-bg);color:var(--red);} .b-amber{background:var(--amber-bg);color:var(--amber);}
+  .b-green{background:var(--green-bg);color:var(--green);} .b-blue{background:var(--blue-bg);color:var(--blue);}
+  .b-gray{background:var(--gray-bg);color:var(--gray);}
+  .mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;}
+
+  .hero{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;margin-bottom:10px;}
+  @media(max-width:700px){.hero{grid-template-columns:repeat(2,1fr);}}
+  .hb{text-align:center;padding:11px 6px;border-radius:10px;border:1px solid var(--bord);background:var(--bg2);}
+  .hb .l{font-size:9.5px;color:var(--txt2);text-transform:uppercase;letter-spacing:.05em;}
+  .hb .m{font-size:19px;font-weight:600;margin:3px 0 1px;}
+  .hb .s{font-size:10px;color:var(--txt2);}
+
+  pre{background:var(--bg3);border:1px solid var(--bord);border-radius:10px;padding:13px 15px;
+    font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11.5px;line-height:1.65;
+    overflow-x:auto;color:var(--txt);white-space:pre;}
+
+  .month-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-bottom:10px;}
+  @media(max-width:820px){.month-grid{grid-template-columns:repeat(3,1fr);}}
+  @media(max-width:520px){.month-grid{grid-template-columns:repeat(2,1fr);}}
+  .mc{border-radius:10px;padding:11px 10px;border:1px solid var(--bord);background:var(--bg2);position:relative;}
+  .mc.now{border:2px solid var(--am);background:var(--bg3);}
+  .mc.core{border:2px solid var(--gn);}
+  .mc-m{font-size:12.5px;font-weight:700;margin-bottom:5px;}
+  .mc-a{font-size:9.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:2px 6px;
+    border-radius:99px;display:inline-block;margin-bottom:6px;}
+  .mc-s{font-size:10px;color:var(--txt2);margin-bottom:4px;}
+  .mc-n{font-size:10.5px;line-height:1.45;color:var(--txt2);}
+  .mc-bar{height:4px;border-radius:99px;margin-top:8px;background:var(--gray);}
+  .tag{position:absolute;top:7px;right:7px;font-size:8px;padding:1px 5px;border-radius:99px;font-weight:700;}
+  .t-now{background:var(--am);color:#1c1b19;} .t-past{background:var(--gray);color:#1c1b19;}
+  .t-cond{background:var(--bg3);color:var(--txt3);border:1px solid var(--bord);}
+  .t-core{background:var(--gn);color:#0f1a06;}
+
+  .a-sbuy{background:var(--green-bg);color:var(--green);} .a-buy{background:var(--green-bg);color:var(--green);}
+  .a-accum{background:var(--blue-bg);color:var(--blue);} .a-hold{background:var(--gray-bg);color:var(--txt2);}
+  .a-wait{background:var(--amber-bg);color:var(--amber);} .a-reduce{background:var(--amber-bg);color:var(--amber);}
+  .a-sell{background:var(--red-bg);color:var(--red);}
+  .bar-sbuy{background:#1D9E75;} .bar-buy{background:var(--gn);} .bar-accum{background:var(--bl);}
+  .bar-hold{background:var(--gray);} .bar-wait{background:var(--am);} .bar-reduce{background:#C97A2B;}
+  .bar-sell{background:var(--rd);}
+
+  table{width:100%;border-collapse:collapse;font-size:11.5px;}
+  th{text-align:left;padding:7px 8px;background:var(--bg3);font-size:9.5px;font-weight:700;
+    text-transform:uppercase;letter-spacing:.04em;color:var(--txt2);border-bottom:1px solid var(--bord);}
+  td{padding:8px;border-bottom:1px solid var(--bord);vertical-align:top;line-height:1.45;}
+  tr:last-child td{border-bottom:none;}
+  tr.zero td{opacity:.9;}
+
+  .strip{display:flex;gap:3px;}
+  .sc{flex:1;height:30px;border-radius:4px;display:flex;align-items:center;justify-content:center;
+    font-size:10px;font-weight:700;color:#fff;}
+  .sl{flex:1;text-align:center;font-size:9.5px;color:var(--txt3);padding-top:3px;}
+
+  .trow{display:flex;gap:10px;padding:8px 0;border-bottom:1px solid var(--bord);font-size:12px;}
+  .trow:last-child{border-bottom:none;}
+  .tdot{width:9px;height:9px;border-radius:50%;flex-shrink:0;margin-top:5px;}
+  .tp{width:38px;flex-shrink:0;font-weight:700;}
+
+  .lr{display:flex;align-items:center;gap:9px;padding:6px 0;border-bottom:1px solid var(--bord);font-size:11.5px;}
+  .lr:last-child{border-bottom:none;}
+  .lr.spot{background:var(--bg3);border-radius:6px;padding:6px 8px;}
+  .lr .px{width:112px;flex-shrink:0;font-weight:700;font-family:ui-monospace,monospace;}
+
+  .kv{display:grid;grid-template-columns:190px 1fr;gap:5px 12px;font-size:12px;}
+  @media(max-width:600px){.kv{grid-template-columns:1fr;}}
+  .kv .k{color:var(--txt2);font-weight:600;}
+  .brief{font-size:13px;line-height:1.72;}
+  .foot{font-size:10.5px;color:var(--txt3);line-height:1.6;margin-top:16px;border-top:1px solid var(--bord);padding-top:12px;}
+  svg{width:100%;height:auto;display:block;}
+  .lg{display:flex;flex-wrap:wrap;gap:14px;font-size:10.5px;color:var(--txt2);margin-top:10px;}
+  .lg span{display:flex;align-items:center;gap:5px;}
+  .lg i{width:11px;height:3px;border-radius:2px;display:inline-block;}
+</style>
+</head>
+<body>
+
+<h1>ADA Cardano — Monthly Buy / Sell Strategy Map</h1>
+<div class="meta">Crypto Reconnaissance Engine · Updated <strong>Wed Jul 15, 2026 · 09:48 ICT (02:48 UTC)</strong> · supersedes the Jul 13 map · ATH $3.09 (Sep 2021) · 2025 cycle peak $1.20</div>
+
+<!-- ═══ 1. VISUAL FIRST ═══ -->
+<div class="hero">
+  <div class="hb" style="border-color:var(--am);">
+    <div class="l">Spot</div><div class="m">$0.1626</div><div class="s">+3.3% 24h</div></div>
+  <div class="hb" style="border-color:var(--gn);">
+    <div class="l">Wyckoff</div><div class="m" style="color:var(--green);">Phase C</div><div class="s">potential Spring</div></div>
+  <div class="hb" style="border-color:var(--am);">
+    <div class="l">Action</div><div class="m" style="color:var(--amber);">HOLD</div><div class="s">Spring test live</div></div>
+  <div class="hb" style="border-color:var(--gn);">
+    <div class="l">Stop $0.1596</div><div class="m mono" style="color:var(--green);">0 / 2</div><div class="s">RECLAIMED · exit averted</div></div>
+</div>
+
+<pre>
+WYCKOFF CYCLE MAP
+A (Accumulation) ──&gt; B (Markup) ──&gt; C (Distribution) ──&gt; D (Markdown)
+
+Current Location: [██████████████░░░░░]  ──&gt;  C  (potential Spring — primary read has FLIPPED back)
+Current Phase:    Phase C — Jul 13 SWEEP ($0.15550 low, close $0.15748 below stop) → Jul 14 RECLAIM
+                  (open $0.15755 → close $0.16554, on expanding volume, BTC tagging $65K). Textbook
+                  Spring SHAPE. UNCONFIRMED — awaiting a test-hold + Sign of Strength.
+Current Action:   HOLD — the two-close stop did NOT fire. No add on an unconfirmed Spring.
+
+LAST SETTLED CLOSE (Jul 14) .... $0.16554          LIVE CANDLE (Jul 15) .... $0.16256 · 21h 11m to close
+JUL 13 SWEEP LOW ............... $0.15550  ← swept stop liquidity, then rejected. No close below it.
+</pre>
+
+<!-- ═══ 2. THE ONE THING THAT MATTERS ═══ -->
+<div class="part">✔ What just happened — the stop decision resolved</div>
+
+<div class="flag">
+  <div style="font-size:12.5px;line-height:1.68;">
+    <strong style="font-size:14px;">The exit did not fire. The position lives. And it did so by the rules, not by luck.</strong><br><br>
+    Two days ago the map was <span class="badge b-amber">HOLD — EXIT ARMED</span>: a close below $0.1596 would be warning #1,
+    a second consecutive close below would exit BUY 1. Here is exactly what the two settled candles did:<br><br>
+    → <strong>Jul 13 closed $0.15748</strong> — below the stop. <strong>Warning close #1.</strong> The wick to $0.15550 swept the
+    stop-liquidity sitting beneath the level.<br>
+    → <strong>Jul 14 opened $0.15755 (at the low), drove to $0.16817, and closed $0.16554</strong> — <strong>a hard reclaim back
+    above the stop.</strong> The second consecutive close never came. <strong>The count reset to zero. No exit.</strong><br><br>
+    <strong>This is the Phase-C Spring scenario the last map flagged as the mandatory alternate</strong> — an undercut of support that
+    sweeps stops and then reclaims. It is a <em>potential</em> Spring, not a confirmed one. But note the discipline symmetry that
+    made this work: on Jul 11 the same two-close rule stopped the framework calling a false <em>bullish</em> reclaim (which became an
+    upthrust); on Jul 13 it stopped the framework calling a false <em>bearish</em> exit (which became a Spring).
+    <strong>The rule cut both ways, in the same week, and both times it was right.</strong>
+  </div>
+</div>
+
+<!-- ═══ 3. CHANGE LOG ═══ -->
+<div class="part">Change log — logged explicitly, no silent fixes</div>
+
+<div class="card c-green">
+  <div style="font-size:12px;line-height:1.65;">
+    <strong>1 · STOP HELD → WYCKOFF PRIMARY FLIPS BACK to Phase C.</strong> The Jul 13 map's primary was <em>"Phase D — markdown
+    resumed."</em> The Jul 14 reclaim off swept lows changes that: the <strong>primary read is now "Phase C — potential Spring in
+    progress,"</strong> with markdown demoted to the alternate. This is the <strong>third structural flip in five sessions</strong>
+    (B→D on Jul 13, D→C now) — a fact worth stating plainly rather than hiding. The structure is genuinely undecided and the price is
+    chopping in a $0.155–$0.170 box. <strong>The framework is not flip-flopping; it is refusing to pretend a coin-flip has resolved.</strong>
+    That is why the action has stayed <span class="badge b-amber">HOLD</span> through all three flips.
+  </div>
+</div>
+
+<div class="card c-green">
+  <div style="font-size:12px;line-height:1.65;">
+    <strong>2 · BTC TAGGED ITS BUY 4 TRIGGER.</strong> BTC printed its <strong>first clean daily close above $65,000 (Jul 14,
+    $65,040)</strong> — the exact trigger it had missed by $302 two sessions earlier. This drove ADA's reclaim; the Spring is
+    <strong>BTC-led, not ADA-driven.</strong> <strong>But apply the same two-close discipline used everywhere else:</strong> a single
+    close above $65K <em>tags</em> the trigger; confirmation wants a <strong>second consecutive close above it.</strong> The live Jul 15
+    candle is back at <strong>~$64,544, below $65K</strong> — so <strong>BTC BUY 4 confirmation is pending and currently at risk.</strong>
+    Do not treat BUY 4 as confirmed on one close, exactly as we did not treat ADA's stop-break as confirmed on one close.
+  </div>
+</div>
+
+<div class="card c-amber">
+  <div style="font-size:12px;line-height:1.65;">
+    <strong>3 · THE RECLAIM WAS PARTLY A SHORT SQUEEZE — do not over-read it.</strong> Funding was <strong>negative</strong> going into
+    Jul 13 (shorts paying longs). A violent one-day reversal on negative funding is classic <strong>short-squeeze fuel</strong> —
+    forced covering, not necessarily fresh accumulation demand. Corroborating caution: <strong>ADA UNDERPERFORMED even on the up day.</strong>
+    The ADA/BTC ratio is soft, and on the live Jul 15 candle <strong>ADA is red while BTC holds</strong>. A genuine Spring is powered by
+    demand <em>and</em> relative strength; so far ADA has neither in abundance. <strong>This is the single biggest reason the Spring is
+    labelled UNCONFIRMED and no add is authorised.</strong>
+  </div>
+</div>
+
+<div class="card c-gray">
+  <div style="font-size:12px;line-height:1.65;">
+    <strong>4 · COINGECKO OFFSET — re-verified again.</strong> CoinGecko's "Jul 15" ADA bar (c $0.164967, l $0.156276) price-matches
+    Crypto.com's <strong>Jul 14</strong> candle (c $0.16554, l $0.15619). The +1-day label offset persists. All figures stated at their
+    <strong>true UTC date</strong>, matched on price value, Crypto.com authoritative. <strong>Both feeds agree across the sequence —
+    no disagreement at the stop level, so the "did-not-fire" determination is firm.</strong><br><br>
+    <strong>5 · CARRIED-FORWARD, NOT RE-VERIFIED THIS SESSION:</strong> whale distribution (~450M ADA across two waves) and the exact
+    negative funding print (−0.0060%) are from the Jul 13 read. Direction almost certainly unchanged, but <strong>flagged as not
+    independently refreshed today.</strong><br><br>
+    <strong>6 · COST BASIS — STILL UNCONFIRMED (third request).</strong> Marked ≈$0.189 → <strong>−14.0%</strong>. If your fill was
+    $0.17–$0.18, you are ≈−7.1%. This is now the longest-standing open item in the framework. <strong>Please confirm your fill.</strong>
+  </div>
+</div>
+
+<!-- ═══ 4. POSITION MATRIX ═══ -->
+<div class="part">Position progression matrix — Quant PM sizing layer</div>
+<pre>
+BUY 1 (Early Accum) ──&gt; BUY 2 (Spring/Sweep) ──&gt; BUY 3 (Test) ──&gt; BUY 4 (LPS) ──&gt; BUY 5 (Markup Pullback)
+   ▲                        △
+   └── BUY 1 HELD           └── POTENTIALLY HERE NOW — the Jul 13 sweep IS the Spring event, if it confirms
+
+Current Matrix Classification:  BUY 1 HELD — quarter size · basis ≈$0.189 · mark $0.1626 · ≈ −14.0%
+Stop $0.1596:                   RECLAIMED. 0 of 2 closes below. Exit did NOT fire. Count reset.
+BUY 2 (Spring/Sweep):           ARMING — the sweep-and-reclaim is the setup. Trigger = a TEST of the
+                                $0.15550 low that holds on lighter volume, THEN a Sign of Strength close
+                                back above $0.1667. NOT the $0.19 level — that is now a later BUY-3 marker.
+BTC dependency:                 BUY 4 tagged (1 close &gt; $65K), confirmation pending a 2nd close.
+Dry powder:                     75% reserved for Oct-Nov 2026. Any BUY 2 here is a SMALL tactical add only.
+</pre>
+
+<div class="card">
+  <div class="lr"><span class="px" style="color:var(--txt3);">$0.1986</span><span><span class="badge b-gray">AR high (Jul 4) — the range ceiling</span></span></div>
+  <div class="lr"><span class="px" style="color:var(--txt3);">$0.1850</span><span><span class="badge b-gray">50-day EMA — later BUY-3 / Sign-of-Strength marker</span></span></div>
+  <div class="lr"><span class="px" style="color:var(--amber);">$0.1667</span><span><span class="badge b-amber">Broken ST base — SOS reclaim = Spring confirmation</span></span></div>
+  <div class="lr spot"><span class="px">$0.1626</span><span><strong>SPOT</strong> · live Jul 15 · last close $0.16554 · testing lower</span></div>
+  <div class="lr"><span class="px" style="color:var(--rd);">$0.1596</span><span><span class="badge b-red">HARD STOP — 0 of 2 closes below. RECLAIMED.</span></span></div>
+  <div class="lr"><span class="px" style="color:var(--green);">$0.15550</span><span><span class="badge b-green">SPRING LOW (Jul 13) — the line the test must hold</span></span></div>
+  <div class="lr"><span class="px" style="color:var(--red);">$0.1387</span><span><span class="badge b-red">SC low — target if the Spring fails</span></span></div>
+  <div class="lr"><span class="px" style="color:var(--red);">$0.10–0.12</span><span><span class="badge b-red">Cascade zone if the SC low fails</span></span></div>
+</div>
+
+<!-- ═══ 5. PROBABILITY TREES ═══ -->
+<div class="part">Probability path trees — MSA structural trajectories · spot $0.1626</div>
+<div class="card">
+  <div class="trow">
+    <div class="tdot" style="background:var(--gn);"></div><div class="tp" style="color:var(--green);">42%</div>
+    <div><strong>Primary — the Spring confirms.</strong> The live pullback holds above $0.15550 as a Secondary Test on lighter volume,
+      then a Sign of Strength reclaims $0.1667 → Phase C completes and a Phase B markup range opens toward the $0.1850 50-EMA.
+      <em>Validated by:</em> a test-hold, then an SOS close above $0.1667, ideally with BTC confirming BUY 4.</div>
+  </div>
+  <div class="trow">
+    <div class="tdot" style="background:var(--rd);"></div><div class="tp" style="color:var(--red);">36%</div>
+    <div><strong>Alternate — the Spring fails / it was a squeeze.</strong> The Jul 14 pop was short-covering; demand does not follow;
+      ADA rolls back under $0.1596 on two closes → BUY 1 exits, markdown resumes to the $0.1387 SC low. <strong>Weight is high here
+      because ADA's relative weakness and the negative-funding squeeze mechanic both point this way.</strong> <em>Validated by:</em>
+      two closes below $0.1596, or a close below $0.15550.</div>
+  </div>
+  <div class="trow">
+    <div class="tdot" style="background:#7f1d1d;"></div><div class="tp" style="color:var(--red);">22%</div>
+    <div><strong>Tail — cascade.</strong> A failed Spring is the most violent kind: trapped longs plus fresh shorts drive $0.1387,
+      then $0.12–0.10, most likely alongside a BTC roll-over from its own failed $65K breakout. <strong>And, as always: that flush
+      is what builds the Oct–Nov CORE entry.</strong> Catastrophic for BUY 1, constructive for the dry powder.</div>
+  </div>
+</div>
+
+<!-- ═══ 6. MONTHLY MAP ═══ -->
+<div class="part">Monthly action map — Jun 2026 → Dec 2027</div>
+<div class="month-grid" id="grid"></div>
+<div style="font-size:11px;color:var(--txt3);margin-bottom:6px;">
+  <span class="badge b-gray">COND</span> = conditional. <span class="badge b-green">CORE</span> = the framework's highest-conviction
+  deployment window — <strong>unchanged through every one of the last five sessions.</strong>
+</div>
+
+<!-- ═══ 7. TRAJECTORY ═══ -->
+<div class="part">Structural trajectory — Jul 2026 → Dec 2027 (re-based to $0.1626)</div>
+<div class="card">
+  <div style="font-size:11.5px;color:var(--txt2);margin-bottom:12px;">
+    Shape unchanged from the Jul 13 map, re-anchored $0.03 higher after the reclaim. The base case still routes a
+    <strong>drawdown into the Oct–Nov cycle-bottom window before the real markup</strong> — a confirmed Spring here would lift the
+    near-term path (toward the bull band) without altering the autumn thesis. Log scale. Scenario bands, not forecasts.
+  </div>
+  <svg viewBox="0 0 900 268" xmlns="http://www.w3.org/2000/svg" font-family="ui-monospace,Menlo,monospace">
+    <rect x="208.7" y="18" width="48.2" height="226" fill="#6FA02C" opacity="0.12"/>
+    <text x="232" y="14" font-size="8.5" fill="#6FA02C" text-anchor="middle">BTC CYCLE-BOTTOM WINDOW</text>
+    <g stroke="currentColor" opacity="0.13" stroke-width="1">
+      <line x1="64" y1="233.1" x2="884" y2="233.1"/><line x1="64" y1="191.2" x2="884" y2="191.2"/>
+      <line x1="64" y1="161.4" x2="884" y2="161.4"/><line x1="64" y1="119.5" x2="884" y2="119.5"/>
+      <line x1="64" y1="66.6" x2="884" y2="66.6"/><line x1="64" y1="18" x2="884" y2="18"/>
+    </g>
+    <g font-size="9" fill="currentColor" opacity="0.55" text-anchor="end">
+      <text x="58" y="236.6">$0.10</text><text x="58" y="194.7">$0.15</text><text x="58" y="164.9">$0.20</text>
+      <text x="58" y="123.0">$0.30</text><text x="58" y="70.1">$0.50</text><text x="58" y="21.5">$0.80</text>
+    </g>
+    <line x1="64" y1="184.7" x2="884" y2="184.7" stroke="#D85A30" stroke-width="1.4" stroke-dasharray="5,4"/>
+    <text x="880" y="181.2" font-size="8.5" fill="#D85A30" text-anchor="end">HARD STOP $0.1596</text>
+    <line x1="64" y1="199.3" x2="884" y2="199.3" stroke="#9a988f" stroke-width="1.1" stroke-dasharray="3,3" opacity="0.75"/>
+    <text x="880" y="196" font-size="8.5" fill="#9a988f" text-anchor="end">SC LOW $0.1387</text>
+    <polyline fill="none" stroke="#1D9E75" stroke-width="1.5" stroke-dasharray="5,3" opacity="0.8"
+      points="64.0,180.7 112.2,166.7 160.5,149.2 208.7,133.5 256.9,121.2 305.2,108.0 353.4,93.7 401.6,77.5 449.9,64.6 498.1,50.4 546.4,61.6 594.6,74.1 642.8,69.1 691.1,56.8 739.3,43.5 787.5,27.5 835.8,33.0 884.0,38.7"/>
+    <polyline fill="none" stroke="#85B7EB" stroke-width="2.6"
+      points="64.0,182.9 112.2,185.8 160.5,191.2 208.7,199.8 256.9,194.7 305.2,181.3 353.4,169.5 401.6,152.5 449.9,139.1 498.1,125.5 546.4,137.1 594.6,149.2 642.8,144.7 691.1,132.3 739.3,118.4 787.5,102.0 835.8,108.0 884.0,113.4"/>
+    <polyline fill="none" stroke="#D85A30" stroke-width="1.5" stroke-dasharray="5,3" opacity="0.85"
+      points="64.0,184.5 112.2,196.8 160.5,209.2 208.7,228.1 256.9,235.2 305.2,223.2 353.4,214.2 401.6,204.4 449.9,195.4 498.1,184.5 546.4,195.4 594.6,207.6 642.8,202.1 691.1,190.5 739.3,177.0 787.5,161.4 835.8,166.7 884.0,171.2"/>
+    <circle cx="64" cy="182.9" r="4" fill="#85B7EB"/>
+    <circle cx="208.7" cy="199.8" r="3.5" fill="#85B7EB"/><circle cx="256.9" cy="194.7" r="3.5" fill="#85B7EB"/>
+    <g font-size="8.5" fill="currentColor" opacity="0.5" text-anchor="middle">
+      <text x="64" y="258">Jul'26</text><text x="160" y="258">Sep</text><text x="257" y="258">Nov</text>
+      <text x="353" y="258">Jan'27</text><text x="450" y="258">Mar</text><text x="546" y="258">May</text>
+      <text x="643" y="258">Jul</text><text x="739" y="258">Sep</text><text x="884" y="258">Dec'27</text>
+    </g>
+  </svg>
+  <div class="lg">
+    <span><i style="background:#1D9E75"></i> Bull — Spring confirms, markup from here</span>
+    <span><i style="background:#85B7EB"></i> Base — chop, autumn drawdown, markup after</span>
+    <span><i style="background:#D85A30"></i> Bear — Spring fails, cascade through the SC low</span>
+  </div>
+</div>
+
+<!-- ═══ 8. SEASONALITY ═══ -->
+<div class="part">Historical seasonality — 7-year average (2018–2024) · unchanged, low-tier layer</div>
+<div class="card">
+  <div class="strip">
+    <div class="sc" style="background:#3d8a4a">+18%</div><div class="sc" style="background:#1D9E75">+31%</div>
+    <div class="sc" style="background:#57893f">+12%</div><div class="sc" style="background:#2b9660">+29%</div>
+    <div class="sc" style="background:#c96a4a">−14%</div><div class="sc" style="background:#D85A30">−18%</div>
+    <div class="sc" style="background:#5b8a3c">+11%</div><div class="sc" style="background:#4a8b44">+15%</div>
+    <div class="sc" style="background:#35914f">+22%</div><div class="sc" style="background:#5b8a3c">+11%</div>
+    <div class="sc" style="background:#67873a">+9%</div><div class="sc" style="background:#a87050">−6%</div>
+  </div>
+  <div class="strip">
+    <div class="sl">Jan</div><div class="sl">Feb</div><div class="sl">Mar</div><div class="sl">Apr</div>
+    <div class="sl">May</div><div class="sl">Jun</div><div class="sl">Jul</div><div class="sl">Aug</div>
+    <div class="sl">Sep</div><div class="sl">Oct</div><div class="sl">Nov</div><div class="sl">Dec</div>
+  </div>
+  <div style="font-size:11.5px;color:var(--txt2);margin-top:11px;">
+    July averages +11.2% and ADA is currently <strong>+12% month-to-date</strong> ($0.1453 June close → $0.1626) — so the seasonal
+    statistic will "print green" this month even though the tape has been a knife-fight around the stop. <strong>That is the trap:
+    a green monthly candle can coexist with a broken structure.</strong> Seasonality modifies confidence; it never confirms a Spring.
+  </div>
+</div>
+
+<!-- ═══ 9. PLAYBOOK ═══ -->
+<div class="part">Month-by-month execution playbook</div>
+<div class="card" style="padding:6px 10px;">
+  <table><thead><tr><th>Month</th><th>Action</th><th>Range</th><th>Wyckoff / cycle rationale</th><th>Key risk</th></tr></thead>
+  <tbody id="tbl"></tbody></table>
+</div>
+
+<!-- ═══ 10. AUDIT ═══ -->
+<div class="part">Layered analytical audit</div>
+
+<div class="card c-blue">
+  <div style="font-weight:700;font-size:12px;margin-bottom:8px;">1 · Macro context <span style="color:var(--txt3);font-weight:400;">[Global Macro Strategist]</span></div>
+  <div class="kv">
+    <div class="k">Institutional flow</div><div>BTC reclaimed $65K on Jul 14 ($65,040) — its first close above the level and the driver of ADA's bounce. <strong>But it has already slipped back below</strong> ($64,544 live), so the breakout is unconfirmed. The bid is real but not yet decisive.</div>
+    <div class="k">Macro bias</div><div><span class="badge b-amber">Improving, fragile</span> — a BTC hold above $65K would be a genuine tailwind; a failure back below re-opens downside. <strong>FOMC Jul 29</strong> is the next hard binary.</div>
+    <div class="k">Strategic note</div><div>ADA's fate here is <strong>almost entirely BTC-dependent</strong>: the Spring was BTC-led and ADA underperformed even on the up day. <strong>Watch BTC's second close above $65K as the real tell</strong> — it will decide ADA's Spring more than any ADA-specific level.</div>
+  </div>
+</div>
+
+<div class="card c-amber">
+  <div style="font-weight:700;font-size:12px;margin-bottom:8px;">2 · Market structure &amp; liquidity <span style="color:var(--txt3);font-weight:400;">[Lead Market Structure Analyst]</span></div>
+  <div class="kv">
+    <div class="k">Primary interpretation<br><span style="font-weight:400;font-size:10.5px;">(FLIPPED back from Jul 13)</span></div><div><strong>Phase C — potential Spring in progress.</strong> The Jul 13 sweep undercut the $0.1596 stop (close $0.15748, low $0.15550), swept the stop-liquidity beneath it, and <strong>Jul 14 reclaimed hard</strong> (open $0.15755 → close $0.16554, near the high, on expanding volume). That is the textbook shape of a Spring. <strong>UNCONFIRMED</strong> — a Spring is only real once a Secondary Test holds the low on lighter volume and a Sign of Strength reclaims $0.1667.</div>
+    <div class="k">Alternate interpretation<br><span style="font-weight:400;font-size:10.5px;">(MANDATORY — and carrying real weight)</span></div><div><strong>Phase D — bull trap / squeeze.</strong> Negative funding made Jul 13 a short-heavy setup; the Jul 14 spike may be forced covering, not accumulation. If demand does not follow, ADA rolls back under $0.1596 and markdown resumes to $0.1387. <strong>ADA's relative weakness on the up day is direct evidence for this read.</strong></div>
+    <div class="k">Liquidity matrix</div><div>The Jul 13 wick to $0.15550 was a <strong>stop-liquidity sweep</strong> below an obvious level — the fuel for the reversal. The now-broken-then-reclaimed $0.1596 is the pivot; $0.1667 (former ST base) is the supply that a real Spring must reclaim.</div>
+    <div class="k">Smart money footprint</div><div><span class="badge b-amber">DISTRIBUTING → WATCH FOR PIVOT</span> ~450M ADA shed across two waves (Jul 13 read, not refreshed today). <strong>The single most important thing to watch now is whether Santiment shows that distribution STOPPING</strong> — a pivot from selling to accumulation is what turns a potential Spring into a real one.</div>
+    <div class="k">Relative strength</div><div><span class="badge b-red">STILL WEAK.</span> ADA/BTC ratio soft; ADA red on the live candle while BTC holds. The bounce did not buy ADA any relative strength. A Spring without relative strength is a suspect Spring.</div>
+  </div>
+</div>
+
+<div class="card c-amber">
+  <div style="font-weight:700;font-size:12px;margin-bottom:8px;">3 · Sentiment &amp; behaviour <span style="color:var(--txt3);font-weight:400;">[Alternative Data Quant]</span></div>
+  <div class="kv">
+    <div class="k">Fear &amp; Greed</div><div><strong>Wide split: ~22 (Extreme Fear) to ~44–49 (Neutral)</strong> depending on methodology — the composite indices sit neutral while the alternative.me-family reads extreme fear. When the sources disagree this much, <strong>the layer carries no clean signal.</strong> Treat as a band.</div>
+    <div class="k">Contrarian read</div><div>Sentiment neither confirms nor denies the Spring. The neutral composites reflect BTC's bounce; the fearful reads reflect the underlying tape. <strong>No edge either direction — do not read the bounce as sentiment-confirmed.</strong></div>
+    <div class="k">Behavioural flags</div><div><span class="badge b-amber">Squeeze-fade risk: ELEVATED</span> Negative funding + a violent reversal = squeeze conditions. Squeezes retrace when covering exhausts. <strong>The danger now is FOMO-ing the bounce — the mirror image of last session's panic-the-wick risk.</strong> Do neither.</div>
+    <div class="k">Process note</div><div>The Jul 11 upthrust (a false bullish reclaim) and the Jul 13 sweep (a false bearish exit) were <strong>both correctly not-called</strong> because the candles were unsettled. That is the two-close rule earning its keep in both directions in a single week. <strong>Apply it again to the Spring: do not call it until it is confirmed.</strong></div>
+  </div>
+</div>
+
+<!-- ═══ 11. ZERO WEIGHT ═══ -->
+<div class="part">Zero-weight disclosures — reported in full, NO directional signal</div>
+<div class="card" style="padding:6px 10px;">
+  <table>
+    <tr><th>Layer</th><th>Current state</th><th>Verdict</th></tr>
+    <tr class="zero"><td><strong>Shmita</strong></td>
+      <td>Year 4 of 7 — not inside a Shmita year. Next release year (5789) begins Sep 2028. The two release years on record produced <em>opposite</em> outcomes.</td>
+      <td><span class="badge b-gray">NO SIGNAL</span></td></tr>
+    <tr class="zero"><td><strong>Mercury Rx</strong></td>
+      <td>Retrograde since Jun 29; direct ~Jul 23 (roughly a week out). Covers ~a third of the calendar; no discriminating power. A superseded map would be tempted to credit "Mercury direct approaching" for the reclaim — <strong>that is a coincidence, not a cause.</strong></td>
+      <td><span class="badge b-gray">NO SIGNAL</span></td></tr>
+    <tr class="zero"><td><strong>Lunar</strong></td>
+      <td>New moon was ~Jul 14 (computed, not fetched). It coincided with the reclaim candle — <strong>and that coincidence is worth exactly nothing.</strong> New moons recur monthly.</td>
+      <td><span class="badge b-gray">NO SIGNAL</span></td></tr>
+  </table>
+  <div style="font-size:11px;color:var(--txt3);padding:9px 0 3px;">
+    Disclosed in every report for completeness and risk-discipline framing, per the standing independent audit ruling.
+    <strong>Never permitted to generate, gate, delay, or veto a signal — including a convenient one that happens to align with the tape.</strong>
+  </div>
+</div>
+
+<!-- ═══ 12. RISK ENGINEERING ═══ -->
+<div class="part">Risk engineering &amp; execution commands — CRO &amp; Quant PM sign-off</div>
+<div class="card c-amber">
+  <div class="kv">
+    <div class="k">System trading action</div><div><span class="badge b-amber">HOLD — Spring test in progress</span> The stop reclaimed; the position lives. <strong>Do not add on the unconfirmed Spring. Do not FOMO the bounce. Do not exit — the stop did not fire.</strong></div>
+    <div class="k">Tactical aggressiveness</div><div><strong>2 / 10</strong> <span style="color:var(--txt3);">(was 1/10 — the reclaim earns one tick back; unconfirmed, so no more)</span></div>
+    <div class="k">Model composite confidence</div><div><strong>44 / 100</strong> <span style="color:var(--txt3);">(was 28 — the stop held and BTC tagged BUY 4; capped by ADA's relative weakness and the squeeze mechanic)</span></div>
+    <div class="k">Structural risk profile</div><div><span class="badge b-amber">HIGH</span> <span style="color:var(--txt3);">(was EXTREME — price reclaimed off the stop, but the Spring is unconfirmed and the position is still underwater)</span></div>
+    <div class="k" style="padding-top:8px;">Immediate trigger</div><div style="padding-top:8px;"><strong>NONE. Do nothing for the next 21h 11m.</strong> The Jul 15 candle is live and pulling back — that pullback may BE the Spring's Secondary Test, but it is unsettled. No mid-candle decisions.</div>
+    <div class="k">Confirmation trigger<br><span style="font-weight:400;font-size:10.5px;">(BUY 2 — Spring/Sweep add)</span></div><div>A <strong>Secondary Test of $0.15550 that holds on lighter volume</strong>, THEN a <strong>Sign of Strength close above $0.1667</strong> (reclaiming the broken ST base), ideally <em>with</em> BTC confirming BUY 4 (2nd close &gt; $65K). Only then is a <strong>small</strong> tactical BUY 2 justified — the bulk of dry powder still waits for autumn.</div>
+    <div class="k">Hard structural invalidation</div><div><strong>Two consecutive UTC daily closes below $0.1596</strong> → EXIT BUY 1, thesis dead. <em>Currently 0 of 2 (reset).</em> Additionally, a single close below the <strong>$0.15550 Spring low</strong> negates the Spring thesis specifically and hands the read back to markdown.</div>
+    <div class="k">If the Spring fails</div><div>Exit on the two-close break, do not re-enter on the next green candle, and wait for either a confirmed Spring lower down or the Oct–Nov CORE window.</div>
+  </div>
+</div>
+
+<!-- ═══ 13. CATALYSTS ═══ -->
+<div class="part">Catalysts — what changes the map</div>
+<div class="card" style="padding:6px 10px;">
+  <table>
+    <thead><tr><th>Catalyst</th><th>Status</th><th>Impact</th><th>Direction</th></tr></thead>
+    <tbody>
+      <tr><td><strong>BTC 2nd close &gt; $65K</strong></td><td><strong>PENDING — live $64,544</strong></td><td>The single most important external tell. Confirms BTC BUY 4 and would give ADA's Spring the macro backing it needs. A failure back below re-opens ADA downside.</td><td style="color:var(--green);font-weight:700">Bullish unlock</td></tr>
+      <tr><td><strong>ADA Secondary Test</strong></td><td>LIVE — Jul 15 pullback in progress</td><td>Must hold above $0.15550 on lighter volume. Holds → Spring strengthens. Closes below $0.1596 (x2) → exit.</td><td style="color:var(--amber);font-weight:700">Binary</td></tr>
+      <tr><td><strong>Whale distribution</strong></td><td>~450M two waves <span class="badge b-gray">not refreshed today</span></td><td><strong>Watch for the PIVOT.</strong> Distribution stopping — visible on Santiment before price — is what converts a potential Spring into a real one.</td><td style="color:var(--red);font-weight:700">Bearish (watch for pivot)</td></tr>
+      <tr><td><strong>Funding rate</strong></td><td>Was NEGATIVE −0.0060% <span class="badge b-gray">not refreshed</span></td><td>Negative funding fuelled the squeeze. A flip back positive alongside price strength = genuine demand, not just covering.</td><td style="color:var(--amber);font-weight:700">Squeeze fuel</td></tr>
+      <tr><td><strong>ADA spot ETF review window</strong></td><td><span class="badge b-gray">UNVERIFIED</span> reported Aug 9 · Grayscale "GADA"</td><td><strong>Still the biggest potential forward catalyst — still single-sourced.</strong> Independent verification remains a priority action item. Do not position on it.</td><td style="color:var(--txt3);font-weight:700">Unverified</td></tr>
+      <tr><td><strong>van Rossem hard fork</strong></td><td><span class="badge b-gray">UNVERIFIED</span> reported ~Jul 23</td><td>Protocol catalyst, single-source. If real, it lands the same week as Mercury-direct noise (which is zero-weight) — judge it on merits alone.</td><td style="color:var(--txt3);font-weight:700">Unverified</td></tr>
+      <tr><td><strong>FOMC</strong></td><td>Jul 29, 2026</td><td>Macro test — two weeks out.</td><td style="color:var(--amber);font-weight:700">Binary macro</td></tr>
+      <tr><td><strong>BTC autumn cycle bottom</strong></td><td>Oct–Nov 2026 — <strong>UNCHANGED</strong></td><td><strong>The anchor. Five sessions of whipsaw have not touched it.</strong> 75% dry powder intact and reserved.</td><td style="color:var(--green);font-weight:700">Core thesis</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ═══ 14. DELTA ═══ -->
+<div class="part">Framework delta — Jul 13 map → Jul 15 map</div>
+<div class="card" style="padding:6px 10px;">
+  <table>
+    <thead><tr><th>Metric</th><th>Jul 13</th><th>Jul 15</th><th>Δ</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Spot</strong></td><td class="mono">$0.1597</td><td class="mono">$0.1626</td><td style="color:var(--green)">+1.8%</td></tr>
+      <tr><td><strong>Last settled close</strong></td><td class="mono">Jul 12 · $0.16204</td><td class="mono">Jul 14 · $0.16554</td><td style="color:var(--green)">+2.2%</td></tr>
+      <tr><td><strong>Stop decision</strong></td><td>EXIT ARMED · 0 of 2</td><td><strong>DID NOT FIRE · reclaimed</strong></td><td style="color:var(--green)">✔ Survived</td></tr>
+      <tr><td><strong>Jul 13 close</strong></td><td>—</td><td class="mono">$0.15748 (below · warning #1)</td><td style="color:var(--amber)">Swept</td></tr>
+      <tr><td><strong>Jul 14 close</strong></td><td>—</td><td class="mono"><strong>$0.16554 (reclaim)</strong></td><td style="color:var(--green)">Reset</td></tr>
+      <tr><td><strong>Wyckoff PRIMARY</strong></td><td>Phase D — markdown</td><td><strong>Phase C — potential Spring</strong></td><td style="color:var(--green)">⚠ FLIPPED back</td></tr>
+      <tr><td><strong>Structure this week</strong></td><td>B→D flip</td><td><strong>D→C flip (3rd in 5 sessions)</strong></td><td style="color:var(--amber)">Undecided</td></tr>
+      <tr><td><strong>BTC</strong></td><td class="mono">$62,760 · failed $65K by $302</td><td class="mono"><strong>$65,040 close · BUY 4 TAGGED</strong></td><td style="color:var(--green)">+2.8%</td></tr>
+      <tr><td><strong>BTC BUY 4</strong></td><td>Rejected</td><td><strong>Tagged (1 close), confirm pending</strong></td><td style="color:var(--amber)">At risk</td></tr>
+      <tr><td><strong>Position mark</strong></td><td>≈ −15.5%</td><td><strong>≈ −14.0%</strong></td><td style="color:var(--green)">+1.5pp</td></tr>
+      <tr><td><strong>BUY 2 definition</strong></td><td>Higher low + 2 closes &gt; $0.19</td><td><strong>Spring test-hold + SOS &gt; $0.1667</strong></td><td style="color:var(--amber)">Re-framed (Wyckoff)</td></tr>
+      <tr><td><strong>Relative strength</strong></td><td>−16.6% vs BTC</td><td>Still weak — red on up day</td><td style="color:var(--red)">No improvement</td></tr>
+      <tr><td><strong>Fear &amp; Greed</strong></td><td>~26–29</td><td>~22–48 (wide split)</td><td style="color:var(--txt3)">No clean signal</td></tr>
+      <tr><td><strong>Confidence</strong></td><td>28 / 100</td><td><strong>44 / 100</strong></td><td style="color:var(--green)">+16</td></tr>
+      <tr><td><strong>Aggressiveness</strong></td><td>1 / 10</td><td><strong>2 / 10</strong></td><td style="color:var(--green)">+1</td></tr>
+      <tr><td><strong>Risk profile</strong></td><td>EXTREME</td><td><strong>HIGH</strong></td><td style="color:var(--green)">↓</td></tr>
+      <tr><td><strong>Action</strong></td><td>HOLD — EXIT ARMED</td><td><strong>HOLD — Spring test</strong></td><td style="color:var(--amber)">Re-framed</td></tr>
+      <tr><td><strong>Oct–Nov CORE</strong></td><td>CORE ACCUMULATE</td><td><strong>CORE ACCUMULATE</strong></td><td style="color:var(--green)">UNCHANGED</td></tr>
+      <tr><td><strong>Dry powder</strong></td><td>75%</td><td><strong>75%</strong></td><td style="color:var(--green)">Intact</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ═══ 15. BRIEF ═══ -->
+<div class="part">Final executive brief</div>
+<div class="card c-amber">
+  <div class="brief">
+    ADA sits in a <strong>potential Phase-C Spring</strong>: Jul 13 undercut the $0.1596 stop and swept the liquidity beneath it (low
+    $0.15550, close $0.15748 — warning close #1), then Jul 14 reversed hard to close $0.16554 back above the stop, so the
+    <strong>two-close exit did not fire, the count reset, and the position lives</strong> — the mandatory alternate from the last map
+    is now the primary read, the third structural flip in five sessions. The immediate mechanic is a live Secondary Test: the Jul 15
+    candle is pulling back into $0.1626 and <em>must hold above $0.15550</em> to keep the Spring alive, while the whole move is
+    <strong>BTC-led and suspect</strong> — BTC only <em>tagged</em> its $65K BUY 4 trigger (one close, now back below at $64,544, confirmation
+    pending), the reclaim was partly a negative-funding short squeeze, and ADA stayed relatively weak throughout, even printing red on
+    the up day. <strong>Hold the quarter, add nothing on the unconfirmed Spring and FOMO nothing on the bounce, let the test settle above
+    $0.15550, arm a SMALL tactical BUY 2 only on a Sign-of-Strength close back above $0.1667 with BTC confirming — and keep the 75% dry
+    powder untouched for the October–November cycle-bottom window, which five sessions of whipsaw have left completely intact.</strong>
+  </div>
+</div>
+
+<!-- ═══ 16. PROVENANCE ═══ -->
+<div class="part">Data provenance</div>
+<div class="card c-gray">
+  <div style="font-size:11.5px;line-height:1.65;color:var(--txt2);">
+    <strong>Crypto.com MCP — CALLABLE, authoritative</strong> for UTC-midnight closes (ADA_USDT, BTC_USDT).
+    <strong>CoinGecko MCP</strong> — cross-check on <em>price value</em>, not date label; offset re-verified.
+    <strong>Both feeds agree across the sequence, including at the stop level</strong> — spot $0.162494 (CG) vs $0.16256 (CDC), BTC
+    $64,510 (CG) vs $64,544 (CDC). <strong>No feed disagreement → the "did-not-fire" determination stands without caveat.</strong><br>
+    <strong>Web search</strong> — Fear &amp; Greed band (wide split, ~22–48, methodology-dependent).<br>
+    <strong>Lunar — computed</strong>, not fetched. Zero weight regardless.<br>
+    <strong>Carried forward, NOT re-verified today:</strong> Santiment whale distribution (~450M two waves) and the −0.0060% funding
+    print — both from the Jul 13 read, flagged as stale-but-directional.<br>
+    <strong>Explicitly NOT verified — do not act on these:</strong> Aug 9 ADA spot-ETF review window / Grayscale "GADA"; van Rossem
+    hard-fork date. Single-source. Flagged, not weighted.<br>
+    <strong>Cost basis ≈$0.189 is DERIVED, not a confirmed fill — third request pending.</strong> No figure in this map is fabricated.
+  </div>
+</div>
+
+<div class="foot">
+  Evidence hierarchy, non-negotiable: <strong>Wyckoff dominates.</strong> Liquidity, the halving cycle and macro/FOMC carry supporting
+  weight. Seasonality and sentiment modify confidence only. Shmita, Mercury retrograde and lunar cycles are disclosed in full and carry
+  <strong>zero directional weight</strong> — never a signal, never a gate, never a veto, and never a cause credited to a coincidental alignment.<br><br>
+  Gate and invalidation determinations are made on <strong>closed UTC daily candles only</strong>, and require <strong>two consecutive
+  closes</strong> — symmetrically, for entry, negation, and BTC's BUY 4 alike. No mid-candle pulls, in either direction. This week the
+  rule prevented both a false bullish call (Jul 11 upthrust) and a false bearish call (Jul 13 sweep). All corrections are logged
+  explicitly with before/after framing; nothing is revised silently.<br><br>
+  ⚠️ Structural orientation, not financial advice. This is a positioning and risk-management tool — not a prediction. Cryptocurrency
+  markets are highly volatile and past patterns do not guarantee future results. Size positions yourself, use stops, and consult a
+  licensed financial advisor before making investment decisions.
+</div>
+
+<script>
+const M=[
+ {l:"Jun 2026",a:"CLOSED −40%",c:"a-sell",b:"bar-sell",s:0,r:"closed $0.1453",tag:"past",
+  why:"<strong>The Selling Climax.</strong> BUY 3 stopped out Jun 24 at $0.1477. Month closed $0.1453, −40%. Low $0.1387 on Jun 23. Drivers were not only macro: failed treasury votes, a cancelled summit, and Hoskinson's warnings on ecosystem failures.",
+  k:"Worst month of the cycle. Realised loss on the BUY 3 stop-out."},
+ {l:"Jul 2026",a:"HOLD — Spring test",c:"a-wait",b:"bar-wait",s:44,r:"$0.1555–$0.1817",tag:"now",
+  why:"<strong>NOW.</strong> After 8 lower closes and a failed upthrust, Jul 13 SWEPT the $0.1596 stop (low $0.15550, close $0.15748 = warning #1) and Jul 14 RECLAIMED hard (close $0.16554) — the two-close exit did NOT fire. <strong>Potential Phase C Spring, BTC-led</strong> (BTC tagged $65K BUY 4). Live Jul 15 pullback = the Secondary Test, must hold $0.15550. Seasonality +12% MTD and unconfirming.",
+  k:"Reclaim was partly a short squeeze; ADA red on the up day. Two closes below $0.1596 = exit. Spring unconfirmed."},
+ {l:"Aug 2026",a:"WATCH — Spring / BUY 2",c:"a-wait",b:"bar-wait",s:44,r:"$0.13–$0.21",tag:"cond",
+  why:"<strong>Confirmation month.</strong> If the Spring confirms (test-hold + SOS &gt; $0.1667 + BTC 2nd close &gt; $65K) → a SMALL tactical BUY 2 is justified. If it fails → you are flat and the question is the autumn window, not adding. Reported ADA spot-ETF eligibility (Aug 9) is the potential upside shock — <strong>unverified.</strong>",
+  k:"Chasing a failed Spring / dead-cat bounce. Re-entering on the first green candle instead of confirmed structure."},
+ {l:"Sep 2026",a:"WAIT",c:"a-wait",b:"bar-wait",s:42,r:"$0.12–$0.20",tag:"cond",
+  why:"ADA's strongest seasonal month (+22% avg) — <strong>and it does not matter.</strong> The BTC cycle-bottom window is directly ahead. Do not pre-position into the month preceding the framework's own bottom estimate. Hold fire, hold cash.",
+  k:"The seasonal siren song. Buying September strength straight into an October flush."},
+ {l:"Oct 2026",a:"CORE ACCUMULATE",c:"a-buy",b:"bar-buy",s:62,r:"$0.12–$0.24",tag:"core",
+  why:"<strong>THE WINDOW — untouched by five sessions of whipsaw.</strong> BTC's 363–376-day post-peak interval from the Oct 2025 ATH ($126K) centres here. If a capitulation and Spring print, this is the primary deployment zone. Buy weakness, not strength.",
+  k:"The bottom may print far below current levels. Do not pre-position — wait for the flush AND the reclaim."},
+ {l:"Nov 2026",a:"CORE ACCUMULATE",c:"a-buy",b:"bar-buy",s:62,r:"$0.12–$0.26",tag:"core",
+  why:"Second half of the cycle-bottom window. Scale BUY 2 / BUY 3 on a confirmed Spring plus a Sign of Strength. Anchored to the cycle structure — <strong>not</strong> to any calendar or astro layer.",
+  k:"If no bottom confirms, the window extends. Patience over forcing. WAIT remains a valid position."},
+ {l:"Dec 2026",a:"HOLD / add on confirm",c:"a-hold",b:"bar-hold",s:55,r:"$0.14–$0.28",tag:"cond",
+  why:"Early markup if the autumn bottom confirmed — add on the first LPS / back-up. If no bottom formed, stay flat and carry the powder into 2027. <strong>Not a reduce month:</strong> you do not distribute what you have only just accumulated.",
+  k:"Thin year-end liquidity. False starts are common off a fresh low."},
+ {l:"Jan 2027",a:"ACCUMULATE",c:"a-accum",b:"bar-accum",s:56,r:"$0.16–$0.32",tag:"cond",
+  why:"New-year capital deployment; ADA historically positive in January (+18% avg). Re-accumulate into markup if the autumn bottom held.",
+  k:"Wholly conditional on a confirmed autumn bottom. No bottom = no trade."},
+ {l:"Feb 2027",a:"BUY",c:"a-buy",b:"bar-buy",s:60,r:"$0.19–$0.40",tag:"cond",
+  why:"ADA's second-strongest seasonal month (+31% avg). Markup continuation. Add on pullbacks, never on strength.",
+  k:"Overheating if January ran hard. Watch for a lower high."},
+ {l:"Mar 2027",a:"BUY",c:"a-buy",b:"bar-buy",s:58,r:"$0.21–$0.46",tag:"cond",
+  why:"Green every year since 2022 bar 2024. Protocol-upgrade delivery window — Leios mainnet is the fundamental catalyst to watch.",
+  k:"2024 was the exception (closed red). Upgrade-delay risk is real for Cardano specifically."},
+ {l:"Apr 2027",a:"STRONG BUY",c:"a-sbuy",b:"bar-sbuy",s:63,r:"$0.25–$0.56",tag:"cond",
+  why:"ADA's best historical month (+29% avg). Pre-2028-halving cycle echo begins. Maximum probability of a large monthly candle — <em>if</em> the recovery is real.",
+  k:"If Q1 ran too far, April flips to distribution. Watch volume, not price."},
+ {l:"May 2027",a:"REDUCE",c:"a-reduce",b:"bar-reduce",s:40,r:"$0.23–$0.50",tag:"cond",
+  why:"\"Sell in May.\" Historically weak for alts (−14% avg). May has hosted crypto's black swans — Terra/LUNA collapsed in May 2022. Begin trimming.",
+  k:"Flash-crash risk. Do not marry a position that has multiplied."},
+ {l:"Jun 2027",a:"SELL / REDUCE",c:"a-sell",b:"bar-sell",s:26,r:"$0.17–$0.42",tag:"cond",
+  why:"<strong>ADA's worst month — 8 of 9 years closed lower</strong> (−18% avg). Distribution zone if the prior months ran. The strongest seasonal edge on the entire calendar.",
+  k:"June 2021 was the sole bullish exception. Do not hold heavy size into June."},
+ {l:"Jul 2027",a:"WAIT",c:"a-wait",b:"bar-wait",s:44,r:"$0.16–$0.40",tag:"cond",
+  why:"Post-June consolidation. Watch for a new accumulation base. WAIT is a position — do not force a re-entry.",
+  k:"Extended markdown from May–June with no clear bottom yet."},
+ {l:"Aug 2027",a:"ACCUMULATE",c:"a-accum",b:"bar-accum",s:55,r:"$0.17–$0.42",tag:"cond",
+  why:"Pre-2028-halving positioning begins in earnest. DCA if the June–July lows held.",
+  k:"The 2028 halving may reset the macro clock on a different schedule than 2024's."},
+ {l:"Sep 2027",a:"BUY",c:"a-buy",b:"bar-buy",s:60,r:"$0.21–$0.48",tag:"cond",
+  why:"Seasonally strong (+22% avg). September–October has historically launched major rally legs. Pre-halving accumulation window.",
+  k:"Pattern may not repeat. BTC dominance may still be elevated, starving alts."},
+ {l:"Oct 2027",a:"STRONG BUY",c:"a-sbuy",b:"bar-sbuy",s:65,r:"$0.27–$0.58",tag:"cond",
+  why:"Q4 2027 = full pre-halving-2028 positioning. Historically the strongest Q4 setup. Add size on a confirmed structure.",
+  k:"Pre-halving pump-and-dump risk. The market may price the 2028 halving early, then unwind."},
+ {l:"Nov 2027",a:"HOLD",c:"a-hold",b:"bar-hold",s:52,r:"$0.30–$0.66",tag:"cond",
+  why:"Hold the markup. Monitor for Signs of Weakness / UTAD before any Q1 2028 surge. Let the position work.",
+  k:"Profit-taking cascade. FTX-anniversary volatility is a recurring November pattern."},
+ {l:"Dec 2027",a:"REDUCE",c:"a-reduce",b:"bar-reduce",s:44,r:"$0.33–$0.76",tag:"cond",
+  why:"Year-end profit-taking, tax-loss harvesting, institutional rebalancing. If ADA has multiplied off the 2026 lows, this is meaningful distribution territory.",
+  k:"If significantly in profit, failure to reduce IS the risk. Emotional holding kills cycles."},
+];
+
+const TAG={now:['t-now','NOW'],past:['t-past','PAST'],cond:['t-cond','COND'],core:['t-core','CORE']};
+const g=document.getElementById('grid'), t=document.getElementById('tbl');
+
+M.forEach(m=>{
+  const [tc,tl]=TAG[m.tag];
+  const d=document.createElement('div');
+  d.className='mc'+(m.tag==='now'?' now':'')+(m.tag==='core'?' core':'');
+  d.innerHTML=`<span class="tag ${tc}">${tl}</span>
+    <div class="mc-m">${m.l}</div>
+    <div class="mc-a ${m.c}">${m.a}</div>
+    <div class="mc-s">Confidence ${m.s}/100</div>
+    <div class="mc-n">${m.r}</div>
+    <div class="mc-bar ${m.b}" style="width:${Math.max(3,m.s)}%"></div>`;
+  g.appendChild(d);
+
+  const tr=document.createElement('tr');
+  const bcls={'a-sbuy':'b-green','a-buy':'b-green','a-accum':'b-blue','a-hold':'b-gray',
+              'a-wait':'b-amber','a-reduce':'b-amber','a-sell':'b-red'}[m.c];
+  tr.innerHTML=`<td style="font-weight:700;white-space:nowrap">${m.l}
+      <span class="tag ${tc}" style="position:static;display:inline-block;margin-left:3px">${tl}</span></td>
+    <td><span class="badge ${bcls}">${m.a}</span></td>
+    <td class="mono" style="white-space:nowrap">${m.r}</td>
+    <td>${m.why}</td>
+    <td style="color:var(--txt2)">${m.k}</td>`;
+  t.appendChild(tr);
+});
+</script>
+</body>
+</html>
