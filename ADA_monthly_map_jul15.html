@@ -108,6 +108,37 @@
   .lg{display:flex;flex-wrap:wrap;gap:14px;font-size:10.5px;color:var(--txt2);margin-top:10px;}
   .lg span{display:flex;align-items:center;gap:5px;}
   .lg i{width:11px;height:3px;border-radius:2px;display:inline-block;}
+
+  /* restored interactivity — filter chips + clickable month cards + detail modal */
+  .filters{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 12px;}
+  .chip{font-size:11px;font-weight:600;padding:5px 11px;border-radius:99px;border:1px solid var(--bord);
+    background:var(--bg2);color:var(--txt2);cursor:pointer;transition:all .12s;}
+  .chip:hover{border-color:var(--bl);color:var(--txt);}
+  .chip.active{background:var(--txt);color:var(--bg);border-color:var(--txt);}
+  .mc{cursor:pointer;transition:transform .12s, box-shadow .12s;}
+  .mc:hover{transform:translateY(-2px);box-shadow:0 4px 16px rgba(0,0,0,.28);}
+  .mc.dimmed{opacity:.3;filter:grayscale(.45);}
+  .mc-more{font-size:9px;color:var(--txt3);margin-top:7px;font-weight:600;letter-spacing:.02em;}
+  .modal-bg{position:fixed;inset:0;background:rgba(0,0,0,.55);display:none;align-items:center;
+    justify-content:center;padding:20px;z-index:50;}
+  .modal-bg.open{display:flex;}
+  .modal{background:var(--bg2);border:1px solid var(--bord);border-radius:14px;max-width:460px;width:100%;
+    padding:20px 22px;box-shadow:0 20px 60px rgba(0,0,0,.45);max-height:88vh;overflow-y:auto;}
+  .modal-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px;}
+  .modal-head .m-title{font-size:17px;font-weight:700;}
+  .modal-close{background:none;border:none;font-size:22px;line-height:1;color:var(--txt3);cursor:pointer;
+    padding:2px 8px;border-radius:6px;}
+  .modal-close:hover{background:var(--bg3);color:var(--txt);}
+  .m-action{font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:3px 10px;
+    border-radius:99px;display:inline-block;margin-bottom:14px;}
+  .m-stats{display:flex;gap:20px;margin-bottom:16px;flex-wrap:wrap;}
+  .m-stat .s-label{font-size:10px;text-transform:uppercase;letter-spacing:.05em;color:var(--txt3);margin-bottom:3px;}
+  .m-stat .s-val{font-size:15px;font-weight:700;}
+  .m-block{margin-bottom:14px;}
+  .m-block .b-label{font-size:10px;text-transform:uppercase;letter-spacing:.05em;color:var(--txt3);
+    margin-bottom:4px;font-weight:700;}
+  .m-block .b-text{font-size:12.5px;line-height:1.55;color:var(--txt);}
+  .m-block.risk .b-text{color:var(--red);}
 </style>
 </head>
 <body>
@@ -264,6 +295,12 @@ Dry powder:                     75% reserved for Oct-Nov 2026. Any BUY 2 here is
 
 <!-- ═══ 6. MONTHLY MAP ═══ -->
 <div class="part">Monthly action map — Jun 2026 → Dec 2027</div>
+<div class="filters" id="filters">
+  <button class="chip active" data-filter="all">All</button>
+  <button class="chip" data-filter="buy">Buy / Accumulate</button>
+  <button class="chip" data-filter="hold">Wait / Hold</button>
+  <button class="chip" data-filter="sell">Reduce / Sell</button>
+</div>
 <div class="month-grid" id="grid"></div>
 <div style="font-size:11px;color:var(--txt3);margin-bottom:6px;">
   <span class="badge b-gray">COND</span> = conditional. <span class="badge b-green">CORE</span> = the framework's highest-conviction
@@ -509,6 +546,23 @@ Dry powder:                     75% reserved for Oct-Nov 2026. Any BUY 2 here is
   licensed financial advisor before making investment decisions.
 </div>
 
+<!-- DETAIL MODAL (restored interaction) -->
+<div class="modal-bg" id="modalBg">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="mTitle">
+    <div class="modal-head">
+      <span class="m-title" id="mTitle"></span>
+      <button class="modal-close" id="modalClose" aria-label="Close">×</button>
+    </div>
+    <span class="m-action" id="mAction"></span>
+    <div class="m-stats">
+      <div class="m-stat"><div class="s-label">Price range</div><div class="s-val" id="mRange"></div></div>
+      <div class="m-stat"><div class="s-label">Confidence</div><div class="s-val" id="mScore"></div></div>
+    </div>
+    <div class="m-block"><div class="b-label">Wyckoff / cycle rationale</div><div class="b-text" id="mWhy"></div></div>
+    <div class="m-block risk"><div class="b-label">Key risk</div><div class="b-text" id="mRisk"></div></div>
+  </div>
+</div>
+
 <script>
 const M=[
  {l:"Jun 2026",a:"CLOSED −40%",c:"a-sell",b:"bar-sell",s:0,r:"closed $0.1453",tag:"past",
@@ -573,16 +627,19 @@ const M=[
 const TAG={now:['t-now','NOW'],past:['t-past','PAST'],cond:['t-cond','COND'],core:['t-core','CORE']};
 const g=document.getElementById('grid'), t=document.getElementById('tbl');
 
-M.forEach(m=>{
+M.forEach((m,i)=>{
   const [tc,tl]=TAG[m.tag];
   const d=document.createElement('div');
   d.className='mc'+(m.tag==='now'?' now':'')+(m.tag==='core'?' core':'');
+  d.dataset.cat=categoryOf(m.c);
   d.innerHTML=`<span class="tag ${tc}">${tl}</span>
     <div class="mc-m">${m.l}</div>
     <div class="mc-a ${m.c}">${m.a}</div>
     <div class="mc-s">Confidence ${m.s}/100</div>
     <div class="mc-n">${m.r}</div>
-    <div class="mc-bar ${m.b}" style="width:${Math.max(3,m.s)}%"></div>`;
+    <div class="mc-bar ${m.b}" style="width:${Math.max(3,m.s)}%"></div>
+    <div class="mc-more">Tap for detail →</div>`;
+  d.addEventListener('click',()=>openModal(i));
   g.appendChild(d);
 
   const tr=document.createElement('tr');
@@ -596,6 +653,42 @@ M.forEach(m=>{
     <td style="color:var(--txt2)">${m.k}</td>`;
   t.appendChild(tr);
 });
+
+// ---- action -> filter bucket ----
+function categoryOf(c){
+  if(c==='a-sbuy'||c==='a-buy'||c==='a-accum') return 'buy';
+  if(c==='a-sell'||c==='a-reduce') return 'sell';
+  return 'hold'; // a-hold + a-wait
+}
+
+// ---- detail modal ----
+const modalBg=document.getElementById('modalBg');
+function openModal(i){
+  const m=M[i];
+  document.getElementById('mTitle').textContent=m.l;
+  const aEl=document.getElementById('mAction');
+  aEl.textContent=m.a; aEl.className='m-action '+m.c;
+  document.getElementById('mRange').textContent=m.r;
+  document.getElementById('mScore').textContent=m.s+' / 100';
+  document.getElementById('mWhy').innerHTML=m.why;
+  document.getElementById('mRisk').textContent=m.k;
+  modalBg.classList.add('open');
+}
+function closeModal(){ modalBg.classList.remove('open'); }
+document.getElementById('modalClose').addEventListener('click',closeModal);
+modalBg.addEventListener('click',e=>{ if(e.target===modalBg) closeModal(); });
+document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeModal(); });
+
+// ---- filter chips (dim non-matching month cards) ----
+const chips=document.querySelectorAll('#filters .chip');
+chips.forEach(chip=>chip.addEventListener('click',()=>{
+  chips.forEach(c=>c.classList.remove('active'));
+  chip.classList.add('active');
+  const f=chip.dataset.filter;
+  g.querySelectorAll('.mc').forEach(card=>{
+    card.classList.toggle('dimmed', f!=='all' && card.dataset.cat!==f);
+  });
+}));
 </script>
 </body>
 </html>
