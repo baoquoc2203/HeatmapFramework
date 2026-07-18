@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BTC Framework — Look-Back &amp; Forecast, July 1 2026</title>
+<style>
+  :root{
+    --bg:#ffffff; --bg2:#f6f4ee; --bg3:#efece3; --txt:#2c2c2a; --txt2:#5f5e5a; --bord:#e3e0d6;
+    --red:#993C1D; --red-bg:#FAECE7; --amber:#854F0B; --amber-bg:#FAEEDA;
+    --green:#3B6D11; --green-bg:#EAF3DE; --blue:#185FA5; --blue-bg:#E6F1FB;
+    --rd:#D85A30; --gn:#6FA02C; --gray:#8b8a84; --gray-bg:#ECEAE2;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#1f1e1c; --bg2:#2a2926; --bg3:#323029; --txt:#f1efe8; --txt2:#b4b2a9; --bord:#3a3935;
+      --red:#F0997B; --red-bg:#4A1B0C; --amber:#FAC775; --amber-bg:#412402;
+      --green:#97C459; --green-bg:#173404; --blue:#85B7EB; --blue-bg:#042C53;
+      --gn:#97C459; --gray:#9a988f; --gray-bg:#302e2a;
+    }
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;padding:18px;background:var(--bg);color:var(--txt);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;font-size:13px;line-height:1.5;}
+  h1{font-size:18px;font-weight:700;margin:0 0 3px;}
+  .sub{font-size:11.5px;color:var(--txt2);margin-bottom:6px;}
+  .part{font-size:11.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--txt);background:var(--bg3);border-radius:8px;padding:8px 12px;margin:20px 0 11px;}
+  .lbl{font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--txt2);margin:14px 0 8px;}
+  .card{background:var(--bg2);border:1px solid var(--bord);border-radius:12px;padding:14px 16px;margin-bottom:10px;}
+  .card-amber{border-left:3px solid #BA7517;} .card-red{border-left:3px solid var(--rd);}
+  .card-green{border-left:3px solid #1D9E75;} .card-gray{border-left:3px solid var(--gray);}
+  .badge{display:inline-block;padding:2px 8px;border-radius:5px;font-size:10.5px;font-weight:700;white-space:nowrap;}
+  .b-red{background:var(--red-bg);color:var(--red);} .b-amber{background:var(--amber-bg);color:var(--amber);}
+  .b-green{background:var(--green-bg);color:var(--green);} .b-blue{background:var(--blue-bg);color:var(--blue);}
+  .b-gray{background:var(--gray-bg);color:var(--gray);}
+  .head3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:4px;}
+  .hb{text-align:center;padding:11px 6px;border-radius:10px;border:1px solid var(--bord);background:var(--bg2);}
+  .hb .l{font-size:10px;color:var(--txt2);text-transform:uppercase;letter-spacing:.04em;}
+  .hb .m{font-size:18px;font-weight:600;margin:3px 0 1px;}
+  .hb .s{font-size:10.5px;color:var(--txt2);}
+  /* era timeline */
+  .era{display:flex;gap:8px;align-items:flex-start;padding:10px 0;border-bottom:1px solid var(--bord);}
+  .era:last-child{border-bottom:none;}
+  .era-yr{width:78px;flex-shrink:0;font-weight:700;font-size:12px;padding-top:1px;}
+  .era-yr small{display:block;font-weight:400;font-size:9.5px;color:var(--txt2);}
+  .era-txt{font-size:12px;line-height:1.55;}
+  /* verdict table */
+  table{width:100%;border-collapse:collapse;font-size:11.8px;}
+  th{text-align:left;padding:7px 8px;background:var(--bg3);font-size:9.5px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:var(--txt2);border-bottom:1px solid var(--bord);}
+  td{padding:9px 8px;border-bottom:1px solid var(--bord);vertical-align:top;line-height:1.45;}
+  tr:last-child td{border-bottom:none;}
+  tr.zero td{opacity:0.88;}
+  .tiername{font-weight:600;}
+  /* tree */
+  .trow{display:flex;gap:10px;padding:7px 0;border-bottom:1px solid var(--bord);font-size:12px;}
+  .trow:last-child{border-bottom:none;}
+  .td{width:9px;height:9px;border-radius:50%;flex-shrink:0;margin-top:4px;}
+  .tp{width:42px;flex-shrink:0;font-weight:700;}
+  /* ladder */
+  .lad{font-size:11.5px;}
+  .lr{display:flex;align-items:center;gap:9px;padding:6px 0;border-bottom:1px solid var(--bord);}
+  .lr:last-child{border-bottom:none;}
+  .lr.spot{background:var(--bg3);border-radius:6px;padding:6px 8px;}
+  .lr .px{width:98px;flex-shrink:0;font-weight:700;font-family:ui-monospace,monospace;}
+  /* drawdown compare */
+  .dd-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:6px;}
+  .dd{border:1px solid var(--bord);border-radius:9px;padding:9px 10px;text-align:center;background:var(--bg2);}
+  .dd .cyc{font-size:10px;color:var(--txt2);text-transform:uppercase;letter-spacing:.04em;}
+  .dd .pct{font-size:16px;font-weight:700;margin:3px 0 1px;}
+  .dd .rng{font-size:9.5px;color:var(--txt2);}
+  .brief{font-size:13px;line-height:1.7;}
+  .foot{font-size:11px;color:var(--txt2);line-height:1.55;margin-top:10px;border-top:1px solid var(--bord);padding-top:10px;}
+  .backlink{display:inline-flex;align-items:center;gap:5px;font-size:12px;color:var(--blue);text-decoration:none;font-weight:600;margin-bottom:12px;}
+  .backlink:hover{text-decoration:underline;}
+</style>
+</head>
+<body>
+
+<a class="backlink" href="btc-dashboard.html">← BTC Dashboard</a>
+<h1>BTC Framework — Floor Test Held, Higher Low Against an Oil Shock</h1>
+<div class="sub">Sat Jul 18, 2026 · 05:02 UTC · ✓ CRYPTO.COM AUTHORITATIVE · Jul 17 close $63,936 (tested $62,523, held) · spot $63,950 (+0.84%) · ~35-day run, 21st major review</div>
+
+<div class="head3">
+  <div class="hb" style="border-color:#1D9E75;"><div class="l">Spot</div><div class="m">$63,950</div><div class="s">24h low $62,523 held</div></div>
+  <div class="hb" style="border-color:#BA7517;"><div class="l">Wyckoff</div><div class="m" style="color:var(--amber);">Higher low</div><div class="s">re-accumulation revived</div></div>
+  <div class="hb" style="border-color:#BA7517;"><div class="l">Stance</div><div class="m" style="color:var(--amber);">HOLD BUY 3</div><div class="s">await $64,690 reclaim</div></div>
+</div>
+
+<!-- ══════════ PART 0: THE FLOOR HELD ══════════ -->
+<div class="part">Part 0 · The floor held — and it held against escalating oil</div>
+<div class="card card-green">
+  <div style="font-size:13px;line-height:1.6;font-weight:600;margin-bottom:8px;">The floor test the framework was braced for HELD. Jul 17 dipped to $62,523 — into the $62,457 floor zone — then reversed to close $63,936, printing a higher low vs the $61,821 spring. The markdown stalled; the range reasserted; re-accumulation revived.</div>
+  <table>
+    <tr><th>Metric</th><th>Prior report (Jul 17)</th><th>Now (Jul 18)</th><th>Delta</th></tr>
+    <tr><td>Last settled close</td><td>$63,831 (Jul 16)</td><td>$63,936 (Jul 17)</td><td style="color:var(--green);font-weight:600;">Recovered — higher close</td></tr>
+    <tr><td>Floor test</td><td>pending (~1.9% below)</td><td><strong>$62,523 tested &amp; HELD</strong></td><td style="color:var(--green);font-weight:600;">Defended</td></tr>
+    <tr><td>Structure</td><td>markdown underway</td><td>higher low ($62,523 &gt; $61,821)</td><td style="color:var(--green);font-weight:600;">Constructive</td></tr>
+    <tr><td>Composite confidence</td><td>60 / 100</td><td>63 / 100</td><td style="color:var(--green);font-weight:600;">+3</td></tr>
+    <tr><td>Aggressiveness</td><td>3 / 10</td><td>3 / 10</td><td>Held</td></tr>
+    <tr><td>Primary Wyckoff read</td><td>C → D markdown</td><td>re-accumulation (higher low)</td><td style="color:var(--green);font-weight:600;">Flipped back</td></tr>
+    <tr><td>Tail-risk path</td><td>33%</td><td>25%</td><td style="color:var(--green);font-weight:600;">−8</td></tr>
+  </table>
+</div>
+<div class="card card-red">
+  <div style="font-size:12px;line-height:1.6;"><strong>⚠ THE OIL SHOCK IS ESCALATING, NOT CONTAINED — and that makes the floor hold more meaningful:</strong> the July 17 OFAC wind-down deadline passed and the conflict <em>intensified</em> — <strong>US Central Command completed a 6th consecutive night of strikes on Iran</strong>, Iran is hitting US bases in Kuwait/Jordan/Bahrain and has told the Houthis to prep Red Sea disruption, and <strong>Hormuz throughput is at ~1/3 of normal (~3.8M vs ~20M bpd)</strong>. Brent ~$84, WTI ~$80, crude +10–14% on the week. Prediction markets price Hormuz normalizing by Jul 31 at just <strong>1.4%</strong>; Trump warned of striking Iranian infrastructure "next week." <strong>BTC held its floor WHILE this escalated</strong> — the tanker-traffic signal confirmed the supply shock is real (transits at 1/3), yet the disorderly break did not fire. That is resilience — but if crude runs to the $100–120 range banks have modeled, the floor likely fails.</div>
+</div>
+<div class="card card-gray">
+  <div style="font-size:11.5px;line-height:1.6;"><strong>Feed &amp; verification:</strong> Crypto.com <code>get_candlestick 1D</code> authoritative UTC — callable a fourth straight session. Jul 17: open $63,824, high $64,393, <strong>low $62,523, close $63,936</strong>. Oil/geopolitics cross-verified across TradingEconomics, CryptoBriefing, CryptoSlate, EIA STEO. The in-progress Jul 18 candle ($63,950) is excluded from gate determination.</div>
+</div>
+
+<!-- ══════════ PART 1: AUTHORITATIVE CLOSES ══════════ -->
+<div class="part">Part 1 · Authoritative UTC closes &amp; the defended floor</div>
+<div class="card lad">
+  <div class="lr"><span class="px">Jul 13</span><span>C $62,342 — spring low $61,821 (closed below floor, reclaimed)</span></div>
+  <div class="lr"><span class="px">Jul 14</span><span>C $65,040 — marginal SOS (voided)</span></div>
+  <div class="lr"><span class="px">Jul 15</span><span>C $64,753 — high $65,600 then reversed <span class="badge b-red">UTAD</span></span></div>
+  <div class="lr"><span class="px">Jul 16</span><span>C $63,831 — lower close (markdown)</span></div>
+  <div class="lr"><span class="px">Jul 17</span><span>C <strong>$63,936</strong> — low $62,523 (higher low), reversed &amp; closed UP <span class="badge b-green">FLOOR HELD</span></span></div>
+  <div class="lr spot"><span class="px">Jul 18</span><span><strong>IN PROGRESS</strong> · spot $63,950, +0.84% · holding above $63,900 — mid-candle, excluded</span></div>
+</div>
+<div class="card" style="padding:6px 10px;">
+  <table>
+    <tr><th>Gate</th><th>Rule</th><th>Status</th></tr>
+    <tr><td><strong>BTC BUY 3 (core)</strong></td><td>Held unless 2 closes &lt; $62,457</td><td><span class="badge b-green">HELD</span> — floor tested &amp; defended</td></tr>
+    <tr><td><strong>Core trim / distribution</strong></td><td>2 consecutive closes &lt; $62,457</td><td><span class="badge b-green">0 of 2 — did NOT fire</span> (low $62,523 held)</td></tr>
+    <tr><td><strong>Bullish confirm</strong></td><td>Daily close &gt; $64,690 (reclaim line)</td><td><span class="badge b-amber">Pending</span> — the flip-bullish trigger</td></tr>
+    <tr><td><strong>BUY 4 re-arm</strong></td><td>Non-marginal close &gt; $65K + organic inflow</td><td><span class="badge b-amber">Further out</span></td></tr>
+    <tr><td><strong>ADA (downstream)</strong></td><td>Hard stop: close &lt; $0.1596</td><td><span class="badge b-amber">Quarter BUY 1 — BTC floor hold relieves the immediate headwind</span></td></tr>
+    <tr><td><strong>AERO</strong></td><td>Re-arm: 2 closes &gt; $0.63 on volume</td><td><span class="badge b-red">SELL 2 — no new longs</span></td></tr>
+  </table>
+</div>
+
+<!-- ══════════ PART 2: INDICATOR VERDICTS ══════════ -->
+<div class="part">Part 2 · Indicator-by-indicator verdict</div>
+<div class="card" style="padding:6px 10px;">
+  <table>
+    <tr><th>Indicator</th><th>Tier</th><th>Current state</th><th>Verdict</th></tr>
+    <tr>
+      <td class="tiername">Wyckoff</td><td><span class="badge b-red">LOAD-BEARING</span></td>
+      <td><strong>Re-accumulation revived.</strong> Primary: Jul 17 dip to $62,523 held the floor, printed a higher low vs the $61,821 spring, closed ~$1,400 off the low — a secondary test forming a higher low; the UTAD was a shakeout. Alternate (still live): distribution if it fails to reclaim $64,690 and oil worsens. Arbiter: $64,690 reclaim vs. 2 closes below $62,457.</td>
+      <td><span class="badge b-amber">Higher low — contested, tilting constructive</span></td>
+    </tr>
+    <tr>
+      <td class="tiername">Macro / oil</td><td><span class="badge b-red">LOAD-BEARING</span></td>
+      <td><strong>Escalating, not contained.</strong> 6th night of US-Iran strikes; Brent ~$84 / WTI ~$80 (+10–14% wk); Hormuz at ~1/3 capacity; Houthi Red Sea threat; Trump "next week" infrastructure warning. Prediction markets: Hormuz normal by Jul 31 at 1.4%. Threatens the cool-CPI thesis. FOMC Jul 28–29.</td>
+      <td><span class="badge b-red">Dominant, worsening risk</span></td>
+    </tr>
+    <tr>
+      <td class="tiername">Liquidity / flows</td><td><span class="badge b-red">LOAD-BEARING</span></td>
+      <td>Distribution the base rate (YTD −$5.4B) — but a bid appeared at the $62.5K floor, a spot-demand tell. No fresh clean flow print at pull time.</td>
+      <td><span class="badge b-amber">Marginally improved at the floor</span></td>
+    </tr>
+    <tr>
+      <td class="tiername">Halving cycle</td><td><span class="badge b-amber">CONTEXT</span></td>
+      <td>~Month 27. Weekly still a downtrend of lower highs off ~$58K — this range is consolidation within a larger markdown, consistent with the Oct–Nov 2026 bottom thesis. 75% dry powder reserved.</td>
+      <td><span class="badge b-green">Bottom thesis intact</span></td>
+    </tr>
+    <tr>
+      <td class="tiername">Sentiment</td><td><span class="badge b-amber">CONTEXT</span></td>
+      <td>Fear &amp; Greed still Extreme Fear (contrarian-supportive). The floor defense against a real macro shock is the strongest bull data point in a week. BTC–equity correlation ~0.96.</td>
+      <td><span class="badge b-green">Contrarian floor + resilience</span></td>
+    </tr>
+    <tr class="zero">
+      <td class="tiername">Shmita / Mercury / Lunar</td><td><span class="badge b-gray">ZERO-WEIGHT</span></td>
+      <td>Year 4; Rx ends ~Jul 23; monthly cycle. <strong>Actively policed — generated, gated, delayed, vetoed nothing.</strong></td>
+      <td><span class="badge b-gray">NO SIGNAL</span></td>
+    </tr>
+  </table>
+</div>
+
+<!-- ══════════ PART 3: FORECAST ══════════ -->
+<div class="part">Part 3 · Forecast</div>
+
+<div class="lbl">Probability tree · spot $63,950 · paths sum to 100%</div>
+<div class="card">
+  <div class="trow">
+    <div class="td" style="background:#BA7517;"></div>
+    <div class="tp" style="color:var(--amber);">48%</div>
+    <div><strong>Primary — defended range.</strong> The higher low anchors the range; price chops $62.5–65K into the Jul 28–29 FOMC, floor now tested-and-held once.</div>
+  </div>
+  <div class="trow">
+    <div class="td" style="background:#6FA02C;"></div>
+    <div class="tp" style="color:var(--green);">27%</div>
+    <div><strong>Secondary — bullish reclaim.</strong> The higher low + 13%-hike-odds base fuels a reclaim of $64,690 and a fresh $65K attempt on organic demand — re-accumulation confirms.</div>
+  </div>
+  <div class="trow">
+    <div class="td" style="background:#D85A30;"></div>
+    <div class="tp" style="color:var(--red);">25%</div>
+    <div><strong>Tail — oil breaks the floor.</strong> The escalating Hormuz shock spikes crude toward $100, and two closes below $62,457 finally confirm markdown → $60,400 → $57,803.</div>
+  </div>
+</div>
+
+<div class="lbl">Level map (authoritative UTC)</div>
+<div class="card lad">
+  <div class="lr"><span class="px" style="color:var(--red);">$65,000</span><span><span class="badge b-red">Hardened ceiling — 6 rejections + failed close-through</span></span></div>
+  <div class="lr"><span class="px" style="color:var(--amber);">$64,690</span><span><span class="badge b-amber">RECLAIM LINE — a close above flips the read bullish (re-accumulation)</span></span></div>
+  <div class="lr spot"><span class="px">$63,950</span><span><strong>SPOT</strong> · Jul 18 in progress · mid-range, above the higher low</span></div>
+  <div class="lr"><span class="px" style="color:var(--green);">$62,523</span><span><span class="badge b-green">HIGHER LOW (Jul 17) — defended floor test, above the spring</span></span></div>
+  <div class="lr"><span class="px" style="color:var(--red);">$62,457–62,589</span><span><span class="badge b-red">THE FLOOR — 2 closes below = distribution confirmed → trim core</span></span></div>
+  <div class="lr"><span class="px" style="color:var(--green);">$61,821</span><span><span class="badge b-green">Terminal spring low (Jul 13)</span></span></div>
+  <div class="lr"><span class="px" style="color:var(--red);">$59,000 / $57,803</span><span><span class="badge b-red">Defensive cut / HARD INVALIDATION (BTC + ADA)</span></span></div>
+</div>
+
+<div class="lbl">Risk engineering — CRO / Quant PM sign-off</div>
+<div class="card card-amber">
+  <table>
+    <tr><td style="width:44%;"><strong>System action</strong></td><td>HOLD BUY 3 · WAIT — floor held, awaiting a reclaim to confirm</td></tr>
+    <tr><td><strong>Aggressiveness</strong></td><td>3 / 10 (held — floor defense is constructive but not an add trigger; no size until $64,690 reclaims)</td></tr>
+    <tr><td><strong>Composite confidence</strong></td><td>63 / 100 (from 60 — floor held on its first test with a higher low, despite escalating oil; capped by the unresolved oil shock and unbroken $65K ceiling)</td></tr>
+    <tr><td><strong>Immediate trigger</strong></td><td>None — hold. The floor defense is not an add signal on its own; wait for the reclaim. Do not chase.</td></tr>
+    <tr><td><strong>Confirmation trigger</strong></td><td>Bullish: daily close &gt; $64,690 re-arms re-accumulation toward a $65K attempt. Bearish: two consecutive closes &lt; $62,457 → trim core.</td></tr>
+    <tr><td><strong>Hard invalidation</strong></td><td>Daily close &lt; $57,803. Interim: two closes &lt; $62,457 → trim core; &lt; $59,000 → cut to core.</td></tr>
+  </table>
+</div>
+
+<!-- BRIEF -->
+<div class="lbl">Bottom line</div>
+<div class="card card-amber">
+  <div class="brief">
+    The floor held: Bitcoin's July 17 session dipped to $62,523 — into the $62,457 floor zone — and reversed to close $63,936, printing a higher low versus the $61,821 spring and defending the exact line the framework was watching, so the markdown stalled and the range reasserted with re-accumulation revived. What makes the hold meaningful is that it came against an escalating oil shock, not a calming one — the July 17 Hormuz deadline passed into a sixth night of US-Iran strikes with crude up double digits on the week and transits at a third of normal, yet BTC found a bid at the floor rather than breaking. Hold the core, add nothing until a close back above $64,690 confirms the reclaim, and treat two closes below $62,457 as the line that would finally turn this defended range into markdown — with the oil escalation the single risk most likely to force it.
+  </div>
+</div>
+
+<div class="foot">
+  Evidence tiering unchanged and non-negotiable: Wyckoff, liquidity/flows, geopolitics, the halving cycle, and the macro/Fed read carry the analytical weight. Shmita, Mercury, and lunar cycles are disclosed in full but carry zero predictive weight — never a directional call, actively policed. Data provenance: Crypto.com <code>get_candlestick 1D</code> authoritative UTC; oil and geopolitics cross-verified across TradingEconomics, CryptoBriefing, CryptoSlate and the EIA STEO. Structural orientation, not financial advice — size positions yourself and consult a licensed advisor.
+</div>
+
+</body>
+</html>
