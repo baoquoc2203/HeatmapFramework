@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ADA Cardano — Monthly Buy/Sell Strategy Map (Updated Jul 23, 2026)</title>
+<style>
+  :root{
+    --bg:#1c1b19; --bg2:#26251f; --bg3:#2f2e27; --txt:#f1efe8; --txt2:#b4b2a9; --txt3:#8a887f;
+    --bord:#3a3935;
+    --red:#F0997B; --red-bg:#4A1B0C; --amber:#FAC775; --amber-bg:#412402;
+    --green:#97C459; --green-bg:#173404; --blue:#85B7EB; --blue-bg:#042C53;
+    --gray:#9a988f; --gray-bg:#302e2a;
+    --rd:#D85A30; --gn:#6FA02C; --am:#BA7517; --bl:#3B82C4;
+  }
+  @media (prefers-color-scheme: light){
+    :root{
+      --bg:#ffffff; --bg2:#f6f4ee; --bg3:#efece3; --txt:#2c2c2a; --txt2:#5f5e5a; --txt3:#84837d;
+      --bord:#e3e0d6;
+      --red:#993C1D; --red-bg:#FAECE7; --amber:#854F0B; --amber-bg:#FAEEDA;
+      --green:#3B6D11; --green-bg:#EAF3DE; --blue:#185FA5; --blue-bg:#E6F1FB;
+      --gray:#8b8a84; --gray-bg:#ECEAE2;
+    }
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{background:var(--bg);color:var(--txt);padding:20px;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    font-size:13px;line-height:1.5;max-width:960px;margin:0 auto;}
+  h1{font-size:19px;font-weight:700;margin-bottom:3px;}
+  .meta{font-size:11.5px;color:var(--txt2);margin-bottom:14px;}
+  .part{font-size:11px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--txt);
+    background:var(--bg3);border-radius:8px;padding:8px 12px;margin:22px 0 11px;}
+  .card{background:var(--bg2);border:1px solid var(--bord);border-radius:12px;padding:14px 16px;margin-bottom:10px;}
+  .c-amber{border-left:3px solid var(--am);} .c-red{border-left:3px solid var(--rd);}
+  .c-green{border-left:3px solid var(--gn);} .c-gray{border-left:3px solid var(--gray);}
+  .c-blue{border-left:3px solid var(--bl);}
+  .coil{background:var(--amber-bg);border:2px solid var(--am);border-radius:12px;padding:14px 16px;margin-bottom:10px;}
+  .badge{display:inline-block;padding:2px 8px;border-radius:5px;font-size:10.5px;font-weight:700;white-space:nowrap;}
+  .b-red{background:var(--red-bg);color:var(--red);} .b-amber{background:var(--amber-bg);color:var(--amber);}
+  .b-green{background:var(--green-bg);color:var(--green);} .b-blue{background:var(--blue-bg);color:var(--blue);}
+  .b-gray{background:var(--gray-bg);color:var(--gray);}
+  .mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;}
+
+  .hero{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;margin-bottom:10px;}
+  @media(max-width:700px){.hero{grid-template-columns:repeat(2,1fr);}}
+  .hb{text-align:center;padding:11px 6px;border-radius:10px;border:1px solid var(--bord);background:var(--bg2);}
+  .hb .l{font-size:9.5px;color:var(--txt2);text-transform:uppercase;letter-spacing:.05em;}
+  .hb .m{font-size:19px;font-weight:600;margin:3px 0 1px;}
+  .hb .s{font-size:10px;color:var(--txt2);}
+
+  pre{background:var(--bg3);border:1px solid var(--bord);border-radius:10px;padding:13px 15px;
+    font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11.5px;line-height:1.65;
+    overflow-x:auto;color:var(--txt);white-space:pre;}
+
+  .month-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-bottom:10px;}
+  @media(max-width:820px){.month-grid{grid-template-columns:repeat(3,1fr);}}
+  @media(max-width:520px){.month-grid{grid-template-columns:repeat(2,1fr);}}
+  .mc{border-radius:10px;padding:11px 10px;border:1px solid var(--bord);background:var(--bg2);position:relative;}
+  .mc.now{border:2px solid var(--am);background:var(--bg3);}
+  .mc.core{border:2px solid var(--gn);}
+  .mc-m{font-size:12.5px;font-weight:700;margin-bottom:5px;}
+  .mc-a{font-size:9.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:2px 6px;
+    border-radius:99px;display:inline-block;margin-bottom:6px;}
+  .mc-s{font-size:10px;color:var(--txt2);margin-bottom:4px;}
+  .mc-n{font-size:10.5px;line-height:1.45;color:var(--txt2);}
+  .mc-bar{height:4px;border-radius:99px;margin-top:8px;background:var(--gray);}
+  .tag{position:absolute;top:7px;right:7px;font-size:8px;padding:1px 5px;border-radius:99px;font-weight:700;}
+  .t-now{background:var(--am);color:#1c1b19;} .t-past{background:var(--gray);color:#1c1b19;}
+  .t-cond{background:var(--bg3);color:var(--txt3);border:1px solid var(--bord);}
+  .t-core{background:var(--gn);color:#0f1a06;}
+
+  .a-sbuy{background:var(--green-bg);color:var(--green);} .a-buy{background:var(--green-bg);color:var(--green);}
+  .a-accum{background:var(--blue-bg);color:var(--blue);} .a-hold{background:var(--gray-bg);color:var(--txt2);}
+  .a-wait{background:var(--amber-bg);color:var(--amber);} .a-reduce{background:var(--amber-bg);color:var(--amber);}
+  .a-sell{background:var(--red-bg);color:var(--red);}
+  .bar-sbuy{background:#1D9E75;} .bar-buy{background:var(--gn);} .bar-accum{background:var(--bl);}
+  .bar-hold{background:var(--gray);} .bar-wait{background:var(--am);} .bar-reduce{background:#C97A2B;}
+  .bar-sell{background:var(--rd);}
+
+  table{width:100%;border-collapse:collapse;font-size:11.5px;}
+  th{text-align:left;padding:7px 8px;background:var(--bg3);font-size:9.5px;font-weight:700;
+    text-transform:uppercase;letter-spacing:.04em;color:var(--txt2);border-bottom:1px solid var(--bord);}
+  td{padding:8px;border-bottom:1px solid var(--bord);vertical-align:top;line-height:1.45;}
+  tr:last-child td{border-bottom:none;}
+  tr.zero td{opacity:.9;}
+
+  .strip{display:flex;gap:3px;}
+  .sc{flex:1;height:30px;border-radius:4px;display:flex;align-items:center;justify-content:center;
+    font-size:10px;font-weight:700;color:#fff;}
+  .sl{flex:1;text-align:center;font-size:9.5px;color:var(--txt3);padding-top:3px;}
+
+  .trow{display:flex;gap:10px;padding:8px 0;border-bottom:1px solid var(--bord);font-size:12px;}
+  .trow:last-child{border-bottom:none;}
+  .tdot{width:9px;height:9px;border-radius:50%;flex-shrink:0;margin-top:5px;}
+  .tp{width:38px;flex-shrink:0;font-weight:700;}
+
+  .lr{display:flex;align-items:center;gap:9px;padding:6px 0;border-bottom:1px solid var(--bord);font-size:11.5px;}
+  .lr:last-child{border-bottom:none;}
+  .lr.spot{background:var(--bg3);border-radius:6px;padding:6px 8px;}
+  .lr .px{width:112px;flex-shrink:0;font-weight:700;font-family:ui-monospace,monospace;}
+
+  .kv{display:grid;grid-template-columns:190px 1fr;gap:5px 12px;font-size:12px;}
+  @media(max-width:600px){.kv{grid-template-columns:1fr;}}
+  .kv .k{color:var(--txt2);font-weight:600;}
+  .brief{font-size:13px;line-height:1.72;}
+  .foot{font-size:10.5px;color:var(--txt3);line-height:1.6;margin-top:16px;border-top:1px solid var(--bord);padding-top:12px;}
+  svg{width:100%;height:auto;display:block;}
+  .lg{display:flex;flex-wrap:wrap;gap:14px;font-size:10.5px;color:var(--txt2);margin-top:10px;}
+  .lg span{display:flex;align-items:center;gap:5px;}
+  .lg i{width:11px;height:3px;border-radius:2px;display:inline-block;}
+
+  /* restored interactivity — filter chips + clickable month cards + detail modal */
+  .filters{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 12px;}
+  .chip{font-size:11px;font-weight:600;padding:5px 11px;border-radius:99px;border:1px solid var(--bord);
+    background:var(--bg2);color:var(--txt2);cursor:pointer;transition:all .12s;}
+  .chip:hover{border-color:var(--bl);color:var(--txt);}
+  .chip.active{background:var(--txt);color:var(--bg);border-color:var(--txt);}
+  .mc{cursor:pointer;transition:transform .12s, box-shadow .12s;}
+  .mc:hover{transform:translateY(-2px);box-shadow:0 4px 16px rgba(0,0,0,.28);}
+  .mc.dimmed{opacity:.3;filter:grayscale(.45);}
+  .mc-more{font-size:9px;color:var(--txt3);margin-top:7px;font-weight:600;letter-spacing:.02em;}
+  .modal-bg{position:fixed;inset:0;background:rgba(0,0,0,.55);display:none;align-items:center;
+    justify-content:center;padding:20px;z-index:50;}
+  .modal-bg.open{display:flex;}
+  .modal{background:var(--bg2);border:1px solid var(--bord);border-radius:14px;max-width:460px;width:100%;
+    padding:20px 22px;box-shadow:0 20px 60px rgba(0,0,0,.45);max-height:88vh;overflow-y:auto;}
+  .modal-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px;}
+  .modal-head .m-title{font-size:17px;font-weight:700;}
+  .modal-close{background:none;border:none;font-size:22px;line-height:1;color:var(--txt3);cursor:pointer;
+    padding:2px 8px;border-radius:6px;}
+  .modal-close:hover{background:var(--bg3);color:var(--txt);}
+  .m-action{font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:3px 10px;
+    border-radius:99px;display:inline-block;margin-bottom:14px;}
+  .m-stats{display:flex;gap:20px;margin-bottom:16px;flex-wrap:wrap;}
+  .m-stat .s-label{font-size:10px;text-transform:uppercase;letter-spacing:.05em;color:var(--txt3);margin-bottom:3px;}
+  .m-stat .s-val{font-size:15px;font-weight:700;}
+  .m-block{margin-bottom:14px;}
+  .m-block .b-label{font-size:10px;text-transform:uppercase;letter-spacing:.05em;color:var(--txt3);
+    margin-bottom:4px;font-weight:700;}
+  .m-block .b-text{font-size:12.5px;line-height:1.55;color:var(--txt);}
+  .m-block.risk .b-text{color:var(--red);}
+  .backlink{display:inline-flex;align-items:center;gap:5px;font-size:12px;color:var(--blue);text-decoration:none;font-weight:600;margin-bottom:12px;}
+  .backlink:hover{text-decoration:underline;}
+</style>
+</head>
+<body>
+
+<a class="backlink" href="ada-dashboard.html">← ADA Dashboard</a>
+<h1>ADA Cardano — Monthly Buy / Sell Strategy Map</h1>
+<div class="meta">Crypto Reconnaissance Engine · Updated <strong>Thu Jul 23, 2026 · 14:29 ICT (07:29 UTC)</strong> · reconciled with the Jul 23 parallel-thread report · supersedes the Jul 19 map · ATH $3.09 (Sep 2021) · 2025 cycle peak $1.20</div>
+
+<!-- ═══ 1. VISUAL FIRST ═══ -->
+<div class="hero">
+  <div class="hb" style="border-color:var(--am);">
+    <div class="l">Spot</div><div class="m">$0.1731</div><div class="s">on the trigger line</div></div>
+  <div class="hb" style="border-color:var(--gn);">
+    <div class="l">Wyckoff</div><div class="m" style="color:var(--green);">Phase D</div><div class="s">markup, stalling</div></div>
+  <div class="hb" style="border-color:var(--am);">
+    <div class="l">Action</div><div class="m" style="color:var(--amber);">HOLD ½</div><div class="s">no add, no trim</div></div>
+  <div class="hb" style="border-color:var(--am);">
+    <div class="l">The gate</div><div class="m mono" style="color:var(--amber);">$0.184</div><div class="s">50-EMA rejected Jul 22</div></div>
+</div>
+
+<pre>
+WYCKOFF CYCLE MAP
+A (Accumulation) ──&gt; B (Markup) ──&gt; C (Distribution) ──&gt; D (Markdown)
+                          *accumulation schematic: SOS confirmed → markup leg, now digesting
+
+Current Location: [████████████████░░░░]  ──&gt;  C → D  markup intact but STALLED at first resistance
+Current Phase:    The breakout is holding and NOT extending. Jul 22 settled $0.17450 — a SECOND
+                  consecutive close above $0.173 and a HIGHER one — with the retest low $0.17041
+                  holding well above the $0.169 add-invalidation, and BTC printing a THIRD straight
+                  close above $65K. But Jul 22's push to $0.18079 (first print above $0.18 this
+                  campaign) was REJECTED at the 50-day EMA band $0.183–0.185, volume is declining
+                  (17.29M → 14.07M → ~9.6M pace), and Jul 23 is drifting back onto its own $0.173
+                  trigger. A breakout that stalls at first resistance is normal digestion — not yet
+                  confirmation of continuation, and not yet failure either.
+Current Action:   HOLD the half position UNCHANGED. No add without a $0.19 close (which requires
+                  clearing the EMA band first). No trim without two closes below $0.169.
+
+LAST SETTLED CLOSE (Jul 22) .... $0.17450          LIVE CANDLE (Jul 23) .... $0.17309 · high $0.17671 · 16h 30m to close
+</pre>
+
+<!-- ═══ 2. THE COIL ═══ -->
+<div class="part">◈ The state of play — holding, not extending</div>
+
+<div class="coil">
+  <div style="font-size:12.5px;line-height:1.68;">
+    <strong style="font-size:14px;">Both things are true at once, and the map refuses to collapse them into a single story: the breakout confirmed a second time, and it has stalled at the first real resistance above it.</strong><br><br>
+    <strong>What confirmed:</strong> Jul 22 settled <strong>$0.17450</strong> — a second consecutive close above the $0.173 trigger, and
+    a <em>higher</em> one (+0.44% vs Jul 21), cross-verified at $0.17395. The retest low <strong>$0.17041 held</strong>, comfortably above
+    the $0.169 add-invalidation. BTC printed its <strong>third consecutive close above $65,000</strong> ($66,112.41). And ADA/BTC has pushed
+    to a <strong>fresh campaign high (2.6456)</strong> — ADA is <em>holding while BTC pulls back today</em>, which is the strongest
+    single fact on this map.<br><br>
+    <strong>What stalled:</strong> Jul 22's push to <strong>$0.18079</strong> — the first print above $0.18 in the campaign — was
+    <strong>rejected at the 50-day EMA band ($0.183–0.185)</strong>. Since then: a lower high (Jul 23 $0.17671), declining volume
+    (17.29M → 14.07M → pacing ~9.6M), and price drifting back to sit <em>on</em> the $0.173 line it just broke.
+    <strong>The burden of proof has shifted back to the buyers.</strong><br><br>
+    <strong>The honest read:</strong> this is digestion, not distribution — the structure below is intact and the invalidation is
+    2.4% away, untouched. But the framework does not get to call a stall a success. <strong>The next mechanical event is the
+    $0.183–0.185 EMA band: clearing it opens $0.19 and BUY 3; failing it repeatedly, into a hawkish FOMC, is how a breakout becomes
+    a range and then a failure.</strong> Nothing is authorized either way.
+  </div>
+</div>
+
+<!-- ═══ 3. CHANGE LOG ═══ -->
+<div class="part">Scorecard &amp; corrections — logged explicitly, no silent fixes</div>
+
+<div class="card c-amber">
+  <div style="font-size:12px;line-height:1.65;">
+    <strong>1 · THE PRIMARY-PATH STREAK ENDS — logged.</strong> The prior map weighted <strong>50% "markup continues to the EMA /
+    $0.19"</strong> as primary and <strong>32% "consolidation range into FOMC"</strong> as secondary. <strong>The secondary is what
+    played.</strong> Price stalled at the EMA rather than working through it. Three consecutive maps had their primary path land; this
+    one did not, and that is recorded here rather than reframed as a partial win. The tree below re-weights accordingly — the
+    range/stall branch becomes primary.
+  </div>
+</div>
+
+<div class="card c-red">
+  <div style="font-size:12px;line-height:1.65;">
+    <strong>2 · CORRECTION — FEAR &amp; GREED WAS STALE, AND THE ERROR CUT THE WRONG WAY.</strong> The parallel thread's Jul 23 report
+    carried F&amp;G at <strong>~20–25 "(carried, not re-verified)"</strong> and reasoned from it that "a markup from washed-out sentiment
+    retains room." <strong>Re-verified today: 51 (Neutral)</strong> as of 04:48 UTC — consistent with the ~40–49 band logged on
+    Jul 22. Sentiment is <em>not</em> washed out; it has fully caught up to price. <strong>The supporting argument for continuation was
+    resting on a stale figure and is withdrawn.</strong> This is a downgrade to the bull case, which is exactly why it gets flagged rather
+    than quietly carried forward.
+  </div>
+</div>
+
+<div class="card c-red">
+  <div style="font-size:12px;line-height:1.65;">
+    <strong>3 · CORRECTION — THE "~86% FOMC HOLD" FIGURE IS ALSO STALE.</strong> The framework has been carrying ~86% hold priced for
+    Jul 28–29. Current pricing is materially tighter: prediction markets show roughly <strong>75–80% hold / 20–25% hike</strong>, and CME
+    FedWatch odds of a July hike spiked to <strong>~46.5%</strong> at one point after the Hormuz blockade escalation before settling back.
+    <strong>The FOMC is a live two-sided risk, not a near-formality</strong> — and it lands six days from now, directly into a stalled
+    breakout. Weighted accordingly in the tail path below.
+  </div>
+</div>
+
+<div class="card c-gray">
+  <div style="font-size:12px;line-height:1.65;">
+    <strong>4 · FEEDS — both callable, confirmation dispute-proof.</strong> CoinGecko's "Jul 23" ADA bar (o $0.173466, c $0.173954)
+    price-matches Crypto.com's <strong>Jul 22</strong> (o $0.17369, c $0.17450); the +1-day label offset persists, matched on price values.
+    Both feeds settled Jul 22 above $0.173. Spot: ADA $0.172921 (CG) vs $0.17309 (CDC); BTC $65,388 vs $65,426 — normal variance.<br><br>
+    <strong>5 · STILL STALE, FLAGGED:</strong> whale accumulation (25.6B, now <strong>10 days old</strong> — the single most valuable
+    missing input: did the cohort ride the breakout or distribute into $0.18?); derivatives funding/L-S; AERO (~$0.455, 5+ sessions stale).<br><br>
+    <strong>6 · COST BASIS — UNCONFIRMED, 8th request.</strong> Blended basis is <strong>~$0.173 (≈breakeven)</strong> or
+    <strong>~$0.180 (−4.0%)</strong> depending on the BUY 1 fill. With price sitting exactly on $0.173, this is now the difference between
+    "the position is flat" and "the position is down 4%" — and it changes how much real cushion the $0.169 invalidation gives you.
+  </div>
+</div>
+
+<!-- ═══ 4. POSITION MATRIX ═══ -->
+<div class="part">Position progression matrix — Quant PM sizing layer</div>
+<pre>
+BUY 1 (Early Accum) ──&gt; [BUY 2 ✓ FILLED] ──&gt; BUY 3 (Test) ──&gt; BUY 4 (LPS) ──&gt; BUY 5 (Markup Pullback)
+   ▲                        ▲                    △ GATED behind the 50-EMA band
+   └── quarter, HELD         └── quarter, HELD    └── $0.19 settled close. Must clear $0.183-0.185 first.
+
+Current Matrix Classification:  BUY 2 HELD — half size · blended ~$0.173-0.180 (fill-dependent)
+                                mark $0.17309 → ≈ breakeven to −4.0%
+50-day EMA band:                $0.183–0.185 — REJECTED Jul 22 ($0.18079 high). +5.7% to +6.9% overhead.
+                                THE gate. Nothing scales until it clears.
+BUY 3 (next scale):             Settled close above ~$0.19 (+9.8%). Unchanged.
+Add invalidation:               TWO closes below $0.169 (−2.4%) → reverse BUY 2 to BUY 1. 0 of 2.
+                                Asymmetry note: the core requires TWO closes for any trim — no
+                                single-close reaction, even on a sharp FOMC candle.
+Thesis stop:                    TWO closes below $0.1596 (−7.8%). Distant. Twice defended in July.
+Cross-asset:                    BTC 3 consecutive closes &gt; $65K. Pulling back today, still above.
+Dry powder:                     75% reserved for Oct-Nov 2026. UNTOUCHED.
+</pre>
+
+<div class="card">
+  <div class="lr"><span class="px" style="color:var(--txt3);">$0.1986</span><span><span class="badge b-gray">AR high (Jul 4) — the range ceiling</span></span></div>
+  <div class="lr"><span class="px" style="color:var(--green);">$0.1900</span><span><span class="badge b-green">BUY 3 SCALE — settled close · +9.8% overhead</span></span></div>
+  <div class="lr"><span class="px" style="color:var(--am);font-size:12.5px;">$0.183–0.185</span><span><span class="badge b-amber">◄◄ 50-DAY EMA BAND — REJECTED Jul 22. The gate.</span></span></div>
+  <div class="lr"><span class="px" style="color:var(--amber);">$0.18079</span><span><span class="badge b-amber">Jul 22 high — first $0.18 print, rejected</span></span></div>
+  <div class="lr"><span class="px" style="color:var(--txt3);">$0.17671</span><span><span class="badge b-gray">Jul 23 high — a LOWER high</span></span></div>
+  <div class="lr spot"><span class="px">$0.1731</span><span><strong>SPOT</strong> · live Jul 23 · sitting on its own trigger line</span></div>
+  <div class="lr"><span class="px" style="color:var(--green);">$0.1730</span><span><span class="badge b-green">The trigger, flipped to support — 2 closes above it</span></span></div>
+  <div class="lr"><span class="px" style="color:var(--green);">$0.17041</span><span><span class="badge b-green">Jul 22 retest low — held</span></span></div>
+  <div class="lr"><span class="px" style="color:var(--rd);">$0.1690</span><span><span class="badge b-red">◄ ADD INVALIDATION — two closes below reverses BUY 2. 0/2.</span></span></div>
+  <div class="lr"><span class="px" style="color:var(--rd);">$0.1596</span><span><span class="badge b-red">THESIS STOP — twice defended, −7.8% distant</span></span></div>
+</div>
+
+<!-- ═══ 5. PROBABILITY TREES ═══ -->
+<div class="part">Probability path trees — MSA structural trajectories · spot $0.1731 · re-weighted on the stall</div>
+<div class="card">
+  <div class="trow">
+    <div class="tdot" style="background:var(--am);"></div><div class="tp" style="color:var(--amber);">42%</div>
+    <div><strong>Primary — the range holds into FOMC.</strong> ADA oscillates $0.169–0.181 beneath the EMA band while volume stays
+      thin, BTC holds $65K, and neither the $0.19 scale nor the $0.169 invalidation triggers before Jul 28–29. The half position simply
+      holds. <em>Promoted from secondary — this is what the last two sessions have actually been doing.</em></div>
+  </div>
+  <div class="trow">
+    <div class="tdot" style="background:var(--gn);"></div><div class="tp" style="color:var(--green);">33%</div>
+    <div><strong>Secondary — the EMA clears and markup resumes.</strong> A settled close through $0.183–0.185 on expanding volume opens
+      $0.19 (BUY 3) and the $0.1986 AR high. The fresh ADA/BTC campaign high, the twice-confirmed breakout, and continued BTC ETF
+      inflows are the supports. <em>Demoted from primary — three sessions of declining volume and a lower high have to cost this branch
+      weight, not be explained away.</em></div>
+  </div>
+  <div class="trow">
+    <div class="tdot" style="background:var(--rd);"></div><div class="tp" style="color:var(--red);">25%</div>
+    <div><strong>Tail — failed breakout.</strong> A hawkish FOMC (hike odds now 20–25%, having spiked near 46% intra-month) or a BTC
+      loss of $65K drives two consecutive closes below $0.169 → BUY 2 reverses to BUY 1, a managed trim of the add at a small loss.
+      <em>Raised from 18% on the stall plus the corrected, higher FOMC risk.</em> Not a thesis break — the $0.1596 stop stays 7.8% below,
+      and a flush simply hands the campaign back to the Oct–Nov window it was always built around.</div>
+  </div>
+</div>
+
+<!-- ═══ 6. MONTHLY MAP ═══ -->
+<div class="part">Monthly action map — Jun 2026 → Dec 2027</div>
+<div class="filters" id="filters">
+  <button class="chip active" data-filter="all">All</button>
+  <button class="chip" data-filter="buy">Buy / Accumulate</button>
+  <button class="chip" data-filter="hold">Wait / Hold</button>
+  <button class="chip" data-filter="sell">Reduce / Sell</button>
+</div>
+<div class="month-grid" id="grid"></div>
+<div style="font-size:11px;color:var(--txt3);margin-bottom:6px;">
+  <span class="badge b-gray">COND</span> = conditional. <span class="badge b-green">CORE</span> = the framework's highest-conviction
+  deployment window — <strong>unchanged through every session in this project.</strong>
+</div>
+
+<!-- ═══ 7. TRAJECTORY ═══ -->
+<div class="part">Structural trajectory — Jul 2026 → Dec 2027 (re-based to $0.1731)</div>
+<div class="card">
+  <div style="font-size:11.5px;color:var(--txt2);margin-bottom:12px;">
+    Unchanged in shape. The base case still routes the summer markup leg into an <strong>autumn drawdown and the Oct–Nov cycle-bottom
+    window</strong> before the primary markup — a stall at the 50-EMA is entirely consistent with that path, not a deviation from it.
+    Log scale. Scenario bands, not forecasts.
+  </div>
+  <svg viewBox="0 0 900 268" xmlns="http://www.w3.org/2000/svg" font-family="ui-monospace,Menlo,monospace">
+    <rect x="208.7" y="18" width="48.2" height="226" fill="#6FA02C" opacity="0.12"/>
+    <text x="232" y="14" font-size="8.5" fill="#6FA02C" text-anchor="middle">BTC CYCLE-BOTTOM WINDOW</text>
+    <g stroke="currentColor" opacity="0.13" stroke-width="1">
+      <line x1="64" y1="238.6" x2="884" y2="238.6"/><line x1="64" y1="196.1" x2="884" y2="196.1"/>
+      <line x1="64" y1="165.9" x2="884" y2="165.9"/><line x1="64" y1="123.4" x2="884" y2="123.4"/>
+      <line x1="64" y1="69.9" x2="884" y2="69.9"/><line x1="64" y1="18" x2="884" y2="18"/>
+    </g>
+    <g font-size="9" fill="currentColor" opacity="0.55" text-anchor="end">
+      <text x="58" y="242.1">$0.10</text><text x="58" y="199.6">$0.15</text><text x="58" y="169.4">$0.20</text>
+      <text x="58" y="126.9">$0.30</text><text x="58" y="73.4">$0.50</text><text x="58" y="21.5">$0.82</text>
+    </g>
+    <line x1="64" y1="171.3" x2="884" y2="171.3" stroke="#6FA02C" stroke-width="1.2" stroke-dasharray="5,4" opacity="0.75"/>
+    <text x="880" y="167.8" font-size="8.5" fill="#6FA02C" text-anchor="end">BUY 3 SCALE $0.19</text>
+    <line x1="64" y1="174.7" x2="884" y2="174.7" stroke="#BA7517" stroke-width="1.5" stroke-dasharray="6,3"/>
+    <text x="880" y="182.2" font-size="8.5" fill="#BA7517" text-anchor="end">50-DAY EMA $0.183–0.185 — REJECTED JUL 22</text>
+    <line x1="64" y1="183.6" x2="884" y2="183.6" stroke="#D85A30" stroke-width="1.3" stroke-dasharray="5,4"/>
+    <text x="880" y="192.5" font-size="8.5" fill="#D85A30" text-anchor="end">ADD INVALIDATION $0.169 — 2 closes below</text>
+    <line x1="64" y1="189.6" x2="884" y2="189.6" stroke="#9a988f" stroke-width="1.0" stroke-dasharray="3,3" opacity="0.7"/>
+    <polyline fill="none" stroke="#1D9E75" stroke-width="1.5" stroke-dasharray="5,3" opacity="0.8"
+      points="64.0,179.3 112.2,166.5 160.5,150.4 208.7,134.5 256.9,121.7 305.2,108.2 353.4,93.8 401.6,77.9 449.9,64.8 498.1,50.4 546.4,61.8 594.6,74.1 642.8,68.8 691.1,56.5 739.3,42.8 787.5,26.7 835.8,32.4 884.0,37.9"/>
+    <polyline fill="none" stroke="#85B7EB" stroke-width="2.6"
+      points="64.0,181.2 112.2,185.5 160.5,192.7 208.7,196.1 256.9,189.3 305.2,177.0 353.4,167.0 401.6,151.3 449.9,139.2 498.1,126.3 546.4,137.6 594.6,149.5 642.8,145.1 691.1,132.9 739.3,119.3 787.5,103.2 835.8,109.1 884.0,114.1"/>
+    <polyline fill="none" stroke="#D85A30" stroke-width="1.5" stroke-dasharray="5,3" opacity="0.85"
+      points="64.0,183.0 112.2,196.1 160.5,209.5 208.7,219.5 256.9,226.7 305.2,216.1 353.4,207.2 401.6,197.5 449.9,189.3 498.1,179.3 546.4,190.7 594.6,203.3 642.8,197.5 691.1,185.5 739.3,171.3 787.5,156.0 835.8,161.8 884.0,166.5"/>
+    <circle cx="64" cy="181.2" r="4" fill="#BA7517"/>
+    <circle cx="208.7" cy="196.1" r="3.5" fill="#85B7EB"/><circle cx="256.9" cy="189.3" r="3.5" fill="#85B7EB"/>
+    <g font-size="8.5" fill="currentColor" opacity="0.5" text-anchor="middle">
+      <text x="64" y="258">Jul'26</text><text x="160" y="258">Sep</text><text x="257" y="258">Nov</text>
+      <text x="353" y="258">Jan'27</text><text x="450" y="258">Mar</text><text x="546" y="258">May</text>
+      <text x="643" y="258">Jul</text><text x="739" y="258">Sep</text><text x="884" y="258">Dec'27</text>
+    </g>
+  </svg>
+  <div class="lg">
+    <span><i style="background:#1D9E75"></i> Bull — EMA band clears, markup resumes to $0.19+</span>
+    <span><i style="background:#85B7EB"></i> Base — range under the EMA, autumn drawdown, markup after</span>
+    <span><i style="background:#D85A30"></i> Bear — failed breakout, two closes below $0.169</span>
+  </div>
+</div>
+
+<!-- ═══ 8. SEASONALITY ═══ -->
+<div class="part">Historical seasonality — 7-year average (2018–2024) · unchanged, low-tier layer</div>
+<div class="card">
+  <div class="strip">
+    <div class="sc" style="background:#3d8a4a">+18%</div><div class="sc" style="background:#1D9E75">+31%</div>
+    <div class="sc" style="background:#57893f">+12%</div><div class="sc" style="background:#2b9660">+29%</div>
+    <div class="sc" style="background:#c96a4a">−14%</div><div class="sc" style="background:#D85A30">−18%</div>
+    <div class="sc" style="background:#5b8a3c">+11%</div><div class="sc" style="background:#4a8b44">+15%</div>
+    <div class="sc" style="background:#35914f">+22%</div><div class="sc" style="background:#5b8a3c">+11%</div>
+    <div class="sc" style="background:#67873a">+9%</div><div class="sc" style="background:#a87050">−6%</div>
+  </div>
+  <div class="strip">
+    <div class="sl">Jan</div><div class="sl">Feb</div><div class="sl">Mar</div><div class="sl">Apr</div>
+    <div class="sl">May</div><div class="sl">Jun</div><div class="sl">Jul</div><div class="sl">Aug</div>
+    <div class="sl">Sep</div><div class="sl">Oct</div><div class="sl">Nov</div><div class="sl">Dec</div>
+  </div>
+  <div style="font-size:11.5px;color:var(--txt2);margin-top:11px;">
+    ADA holds <strong>+19.1% month-to-date</strong> ($0.1453 → $0.1731), well ahead of July's +11.2% average with eight sessions left —
+    but the FOMC sits inside those eight sessions, so the month is not yet in the book. August's +15% average is the next backdrop,
+    and it modifies confidence only.
+  </div>
+</div>
+
+<!-- ═══ 9. PLAYBOOK ═══ -->
+<div class="part">Month-by-month execution playbook</div>
+<div class="card" style="padding:6px 10px;">
+  <table><thead><tr><th>Month</th><th>Action</th><th>Range</th><th>Wyckoff / cycle rationale</th><th>Key risk</th></tr></thead>
+  <tbody id="tbl"></tbody></table>
+</div>
+
+<!-- ═══ 10. AUDIT ═══ -->
+<div class="part">Layered analytical audit</div>
+
+<div class="card c-blue">
+  <div style="font-weight:700;font-size:12px;margin-bottom:8px;">1 · Macro context <span style="color:var(--txt3);font-weight:400;">[Global Macro Strategist]</span></div>
+  <div class="kv">
+    <div class="k">Institutional flow</div><div>BTC ETF inflow streak (6 days, ~$928M as of the last verified read) and the CLARITY Act's Senate path remain the structural supports behind the joint break. <strong>Whale layer is 10 days stale</strong> — whether the cohort rode the move to $0.18 or distributed into it is the highest-value missing input on this map.</div>
+    <div class="k">Macro bias</div><div><span class="badge b-amber">Two-sided into FOMC</span> — <strong>corrected:</strong> hold is priced nearer <strong>75–80%</strong>, not the ~86% the framework carried, with July hike odds having spiked toward 46% intra-month on the Hormuz escalation. Six days out, into a stalled breakout, that is a live risk in both directions.</div>
+    <div class="k">Strategic context note</div><div>BTC's three consecutive $65K closes keep ADA's floor intact; a BTC loss of $65K is the most likely mechanism for ADA's $0.169 invalidation. Core view untouched: <strong>Oct–Nov 2026 CORE window, 75% dry powder reserved.</strong> A stalled summer leg does not disturb the autumn thesis — if anything it keeps the powder more comfortably in reserve.</div>
+  </div>
+</div>
+
+<div class="card c-green">
+  <div style="font-weight:700;font-size:12px;margin-bottom:8px;">2 · Market structure &amp; liquidity <span style="color:var(--txt3);font-weight:400;">[Lead Market Structure Analyst]</span></div>
+  <div class="kv">
+    <div class="k">Primary interpretation</div><div><strong>Phase D markup, digesting at first resistance.</strong> Two consecutive closes above $0.173 (the second higher), a held retest at $0.17041, and BTC's third $65K close all confirm the break. The stall at the 50-EMA with declining volume is the normal shape of a first pause after a sharp advance — the structure below is undamaged and the invalidation untouched.</div>
+    <div class="k">Alternate interpretation<br><span style="font-weight:400;font-size:10.5px;">(MANDATORY)</span></div><div><strong>A developing upthrust at the EMA.</strong> $0.18079 rejected, a lower high, thinning volume, and price sliding back onto its own trigger is <em>also</em> the early signature of supply reasserting at a known resistance — precisely what happened at $0.173 on Jul 11 before the eventual break. If FOMC turns hawkish, this read is the one that resolves. The discriminator is mechanical: <strong>a settled close through $0.185 kills it; two closes below $0.169 confirms it.</strong></div>
+    <div class="k">Liquidity matrix</div><div>$0.173 is now twice-confirmed support with price resting on it. Overhead: the $0.183–0.185 EMA band (one rejection), then $0.19, then the $0.1986 AR. Below: $0.17041 (retest low), $0.169 (add-invalidation), then a gap of air to $0.1596. Thin volume in both directions — the next real move likely needs the FOMC catalyst.</div>
+    <div class="k">Smart money footprint</div><div><span class="badge b-amber">UNVERIFIED THIS SESSION</span> — carried as accumulating, but 10 days stale. Given the $0.18 rejection, refreshing this is the priority input before BUY 3 is ever considered.</div>
+    <div class="k">Relative strength</div><div><span class="badge b-green">NEW CAMPAIGN HIGH — 2.6456</span>. ADA is holding its level while BTC pulls back from $66,112 today. This is the strongest fact on the map and the main reason the stall reads as digestion rather than distribution.</div>
+  </div>
+</div>
+
+<div class="card c-amber">
+  <div style="font-weight:700;font-size:12px;margin-bottom:8px;">3 · Sentiment &amp; behaviour <span style="color:var(--txt3);font-weight:400;">[Alternative Data Quant]</span></div>
+  <div class="kv">
+    <div class="k">Fear &amp; Greed</div><div><strong>51 — Neutral</strong> (re-verified today, 04:48 UTC). <strong>Correction:</strong> the ~20–25 figure carried in the parallel report was stale by roughly two weeks.</div>
+    <div class="k">Contrarian read</div><div><strong>The washout is over — that support for the bull case is gone.</strong> Sentiment has fully normalised alongside price. From here the move requires genuine demand (ETF flows, on-chain accumulation) rather than short-covering or fear-unwinding. A neutral crowd is not a headwind, but it is no longer a tailwind, and the map should not pretend otherwise.</div>
+    <div class="k">Derivatives</div><div>Carried (funding negative, L/S 0.79) — <strong>not re-verified, now materially stale.</strong> If funding flipped positive through the $0.18 push, the squeeze fuel is spent and the stall makes more sense. A required input before BUY 3.</div>
+    <div class="k">Behavioural flags</div><div><span class="badge b-amber">Stall impatience.</span> Two failure modes here: forcing an add near the EMA to "get ahead of" the breakout, or bailing on a working half-position because three quiet sessions feel like failure. <strong>The position is correctly sized and both lines are pre-set. A stall is not a signal — it is the absence of one.</strong></div>
+  </div>
+</div>
+
+<!-- ═══ 11. ZERO WEIGHT ═══ -->
+<div class="part">Zero-weight disclosures — reported in full, NO directional signal</div>
+<div class="card" style="padding:6px 10px;">
+  <table>
+    <tr><th>Layer</th><th>Current state</th><th>Verdict</th></tr>
+    <tr class="zero"><td><strong>Shmita</strong></td>
+      <td>Year 4 of 7 — not inside a Shmita year. Next release year (5789) begins Sep 2028.</td>
+      <td><span class="badge b-gray">NO SIGNAL</span></td></tr>
+    <tr class="zero"><td><strong>Mercury Rx</strong></td>
+      <td><strong>Direct as of ~today (Jul 23).</strong> Per the formal Jul 22 first-principles audit this layer is permanently disclosure-only: the campaign's verified breakout printed <em>inside</em> the retrograde window and held, while its worst structural loss preceded the retrograde entirely. The station receives no credit for the breakout and carries no expectation for the stall's resolution.</td>
+      <td><span class="badge b-gray">NO SIGNAL</span></td></tr>
+    <tr class="zero"><td><strong>Lunar</strong></td>
+      <td>Waxing gibbous (computed, not fetched). Base-rate coverage precludes discriminating power.</td>
+      <td><span class="badge b-gray">NO SIGNAL</span></td></tr>
+  </table>
+  <div style="font-size:11px;color:var(--txt3);padding:9px 0 3px;">
+    Disclosed in every report for completeness and risk-discipline framing, per the standing audit ruling reaffirmed Jul 22.
+    <strong>Never permitted to generate, gate, delay, or veto a signal, nor to adjust confidence, aggressiveness, probability or risk
+    parameters. Any future promotion requires a pre-registered falsifiable test, not narrative fit.</strong>
+  </div>
+</div>
+
+<!-- ═══ 12. RISK ENGINEERING ═══ -->
+<div class="part">Risk engineering &amp; execution commands — CRO &amp; Quant PM sign-off</div>
+<div class="card c-amber">
+  <div class="kv">
+    <div class="k">System trading action</div><div><span class="badge b-amber">HOLD — half size, unchanged</span> BUY 1 + BUY 2 held. <strong>No add without a $0.19 settled close. No trim without two consecutive closes below $0.169 — including on an FOMC candle.</strong></div>
+    <div class="k">Tactical aggressiveness</div><div><strong>4 / 10</strong> <span style="color:var(--txt3);">(unchanged — half deployed, nothing new authorized)</span></div>
+    <div class="k">Model composite confidence</div><div><strong>62 / 100</strong> <span style="color:var(--txt3);">(parallel thread reconciled at 63; this map takes it one lower — the corrected Fear &amp; Greed removes the "washed-out sentiment retains room" support that figure partly rested on, and the corrected FOMC odds raise the tail; partly offset by the fresh ADA/BTC campaign high)</span></div>
+    <div class="k">Structural risk profile</div><div><span class="badge b-amber">MEDIUM</span> <span style="color:var(--txt3);">(unchanged — invalidation 2.4% below, thesis stop 7.8% below, but a live FOMC six days out)</span></div>
+    <div class="k" style="padding-top:8px;">Immediate trigger</div><div style="padding-top:8px;"><strong>NONE. The Jul 23 candle is live (16h 30m).</strong> Price sitting on the $0.173 line is not a determination in either direction. No mid-candle reads.</div>
+    <div class="k">The gate<br><span style="font-weight:400;font-size:10.5px;">(before any scale)</span></div><div>A settled close through the <strong>$0.183–0.185 50-day EMA band</strong> on expanding volume. This must clear before $0.19 is reachable — it rejected the Jul 22 push and is the single mechanical obstacle to the bull path.</div>
+    <div class="k">Confirmation trigger<br><span style="font-weight:400;font-size:10.5px;">(scale / BUY 3)</span></div><div>A settled UTC close above <strong>~$0.19</strong> → adds the third quarter-tranche. Requires the whale and funding layers refreshed first — both are stale and both feed the sizing.</div>
+    <div class="k">Add invalidation</div><div><strong>Two consecutive UTC closes below $0.169</strong> → reverse BUY 2 to BUY 1. 0 of 2. Jul 22's low $0.17041 held it by 0.8%.</div>
+    <div class="k">Hard structural invalidation</div><div><strong>Two consecutive closes below $0.1596</strong> → full exit. Below <strong>$0.1480</strong> → thesis death. Cross-asset kill: BTC close below <strong>$59,129</strong>. All unchanged, all distant.</div>
+    <div class="k">Cross-asset watch</div><div>BTC losing $65,000 on a settled close is the most probable trigger for ADA's $0.169 test. Three consecutive closes above it so far; today's pullback to $65,426 keeps it above but narrows the cushion.</div>
+  </div>
+</div>
+
+<!-- ═══ 13. CATALYSTS ═══ -->
+<div class="part">Catalysts — what changes the map</div>
+<div class="card" style="padding:6px 10px;">
+  <table>
+    <thead><tr><th>Catalyst</th><th>Status</th><th>Impact</th><th>Direction</th></tr></thead>
+    <tbody>
+      <tr><td><strong>50-day EMA band $0.183–0.185</strong></td><td><strong>THE GATE — rejected Jul 22, +5.7% overhead</strong></td><td>Must clear on a settled close before $0.19/BUY 3 is reachable. The single mechanical obstacle between a stalled breakout and a resumed markup.</td><td style="color:var(--amber);font-weight:700">Binary — near</td></tr>
+      <tr><td><strong>FOMC</strong></td><td><span class="badge b-amber">CORRECTED</span> Jul 28–29 · ~75–80% hold (not 86%)</td><td>Hike odds 20–25%, having spiked near 46% intra-month on Hormuz. Six days out, into a stalled breakout — the most likely resolver of the range in either direction.</td><td style="color:var(--red);font-weight:700">Live binary macro</td></tr>
+      <tr><td><strong>$0.169 add-invalidation</strong></td><td>0 of 2 · Jul 22 low $0.17041 held</td><td>Two closes below reverses BUY 2 to BUY 1 — a managed trim, not a thesis exit. Requires two closes even on an FOMC candle.</td><td style="color:var(--amber);font-weight:700">Add invalidation</td></tr>
+      <tr><td><strong>Whale layer refresh</strong></td><td><span class="badge b-red">10 DAYS STALE</span></td><td><strong>Highest-value missing input.</strong> Did the cohort ride the break to $0.18 or distribute into it? Directly determines whether the stall reads as digestion or distribution.</td><td style="color:var(--txt3);font-weight:700">Refresh required</td></tr>
+      <tr><td><strong>Derivatives refresh</strong></td><td>Stale (funding negative, L/S 0.79)</td><td>If funding flipped positive through the $0.18 push, the squeeze fuel is spent and the stall is better explained. Required before BUY 3 sizing.</td><td style="color:var(--txt3);font-weight:700">Refresh required</td></tr>
+      <tr><td><strong>BTC $65,000</strong></td><td>3 consecutive closes above · $65,426 live</td><td>ADA's floor support. A settled BTC close back below $65K is the most probable mechanism for ADA's $0.169 test.</td><td style="color:var(--amber);font-weight:700">Cross-asset watch</td></tr>
+      <tr><td><strong>ADA spot-ETF / van Rossem v11</strong></td><td><span class="badge b-gray">UNVERIFIED</span> Aug 9 / late Jul</td><td>Reported Q3 catalysts. Still single-sourced after weeks — verify before weighting, and note the v11 window is now effectively upon us with no confirmation.</td><td style="color:var(--txt3);font-weight:700">Unverified</td></tr>
+      <tr><td><strong>BTC autumn cycle bottom</strong></td><td>Oct–Nov 2026 — <strong>UNCHANGED</strong></td><td><strong>The anchor. 75% dry powder intact.</strong> A stalled summer leg leaves it entirely undisturbed.</td><td style="color:var(--green);font-weight:700">Core thesis</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ═══ 14. DELTA ═══ -->
+<div class="part">Framework delta — Jul 19 map → Jul 23 map <span style="color:var(--txt3);font-weight:400;text-transform:none;letter-spacing:0;">· spans four sessions; the coil resolved UP inside this window</span></div>
+<div class="card" style="padding:6px 10px;">
+  <table>
+    <thead><tr><th>Metric</th><th>Jul 19</th><th>Jul 23</th><th>Δ</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Spot</strong></td><td class="mono">$0.1647</td><td class="mono">$0.1731</td><td style="color:var(--green)">+5.1%</td></tr>
+      <tr><td><strong>Last settled close</strong></td><td class="mono">Jul 18 · $0.16680</td><td class="mono">Jul 22 · $0.17450</td><td style="color:var(--green)">+4.6%</td></tr>
+      <tr><td><strong>The coil</strong></td><td>5 days, apex near, direction unproven</td><td><strong>RESOLVED UP — broke and confirmed twice</strong></td><td style="color:var(--green)">✔ Resolved</td></tr>
+      <tr><td><strong>$0.173 SOS</strong></td><td>Armed, never tagged (3rd rejection)</td><td><strong>FIRED — Jul 21 $0.17373, Jul 22 $0.17450 (higher)</strong></td><td style="color:var(--green)">✔ Confirmed ×2</td></tr>
+      <tr><td><strong>BUY 2</strong></td><td>Armed, unfilled — quarter size</td><td><strong>FILLED — half size held</strong></td><td style="color:var(--green)">Deployed</td></tr>
+      <tr><td><strong>Wyckoff</strong></td><td>Phase C — coil endgame</td><td><strong>Phase C → D — markup, stalled at the EMA</strong></td><td style="color:var(--green)">Advanced</td></tr>
+      <tr><td><strong>Retest</strong></td><td>—</td><td><strong>$0.17041 held — 0.8% above invalidation</strong></td><td style="color:var(--green)">Held</td></tr>
+      <tr><td><strong>The new gate</strong></td><td>—</td><td><strong>50-day EMA $0.183–0.185 · REJECTED Jul 22 ($0.18079)</strong></td><td style="color:var(--amber)">⚠ New obstacle</td></tr>
+      <tr><td><strong>Volume</strong></td><td>Drying into apex (14.6M→8.1M→~3M)</td><td><strong>Declining post-break (17.29M→14.07M→~9.6M)</strong></td><td style="color:var(--amber)">Still thinning</td></tr>
+      <tr><td><strong>BTC $65K ledger</strong></td><td>9 attempts, 0 clean holds</td><td><strong>BROKE — 3 consecutive closes above ($66,112 high)</strong></td><td style="color:var(--green)">✔ Resolved</td></tr>
+      <tr><td><strong>Position basis</strong></td><td>≈$0.189 · mark −12.8%</td><td><strong>Blended ~$0.173–0.180 · ≈ breakeven to −4.0%</strong></td><td style="color:var(--green)">Materially better</td></tr>
+      <tr><td><strong>Invalidation</strong></td><td>Thesis stop $0.1596 (−3.1%)</td><td><strong>NEW add-invalidation $0.169 (−2.4%) · stop now −7.8%</strong></td><td style="color:var(--amber)">Two-tier now</td></tr>
+      <tr><td><strong>Relative strength</strong></td><td>Holding — 2.5600</td><td><strong>NEW CAMPAIGN HIGH — 2.6456</strong></td><td style="color:var(--green)">Strongest fact</td></tr>
+      <tr><td><strong>Fear &amp; Greed</strong></td><td>~24–28 (thawing)</td><td><strong>51 — Neutral (re-verified; ~20–25 was stale)</strong></td><td style="color:var(--red)">⚠ Washout over</td></tr>
+      <tr><td><strong>FOMC pricing</strong></td><td>~86% hold (carried)</td><td><strong>75–80% hold · hike spiked to ~46.5% intra-month</strong></td><td style="color:var(--red)">⚠ Corrected — riskier</td></tr>
+      <tr><td><strong>Confidence</strong></td><td>55 / 100</td><td><strong>62 / 100</strong></td><td style="color:var(--green)">+7</td></tr>
+      <tr><td><strong>Aggressiveness</strong></td><td>3 / 10</td><td><strong>4 / 10</strong></td><td style="color:var(--green)">+1</td></tr>
+      <tr><td><strong>Risk profile</strong></td><td>MEDIUM-HIGH</td><td><strong>MEDIUM</strong></td><td style="color:var(--green)">Eased</td></tr>
+      <tr><td><strong>Tree</strong></td><td>42 / 30 / 28 (upside primary)</td><td><strong>42 / 33 / 25</strong> — range now primary</td><td style="color:var(--amber)">Re-weighted on the stall</td></tr>
+      <tr><td><strong>Whale layer</strong></td><td>Stale (verified to Jul 13)</td><td><strong>Stale — now 10 days. Priority refresh.</strong></td><td style="color:var(--red)">Ageing</td></tr>
+      <tr><td><strong>MTD</strong></td><td>+13.4%</td><td><strong>+19.1%</strong></td><td style="color:var(--green)">+5.7pp</td></tr>
+      <tr><td><strong>Oct–Nov CORE</strong></td><td>CORE ACCUMULATE</td><td><strong>CORE ACCUMULATE</strong></td><td style="color:var(--green)">UNCHANGED</td></tr>
+      <tr><td><strong>Dry powder</strong></td><td>75%</td><td><strong>75%</strong></td><td style="color:var(--green)">Intact</td></tr>
+      <tr><td><strong>Cost basis</strong></td><td>Unconfirmed (6th request)</td><td><strong>Unconfirmed (8th request)</strong></td><td style="color:var(--red)">Still open</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ═══ 15. BRIEF ═══ -->
+<div class="part">Final executive brief</div>
+<div class="card c-amber">
+  <div class="brief">
+    ADA's breakout is <strong>holding but not extending</strong>: Jul 22 settled $0.17450 — a second consecutive close above the $0.173
+    trigger and a higher one, with the retest low $0.17041 holding 0.8% above the add-invalidation and BTC printing a third straight
+    close above $65,000 — yet the same session's push to $0.18079 was <strong>rejected at the $0.183–0.185 50-day EMA band</strong>, and
+    the two sessions since have produced a lower high, declining volume, and price drifting back onto its own trigger line. The next
+    mechanical event is that EMA band: <strong>a settled close through it on expanding volume opens $0.19 and the BUY 3 add, while two
+    consecutive closes below $0.169 reverse BUY 2 back to BUY 1</strong> — with a corrected, more dangerous FOMC (~75–80% hold, not the
+    ~86% previously carried) six days out as the most likely resolver in either direction. <strong>Hold the half-size position entirely
+    unchanged — no add without the $0.19 close, no trim without two closes below $0.169 even on an FOMC candle — refresh the whale and
+    funding layers before BUY 3 is ever discussed, note that the corrected Fear &amp; Greed at 51 removes the washed-out-sentiment support
+    the bull case was partly resting on, and keep the 75% dry powder locked for October–November, which a stalled summer leg leaves
+    entirely undisturbed.</strong>
+  </div>
+</div>
+
+<!-- ═══ 16. PROVENANCE ═══ -->
+<div class="part">Data provenance</div>
+<div class="card c-gray">
+  <div style="font-size:11.5px;line-height:1.65;color:var(--txt2);">
+    <strong>Crypto.com MCP — CALLABLE, authoritative</strong> (ADA_USDT, BTC_USDT, 1D). Jul 22 ADA close $0.17450 (h $0.18079, l $0.17041,
+    vol 14.07M); BTC close $66,112.41. <strong>CoinGecko MCP — CALLABLE</strong>; cross-matched on price value (the +1-day label offset
+    persists): CG "Jul 23" ADA bar (o $0.173466, c $0.173954) = CDC <strong>Jul 22</strong>. Both feeds settled Jul 22 above $0.173.
+    Spot: ADA $0.172921 (CG) vs $0.17309 (CDC); BTC $65,388 vs $65,426 — normal variance.<br>
+    <strong>Project reconciliation:</strong> the ADA thread re-ran Jul 23 ~07:20 UTC. Adopted: HOLD (no add, no trim), aggressiveness 4/10,
+    risk Medium, the $0.183–0.185 EMA gate, $0.19 BUY 3, $0.169 two-close add-invalidation and its stated asymmetry. <strong>Deviated on
+    two figures where fresh verification contradicted the carried record</strong> — Fear &amp; Greed (51 Neutral, not ~20–25) and FOMC odds
+    (~75–80% hold, not ~86%) — with confidence set at 62 rather than 63 as a result. Both deviations are logged above as corrections.<br>
+    <strong>Web search</strong> — Fear &amp; Greed 51 Neutral (CFGI, Jul 23 04:48 UTC); FOMC pricing via prediction markets and CME
+    FedWatch reporting.<br>
+    <strong>Lunar — computed</strong>, not fetched. Zero weight regardless.<br>
+    <strong>Carried, NOT re-verified (refresh required before BUY 3):</strong> whale accumulation (10 days stale); derivatives funding/L-S;
+    AERO (~$0.455, 5+ sessions stale).<br>
+    <strong>Explicitly NOT verified — do not act on these:</strong> Aug 9 ADA spot-ETF window / Grayscale "GADA"; van Rossem v11 timing.
+    Single-source. Flagged, not weighted.<br>
+    <strong>Cost basis: BUY 1 fill still UNCONFIRMED — 8th request. Blended basis is ≈$0.173 or ≈$0.180.</strong>
+    No figure in this map is fabricated.
+  </div>
+</div>
+
+<div class="foot">
+  Evidence hierarchy, non-negotiable: <strong>Wyckoff dominates.</strong> Liquidity, the halving cycle and macro/FOMC carry supporting
+  weight. Seasonality and sentiment modify confidence only. Shmita, Mercury retrograde and lunar cycles are disclosed in full and carry
+  <strong>zero directional weight</strong> — never a signal, never a gate, never a veto, and pre-emptively denied credit for any
+  resolution that lands near the Jul 23 direct station.<br><br>
+  Gate and invalidation determinations are made on <strong>closed UTC daily candles only</strong>. Negations require <strong>two
+  consecutive closes</strong> — the twice-defended stop is the standing proof. Entry-into-strength triggers require settled, non-marginal,
+  volume-backed closes. No mid-candle pulls, no front-running the coil, in either direction. Feed states and substitutions are always
+  disclosed. All corrections and probability re-weightings are logged explicitly with before/after framing.<br><br>
+  ⚠️ Structural orientation, not financial advice. This is a positioning and risk-management tool — not a prediction. Cryptocurrency
+  markets are highly volatile and past patterns do not guarantee future results. Size positions yourself, use stops, and consult a
+  licensed financial advisor before making investment decisions.
+</div>
+
+<!-- DETAIL MODAL (restored interaction) -->
+<div class="modal-bg" id="modalBg">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="mTitle">
+    <div class="modal-head">
+      <span class="m-title" id="mTitle"></span>
+      <button class="modal-close" id="modalClose" aria-label="Close">×</button>
+    </div>
+    <span class="m-action" id="mAction"></span>
+    <div class="m-stats">
+      <div class="m-stat"><div class="s-label">Price range</div><div class="s-val" id="mRange"></div></div>
+      <div class="m-stat"><div class="s-label">Confidence</div><div class="s-val" id="mScore"></div></div>
+    </div>
+    <div class="m-block"><div class="b-label">Wyckoff / cycle rationale</div><div class="b-text" id="mWhy"></div></div>
+    <div class="m-block risk"><div class="b-label">Key risk</div><div class="b-text" id="mRisk"></div></div>
+  </div>
+</div>
+
+<script>
+const M=[
+ {l:"Jun 2026",a:"CLOSED −40%",c:"a-sell",b:"bar-sell",s:0,r:"closed $0.1453",tag:"past",
+  why:"<strong>The Selling Climax.</strong> BUY 3 stopped out Jun 24 at $0.1477. Month closed $0.1453, −40%. Low $0.1387 on Jun 23. Drivers were not only macro: failed treasury votes, a cancelled summit, and Hoskinson's warnings on ecosystem failures.",
+  k:"Worst month of the cycle. Realised loss on the BUY 3 stop-out."},
+ {l:"Jul 2026",a:"HOLD ½ — stalled",c:"a-wait",b:"bar-wait",s:62,r:"$0.169–$0.1986",tag:"now",
+  why:"<strong>NOW.</strong> Breakout confirmed twice (Jul 21 $0.17373, Jul 22 $0.17450 — higher), retest $0.17041 held, BTC 3rd close &gt;$65K, ADA/BTC at a campaign high. <strong>But $0.18079 was rejected at the 50-day EMA ($0.183–0.185)</strong>, volume is declining and Jul 23 sits back on the $0.173 trigger. Half deployed; no add, no trim. +19.1% MTD.",
+  k:"EMA rejection + thinning volume + a live FOMC in 6 days. Add-invalidation: two closes below $0.169."},
+ {l:"Aug 2026",a:"HOLD / BUY 3 on $0.19",c:"a-hold",b:"bar-hold",s:55,r:"$0.16–$0.22",tag:"cond",
+  why:"Post-FOMC resolution month. BUY 3 adds the third quarter on a settled $0.19 close — but only after the $0.183–0.185 EMA band clears. August averages +15%. CLARITY Act Senate vote plus the reported (unverified) Aug 9 ETF window are the catalysts.",
+  k:"Post-FOMC volatility against a half position. Failed-breakout tell: two closes below $0.169."},
+ {l:"Sep 2026",a:"WAIT / trim tactical",c:"a-wait",b:"bar-wait",s:44,r:"$0.15–$0.23",tag:"cond",
+  why:"ADA's strongest seasonal month (+22% avg) — and the cycle-bottom window is directly ahead. If the summer leg ran, trim tactical tranches into September strength rather than adding core. Preserve powder for the autumn window.",
+  k:"The seasonal siren song — the autumn window outranks it."},
+ {l:"Oct 2026",a:"CORE ACCUMULATE",c:"a-buy",b:"bar-buy",s:62,r:"$0.12–$0.24",tag:"core",
+  why:"<strong>THE WINDOW — untouched through the entire campaign.</strong> BTC's 363–376-day post-peak interval from the Oct 2025 ATH ($126K) centres here. The whale-accumulation-into-weakness pattern seen in July is the behaviour to expect at the real bottom. Buy weakness, not strength.",
+  k:"The bottom may print below current levels. Wait for the flush AND the reclaim."},
+ {l:"Nov 2026",a:"CORE ACCUMULATE",c:"a-buy",b:"bar-buy",s:62,r:"$0.12–$0.26",tag:"core",
+  why:"Second half of the cycle-bottom window. Scale BUY 3+ on a confirmed Spring plus a Sign of Strength — the two-step rehearsed in July, at the level that matters. Anchored to cycle structure, not to any calendar layer.",
+  k:"If no bottom confirms, the window extends. Patience over forcing. WAIT remains valid."},
+ {l:"Dec 2026",a:"HOLD / add on confirm",c:"a-hold",b:"bar-hold",s:54,r:"$0.15–$0.30",tag:"cond",
+  why:"Early markup if the autumn bottom confirmed — add on the first LPS / back-up. If no bottom formed, stay flat and carry the powder into 2027.",
+  k:"Thin year-end liquidity. False starts are common off a fresh low."},
+ {l:"Jan 2027",a:"ACCUMULATE",c:"a-accum",b:"bar-accum",s:56,r:"$0.17–$0.34",tag:"cond",
+  why:"New-year capital deployment; ADA historically positive in January (+18% avg). Re-accumulate into markup if the autumn bottom held.",
+  k:"Wholly conditional on a confirmed autumn bottom. No bottom = no trade."},
+ {l:"Feb 2027",a:"BUY",c:"a-buy",b:"bar-buy",s:58,r:"$0.19–$0.40",tag:"cond",
+  why:"ADA's second-strongest seasonal month (+31% avg). Markup continuation. Add on pullbacks, never on strength.",
+  k:"Overheating if January ran hard. Watch for a lower high."},
+ {l:"Mar 2027",a:"BUY",c:"a-buy",b:"bar-buy",s:57,r:"$0.21–$0.46",tag:"cond",
+  why:"Green every year since 2022 bar 2024. Protocol-upgrade delivery window — Leios mainnet is the fundamental catalyst to watch.",
+  k:"2024 was the exception (closed red). Upgrade-delay risk is real for Cardano specifically."},
+ {l:"Apr 2027",a:"STRONG BUY",c:"a-sbuy",b:"bar-sbuy",s:62,r:"$0.25–$0.56",tag:"cond",
+  why:"ADA's best historical month (+29% avg). Pre-2028-halving cycle echo begins. Maximum probability of a large monthly candle — <em>if</em> the recovery is real.",
+  k:"If Q1 ran too far, April flips to distribution. Watch volume, not price."},
+ {l:"May 2027",a:"REDUCE",c:"a-reduce",b:"bar-reduce",s:40,r:"$0.23–$0.50",tag:"cond",
+  why:"\"Sell in May.\" Historically weak for alts (−14% avg). May has hosted crypto's black swans — Terra/LUNA collapsed in May 2022. Begin trimming.",
+  k:"Flash-crash risk. Do not marry a position that has multiplied."},
+ {l:"Jun 2027",a:"SELL / REDUCE",c:"a-sell",b:"bar-sell",s:25,r:"$0.17–$0.42",tag:"cond",
+  why:"<strong>ADA's worst month — 8 of 9 years closed lower</strong> (−18% avg). Distribution zone if the prior months ran.",
+  k:"June 2021 was the sole bullish exception. Do not hold heavy size into June."},
+ {l:"Jul 2027",a:"WAIT",c:"a-wait",b:"bar-wait",s:43,r:"$0.16–$0.40",tag:"cond",
+  why:"Post-June consolidation. Watch for a new accumulation base. WAIT is a position — do not force a re-entry.",
+  k:"Extended markdown from May–June with no clear bottom yet."},
+ {l:"Aug 2027",a:"ACCUMULATE",c:"a-accum",b:"bar-accum",s:54,r:"$0.17–$0.42",tag:"cond",
+  why:"Pre-2028-halving positioning begins in earnest. DCA if the June–July lows held.",
+  k:"The 2028 halving may reset the macro clock on a different schedule than 2024's."},
+ {l:"Sep 2027",a:"BUY",c:"a-buy",b:"bar-buy",s:59,r:"$0.21–$0.48",tag:"cond",
+  why:"Seasonally strong (+22% avg). September–October has historically launched major rally legs. Pre-halving accumulation window.",
+  k:"Pattern may not repeat. BTC dominance may still be elevated, starving alts."},
+ {l:"Oct 2027",a:"STRONG BUY",c:"a-sbuy",b:"bar-sbuy",s:64,r:"$0.27–$0.58",tag:"cond",
+  why:"Q4 2027 = full pre-halving-2028 positioning. Historically the strongest Q4 setup. Add size on a confirmed structure.",
+  k:"Pre-halving pump-and-dump risk. The market may price the 2028 halving early, then unwind."},
+ {l:"Nov 2027",a:"HOLD",c:"a-hold",b:"bar-hold",s:51,r:"$0.30–$0.66",tag:"cond",
+  why:"Hold the markup. Monitor for Signs of Weakness / UTAD before any Q1 2028 surge. Let the position work.",
+  k:"Profit-taking cascade. FTX-anniversary volatility is a recurring November pattern."},
+ {l:"Dec 2027",a:"REDUCE",c:"a-reduce",b:"bar-reduce",s:43,r:"$0.33–$0.76",tag:"cond",
+  why:"Year-end profit-taking, tax-loss harvesting, institutional rebalancing. If ADA has multiplied off the 2026 lows, this is meaningful distribution territory.",
+  k:"If significantly in profit, failure to reduce IS the risk. Emotional holding kills cycles."},
+];
+
+const TAG={now:['t-now','NOW'],past:['t-past','PAST'],cond:['t-cond','COND'],core:['t-core','CORE']};
+const g=document.getElementById('grid'), t=document.getElementById('tbl');
+
+M.forEach((m,i)=>{
+  const [tc,tl]=TAG[m.tag];
+  const d=document.createElement('div');
+  d.className='mc'+(m.tag==='now'?' now':'')+(m.tag==='core'?' core':'');
+  d.dataset.cat=categoryOf(m.c);
+  d.innerHTML=`<span class="tag ${tc}">${tl}</span>
+    <div class="mc-m">${m.l}</div>
+    <div class="mc-a ${m.c}">${m.a}</div>
+    <div class="mc-s">Confidence ${m.s}/100</div>
+    <div class="mc-n">${m.r}</div>
+    <div class="mc-bar ${m.b}" style="width:${Math.max(3,m.s)}%"></div>
+    <div class="mc-more">Tap for detail →</div>`;
+  d.addEventListener('click',()=>openModal(i));
+  g.appendChild(d);
+
+  const tr=document.createElement('tr');
+  const bcls={'a-sbuy':'b-green','a-buy':'b-green','a-accum':'b-blue','a-hold':'b-gray',
+              'a-wait':'b-amber','a-reduce':'b-amber','a-sell':'b-red'}[m.c];
+  tr.innerHTML=`<td style="font-weight:700;white-space:nowrap">${m.l}
+      <span class="tag ${tc}" style="position:static;display:inline-block;margin-left:3px">${tl}</span></td>
+    <td><span class="badge ${bcls}">${m.a}</span></td>
+    <td class="mono" style="white-space:nowrap">${m.r}</td>
+    <td>${m.why}</td>
+    <td style="color:var(--txt2)">${m.k}</td>`;
+  t.appendChild(tr);
+});
+
+// ---- action -> filter bucket ----
+function categoryOf(c){
+  if(c==='a-sbuy'||c==='a-buy'||c==='a-accum') return 'buy';
+  if(c==='a-sell'||c==='a-reduce') return 'sell';
+  return 'hold'; // a-hold + a-wait
+}
+
+// ---- detail modal ----
+const modalBg=document.getElementById('modalBg');
+function openModal(i){
+  const m=M[i];
+  document.getElementById('mTitle').textContent=m.l;
+  const aEl=document.getElementById('mAction');
+  aEl.textContent=m.a; aEl.className='m-action '+m.c;
+  document.getElementById('mRange').textContent=m.r;
+  document.getElementById('mScore').textContent=m.s+' / 100';
+  document.getElementById('mWhy').innerHTML=m.why;
+  document.getElementById('mRisk').textContent=m.k;
+  modalBg.classList.add('open');
+}
+function closeModal(){ modalBg.classList.remove('open'); }
+document.getElementById('modalClose').addEventListener('click',closeModal);
+modalBg.addEventListener('click',e=>{ if(e.target===modalBg) closeModal(); });
+document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeModal(); });
+
+// ---- filter chips (dim non-matching month cards) ----
+const chips=document.querySelectorAll('#filters .chip');
+chips.forEach(chip=>chip.addEventListener('click',()=>{
+  chips.forEach(c=>c.classList.remove('active'));
+  chip.classList.add('active');
+  const f=chip.dataset.filter;
+  g.querySelectorAll('.mc').forEach(card=>{
+    card.classList.toggle('dimmed', f!=='all' && card.dataset.cat!==f);
+  });
+}));
+</script>
+</body>
+</html>
