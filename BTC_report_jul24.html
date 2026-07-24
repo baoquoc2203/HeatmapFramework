@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BTC Framework — Look-Back &amp; Forecast, July 1 2026</title>
+<style>
+  :root{
+    --bg:#ffffff; --bg2:#f6f4ee; --bg3:#efece3; --txt:#2c2c2a; --txt2:#5f5e5a; --bord:#e3e0d6;
+    --red:#993C1D; --red-bg:#FAECE7; --amber:#854F0B; --amber-bg:#FAEEDA;
+    --green:#3B6D11; --green-bg:#EAF3DE; --blue:#185FA5; --blue-bg:#E6F1FB;
+    --rd:#D85A30; --gn:#6FA02C; --gray:#8b8a84; --gray-bg:#ECEAE2;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#1f1e1c; --bg2:#2a2926; --bg3:#323029; --txt:#f1efe8; --txt2:#b4b2a9; --bord:#3a3935;
+      --red:#F0997B; --red-bg:#4A1B0C; --amber:#FAC775; --amber-bg:#412402;
+      --green:#97C459; --green-bg:#173404; --blue:#85B7EB; --blue-bg:#042C53;
+      --gn:#97C459; --gray:#9a988f; --gray-bg:#302e2a;
+    }
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;padding:18px;background:var(--bg);color:var(--txt);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;font-size:13px;line-height:1.5;}
+  h1{font-size:18px;font-weight:700;margin:0 0 3px;}
+  .sub{font-size:11.5px;color:var(--txt2);margin-bottom:6px;}
+  .part{font-size:11.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--txt);background:var(--bg3);border-radius:8px;padding:8px 12px;margin:20px 0 11px;}
+  .lbl{font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--txt2);margin:14px 0 8px;}
+  .card{background:var(--bg2);border:1px solid var(--bord);border-radius:12px;padding:14px 16px;margin-bottom:10px;}
+  .card-amber{border-left:3px solid #BA7517;} .card-red{border-left:3px solid var(--rd);}
+  .card-green{border-left:3px solid #1D9E75;} .card-gray{border-left:3px solid var(--gray);}
+  .badge{display:inline-block;padding:2px 8px;border-radius:5px;font-size:10.5px;font-weight:700;white-space:nowrap;}
+  .b-red{background:var(--red-bg);color:var(--red);} .b-amber{background:var(--amber-bg);color:var(--amber);}
+  .b-green{background:var(--green-bg);color:var(--green);} .b-blue{background:var(--blue-bg);color:var(--blue);}
+  .b-gray{background:var(--gray-bg);color:var(--gray);}
+  .head3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:4px;}
+  .hb{text-align:center;padding:11px 6px;border-radius:10px;border:1px solid var(--bord);background:var(--bg2);}
+  .hb .l{font-size:10px;color:var(--txt2);text-transform:uppercase;letter-spacing:.04em;}
+  .hb .m{font-size:18px;font-weight:600;margin:3px 0 1px;}
+  .hb .s{font-size:10.5px;color:var(--txt2);}
+  /* era timeline */
+  .era{display:flex;gap:8px;align-items:flex-start;padding:10px 0;border-bottom:1px solid var(--bord);}
+  .era:last-child{border-bottom:none;}
+  .era-yr{width:78px;flex-shrink:0;font-weight:700;font-size:12px;padding-top:1px;}
+  .era-yr small{display:block;font-weight:400;font-size:9.5px;color:var(--txt2);}
+  .era-txt{font-size:12px;line-height:1.55;}
+  /* verdict table */
+  table{width:100%;border-collapse:collapse;font-size:11.8px;}
+  th{text-align:left;padding:7px 8px;background:var(--bg3);font-size:9.5px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:var(--txt2);border-bottom:1px solid var(--bord);}
+  td{padding:9px 8px;border-bottom:1px solid var(--bord);vertical-align:top;line-height:1.45;}
+  tr:last-child td{border-bottom:none;}
+  tr.zero td{opacity:0.88;}
+  .tiername{font-weight:600;}
+  /* tree */
+  .trow{display:flex;gap:10px;padding:7px 0;border-bottom:1px solid var(--bord);font-size:12px;}
+  .trow:last-child{border-bottom:none;}
+  .td{width:9px;height:9px;border-radius:50%;flex-shrink:0;margin-top:4px;}
+  .tp{width:42px;flex-shrink:0;font-weight:700;}
+  /* ladder */
+  .lad{font-size:11.5px;}
+  .lr{display:flex;align-items:center;gap:9px;padding:6px 0;border-bottom:1px solid var(--bord);}
+  .lr:last-child{border-bottom:none;}
+  .lr.spot{background:var(--bg3);border-radius:6px;padding:6px 8px;}
+  .lr .px{width:98px;flex-shrink:0;font-weight:700;font-family:ui-monospace,monospace;}
+  /* drawdown compare */
+  .dd-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:6px;}
+  .dd{border:1px solid var(--bord);border-radius:9px;padding:9px 10px;text-align:center;background:var(--bg2);}
+  .dd .cyc{font-size:10px;color:var(--txt2);text-transform:uppercase;letter-spacing:.04em;}
+  .dd .pct{font-size:16px;font-weight:700;margin:3px 0 1px;}
+  .dd .rng{font-size:9.5px;color:var(--txt2);}
+  .brief{font-size:13px;line-height:1.7;}
+  .foot{font-size:11px;color:var(--txt2);line-height:1.55;margin-top:10px;border-top:1px solid var(--bord);padding-top:10px;}
+  .backlink{display:inline-flex;align-items:center;gap:5px;font-size:12px;color:var(--blue);text-decoration:none;font-weight:600;margin-bottom:12px;}
+  .backlink:hover{text-decoration:underline;}
+</style>
+</head>
+<body>
+
+<a class="backlink" href="btc-dashboard.html">← BTC Dashboard</a>
+<h1>BTC Framework — Backtest Live, Stop $8 Away</h1>
+<div class="sub">Fri Jul 24, 2026 · 11:04 UTC · ✓ CRYPTO.COM AUTHORITATIVE · Jul 23 close $65,099 (4th close &gt;$65K, by $99) · spot $64,992 — BELOW the line, 13h to the close · ~41-day run, 26th major review</div>
+
+<div class="head3">
+  <div class="hb" style="border-color:#D85A30;"><div class="l">Spot</div><div class="m">$64,992</div><div class="s">below the $65K stop</div></div>
+  <div class="hb" style="border-color:#BA7517;"><div class="l">Wyckoff</div><div class="m" style="color:var(--amber);">Backtest live</div><div class="s">markup faltering</div></div>
+  <div class="hb" style="border-color:#D85A30;"><div class="l">Stance</div><div class="m" style="color:var(--amber);">HOLD BUY 4</div><div class="s">stop armed · no add</div></div>
+</div>
+
+<!-- ══════════ PART 0: THE KNIFE EDGE ══════════ -->
+<div class="part">Part 0 · The backtest — defended four times, now on a knife's edge</div>
+<div class="card card-amber">
+  <div style="font-size:13px;line-height:1.6;font-weight:600;margin-bottom:8px;">The stop has NOT fired. Jul 23 closed $65,099 — above $65,000 by $99, the 4th consecutive close above the line. But spot is now $64,992, BELOW it, with 13 hours until the close decides. Today's candle is excluded from gate determination.</div>
+  <table>
+    <tr><th>Metric</th><th>Prior report (Jul 22)</th><th>Now (Jul 24)</th><th>Delta</th></tr>
+    <tr><td>Last settled close</td><td>$66,562 (Jul 21)</td><td>$65,099 (Jul 23)</td><td style="color:var(--red);font-weight:600;">−$1,463, 3 lower closes</td></tr>
+    <tr><td>Stop buffer</td><td>~1.6%</td><td><strong>$99 on the close · −$8 on spot</strong></td><td style="color:var(--red);font-weight:600;">Knife's edge</td></tr>
+    <tr><td>Composite confidence</td><td>69 / 100</td><td>62 / 100</td><td style="color:var(--red);font-weight:600;">−7</td></tr>
+    <tr><td>Aggressiveness</td><td>5 / 10</td><td>3 / 10</td><td style="color:var(--red);font-weight:600;">−2</td></tr>
+    <tr><td>Primary path</td><td>47% markup holds</td><td><strong>42% backtest FAILS</strong></td><td style="color:var(--red);font-weight:600;">Flipped</td></tr>
+    <tr><td>Structural risk</td><td>Medium</td><td>Medium-High</td><td style="color:var(--red);font-weight:600;">Raised</td></tr>
+    <tr><td>Brent crude</td><td>&gt;$90</td><td><strong>~$96</strong></td><td style="color:var(--red);font-weight:600;">Escalated again</td></tr>
+    <tr><td>CLARITY Act</td><td>catalyst (bullish)</td><td><strong>passage odds FALLING</strong></td><td style="color:var(--red);font-weight:600;">Catalyst eroding</td></tr>
+  </table>
+</div>
+<div class="card card-green">
+  <div style="font-size:12px;line-height:1.6;"><strong>✓ THE BULL CASE, STATED FAIRLY:</strong> $65,000 has held on <strong>every close since the break — 4 of 4</strong>. And the deepest probe was <em>bought</em>: Jul 23 wicked to <strong>$64,633</strong>, piercing both the $65,000 breakout line AND the $64,690 reclaim line, then recovered within the session to close $65,099. A backtest that wicks below and closes above is textbook. Today's drift lower is on <strong>thin volume</strong> ($18.9M at ~11 hours in, vs 1,500–2,900 BTC on full days) — sellers are not pressing with conviction.</div>
+</div>
+<div class="card card-red">
+  <div style="font-size:12px;line-height:1.6;"><strong>⚠ THE BEAR CASE, STATED JUST AS FAIRLY:</strong> three consecutive descending closes off the $66,964 high ($66,562 → $66,112 → $65,099), and <strong>Jul 23's decline came on expanded volume ($118.4M — the heaviest since the breakout candle itself)</strong>. Expanding volume on a decline is distribution-flavored, not healthy consolidation. Today's rally to $65,813 was rejected straight back to the line. Beneath it: the Coinbase Premium remains at a record-negative streak (no US conviction), ETH ETF inflows out-drew BTC's for the first time this week, Brent ran to ~$96 on an 11th straight day of US-Iran strikes with a Houthi embargo declared against Saudi Arabia, and rising oil + Treasury yields weighed directly on crypto sentiment Jul 23.</div>
+</div>
+<div class="card card-amber">
+  <div style="font-size:12px;line-height:1.6;"><strong>⚖ SELF-AUDIT — my own stated differentiator is degrading:</strong> two sessions ago this framework argued Jul 20 ≠ Jul 14 partly because it had a <em>structural</em> catalyst — the CLARITY Act's advance to the Senate floor — rather than a macro squeeze. <strong>As of Jul 23, Bitcoin is sliding as CLARITY passage odds fall.</strong> That leg of the argument is weakening, and it is flagged here rather than quietly dropped. <strong>What it does not invalidate:</strong> the price evidence was independent and remains factual — a non-marginal close, the $65,600 upthrust cleared, ~2.5× volume, four consecutive closes above the line. The breakout was correctly identified; the catalyst supporting its durability is eroding. Both are true.</div>
+</div>
+<div class="card card-gray">
+  <div style="font-size:11.5px;line-height:1.6;"><strong>Feed &amp; verification:</strong> Crypto.com <code>get_candlestick 1D</code> authoritative UTC — callable a ninth straight session. Jul 23: open $66,118, high $66,317, <strong>low $64,634, close $65,099</strong>, volume $118.4M. Jul 24 in progress at 11:04 UTC: open $65,099, high $65,813, low $64,758, spot $64,992 — <strong>excluded from all gate determination</strong> (no mid-candle gate calls). Macro cross-verified across Nexo Markets Today (Brent ~$96), DigitalToday/CoinPost (83% hold odds, 11th day of strikes, Houthi embargo), Motley Fool/Yahoo (CLARITY odds falling), VaaSBlock (73% Sept-hike).</div>
+</div>
+
+<!-- ══════════ PART 1: AUTHORITATIVE CLOSES ══════════ -->
+<div class="part">Part 1 · Authoritative UTC closes — the markup and the fade</div>
+<div class="card lad">
+  <div class="lr"><span class="px">Jul 19</span><span>C $64,725 — 7th rejection, coiled</span></div>
+  <div class="lr"><span class="px">Jul 20</span><span>C $65,256 — non-marginal break, ~2.5× vol <span class="badge b-green">SOS — BUY 4</span></span></div>
+  <div class="lr"><span class="px">Jul 21</span><span>C <strong>$66,562</strong> — 2nd close, high $66,964 <span class="badge b-green">CONFIRMED</span></span></div>
+  <div class="lr"><span class="px">Jul 22</span><span>C $66,112 — 3rd close &gt;$65K <span class="badge b-amber">lower close #1</span></span></div>
+  <div class="lr"><span class="px">Jul 23</span><span>C <strong>$65,099</strong> — low $64,634 (pierced &amp; reclaimed), vol $118.4M <span class="badge b-amber">lower close #2 · backtest</span></span></div>
+  <div class="lr spot"><span class="px">Jul 24</span><span><strong>IN PROGRESS</strong> · high $65,813 rejected → spot $64,992, BELOW the line · 13h to close — excluded</span></div>
+</div>
+<div class="card" style="padding:6px 10px;">
+  <table>
+    <tr><th>Gate</th><th>Rule</th><th>Status</th></tr>
+    <tr><td><strong>BUY 4 stop</strong></td><td>Settled daily close &lt; $65,000 → scratch</td><td><span class="badge b-amber">ARMED — NOT fired</span> · 4 of 4 closes held; decision at 00:00 UTC</td></tr>
+    <tr><td><strong>BUY 4 P&amp;L if scratched</strong></td><td>Entered moderate size ~$65.3–66K</td><td><span class="badge b-amber">≈ flat to −0.8%</span> — near-breakeven exit</td></tr>
+    <tr><td><strong>BUY 5 (holstered)</strong></td><td>Backtest holds + Coinbase Premium flips POSITIVE</td><td><span class="badge b-red">Not forming</span> — premium record-negative</td></tr>
+    <tr><td><strong>BTC core (BUY 2/3)</strong></td><td>2 closes &lt; $62,457 → trim</td><td><span class="badge b-green">HELD — 0 of 2</span>, untouched</td></tr>
+    <tr><td><strong>Oct–Nov CORE window</strong></td><td>75% dry powder reserved</td><td><span class="badge b-green">UNTOUCHED</span> — no tactical tranche touches it</td></tr>
+    <tr><td><strong>ADA (downstream)</strong></td><td>Needs its own authoritative pull</td><td><span class="badge b-amber">Reported below $0.168 after 50-day EMA rejection — NOT a gate call; BUY 1 fill price still unresolved</span></td></tr>
+  </table>
+</div>
+
+<!-- ══════════ PART 2: INDICATOR VERDICTS ══════════ -->
+<div class="part">Part 2 · Indicator-by-indicator verdict</div>
+<div class="card" style="padding:6px 10px;">
+  <table>
+    <tr><th>Indicator</th><th>Tier</th><th>Current state</th><th>Verdict</th></tr>
+    <tr>
+      <td class="tiername">Wyckoff</td><td><span class="badge b-red">LOAD-BEARING</span></td>
+      <td><strong>Two genuinely co-equal reads.</strong> Bear: markup faltering — 3 descending closes, Jul 23 declining on the heaviest volume since the breakout, today's $65,813 rally rejected. Bull: normal successful backtest — $65K held 4 of 4 closes, the deep $64,634 probe was bought back within session, today's fade is on thin volume. <strong>The settled close is the only arbiter.</strong></td>
+      <td><span class="badge b-amber">Backtest live — unresolved</span></td>
+    </tr>
+    <tr>
+      <td class="tiername">Macro / FOMC</td><td><span class="badge b-red">LOAD-BEARING</span></td>
+      <td><strong>No upside available.</strong> ~83% hold odds priced for Jul 29 — fully discounted, buys nothing. September hike ~73% remains the live risk. Warsh has refused to declare inflation beaten. FOMC statement 2:00pm ET Jul 29.</td>
+      <td><span class="badge b-red">Asymmetric downside, 5 days out</span></td>
+    </tr>
+    <tr>
+      <td class="tiername">Oil / geopolitics</td><td><span class="badge b-red">LOAD-BEARING</span></td>
+      <td><strong>⚠ Escalated again — Brent ~$96</strong> (from &gt;$90 last session, ~$84 a week ago). 11th straight day of US strikes; Houthi maritime embargo declared against Saudi Arabia. Rising oil + Treasury yields weighed on crypto directly Jul 23.</td>
+      <td><span class="badge b-red">The accelerant</span></td>
+    </tr>
+    <tr>
+      <td class="tiername">Liquidity / premium</td><td><span class="badge b-red">LOAD-BEARING</span></td>
+      <td>Coinbase Premium still at a record-negative streak — the entire $58K→$67K move carried no US spot conviction. <strong>ETH ETF inflows ($72.6M Jul 22, 4th straight day) out-drew BTC's for the first time this week</strong> — rotation running against BTC inside crypto. Funding balanced, no leverage build either way.</td>
+      <td><span class="badge b-red">No domestic conviction</span></td>
+    </tr>
+    <tr>
+      <td class="tiername">Legislative catalyst</td><td><span class="badge b-amber">CONTEXT</span></td>
+      <td><strong>Reversed from tailwind to headwind.</strong> CLARITY Act passage odds falling; BTC slid on it Jul 23. This was the framework's cited differentiator for why the Jul 20 break was structural rather than a squeeze.</td>
+      <td><span class="badge b-red">Eroding — self-audited above</span></td>
+    </tr>
+    <tr>
+      <td class="tiername">Halving cycle</td><td><span class="badge b-amber">CONTEXT</span></td>
+      <td>~Month 27. The Oct–Nov 2026 CORE window (363–376 days post Oct-2025 ATH) is untouched by any of this. 75% dry powder reserved and never in play for a tactical tranche.</td>
+      <td><span class="badge b-green">Core thesis intact</span></td>
+    </tr>
+    <tr>
+      <td class="tiername">Sentiment</td><td><span class="badge b-amber">CONTEXT</span></td>
+      <td>The contrarian Extreme-Fear tailwind is spent. BTC sits in the upper half of its July range ($62,800–$66,800) — room to fall without breaking anything structural.</td>
+      <td><span class="badge b-amber">Support withdrawn</span></td>
+    </tr>
+    <tr class="zero">
+      <td class="tiername">Shmita / Mercury / Lunar</td><td><span class="badge b-gray">ZERO-WEIGHT</span></td>
+      <td>Year 4; Mercury went direct ~Jul 23 with no observable effect on structure; monthly lunar cycle. <strong>Actively policed — generated, gated, delayed, vetoed nothing.</strong> Consistent with the permanent zero-weight audit.</td>
+      <td><span class="badge b-gray">NO SIGNAL</span></td>
+    </tr>
+  </table>
+</div>
+
+<!-- ══════════ PART 3: FORECAST ══════════ -->
+<div class="part">Part 3 · Forecast</div>
+
+<div class="lbl">Probability tree · spot $64,992 · paths sum to 100%</div>
+<div class="card">
+  <div class="trow">
+    <div class="td" style="background:#D85A30;"></div>
+    <div class="tp" style="color:var(--red);">42%</div>
+    <div><strong>Primary — backtest fails.</strong> The close prints below $65,000; BUY 4 scratches near breakeven and price returns to the $62.5–65K range ahead of the FOMC.</div>
+  </div>
+  <div class="trow">
+    <div class="td" style="background:#6FA02C;"></div>
+    <div class="tp" style="color:var(--green);">35%</div>
+    <div><strong>Secondary — $65K defends a 5th time.</strong> As it did on the deeper $64,634 wick, the line holds on the close and the markup consolidates into the Jul 28–29 FOMC.</div>
+  </div>
+  <div class="trow">
+    <div class="td" style="background:#7f1d1d;"></div>
+    <div class="tp" style="color:var(--red);">23%</div>
+    <div><strong>Tail — hawkish FOMC → markdown.</strong> The stop fires, then a Jul 29 FOMC confirming the September hike (~73%) with Brent at $96 rolls price to the $62,457 floor and beyond.</div>
+  </div>
+  <div style="font-size:11px;color:var(--txt2);margin-top:8px;padding-top:8px;border-top:1px solid var(--bord);"><strong>Note on the flip:</strong> the primary path turns to <em>failure</em> for the first time since the breakout. This is a probability weighting from the evidence — three descending closes, spot below the line, catalyst eroding — <strong>not a gate call.</strong> The gate still requires the settled close, and the framework will not pre-empt it.</div>
+</div>
+
+<div class="lbl">Level map (authoritative UTC)</div>
+<div class="card lad">
+  <div class="lr"><span class="px" style="color:var(--gray);">$66,964</span><span><span class="badge b-gray">The high (Jul 21) — objective tagged and rejected</span></span></div>
+  <div class="lr"><span class="px" style="color:var(--amber);">$65,813</span><span><span class="badge b-amber">Today's rally high — rejected straight back to the line</span></span></div>
+  <div class="lr"><span class="px" style="color:var(--red);">$65,000</span><span><span class="badge b-red">THE LINE — BUY 4 stop. A settled close below scratches the tranche. Held 4 of 4 closes.</span></span></div>
+  <div class="lr spot"><span class="px">$64,992</span><span><strong>SPOT</strong> · Jul 24 mid-candle · $8 below the line · 13h to the close</span></div>
+  <div class="lr"><span class="px" style="color:var(--amber);">$64,758</span><span><span class="badge b-amber">Today's low</span></span></div>
+  <div class="lr"><span class="px" style="color:var(--green);">$64,690</span><span><span class="badge b-green">Reclaim line — 2nd support layer (pierced Jul 23, recovered)</span></span></div>
+  <div class="lr"><span class="px" style="color:var(--green);">$64,634</span><span><span class="badge b-green">Backtest low (Jul 23) — bought back within session</span></span></div>
+  <div class="lr"><span class="px" style="color:var(--red);">$62,457</span><span><span class="badge b-red">CORE FLOOR — 2 closes below = trim core (untouched)</span></span></div>
+  <div class="lr"><span class="px" style="color:var(--red);">$59,000 / $57,803</span><span><span class="badge b-red">Defensive cut / HARD INVALIDATION (BTC + ADA)</span></span></div>
+</div>
+
+<div class="lbl">Risk engineering — CRO / Quant PM sign-off</div>
+<div class="card card-red">
+  <table>
+    <tr><td style="width:44%;"><strong>System action</strong></td><td>HOLD BUY 4 + core · NO ADD · stop armed, decision at 00:00 UTC</td></tr>
+    <tr><td><strong>Aggressiveness</strong></td><td>3 / 10 (from 5 — markup stalling, catalyst fading, stop may fire tonight; no scenario justifies size here)</td></tr>
+    <tr><td><strong>Composite confidence</strong></td><td>62 / 100 (from 69: −3 CLARITY catalyst weakening, −2 three descending closes with expanding volume on the decline, −2 oil to $96; four consecutive closes above $65K prevent a deeper cut)</td></tr>
+    <tr><td><strong>Immediate trigger</strong></td><td><strong>NONE — do not pre-empt the stop.</strong> Spot below $65,000 mid-candle is not a gate event. Equally, do not add.</td></tr>
+    <tr><td><strong>Stop trigger (BUY 4)</strong></td><td>A SETTLED daily close &lt; $65,000 → scratch BUY 4, revert to HOLD BUY 3. Single-close exit (moderate tactical tranche). ~13h out. Near-breakeven if it fires.</td></tr>
+    <tr><td><strong>Symmetric discipline</strong></td><td>Refuse to sell early on a mid-candle print — and refuse just as firmly to "give it room" after a close below $65,000. The rule cuts both ways or it is not a rule.</td></tr>
+    <tr><td><strong>Hard invalidation</strong></td><td>Core unchanged: 2 closes &lt; $62,457 → trim core; &lt; $59,000 → cut to core; &lt; $57,803 → thesis dead (BTC + ADA).</td></tr>
+  </table>
+</div>
+
+<!-- BRIEF -->
+<div class="lbl">Bottom line</div>
+<div class="card card-amber">
+  <div class="brief">
+    Bitcoin's breakout is being backtested and the defense is narrowing: three consecutive descending closes off the $66,964 high, July 23 declining on the heaviest volume since the breakout candle and wicking to $64,634 — through both the breakout line and the reclaim line — before recovering to close $65,099, and spot now sitting at $64,992, eight dollars below the stop with thirteen hours until the close decides. The macro has deteriorated on every front that matters: Brent has run to roughly $96 on an eleventh straight day of US-Iran strikes, September-hike odds hold near 73% into a July 29 FOMC whose hold is already 83% discounted, and the CLARITY Act catalyst credited as this breakout's structural differentiator is now fading as passage odds fall. Hold BUY 4 without adding, refuse to pre-empt the stop mid-candle just as firmly as you would refuse to widen it after a close below $65,000, and let tonight's settled print — not the ticker — make the call.
+  </div>
+</div>
+
+<div class="foot">
+  Evidence tiering unchanged and non-negotiable: Wyckoff, liquidity/premium, the macro/FOMC read, oil/geopolitics, and the halving cycle carry the analytical weight. Shmita, Mercury, and lunar cycles are disclosed in full but carry zero predictive weight — never a directional call, actively policed. Data provenance: Crypto.com <code>get_candlestick 1D</code> authoritative UTC (in-progress candle excluded from gate logic); macro cross-verified across Nexo, DigitalToday/CoinPost, Motley Fool/Yahoo and VaaSBlock. The ADA line is a reported observation requiring its own authoritative pull, not a gate determination; the ADA BUY 1 fill-price discrepancy remains an open standing item. Structural orientation, not financial advice — size positions yourself and consult a licensed advisor.
+</div>
+
+</body>
+</html>
