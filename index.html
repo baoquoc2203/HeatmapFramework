@@ -132,20 +132,20 @@
 const tokens = {
   BTC: {
     full:'Bitcoin', symbol:'₿', color:'#F7931A',
-    tagline:'BUY 4 fired — and its backtest is on a knife\'s edge. Jul 20 broke out non-marginally at $65,256 on ~2.5× volume and ran to $66,964, but three descending closes have followed ($66,562 → $66,112 → $65,099), with Jul 23\'s decline on the heaviest volume since the breakout itself. Spot now sits $8 BELOW the $65,000 stop with the settled close pending. The bull read: $65K held 4 of 4 closes and the $64,634 probe was bought back. The bear read: expanding volume on the decline, Brent at ~$96, and the CLARITY catalyst reversing to a headwind.',
-    phase:'Backtest live', phaseSub:'markup faltering · stop $8 away',
-    conf:62, confSub:'Aggressiveness 3/10 · HOLD BUY 4 · stop armed',
-    price:'$64,992', priceSub:'as of Jul 24, 2026 (session)',
+    tagline:'The backtest failed and the stop executed exactly as written. Jul 24 closed $64,142 and Jul 25 $64,370 — two settled closes below $65,000 — voiding the Jul 20 SOS and scratching BUY 4 at roughly breakeven. That is two failed breaks caught, sized small and exited near flat, with the core and the 75% dry powder never exposed. Price is back in the $62.5–65K range, but the return is orderly rather than a rout and the floor sits untested ~$2,100 below. The one constructive tell: BTC held near $65K even as Brent hit a 2-month high near $98.',
+    phase:'Failed break', phaseSub:'BUY 4 scratched ~BE · orderly return to range',
+    conf:63, confSub:'Aggressiveness 3/10 · HOLD BUY 3 · wait for FOMC',
+    price:'$64,587', priceSub:'as of Jul 26, 2026 (session)',
     reports:[
       {label:'Heatmap', href:'btc-dashboard.html'},
     ]
   },
   ADA: {
     full:'Cardano', symbol:'₳', logo:'cardano-logo.svg', color:'#2a52d4',
-    tagline:'The coil resolved up and BUY 2 filled — the position is now half size. The $0.173 trigger confirmed twice (Jul 21 $0.17373, Jul 22 $0.17450, the second higher), the $0.17041 retest held, and ADA/BTC printed a fresh campaign high of 2.6456 while BTC pulled back — the strongest fact on the map. But the breakout is holding, not extending: $0.18079 was rejected at the 50-day EMA band ($0.183–0.185), volume is thinning and price sits back on its own trigger. The EMA band is the gate; nothing scales until it clears.',
-    phase:'Phase C → D · stalled', phaseSub:'markup confirmed · rejected at the 50-EMA',
-    conf:62, confSub:'Aggressiveness 4/10 · HOLD ½ · gate $0.184',
-    price:'$0.1731', priceSub:'as of Jul 23, 2026 (map)',
+    tagline:'The breakout fired, was confirmed, then failed at the 50-day EMA — and the exit rules worked. The Jul 22 high of $0.18079 stopped 0.12% short of $0.1810 and rolled over; two closes below the $0.169 shelf reversed BUY 2 out at roughly −4% on a quarter-tranche, leaving BUY 1 quarter-size. It reads as a failed break, not a breakdown: decline volume contracted 65.9%, the $0.1596 stop is untested 3.18% below, and the whale bid was re-verified at 25.65B. But that bid could not hold the breakout, and ADA is underperforming a basing BTC.',
+    phase:'Phase D · failed break', phaseSub:'BUY 2 reversed · EMA band is the cap',
+    conf:52, confSub:'Aggressiveness 2/10 · HOLD ¼ · gate $0.181',
+    price:'$0.16457', priceSub:'as of Jul 26, 2026 (map)',
     reports:[
       {label:'Heatmap', href:'ada-dashboard.html'},
     ]
