@@ -7,14 +7,14 @@
 <style>
   :root{
     --bg:#0b0d0f; --bg2:#12151a; --card:#13171d; --bord:#262b33; --txt:#e8eaed; --txt2:#878f9c;
-    --amber:#e0a83f; --price:#5ec8f0;
+    --amber:#e0a83f;
     --acc:#2f6fb0; --markup:#39b873; --dist:#c0291f; --markdown:#cf5b42;
     --btn-bg:#1a1e25; --btn-hover:#5ec8f0; --tt-bg:#1a1e25; --tt-bord:#3a4150; --tt-shadow:rgba(0,0,0,.5);
     --tt-accent:#5ec8f0; --link:#5ec8f0; --srcnote:#6b7180; --srcnote-b:#aeb4bf;
   }
   :root[data-theme="light"]{
     --bg:#f7f6f2; --bg2:#ffffff; --card:#ffffff; --bord:#e1ded6; --txt:#1c1b18; --txt2:#6b6a64;
-    --amber:#b07e20; --price:#2f6fb0;
+    --amber:#b07e20;
     --acc:#2f6fb0; --markup:#1e8a52; --dist:#a32d2d; --markdown:#cc5236;
     --btn-bg:#f0eee8; --btn-hover:#2f6fb0; --tt-bg:#ffffff; --tt-bord:#d8d5cc; --tt-shadow:rgba(0,0,0,.12);
     --tt-accent:#2f6fb0; --link:#2f6fb0; --srcnote:#6b7180; --srcnote-b:#55534d;
@@ -25,9 +25,6 @@
   h1{font-size:18px;font-weight:700;letter-spacing:-.01em;}
   .meta{font-size:11.5px;color:var(--txt2);margin-top:3px;}
   .meta b{color:var(--txt);}
-  .backlink{display:inline-block;font-size:11.5px;color:var(--link);}
-  .backlink-x{display:inline-block;font-size:11.5px;color:var(--link);text-decoration:none;margin-bottom:10px;}
-  .backlink:hover{text-decoration:underline;}
 
   .controls{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0;align-items:center;}
   .ctrl-group{display:flex;gap:6px;align-items:center;background:var(--card);border:1px solid var(--bord);border-radius:9px;padding:6px 9px;}
@@ -72,8 +69,6 @@
   .verdict{display:inline-block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;padding:3px 9px;border-radius:99px;margin-left:6px;vertical-align:middle;}
   .v-real{background:rgba(91,191,134,.16);color:#5bbf86;}
   .v-none{background:rgba(208,87,58,.16);color:#e0815f;}
-  .v-n1{background:rgba(224,168,63,.16);color:var(--amber);}
-  .v-live{background:rgba(47,111,176,.18);color:#79b3e6;}
 
   @media (max-width:640px){
     body{padding:12px 8px;}
@@ -94,8 +89,6 @@
   .nav{display:flex;align-items:center;gap:18px;padding:10px 0 14px;border-bottom:1px solid var(--bord);margin-bottom:14px;}
   .brand{display:flex;align-items:center;gap:10px;text-decoration:none;}
   .brand .logo{width:30px;height:30px;border-radius:8px;background:radial-gradient(circle at 35% 30%, #4a7fff, #2540b0);display:flex;align-items:center;justify-content:center;font-size:15px;}
-  .brand .name{font-size:15px;font-weight:700;letter-spacing:-.01em;color:var(--txt);}
-  .brand .name small{display:block;font-size:8.5px;font-weight:500;color:var(--txt2);letter-spacing:.04em;text-transform:uppercase;}
 </style>
 </head>
 <body>

@@ -7,14 +7,14 @@
 <style>
   :root{
     --bg:#0b0d0f; --bg2:#12151a; --card:#13171d; --bord:#262b33; --txt:#e8eaed; --txt2:#878f9c;
-    --amber:#e0a83f; --price:#5ec8f0;
+    --amber:#e0a83f;
     --acc:#2f6fb0; --markup:#39b873; --dist:#c0291f; --markdown:#cf5b42;
     --btn-bg:#1a1e25; --btn-hover:#5ec8f0; --tt-bg:#1a1e25; --tt-bord:#3a4150; --tt-shadow:rgba(0,0,0,.5);
     --tt-accent:#5ec8f0; --link:#5ec8f0; --srcnote:#6b7180; --srcnote-b:#aeb4bf;
   }
   :root[data-theme="light"]{
     --bg:#f7f6f2; --bg2:#ffffff; --card:#ffffff; --bord:#e1ded6; --txt:#1c1b18; --txt2:#6b6a64;
-    --amber:#b07e20; --price:#2f6fb0;
+    --amber:#b07e20;
     --acc:#2f6fb0; --markup:#1e8a52; --dist:#a32d2d; --markdown:#cc5236;
     --btn-bg:#f0eee8; --btn-hover:#2f6fb0; --tt-bg:#ffffff; --tt-bord:#d8d5cc; --tt-shadow:rgba(0,0,0,.12);
     --tt-accent:#2f6fb0; --link:#2f6fb0; --srcnote:#6b7180; --srcnote-b:#55534d;
@@ -62,9 +62,6 @@
   .src-note{font-size:10.5px;color:var(--srcnote);margin:14px 0;line-height:1.6;background:var(--bg2);border:1px solid var(--bord);border-radius:8px;padding:11px 13px;}
   .src-note b{color:var(--srcnote-b);}
 
-  .backlink{display:inline-block;font-size:11.5px;color:var(--link);}
-  .backlink-x{display:inline-block;font-size:11.5px;color:var(--link);text-decoration:none;margin-bottom:10px;}
-  .backlink:hover{text-decoration:underline;}
 
   @media (max-width:640px){
     body{padding:12px 8px;}
@@ -82,8 +79,6 @@
   .nav{display:flex;align-items:center;gap:18px;padding:10px 0 14px;border-bottom:1px solid var(--bord);margin-bottom:14px;}
   .brand{display:flex;align-items:center;gap:10px;text-decoration:none;}
   .brand .logo{width:30px;height:30px;border-radius:8px;background:radial-gradient(circle at 35% 30%, #4a7fff, #2540b0);display:flex;align-items:center;justify-content:center;font-size:15px;}
-  .brand .name{font-size:15px;font-weight:700;letter-spacing:-.01em;color:var(--txt);}
-  .brand .name small{display:block;font-size:8.5px;font-weight:500;color:var(--txt2);letter-spacing:.04em;text-transform:uppercase;}
 </style>
 </head>
 <body>
@@ -529,10 +524,10 @@ function render(){
     });
   }
 
-  attachHover(visIdx, px, py, priceTop, priceH);
+  attachHover();
 }
 
-function attachHover(visIdx, px, py, priceTop, priceH){
+function attachHover(){
   const targets = svg.querySelectorAll('[data-idx]');
   targets.forEach(t=>{
     t.addEventListener('mousemove', (e)=>showTip(e, +t.getAttribute('data-idx')));
@@ -652,7 +647,7 @@ let touchMode=null; // 'pan' | 'pinch'
 let touchStartView=[0,N];
 let touchStartX=0;
 let pinchStartDist=0, pinchStartSpan=0, pinchStartMidFrac=0.5, pinchStartViewStart=0;
-let lastTapTime=0, tapHoldTimer=null;
+let tapHoldTimer=null;
 
 function touchDist(t0,t1){
   const dx=t0.clientX-t1.clientX, dy=t0.clientY-t1.clientY;
