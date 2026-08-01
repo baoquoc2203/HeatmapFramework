@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EXPERIMENTAL — Exploratory Cycle Overlay · Jul 31 2026</title>
+<style>
+  :root{
+    --bg:#ffffff; --bg2:#f7f5fa; --bg3:#f0ecf6; --txt:#2c2a30; --txt2:#5f5c66; --bord:#e2dcec;
+    --vio:#6B3FA0; --vio-bg:#F0E9F8; --vio-line:#8B5FC0;
+    --red:#993C1D; --red-bg:#FAECE7; --amber:#854F0B; --amber-bg:#FAEEDA;
+    --green:#3B6D11; --green-bg:#EAF3DE; --blue:#185FA5; --blue-bg:#E6F1FB;
+    --gray:#8b8a84; --gray-bg:#ECEAE2;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#1e1c22; --bg2:#282430; --bg3:#312b3c; --txt:#f0eef4; --txt2:#b2aec0; --bord:#3d3648;
+      --vio:#C4A2E8; --vio-bg:#2E1B47; --vio-line:#9B72CF;
+      --red:#F0997B; --red-bg:#4A1B0C; --amber:#FAC775; --amber-bg:#412402;
+      --green:#97C459; --green-bg:#173404; --blue:#85B7EB; --blue-bg:#042C53;
+      --gray:#9a988f; --gray-bg:#302e2a;
+    }
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;padding:18px;background:var(--bg);color:var(--txt);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    font-size:13px;line-height:1.5;max-width:920px;}
+  h1{font-size:19px;font-weight:700;margin:0 0 3px;color:var(--vio);}
+  .sub{font-size:11.5px;color:var(--txt2);margin-bottom:12px;}
+  .stamp{background:repeating-linear-gradient(45deg,var(--vio-bg),var(--vio-bg) 10px,transparent 10px,transparent 20px);
+    border:2px dashed var(--vio-line);border-radius:12px;padding:13px 16px;margin-bottom:16px;}
+  .stamp .t{font-size:13px;font-weight:800;letter-spacing:.06em;color:var(--vio);text-transform:uppercase;margin-bottom:5px;}
+  .stamp .b{font-size:12px;line-height:1.6;}
+  .part{font-size:11.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--vio);
+    background:var(--vio-bg);border-radius:8px;padding:8px 12px;margin:22px 0 11px;}
+  .lbl{font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--txt2);margin:14px 0 8px;}
+  .card{background:var(--bg2);border:1px solid var(--bord);border-radius:12px;padding:14px 16px;margin-bottom:10px;}
+  .card-vio{border-left:3px solid var(--vio-line);}
+  .card-gray{border-left:3px solid var(--gray);}
+  .card-amber{border-left:3px solid #BA7517;}
+  .badge{display:inline-block;padding:2px 8px;border-radius:5px;font-size:10.5px;font-weight:700;white-space:nowrap;}
+  .b-vio{background:var(--vio-bg);color:var(--vio);} .b-red{background:var(--red-bg);color:var(--red);}
+  .b-amber{background:var(--amber-bg);color:var(--amber);} .b-green{background:var(--green-bg);color:var(--green);}
+  .b-gray{background:var(--gray-bg);color:var(--gray);} .b-blue{background:var(--blue-bg);color:var(--blue);}
+  table{width:100%;border-collapse:collapse;font-size:11.8px;}
+  th{text-align:left;padding:7px 8px;background:var(--bg3);font-size:9.5px;font-weight:700;
+    text-transform:uppercase;letter-spacing:.04em;color:var(--txt2);border-bottom:1px solid var(--bord);}
+  td{padding:9px 8px;border-bottom:1px solid var(--bord);vertical-align:top;line-height:1.45;}
+  tr:last-child td{border-bottom:none;}
+  .num{font-family:ui-monospace,monospace;font-weight:700;text-align:right;white-space:nowrap;}
+  .off{color:var(--txt2);} .exp{color:var(--vio);}
+  .pos{color:var(--green);} .neg{color:var(--red);} .zed{color:var(--gray);}
+  .sbs{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+  @media(max-width:660px){ .sbs{grid-template-columns:1fr;} }
+  .col{border:1px solid var(--bord);border-radius:11px;padding:12px 14px;background:var(--bg2);}
+  .col.official{border-top:3px solid #BA7517;}
+  .col.experimental{border-top:3px solid var(--vio-line);background:var(--vio-bg);}
+  .col h3{margin:0 0 9px;font-size:12px;letter-spacing:.05em;text-transform:uppercase;}
+  .col.official h3{color:var(--amber);} .col.experimental h3{color:var(--vio);}
+  .row{display:flex;justify-content:space-between;gap:8px;padding:5px 0;border-bottom:1px solid var(--bord);font-size:11.8px;}
+  .row:last-child{border-bottom:none;}
+  .row b{font-family:ui-monospace,monospace;}
+  .kv{display:grid;grid-template-columns:auto 1fr;gap:5px 12px;font-size:11.8px;}
+  .kv b{font-weight:600;color:var(--txt2);white-space:nowrap;}
+  .q{font-size:12.3px;line-height:1.62;}
+  .q strong{color:var(--vio);}
+  .foot{font-size:11px;color:var(--txt2);line-height:1.55;margin-top:14px;border-top:1px solid var(--bord);padding-top:10px;}
+  code{font-family:ui-monospace,monospace;font-size:11px;background:var(--bg3);padding:1px 4px;border-radius:3px;}
+</style>
+</head>
+<body>
+<style>.backlink{display:inline-flex;align-items:center;gap:5px;font-size:12px;color:var(--blue);text-decoration:none;font-weight:600;margin-bottom:12px;}.backlink:hover{text-decoration:underline;}</style>
+<a class="backlink" href="btc-dashboard.html">← BTC Dashboard</a>
+
+<div class="stamp">
+  <div class="t">⚗ Experimental — not part of the official model</div>
+  <div class="b">This document is a <strong>sandboxed sensitivity analysis</strong>. It asks a hypothetical question: <em>if</em> Mercury and Lunar cycles were eventually shown to carry predictive value, how much would the picture move? Nothing here modifies the official forecast, the Forecast Register (FR-A007 → FR-A012), the calibration record, or any live position. The official report of Jul 31, 2026 remains the sole authoritative baseline. <strong>Not for decision-making.</strong></div>
+</div>
+
+<h1>Exploratory Cycle Overlay</h1>
+<div class="sub">Companion to <code>CRE_session_jul31_2026.html</code> · Fri Jul 31, 2026 · baseline spot $62,722.85 · baseline confidence 55/100 · baseline aggressiveness 2/10</div>
+
+<!-- ══════════ PRE-SPECIFICATION ══════════ -->
+<div class="part">Step 0 · Pre-specified rules (declared before computing)</div>
+<div class="card card-vio">
+<div style="font-size:12.3px;line-height:1.62;margin-bottom:10px">
+The specification does all the work in an exercise like this, so it is fixed <strong>first</strong> and applied mechanically. Choosing rules after seeing which answer they produce is the failure mode this ordering exists to prevent.
+</div>
+<div class="kv">
+<b>Mercury rule</b><span>Standard folklore is <strong>non-directional</strong>: retrograde and post-shadow elevate the failure rate of <em>breakouts</em>, in either direction. Applied symmetrically → favours range persistence, penalises both breakout branches.</span>
+<b>Lunar rule</b><span>Standard folklore is <strong>directional</strong>: waning phase = declining momentum; Full Moon = local top marker; New Moon = local bottom marker. Applied literally → mildly bearish into the Aug 12 New Moon.</span>
+<b>Magnitude cap</b><span>±5 percentage points maximum on any single branch. Unvalidated layers get small caps by construction.</span>
+<b>Hard constraints</b><span>Each layer's adjustments must be zero-sum; tree must total exactly 100%; residual branch stays ≥5%.</span>
+</div>
+</div>
+
+<div class="card">
+<div class="lbl" style="margin-top:0">Verified cycle state — Jul 31, 2026</div>
+<div class="kv">
+<b>Mercury</b><span>Stationed <strong>direct</strong> Jul 23 at 22:57 UTC. <strong>Post-retrograde shadow active</strong>, closing ~Aug 6–7. Next retrograde <strong>Oct 24 – Nov 13</strong>.</span>
+<b>Moon</b><span><strong>Waning gibbous, ~94% illuminated.</strong> Full Moon (Buck) was Jul 29. Last Quarter Aug 6 · New Moon Aug 12 · next Full Moon Aug 28.</span>
+</div>
+</div>
+
+<!-- ══════════ SIDE BY SIDE ══════════ -->
+<div class="part">Step 1 · Official forecast ↓ Experimental overlay ↓ side by side</div>
+
+<div class="sbs">
+  <div class="col official">
+    <h3>⬛ Official forecast — authoritative</h3>
+    <div class="row"><span>Range continues</span><b>40%</b></div>
+    <div class="row"><span>Floor breaks</span><b>32%</b></div>
+    <div class="row"><span>Tail cascade</span><b>15%</b></div>
+    <div class="row"><span>Upside resolution</span><b>8%</b></div>
+    <div class="row"><span>Residual</span><b>5%</b></div>
+    <div class="row" style="margin-top:6px;border-top:2px solid var(--bord);padding-top:8px"><span><strong>Confidence</strong></span><b>55/100</b></div>
+    <div class="row"><span><strong>Aggressiveness</strong></span><b>2/10</b></div>
+    <div class="row"><span><strong>Action</strong></span><b>WAIT</b></div>
+    <div class="row"><span><strong>Core window</strong></span><b>Oct–Nov 2026</b></div>
+  </div>
+  <div class="col experimental">
+    <h3>⚗ Experimental overlay — not official</h3>
+    <div class="row"><span>Range continues</span><b class="exp">41%</b></div>
+    <div class="row"><span>Floor breaks</span><b class="exp">33%</b></div>
+    <div class="row"><span>Tail cascade</span><b class="exp">15%</b></div>
+    <div class="row"><span>Upside resolution</span><b class="exp">6%</b></div>
+    <div class="row"><span>Residual</span><b class="exp">5%</b></div>
+    <div class="row" style="margin-top:6px;border-top:2px solid var(--bord);padding-top:8px"><span><strong>Confidence</strong></span><b class="exp">54/100</b></div>
+    <div class="row"><span><strong>Aggressiveness</strong></span><b class="exp">2/10</b></div>
+    <div class="row"><span><strong>Action</strong></span><b class="exp">WAIT</b></div>
+    <div class="row"><span><strong>Core window</strong></span><b class="exp">Oct–Nov 2026</b></div>
+  </div>
+</div>
+
+<div class="lbl">Full derivation — Experimental Probability (Not Official)</div>
+<div class="card" style="padding:6px 10px;">
+<table>
+<tr><th>Scenario</th><th style="text-align:right">Official</th><th style="text-align:right">Mercury</th><th style="text-align:right">Lunar</th><th style="text-align:right">Experimental</th><th style="text-align:right">Net</th></tr>
+<tr><td>Range continues</td><td class="num off">40%</td><td class="num pos">+4</td><td class="num neg">−3</td><td class="num exp">41%</td><td class="num pos">+1</td></tr>
+<tr><td>Floor breaks</td><td class="num off">32%</td><td class="num neg">−2</td><td class="num pos">+3</td><td class="num exp">33%</td><td class="num pos">+1</td></tr>
+<tr><td>Tail cascade</td><td class="num off">15%</td><td class="num neg">−1</td><td class="num pos">+1</td><td class="num exp">15%</td><td class="num zed">0</td></tr>
+<tr><td>Upside resolution</td><td class="num off">8%</td><td class="num neg">−1</td><td class="num neg">−1</td><td class="num exp">6%</td><td class="num neg">−2</td></tr>
+<tr><td>Residual (unmodelled)</td><td class="num off">5%</td><td class="num zed">0</td><td class="num zed">0</td><td class="num exp">5%</td><td class="num zed">0</td></tr>
+<tr style="background:var(--bg3)"><td><strong>Total</strong></td><td class="num"><strong>100%</strong></td><td class="num zed"><strong>0</strong></td><td class="num zed"><strong>0</strong></td><td class="num exp"><strong>100%</strong></td><td class="num zed"><strong>0</strong></td></tr>
+</table>
+</div>
+<div class="sub">Both layers zero-sum. Tree totals exactly 100%. Residual branch preserved at 5%. Largest single move: <strong>2 percentage points</strong>.</div>
+
+<div class="lbl">Confidence &amp; aggressiveness</div>
+<div class="card" style="padding:6px 10px;">
+<table>
+<tr><th>Parameter</th><th style="text-align:right">Official</th><th style="text-align:right">Mercury</th><th style="text-align:right">Lunar</th><th style="text-align:right">Experimental</th></tr>
+<tr><td>Model composite confidence</td><td class="num off">55/100</td><td class="num neg">−2<br><span style="font-weight:400;font-size:10px">post-shadow still active</span></td><td class="num pos">+1<br><span style="font-weight:400;font-size:10px">waning aligns with defensive read</span></td><td class="num exp">54/100</td></tr>
+<tr><td>Tactical aggressiveness</td><td class="num off">2/10</td><td class="num zed">−1 (floor)</td><td class="num zed">−1 (floor)</td><td class="num exp">2/10</td></tr>
+</table>
+</div>
+<div class="sub"><strong>Floor effect:</strong> both layers argue for greater defensiveness, but the official posture is already at 2/10 with a WAIT command. There is essentially no room below. The overlay cannot make a waiting position wait harder — which is why its only real expression is in <em>timing</em>, not size.</div>
+
+<!-- ══════════ SIX QUESTIONS ══════════ -->
+<div class="part">Step 2 · The six questions answered</div>
+
+<div class="card card-vio">
+<div class="q">
+<strong>1 · Do they lean bullish, bearish or neutral?</strong><br>
+<strong>Mercury: neutral-directional but anti-breakout.</strong> Its standard specification says nothing about direction — it says moves fail. Applied to a range-bound market, "moves fail" mechanically means "the range holds," which penalises the floor-break and the upside break equally.<br>
+<strong>Lunar: mildly bearish</strong> into approximately Aug 12. Waning gibbous is a declining-momentum phase under the standard reading, with the Jul 29 Full Moon as a local top marker and the Aug 12 New Moon as the next candidate reversal point.
+</div>
+</div>
+
+<div class="card card-vio">
+<div class="q">
+<strong>2 · How would they change the interpretation?</strong><br>
+Only marginally, and mostly by <em>offsetting each other</em>. Mercury pushes toward "nothing resolves"; Lunar pushes toward "it resolves downward." Those pull in opposite directions on three of five branches. The compressed net effect — a maximum 2-point move — is the single most informative output of this exercise. Two layers applied at full permitted strength cannot move a genuinely ambiguous structural read.
+</div>
+</div>
+
+<div class="card card-vio">
+<div class="q">
+<strong>3 · Which scenario would they reinforce?</strong><br>
+They <strong>split</strong>. Mercury reinforces <strong>range continuation</strong> (+4). Lunar reinforces <strong>floor break</strong> (+3). Each ends up +1 after the other's opposition. Neither is meaningfully strengthened.
+</div>
+</div>
+
+<div class="card card-vio">
+<div class="q">
+<strong>4 · Which scenario would they weaken?</strong><br>
+<strong>Upside resolution — and this is their only point of agreement.</strong> Mercury penalises it as a breakout (−1); Lunar penalises it as counter-momentum during a waning phase (−1). Net −2, from 8% to 6%. If the overlay carries any information at all, it is concentrated in this one branch: <em>both layers say a clean break above $65,150 in the next seven sessions is the least likely path.</em> Notably, the official model already ranked it last.
+</div>
+</div>
+
+<div class="card card-vio">
+<div class="q">
+<strong>5 · Would they shift the preferred timing window?</strong><br>
+The <strong>core Oct–Nov 2026 window is unchanged</strong> — it is anchored to halving-interval arithmetic, which the overlay does not touch. But the overlay <em>does</em> generate near-term texture the official model does not have:<br><br>
+• <strong>Aug 6–7</strong> — post-retrograde shadow closes; under the specification, the first "clean" decision window<br>
+• <strong>Aug 12</strong> — New Moon; candidate local reversal marker<br>
+• <strong>Oct 24 – Nov 13</strong> — the third Mercury retrograde of 2026 falls <strong>squarely inside the core cycle-bottom window</strong><br><br>
+That last item is the overlay's most interesting product. Under its own logic, a bottom printing inside a retrograde would be expected to arrive as a <em>violent false breakdown</em> — which maps onto a Wyckoff spring — with any confirmation signal treated as unreliable until after Nov 13. That is a specific, checkable claim, and it is more than the official model says about the internal shape of that window.
+</div>
+</div>
+
+<div class="card card-vio">
+<div class="q">
+<strong>6 · More aggressive or more defensive?</strong><br>
+<strong>Marginally more defensive — but it hits the floor.</strong> Both layers argue for caution; the official posture is already WAIT at 2/10. The overlay's practical output is therefore not "reduce size" but "prefer to act after Aug 6–12 rather than before," which is a timing preference layered onto an already-defensive stance.
+</div>
+</div>
+
+<!-- ══════════ DIFFERENCES ══════════ -->
+<div class="part">Step 3 · Explaining the differences</div>
+
+<div class="card card-amber">
+<div style="font-size:12.4px;line-height:1.65">
+<strong>The differences are small, and that is the finding.</strong> Given full permitted strength — a ±5pp cap on every branch, applied to both layers simultaneously — the overlay moved the tree by 1, 1, 0, −2 and 0 points, confidence by one point, and aggressiveness not at all. Nothing crossed a decision threshold. Every gate in the official report resolves identically under the overlay: BUY 3 held, BUY 1 held, AERO gate unarmed, WAIT enforced, invalidation levels untouched.
+<br><br>
+<strong>Why so small?</strong> Because the two layers' standard specifications are structurally opposed in a range-bound market. Mercury's claim is about <em>reliability</em> (moves fail → ranges persist). Lunar's claim is about <em>direction</em> (waning → down). A layer that says "nothing resolves" and a layer that says "it resolves downward" cancel almost exactly when the market is sitting between a ceiling and a floor. The compression is not an artifact of a cautious cap — it is a consequence of applying both specifications honestly at the same time.
+<br><br>
+<strong>The one signal worth remembering:</strong> the only concurrence is the downgrade of the upside branch, and the official model had already ranked that branch last on structural grounds alone. The overlay's single agreement point is a conclusion the baseline reached without it.
+</div>
+</div>
+
+<div class="card card-gray">
+<div style="font-size:12.3px;line-height:1.62">
+<strong>Specification sensitivity — the honest caveat.</strong> These numbers are a function of the rules fixed in Step 0, not of the sky. Defensible alternative specifications exist and some flip signs: treating post-shadow as <em>already cleared</em> rather than active removes Mercury's contribution entirely; reading waning gibbous as "pressure released after the Full Moon" rather than "declining momentum" flips Lunar from −3/+3 to roughly +3/−3, which would produce an experimental tree of 44 / 27 / 14 / 6 / 5 — leaning the opposite way. The overlay's output is therefore a function of an unconstrained modelling choice. That is precisely the property a pre-registered backtest would remove, and precisely why the official model does not carry these layers today.
+</div>
+</div>
+
+<div class="card">
+<div class="lbl" style="margin-top:0">What would make this section promotable</div>
+<div style="font-size:12.2px;line-height:1.62">
+Three things, none of which require abandoning the exercise: <strong>(a)</strong> fix one specification in advance and never revise it; <strong>(b)</strong> run it against multi-year BTC history and measure breakout-failure rates inside vs. outside retrograde and by lunar octile, with confidence intervals; <strong>(c)</strong> pre-register the threshold that would count as a pass — for example, a ≥10pp deviation from base rate that survives out-of-sample. If those clear, the layer earns weight on evidence and the official model takes it. If they don't, this section stays exactly where it is: interesting, quarantined, and clearly labelled.
+</div>
+</div>
+
+<div class="foot">
+⚗ <strong>EXPERIMENTAL SECTION — NOT OFFICIAL.</strong> Every figure above labelled "Experimental" is hypothetical output from an unvalidated overlay and must not be used for position sizing, gate determination, or risk management. The official Jul 31, 2026 report stands unmodified: probability tree 40/32/15/8/5, confidence 55/100, aggressiveness 2/10, action WAIT, core window Oct–Nov 2026. Forecast Register entries FR-A007 through FR-A012 remain registered at their original probabilities and are unaffected by this document. Structural research exercise, not financial advice.
+</div>
+
+</body>
+</html>
