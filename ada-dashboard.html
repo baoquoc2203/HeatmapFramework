@@ -103,7 +103,7 @@
   <img src="cardano-logo.svg" class="ada-logo" style="width:26px;height:26px;object-fit:contain;">
   ADA Framework Dashboard — Interactive
 </h1>
-<div class="meta">Crypto Reconnaissance Engine · <b>Sep 2017 → Jul 2026 live</b> (scenario forecast to Dec 2027) · drag to pan, scroll/pinch to zoom, hover/tap for values, toggle layers below</div>
+<div class="meta">Crypto Reconnaissance Engine · <b>Sep 2017 → Aug 2026 live</b> (Aug 3 level ladder &amp; driftless volatility cone to Dec 2028) · drag to pan, scroll/pinch to zoom, hover/tap for values, toggle layers below</div>
 
 <div class="controls">
   <div class="ctrl-group">
@@ -112,12 +112,13 @@
     <button class="toggle active" data-layer="shmita">Shmita</button>
     <button class="toggle active" data-layer="mercury">Mercury Rx</button>
     <button class="toggle active" data-layer="fng">Fear &amp; Greed</button>
+    <button class="toggle active" data-layer="levels">Aug 3 Levels</button>
   </div>
   <div class="ctrl-group">
     <span class="ctrl-label">Zoom</span>
     <button class="zoom-btn active" data-zoom="all">2017–Now</button>
     <button class="zoom-btn" data-zoom="cycle21">2020–22</button>
-    <button class="zoom-btn" data-zoom="live">Live (Jul'26)</button>
+    <button class="zoom-btn" data-zoom="live">Live (Aug'26)</button>
     <button class="zoom-btn" data-zoom="reset">Reset</button>
   </div>
   <div class="ctrl-group">
@@ -131,7 +132,7 @@
   </div>
   <div class="ctrl-group">
     <span class="ctrl-label">Report</span>
-    <a class="zoom-btn" href="CRE_session_jul31_2026.html" style="text-decoration:none;">📊 Market GPS (Jul 31)</a>
+    <a class="zoom-btn" href="ADA_monthly_map_aug03.html" style="text-decoration:none;">📊 Monthly Map (Aug 3)</a>
   </div>
 </div>
 
@@ -159,16 +160,25 @@
   <span><i style="background:#2f6fb0"></i>Extreme greed</span>
   <span style="margin-left:12px"><i style="background:var(--amber)"></i>Mercury Rx / Shmita (on)</span>
   <span><i style="background:#1a1d24;border:1px solid #5ec8f0"></i>ADA price</span>
-  <span style="margin-left:8px;border-left:1px solid var(--bord);padding-left:12px;font-weight:700;color:var(--amber)">Jul 31 forecast:</span>
-  <span style="display:flex;align-items:center;gap:4px"><span style="display:inline-block;width:18px;border-top:2px dashed #10b981"></span>Bull</span>
-  <span style="display:flex;align-items:center;gap:4px"><span style="display:inline-block;width:18px;border-top:2px solid #6366f1"></span>Base</span>
-  <span style="display:flex;align-items:center;gap:4px"><span style="display:inline-block;width:18px;border-top:2px dashed #f87171"></span>Bear</span>
+  <span style="margin-left:8px;border-left:1px solid var(--bord);padding-left:12px;font-weight:700;color:var(--amber)">Aug 3 cone:</span>
+  <span style="display:flex;align-items:center;gap:4px"><span style="display:inline-block;width:18px;border-top:2px dashed #8b8ff5"></span>5th / 95th percentile</span>
+  <span style="display:flex;align-items:center;gap:4px"><span style="display:inline-block;width:18px;height:9px;background:rgba(99,102,241,.28);border-radius:2px"></span>central 50% (25th–75th)</span>
+  <span style="display:flex;align-items:center;gap:4px"><span style="display:inline-block;width:18px;border-top:2px solid #6366f1"></span>median — flat, driftless by construction</span>
+</div>
+<div class="legend-row">
+  <span style="font-weight:700;color:var(--amber)">Aug 3 levels:</span>
+  <span><i style="background:rgba(224,168,63,.5)"></i>$0.1900 BUY 3 gate</span>
+  <span><i style="background:rgba(91,191,134,.5)"></i>$0.1810–0.1885 50-day EMA band (cleared) · $0.1730 BUY 2 · $0.1690 spring shelf</span>
+  <span><i style="background:rgba(224,129,95,.5)"></i>$0.2231 100-day MA · $0.1596 thesis stop · $0.1480 death level</span>
+  <span><i style="background:rgba(91,191,134,.25)"></i>Oct–Nov '26 core window</span>
 </div>
 
 <div class="src-note">
-  <b>What's real:</b> ADA price = real monthly closes, anchored to public price history (launch ~$0.02 Sep'17, 2019 high $0.0977, 2020 year-end >$0.19, ATH $3.09 Sep'21, 2023 year-end high $0.6655, late-2024 pop >$1.00, Jun 2026 closed $0.1444 (−38.7%, rev2-audited — the Jul 13–18 maps' prose rounds this to $0.1453/−40%, the pre-audit transposition), current ~$0.16818 (live Jul 31, candle in progress; last settled close Jul 30 $0.16978), as of the Jul 31, 2026 Market GPS session). <b>Fear &amp; Greed shown here is the crypto-market-wide index (BTC-driven)</b> — there is no separate, established ADA-specific fear/greed index, so this row reflects overall crypto sentiment, not an ADA-only signal; read it as market-wide context, not ADA-specific. Mercury = real astronomical retrograde windows. Shmita = real Hebrew-calendar year (5782, Sep'21–Sep'22) — notably the <b>same year as ADA's own all-time high</b>, which is visually striking but still n=1.
-  <b>Wyckoff row:</b> retrospective phase labeling derived month-by-month from ADA's own price line — <b>not</b> a backtest of your framework, which only began live ADA tracking Jun 12, 2026 (cyan dashed seam). Left of the seam is independent structural reading of known history; right of it is the framework's actual reported calls: <b>the spring is holding, and it now has genuine relative strength behind it</b> (Jul 31 session). The Jul 28 campaign low of <b>$0.15340</b> has produced a <b>+9.63%</b> recovery to the live $0.16818, and the last six settled closes read <b>0.16484 ✓ · 0.16603 ✓ · 0.15559 ✗ · 0.16192 ✓ · 0.16214 ✓ · 0.16978 ✓</b> against the $0.1596 thesis stop — the counter sits at <b>0 of 2</b> and the stop is not live. This is the <b>third successful defence</b> of $0.1596 (Jul 13, Jul 17, Jul 28). The genuinely new datum is behavioural: on a session where BTC fell <b>−3.17%</b>, ADA fell only <b>−0.95%</b> — a <b>+2.21pt outperformance</b>, with CoinDesk logging ADA <b>+4.09%</b> on the day as a market bright spot. <b>This is the first time ADA has held firm <i>through</i> a BTC flush rather than amplifying it</b>, which the session calls a meaningful character change and its single most encouraging data point — and alt strength into a BTC flush is <i>not</i> the signature of a distribution top, which is part of why the BTC read stays unresolved rather than flipping bearish. Position: the quarter-tranche <b>BUY 1 is held</b>, no change. Note that the Jul 31 session states a <b>single system-level</b> posture covering both assets rather than per-asset figures — composite confidence <b>55/100</b> (down from 58), aggressiveness <b>2/10</b>, structural risk <b>Medium–High</b>, action <b>WAIT</b> — so the ADA card now carries that shared figure rather than a separate ADA-only score. Hard invalidation is unchanged: <b>two consecutive settled UTC closes below $0.1596</b>. The pre-registered forecast <b>FR-A011</b> puts that at <b>p=0.26</b> by Aug 14. <b>The standing open item is now 14+ sessions old and is the highest-priority unresolved input in the framework:</b> the BUY 1 fill price, with two candidate cost bases ~6.9 percentage points apart — until it is confirmed from your execution record, blended basis and P&amp;L cannot be computed, which means sizing for any Oct–Nov core deployment is being planned against an unknown denominator. Aug 2026 onward has no real price data — the dashed/solid Bull/Base/Bear lines there are the framework's Jul 31 scenario bands, re-based to $0.16818 (a forecast, not additional history).
-  No buy/sell signal layer, no liquidity-regime row, no hit-rate statistics — left out rather than fabricated.
+  <b>What's real:</b> ADA price = real monthly closes, anchored to public price history (launch ~$0.02 Sep'17, 2019 high $0.0977, 2020 year-end >$0.19, ATH $3.09 Sep'21, 2023 year-end high $0.6655, late-2024 pop >$1.00, Jun 2026 closed $0.1444 (−38.7%, rev2-audited), <b>Jul 2026 SETTLED at $0.16826 = +16.52%, the best month of the campaign</b>, and Aug 2026 is <b>month-to-date $0.18963</b>, the Aug 2 settled close), as of the Aug 3, 2026 monthly map (session established 12:31 UTC). The live Aug 3 candle — spot <b>$0.18820</b>, 11h28m remaining — is <b>excluded from every determination</b> and is plotted nowhere; it is used only as the anchor of the forward cone, exactly as the report uses it. Drawdown is <b>−93.9%</b> from the $3.09 ATH. <b>Fear &amp; Greed shown here is the crypto-market-wide index (BTC-driven)</b> — there is no separate, established ADA-specific fear/greed index, so this row reflects overall crypto sentiment, not an ADA-only signal; July carries <b>28 (Fear)</b>, the last verified print (Jul 29), and August is blank because no reliable Aug 1–2 reading was obtained. Mercury = real astronomical retrograde windows. Shmita = real Hebrew-calendar release years: <b>5782 (Sep'21–Sep'22)</b>, notably the <b>same year as ADA's own all-time high</b> — visually striking but still n=1 — and the opening months of <b>5789 (from Sep 21, 2028)</b>, plotted forward as calendar only.
+  <b>Wyckoff row:</b> retrospective phase labeling derived month-by-month from ADA's own price line — <b>not</b> a backtest of your framework, which only began live ADA tracking Jun 12, 2026 (cyan dashed seam). Left of the seam is independent structural reading of known history; right of it is the framework's actual reported calls, and they have resolved <b>upward</b>: the campaign has moved from Phase D into an early <b>Phase D → E transition</b>, and <b>three gates fired in four sessions</b>. The July sequence — spring, Sign of Strength, upthrust, breakdown, second spring — ended in a genuine breakout rather than another failure, and the whole distinction sits at one level. On <b>Jul 22</b> the high of $0.18079 stopped <b>0.12% short</b> of the 50-day EMA and rolled over into a 6.29% breakdown. On <b>Aug 2</b> price closed <b>$0.18963</b>, 0.60% <i>above</i> the top of that same band, on the heaviest volume of the entire campaign at <b>22.18M — an 82.6% expansion</b>. Same level, opposite outcome, and the volume signature is what separates them: July failed on contracting volume, this cleared on expansion. The intervening structure was textbook — Jul 28 swept the Jul 13 spring low to <b>$0.15340</b> and reversed to close above the invalidation (spring #2), Jul 29 churned at the shelf on 17.09M without resolving, <b>Jul 30 closed $0.16978</b> above the $0.1690 shelf and confirmed the spring, Jul 31 pulled back 0.90% and held, then Aug 1 and Aug 2 ran <b>+3.70%</b> and <b>+8.68%</b>. That is the <b>Sign of Strength</b>; <b>BUY 2 is armed</b> and the position moves to <b>half size — 50% deployed across two quarter-tranches, 50% dry powder</b>. <b>BUY 3 did not trigger:</b> Aug 2 closed <b>0.195% below</b> the $0.1900 gate and the $0.19210 high was a wick, not a close — the tightest margin of the campaign, clearing the ±0.15% verification-pending band by just 0.045pp and called NOT TRIGGERED on a single feed. Composite confidence is now <b>62/100</b> and aggressiveness <b>5/10</b>, up from 3 on the cleared EMA band — note these are <b>ADA-specific</b> figures again, replacing the single system-level 55/100 the Jul 31 session had issued across both assets.
+  <b>Two things temper it, and the report leads with them.</b> First, this is <b>ADA-specific, not market beta</b>: ADA rose <b>+16.95%</b> over the four sessions while <b>BTC fell 0.64%</b>, and BTC is simultaneously sitting on its own floor with its Wyckoff read tied 45/45 after a Jul 31 upthrust. Altcoin breakouts on a weakening major have a poor completion rate, and if BTC breaks, ADA's beta reasserts fast — the <b>cross-asset kill remains two consecutive BTC closes below $62,457</b>, which the Aug 1 close cleared by only <b>+0.59%</b>, the thinnest margin of the campaign. Second, the <b>thesis stop is 15.2% below spot</b>, a wide gap to carry on a half position; raising it to the support-flipped $0.1690 shelf is structurally defensible but is a framework change mid-campaign and <b>the report explicitly leaves that decision to you</b> rather than making it unilaterally. The competing read is stated plainly: a close back below <b>$0.1810</b> would reclassify Aug 2 as an upthrust after distribution rather than a Sign of Strength — the mirror image of Jul 22 — and the Aug 2 candle did close 1.3% off its high. Hard invalidation is unchanged at <b>two consecutive settled UTC closes below $0.1596</b>, currently <b>0 of 2</b>. The <b>ADA/BTC ratio</b> has inverted to a new campaign high of <b>3.0035×10⁻⁶, +13.79%</b> above the Jul 22 peak; on Jul 26 the same layer read −3.4% and was named the strongest bear argument before leading the Jul 27 breakdown by two sessions, so it has now led both directions by the same margin. <b>Logged misses, not explained away:</b> the BUY 2 volume filter blocked entry on Aug 1 at $0.17449 because volume contracted 4.3%, then armed on Aug 2 at $0.18963 — an <b>8.68% worse fill</b>, the rule applied exactly as written and costing real money on this occasion. And the <b>BUY 1 fill price is unresolved for an 18th session</b>; with a second tranche now on the book the blended basis cannot be computed <i>at all</i> rather than merely bracketed, which blocks position-level P&amp;L outright and means the Oct core window — designed around a 75% reserve that now holds 50% — is being sized against an unknown denominator. Three forecasts are open and <b>none has resolved</b>: F-ADA-0001 (Aug 5), F-ADA-0003 (Aug 6), F-ADA-0002 (Aug 28). All three currently sit in their bull bands, which is <b>tracking, not scoring</b> — no performance claim is available before Aug 5.
+  <b>Aug 3 cone (Sep 2026 → Dec 2028):</b> the previous Bull/Base/Bear scenario lines are <b>gone, not re-based</b>. They were hand-drawn cycle-shaped forward paths, and the Aug 3 report retires exactly that construct by name — assuming a recovery drift "is exactly where invented forward targets enter a report". What replaces them is the report's own method: a <b>driftless lognormal cone</b> anchored at the $0.18820 spot, whose <b>median is flat by construction</b> because no drift is assumed, with all the information in the widening bands. Realized daily σ is <b>3.19%</b> (n=25 log returns, Jul 8 – Aug 2, up from 2.70% as the Aug 2 breakout entered the sample), annualising to <b>61.0%</b> and reaching <b>94.7% by Dec 2028</b>. It is computed here from σ rather than transcribed, so the band, the tooltip percentiles and the probability split cannot drift apart. Hover any forecast month for its 5th/25th/75th/95th percentiles and its split against the two <b>fixed</b> campaign thresholds — BULL ≥ $0.19 (the BUY 3 gate), BEAR &lt; $0.1480 (the death level). Because those thresholds stay fixed while the distribution widens, <b>neutral decays from 45% in Aug 2026 to 10% by Dec 2028</b> — arithmetic, not a view, and the most honest thing on the chart. August itself reads roughly <b>48% bull / 45% neutral / 8% bear</b>, a sharp change from the previous map's 16%/26% split driven entirely by spot moving onto the gate rather than by any threshold being adjusted. <b>These are month-end distributions, not price targets</b>, and the shaded Oct–Nov 2026 band is the <b>core deployment window</b> (Oct 4–17, month 29 post-halving, from the 363–376 day post-peak interval off BTC's Oct 6 2025 top) — a planned action, not a forecast. Dated events inside the horizon: <b>ADA ETF eligibility opens Aug 9</b> and the <b>CLARITY recess deadline lands ~Aug 10</b> (~35% for 2026 passage, no cloture motion filed) — two binaries inside a week, both landing while the position is at half size and extended; the <b>Sep 15–16 FOMC + dot plot</b> at ~77% hike odds after a 9–3 hawkish hold with three dissents, though the oil spike driving that bid has largely unwound (Brent ~$86.68 from above $100 on Jul 23); and the <b>Apr 2028 halving</b>. <b>One discrepancy inside the source is flagged rather than reproduced:</b> the report's timeline section says the middle band collapses "from 58% to 12%" while its own methodology appendix says neutral decays from 45% to 10%. Recomputing from the report's stated σ, anchor and thresholds reproduces the methodology figures exactly, so those are the ones shown here and the 58%/12% line is treated as a stale carry-over.
+  No buy/sell signal layer, no liquidity-regime row, no hit-rate statistics — left out rather than fabricated. The report's 31 monthly timeline cards are likewise <b>not</b> registered forecasts and are not scored.
 </div>
 
 <div class="analysis">
@@ -178,16 +188,19 @@
   <h3>Fear &amp; Greed here is borrowed, not ADA-specific <span class="verdict v-none">context, not a clean signal</span></h3>
   <p>This matters more for ADA than it did for BTC: the Fear &amp; Greed Index is built from BTC-dominant market data. It tells you about crypto-wide mood, which correlates with ADA but isn't a direct read on ADA's own market structure. Treat this row as macro backdrop, not as confirmation of an ADA-specific bottom or top the way it worked for BTC.</p>
   <h3>Mercury &amp; Shmita <span class="verdict v-none">same verdict as BTC</span></h3>
-  <p>No different from the BTC chart: Mercury windows scatter across every phase with no pattern. Shmita is still n=1 — and while it's a notable coincidence that ADA's all-time high fell inside the one Shmita year in this window, a single occurrence on a single asset is exactly the kind of pattern that looks meaningful and isn't.</p>
+  <p>No different from the BTC chart: Mercury windows scatter across every phase with no pattern. Shmita is still n=1 — and while it's a notable coincidence that ADA's all-time high fell inside the one <i>completed</i> Shmita year in this window, a single occurrence on a single asset is exactly the kind of pattern that looks meaningful and isn't. The horizon now also reaches the opening months of the next release year, <b>5789 (from Sep 21, 2028)</b>, but that is pure forward calendar with no price data against it and it is not a second observation.</p>
   <p style="margin-top:12px;color:#aeb4bf;"><b>Bottom line:</b> ADA's chart has less real structure to work with than BTC's — fewer cycles, no asset-specific sentiment index, and a much steeper, more singular boom-bust shape. The framework's own live tracking (right of the cyan seam) remains the only segment that's a genuine real-time record, exactly as with BTC.</p>
 </div>
 
 </div>
 
 <script>
-// ── DATA: Sep 2017 → Jun 2026 ──
-const yearNames=['2017','2018','2019','2020','2021','2022','2023','2024','2025','2026','2027'];
-const monthsPerYear={2017:4}; // 2017 starts Sep (4 months: Sep-Dec); 2026-27 run full 12 (Aug'26+ is forecast-only, see trajectory overlay)
+// ── DATA: Sep 2017 → Aug 2026 live, forward calendar to Dec 2028 ──
+// The horizon runs to Dec 2028 because that is the horizon of the Aug 3 monthly map itself — its volatility
+// cone and buy/sell calendar are specified all the way to Dec 2028, and the Apr 2028 halving is the next
+// dated cycle anchor after the Oct 2026 core window.
+const yearNames=['2017','2018','2019','2020','2021','2022','2023','2024','2025','2026','2027','2028'];
+const monthsPerYear={2017:4}; // 2017 starts Sep (4 months: Sep-Dec); 2026-28 run full 12 (Sep'26+ is cone-only)
 const months=[];
 for(const y of yearNames){
   const cnt = monthsPerYear[+y]||12;
@@ -208,9 +221,10 @@ const price=[
   0.32,0.36,0.345,0.36,0.375,0.275,0.285,0.255,0.255,0.30,0.345,0.585, // 2023 (Dec high 0.6655, using 0.585 close)
   0.51,0.52,0.62,0.46,0.43,0.385,0.34,0.32,0.355,0.36,0.55,0.92,  // 2024 (late-2024 pop >1.00 post-election; Nov/Dec rally)
   0.99,0.65,0.62,0.58,0.68,0.62,0.71,0.78,0.81,0.62,0.42,0.38,    // 2025 (subdued, declining)
-  0.30,0.24,0.205,0.19,0.1797,0.1444,0.16818,                      // 2026 Jan-Jul (May=framework's tracked start Jun16; Jun closed $0.1444 −38.7%, rev2-audited; Jul=live $0.16818 UNSETTLED per the Jul 31 session; last settled close Jul 30 $0.16978 — SPRING HOLDING: the Jul 28 low $0.15340 has produced a +9.63% recovery and a THIRD defence of the $0.1596 stop (counter 0/2). ADA −0.95% vs BTC −3.17% today = +2.21pts, the first time it held firm THROUGH a BTC flush)
-  null,null,null,null,null,                                       // 2026 Aug-Dec: future, no real price data yet -- see trajectory overlay for the framework's own Jul 1 forecast
-  null,null,null,null,null,null,null,null,null,null,null,null      // 2027: future, no real price data
+  0.30,0.24,0.205,0.19,0.1797,0.1444,0.16826,0.18963,             // 2026 Jan-Aug. Jun closed $0.1444 (−38.7%, rev2-audited); Jul SETTLED at $0.16826 = +16.52%, the best month of the campaign; Aug = MONTH-TO-DATE $0.18963, the Aug 2 settled close. The live Aug 3 candle ($0.18820 spot, 11h28m remaining) is excluded from every determination and is drawn nowhere — it is used only as the cone anchor. BREAKOUT CONFIRMED: Jul 30 closed $0.16978 above the $0.1690 shelf (spring confirmed), then Aug 2 closed $0.18963 on 22.18M (volume +82.6%), clearing the $0.1810-0.1885 50-day EMA band that rejected the Jul 22 high by 0.12%. That is the Sign of Strength; BUY 2 armed, position at half size.
+  null,null,null,null,                                            // 2026 Sep-Dec: future, no real price data -- see the volatility cone
+  null,null,null,null,null,null,null,null,null,null,null,null,     // 2027: future, no real price data
+  null,null,null,null,null,null,null,null,null,null,null,null      // 2028: future (Apr 2028 halving; Shmita 5789 opens Sep 21)
 ];
 
 // ── Fear & Greed monthly (real index, BTC-driven, same series as BTC dashboard) ──
@@ -226,9 +240,12 @@ const fng=[
   75,45,40,55,70,65,75,68,60,70,30,25,
   60,30,45,45,35,17,28,
   null,null,null,null,null,
+  null,null,null,null,null,null,null,null,null,null,null,null,
   null,null,null,null,null,null,null,null,null,null,null,null
 ];
-// length is exactly N (124) by construction; no defensive padding needed. Jul F&G = 28 (Fear) — verified Jul 29 per the Jul 30 report, up from 27 (Jul 25) and ~24 in early July; rising sentiment with no net price progress THINS the contrarian cushion (crypto-wide, BTC-driven)
+// length is exactly N (136) by construction; no defensive padding needed. Jul F&G = 28 (Fear) — the last VERIFIED
+// print (Jul 29). Aug is left null: the Aug 3 BTC session obtained no reliable Aug 1-2 reading and carried the
+// value as stale and explicitly discounted rather than guessing at one, so nothing is plotted for it here either.
 
 const merc=new Set([
   '2017-9','2017-10',
@@ -242,12 +259,17 @@ const merc=new Set([
   '2025-2','2025-3','2025-6','2025-7','2025-10',
   '2026-1','2026-2','2026-5',
   '2026-6','2026-9','2026-10', // remaining 2026 (real ephemeris): Cancer Rx Jul, Scorpio Rx Oct-Nov
-  '2027-1','2027-2','2027-5','2027-6','2027-9' // 2027 (real ephemeris): Aquarius Rx Feb-Mar, Gemini Rx Jun-Jul, Libra Rx Oct
+  '2027-1','2027-2','2027-5','2027-6','2027-9', // 2027 (real ephemeris): Aquarius Rx Feb-Mar, Gemini Rx Jun-Jul, Libra Rx Oct
+  '2028-0','2028-1','2028-4','2028-5','2028-8','2028-9' // 2028 (ephemeris): Jan-Feb Rx, May-Jun Rx, Sep-Oct Rx
 ]);
 
 const shmita=new Set([
+  // 5782: Sep 7, 2021 → Sep 25, 2022 — the same year as ADA's own all-time high
   '2021-8','2021-9','2021-10','2021-11',
-  '2022-0','2022-1','2022-2','2022-3','2022-4','2022-5','2022-6','2022-7','2022-8'
+  '2022-0','2022-1','2022-2','2022-3','2022-4','2022-5','2022-6','2022-7','2022-8',
+  // 5789: Sep 21, 2028 → Sep 9, 2029 — the next release year. Only its opening months fall inside this
+  // chart's horizon; plotted forward as calendar only, with no price data and zero directional weight.
+  '2028-8','2028-9','2028-10','2028-11'
 ]);
 
 // ── Wyckoff blocks for ADA — re-derived from the price array above ──
@@ -266,31 +288,90 @@ const wyckoff = [
   {s:86, e:88, kind:'markup',  label:'Nov24-Jan25 election rally'},
   {s:88, e:99, kind:'markdown',label:'2025 markdown'},
   {s:99, e:105,kind:'markdown',label:'2025-26 continued markdown'},
-  {s:105,e:107,kind:'markdown', label:'live: spring HOLDING — 3rd defence of $0.1596; +2.21pts vs BTC through the flush'},
+  {s:105,e:106,kind:'markdown', label:'live: Phase D markdown'},
+  {s:106,e:107,kind:'acc',      label:'live: Phase C springs — Jul 13 & Jul 28 ($0.15340), confirmed Jul 30'},
+  {s:107,e:108,kind:'markup',   label:'live: Phase D→E — Aug 2 SOS cleared the 50d EMA band'},
 ];
 const liveStartIdx = 105; // June 2026 — verified index, framework's real live tracking window
 
-// ── ADA scenario trajectory (Jul 2026 -> Dec 2027, 18 months, framework's Jul 31, 2026 session — re-based) ──
-// Shape unchanged — read as LEVELS, not prices. The summer leg routes into an autumn drawdown and the
-// Oct-Nov 2026 core window before the primary markup. RE-ANCHORED to $0.16818 after the Jul 28 spring low
-// $0.15340 produced a +9.63% recovery and a THIRD successful defence of the $0.1596 stop.
-const trajBaseCase = [0.168,0.162,0.151,0.146,0.155,0.175,0.192,0.224,0.250,0.284,0.254,0.226,0.237,0.267,0.303,0.354,0.334,0.319];
-const trajBull     = [0.172,0.193,0.225,0.262,0.296,0.337,0.387,0.450,0.510,0.584,0.524,0.466,0.491,0.551,0.628,0.733,0.694,0.659];
-const trajBear     = [0.166,0.146,0.129,0.116,0.109,0.120,0.131,0.144,0.155,0.171,0.153,0.136,0.144,0.161,0.185,0.214,0.203,0.193];
-const trajStart    = 106; // index of Jul 2026 — trajectory begins here (Jun 2026 is the last real actual)
+// ── ADA forward distribution: the Aug 3, 2026 DRIFTLESS LOGNORMAL VOLATILITY CONE ──
+// This replaces the previous bull/base/bear scenario trajectory outright, and the replacement is not
+// cosmetic. Those were three hand-drawn cycle-shaped price paths; the Aug 3 report removes exactly that
+// construct by name — "assuming a recovery drift or a cycle-shaped price path is exactly where invented
+// forward targets enter a report, and this framework removed them once already." So they have no source
+// any more and are gone rather than re-based a third time.
+//
+// What replaces them is the report's own stated method, encoded rather than transcribed: a driftless
+// lognormal cone anchored at spot, whose MEDIAN IS FLAT BY CONSTRUCTION (no drift is assumed) with all
+// the information in the widening bands. Computing it here from sigma instead of pasting a snapshot of
+// its output means the chart, the tooltip percentiles and the probability split can never drift apart.
+//
+// Verified against the report's own figures: sigma_daily 3.19% (n=25 daily log returns, Jul 8 - Aug 2)
+// annualises to 60.9% (x sqrt 365; the report states 61.0% -- the 0.1pp gap is sigma rounded to 3 s.f.,
+// and nothing on this page displays the annualised figure) and reaches 94.7% at Dec 2028 (881 days); the
+// resulting Aug 2026 split is 48% bull / 45% neutral / 8% bear and Dec 2028 neutral is 10% — every one
+// of which the report states independently in its methodology appendix.
+const CONE_SPOT    = 0.18820;               // Aug 3 spot — the report anchors the cone here, not on the settled close
+const CONE_SIGMA_D = 0.0319;                // realized daily sigma, n=25
+const CONE_ANCHOR  = Date.UTC(2026,7,3);    // Aug 3, 2026
+const GATE_BULL    = 0.1900;                // BUY 3 gate    -> BULL band  (month-end close >= this)
+const GATE_BEAR    = 0.1480;                // death level   -> BEAR band  (month-end close <  this)
+const trajStart    = 107;                   // Aug 2026 — the first forecast month (Jul is a realised close)
+
+// days from the Aug 3 anchor to the last calendar day of the month at `idx`
+function coneDays(idx){ const mo=months[idx]; return (Date.UTC(mo.y, (mo.m%12)+1, 0) - CONE_ANCHOR)/86400000; }
+function coneSigma(idx){ const t=coneDays(idx); return t>0 ? CONE_SIGMA_D*Math.sqrt(t) : 0; }
+// percentile of the driftless lognormal: median = CONE_SPOT at z=0, +/-0.6745 sigma = 25th/75th, +/-1.645 = 5th/95th
+function conePct(idx, z){ return CONE_SPOT*Math.exp(z*coneSigma(idx)); }
+// standard normal CDF (Abramowitz & Stegun 7.1.26 on erf; |error| < 1.5e-7 — far tighter than any displayed digit)
+function normCdf(x){
+  const s = x<0 ? -1 : 1, ax = Math.abs(x)/Math.SQRT2;
+  const t = 1/(1+0.3275911*ax);
+  const y = 1 - (((((1.061405429*t - 1.453152027)*t) + 1.421413741)*t - 0.284496736)*t + 0.254829592)*t*Math.exp(-ax*ax);
+  return 0.5*(1 + s*y);
+}
+// month-end probability split against the two FIXED campaign thresholds. They stay fixed while the
+// distribution widens, which is why neutral decays from 45% (Aug 2026) to 10% (Dec 2028) — arithmetic, not a view.
+function coneProbs(idx){
+  const s = coneSigma(idx);
+  if(!(s>0)) return null;
+  const bull = 1 - normCdf(Math.log(GATE_BULL/CONE_SPOT)/s);
+  const bear = normCdf(Math.log(GATE_BEAR/CONE_SPOT)/s);
+  return {bull, neutral: 1-bull-bear, bear};
+}
+
+// ── Aug 3, 2026 level ladder — the framework's own references, not price history ──
+// Distances quoted against the $0.18820 spot the report itself uses.
+const levelLines = [
+  {p:0.2231, kind:'res',   label:'$0.2231 · 100-day MA — next overhead reference once BUY 3 clears (+18.5%)'},
+  {p:0.1900, kind:'gate',  label:'$0.1900 · BUY 3 GATE — Aug 2 closed $0.18963, short by 0.195% (+0.9%)'},
+  {p:0.1730, kind:'entry', label:'$0.1730 · BUY 2 armed here Aug 2, on 82.6% volume expansion (−8.1%)'},
+  {p:0.1690, kind:'sup',   label:'$0.1690 · spring confirmed Jul 30 — support-flipped, the candidate new stop (−10.2%)'},
+  {p:0.1596, kind:'hard',  label:'$0.1596 · THESIS STOP — 2 consecutive closes below = full exit · 0 of 2 (−15.2%)'},
+  {p:0.1480, kind:'hard',  label:'$0.1480 · DEATH LEVEL — the bear threshold of the monthly probability bands (−21.4%)'},
+];
+const levelZones = [
+  {lo:0.1810, hi:0.1885, kind:'sup', label:'$0.1810–0.1885 · 50-day EMA band — rejected Jul 22 by 0.12%, CLEARED Aug 2 on 82.6% volume; now first support'},
+];
+// Oct 4-17, 2026 core deployment window (month 29 post-halving, from the 363-376 day post-peak interval
+// off BTC's Oct 6, 2025 top). Shaded across Oct-Nov 2026 to match the BTC dashboard's autumn window.
+const autumnStart = 109, autumnEnd = 111; // Oct 2026 .. Nov 2026 (exclusive end)
 let currentTheme = 'dark';
 const THEMES = {
   dark:  { halo:'#0b0d0f', priceLine:'#5ec8f0', grid:'#262b33', yearSep:'#333a44',
            rowLabel:'#e8eaed', subLabel:'#878f9c', axisLabel:'#aeb4bf', seam:'#5ec8f0',
            fngNoData:'#2a2f37', offCell:'#1b1f26',
-           trajBase:'#6366f1', trajBull:'#10b981', trajBear:'#f87171',
+           coneMid:'#6366f1', coneEdge:'#8b8ff5', coneBand:'#6366f1',
+           lvlRes:'#e0815f', lvlSup:'#5bbf86', lvlGate:'#e0a83f', lvlEma:'#79b3e6',
            wyckoff:{acc:'#2f6fb0', markup:'#39b873', dist:'#c0291f', markdown:'#cf5b42'} },
   light: { halo:'#ffffff', priceLine:'#2f6fb0', grid:'#e8e5dd', yearSep:'#d8d5cc',
            rowLabel:'#1c1b18', subLabel:'#7a7872', axisLabel:'#55534d', seam:'#2f6fb0',
            fngNoData:'#e8e5dd', offCell:'#eeece5',
-           trajBase:'#4f46e5', trajBull:'#059669', trajBear:'#ef4444',
+           coneMid:'#4f46e5', coneEdge:'#7d78ea', coneBand:'#4f46e5',
+           lvlRes:'#c0432a', lvlSup:'#1e8a52', lvlGate:'#b07e20', lvlEma:'#2f6fb0',
            wyckoff:{acc:'#2f6fb0', markup:'#1e8a52', dist:'#a32d2d', markdown:'#cc5236'} }
 };
+function lvlColor(kind){ const t=TH(); return kind==='ema'?t.lvlEma : kind==='gate'?t.lvlGate : (kind==='sup'||kind==='entry')?t.lvlSup : t.lvlRes; }
 function TH(){ return THEMES[currentTheme]; }
 function wyckoffColorOf(kind){ return TH().wyckoff[kind]; }
 
@@ -309,7 +390,7 @@ function wyckoffLabelFor(monthIdx){
   return null;
 }
 
-const state = { layers: { wyckoff:true, shmita:true, mercury:true, fng:true }, viewStart:0, viewEnd:N, scale:'log' };
+const state = { layers: { wyckoff:true, shmita:true, mercury:true, fng:true, levels:true }, viewStart:0, viewEnd:N, scale:'log' };
 
 const NS='http://www.w3.org/2000/svg';
 function el(tag,attrs,text){const e=document.createElementNS(NS,tag);for(const k in attrs)e.setAttribute(k,attrs[k]);if(text!=null)e.textContent=text;return e;}
@@ -373,7 +454,7 @@ function render(){
       for(let i=Math.max(0,Math.floor(vs)); i<Math.min(N,Math.ceil(ve)); i++){
         const mo=months[i]; const key=`${mo.y}-${mo.m}`;
         const x0=idxToX(i); const on=dataSet.has(key);
-        plotGroup.appendChild(el('rect',{x:x0,y:row.top,width:colW+0.4,height:row.h-3,fill:on?'#e0a83f':'#1b1f26','data-idx':i}));
+        plotGroup.appendChild(el('rect',{x:x0,y:row.top,width:colW+0.4,height:row.h-3,fill:on?'#e0a83f':TH().offCell,'data-idx':i}));
       }
     }
     if(row.key==='fng'){
@@ -388,11 +469,12 @@ function render(){
 
   const visIdx=[]; for(let i=Math.max(0,Math.floor(vs)); i<Math.min(N,Math.ceil(ve)); i++) visIdx.push(i);
   const allowedPrices = visIdx.map(i=>price[i]).filter(p=>p!=null);
-  // include trajectory forecast values so the Bull/Bear bands never clip off-scale when in view
+  // include the cone's outer band so the 5th/95th percentiles never clip off-scale when in view
   visIdx.forEach(i=>{
-    const t=i-trajStart;
-    if(t>=0 && t<trajBaseCase.length){ allowedPrices.push(trajBull[t], trajBaseCase[t], trajBear[t]); }
+    if(i>=trajStart){ allowedPrices.push(conePct(i,1.645), conePct(i,-1.645)); }
   });
+  // include the level-ladder extremes so the Aug 3 ladder is never clipped off-scale when the layer is on
+  if(state.layers.levels){ allowedPrices.push(0.1480, 0.2231); } // death level .. the 100-day MA
   let pMin,pMax;
   if(allowedPrices.length===0){ pMin=-1; pMax=1; }
   else if(state.scale==='log'){ pMin=Math.log10(Math.min(...allowedPrices)*0.85); pMax=Math.log10(Math.max(...allowedPrices)*1.15); }
@@ -408,6 +490,47 @@ function render(){
     svg.appendChild(el('text',{x:padL+plotW+8,y:gy+3,'font-size':9,fill:TH().subLabel},'$'+(v<1?v.toFixed(2):v.toFixed(1))));
   });
 
+  // ── Aug 3 level ladder + Oct-Nov '26 core window (drawn under the price line) ──
+  if(state.layers.levels){
+    const yTop=priceTop, yBot=priceTop+priceH;
+    const showLabels = span<=40; // labels only when zoomed in enough to read them
+    // ADA's ladder clusters far more tightly in log space than BTC's, so labels are collected first and
+    // spread apart vertically before drawing. Each label carries its own price, so a small nudge off the
+    // line cannot be misread; drawing them at their raw y would render the $0.1480-$0.1900 group illegible.
+    const labels = [];
+    levelZones.forEach(z=>{
+      let y1=py(z.hi), y2=py(z.lo);
+      if(y2<yTop || y1>yBot) return;
+      y1=Math.max(y1,yTop); y2=Math.min(y2,yBot);
+      plotGroup.appendChild(el('rect',{x:padL,y:y1,width:plotW,height:Math.max(y2-y1,1.5),fill:lvlColor(z.kind),opacity:0.10,'pointer-events':'none'}));
+      if(showLabels) labels.push({y:(y1+y2)/2+2.5, p:(z.lo+z.hi)/2, kind:z.kind, text:z.label});
+    });
+    levelLines.forEach(L=>{
+      const y=py(L.p);
+      if(y<yTop||y>yBot) return;
+      plotGroup.appendChild(el('line',{x1:padL,x2:padL+plotW,y1:y,y2:y,stroke:lvlColor(L.kind),'stroke-width':1,'stroke-dasharray':'6 4',opacity:0.75,'pointer-events':'none'}));
+      if(showLabels) labels.push({y:y-3, p:L.p, kind:L.kind, text:L.label});
+    });
+    // greedy top-down spread: enforce a minimum vertical gap, then clamp back inside the plot.
+    // Sort by PRICE, not by the offset label y — the +2.5/-3 nudges exceed the gap between adjacent
+    // levels here (the $0.1810-0.1885 band sits 0.8% off $0.1900) and would invert their order.
+    const GAP=10.5; // 7.8px type single-spaces at ~9.4; 10.5 keeps the dense $0.148-$0.19 group readable
+    labels.sort((a,b)=>b.p-a.p);
+    let prev=-Infinity;
+    labels.forEach(L=>{ L.y=Math.max(L.y, prev+GAP); prev=L.y; });
+    const overflow = labels.length ? labels[labels.length-1].y-(yBot-3) : 0;
+    if(overflow>0) labels.forEach(L=>{ L.y-=overflow; });
+    labels.forEach(L=>{
+      plotGroup.appendChild(el('text',{x:padL+plotW-6,y:Math.max(L.y,yTop+8),'text-anchor':'end','font-size':7.8,
+        fill:lvlColor(L.kind),'font-weight':700,'pointer-events':'none'},L.text));
+    });
+    if(autumnEnd>vs && autumnStart<ve){
+      const x0=idxToX(Math.max(autumnStart,vs)), x1=idxToX(Math.min(autumnEnd,ve));
+      plotGroup.appendChild(el('rect',{x:x0,y:yTop,width:x1-x0,height:priceH,fill:TH().lvlSup,opacity:0.07,'pointer-events':'none'}));
+      if(x1-x0>60) plotGroup.appendChild(el('text',{x:(x0+x1)/2,y:yTop+12,'text-anchor':'middle','font-size':8,fill:TH().lvlSup,'font-weight':700,'pointer-events':'none'},"Oct–Nov '26 · core deployment window"));
+    }
+  }
+
   let pts=visIdx.filter(i=>price[i]!=null).map(i=>`${px(i)},${py(price[i])}`).join(' ');
   if(pts){
     plotGroup.appendChild(el('polyline',{points:pts,fill:'none',stroke:TH().halo,'stroke-width':4,'stroke-linejoin':'round',opacity:0.7}));
@@ -417,22 +540,28 @@ function render(){
     plotGroup.appendChild(el('circle',{cx:px(i),cy:py(price[i]),r:span<24?3.2:1.6,fill:TH().priceLine,'data-idx':i,style:'cursor:pointer'}));
   });
 
-  // ── Trajectory overlay: framework's Jul 31, 2026 forecast bands (bull/base/bear) ──
-  // Only drawn for indices >= trajStart (Jul 2026) where forecast data exists; fully pan/zoom aware.
-  [[trajBull,TH().trajBull,'Bull'],[trajBaseCase,TH().trajBase,'Base'],[trajBear,TH().trajBear,'Bear']].forEach(([data,color,name])=>{
-    const visT = visIdx.filter(i=>i>=trajStart && i<trajStart+data.length);
-    if(visT.length<2) return;
-    const tpts = visT.map(i=>`${px(i)},${py(data[i-trajStart])}`).join(' ');
-    if(name==='Base'){
-      plotGroup.appendChild(el('polyline',{points:tpts,fill:'none',stroke:TH().halo,'stroke-width':3.5,'stroke-linejoin':'round',opacity:0.6}));
-    }
-    plotGroup.appendChild(el('polyline',{points:tpts,fill:'none',stroke:color,
-      'stroke-width':name==='Base'?2:1.4,'stroke-linejoin':'round',
-      'stroke-dasharray':name==='Base'?'':'5 3',opacity:name==='Base'?0.9:0.75}));
-    const lastI = visT[visT.length-1];
-    const lx2=px(lastI), ly2=py(data[lastI-trajStart]);
-    plotGroup.appendChild(el('text',{x:lx2+5,y:ly2+3,'font-size':8,fill:color,'font-weight':700,'pointer-events':'none'},name));
-  });
+  // ── Volatility cone: the Aug 3, 2026 driftless lognormal distribution ──
+  // Only drawn for indices >= trajStart (Aug 2026); fully pan/zoom aware. The central 50% (25th-75th)
+  // is a filled band, the outer 90% (5th-95th) two dashed edges, and the median a flat solid line —
+  // flat because no drift is assumed, which is the whole point of the construction.
+  const visT = visIdx.filter(i=>i>=trajStart);
+  if(visT.length>=2){
+    const band = visT.map(i=>`${px(i)},${py(conePct(i,0.6745))}`)
+      .concat(visT.slice().reverse().map(i=>`${px(i)},${py(conePct(i,-0.6745))}`)).join(' ');
+    plotGroup.appendChild(el('polygon',{points:band,fill:TH().coneBand,opacity:0.10,'pointer-events':'none'}));
+    // Cone labels sit at the LEFT end of the cone, clear of the level ladder's right-anchored labels.
+    const firstI = visT[0];
+    [[1.645,'P95'],[-1.645,'P05']].forEach(([z,name])=>{
+      const p = visT.map(i=>`${px(i)},${py(conePct(i,z))}`).join(' ');
+      plotGroup.appendChild(el('polyline',{points:p,fill:'none',stroke:TH().coneEdge,'stroke-width':1.4,
+        'stroke-linejoin':'round','stroke-dasharray':'5 3',opacity:0.8}));
+      plotGroup.appendChild(el('text',{x:px(firstI)+4,y:py(conePct(firstI,z))+(z>0?-4:9),'font-size':8,fill:TH().coneEdge,'font-weight':700,'pointer-events':'none'},name));
+    });
+    const med = visT.map(i=>`${px(i)},${py(CONE_SPOT)}`).join(' ');
+    plotGroup.appendChild(el('polyline',{points:med,fill:'none',stroke:TH().halo,'stroke-width':3.5,'stroke-linejoin':'round',opacity:0.6}));
+    plotGroup.appendChild(el('polyline',{points:med,fill:'none',stroke:TH().coneMid,'stroke-width':2,'stroke-linejoin':'round',opacity:0.9}));
+    plotGroup.appendChild(el('text',{x:px(firstI)+4,y:py(CONE_SPOT)-4,'font-size':8,fill:TH().coneMid,'font-weight':700,'pointer-events':'none'},'median (flat)'));
+  }
 
   let acc=0;
   yearNames.forEach(yn=>{
@@ -459,11 +588,17 @@ function render(){
     svg.appendChild(el('text',{x:lx+4,y:padT+9,'font-size':8.5,fill:TH().seam,'font-weight':700},'live (Jun 12+)'));
   }
 
-  const sStartIdx=months.findIndex(m=>m.y===2021&&m.m===8);
-  const sEndIdx=months.findIndex(m=>m.y===2022&&m.m===8)+1;
-  if(sEndIdx>vs && sStartIdx<ve && state.layers.shmita){
-    const x0=idxToX(Math.max(sStartIdx,vs)), x1=idxToX(Math.min(sEndIdx,ve));
-    svg.insertBefore(el('rect',{x:x0,y:padT,width:x1-x0,height:priceTop+priceH-padT,fill:'#e0a83f',opacity:0.05}), svg.firstChild.nextSibling);
+  // Shmita tie-through shading — 5782 in full, plus the opening months of 5789 that fall inside this horizon
+  if(state.layers.shmita){
+    [[2021,8,2022,8],[2028,8,2028,11]].forEach(([y0,m0,y1,m1])=>{
+      const sStartIdx=months.findIndex(m=>m.y===y0&&m.m===m0);
+      const sEndIdx=months.findIndex(m=>m.y===y1&&m.m===m1)+1;
+      if(sStartIdx<0||sEndIdx<=0) return;
+      if(sEndIdx>vs && sStartIdx<ve){
+        const x0=idxToX(Math.max(sStartIdx,vs)), x1=idxToX(Math.min(sEndIdx,ve));
+        svg.insertBefore(el('rect',{x:x0,y:padT,width:x1-x0,height:priceTop+priceH-padT,fill:'#e0a83f',opacity:0.05}), svg.firstChild.nextSibling);
+      }
+    });
   }
 
   attachHover();
@@ -484,22 +619,32 @@ function showTip(e, idx){
   const fngVal=fng[idx];
   const priceVal=price[idx];
   const isFuture=priceVal==null && idx>liveStartIdx;
-  const trajIdx=idx-trajStart;
-  const hasTraj=trajIdx>=0 && trajIdx<trajBaseCase.length;
+  const hasCone=idx>=trajStart;
+  const pr=hasCone?coneProbs(idx):null;
   const mercOn=merc.has(`${mo.y}-${mo.m}`);
   const shmOn=shmita.has(`${mo.y}-${mo.m}`);
+  const inCore=idx>=autumnStart && idx<autumnEnd;
+  const f=v=>'$'+v.toFixed(4);
+  // sub-$1 closes carry 5 significant digits in the reports ($0.16826, $0.18963, $0.15340), so 4 decimal
+  // places would silently round the settled closes the gates are judged on. Trailing zeros are trimmed.
+  function fmtPrice(v){ return v<1 ? v.toPrecision(5).replace(/(\.\d*?)0+$/,'$1').replace(/\.$/,'') : v.toFixed(2); }
   tooltip.innerHTML=`
-    <div style="margin-bottom:4px"><b>${monthLabel}</b>${isLive?' <span style="color:#5ec8f0;font-size:9px">● LIVE</span>':''}${isFuture?' <span style="color:var(--txt2);font-size:9px">future</span>':''}</div>
-    <div class="tt-row"><span class="tt-label">Price</span><span>${priceVal==null?'no data yet':'$'+priceVal.toFixed(priceVal<1?4:2)}</span></div>
+    <div style="margin-bottom:4px"><b>${monthLabel}</b>${isLive&&!isFuture?' <span style="color:#5ec8f0;font-size:9px">● LIVE</span>':''}${isFuture?' <span style="color:var(--txt2);font-size:9px">future</span>':''}</div>
+    <div class="tt-row"><span class="tt-label">Price</span><span>${priceVal==null?'no data yet':'$'+fmtPrice(priceVal)}</span></div>
     ${state.layers.wyckoff && block ? `<div class="tt-row"><span class="tt-label">Wyckoff</span><span>${block.label}</span></div>`:''}
-    ${state.layers.fng ? `<div class="tt-row"><span class="tt-label">F&amp;G</span><span>${fngVal==null?(isFuture?'n/a (future)':'n/a'):fngVal}</span></div>`:''}
+    ${state.layers.fng ? `<div class="tt-row"><span class="tt-label">F&amp;G</span><span>${fngVal==null?(isFuture?'n/a (future)':(mo.y>=2018?'not verified':'n/a')):fngVal}</span></div>`:''}
     ${state.layers.mercury ? `<div class="tt-row"><span class="tt-label">Mercury</span><span>${mercOn?'Retrograde':'Direct'}</span></div>`:''}
-    ${state.layers.shmita ? `<div class="tt-row"><span class="tt-label">Shmita</span><span>${shmOn?'Yes (5782)':'No'}</span></div>`:''}
-    ${hasTraj?`<div style="border-top:1px solid rgba(128,128,128,.2);margin-top:4px;padding-top:4px;">
-    <div class="tt-row"><span class="tt-label" style="color:var(--amber)">Jul 31 forecast</span></div>
-    <div class="tt-row"><span class="tt-label">Bear</span><span style="color:#f87171">$${trajBear[trajIdx].toFixed(2)}</span></div>
-    <div class="tt-row"><span class="tt-label">Base</span><span style="color:#6366f1">$${trajBaseCase[trajIdx].toFixed(2)}</span></div>
-    <div class="tt-row"><span class="tt-label">Bull</span><span style="color:#10b981">$${trajBull[trajIdx].toFixed(2)}</span></div>
+    ${state.layers.shmita ? `<div class="tt-row"><span class="tt-label">Shmita</span><span>${shmOn?(mo.y<=2022?'Yes (5782)':'Yes (5789)'):'No'}</span></div>`:''}
+    ${state.layers.levels && inCore ? `<div class="tt-row" style="border-top:1px solid rgba(128,128,128,.2);margin-top:4px;padding-top:4px;"><span class="tt-label" style="color:#5bbf86">Cycle thesis</span><span style="color:#5bbf86">core window (Oct 4–17 '26)</span></div>`:''}
+    ${hasCone&&pr?`<div style="border-top:1px solid rgba(128,128,128,.2);margin-top:4px;padding-top:4px;">
+    <div class="tt-row"><span class="tt-label" style="color:var(--amber)">Aug 3 cone</span><span style="color:var(--txt2)">σ ${(coneSigma(idx)*100).toFixed(1)}%</span></div>
+    <div class="tt-row"><span class="tt-label">95th</span><span>${f(conePct(idx,1.645))}</span></div>
+    <div class="tt-row"><span class="tt-label">50% range</span><span>${f(conePct(idx,-0.6745))} – ${f(conePct(idx,0.6745))}</span></div>
+    <div class="tt-row"><span class="tt-label">median (flat)</span><span>${f(CONE_SPOT)}</span></div>
+    <div class="tt-row"><span class="tt-label">5th</span><span>${f(conePct(idx,-1.645))}</span></div>
+    <div class="tt-row" style="margin-top:3px"><span class="tt-label">≥ $0.19 bull</span><span style="color:#5bbf86">${Math.round(pr.bull*100)}%</span></div>
+    <div class="tt-row"><span class="tt-label">neutral</span><span>${Math.round(pr.neutral*100)}%</span></div>
+    <div class="tt-row"><span class="tt-label">&lt; $0.148 bear</span><span style="color:#e0815f">${Math.round(pr.bear*100)}%</span></div>
     </div>`:''}
   `;
   const rect=holder.getBoundingClientRect();
@@ -527,7 +672,9 @@ document.querySelectorAll('button[data-zoom]').forEach(btn=>{
       state.viewEnd=months.findIndex(m=>m.y===2022&&m.m===11)+1;
     } else if(z==='live'){
       state.viewStart=Math.max(0,liveStartIdx-3);
-      state.viewEnd=N;
+      // cap the span so the Aug 3 level-ladder labels stay readable (they hide when span>40, and the
+      // month labels when span>30); N now runs to Dec 2028, which would otherwise blow the span open
+      state.viewEnd=Math.min(N,liveStartIdx+24);
     }
     render();
   });

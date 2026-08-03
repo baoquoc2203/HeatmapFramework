@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ADA Cardano — Forecast Report (Aug 3, 2026) · Buy/Sell calendar to Dec 2028</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --pg:#f8f7f4; --cd:#fff; --tx:#1a1a18; --tx2:#6b6b67; --tx3:#9ca3af;
+    --rule:#f0eeea; --bord:rgba(0,0,0,.09); --hd:#f8f7f4; --link:#2f6fb0;
+    --buy:#3f7d1e; --buy-bg:#dcfce7; --sell:#b03a1c; --sell-bg:#fee2e2;
+    --hold:#57575e; --hold-bg:#eeece6;
+  }
+  @media (prefers-color-scheme:dark){
+    :root{ --pg:#1b1b1e; --cd:#26262a; --tx:#f0eee9; --tx2:#a8a8b0; --tx3:#82828a;
+      --rule:#33333a; --bord:rgba(255,255,255,.12); --hd:#2e2e34; --link:#7fb3e8;
+      --buy:#9bc65c; --buy-bg:#16371f; --sell:#ee9878; --sell-bg:#43180a;
+      --hold:#a0a0a8; --hold-bg:#2e2e33; }
+  }
+  body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--pg);color:var(--tx);padding:24px;max-width:960px;margin:0 auto}
+  h1{font-size:18px;font-weight:600;margin-bottom:4px}
+  .meta{font-size:12px;color:var(--tx2);margin-bottom:20px}
+  .mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-variant-numeric:tabular-nums}
+
+  .price-hero{display:flex;gap:16px;align-items:baseline;margin-bottom:18px;flex-wrap:wrap}
+  .ph-price{font-size:32px;font-weight:600}
+  .ph-up{font-size:14px;color:#15803d;font-weight:600}
+  .ph-detail{font-size:12px;color:var(--tx2)}
+  @media (prefers-color-scheme:dark){ .ph-up{color:#8fd66a} }
+
+  .banner{background:#eef6e5;border:1.5px solid #7bab4c;border-radius:10px;padding:13px 16px;margin-bottom:12px;font-size:12.5px;line-height:1.62;color:#395423}
+  .banner strong{color:#2d5010}
+  .banner.warn{background:#fdf3df;border-color:#d99a2b;color:#5a3a0e} .banner.warn strong{color:#7a4910}
+  @media (prefers-color-scheme:dark){
+    .banner{background:#1c3308;border-color:#5f8f3c;color:#cfe4ba} .banner strong{color:#9bc65c}
+    .banner.warn{background:#3a2405;border-color:#8a6a20;color:#e6cfa4} .banner.warn strong{color:#f0bc68}
+  }
+
+  .grid-title{font-size:13px;font-weight:600;margin-bottom:10px;text-transform:uppercase;letter-spacing:.06em;color:var(--tx2)}
+  .section{background:var(--cd);border-radius:12px;border:1px solid var(--bord);padding:18px 20px;margin-bottom:16px}
+  .section h2{font-size:14px;font-weight:600;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+  .section h2 .num{font-size:10px;font-weight:700;color:var(--tx3);letter-spacing:.08em}
+  .sn{font-size:12px;color:var(--tx2);margin-bottom:14px;line-height:1.62}
+  p.body{font-size:12.5px;line-height:1.68;margin-bottom:11px} p.body:last-child{margin-bottom:0}
+
+  table{width:100%;border-collapse:collapse;font-size:12px}
+  th{text-align:left;padding:6px 8px;background:var(--hd);font-size:11px;font-weight:600;color:var(--tx2);text-transform:uppercase;letter-spacing:.05em}
+  td{padding:7px 8px;border-top:1px solid var(--rule);vertical-align:top;line-height:1.4}
+  .table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch} .table-wrap table{min-width:340px}
+
+  .verdict{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-bottom:14px}
+  @media(max-width:760px){.verdict{grid-template-columns:repeat(2,1fr)}}
+  .v1{background:var(--cd);border:1px solid var(--bord);border-radius:10px;padding:11px 12px}
+  .v1.hi{border:2px solid #7bab4c}
+  .v1 .k{font-size:9px;color:var(--tx2);text-transform:uppercase;letter-spacing:.07em}
+  .v1 .v{font-size:18px;font-weight:600;margin:3px 0 1px}
+  .v1 .n{font-size:9.5px;color:var(--tx2);line-height:1.35}
+
+  .bdg{display:inline-block;padding:2px 7px;border-radius:5px;font-size:10px;font-weight:700;white-space:nowrap}
+  .b-gn{background:var(--buy-bg);color:var(--buy)} .b-rd{background:var(--sell-bg);color:var(--sell)}
+  .b-am{background:#fef9c3;color:#713f12} .b-bl{background:#e0f2fe;color:#075985}
+  .b-gy{background:var(--hold-bg);color:var(--hold)} .b-vi{background:#ede9fe;color:#4c1d95}
+  @media (prefers-color-scheme:dark){ .b-am{background:#3c2c05;color:#f0bc68} .b-bl{background:#08294a;color:#84b8ec} .b-vi{background:#241a4d;color:#b9a8f5} }
+
+  /* BUY/SELL CALENDAR */
+  .cal{margin-bottom:6px}
+  .cal-row{display:grid;grid-template-columns:44px repeat(12,1fr);gap:4px;margin-bottom:4px;align-items:center}
+  .cal-yr{font-size:11px;font-weight:700;color:var(--tx2)}
+  .cal-c{height:40px;border-radius:6px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:9px;font-weight:700;line-height:1.2;cursor:pointer;transition:transform .1s}
+  .cal-c:hover{transform:scale(1.07)}
+  .cal-c small{font-size:7.5px;font-weight:600;opacity:.85}
+  .c-buy{background:var(--buy);color:#fff} .c-sell{background:var(--sell);color:#fff}
+  .c-hold{background:var(--hold-bg);color:var(--hold)} .c-past{background:var(--sell-bg);color:var(--sell);opacity:.7}
+  .c-now{background:#d99a2b;color:#fff} .c-none{background:transparent;border:1px dashed var(--bord);cursor:default}
+  .c-core{background:var(--buy);color:#fff;outline:2px solid #d99a2b}
+  .cal-hdr{display:grid;grid-template-columns:44px repeat(12,1fr);gap:4px;margin-bottom:5px}
+  .cal-hdr div{font-size:8.5px;color:var(--tx3);text-align:center;text-transform:uppercase;letter-spacing:.03em}
+  .cal-key{display:flex;gap:14px;flex-wrap:wrap;font-size:11px;color:var(--tx2);margin-top:11px}
+  .cal-key span{display:flex;align-items:center;gap:5px}
+  .cal-key i{width:11px;height:11px;border-radius:3px;display:inline-block}
+
+  .filters{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
+  .chip{font-size:11px;font-weight:600;padding:5px 11px;border-radius:99px;border:1px solid var(--bord);background:var(--cd);color:var(--tx2);cursor:pointer;transition:all .12s}
+  .chip:hover{border-color:var(--link)} .chip.active{background:var(--tx);color:var(--pg);border-color:var(--tx)}
+  .month-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin-bottom:10px}
+  @media(max-width:860px){.month-grid{grid-template-columns:repeat(4,1fr)}}
+  @media(max-width:640px){.month-grid{grid-template-columns:repeat(3,1fr)}}
+  @media(max-width:440px){.month-grid{grid-template-columns:repeat(2,1fr)}}
+  .month-card{border-radius:10px;padding:10px 9px;border:1px solid var(--bord);position:relative;background:var(--cd);min-width:0;cursor:pointer;transition:transform .12s,box-shadow .12s}
+  .month-card:hover{transform:translateY(-2px);box-shadow:0 4px 14px rgba(0,0,0,.08)}
+  .month-card.dimmed{opacity:.24}
+  .month-card.mc-buy{border-left:3px solid var(--buy)} .month-card.mc-sell{border-left:3px solid var(--sell)}
+  .month-card.mc-core{border:2px solid var(--buy)} .month-card.mc-now{border:2px solid #d99a2b}
+  .mc-month{font-size:12px;font-weight:600;margin-bottom:4px}
+  .mc-action{font-size:9px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:2px 6px;border-radius:99px;display:inline-block;margin-bottom:5px;line-height:1.4}
+  .mc-rng{font-size:10px;color:var(--tx2);margin-bottom:5px}
+  .mc-pb{display:flex;height:6px;border-radius:99px;overflow:hidden;margin-bottom:4px}
+  .mc-pn{font-size:9px;color:var(--tx3)}
+  .mc-key{position:absolute;top:7px;right:7px;font-size:7.5px;font-weight:700;padding:1px 4px;border-radius:99px}
+  .a-buy{background:var(--buy-bg);color:var(--buy)} .a-sell{background:var(--sell-bg);color:var(--sell)}
+  .a-hold{background:var(--hold-bg);color:var(--hold)} .a-now{background:#fef9c3;color:#713f12}
+  @media (prefers-color-scheme:dark){ .a-now{background:#3c2c05;color:#f5c270} }
+
+  svg{display:block;width:100%;height:auto}
+  .ax{font-size:9px;fill:var(--tx3);font-family:ui-monospace,monospace}
+  .lt{font-size:9px;fill:var(--tx2);font-weight:600}
+  .grd{stroke:var(--rule);stroke-width:.7}
+
+  /* interactive cone chart */
+  .chart-host{position:relative;touch-action:pan-y}
+  #hit{cursor:crosshair}
+  #hover{opacity:0;transition:opacity .08s;pointer-events:none}
+  #hover.on{opacity:1}
+  .tip{position:absolute;pointer-events:none;opacity:0;transition:opacity .1s;z-index:9;
+    background:var(--cd);border:1px solid var(--bord);border-radius:9px;padding:9px 11px;
+    box-shadow:0 6px 22px rgba(0,0,0,.16);min-width:172px;max-width:230px}
+  .tip.on{opacity:1}
+  .tip .t-m{font-size:12px;font-weight:700;margin-bottom:5px}
+  .tip .t-a{font-size:8.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;
+    padding:2px 6px;border-radius:99px;display:inline-block;margin-bottom:6px}
+  .tip .t-r{font-size:11px;font-family:ui-monospace,monospace;font-variant-numeric:tabular-nums;margin-bottom:2px}
+  .tip .t-l{font-size:8.5px;color:var(--tx3);text-transform:uppercase;letter-spacing:.05em}
+  .tip .t-pb{display:flex;height:5px;border-radius:99px;overflow:hidden;margin:6px 0 4px}
+  .tip .t-pb i{display:block}
+  .tip .t-p{font-size:9.5px;color:var(--tx2)}
+  .tip .t-hint{font-size:8.5px;color:var(--tx3);margin-top:5px;border-top:1px solid var(--rule);padding-top:4px}
+  .chart-hint{font-size:10.5px;color:var(--tx3);margin-top:8px;display:flex;gap:14px;flex-wrap:wrap}
+
+  details.apx{background:var(--cd);border:1px solid var(--bord);border-radius:12px;margin-bottom:10px;overflow:hidden}
+  details.apx > summary{padding:13px 20px;font-size:13px;font-weight:600;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:10px}
+  details.apx > summary::-webkit-details-marker{display:none}
+  details.apx > summary::after{content:'▾';color:var(--tx3);font-size:11px}
+  details.apx[open] > summary{border-bottom:1px solid var(--bord)} details.apx[open] > summary::after{content:'▴'}
+  details.apx .apx-b{padding:16px 20px;font-size:12px;line-height:1.62;color:var(--tx2)}
+  details.apx .apx-b strong{color:var(--tx)}
+
+  .modal-bg{position:fixed;inset:0;background:rgba(0,0,0,.45);display:none;align-items:center;justify-content:center;padding:20px;z-index:50}
+  .modal-bg.open{display:flex}
+  .modal{background:var(--cd);color:var(--tx);border-radius:14px;max-width:480px;width:100%;padding:22px 24px;box-shadow:0 20px 60px rgba(0,0,0,.3);max-height:88vh;overflow-y:auto}
+  .modal-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px}
+  .modal-head .m-title{font-size:18px;font-weight:600}
+  .modal-close{background:none;border:none;font-size:22px;line-height:1;color:var(--tx3);cursor:pointer;padding:2px 6px;border-radius:6px}
+  .m-stats{display:flex;gap:18px;margin-bottom:15px;flex-wrap:wrap}
+  .m-stat .s-label{font-size:10px;text-transform:uppercase;letter-spacing:.05em;color:var(--tx3);margin-bottom:3px}
+  .m-stat .s-val{font-size:15px;font-weight:600}
+  .m-block{margin-bottom:13px}
+  .m-block .b-label{font-size:10px;text-transform:uppercase;letter-spacing:.05em;color:var(--tx3);margin-bottom:4px;font-weight:600}
+  .m-block .b-text{font-size:12.5px;line-height:1.55}
+
+  .disclaimer{font-size:11px;color:var(--tx3);margin-top:18px;line-height:1.6;border-top:1px solid var(--rule);padding-top:14px}
+  @media(max-width:480px){body{padding:16px 12px}.section{padding:14px 14px}h1{font-size:16px}.ph-price{font-size:26px}
+    .cal-row{grid-template-columns:30px repeat(12,1fr);gap:2px} .cal-hdr{grid-template-columns:30px repeat(12,1fr);gap:2px}
+    .cal-c{height:32px;font-size:7px} .cal-c small{display:none}}
+</style>
+</head>
+<body>
+<style>.backlink{display:inline-flex;align-items:center;gap:5px;font-size:12px;color:var(--link);text-decoration:none;font-weight:600;margin-bottom:12px;}.backlink:hover{text-decoration:underline;}</style>
+<a class="backlink" href="ada-dashboard.html">← ADA Dashboard</a>
+
+
+<h1>ADA Cardano — Monthly Map &amp; Forecast Report</h1>
+<div class="meta">Crypto Reconnaissance Engine · <strong>Mon Aug 3, 2026 · 12:31 UTC</strong> (19:31 ICT) · last settled close <span class="mono">$0.18963</span> (Aug 2) · Aug 3 candle live, 11h28m remaining, excluded from all determinations · timeline Jun 2026 → Dec 2028</div>
+
+<div class="price-hero">
+  <span class="ph-price mono">$0.18820</span>
+  <span class="ph-up">▲ +16.95% in four sessions · breakout confirmed</span>
+  <span class="ph-detail">−93.9% from ATH · Phase D → Phase E transition · <strong>BUY 2 armed Aug 2</strong> · stop 0 of 2 · July closed +16.52%</span>
+</div>
+
+<div class="banner">
+  <strong>⚠ Three gates fired in four sessions. The setup the framework has been waiting on since Jul 22 has now resolved upward.</strong>
+  <strong>Jul 30</strong> closed <span class="mono">$0.16978</span> — above the $0.1690 shelf, <strong>confirming the spring</strong> that was outstanding for three sessions.
+  <strong>Aug 2</strong> closed <span class="mono">$0.18963</span> on <strong>22.18M, volume expanding 82.6%</strong> — clearing both the $0.173 re-arm and the <span class="mono">$0.1810–0.1885</span> 50-day EMA band that rejected the Jul 22 high by 0.12%.
+  That is the <strong>Sign of Strength</strong>, and <strong>BUY 2 is armed</strong>. Position moves to half size.
+  <strong>BUY 3 did not trigger</strong>: Aug 2 closed 0.195% below the $0.19 gate and the $0.19210 high was a wick, not a close.
+</div>
+
+<div class="banner warn">
+  <strong>⏱ Two things that should temper the enthusiasm.</strong>
+  First, this is <strong>ADA-specific, not market beta</strong>: ADA rose 16.95% over the four sessions while <strong>BTC fell 0.64%</strong>, and BTC now sits just <strong>0.33% above its $62,457 cross-asset kill level</strong> — its Jul 31 low of $62,454 pierced that level intraday by $3 before closing above. A solo altcoin breakout on a weakening major is a thinner base than it looks.
+  Second, the <strong>thesis stop is now 15.2% below spot</strong>, which is a wide gap to carry on a half position. Raising it to the support-flipped $0.1690 shelf is defensible but <strong>is a framework change and is your call</strong> — I have not made it unilaterally.
+</div>
+
+<!-- 1 EXEC SUMMARY -->
+<div class="section">
+  <h2><span class="num">01</span> Executive summary</h2>
+  <div class="verdict">
+    <div class="v1 hi"><div class="k">Action now</div><div class="v" style="color:var(--buy)">HOLD BUY 2</div><div class="n">Armed Aug 2 · no add yet</div></div>
+    <div class="v1"><div class="k">Position</div><div class="v">50%</div><div class="n">BUY 1 + BUY 2 · 50% powder</div></div>
+    <div class="v1 hi"><div class="k">Stop count</div><div class="v" style="color:var(--buy)">0 of 2</div><div class="n">15.2% below spot</div></div>
+    <div class="v1"><div class="k">BUY 3 gate</div><div class="v mono" style="font-size:15px">$0.1900</div><div class="n">Missed by 0.195% on Aug 2</div></div>
+    <div class="v1"><div class="k">July close</div><div class="v mono" style="font-size:15px">$0.16826</div><div class="n">+16.52% · best month of campaign</div></div>
+  </div>
+
+  <p class="body"><strong>What changed.</strong> Four settled closes arrived since the last map and they resolved the campaign's central question. The spring confirmed on Jul 30, and on Aug 2 price cleared the 50-day EMA band on 82.6% volume expansion — the exact level that rejected the Jul 22 high and ended the previous attempt. <strong>BUY 2 is armed and the position is at half size.</strong> Both remaining upside gates are now within 1% of spot.</p>
+
+  <p class="body"><strong>Where ADA is likely going next.</strong> Spot now sits essentially <em>on</em> the $0.19 BUY 3 threshold, which changes the distribution sharply: August finishes above $0.19 with roughly <strong>48% probability</strong> against 8% below the death level, versus 16% / 26% in the last map. The thresholds were deliberately left unchanged — the cone moved because price moved, which is the entire point of fixing them in advance.</p>
+
+  <p class="body"><strong>What I got wrong, and what the rules cost.</strong> The BUY 2 volume filter blocked entry on Aug 1 at <span class="mono">$0.17449</span> because volume contracted 4.3%, then armed on Aug 2 at <span class="mono">$0.18963</span> — <strong>an 8.68% worse fill</strong>. The rule was applied exactly as written and it cost real money on this occasion. That is logged, not explained away. Separately, the ADA/BTC ratio I named on Jul 26 as "the best single argument for the bear case" has inverted to a new campaign high of +13.8% — the same layer led both directions, two sessions early each time.</p>
+
+  <p class="body"><strong>What is still open.</strong> No forecast has resolved. F-ADA-0001 resolves Aug 5, F-ADA-0003 on Aug 6, F-ADA-0002 on Aug 28 — all three are <em>tracking</em> bull, which is not the same as having scored. And the BUY 1 fill price is unresolved for an 18th session; with a second tranche now on the book, the blended basis cannot be computed at all.</p>
+</div>
+
+<!-- 2 MARKET STRUCTURE -->
+<div class="section">
+  <h2><span class="num">02</span> Current market structure</h2>
+  <p class="body">The campaign has moved from <strong>Phase D into an early Phase E transition</strong>. The July sequence — spring, Sign of Strength, upthrust, breakdown, second spring — resolved with a genuine breakout rather than another failure, and the distinction sits at one level.</p>
+
+  <p class="body">On <strong>Jul 22</strong> the high of <span class="mono">$0.18079</span> stopped <strong>0.12% short of the 50-day EMA</strong> and rolled over into a 6.29% breakdown. On <strong>Aug 2</strong> price closed <span class="mono">$0.18963</span>, <strong>0.60% above the top of that same band</strong>, on the heaviest volume of the entire campaign at 22.18M. Same level, opposite outcome, and the volume signature is what separates them: the July attempt failed on contracting volume, this one cleared on an 82.6% expansion.</p>
+
+  <p class="body">The intervening structure was textbook. Jul 28 swept the Jul 13 spring low to <span class="mono">$0.15340</span> and reversed to close above the invalidation — spring #2. Jul 29 churned at the shelf on 17.09M without resolving. Jul 30 closed <span class="mono">$0.16978</span>, confirming. Jul 31 pulled back 0.90% and held. Aug 1 and Aug 2 then ran +3.70% and +8.68%. <strong>A confirmed spring, a controlled back-test, then expansion.</strong></p>
+
+  <div class="table-wrap" style="margin:14px 0"><table>
+    <tr><th>Level</th><th style="width:62px">Distance</th><th>Status</th></tr>
+    <tr><td class="mono">$0.2231</td><td class="mono">+18.5%</td><td>100-day MA — next overhead reference once BUY 3 clears.</td></tr>
+    <tr><td class="mono">$0.1900</td><td class="mono">+0.9%</td><td><span class="bdg b-am">BUY 3 GATE</span> Aug 2 closed $0.18963, <strong>0.195% short</strong>. High $0.19210 was a wick.</td></tr>
+    <tr style="background:var(--hd)"><td class="mono"><strong>$0.18820</strong></td><td>—</td><td><strong>SPOT</strong> · last settled close $0.18963 (Aug 2)</td></tr>
+    <tr><td class="mono">$0.1885</td><td class="mono">+0.2%</td><td><span class="bdg b-gn">CLEARED Aug 2</span> Top of the 50-day EMA band.</td></tr>
+    <tr><td class="mono">$0.1810</td><td class="mono">−3.8%</td><td><span class="bdg b-gn">CLEARED</span> The level that rejected Jul 22 by 0.12%. Now first support.</td></tr>
+    <tr><td class="mono">$0.1730</td><td class="mono">−8.1%</td><td><span class="bdg b-gn">BUY 2 armed here</span> Aug 2, on 82.6% volume expansion.</td></tr>
+    <tr><td class="mono">$0.1690</td><td class="mono">−10.2%</td><td><span class="bdg b-gn">Spring confirmed</span> Jul 30. Support-flipped — the candidate new stop.</td></tr>
+    <tr><td class="mono">$0.1596</td><td class="mono">−15.2%</td><td><span class="bdg b-rd">THESIS STOP</span> Two consecutive closes below = full exit. Now 0 of 2, and a wide gap.</td></tr>
+    <tr><td class="mono">$0.1480</td><td class="mono">−21.4%</td><td><span class="bdg b-rd">Death level</span></td></tr>
+  </table></div>
+
+  <p class="body"><strong>The competing read, stated as required.</strong> The bear case is that this is a solo altcoin squeeze into resistance rather than the start of markup. Its evidence is specific and current: <strong>BTC fell 0.64% across the same four sessions</strong> and sits 0.33% above its cross-asset kill level, having pierced it intraday on Jul 31. Altcoin breakouts on a weakening major have a poor completion rate, and the Aug 2 candle closed 1.3% off its high. A failure here — a close back below $0.1810 — would make Aug 2 an upthrust after distribution rather than a Sign of Strength, which is the mirror image of Jul 22. That risk is why BUY 3 waits for its gate rather than anticipating it.</p>
+
+  <p class="body"><strong>ADA/BTC ratio.</strong> Now <span class="mono">3.0035 ×10⁻⁶</span>, a <strong>new campaign high at +13.79%</strong> above the Jul 22 peak. On Jul 26 this same layer read −3.4% and I named it the strongest bear argument; it then led the Jul 27 breakdown by two sessions. It has now inverted and led this breakout by the same margin. It has earned its place as a leading indicator in both directions.</p>
+</div>
+
+<!-- 3 BUY/SELL CALENDAR -->
+<div class="section">
+  <h2><span class="num">03</span> Buy / sell month calendar — Jun 2026 to Dec 2028</h2>
+  <p class="sn">Every month the framework maps, colour-coded by the action it authorises. <strong>8 BUY months, 6 SELL months, 15 HOLD.</strong> Only Oct–Nov 2026 rests on hard arithmetic; the rest are regime labels anchored to the April 2028 halving. Tap any cell for the full detail.</p>
+  <div class="cal">
+    <div class="cal-hdr"><div></div><div>J</div><div>F</div><div>M</div><div>A</div><div>M</div><div>J</div><div>J</div><div>A</div><div>S</div><div>O</div><div>N</div><div>D</div></div>
+    <div class="cal-row" id="cal2026"><div class="cal-yr">2026</div></div>
+    <div class="cal-row" id="cal2027"><div class="cal-yr">2027</div></div>
+    <div class="cal-row" id="cal2028"><div class="cal-yr">2028</div></div>
+  </div>
+  <div class="cal-key">
+    <span><i style="background:var(--buy)"></i> BUY — deploy capital</span>
+    <span><i style="background:var(--buy);outline:2px solid #d99a2b"></i> CORE window (hard anchor)</span>
+    <span><i style="background:var(--sell)"></i> SELL — reduce / distribute</span>
+    <span><i style="background:var(--hold-bg);border:1px solid var(--bord)"></i> HOLD</span>
+    <span><i style="background:#d99a2b"></i> Current month</span>
+    <span><i style="background:var(--sell-bg)"></i> Realised (stopped out)</span>
+  </div>
+
+  <div class="table-wrap" style="margin-top:16px"><table>
+    <tr><th style="width:62px">Signal</th><th style="width:180px">Months</th><th>Why — derivation, not seasonality</th></tr>
+    <tr>
+      <td><span class="bdg b-gn">BUY</span></td>
+      <td><strong>Oct 2026, Nov 2026</strong></td>
+      <td><strong>The only hard-anchored buys on the map.</strong> The 363–376 day post-peak interval measured off Bitcoin's Oct 6, 2025 top computes to <span class="mono">Oct 4–17, 2026</span> — month 29 post-halving. 75% dry powder is designated for it and has survived every tranche and stop untouched. November is the framework's buffer, not the computed target: the arithmetic centres October.</td>
+    </tr>
+    <tr>
+      <td><span class="bdg b-gn">BUY</span></td>
+      <td>Jul, Aug, Sep, Oct 2027</td>
+      <td>Six to nine months ahead of the April 2028 halving — the stretch where pre-event accumulation has historically begun. A <em>regime</em> label, fully conditional on a base existing by then. Not a signal.</td>
+    </tr>
+    <tr>
+      <td><span class="bdg b-gn">BUY</span></td>
+      <td>Jul, Aug 2028</td>
+      <td>Months 3–4 post-halving, where re-accumulation has historically resumed after the sell-the-news unwind. Conditional and speculative.</td>
+    </tr>
+    <tr>
+      <td><span class="bdg b-rd">SELL</span></td>
+      <td>Mar 2028, Apr 2028</td>
+      <td>The immediate pre-halving month, where froth has historically peaked, and the halving itself as a sell-the-news event. This is the clearest distribution logic on the forward map.</td>
+    </tr>
+    <tr>
+      <td><span class="bdg b-rd">SELL</span></td>
+      <td>Dec 2026, Dec 2027</td>
+      <td>Year-end reduction, <strong>conditional on a profit existing to take</strong>. If the position is underwater these become HOLD. Thin December liquidity also distorts execution.</td>
+    </tr>
+    <tr>
+      <td><span class="bdg b-rd">SELL</span></td>
+      <td>Nov 2028, Dec 2028</td>
+      <td>Markup distribution if the cycle actually delivered. <strong>The most speculative entries on the map</strong> — at 854–885 days the distribution is near a coin flip and these are placeholders for a decision, not a decision.</td>
+    </tr>
+    <tr>
+      <td><span class="bdg b-gy">HOLD</span></td>
+      <td>15 months</td>
+      <td>No action authorised. In this framework WAIT is a position, and most months are one.</td>
+    </tr>
+  </table></div>
+</div>
+
+<!-- 4 TIMELINE -->
+<div class="section">
+  <h2><span class="num">04</span> Monthly forecast timeline — realised history and forward cone</h2>
+  <p class="sn">June and July 2026 are <strong>realised</strong>: actual monthly closes, no probabilities. From August the chart becomes a volatility cone anchored at spot. Each band is the <strong>central 50%</strong> of the distribution. Probabilities are the chance of finishing that month above <span class="mono">$0.19</span> (BUY 3 gate), between the gates, or below <span class="mono">$0.1480</span> (death level). <strong>The bands widen and the middle collapses from 58% to 12%</strong> — that decay is arithmetic, not a view, and it is the most honest thing on this page.</p>
+
+  <div class="chart-host" id="chartHost">
+  <svg viewBox="0 0 760 220" id="cone" role="img" aria-label="ADA monthly map. June 2026 realised close 0.1444 and July 2026 realised close 0.16826 shown as history, then a volatility cone from August 2026 to December 2028 anchored at spot 0.18820. The central 50 percent band widens from roughly 0.168 to 0.211 in August 2026 out to 0.099 to 0.357 by December 2028. Green squares mark buy months, red squares mark sell months. Hover or tap for detail.">
+    <desc>Interactive: move the pointer across the chart, or tap on touch devices, to read each month's expected range, probability split and recommended action. Click to open full detail.</desc>
+    <line x1="54" y1="190.1" x2="748" y2="190.1" class="grd"/><text x="48" y="193.4" class="ax" text-anchor="end">$0.06</text>
+    <line x1="54" y1="155.6" x2="748" y2="155.6" class="grd"/><text x="48" y="158.9" class="ax" text-anchor="end">$0.10</text>
+    <line x1="54" y1="128.1" x2="748" y2="128.1" class="grd"/><text x="48" y="131.4" class="ax" text-anchor="end">$0.15</text>
+    <line x1="54" y1="108.7" x2="748" y2="108.7" class="grd"/><text x="48" y="112.0" class="ax" text-anchor="end">$0.20</text>
+    <line x1="54" y1="81.2"  x2="748" y2="81.2"  class="grd"/><text x="48" y="84.5"  class="ax" text-anchor="end">$0.30</text>
+    <line x1="54" y1="46.7"  x2="748" y2="46.7"  class="grd"/><text x="48" y="50.0"  class="ax" text-anchor="end">$0.50</text>
+    <line x1="54" y1="23.9"  x2="748" y2="23.9"  class="grd"/><text x="48" y="27.2"  class="ax" text-anchor="end">$0.70</text>
+
+    <path d="M 77.1 112.8 L 100.3 94.0 123.4 85.7 146.5 79.3 169.7 74.0 192.8 69.3 215.9 65.0 239.1 61.5 262.2 57.8 285.3 54.4 308.5 51.2 331.6 48.2 354.7 45.2 377.9 42.4 401.0 39.8 424.1 37.1 447.3 34.7 470.4 32.2 493.5 29.8 516.7 27.6 539.8 25.4 562.9 23.2 586.1 21.1 609.2 19.0 632.3 17.0 655.5 15.0 678.6 13.1 701.7 11.1 724.9 9.3 748.0 7.4 L 748.0 218.1 724.9 216.3 701.7 214.4 678.6 212.5 655.5 210.6 632.3 208.6 609.2 206.5 586.1 204.5 562.9 202.3 539.8 200.2 516.7 197.9 493.5 195.7 470.4 193.3 447.3 190.9 424.1 188.4 401.0 185.8 377.9 183.2 354.7 180.3 331.6 177.4 308.5 174.4 285.3 171.1 262.2 167.8 239.1 164.1 215.9 160.5 192.8 156.3 169.7 151.5 146.5 146.3 123.4 139.8 100.3 131.6 L 77.1 112.8 Z" fill="#6366f1" opacity=".07"/>
+    <path d="M 77.1 112.8 L 100.3 105.1 123.4 101.7 146.5 99.0 169.7 96.9 192.8 94.9 215.9 93.2 239.1 91.7 262.2 90.2 285.3 88.9 308.5 87.5 331.6 86.3 354.7 85.1 377.9 83.9 401.0 82.8 424.1 81.8 447.3 80.7 470.4 79.7 493.5 78.8 516.7 77.9 539.8 76.9 562.9 76.1 586.1 75.2 609.2 74.3 632.3 73.5 655.5 72.7 678.6 71.9 701.7 71.1 724.9 70.3 748.0 69.6 L 748.0 156.0 724.9 155.2 701.7 154.5 678.6 153.7 655.5 152.9 632.3 152.1 609.2 151.2 586.1 150.4 562.9 149.5 539.8 148.6 516.7 147.7 493.5 146.8 470.4 145.8 447.3 144.8 424.1 143.8 401.0 142.7 377.9 141.6 354.7 140.5 331.6 139.3 308.5 138.0 285.3 136.7 262.2 135.3 239.1 133.8 215.9 132.4 192.8 130.6 169.7 128.7 146.5 126.5 123.4 123.9 100.3 120.5 L 77.1 112.8 Z" fill="#6366f1" opacity=".17"/>
+
+    <line x1="54" y1="112.1" x2="748" y2="112.1" stroke="#3f7d1e" stroke-width="1" stroke-dasharray="5 4"/>
+    <text x="746" y="109" class="lt" text-anchor="end" style="fill:#3f7d1e">$0.19 — BUY 3 gate (bull threshold)</text>
+    <line x1="54" y1="115.4" x2="748" y2="115.4" stroke="#3f7d1e" stroke-width=".8" stroke-dasharray="2 3" opacity=".7"/>
+    <text x="200" y="122" class="lt" style="fill:#3f7d1e">$0.1810 EMA — cleared Aug 2</text>
+    <line x1="54" y1="129.0" x2="748" y2="129.0" stroke="#b03a1c" stroke-width="1" stroke-dasharray="5 4"/>
+    <text x="746" y="138" class="lt" text-anchor="end" style="fill:#b03a1c">$0.1480 — death level (bear threshold)</text>
+    <line x1="77.1" y1="112.8" x2="748" y2="112.8" stroke="#6366f1" stroke-width="2"/>
+    <text x="420" y="110" class="lt" style="fill:#6366f1">median flat — driftless by construction</text>
+
+    <path d="M 54.0 130.7 L 77.1 120.4" stroke="var(--tx)" stroke-width="2.4" fill="none"/>
+    <circle cx="54.0" cy="130.7" r="3.6" fill="#b03a1c"/><circle cx="77.1" cy="120.4" r="3.6" fill="#3f7d1e"/>
+    <text x="54" y="146" class="ax" text-anchor="middle" style="fill:#b03a1c">$0.1444</text>
+    <text x="54" y="155" class="ax" text-anchor="middle" style="fill:#b03a1c">−38.7%</text>
+    <text x="82" y="133" class="ax" style="fill:#3f7d1e">$0.16826 +16.5%</text>
+    <line x1="77.1" y1="22" x2="77.1" y2="196" stroke="var(--tx3)" stroke-width="1" stroke-dasharray="2 3"/>
+    <text x="60" y="34" class="lt" text-anchor="middle" style="fill:var(--tx2)">realised</text>
+    <text x="99" y="34" class="lt" style="fill:var(--tx2)">forecast →</text>
+
+    <line x1="130.9" y1="22" x2="130.9" y2="196" stroke="#3f7d1e" stroke-width="1.4"/>
+    <text x="134" y="46" class="lt" style="fill:#3f7d1e">Oct 2026 CORE</text>
+    <line x1="555.2" y1="22" x2="555.2" y2="196" stroke="#d99a2b" stroke-width="1.4" stroke-dasharray="4 3"/>
+    <text x="558" y="46" class="lt" style="fill:#b8860b">Apr 2028 halving</text>
+
+    <rect x="142.0" y="199" width="9" height="9" rx="2" fill="#3f7d1e"/>
+    <rect x="165.2" y="199" width="9" height="9" rx="2" fill="#3f7d1e"/>
+    <rect x="188.3" y="199" width="9" height="9" rx="2" fill="#b03a1c"/>
+    <rect x="350.2" y="199" width="9" height="9" rx="2" fill="#3f7d1e"/>
+    <rect x="373.4" y="199" width="9" height="9" rx="2" fill="#3f7d1e"/>
+    <rect x="396.5" y="199" width="9" height="9" rx="2" fill="#3f7d1e"/>
+    <rect x="419.6" y="199" width="9" height="9" rx="2" fill="#3f7d1e"/>
+    <rect x="465.9" y="199" width="9" height="9" rx="2" fill="#b03a1c"/>
+    <rect x="535.3" y="199" width="9" height="9" rx="2" fill="#b03a1c"/>
+    <rect x="558.4" y="199" width="9" height="9" rx="2" fill="#b03a1c"/>
+    <rect x="627.8" y="199" width="9" height="9" rx="2" fill="#3f7d1e"/>
+    <rect x="651.0" y="199" width="9" height="9" rx="2" fill="#3f7d1e"/>
+    <rect x="720.4" y="199" width="9" height="9" rx="2" fill="#b03a1c"/>
+    <rect x="743.5" y="199" width="9" height="9" rx="2" fill="#b03a1c"/>
+    <text x="54" y="207" class="ax" style="fill:var(--tx3)">■ buy / sell</text>
+
+    <text x="54.0"  y="218" class="ax" text-anchor="middle">Jun 26</text>
+    <text x="77.1"  y="218" class="ax" text-anchor="middle">Jul 26</text>
+    <text x="100.3" y="218" class="ax" text-anchor="middle">Aug 26</text>
+    <text x="169.7" y="218" class="ax" text-anchor="middle">Nov 26</text>
+    <text x="239.1" y="218" class="ax" text-anchor="middle">Feb 27</text>
+    <text x="308.5" y="218" class="ax" text-anchor="middle">May 27</text>
+    <text x="377.9" y="218" class="ax" text-anchor="middle">Aug 27</text>
+    <text x="447.3" y="218" class="ax" text-anchor="middle">Nov 27</text>
+    <text x="516.7" y="218" class="ax" text-anchor="middle">Feb 28</text>
+    <text x="586.1" y="218" class="ax" text-anchor="middle">May 28</text>
+    <text x="655.5" y="218" class="ax" text-anchor="middle">Aug 28</text>
+    <text x="724.9" y="218" class="ax" text-anchor="middle">Nov 28</text>
+
+    <g id="hover">
+      <line id="hx" x1="0" y1="22" x2="0" y2="196" stroke="var(--tx2)" stroke-width="1" stroke-dasharray="3 3"/>
+      <line id="hband" x1="0" y1="0" x2="0" y2="0" stroke="#6366f1" stroke-width="3" opacity=".35" stroke-linecap="round"/>
+      <circle id="h75" cx="0" cy="0" r="3.2" fill="#6366f1"/>
+      <circle id="hmed" cx="0" cy="0" r="4" fill="var(--cd)" stroke="#6366f1" stroke-width="2"/>
+      <circle id="h25" cx="0" cy="0" r="3.2" fill="#6366f1"/>
+    </g>
+    <rect id="hit" x="54" y="22" width="694" height="174" fill="transparent"/>
+  </svg>
+  <div class="tip" id="tip"></div>
+  </div>
+  <div class="chart-hint">
+    <span>◇ Hover or tap the chart to read any month</span>
+    <span>◇ Click to open full detail</span>
+    <span>▬ central 50% band · ▬ outer 90% · ▬ flat median (no drift)</span>
+  </div>
+</div>
+
+<div class="grid-title">Month by month · probabilities, expected range, narrative, action</div>
+<div class="filters" id="filters">
+  <button class="chip active" data-f="all">All 31</button>
+  <button class="chip" data-f="BUY">BUY only</button>
+  <button class="chip" data-f="SELL">SELL only</button>
+  <button class="chip" data-f="HOLD">HOLD</button>
+  <button class="chip" data-f="2026">2026</button>
+  <button class="chip" data-f="2027">2027</button>
+  <button class="chip" data-f="2028">2028</button>
+</div>
+<div class="month-grid" id="monthGrid"></div>
+<p style="font-size:11px;color:var(--tx3);margin:0 0 20px">Tap any month for the probability breakdown, expected range, dominant narrative, and recommended action. Bar = bull / neutral / bear share. June and July 2026 show realised outcomes rather than forecasts.</p>
+
+<!-- 5 WYCKOFF PATH -->
+<div class="section">
+  <h2><span class="num">05</span> Expected Wyckoff path</h2>
+  <p class="body">The structural sequence expected from here, as a path with conditions rather than a prediction. Each stage must be met before the next becomes live.</p>
+  <div class="table-wrap"><table>
+    <tr><th style="width:96px">Stage</th><th style="width:88px">Window</th><th>What it looks like, and what breaks it</th></tr>
+    <tr><td><strong>Spring test</strong><br><span class="bdg b-am">LIVE</span></td><td class="mono">Now – mid Aug</td>
+      <td>Two closes now held above $0.1596, and Jul 29 probed $0.16904. Needs a <strong>settled close above $0.1690</strong> to become a confirmed secondary test rather than a bounce. <strong>Breaks if:</strong> two consecutive closes below $0.1596.</td></tr>
+    <tr><td><strong>Phase A base</strong></td><td class="mono">Aug – Sep</td>
+      <td>A higher low above $0.1596 with contracting range and declining volume — supply exhausting. Defines the range the October deployment buys into. <strong>Breaks if:</strong> a lower low undercuts $0.15340 on expanding volume.</td></tr>
+    <tr><td><strong>Phase B build</strong></td><td class="mono">Sep – Oct</td>
+      <td>Range chop between shelf and EMA band while inventory changes hands. Unexciting and necessary — this is the regime the core deployment is designed for, buying a range rather than a breakout. <strong>Breaks if:</strong> no range forms and price simply trends.</td></tr>
+    <tr><td><strong>Sign of Strength</strong></td><td class="mono">Oct – Dec</td>
+      <td>Settled close through the <span class="mono">$0.1810–0.1885</span> EMA band on expanding volume — the level that rejected Jul 22 and the first real evidence of markup. Unlocks BUY 3 above ~$0.19. <strong>Breaks if:</strong> a second rejection at the band, which would confirm distribution instead.</td></tr>
+    <tr><td><strong>Markup</strong></td><td class="mono">2027 →</td>
+      <td>Only reachable if the SOS holds a back-test. Past this point the campaign's structure stops specifying and the halving clock takes over as the organising layer. <strong>Breaks if:</strong> the back-test fails as support.</td></tr>
+  </table></div>
+  <p class="body" style="margin-top:12px"><strong>If the spring fails instead</strong> the sequence inverts: $0.15340 gives way, $0.1480 follows, and the campaign resets to flat with the reserve intact and no position to defend. That is not a disaster — it is the stop working, and it would mean approaching the October window from cash rather than fully deployed and wrong.</p>
+</div>
+
+<!-- 6 MACRO ROADMAP -->
+<div class="section">
+  <h2><span class="num">06</span> Macro cycle roadmap</h2>
+  <p class="body">Dated events only. Nothing undated is on this map, and none of it overrides Wyckoff structure — these modify confidence, not direction.</p>
+  <div class="table-wrap"><table>
+    <tr><th style="width:94px">When</th><th style="width:116px">Event</th><th>Why it matters</th></tr>
+    <tr><td class="mono">Jul 29 ✓</td><td>FOMC — resolved</td><td>Held at 3.50–3.75%, fifth consecutive hold, but a <strong>9–3 vote with three hike dissents</strong> (Hammack, Kashkari, Logan). A hawkish hold. Crypto held its ground. <span class="bdg b-gy">Cleared</span></td></tr>
+    <tr><td class="mono">~Aug 10</td><td>CLARITY recess deadline</td><td>No cloture motion filed. ~35% for 2026 passage. Miss the recess and the 2026 path likely closes. <span class="bdg b-am">Binary</span></td></tr>
+    <tr><td class="mono">Sep 15–16</td><td><strong>FOMC + dot plot</strong></td><td><strong>Now the main event: ~77% hike odds.</strong> The offsetting fact is that the oil spike driving that bid has largely unwound — Brent near $86.68 from above $100 on Jul 23. If crude stays down, the September premium is vulnerable to fading. <span class="bdg b-rd">High impact</span></td></tr>
+    <tr style="background:var(--buy-bg)"><td class="mono"><strong>Oct 4–17</strong></td><td><strong>CORE WINDOW</strong></td><td><strong>Month 29 post-halving</strong>, from the 363–376 day post-peak interval off BTC's Oct 6, 2025 top. 75% dry powder designated, deployed in tranches against confirmed structure only. Spot ADA ETF decision period also falls here — coincidence, not confluence, since the window comes from interval math. <span class="bdg b-gn">Deployment</span></td></tr>
+    <tr><td class="mono">Oct 27–28</td><td>FOMC</td><td>Lands inside the back half of the core window. No dot plot.</td></tr>
+    <tr><td class="mono">Dec 8–9</td><td>FOMC + dot plot</td><td>Year-end policy path set. Thin liquidity amplifies it.</td></tr>
+    <tr><td class="mono">Q1 2027</td><td>Post-window assessment</td><td>Whether a base confirmed in Q4 2026 determines the whole 2027 regime. Every 2027 label is conditional on this.</td></tr>
+    <tr><td class="mono">Mid 2027</td><td>Pre-halving clock starts</td><td>April 2028 halving enters the twelve-month forward window, historically shifting the accumulation regime. Direction unspecified. <span class="bdg b-vi">Regime</span></td></tr>
+    <tr style="background:#fdf3df"><td class="mono"><strong>~Apr 2028</strong></td><td><strong>BTC HALVING</strong></td><td>The next dated cycle anchor. Historically a sell-the-news window, with pre-event froth peaking in the month or two prior — which is what drives the Mar/Apr 2028 SELL labels. <span class="bdg b-am">Cycle anchor</span></td></tr>
+    <tr><td class="mono">H2 2028</td><td>Post-halving markup</td><td>Months 3–8 post-halving. Prior cycles saw base-building then acceleration, with altcoin rotation lagging BTC by months. Beyond what this campaign's structure can specify.</td></tr>
+  </table></div>
+  <p class="body" style="margin-top:12px"><strong>Zero-weight layers, disclosed as always.</strong> Shmita (year 4 of 7; next release year begins Sep 2028), Mercury retrograde (direct since ~Jul 23), and lunar cycles appear in every report and contributed <strong>nothing</strong> to any probability, band, buy/sell label or action above. They gate nothing, delay nothing, and are never credited for an outcome. Promotion would require a pre-registered falsifiable test, not narrative fit.</p>
+</div>
+
+<!-- 7 EXECUTION -->
+<div class="section">
+  <h2><span class="num">07</span> Execution plan</h2>
+  <div class="table-wrap"><table>
+    <tr><th style="width:126px">Parameter</th><th>Specification</th></tr>
+    <tr><td><strong>Action today</strong></td><td><strong>HOLD BUY 1 + BUY 2</strong> at half size. Aggressiveness 5/10 (up from 3 — the EMA band cleared). Composite confidence 62/100. No further add until the BUY 3 gate settles above $0.19.</td></tr>
+    <tr><td><strong>Position sizing</strong></td><td><strong>50% deployed</strong> (two quarter-tranches), <strong>50% dry powder</strong>. Note this changes the October plan: the core window was designed around a 75% reserve and now has 50%. <strong>Tranche sizing for Oct 4–17 needs revisiting before the window opens.</strong></td></tr>
+    <tr><td><strong>Add — BUY 3</strong></td><td>Settled UTC close above <span class="mono">$0.1900</span>. Aug 2 closed $0.18963 — <strong>short by 0.195%</strong>. The EMA-band precondition is now met, so this is a single close away.</td></tr>
+    <tr><td><strong>Hard invalidation</strong></td><td>Two consecutive settled closes below <span class="mono">$0.1596</span> → full exit. Currently <strong>0 of 2</strong>, now 15.2% below spot.</td></tr>
+    <tr><td><strong>Stop decision — needs your call</strong></td><td>The <span class="mono">$0.1690</span> shelf is support-flipped and sits 10.2% below spot. Raising the stop there would cut open risk by a third and is structurally defensible. <strong>It is also a framework change mid-campaign, so I have not made it.</strong> The argument against: $0.1690 is only 6.4% below the $0.1810 EMA, and a normal back-test of a breakout could trip it. A middle option is $0.1596 held for BUY 1 and $0.1690 for BUY 2.</td></tr>
+    <tr><td><strong>Cross-asset kill</strong></td><td>BTC two consecutive closes below <span class="mono">$62,457</span>. Live $62,660.20 is <strong>0.33% above</strong> — the tightest this has been. Jul 31 pierced it intraday to $62,454 and closed above.</td></tr>
+    <tr><td><strong>Risk on book</strong></td><td>BUY 1 marks <strong>−0.42%</strong> ($0.189 basis) or <strong>+7.54%</strong> ($0.175 basis) at the Aug 2 close. BUY 2 filled ~$0.18963, marking about −0.7% at spot. <span class="bdg b-rd">Fill price unresolved, 18th session — blended basis now uncomputable</span></td></tr>
+    <tr><td><strong>Prohibited</strong></td><td>No anticipating the BUY 3 gate on the live Aug 3 candle. No averaging up before a settled close above $0.19. No treating the Aug 2 wick to $0.19210 as a trigger. The two-close rule remains symmetric.</td></tr>
+  </table></div>
+</div>
+
+<!-- 8 RISKS -->
+<div class="section">
+  <h2><span class="num">08</span> Principal risks</h2>
+  <div class="table-wrap"><table>
+    <tr><th style="width:118px">Risk</th><th>Description</th><th style="width:70px">Severity</th></tr>
+    <tr><td><strong>Solo altcoin breakout</strong></td><td>ADA rose 16.95% while BTC fell 0.64%, and BTC sits 0.33% above its kill level after piercing it intraday on Jul 31. Altcoin breakouts on a weakening major have a poor completion rate. If BTC breaks, ADA's beta reasserts fast.</td><td><span class="bdg b-rd">High</span></td></tr>
+    <tr><td><strong>Aug 2 as upthrust</strong></td><td>The mirror image of Jul 22. A close back below $0.1810 would reclassify the breakout as an upthrust after distribution rather than a Sign of Strength. The candle closed 1.3% off its high.</td><td><span class="bdg b-rd">High</span></td></tr>
+    <tr><td><strong>Stop gap</strong></td><td>15.2% between spot and the thesis stop, on a half position. Structurally correct under the current rules and uncomfortably wide in practice. Awaiting your decision.</td><td><span class="bdg b-am">Medium</span></td></tr>
+    <tr><td><strong>Unresolved fill price</strong></td><td>18 sessions. With a second tranche on the book the <strong>blended basis cannot be computed at all</strong>, not merely bracketed. This now blocks position-level P&amp;L entirely.</td><td><span class="bdg b-rd">Blocking</span></td></tr>
+    <tr><td><strong>Event cluster Aug 9–10</strong></td><td>ADA ETF eligibility window opens Aug 9; CLARITY Senate recess deadline ~Aug 10. Two binaries inside a week, both landing while the position is at half size and extended.</td><td><span class="bdg b-am">Medium</span></td></tr>
+    <tr><td><strong>September FOMC</strong></td><td>~77% hike odds with a dot plot, after a 9–3 hawkish hold with three dissents. The main macro threat to the October window forming cleanly.</td><td><span class="bdg b-am">Medium</span></td></tr>
+    <tr><td><strong>Reserve depleted early</strong></td><td>The Oct core window was sized around 75% dry powder. It now has 50%. The plan needs re-sizing before Oct 4, not during it.</td><td><span class="bdg b-am">Medium</span></td></tr>
+    <tr><td><strong>Single-feed dependency</strong></td><td>CoinGecko MCP still uncallable. The Aug 2 close cleared the $0.19 gate determination by only 0.195% — outside the ±0.15% pending band by 0.045pp. The tightest margin of the campaign.</td><td><span class="bdg b-am">Medium</span></td></tr>
+    <tr><td><strong>Over-reading the calendar</strong></td><td>Six of eight BUY months and four of six SELL months are regime labels, not signals. Only Oct–Nov 2026 carries hard arithmetic.</td><td><span class="bdg b-gy">Structural</span></td></tr>
+  </table></div>
+</div>
+
+<!-- 9 APPENDIX -->
+<div class="grid-title" style="margin:22px 0 10px">09 · Appendix — forecast register, methodology, scoring, provenance</div>
+
+<details class="apx">
+  <summary>Forecast register — 3 open, 0 resolved, all tracking bull</summary>
+  <div class="apx-b">
+    <div class="table-wrap"><table>
+      <tr><th>ID</th><th>Issued</th><th>Hz</th><th>Resolves</th><th>B/N/Br</th><th>Conf</th><th>Status</th><th>Tracking</th></tr>
+      <tr><td class="mono"><strong>F-ADA-0001</strong></td><td class="mono">07-29 17:44</td><td>7d</td><td class="mono">08-05 · 2d</td><td class="mono">38/26/36</td><td>44</td><td><span class="bdg b-bl">OPEN</span></td><td>BULL (≥$0.1690) — spot $0.18820</td></tr>
+      <tr><td class="mono"><strong>F-ADA-0003</strong></td><td class="mono">07-30 07:44</td><td>7d</td><td class="mono">08-06 · 3d</td><td class="mono">37/27/36</td><td>46</td><td><span class="bdg b-bl">OPEN</span></td><td>BULL (≥$0.1690)</td></tr>
+      <tr><td class="mono"><strong>F-ADA-0002</strong></td><td class="mono">07-29 17:44</td><td>30d</td><td class="mono">08-28 · 25d</td><td class="mono">27/42/31</td><td>38</td><td><span class="bdg b-bl">OPEN</span></td><td>BULL (≥$0.1810) — 25 days to run</td></tr>
+      <tr style="opacity:.72"><td class="mono">R-01</td><td class="mono">07-26</td><td>—</td><td class="mono">none set</td><td class="mono">45/33/22</td><td>52</td><td><span class="bdg b-gy">NON-ADM</span></td><td>Ambiguous — excluded</td></tr>
+      <tr style="opacity:.72"><td class="mono">R-02</td><td class="mono">07-28</td><td>—</td><td class="mono">none set</td><td class="mono">lean bear</td><td>41</td><td><span class="bdg b-gy">NON-ADM</span></td><td><strong style="color:var(--sell)">Wrong direction</strong> — excluded</td></tr>
+    </table></div>
+    <p style="margin-top:11px"><strong>Tracking is not resolving, and the distinction matters most when the news is good.</strong> All three live forecasts currently sit in their bull bands, and it would be easy to write that the engine "called it". It has not called anything yet. Resolution is the settled close <em>on</em> the resolution date, not the path taken to get there — F-ADA-0002 has 25 days left and $0.1810 is only 3.8% below spot. Scoring begins Aug 5 and no performance claim should be made before then.</p>
+    <p style="margin-top:9px"><strong>Note on F-ADA-0001 and F-ADA-0003.</strong> They resolve one day apart with identical bands, so they are near-duplicates and their Brier contributions will be highly correlated. That is a design weakness worth fixing: issuing a superseding forecast at the same horizon creates a non-independent observation pair, which will flatter or punish the record twice for one outcome. Future supersessions should either replace the original's resolution date or use a different horizon.</p>
+  </div>
+</details>
+
+<details class="apx">
+  <summary>Methodology — probabilities, monthly bands, and how buy/sell months are assigned</summary>
+  <div class="apx-b">
+    <p><strong>Volatility basis.</strong> Realized daily σ = <strong>3.19%</strong> from n=25 daily log returns (Jul 8 – Aug 2), annualising to 61.0%. The rise from 2.70% is the Aug 2 breakout entering the sample and it widens every band on the map. Scaled by √t: σ at Dec 2028 (881 days) = 94.7%.</p>
+    <p style="margin-top:9px"><strong>Monthly timeline.</strong> Driftless lognormal cone anchored at spot $0.18820. Driftless is deliberate: assuming a recovery drift or a cycle-shaped price path is exactly where invented forward targets enter a report, and this framework removed them once already. The median stays flat and <em>all</em> the information sits in the widening bands. Cards show the 25th–75th percentile (±0.6745σ); the chart's outer band is 5th–95th (±1.645σ). June and July 2026 are realised closes, not cone output.</p>
+    <p style="margin-top:9px"><strong>Monthly probabilities.</strong> Against two fixed campaign thresholds that stay meaningful across the whole horizon: BULL = month-end close ≥ <span class="mono">$0.19</span> (BUY 3 gate), BEAR = &lt; <span class="mono">$0.1480</span> (death level), NEUTRAL = between. Because thresholds are fixed and the distribution widens, neutral decays from 45% (Aug 2026) to 10% (Dec 2028). Arithmetic, not a view — and the most honest statement on the timeline: the further out you look, the less the middle case is worth betting on.</p>
+    <p style="margin-top:9px"><strong>How buy/sell months are assigned — and what they are not.</strong> Labels come from <em>dated cycle anchors only</em>. Oct–Nov 2026 from the 363–376 day post-peak interval off BTC's Oct 6, 2025 top. Jul–Oct 2027 as the 6–9 month pre-halving accumulation regime. Mar–Apr 2028 as pre-halving froth plus sell-the-news. Jul–Aug 2028 as months 3–4 post-halving re-accumulation. Dec 2026/2027 as year-end reduction <em>conditional on a profit existing</em>. Nov–Dec 2028 as markup distribution, the most speculative cells on the map.
+    <br><br><strong>No seasonality and no calendar-astrology input was used.</strong> Earlier versions of this report assigned monthly calls on "September is historically ADA's strongest month" and similar; those justifications were removed and have not returned. Critically, the labels are <em>not blended into the probabilities</em>: the narrative never bends the numbers, and the numbers never inherit the narrative's confidence. A month labelled BUY with a 42% bear probability is exactly what it looks like — a planned action in a regime whose price outcome is genuinely uncertain.</p>
+    <p style="margin-top:9px"><strong>F-ADA-0003 derivation.</strong> Driftless baseline against fixed structural bands gave <span class="mono">32.0 / 31.0 / 37.0</span>. Adjustments: +3pp bull (two closes held above the stop, shelf touched on 17.09M); +3pp bear (hawkish hold, three hike dissents, September odds ~77%); −2pp neutral (shelf churn on heavy volume tends to resolve rather than pin). Final <span class="mono">37 / 27 / 36</span>, confidence 46/100 — up two from F-ADA-0001 because FOMC is now resolved, still capped because the spring is unconfirmed and the on-chain layer is stale.</p>
+    <p style="margin-top:9px"><strong>Rules the engine commits to.</strong> (1) Bands pre-registered and MECE. (2) Resolution mechanical and single-feed, no judgement at resolution. (3) <strong>A forecast is never revised after issue</strong> — only superseded by a new ID, with the original still resolving and scoring. (4) Probabilities sum to 100%; confidence reported separately. (5) Nothing outside the horizon influences the probabilities — the October window is excluded from all three live forecasts. (6) Misses are logged in the register before being explained anywhere.</p>
+    <p style="margin-top:9px"><strong>Resolution mechanics.</strong> Settled 00:00 UTC daily close on <span class="mono">Crypto.com ADA_USDT 1D</span>. Fallback: CoinGecko daily close matched by <em>price value</em>, not date label (its labels run one day ahead of true UTC periods). A close within <strong>±0.15%</strong> of a band boundary resolves <strong>VOID</strong> and is excluded rather than adjudicated.</p>
+  </div>
+</details>
+
+<details class="apx">
+  <summary>Scoring — Brier score, skill score, calibration</summary>
+  <div class="apx-b">
+    <p><strong>Multi-category Brier.</strong> BS = Σᵢ (pᵢ − oᵢ)², oᵢ = 1 for the realised band, 0 otherwise. Range 0–2, lower is better. Worked for F-ADA-0003 at 37/27/36 — if BULL resolves, BS = <strong>0.5834</strong>; if NEUTRAL, <strong>0.8054</strong>; if BEAR, <strong>0.5954</strong>.</p>
+    <p style="margin-top:9px"><strong>Skill score.</strong> 1 − BS/BS<sub>ref</sub> against a uniform ⅓-each reference, BS<sub>ref</sub> = <strong>0.667</strong>. Below 0.667 on a single observation beats the uniform baseline.</p>
+    <p style="margin-top:9px"><strong>Calibration.</strong> Forecasts bucketed by stated probability against realised frequency — if the 30–40% bucket resolves true about 35% of the time, the engine is calibrated. Reliability and resolution decomposed separately, because a forecaster can be perfectly calibrated and still useless if every forecast is 33/33/33. Discrimination is the harder test.</p>
+    <p style="margin-top:9px"><strong>Current state:</strong> 3 admissible forecasts open, <strong>0 resolved</strong>. Scoring begins Aug 5. At roughly 20–30 resolved observations this register is extracted into a standalone document and the full statistics computed. Until then any performance claim would be noise. Note the <strong>31 monthly timeline cards are not registered forecasts and will not be scored</strong> — they are regime sketches with volatility-derived ranges, and scoring 29 overlapping non-independent monthly forecasts would produce a meaningless statistic.</p>
+  </div>
+</details>
+
+<details class="apx">
+  <summary>Data provenance &amp; disclosed failures</summary>
+  <div class="apx-b">
+    <p><strong>Authoritative feed:</strong> Crypto.com <span class="mono">ADA_USDT</span> / <span class="mono">BTC_USDT</span>, 1D, UTC-midnight closes — callable first attempt. Session established Aug 3 12:31 UTC; Crypto.com candlestick call failed once with a server error and succeeded on immediate retry — disclosed rather than silently absorbed. Aug 3 candle live with 11h28m remaining, excluded from all determinations.</p>
+    <p style="margin-top:9px"><strong>Disclosed failure:</strong> the CoinGecko MCP remains not callable, so no same-instant cross-feed price-value verification. Material because Jul 28 and Jul 29 were both gate-relevant closes; the binding determination this session is the <strong>BUY 3 gate</strong>: Aug 2 closed $0.18963, only <strong>0.195% below $0.19</strong>, which clears the ±0.15% pending band by just 0.045 percentage points. It is the tightest margin of the campaign and is called NOT TRIGGERED on a single feed. Had it landed 0.05% higher the correct classification would have been "verification pending".</p>
+    <p style="margin-top:9px"><strong>FOMC outcome</strong> verified via CryptoTimes live coverage (9–3 vote; Hammack, Kashkari and Logan dissenting for a hike) and Wells Fargo Investment Institute (range held at 3.50–3.75%). September odds ~77% per FinanceFeeds. Crude levels (Brent $86.68, WTI $81.25) via OilPrice.com through FinanceFeeds. Other macro: CME FedWatch, Polymarket, CBS, Kiplinger, CryptoSlate, Coinstack. Jul 27 market cause: Investing.com, CoinDesk, CoinPedia. On-chain: Santiment via secondary reporting, Jul 23 vintage — flagged stale and excluded.</p>
+    <p style="margin-top:9px"><strong>Presentation note.</strong> Layout follows the uploaded reference (<span class="mono">ADA_report_jul06_interactive.html</span>). One deliberate deviation: the reference loads Chart.js from a CDN, which breaks the self-contained rule, so all charts here are hand-computed inline SVG. Dark mode added; it does not alter the light rendering. <strong>The forecasting engine is unchanged</strong> — same σ method, same MECE bands, same VOID rule, same Brier/skill/calibration architecture, all of it relocated to this appendix.</p>
+  </div>
+</details>
+
+<div class="disclaimer">
+  ⚠️ Structural analysis and probabilistic forecasting output from the Crypto Reconnaissance Engine — <strong>not financial advice.</strong> The monthly timeline is a volatility-derived probability cone with regime labels, <strong>not a set of price targets</strong>; the median is flat by construction because no drift is assumed, and probabilities converge toward a coin flip beyond roughly Q1 2027. Buy and sell month labels are planned actions anchored to dated cycle events, all of them conditional on structure that does not yet exist — only Oct–Nov 2026 rests on hard arithmetic. A probability is not a prediction and a forecast is not a recommendation; the analysis and execution layers are deliberately permitted to disagree. Wyckoff market structure dominates; macro, liquidity and on-chain flow modify confidence only. Shmita, Mercury retrograde and lunar cycles are disclosed in every report and carry <strong>zero</strong> directional weight. No gate determination is made on an in-progress candle, and wicks never substitute for closes. The two-consecutive-close standard is symmetric. Cryptocurrency markets are highly volatile and past structure does not guarantee future behaviour. Size positions yourself and consult a licensed financial advisor before making investment decisions.
+</div>
+
+<div class="modal-bg" id="modalBg">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="mTitle">
+    <div class="modal-head"><span class="m-title" id="mTitle"></span><button class="modal-close" id="modalClose" aria-label="Close">×</button></div>
+    <span class="mc-action" id="mAct" style="font-size:11px;margin-bottom:14px"></span>
+    <div class="m-stats">
+      <div class="m-stat"><div class="s-label" id="mRngL">Expected range (50%)</div><div class="s-val mono" id="mRng"></div></div>
+      <div class="m-stat"><div class="s-label">Horizon</div><div class="s-val mono" id="mHz"></div></div>
+    </div>
+    <div class="m-block"><div class="b-label">Probabilities</div><div class="b-text" id="mProb"></div></div>
+    <div class="m-block"><div class="b-label">Dominant narrative</div><div class="b-text" id="mNar"></div></div>
+    <div class="m-block"><div class="b-label">Recommended action</div><div class="b-text" id="mActT"></div></div>
+  </div>
+</div>
+
+<script>
+const M=[
+{m:"Jun 2026",t:-2,act:"STOPPED OUT",cat:"PAST",lo:0.1444,hi:0.1444,b:0,n:0,r:100,real:1,nar:"The realised loss of the campaign",det:"Thesis invalidated Jun 24 on a $0.1477 close below the $0.1480 stop. Closed $0.1444, down 38.7%. The outcome the current stop discipline exists to avoid repeating.",cls:"a-sell"},
+{m:"Jul 2026",t:-1,act:"CLOSED +16.52%",cat:"PAST",lo:0.16826,hi:0.16826,b:0,n:0,r:0,real:1,nar:"Best month of the campaign — and a full Wyckoff cycle",det:"Closed $0.16826 from June's $0.1444. Spring $0.15550 (Jul 13). SOS $0.17373 on 17.29M (Jul 21). Jul 22 high $0.18079 rejected 0.12% short of the 50-day EMA. Jul 27 broke the stop at $0.15559 on +138% volume. Jul 28 spring #2 reversed to $0.16192. Jul 30 closed $0.16978, confirming. Low close of the month $0.15559, high close $0.17450.",cls:"a-buy"},
+{m:"Aug 2026",t:28,act:"HOLD BUY 2 · watch $0.19",cat:"NOW",lo:0.1679,hi:0.2109,b:48,n:44,r:8,real:0,nar:"Breakout month — two gates cleared, one to go",det:"Aug 1 $0.17449, Aug 2 $0.18963 on 22.18M with volume expanding 82.6%, clearing the $0.173 re-arm and the $0.1810-0.1885 EMA band. BUY 2 armed. BUY 3 missed by 0.195%. MTD +12.70% after two sessions. ADA ETF eligibility window opens Aug 9; CLARITY recess deadline ~Aug 10. Bear probability has collapsed to 8% because spot is now 21% above the death level.",cls:"a-now"},
+{m:"Sep 2026",t:58,act:"HOLD",cat:"HOLD",lo:0.1597,hi:0.2217,b:48,n:36,r:16,real:0,nar:"September FOMC is the macro test",det:"Sep 15-16 with a dot plot and hike odds around 77% after July's 9-3 hawkish hold. Three governors dissented for a hike. Pre-window staging only.",cls:"a-hold"},
+{m:"Oct 2026",t:89,act:"CORE ACCUMULATE",cat:"BUY",lo:0.1536,hi:0.2306,b:49,n:30,r:21,real:0,nar:"THE ANCHOR — hard arithmetic, not a regime guess",det:"Oct 4-17 = month 29 post-halving, from the 363-376 day post-peak interval off BTC's Oct 6 2025 top. Dry powder designated for it. Note the deployment now starts from 50% invested rather than 25%, so tranche sizing needs revisiting before the window opens.",cls:"a-buy"},
+{m:"Nov 2026",t:119,act:"BUY (core 2nd half)",cat:"BUY",lo:0.1488,hi:0.2380,b:49,n:26,r:25,real:0,nar:"The buffer, not the target",det:"Back half of the accumulation window. The interval arithmetic centres October; November is tolerance band. Oct 27-28 FOMC lands just before.",cls:"a-buy"},
+{m:"Dec 2026",t:150,act:"REDUCE / assess",cat:"SELL",lo:0.1446,hi:0.2450,b:49,n:24,r:27,real:0,nar:"Year-end reduction, if there is profit to take",det:"Conditional: trim only if a leg ran. If underwater this reverts to HOLD — there is no discipline in selling a loss for calendar reasons. Dec 8-9 FOMC with dot plot.",cls:"a-sell"},
+{m:"Jan 2027",t:181,act:"HOLD",cat:"HOLD",lo:0.1409,hi:0.2514,b:49,n:22,r:29,real:0,nar:"Everything downstream forks here",det:"Whether a base confirmed in Q4 2026 determines the entire 2027 regime.",cls:"a-hold"},
+{m:"Feb 2027",t:209,act:"HOLD",cat:"HOLD",lo:0.1379,hi:0.2569,b:49,n:21,r:30,real:0,nar:"No campaign structure at this range",det:"Band is pure volatility arithmetic.",cls:"a-hold"},
+{m:"Mar 2027",t:240,act:"HOLD",cat:"HOLD",lo:0.1348,hi:0.2627,b:49,n:20,r:31,real:0,nar:"No campaign structure at this range",det:"Earlier versions called March a BUY on seasonal grounds; removed and not returned.",cls:"a-hold"},
+{m:"Apr 2027",t:270,act:"HOLD",cat:"HOLD",lo:0.1321,hi:0.2681,b:49,n:19,r:32,real:0,nar:"Pre-halving clock enters the window",det:"April 2028 halving comes inside the twelve-month forward window. Direction unspecified. Earlier versions called this STRONG BUY on seasonality; removed.",cls:"a-hold"},
+{m:"May 2027",t:301,act:"HOLD",cat:"HOLD",lo:0.1295,hi:0.2734,b:49,n:18,r:33,real:0,nar:"Pre-halving clock",det:"Anchored to the halving calendar. Seasonality carries no weight here.",cls:"a-hold"},
+{m:"Jun 2027",t:331,act:"HOLD",cat:"HOLD",lo:0.1272,hi:0.2784,b:49,n:17,r:34,real:0,nar:"Pre-halving clock",det:"Earlier versions called June a SELL on seasonal grounds; removed.",cls:"a-hold"},
+{m:"Jul 2027",t:362,act:"ACCUMULATE",cat:"BUY",lo:0.1249,hi:0.2835,b:49,n:16,r:35,real:0,nar:"Pre-halving accumulation regime opens",det:"Roughly nine months before the halving. A regime label, conditional on structure. Note the 35% bear probability: a planned action inside a genuinely uncertain distribution.",cls:"a-buy"},
+{m:"Aug 2027",t:393,act:"ACCUMULATE",cat:"BUY",lo:0.1228,hi:0.2884,b:49,n:16,r:35,real:0,nar:"Pre-halving accumulation",det:"Eight months out. Conditional.",cls:"a-buy"},
+{m:"Sep 2027",t:423,act:"ACCUMULATE",cat:"BUY",lo:0.1209,hi:0.2930,b:49,n:15,r:36,real:0,nar:"Pre-halving accumulation",det:"Seven months out. Conditional on structure that does not yet exist.",cls:"a-buy"},
+{m:"Oct 2027",t:454,act:"ACCUMULATE",cat:"BUY",lo:0.1190,hi:0.2978,b:49,n:15,r:36,real:0,nar:"Six months to halving",det:"Historically the front edge of pre-halving positioning.",cls:"a-buy"},
+{m:"Nov 2027",t:484,act:"HOLD",cat:"HOLD",lo:0.1172,hi:0.3022,b:49,n:14,r:37,real:0,nar:"Market begins pricing the halving",det:"Forward curve starts embedding the event.",cls:"a-hold"},
+{m:"Dec 2027",t:515,act:"REDUCE / assess",cat:"SELL",lo:0.1155,hi:0.3068,b:49,n:14,r:37,real:0,nar:"Year-end reduction, conditional",det:"Trim only if a profit exists. Liquidity distortion applies.",cls:"a-sell"},
+{m:"Jan 2028",t:546,act:"HOLD",cat:"HOLD",lo:0.1138,hi:0.3112,b:49,n:14,r:37,real:0,nar:"Halving year opens",det:"Q1 pre-halving historically the strongest pre-event stretch.",cls:"a-hold"},
+{m:"Feb 2028",t:575,act:"HOLD",cat:"HOLD",lo:0.1123,hi:0.3154,b:50,n:12,r:38,real:0,nar:"Pre-halving run",det:"Two months out. Pump-and-dump risk rises with the narrative.",cls:"a-hold"},
+{m:"Mar 2028",t:606,act:"TRIM (pre-halving froth)",cat:"SELL",lo:0.1108,hi:0.3197,b:50,n:12,r:38,real:0,nar:"Where froth has historically peaked",det:"One month before the halving. The clearest distribution logic on the forward map.",cls:"a-sell"},
+{m:"Apr 2028",t:636,act:"SELL / sell-the-news",cat:"SELL",lo:0.1093,hi:0.3239,b:50,n:12,r:38,real:0,nar:"BTC HALVING — the event",det:"The next dated cycle anchor after Oct 2026. Historically a sell-the-news window before markup. Reassess the campaign here rather than holding by default.",cls:"a-sell"},
+{m:"May 2028",t:667,act:"HOLD",cat:"HOLD",lo:0.1079,hi:0.3282,b:50,n:11,r:39,real:0,nar:"Post-halving lull",det:"Month 1 post-event. Historically flat-to-down as the narrative unwinds.",cls:"a-hold"},
+{m:"Jun 2028",t:697,act:"HOLD",cat:"HOLD",lo:0.1066,hi:0.3323,b:50,n:11,r:39,real:0,nar:"Post-halving lull",det:"Month 2. Base-building before any markup leg.",cls:"a-hold"},
+{m:"Jul 2028",t:728,act:"ACCUMULATE",cat:"BUY",lo:0.1053,hi:0.3364,b:50,n:11,r:39,real:0,nar:"Post-halving re-accumulation",det:"Month 3, where accumulation has historically resumed. Bear probability 39% — speculative.",cls:"a-buy"},
+{m:"Aug 2028",t:759,act:"ACCUMULATE",cat:"BUY",lo:0.1040,hi:0.3406,b:50,n:11,r:39,real:0,nar:"Post-halving re-accumulation",det:"Month 4. Early markup has historically begun in this window.",cls:"a-buy"},
+{m:"Sep 2028",t:789,act:"HOLD",cat:"HOLD",lo:0.1028,hi:0.3446,b:50,n:11,r:39,real:0,nar:"Early markup window",det:"Months 5-6. Altcoin rotation has historically lagged BTC by months.",cls:"a-hold"},
+{m:"Oct 2028",t:820,act:"HOLD",cat:"HOLD",lo:0.1016,hi:0.3486,b:50,n:10,r:40,real:0,nar:"Early markup window",det:"Month 6. Also the start of the next Shmita release year (Sep 2028) — disclosed, zero weight.",cls:"a-hold"},
+{m:"Nov 2028",t:850,act:"DISTRIBUTE (cond)",cat:"SELL",lo:0.1005,hi:0.3526,b:50,n:10,r:40,real:0,nar:"Markup distribution, if the cycle delivered",det:"Month 7. At 850 days the distribution is near a coin flip. A placeholder for a decision, not a decision.",cls:"a-sell"},
+{m:"Dec 2028",t:881,act:"DISTRIBUTE / review",cat:"SELL",lo:0.0993,hi:0.3566,b:50,n:10,r:40,real:0,nar:"Horizon limit",det:"Month 8 post-halving. Neutral has collapsed to 10% — recovered or dead, little in between. A review date, not a trade.",cls:"a-sell"},
+];
+
+// month cards
+const grid=document.getElementById('monthGrid');
+M.forEach((x,i)=>{
+  const c=document.createElement('div');
+  let cls='month-card';
+  if(x.cat==='BUY') cls+=' mc-buy'; if(x.cat==='SELL') cls+=' mc-sell';
+  if(x.m==='Oct 2026') cls+=' mc-core'; if(x.cat==='NOW') cls+=' mc-now';
+  c.className=cls; c.dataset.cat=x.cat; c.dataset.yr=x.m.slice(-4);
+  const key = x.m==='Oct 2026' ? '<span class="mc-key" style="background:#3f7d1e;color:#fff">CORE</span>'
+            : x.m==='Apr 2028' ? '<span class="mc-key" style="background:#d99a2b;color:#fff">HALVING</span>'
+            : x.cat==='NOW' ? '<span class="mc-key" style="background:#d99a2b;color:#fff">NOW</span>'
+            : x.cat==='PAST' ? '<span class="mc-key" style="background:#b03a1c;color:#fff">DONE</span>' : '';
+  const rng = x.real ? '<span class="mono">$'+x.lo.toFixed(4)+'</span> actual'
+                     : '<span class="mono">$'+x.lo.toFixed(3)+'–$'+x.hi.toFixed(3)+'</span>';
+  const bar = x.real
+    ? (x.cat==='PAST' ? '<div class="mc-pb"><i style="width:100%;background:#b03a1c"></i></div>'
+                      : '<div class="mc-pb"><i style="width:100%;background:#d99a2b"></i></div>')
+    : `<div class="mc-pb"><i style="width:${x.b}%;background:#4f9c3f"></i><i style="width:${x.n}%;background:#8e8e96"></i><i style="width:${x.r}%;background:#c05a34"></i></div>`;
+  c.innerHTML=`${key}
+    <div class="mc-month">${x.m}</div>
+    <div class="mc-action ${x.cls}">${x.act}</div>
+    <div class="mc-rng">${rng}</div>
+    ${bar}
+    <div class="mc-pn">${x.real?'realised':x.b+' / '+x.n+' / '+x.r}</div>`;
+  c.querySelectorAll('.mc-pb i').forEach(el=>el.style.display='block');
+  c.addEventListener('click',()=>open_(i));
+  grid.appendChild(c);
+});
+
+// calendar
+const YEARS={2026:document.getElementById('cal2026'),2027:document.getElementById('cal2027'),2028:document.getElementById('cal2028')};
+const MN=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+const byKey={}; M.forEach((x,i)=>byKey[x.m]=i);
+[2026,2027,2028].forEach(y=>{
+  MN.forEach(mn=>{
+    const key=mn+' '+y; const d=document.createElement('div');
+    if(!(key in byKey)){ d.className='cal-c c-none'; YEARS[y].appendChild(d); return; }
+    const x=M[byKey[key]];
+    let k='c-hold';
+    if(x.cat==='BUY') k='c-buy'; else if(x.cat==='SELL') k='c-sell';
+    else if(x.cat==='NOW') k='c-now'; else if(x.cat==='PAST') k='c-past';
+    if(x.m==='Oct 2026') k='c-core';
+    d.className='cal-c '+k;
+    const lab = x.cat==='BUY'?'BUY':x.cat==='SELL'?'SELL':x.cat==='NOW'?'NOW':x.cat==='PAST'?'OUT':'hold';
+    d.innerHTML=`<span>${mn}</span><small>${lab}</small>`;
+    d.addEventListener('click',()=>open_(byKey[key]));
+    YEARS[y].appendChild(d);
+  });
+});
+
+const bg=document.getElementById('modalBg');
+function open_(i){
+  const x=M[i];
+  mTitle.textContent=x.m;
+  const a=document.getElementById('mAct'); a.textContent=x.act; a.className='mc-action '+x.cls;
+  document.getElementById('mRngL').textContent = x.real ? 'Realised close' : 'Expected range (50%)';
+  mRng.textContent = x.real ? '$'+x.lo.toFixed(4) : '$'+x.lo.toFixed(4)+' – $'+x.hi.toFixed(4);
+  mHz.textContent = x.t<0 ? 'closed' : x.t===0 ? 'current' : x.t+' days';
+  mProb.innerHTML = x.real
+    ? '<em>Realised month — no forecast. Actual outcome shown above.</em>'
+    : `<b style="color:var(--buy)">${x.b}%</b> above $0.19 (BUY 3 gate) · <b>${x.n}%</b> between the gates · <b style="color:var(--sell)">${x.r}%</b> below $0.1480 (death level)`;
+  mNar.innerHTML='<strong>'+x.nar+'</strong><br>'+x.det;
+  mActT.textContent = x.act + (x.act.includes('cond')||x.cat==='BUY'&&x.t>200||x.cat==='SELL'&&x.t>200 ? ' — conditional on structure that does not yet exist.' : '');
+  bg.classList.add('open');
+}
+function cl(){ bg.classList.remove('open'); }
+document.getElementById('modalClose').addEventListener('click',cl);
+bg.addEventListener('click',e=>{ if(e.target===bg) cl(); });
+document.addEventListener('keydown',e=>{ if(e.key==='Escape') cl(); });
+
+const chips=document.querySelectorAll('#filters .chip');
+chips.forEach(ch=>ch.addEventListener('click',()=>{
+  chips.forEach(c=>c.classList.remove('active')); ch.classList.add('active');
+  const f=ch.dataset.f;
+  document.querySelectorAll('.month-card').forEach(c=>{
+    const show = f==='all' || c.dataset.cat===f || c.dataset.yr===f;
+    c.classList.toggle('dimmed', !show);
+  });
+}));
+
+/* ---- interactive trajectory cone ----
+   Geometry is recomputed here from the SAME M array that builds the cards,
+   using the identical log scale as the pre-rendered paths, so the crosshair
+   can never drift out of agreement with the drawn bands. */
+const CX0=54, CX1=748, CY0=22, CY1=196;
+const LPMIN=Math.log(0.055), LPMAX=Math.log(0.72);
+const SPOT_ANCHOR=0.18820;
+const cY = p => CY1-(Math.log(p)-LPMIN)/(LPMAX-LPMIN)*(CY1-CY0);
+const cX = i => CX0+(CX1-CX0)*i/(M.length-1);
+
+const cone=document.getElementById('cone'), hit=document.getElementById('hit');
+const hov=document.getElementById('hover'), tip=document.getElementById('tip');
+const host=document.getElementById('chartHost');
+const hx=document.getElementById('hx'), hband=document.getElementById('hband');
+const h75=document.getElementById('h75'), h25=document.getElementById('h25'), hmed=document.getElementById('hmed');
+let activeIdx=-1;
+
+function idxFromClientX(clientX){
+  const r=cone.getBoundingClientRect();
+  const vx=((clientX-r.left)/r.width)*760;              // client px -> viewBox units
+  let best=0, bd=1e9;
+  for(let i=0;i<M.length;i++){ const d=Math.abs(cX(i)-vx); if(d<bd){bd=d;best=i;} }
+  return best;
+}
+
+function showTip(i, clientX){
+  const x=M[i], px=cX(i);
+  const y75 = x.real ? cY(x.lo) : cY(x.hi);
+  const y25 = x.real ? cY(x.lo) : cY(x.lo);
+  const ymed = x.real ? cY(x.lo) : cY(SPOT_ANCHOR);
+
+  hx.setAttribute('x1',px); hx.setAttribute('x2',px);
+  hband.setAttribute('x1',px); hband.setAttribute('x2',px);
+  hband.setAttribute('y1',y75); hband.setAttribute('y2',y25);
+  h75.setAttribute('cx',px); h75.setAttribute('cy',y75);
+  h25.setAttribute('cx',px); h25.setAttribute('cy',y25);
+  hmed.setAttribute('cx',px); hmed.setAttribute('cy',ymed);
+  h75.style.opacity = h25.style.opacity = x.real ? 0 : 1;
+  hov.classList.add('on');
+
+  const badge = x.cat==='BUY'   ? ['var(--buy-bg)','var(--buy)']
+              : x.cat==='SELL'  ? ['var(--sell-bg)','var(--sell)']
+              : x.cat==='NOW'   ? ['#fef9c3','#713f12']
+              : x.cat==='PAST'  ? ['var(--sell-bg)','var(--sell)']
+              : ['var(--hold-bg)','var(--hold)'];
+  const rangeBlock = x.real
+    ? `<div class="t-l">Realised close</div><div class="t-r">$${x.lo.toFixed(5)}</div>`
+    : `<div class="t-l">Expected range · central 50%</div><div class="t-r">$${x.lo.toFixed(4)} – $${x.hi.toFixed(4)}</div>`;
+  const probBlock = x.real
+    ? `<div class="t-p" style="margin-top:5px">Realised month — no forecast</div>`
+    : `<div class="t-pb"><i style="width:${x.b}%;background:#4f9c3f"></i><i style="width:${x.n}%;background:#8e8e96"></i><i style="width:${x.r}%;background:#c05a34"></i></div>
+       <div class="t-p"><b style="color:var(--buy)">${x.b}%</b> bull · <b>${x.n}%</b> neutral · <b style="color:var(--sell)">${x.r}%</b> bear</div>`;
+  const hz = x.t<0 ? 'closed' : x.t===0 ? 'current month' : x.t+' days out';
+  tip.innerHTML=`<div class="t-m">${x.m}</div>
+    <div class="t-a" style="background:${badge[0]};color:${badge[1]}">${x.act}</div>
+    ${rangeBlock}${probBlock}
+    <div class="t-hint">${hz} · click for detail</div>`;
+  tip.classList.add('on');
+
+  // position the tooltip in host coords, flipping near the right edge
+  const hr=host.getBoundingClientRect();
+  const pxClient=(px/760)*hr.width;
+  const tw=tip.offsetWidth||190;
+  let left=pxClient+14;
+  if(left+tw>hr.width-4) left=pxClient-tw-14;
+  if(left<4) left=4;
+  tip.style.left=left+'px';
+  tip.style.top=Math.max(4,(y75/220)*hr.height-10)+'px';
+  activeIdx=i;
+}
+function hideTip(){ hov.classList.remove('on'); tip.classList.remove('on'); activeIdx=-1; }
+
+hit.addEventListener('mousemove',e=>showTip(idxFromClientX(e.clientX),e.clientX));
+hit.addEventListener('mouseleave',hideTip);
+hit.addEventListener('click',()=>{ if(activeIdx>=0) open_(activeIdx); });
+hit.addEventListener('touchstart',e=>{
+  const t=e.touches[0]; showTip(idxFromClientX(t.clientX),t.clientX);
+},{passive:true});
+hit.addEventListener('touchmove',e=>{
+  const t=e.touches[0]; showTip(idxFromClientX(t.clientX),t.clientX);
+},{passive:true});
+hit.addEventListener('touchend',()=>{ setTimeout(hideTip,2600); },{passive:true});
+window.addEventListener('resize',hideTip);
+</script>
+</body>
+</html>

@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BTC · Market GPS — Session 30 · Mon 3 Aug 2026</title>
+<style>
+:root{
+  --bg:#ffffff;--bg2:#f7f5f0;--bg3:#efece4;--txt:#22221f;--txt2:#63625c;--txt3:#8d8b83;--bord:#e2dfd5;
+  --red:#9a3a1b;--redbg:#faeae4;--amb:#7f4d09;--ambbg:#faeed9;--grn:#37680f;--grnbg:#e9f3dc;
+  --blu:#165c9f;--blubg:#e5f0fb;--gry:#7b7a74;--grybg:#eceae2;
+  --up:#3f8f3f;--dn:#c0492a;--acc:#b8792b;
+}
+@media(prefers-color-scheme:dark){:root{
+  --bg:#1c1b19;--bg2:#25241f;--bg3:#2e2d26;--txt:#f2f0e8;--txt2:#b3b1a7;--txt3:#8f8d84;--bord:#393831;
+  --red:#f0997b;--redbg:#48190a;--amb:#f8c674;--ambbg:#3f2302;--grn:#9ac55c;--grnbg:#163302;
+  --blu:#86b8ec;--blubg:#052b52;--gry:#9c9a91;--grybg:#2e2c28;
+  --up:#7dbb6a;--dn:#e0765a;--acc:#dba54a;
+}}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--txt);padding:20px;font-size:13.5px;line-height:1.6;
+ font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;max-width:960px;margin:0 auto}
+h1{font-size:20px;font-weight:700;letter-spacing:-.01em}
+.sub{font-size:11.5px;color:var(--txt2);margin:3px 0 14px}
+.sec{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:var(--bg3);border-radius:7px;padding:8px 12px;margin:26px 0 12px}
+.lbl{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--txt2);margin:16px 0 7px}
+.card{background:var(--bg2);border:1px solid var(--bord);border-radius:11px;padding:14px 16px;margin-bottom:10px}
+.cA{border-left:3px solid var(--acc)}.cR{border-left:3px solid var(--dn)}
+.cG{border-left:3px solid var(--up)}.cB{border-left:3px solid var(--blu)}.cY{border-left:3px solid var(--gry)}
+.hero{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;margin-bottom:6px}
+@media(max-width:700px){.hero{grid-template-columns:repeat(2,1fr)}}
+.hb{text-align:center;padding:11px 6px;border:1px solid var(--bord);border-radius:10px;background:var(--bg2)}
+.hb .l{font-size:9.5px;text-transform:uppercase;letter-spacing:.05em;color:var(--txt2)}
+.hb .m{font-size:19px;font-weight:650;margin:3px 0 1px;font-variant-numeric:tabular-nums}
+.hb .s{font-size:10px;color:var(--txt2)}
+.bg{display:inline-block;padding:2px 7px;border-radius:5px;font-size:10px;font-weight:700;white-space:nowrap}
+.gR{background:var(--redbg);color:var(--red)}.gA{background:var(--ambbg);color:var(--amb)}
+.gG{background:var(--grnbg);color:var(--grn)}.gB{background:var(--blubg);color:var(--blu)}
+.gY{background:var(--grybg);color:var(--gry)}
+table{width:100%;border-collapse:collapse;font-size:11.8px}
+th{text-align:left;padding:7px 8px;background:var(--bg3);font-size:9.5px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--txt2);border-bottom:1px solid var(--bord)}
+td{padding:8px;border-bottom:1px solid var(--bord);vertical-align:top;line-height:1.45}
+tr:last-child td{border-bottom:none}
+.mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-variant-numeric:tabular-nums}
+.trow{display:flex;gap:10px;padding:8px 0;border-bottom:1px solid var(--bord)}
+.trow:last-child{border-bottom:none}
+.tdot{width:9px;height:9px;border-radius:50%;flex-shrink:0;margin-top:6px}
+.tp{width:40px;flex-shrink:0;font-weight:700;font-variant-numeric:tabular-nums}
+.lr{display:flex;align-items:center;gap:9px;padding:6px 0;border-bottom:1px solid var(--bord);font-size:11.5px}
+.lr:last-child{border-bottom:none}
+.lr.now{background:var(--bg3);border-radius:6px;padding:6px 8px}
+.lr .px{width:96px;flex-shrink:0;font-weight:700;font-family:ui-monospace,monospace}
+svg{width:100%;height:auto;display:block}
+.gap{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media(max-width:700px){.gap{grid-template-columns:1fr}}
+.sb{height:7px;background:var(--bg3);border-radius:99px;overflow:hidden;margin-top:5px}
+.sb i{display:block;height:100%;border-radius:99px;background:var(--acc)}
+details{background:var(--bg2);border:1px solid var(--bord);border-radius:11px;padding:12px 15px;margin-bottom:10px}
+summary{cursor:pointer;font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--txt2)}
+details[open] summary{margin-bottom:11px;padding-bottom:9px;border-bottom:1px solid var(--bord)}
+.foot{font-size:10.5px;color:var(--txt3);line-height:1.6;margin-top:22px;border-top:1px solid var(--bord);padding-top:12px}
+b,strong{font-weight:650}
+.q{font-size:14px;line-height:1.72}
+ul{margin:6px 0 0 18px}li{margin-bottom:4px}
+.dl{font-size:11.5px;display:grid;grid-template-columns:152px 1fr;gap:4px 12px}
+@media(max-width:700px){.dl{grid-template-columns:1fr}}
+.dl dt{color:var(--txt2);font-weight:600}
+.alert{background:var(--redbg);border:1px solid var(--dn);border-radius:11px;padding:13px 16px;margin-bottom:10px;font-size:12.5px;line-height:1.65}
+</style>
+</head>
+<body>
+<style>.backlink{display:inline-flex;align-items:center;gap:5px;font-size:12px;color:var(--blu);text-decoration:none;font-weight:600;margin-bottom:12px;}.backlink:hover{text-decoration:underline;}</style>
+<a class="backlink" href="btc-dashboard.html">← BTC Dashboard</a>
+
+
+<h1>Bitcoin · Market GPS</h1>
+<div class="sub">Session 30 · Monday 3 August 2026 (Ho Chi Minh City) · ticker stamp <span class="mono">2026-08-02T18:26:37Z</span><br>
+<b>Timezone note:</b> it is Aug 3 locally but the UTC candle in progress is <b>Aug 2</b>, with roughly 5.5 hours left to settle. Last settled close = <span class="mono">Aug 1, $62,823.63</span>. Feed: Crypto.com <span class="mono">BTC_USDT 1D</span>.</div>
+
+<div class="hero">
+  <div class="hb" style="border-color:var(--dn)"><div class="l">Last settled close</div><div class="m">$62,824</div><div class="s">Aug 1 · +0.59% over floor</div></div>
+  <div class="hb"><div class="l">Live (unsettled)</div><div class="m">$63,295</div><div class="s">−2.62% under $65K gate</div></div>
+  <div class="hb" style="border-color:var(--dn)"><div class="l">Wyckoff</div><div class="m" style="font-size:15px;color:var(--red)">B / C tied</div><div class="s">upthrust logged Jul 31</div></div>
+  <div class="hb" style="border-color:var(--acc)"><div class="l">Action</div><div class="m" style="font-size:16px;color:var(--amb)">HOLD</div><div class="s">BUY 3 · stop 0 of 2</div></div>
+</div>
+
+<!-- ═════════ EXECUTIVE SUMMARY ═════════ -->
+<div class="sec">✱ Is the plan changing?</div>
+
+<div class="alert">
+<b>Yes — the read changes, the position does not.</b> On July 31 Bitcoin poked $65,411 intraday, 0.63% above the ceiling, then reversed through the entire range in one session to close at $62,898 — a 4.70% traverse, 1.89× ATR, closing at just 15% of the day's range on 1.50× average volume. That is a textbook Wyckoff <b>upthrust</b>, and it is the single most consequential structural event since the July 20 SOS.
+</div>
+
+<div class="card cA">
+  <div class="q">
+    What makes this session different from an ordinary bad week is that the framework <b>pre-registered the conditions under which it would change its mind</b> — and all three fired at once. The July 30 report tilted the primary read to re-accumulation on exactly three asymmetries, and named them: the range low had not been retested since July 13; the lows were rising; and the expanding-volume sessions were closing up. As of August 1, the low has been retested and swept, the lows are falling again ($62,727 → $62,260), and the one expanding-volume session since — July 31, at 1.50× — closed sharply <em>down</em>. Three for three.
+  </div>
+  <div class="q" style="margin-top:9px">
+    So the split moves, and it moves a long way: <b>the primary and alternate Wyckoff reads are now tied at 45/45.</b> Under the framework's own Uncertainty Mandate a tie is not a bearish call — it is an explicit instruction to stop taking directional risk and let the pre-committed triggers do the work. <b>Confidence drops 59 → 48/100, aggressiveness 3 → 1/10, structural risk to High.</b>
+  </div>
+  <div class="q" style="margin-top:9px">
+    What has <em>not</em> happened matters just as much. There is still <b>no settled close below $62,457</b> — the invalidation counter reads 0 of 2. July 31 closed at $62,898 and August 1 at $62,824, both above the entire confluence band, and both cross-verified or clearing the margin rule. July itself closed <b>green, +7.2%</b>, the first positive month since April. And the two sessions following the upthrust came on collapsing volume (0.46× and 0.44×) — an upthrust not yet followed by expanding-volume supply is an <em>incomplete</em> distribution, though that reading is confounded by the weekend and should not be leaned on.
+  </div>
+  <div class="q" style="margin-top:9px">
+    <b>The action is therefore HOLD BUY 3 — no add, and equally no reduce.</b> Cutting here would be front-running a stop that has not triggered, which is the precise discipline failure the two-consecutive-close rule exists to prevent. The rule was validated in real time on July 13, when a single close below the floor reversed +4.33% the next day. It gets honoured now too, when honouring it is uncomfortable.
+  </div>
+</div>
+
+<!-- ═════════ STRUCTURE ═════════ -->
+<div class="sec">Current market structure</div>
+
+<div class="card">
+<svg viewBox="0 0 900 360" xmlns="http://www.w3.org/2000/svg" role="img"
+ aria-label="BTC daily candles July 13 to August 2 2026. July 31 shows a large bearish outside day reversing from above the 65,000 ceiling down to the 62,457 floor. Price now sits just above the floor.">
+  <g stroke="var(--bord)" stroke-width="1" opacity=".65">
+    <line x1="62" y1="308.9" x2="880" y2="308.9"/><line x1="62" y1="258.4" x2="880" y2="258.4"/>
+    <line x1="62" y1="207.9" x2="880" y2="207.9"/><line x1="62" y1="157.4" x2="880" y2="157.4"/>
+    <line x1="62" y1="106.9" x2="880" y2="106.9"/><line x1="62" y1="56.4" x2="880" y2="56.4"/>
+  </g>
+  <g fill="var(--txt3)" font-size="9.5" font-family="ui-monospace,monospace" text-anchor="end">
+    <text x="56" y="312">61,500</text><text x="56" y="261">62,500</text><text x="56" y="211">63,500</text>
+    <text x="56" y="161">64,500</text><text x="56" y="110">65,500</text><text x="56" y="60">66,500</text>
+  </g>
+  <!-- floor band -->
+  <rect x="62" y="253.9" width="818" height="6.7" fill="var(--up)" opacity=".20"/>
+  <line x1="62" y1="260.6" x2="880" y2="260.6" stroke="var(--up)" stroke-width="1.7" stroke-dasharray="6 3"/>
+  <text x="66" y="273" fill="var(--up)" font-size="9.5" font-weight="700">FLOOR $62,457–62,589 · still 0 settled closes below · invalidation 0 of 2</text>
+  <!-- ceiling + upthrust -->
+  <line x1="62" y1="132.2" x2="880" y2="132.2" stroke="var(--dn)" stroke-width="1.7" stroke-dasharray="6 3"/>
+  <text x="66" y="128" fill="var(--dn)" font-size="9.5" font-weight="700">CEILING $65,000 · BUY 4 re-arm gate</text>
+  <line x1="700" y1="111.4" x2="880" y2="111.4" stroke="var(--dn)" stroke-width="1" stroke-dasharray="2 3"/>
+  <text x="876" y="108" fill="var(--dn)" font-size="9" text-anchor="end">Jul 31 upthrust high $65,411</text>
+  <!-- 20d sma -->
+  <line x1="700" y1="161.0" x2="880" y2="161.0" stroke="var(--blu)" stroke-width="1.6"/>
+  <text x="876" y="173" fill="var(--blu)" font-size="9" font-weight="700" text-anchor="end">20d SMA $64,428 — price 2.5% below</text>
+  <!-- aug 1 sweep low -->
+  <line x1="740" y1="270.6" x2="880" y2="270.6" stroke="var(--txt3)" stroke-width="1" stroke-dasharray="2 4"/>
+  <text x="876" y="284" fill="var(--txt3)" font-size="9" text-anchor="end">Aug 1 sweep low $62,260</text>
+  <!-- spring -->
+  <line x1="62" y1="292.7" x2="880" y2="292.7" stroke="var(--txt3)" stroke-width="1" stroke-dasharray="2 4"/>
+  <text x="66" y="290" fill="var(--txt3)" font-size="9">Jul 13 terminal spring low $61,821</text>
+  <!-- range high -->
+  <line x1="62" y1="33.0" x2="880" y2="33.0" stroke="var(--txt3)" stroke-width="1" stroke-dasharray="2 4"/>
+  <text x="66" y="30" fill="var(--txt3)" font-size="9">Jul 21 range high $66,964</text>
+
+  <g stroke-width="1.1">
+  <line x1="81.5" y1="161.0" x2="81.5" y2="292.7" stroke="var(--dn)"/><rect x="70.2" y="193.8" width="22.6" height="72.6" fill="var(--dn)"/>
+  <line x1="120.4" y1="126.7" x2="120.4" y2="269.9" stroke="var(--up)"/><rect x="109.1" y="130.1" width="22.6" height="136.1" fill="var(--up)"/>
+  <line x1="159.4" y1="101.9" x2="159.4" y2="158.6" stroke="var(--dn)"/><rect x="148.1" y="130.3" width="22.6" height="14.3" fill="var(--dn)"/>
+  <line x1="198.3" y1="132.3" x2="198.3" y2="195.6" stroke="var(--dn)"/><rect x="187.0" y="144.6" width="22.6" height="46.6" fill="var(--dn)"/>
+  <line x1="237.3" y1="162.8" x2="237.3" y2="257.3" stroke="var(--up)"/><rect x="226.0" y="185.9" width="22.6" height="5.7" fill="var(--up)"/>
+  <line x1="276.2" y1="138.7" x2="276.2" y2="188.4" stroke="var(--up)"/><rect x="264.9" y="140.3" width="22.6" height="45.4" fill="var(--up)"/>
+  <line x1="315.2" y1="133.6" x2="315.2" y2="168.6" stroke="var(--dn)"/><rect x="303.9" y="140.3" width="22.6" height="5.8" fill="var(--dn)"/>
+  <line x1="354.1" y1="91.8" x2="354.1" y2="194.6" stroke="var(--up)"/><rect x="342.8" y="119.2" width="22.6" height="26.9" fill="var(--up)"/>
+  <line x1="393.1" y1="33.0" x2="393.1" y2="124.6" stroke="var(--up)"/><rect x="381.8" y="53.3" width="22.6" height="65.7" fill="var(--up)"/>
+  <line x1="432.0" y1="44.1" x2="432.0" y2="104.6" stroke="var(--dn)"/><rect x="420.7" y="53.3" width="22.6" height="22.7" fill="var(--dn)"/>
+  <line x1="471.0" y1="65.6" x2="471.0" y2="150.7" stroke="var(--dn)"/><rect x="459.7" y="75.7" width="22.6" height="51.4" fill="var(--dn)"/>
+  <line x1="510.0" y1="91.1" x2="510.0" y2="196.7" stroke="var(--dn)"/><rect x="498.7" y="127.1" width="22.6" height="48.4" fill="var(--dn)"/>
+  <line x1="548.9" y1="160.0" x2="548.9" y2="192.7" stroke="var(--up)"/><rect x="537.6" y="164.0" width="22.6" height="11.5" fill="var(--up)"/>
+  <line x1="587.9" y1="102.7" x2="587.9" y2="168.0" stroke="var(--up)"/><rect x="576.6" y="112.1" width="22.6" height="52.0" fill="var(--up)"/>
+  <line x1="626.8" y1="94.8" x2="626.8" y2="202.5" stroke="var(--dn)"/><rect x="615.5" y="111.8" width="22.6" height="83.5" fill="var(--dn)"/>
+  <line x1="665.8" y1="177.2" x2="665.8" y2="247.0" stroke="var(--up)"/><rect x="654.5" y="186.3" width="22.6" height="8.6" fill="var(--up)"/>
+  <line x1="704.7" y1="144.6" x2="704.7" y2="219.9" stroke="var(--up)"/><rect x="693.4" y="183.5" width="22.6" height="2.8" fill="var(--up)"/>
+  <line x1="743.7" y1="122.7" x2="743.7" y2="203.3" stroke="var(--up)"/><rect x="732.4" y="143.5" width="22.6" height="40.3" fill="var(--up)"/>
+  <line x1="782.6" y1="111.4" x2="782.6" y2="260.8" stroke="var(--dn)"/><rect x="771.3" y="143.5" width="22.6" height="94.8" fill="var(--dn)"/>
+  <line x1="821.6" y1="225.2" x2="821.6" y2="270.6" stroke="var(--dn)"/><rect x="810.3" y="238.5" width="22.6" height="3.6" fill="var(--dn)"/>
+  <line x1="860.5" y1="201.1" x2="860.5" y2="242.9" stroke="var(--txt3)" stroke-dasharray="3 2"/>
+  <rect x="849.2" y="218.3" width="22.6" height="23.8" fill="none" stroke="var(--txt3)" stroke-width="1.3" stroke-dasharray="3 2"/>
+  </g>
+  <!-- upthrust annotation -->
+  <text x="782.6" y="104" fill="var(--dn)" font-size="9.5" font-weight="700" text-anchor="middle">UT</text>
+  <g fill="var(--txt3)" font-size="9" text-anchor="middle" font-family="ui-monospace,monospace">
+    <text x="81.5" y="330">Jul 13</text><text x="198.3" y="330">16</text><text x="315.2" y="330">19</text>
+    <text x="432.0" y="330">22</text><text x="548.9" y="330">25</text><text x="665.8" y="330">28</text>
+    <text x="782.6" y="330">31</text><text x="860.5" y="330">Aug 2*</text>
+  </g>
+  <text x="62" y="351" fill="var(--txt3)" font-size="9">* dashed hollow candle = Aug 2 UTC in progress at 18:26Z · not a settled close · gates nothing</text>
+</svg>
+</div>
+
+<div class="lbl">Mandatory dual Wyckoff read — now tied</div>
+<div class="gap">
+  <div class="card cA">
+    <div><span class="bg gA">PRIMARY · 45%</span> &nbsp;<b>Phase B range, lower-half regime</b></div>
+    <div style="font-size:12px;margin-top:8px">The $62,457–$66,964 range still holds on a close basis, but July 31 confirms the upper boundary as <b>supply, not a creek to be jumped</b>. Under this read the working assumption flips from "coiling toward a breakout" to "rotating back through the lower half of an established range." August 1's sweep to $62,260 and reclaim to a $62,824 close is a <b>spring-type test</b> of the floor, consistent with the July 13 and July 28 precedents. Nothing here requires a breakdown; it requires patience and a much higher bar for any long add.</div>
+  </div>
+  <div class="card cR">
+    <div><span class="bg gR">ALTERNATE · 45%</span> &nbsp;<b>Phase C→D, distribution completing</b></div>
+    <div style="font-size:12px;margin-top:8px">July 31 was the <b>UTAD</b> that completes a distribution structure running from the July 21 high: lower highs on a close basis throughout ($66,562 → $65,397 → $64,775), price now 2.49% beneath a declining 20-day SMA, and the first genuine sweep of the range low since July 13. Under this read the August 1–2 stabilisation is a weak automatic rally beneath supply, and the floor breaks within two weeks toward $61,821 and then the $57,803 July 1 low. <b>Confirmation:</b> two settled closes below $62,457.</div>
+  </div>
+</div>
+
+<div class="card cY" style="font-size:11.5px">
+  <b>Why 45/45, and why that is the honest answer (residual 10% = neither schematic / range expansion outside both).</b> On July 30 the split was 58/32 and rested on three named, falsifiable asymmetries. Every one of them has since reversed, which under the framework's own rules obliges the split to move — and a pre-registered condition firing is exactly the situation where a framework must not negotiate with itself. What holds the bear read back from taking the lead outright is equally concrete: no settled close has breached the floor, July closed green at +7.2%, and the two sessions after the upthrust came on 0.46× and 0.44× volume rather than the expanding supply a completing distribution should produce. That last point is <b>weekend-confounded</b> (August 1–2 were Saturday and Sunday) and is deliberately not weighted heavily. Two reads, equal evidence, opposite conclusions: the correct output is to hold, not to guess.
+</div>
+
+<div class="lbl">Level ladder</div>
+<div class="card">
+  <div class="lr"><span class="px" style="color:var(--txt3)">$66,964</span><span><span class="bg gY">Jul 21 range high</span></span></div>
+  <div class="lr"><span class="px" style="color:var(--dn)">$65,411</span><span><span class="bg gR">Jul 31 upthrust high — the level that defines the distribution read</span></span></div>
+  <div class="lr"><span class="px" style="color:var(--dn)">$65,000</span><span><span class="bg gR">CEILING / BUY 4 re-arm gate — 2.62% above live, now discredited by the UT</span></span></div>
+  <div class="lr"><span class="px" style="color:var(--blu)">$64,428</span><span><span class="bg gB">20-day SMA — declining, price 2.49% below on the settled close</span></span></div>
+  <div class="lr now"><span class="px">$63,295</span><span><b>LIVE, UNSETTLED</b> · Aug 2 UTC 18:26 · last settled close was $62,824</span></div>
+  <div class="lr"><span class="px" style="color:var(--amb)">$62,898</span><span><span class="bg gA">Jul 31 close — cross-verified (CoinLore $62,882, 0.025% apart)</span></span></div>
+  <div class="lr"><span class="px" style="color:var(--amb)">$62,824</span><span><span class="bg gA">Aug 1 close — last settled, +0.59% over the floor</span></span></div>
+  <div class="lr"><span class="px" style="color:var(--up)">$62,589</span><span><span class="bg gG">Confluence top — held on a close basis every session</span></span></div>
+  <div class="lr"><span class="px" style="color:var(--red)">$62,457</span><span><span class="bg gR">HARD INVALIDATION — two consecutive settled closes below · counter 0 of 2</span></span></div>
+  <div class="lr"><span class="px" style="color:var(--txt3)">$62,260</span><span><span class="bg gY">Aug 1 intraday sweep low — confirmed breach of the floor intraday, reclaimed by close</span></span></div>
+  <div class="lr"><span class="px" style="color:var(--txt3)">$61,821</span><span><span class="bg gY">Jul 13 terminal spring low — first target if the floor fails on closes</span></span></div>
+  <div class="lr"><span class="px" style="color:var(--txt3)">$57,803</span><span><span class="bg gY">Jul 1 cycle low — FR-A008 reference, 9.50% below live</span></span></div>
+</div>
+
+<!-- ═════════ TREE ═════════ -->
+<div class="sec">Probability path tree — resolves on the Aug 10 2026 settled UTC close</div>
+<div class="card">
+  <div style="font-size:11.5px;color:var(--txt2);margin-bottom:9px">MECE bands, single pre-registered resolution date. Reference: Aug 1 settled close $62,823.63. Uniform baseline across four named bands = 25%. Named branches deliberately do not sum to 100%.</div>
+  <div class="trow"><div class="tdot" style="background:var(--up)"></div><div class="tp" style="color:var(--grn)">14%</div>
+    <div><b>Band A — close ≥ $64,428 (the 20-day SMA).</b> A genuine recovery that reclaims the mean and rebuts the upthrust. Requires +2.55% from the reference. Well inside the $1,565 ATR, but it asks price to reverse a structure that just failed at the ceiling.</div></div>
+  <div class="trow"><div class="tdot" style="background:var(--acc)"></div><div class="tp" style="color:var(--amb)">40%</div>
+    <div><b>Band B — close $62,589 to $64,427.99.</b> The lower-half range regime persists: floor intact on closes, no reclaim of the mean. This is the modal outcome and the one the primary read implies.</div></div>
+  <div class="trow"><div class="tdot" style="background:var(--dn)"></div><div class="tp" style="color:var(--red)">28%</div>
+    <div><b>Band C — close $60,500 to $62,588.99.</b> The confluence gives way on a close basis. Note this band alone does not trigger invalidation — that needs two consecutive closes below $62,457 — but it is where the alternate read starts being confirmed.</div></div>
+  <div class="trow"><div class="tdot" style="background:#7f1d1d"></div><div class="tp" style="color:var(--red)">10%</div>
+    <div><b>Band D — close below $60,500.</b> Markdown leg toward the July 1 low. Raised sharply from the 5% assigned in the equivalent July 30 band, because the upthrust and the floor sweep together materially widen the left tail.</div></div>
+  <div class="trow"><div class="tdot" style="background:var(--gry)"></div><div class="tp" style="color:var(--gry)">8%</div>
+    <div><b>Residual — none of the above as specified.</b> Feed unavailability at resolution, venue disruption, a print failing cross-verification, or any state the bands do not capture. Mandatory ≥5% branch.</div></div>
+</div>
+
+<!-- ═════════ AUDIT ═════════ -->
+<div class="sec">Layered analytical audit</div>
+
+<div class="card cB">
+  <div class="lbl" style="margin-top:0">1 · Macro context — Global Macro Strategist</div>
+  <div class="dl">
+    <dt>Rate path</dt><dd>September hike odds now converge around <b>57–60%</b> after a third source landed above 57% on Aug 1 — see Correction 4. This is <b>materially less hawkish</b> than the ~73% the framework carried through late July, and it is one of the few genuinely constructive changes in this session.</dd>
+    <dt>Calendar ahead</dt><dd><b>NFP Friday Aug 7</b>, <b>July CPI Aug 12</b>, <b>Jackson Hole Aug 27–29</b> with Warsh speaking. Three dated binaries inside four weeks — but note the CRO's standing objection to treating any of them as a rolling veto.</dd>
+    <dt>Corporate bid</dt><dd><span class="bg gR">DETERIORATED — see Correction 3.</span> Strategy is not "paused"; it is a <b>net seller</b>, having sold $216m of BTC on Jul 6 to meet dividend obligations and $263.5m of common stock in the week to Jul 19 without buying BTC, building a $3.23bn cash reserve. The framework carried the softer characterisation for weeks.</dd>
+    <dt>Environment bias</dt><dd><span class="bg gA">Neutral macro, deteriorating micro.</span> The unusual feature of this drawdown is that it is <b>crypto-idiosyncratic</b>: equities rallied hard on Jul 31 while BTC fell.</dd>
+  </div>
+</div>
+
+<div class="card cR">
+  <div class="lbl" style="margin-top:0">2 · Market structure &amp; liquidity — Lead Market Structure Analyst</div>
+  <div class="dl">
+    <dt>The upthrust</dt><dd>Jul 31: high $65,411.23 (+0.63% above the ceiling), low $62,454.00, close $62,897.98. Full traverse $2,957.23 = <b>4.70% of close, 1.89× ATR</b>, closing at <b>15% of the day's range</b>, on 2,272.8 BTC = 1.50× the 20-day average. Every element of the classical upthrust signature is present.</dd>
+    <dt>Floor status</dt><dd><b>Zero settled closes below $62,457</b> across the entire 25-session window since Jul 13. Aug 1 swept intraday to $62,260.21 (−0.315%, a confirmed breach) and reclaimed. The Jul 31 low is <b>disputed</b> — see Correction 1.</dd>
+    <dt>Volume aftermath</dt><dd>20-day average 1,511.4 BTC. Aug 1 = 694.9 (<b>0.46×</b>), Aug 2 partial = 666.8 (<b>0.44×</b>). No expanding-volume follow-through, which argues the distribution is incomplete — but both days were weekend sessions, so this is <b>weak evidence and flagged as such</b>.</dd>
+    <dt>Ceiling record</dt><dd>Six settled closes above $65,000 in 25 sessions, and now <b>five separate intraday pokes that failed to close above</b> (Jul 15, 24, 27, 30, 31). The gate's signal quality has degraded materially.</dd>
+    <dt>Volatility</dt><dd>ATR(14) rose to <b>$1,565</b> = 2.49% of the settled close, up from $1,469 on Jul 30. Expanding range into a structural decision point.</dd>
+    <dt>Footprint</dt><dd><span class="bg gR">Distributing at the highs, absorbed at the lows.</span> Both statements are true simultaneously, which is precisely why the two reads are tied.</dd>
+  </div>
+</div>
+
+<div class="card cY">
+  <div class="lbl" style="margin-top:0">3 · Sentiment &amp; temporal — Alternative Data Quant</div>
+  <div class="dl">
+    <dt>Fear &amp; Greed</dt><dd><span class="bg gA">NOT VERIFIED THIS SESSION.</span> Last verified reading was <b>28 (Fear)</b> on Jul 29. No reliable Aug 1–2 print was obtained. Carried as stale and explicitly discounted in the scorecard rather than guessed at.</dd>
+    <dt>Idiosyncratic shocks</dt><dd>A <b>Coldcard hardware-wallet exploit on Jul 31 drained roughly $38m from about 500 wallets</b>, and Coinbase fell ~10% on an earnings miss the same day. Two crypto-native confidence shocks landing on the upthrust date. This is the most plausible proximate cause of the reversal, and it is <b>not</b> a macro event.</dd>
+    <dt>Cross-asset</dt><dd><span class="bg gR">FORMALLY DEMOTED — see Correction 2.</span> The sign has flipped three times in five sessions. No longer treated as a directional input.</dd>
+    <dt>Dominance</dt><dd>58.8% (CoinLore, today) from 58.7% on Jul 30. Drifting up — capital consolidating into BTC within crypto, which does not support altcoin rotation.</dd>
+    <dt>Monthly close</dt><dd>July settled <b>+7.2%</b> ($58,653 → $62,882 on the aggregate feed; $58,634 → $62,898 on Crypto.com). <b>First green month since April.</b> A structurally meaningful datum that cuts against the bear read.</dd>
+  </div>
+</div>
+
+<div class="card cY">
+  <div class="lbl" style="margin-top:0">4 · Zero-weight disclosure layers — reported, never applied</div>
+  <div style="font-size:11.5px;margin-bottom:9px">Disclosed every session for discipline. These generate no signals, gate nothing, veto nothing, and adjusted no number in this report — not confidence, not aggressiveness, not one probability band.</div>
+  <table>
+    <tr><th>Layer</th><th>State</th><th>Note</th><th>Verdict</th></tr>
+    <tr><td><b>Lunar</b></td><td>Waning gibbous, ~4 days past the Jul 29 Full Moon; New Moon Aug 12</td><td>The Jul 31 upthrust fell two days after a Full Moon. The Jun 29 Full Moon preceded a breakdown, the Jul 29 Full Moon preceded an up close, and now a reversal two days later. Three adjacent Full Moons, three different outcomes.</td><td><span class="bg gY">NO SIGNAL</span></td></tr>
+    <tr><td><b>Mercury</b></td><td>Direct; post-shadow complete</td><td>The largest single-session reversal of the campaign occurred with Mercury fully direct — further falsification of the "retrograde = fakeout" claim from the opposite side.</td><td><span class="bg gY">NO SIGNAL</span></td></tr>
+    <tr><td><b>Shmita</b></td><td>Year 4 of 7; next release year Sep 2028</td><td>Unchanged. Not inside a Shmita year.</td><td><span class="bg gY">NO SIGNAL</span></td></tr>
+  </table>
+  <div style="font-size:11px;color:var(--txt2);margin-top:9px"><b>Spec contradiction, still unresolved (3rd session flagged).</b> The governing prompt still lists "SHMITA CONTEXT" first in its decision-flow hierarchy while its own guardrails state "Wyckoff always dominates." This report applies the settled resolution and continues to flag the spec text as needing an edit.</div>
+</div>
+
+<!-- ═════════ ROADMAP ═════════ -->
+<div class="sec">Macro cycle roadmap — the 18-month horizon</div>
+<div class="card cB">
+  <div style="font-size:12.5px">The cycle thesis is untouched, and it is worth restating why a violent single session does not move it. The Oct–Nov 2026 bottom window is anchored to post-peak interval arithmetic from the Oct 2025 ATH (363–376 days), placing it roughly <b>Oct 3 to Nov 15, 2026 — 61 to 104 days out</b>. A July 31 upthrust is a tactical event on a 48-hour horizon. Allowing it to reprice an 18-month thesis would be horizon collapse in the opposite direction from the version this framework was previously caught committing.</div>
+  <div style="font-size:12.5px;margin-top:9px">If anything, the alternate Wyckoff read is <b>more consistent</b> with the cycle thesis than the primary one. FR-A008 already carries p=0.65 that BTC closes below $57,803 before Nov 30. A markdown leg through the floor in August would be an expected step toward that outcome, not a refutation of the plan. <b>75% dry powder remains reserved</b> precisely for that scenario — the framework does not need the floor to hold in order to be right.</div>
+  <div style="font-size:12px;margin-top:9px;padding-top:9px;border-top:1px solid var(--bord)"><b>Live flagship forecasts, unmodified:</b> FR-A007 p=0.42 (cycle bottom lands Oct–Nov 2026, vs 0.25 baseline) · FR-A008 p=0.65 (settled close below $57,803 before Nov 30 2026). Live price sits 9.50% above the FR-A008 level, down from 11.63% on Jul 30.</div>
+</div>
+
+<!-- ═════════ EXECUTION ═════════ -->
+<div class="sec">Execution plan · Risk engineering sign-off</div>
+
+<div class="gap">
+<div class="card cA">
+  <div class="lbl" style="margin-top:0">Commands</div>
+  <div class="dl">
+    <dt>Matrix classification</dt><dd><b>BUY 3</b> — held. BUY 4 scratched since Jul 24.</dd>
+    <dt>System action</dt><dd><b>HOLD.</b> No add. <b>No reduce.</b></dd>
+    <dt>Aggressiveness</dt><dd><b>1 / 10</b> <span class="bg gR">↓ from 3</span><div class="sb"><i style="width:10%"></i></div></dd>
+    <dt>Composite confidence</dt><dd><b>48 / 100</b> <span class="bg gR">↓ from 59</span><div class="sb"><i style="width:48%"></i></div></dd>
+    <dt>Structural risk</dt><dd><b>High</b> <span class="bg gR">↑ from Medium–High</span></dd>
+    <dt>Invalidation counter</dt><dd><b>0 of 2</b> closes below $62,457</dd>
+  </div>
+</div>
+<div class="card cR">
+  <div class="lbl" style="margin-top:0">Triggers — settled UTC closes only</div>
+  <div class="dl">
+    <dt>Immediate trigger</dt><dd>Mechanically unchanged: a single settled close <b>≥ $65,000</b> re-arms the tactical BUY 4 quarter-tranche. <b>The rule is not being altered post-hoc</b> — see the note below.</dd>
+    <dt>Confirmation trigger</dt><dd>Two consecutive settled closes ≥ $65,000 with volume ≥ <b>2,267 BTC</b> (1.5× the 20-day average of 1,511.4).</dd>
+    <dt>Hard invalidation</dt><dd><b>Two consecutive settled closes below $62,457.</b> Currently 0 of 2. Opens $61,821, then $57,803.</dd>
+    <dt>Reset rule</dt><dd>One close below followed by a close back above resets the counter to 0 of 2 — the Jul 13 precedent, where a single breach reversed +4.33% the next session.</dd>
+  </div>
+</div>
+</div>
+
+<div class="card cY">
+  <div class="lbl" style="margin-top:0">Quant PM &amp; CRO note — two disciplines under pressure</div>
+  <div style="font-size:12px"><b>On not tightening the gate.</b> The Jul 31 upthrust is good evidence that a single close above $65,000 is a lower-quality signal than it was when the rule was written. The correct response is <em>not</em> to raise the bar today. Changing a pre-committed entry rule immediately after an adverse event is how a framework quietly converts discipline into hindsight. The proposal is therefore logged for <b>pre-registration against future signals only</b>: from the next session, consider requiring a settled close above the <b>$65,411 upthrust high</b> rather than $65,000, since a reclaim above the failure point is what actually negates an upthrust. That change takes effect only if adopted before a signal fires, never after.</div>
+  <div style="font-size:12px;margin-top:9px"><b>On not front-running the stop.</b> With price 0.59% above the invalidation level and the two reads tied, the emotional pull is to reduce now and ask questions later. The counter-argument is the framework's own record: the two-consecutive-close rule has been tested four times (Jul 13, Jul 17, Jul 28, Aug 1) and reducing early would have been wrong on every one. The rule is honoured. If it fires, the position comes off in full, without renegotiation.</div>
+</div>
+
+<!-- ═════════ CORRECTIONS ═════════ -->
+<div class="sec">Corrections logged this session — explicit, before/after, never silent</div>
+<div class="card" style="padding:6px 10px">
+<table>
+  <tr><th style="width:24%">Item</th><th style="width:33%">Before</th><th>After</th></tr>
+  <tr><td><b>1 · Jul 31 floor breach</b></td>
+    <td>Crypto.com shows a Jul 31 low of $62,454.00, which would be a $3 undercut of the $62,457 floor.</td>
+    <td>CoinLore shows $62,525 for the same session — <b>0.11% apart, inside the ±0.15% margin band</b> around the threshold. Under the standing margin rule this is <b>VERIFICATION PENDING, not a confirmed breach</b>. The session therefore logs <b>one</b> confirmed intraday floor sweep (Aug 1), not two. Overstating the damage would have been the easy error here.</td></tr>
+  <tr><td><b>2 · Cross-asset divergence</b></td>
+    <td>Jul 30 logged the sign flipping positive, with a caution that it was a short window.</td>
+    <td>It flipped negative again on Jul 31 (BTC down while the Kospi rose ~15% and Nasdaq futures ~1.23%). <b>Three sign flips in five sessions.</b> Formally <b>demoted to a non-signal at daily frequency</b>; admissible only if the same sign persists ≥10 consecutive sessions. Pre-registered now so it cannot be re-litigated ad hoc later.</td></tr>
+  <tr><td><b>3 · Strategy's posture</b></td>
+    <td>"Strategy on a five-week buying pause."</td>
+    <td>Strategy is a <b>net seller</b>: $216m of BTC sold Jul 6 for dividend obligations, $263.5m of common stock sold in the week to Jul 19 with no BTC bought, cash reserve built to $3.23bn. A structurally weaker corporate bid than "pause" conveys, and the framework carried the softer wording for weeks.</td></tr>
+  <tr><td><b>4 · September hike odds</b></td>
+    <td>Carried Jul 30 as an unresolved <b>58–72%</b> range after two sources conflicted.</td>
+    <td>A third independent source on Aug 1 puts September hike odds <b>above 57%</b>, converging with the lower reading. Range narrowed to <b>~57–60%</b>; the 72.3% figure is now assessed as a pre-press-conference print. <b>Conflict resolved</b>, and the result is less hawkish than the ~73% carried through late July.</td></tr>
+  <tr><td><b>5 · CoinLore monthly heatmap</b></td>
+    <td>Treated CoinLore's monthly return table as usable.</td>
+    <td>Its July figure (+10.45%, close $64,780) uses the <b>Jul 30</b> close while its own OHLC table shows Jul 31 at $62,882. Actual July return is <b>+7.2%</b>. Standing rule added: use CoinLore's OHLC table, never its monthly heatmap, for month-end figures.</td></tr>
+</table>
+</div>
+
+<!-- ═════════ APPENDIX ═════════ -->
+<div class="sec">Appendix — methodology, provenance, register</div>
+
+<details>
+<summary>Composite confidence — component construction</summary>
+<table>
+  <tr><th>Component</th><th>Cap</th><th>Jul 30</th><th>Aug 3</th><th>Basis for the change</th></tr>
+  <tr><td>Wyckoff structure integrity</td><td>30</td><td>19</td><td><b>13</b></td><td>All three pre-registered asymmetries reversed; upthrust logged; price at the floor rather than mid-range. Offset by zero settled closes below the floor.</td></tr>
+  <tr><td>Macro regime</td><td>20</td><td>10</td><td><b>10</b></td><td>September odds resolved lower (57–60% vs ~73% carried) — constructive — but three dated binaries land inside four weeks. Net flat.</td></tr>
+  <tr><td>Liquidity &amp; flows</td><td>20</td><td>11</td><td><b>7</b></td><td>Strategy confirmed a net seller; Coldcard exploit; Coinbase earnings miss; weakest spot volume since 2023; no expanding-volume defence.</td></tr>
+  <tr><td>Sentiment</td><td>15</td><td>8</td><td><b>7</b></td><td>Downgraded one point for staleness — no verified F&amp;G print this session. Not guessed.</td></tr>
+  <tr><td>Cycle position</td><td>15</td><td>11</td><td><b>11</b></td><td>Unchanged. July closed green +7.2%; window 61–104 days out; interval arithmetic intact.</td></tr>
+  <tr><td>Zero-weight layers</td><td>0</td><td>0</td><td><b>0</b></td><td>Zero by construction.</td></tr>
+  <tr><td><b>Total</b></td><td><b>100</b></td><td><b>59</b></td><td><b>48</b></td><td>An 11-point drop. Large, but it is what happens when three pre-registered conditions fire simultaneously and a carried assumption about the corporate bid turns out to have been too generous.</td></tr>
+</table>
+</details>
+
+<details>
+<summary>Forecast Register — additions and status</summary>
+<table>
+  <tr><th>ID</th><th>Status</th><th>Claim</th><th>Prob.</th><th>Resolves</th></tr>
+  <tr><td><b>FR-A009</b></td><td><span class="bg gB">LIVE</span></td><td>Aug 6 settled close band. Currently tracking <b>Band B</b> ($62,589–64,999.99) on the Aug 1 close of $62,823.63.</td><td>.27/.44/.17/.05/.07</td><td>Aug 6</td></tr>
+  <tr><td><b>FR-A010</b></td><td><span class="bg gA">LIVE · SUPERSEDED IN VIEW</span></td><td>No settled close below $62,457 on or before Aug 14. <b>Not revised</b> — it resolves and scores on its original number.</td><td>.68</td><td>Aug 14</td></tr>
+  <tr><td><b>FR-A011</b></td><td><span class="bg gG">NEW</span></td><td>Same claim as FR-A010, re-forecast on today's information: no settled close below $62,457 on or before Aug 14. Deliberately set to resolve on the <b>same date</b> as FR-A010 so the two are directly comparable.</td><td><b>.42</b></td><td>Aug 14</td></tr>
+  <tr><td><b>FR-A012</b></td><td><span class="bg gG">NEW</span></td><td>At least one settled close ≥ $65,000 occurs on or before Aug 14 (i.e. the BUY 4 re-arm fires).</td><td><b>.26</b></td><td>Aug 14</td></tr>
+  <tr><td><b>FR-A013</b></td><td><span class="bg gG">NEW</span></td><td>Aug 10 settled close band tree as specified in the Probability Path Tree section above.</td><td>.14/.40/.28/.10/.08</td><td>Aug 10</td></tr>
+</table>
+<div style="font-size:11px;color:var(--txt2);margin-top:9px"><b>Why FR-A011 exists and FR-A010 was not edited.</b> Forecasts are never revised after issue — only superseded with a new ID. Pairing a new forecast against the old one on an identical claim and resolution date turns an uncomfortable update into a <b>measurement</b>: on Aug 14 the register will show directly whether updating on the upthrust improved calibration or merely chased price. If the floor holds, FR-A011's move from .68 to .42 will score worse than the original and that is exactly the information the register exists to capture.</div>
+<div style="font-size:11px;color:var(--txt2);margin-top:7px"><b>Consistency check.</b> FR-A011 implies a 58% chance of a breach within 11 days; FR-A013 assigns 38% to an Aug 10 close below $62,589 at a single point in time. Path probability exceeding point probability over a longer window is the correct relationship. FR-A012 at .26 (path, 11 days) sits above the ~14% single-point Band A figure in FR-A013, likewise correct.</div>
+<div style="font-size:11px;color:var(--txt2);margin-top:7px"><b>Not fabricated:</b> FR-A001–A006 are not restated; their text lives in the framework-evolution thread and was not retrieved this session. No resolution or scoring is claimed for them.</div>
+</details>
+
+<details>
+<summary>Data provenance &amp; feed status</summary>
+<div class="dl" style="font-size:11.5px">
+  <dt>Session timestamp</dt><dd><span class="mono">Crypto.com:get_ticker</span> → 2026-08-02T18:26:37.132Z. The Aug 2 UTC candle is in progress with ~5.5 hours to settle. All determinations use the <b>Aug 1</b> settled close.</dd>
+  <dt>Authoritative feed</dt><dd>Crypto.com <span class="mono">BTC_USDT 1D</span>. 25 settled rows retrieved, Jul 8 → Aug 1.</dd>
+  <dt>CoinGecko MCP</dt><dd><span class="bg gA">TOOLS NOT SURFACED</span> — second consecutive session. No CoinGecko functions available in the tool surface. Disclosed, not worked around.</dd>
+  <dt>Cross-verification</dt><dd>CoinLore now current through <b>Jul 31</b> (lag improved to ~2 days). Close agreement: Jul 31 $62,882 vs $62,897.98 (<b>0.025%</b>); Jul 30 $64,780 vs $64,775.46 (0.007%). Both feeds independently place the Jul 31 and Jul 30 closes on the same side of every framework threshold — <b>dispute-proof</b>. Lows disagree on Jul 31 (see Correction 1).</dd>
+  <dt>Single-feed days</dt><dd><b>Aug 1 and Aug 2</b> are Crypto.com only. The Aug 1 close clears the $62,457 threshold by 0.59%, well outside the ±0.15% margin, so the determination is sound on a single feed under the standing rule.</dd>
+  <dt>Weekend caveat</dt><dd>Aug 1 was a Saturday and Aug 2 a Sunday. Volumes of 0.46× and 0.44× are consistent with normal weekend thinning and should <b>not</b> be read as a demand or supply signal in either direction.</dd>
+  <dt>Not verified</dt><dd>Fear &amp; Greed (last verified 28 on Jul 29). Coinbase Premium streak. Whale-layer data — now stale since Jul 23, <b>11 days</b>.</dd>
+</div>
+</details>
+
+<details>
+<summary>Cross-thread notes</summary>
+<div style="font-size:11.5px">
+<ul>
+<li><b>ADA:</b> BTC's close-basis defence of $62,457–62,589 keeps Leg 2 of the ADA re-entry gate satisfied, but by the thinnest margin of the campaign (+0.59%). If the BTC invalidation fires, Leg 2 fails simultaneously and the ADA thesis stop comes under immediate joint pressure. <b>The BUY 1 fill price is now 15+ sessions unresolved</b> and remains the highest-priority open item.</li>
+<li><b>AERO:</b> the codebase rollout was scheduled to begin <b>today, Aug 3</b> — the first dated catalyst on that thread since the September slip. Buy gate $0.4571, stand-down $0.400, both on two settled closes.</li>
+<li><b>Cycle consistency:</b> a floor break in August would be consistent with, not contrary to, FR-A008 and the Oct–Nov accumulation thesis. Worth holding onto if the next two weeks are unpleasant.</li>
+</ul>
+</div>
+</details>
+
+<div class="foot">
+<b>Evidence hierarchy, unchanged and non-negotiable:</b> Wyckoff market structure is dominant and load-bearing; macro/FOMC, liquidity and flows, sentiment, and halving-cycle position modify confidence only and never override it. Shmita, Mercury retrograde and lunar cycles are disclosed in full every session and carry <b>zero weight</b> — they generated no signal and adjusted no number in this report.<br><br>
+No mid-candle positioning: every determination above uses settled 00:00 UTC closes, and the Aug 2 candle in progress is excluded throughout. Feed failures are disclosed rather than substituted. All corrections appear as explicit before/after entries. Pre-committed rules are not altered after an adverse event; proposed changes are pre-registered against future signals only. Structural orientation and probabilistic forecasting output — <b>not financial advice</b>. Size positions yourself and consult a licensed advisor.
+</div>
+
+</body>
+</html>

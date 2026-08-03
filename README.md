@@ -2,8 +2,8 @@
 
 Interactive heatmap dashboards combining the framework's timing layers (Shmita,
 Mercury Retrograde, Fear & Greed) and a retrospective Wyckoff structural map
-against real price history, for **BTC (Jan 2014 → present)** and
-**ADA (Sep 2017 → present)**.
+against real price history, for **BTC (Jan 2014 → present, forward calendar to
+Sep 2029)** and **ADA (Sep 2017 → present, forward cone to Dec 2028)**.
 
 **Live demo:** open `index.html` directly in any browser, or enable GitHub
 Pages on this repo (Settings → Pages → Deploy from branch → `main` → `/ (root)`)
@@ -14,8 +14,8 @@ to get a hosted link.
 | File | Purpose |
 | --- | --- |
 | `index.html` | Landing page — token switcher showing each asset's current Wyckoff phase, model confidence and last tracked price |
-| `btc-dashboard.html` | BTC interactive heatmap + price chart, with the current report's level map |
-| `ada-dashboard.html` | ADA interactive heatmap + price chart, with the forecast scenario bands |
+| `btc-dashboard.html` | BTC interactive heatmap + price chart, with the current report's level ladder |
+| `ada-dashboard.html` | ADA interactive heatmap + price chart, with the current report's level ladder and its forward volatility cone |
 | `BTC_report_*.html` | The authoritative BTC analysis for the current date |
 | `ADA_monthly_map_*.html` | The authoritative ADA monthly strategy map for the current date |
 | `cardano-logo.svg` | ADA mark used by the ADA dashboard and landing page |
@@ -41,16 +41,24 @@ dependencies or CDN scripts.
   on/off, not an invented intensity score). Zero predictive weight.
 - **Shmita** — real Hebrew-calendar release years. The BTC dashboard covers
   **5775** (Sep'14–Sep'15), **5782** (Sep'21–Sep'22) and the forward **5789**
-  (Sep 2028–Sep 2029); the two completed observations produced *opposite*
-  outcomes, which is the empirical case for zero-weighting it directionally.
+  (Sep 2028–Sep 2029); the ADA dashboard covers 5782 and the opening months of
+  5789 that fall inside its horizon. The two completed observations produced
+  *opposite* outcomes, which is the empirical case for zero-weighting it
+  directionally.
 - **Wyckoff cycle map** — retrospective phase labeling (Accumulation / Markup /
   Distribution / Markdown) derived month-by-month from the price line above.
   This is **not** a live backtest — a dashed cyan seam marks where the
   framework's own real-time tracking begins; everything left of it is
   retrospective context, everything right of it is the framework's actual
   reported calls.
-- **Level map / scenario bands** — forward-looking references quoted from the
-  current report, not price history.
+- **Level ladder** — forward-looking price references quoted from the current
+  report, not price history. Both dashboards carry one.
+- **ADA volatility cone** — the ADA report's own forward distribution, computed
+  from its stated realized σ rather than transcribed: driftless lognormal,
+  anchored at spot, with a **flat median by construction** because no drift is
+  assumed. Hovering a forecast month gives its 5th/25th/75th/95th percentiles
+  and its probability split against the two fixed campaign thresholds. These are
+  month-end distributions, **not price targets**.
 
 No buy/sell signal markers, liquidity-regime classifications, or "hit rate"
 statistics are included — those would require either fabricated data or a
@@ -62,8 +70,8 @@ dressed up to look more complete than they are.
 - **Drag / swipe** to pan across time
 - **Scroll / pinch** to zoom in or out; **double-click** resets the view
 - **Hover or tap** any cell or price point for an exact tooltip
-- **Layer toggles** show/hide Wyckoff, Shmita, Mercury and Fear & Greed
-  independently (BTC adds a report-level map layer)
+- **Layer toggles** show/hide Wyckoff, Shmita, Mercury, Fear & Greed and the
+  report's level ladder independently
 - **Zoom presets** — BTC: full range, 2014–17, 2021–23, live window, reset;
   ADA: full range, 2020–22, live window, reset
 - **Log / Linear** price scale toggle
