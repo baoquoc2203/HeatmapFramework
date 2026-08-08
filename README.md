@@ -13,7 +13,7 @@ to get a hosted link.
 
 | File | Purpose |
 | --- | --- |
-| `index.html` | Landing page — token switcher showing each asset's current Wyckoff phase, model confidence and last tracked price |
+| `index.html` | Landing page — token switcher showing each asset's current Wyckoff phase, confidence and last tracked price |
 | `btc-dashboard.html` | BTC interactive heatmap + price chart, with the current report's level ladder |
 | `ada-dashboard.html` | ADA interactive heatmap + price chart, with the current report's level ladder and its forward volatility cone |
 | `BTC_report_*.html` | The authoritative BTC analysis for the current date |
@@ -53,6 +53,18 @@ dependencies or CDN scripts.
   reported calls.
 - **Level ladder** — forward-looking price references quoted from the current
   report, not price history. Both dashboards carry one.
+- **Zone Layer** (BTC) — pre-registered price bands whose bounds are *immutable
+  once issued*, so that a touch becomes a scoreable event rather than a story
+  told afterwards. Drawn through the same component as the level ladder but
+  dimmed, because they are scoring objects rather than trading levels. Note the
+  report's own disclosure that the uncovered gap between the zones contains
+  every active trigger, so the operating range is currently unscoreable under
+  the layer's own rules.
+- **Confidence** — the BTC framework (CRE v2.1) computes confidence **per
+  horizon class — tactical / swing / cycle — and never blends them**, so the
+  landing card shows all three rather than inventing a single number. ADA still
+  issues one composite score. The card renders whichever shape its asset
+  actually reports.
 - **ADA volatility cone** — the ADA report's own forward distribution, computed
   from its stated realized σ rather than transcribed: driftless lognormal,
   anchored at spot, with a **flat median by construction** because no drift is

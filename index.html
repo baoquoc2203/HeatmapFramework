@@ -100,7 +100,7 @@
     </div>
     <div class="card purple">
       <div class="c-icon">⚡</div>
-      <div class="c-label">Model Confidence</div>
+      <div class="c-label" id="confLabel">Model Confidence</div>
       <div class="c-val" id="confVal"></div>
       <div class="c-sub" id="confSub"></div>
     </div>
@@ -126,24 +126,26 @@
 const tokens = {
   BTC: {
     full:'Bitcoin', symbol:'₿', color:'#F7931A',
-    tagline:'August 4 delivered the one thing every session since the upthrust had been missing: participation. Volume printed 1.41× the 20-day average against 0.50/0.72/0.68× before it, and it closed up — with a decisively higher low at $63,318 that cleared the floor by 1.38% and probed nothing. Higher low, higher close, expanding volume. But the two-session confirmation rule adopted the day before says a pre-registered flip must hold across two sessions, so the split takes one 5-point step to 55/35 and full re-weighting waits on the Aug 5 close. 22 straight closes above $62,457. The $65,000 gate is now 0.24 ATR away.',
-    phase:'Phase B · 55–35', phaseSub:'re-accumulation · 1 of 2 confirming · floor 0 of 2',
-    conf:54, confSub:'Aggressiveness 3/10 · HOLD BUY 3 · gate 0.24 ATR',
-    price:'$64,103', priceSub:'Aug 4, 2026 settled close (+2.64% over the floor)',
+    tagline:'The mean reclaim lasted exactly one session. Aug 6 poked $65,009.60 — a seventh failed attempt, and at +0.015% the shallowest overshoot yet — then closed down 0.52% back below the 20-day SMA. The two-session rule is symmetric or it is a ratchet, so this is session 1 of 2 of UN-confirmation and the split steps back to 54/36. Meanwhile $626m of ETF inflow arrived and price still could not close through $65,000: seven attempts, zero conversions. The autopsy of the first resolved forecast produced the number that matters — the close-through rate in this regime is 0 of 5.',
+    phase:'Phase B · 54–36', phaseSub:'re-accumulation · 1 of 2 UN-confirming · floor 0 of 2',
+    conf:'43 / 51 / 64', confLabel:'Confidence · T / S / C (never blended)',
+    confSub:'T tactical 43 ↓14 (60% coverage) · S swing 51 ↑2 · C cycle 64 ↑1 · aggressiveness 2/10',
+    price:'$64,330', priceSub:'Aug 6, 2026 settled close (+3.00% over the floor)',
     reports:[
       {label:'Heatmap', href:'btc-dashboard.html'},
-      {label:'📊 Market GPS (Aug 5)', href:'BTC_report_aug05.html'},
+      {label:'📊 Market GPS (Aug 7)', href:'BTC_report_aug07.html'},
     ]
   },
   ADA: {
     full:'Cardano', symbol:'₳', logo:'cardano-logo.svg', color:'#2a52d4',
-    tagline:'BUY 3 fired. Aug 3 closed $0.19365, 1.92% clear of the $0.19 gate, and Aug 4 confirmed at $0.19303 — the same gate that missed by 0.195% two sessions earlier, now cleared decisively and dispute-proof. Phase E markup, four consecutive closes above the EMA band that ended the July attempt, +24.06% off the Jul 27 low. But the report leads with the problem, not the breakout: the tranche ladder has consumed the October reserve. Three quarter-tranches is 75% deployed against a thesis reserving 75% for Oct 4–17. Both cannot hold, and doing nothing silently re-scopes the core window. Your decision.',
-    phase:'Phase E markup', phaseSub:'BUY 3 fired Aug 3 · ladder full · stop 0 of 2',
-    conf:68, confSub:'Aggressiveness 6/10 · HOLD · 75% deployed',
-    price:'$0.19303', priceSub:'Aug 4, 2026 settled close (Aug MTD +14.72%)',
+    tagline:'The back-test held and reversed hard. Aug 6 dipped to $0.18599 — beneath the $0.1885 band — then reversed +8.16% to close $0.20117, taking $0.20 and printing a campaign high at $0.21156 on 23.77M, the heaviest volume of the campaign. That is a textbook Last Point of Support, exactly as pre-registered. But BUY 4 is now armed and CANNOT be executed: a fourth tranche takes the book to 100% deployed with zero powder, against a thesis reserving 75% for Oct 4–17, now 58–71 days out. The framework has produced a valid signal it has no capital policy for. Third session raised — your decision.',
+    phase:'Phase E markup', phaseSub:'LPS confirmed Aug 6 · BUY 4 armed, unexecutable',
+    conf:'71 / 100', confLabel:'Model Confidence',
+    confSub:'Highest of the campaign · aggressiveness 6/10 · 75% deployed',
+    price:'$0.20117', priceSub:'Aug 6, 2026 settled close (Aug MTD +19.56%)',
     reports:[
       {label:'Heatmap', href:'ada-dashboard.html'},
-      {label:'📊 Monthly Map (Aug 5)', href:'ADA_monthly_map_aug05.html'},
+      {label:'📊 Monthly Map (Aug 7)', href:'ADA_monthly_map_aug07.html'},
     ]
   }
 };
@@ -162,7 +164,11 @@ function applyToken(key){
   document.getElementById('tagline').textContent = t.tagline;
   document.getElementById('phaseVal').textContent = t.phase;
   document.getElementById('phaseSub').textContent = t.phaseSub;
-  document.getElementById('confVal').textContent = t.conf + ' / 100';
+  // BTC moved to CRE v2.1, which computes confidence per horizon class and NEVER blends the three into one
+  // number. ADA still issues a single composite. So the card renders whatever shape its asset actually reports
+  // rather than forcing both into one — inventing a blended BTC figure would violate the framework's own rule.
+  document.getElementById('confLabel').textContent = t.confLabel || 'Model Confidence';
+  document.getElementById('confVal').textContent = t.conf;
   document.getElementById('confSub').textContent = t.confSub;
   document.getElementById('priceVal').textContent = t.price;
   document.getElementById('priceSub').textContent = t.priceSub;
