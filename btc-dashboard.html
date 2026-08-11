@@ -285,7 +285,7 @@ const wyckoff = [
   {s:132,e:134,kind:'markdown',label:'early-25 crash'},
   {s:134,e:141,kind:'markup',  label:'2025 markup to ATH'},
   {s:141,e:150,kind:'markdown',label:'post-ATH markdown'},
-  {s:150,e:152,kind:'acc',      label:'live: Phase B re-accumulation 57/33 — 10th gate rejection; split unchanged'},
+  {s:150,e:152,kind:'acc',      label:'tracked: Phase B re-accumulation 57/33 — 10th gate rejection; split unchanged'},
 ];
 // LIVE CELL COLOUR: stays accumulation because the PRIMARY read is still Phase B re-accumulation. The split is
 // UNCHANGED at 57/33 this session; 33% sits with the Phase C->D "tenth cap" alternate. The colour tracks the
@@ -421,7 +421,7 @@ function render(){
   rows.forEach(row=>{
     if(row.key==='wyckoff'){
       svg.appendChild(el('text',{x:padL-8,y:row.top+row.h/2-4,'text-anchor':'end','font-size':11,fill:TH().rowLabel,'font-weight':600,'dominant-baseline':'middle'},'Wyckoff'));
-      svg.appendChild(el('text',{x:padL-8,y:row.top+row.h/2+10,'text-anchor':'end','font-size':8,fill:TH().subLabel,'dominant-baseline':'middle'},'retro→live'));
+      svg.appendChild(el('text',{x:padL-8,y:row.top+row.h/2+10,'text-anchor':'end','font-size':8,fill:TH().subLabel,'dominant-baseline':'middle'},'retro→tracked'));
       for(let i=Math.max(0,Math.floor(vs)); i<Math.min(N,Math.ceil(ve)); i++){
         const block = wyckoffLabelFor(i);
         if(!block) continue;
@@ -570,15 +570,18 @@ function render(){
   if(liveStartIdx>=vs && liveStartIdx<=ve){
     const lx = idxToX(liveStartIdx);
     svg.appendChild(el('line',{x1:lx,x2:lx,y1:padT,y2:priceTop+priceH,stroke:TH().seam,'stroke-width':2,'stroke-dasharray':'5 3'}));
-    svg.appendChild(el('text',{x:lx+4,y:padT+9,'font-size':8.5,fill:TH().seam,'font-weight':700},'live record (Jul 1+)'));
+    svg.appendChild(el('text',{x:lx+4,y:padT+9,'font-size':8.5,fill:TH().seam,'font-weight':700},'tracked calls from Jul 1'));
   }
-  // current-month marker — the ONE month still in progress, distinct from the seam above.
-  // The label sits a line below the seam label and is suppressed when zoomed out, where it would
-  // otherwise land on the year axis (y = H-12) and crowd the seam text one column to its left.
-  if(currentIdx>=vs && currentIdx<=ve){
-    const cx = idxToX(currentIdx)+colW/2;
-    svg.appendChild(el('line',{x1:cx,x2:cx,y1:padT,y2:priceTop+priceH,stroke:TH().seam,'stroke-width':1,opacity:.45}));
-    if(span<=60) svg.appendChild(el('text',{x:cx+4,y:padT+20,'font-size':8.5,fill:TH().seam,'font-weight':700},'▲ Aug ’26 · live month'));
+  // current-month marker — the ONE month still in progress. Deliberately NOT a second vertical line:
+  // the seam above is already a cyan rule, and a second one a single column to its right reads as a
+  // duplicate seam rather than as a different object. So the live month is a highlighted COLUMN —
+  // a filled band over its own cell with a bright cap — which cannot be confused with the seam.
+  if(currentIdx>=vs && currentIdx<ve){
+    const x0 = idxToX(currentIdx), w = colW;
+    svg.appendChild(el('rect',{x:x0,y:padT,width:w,height:priceTop+priceH-padT,fill:TH().seam,opacity:.10}));
+    svg.appendChild(el('rect',{x:x0,y:padT,width:w,height:2.5,fill:TH().seam,opacity:.85}));
+    if(span<=60) svg.appendChild(el('text',{x:x0+w/2,y:padT+20,'font-size':8.5,fill:TH().seam,
+      'font-weight':700,'text-anchor':'middle'},'▲ Aug ’26 · LIVE'));
   }
 
   // shmita tie-through shading — all Shmita years in range (5775, 5782, and forward 5789)

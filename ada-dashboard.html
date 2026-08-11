@@ -376,9 +376,9 @@ const wyckoff = [
   {s:86, e:88, kind:'markup',  label:'Nov24-Jan25 election rally'},
   {s:88, e:99, kind:'markdown',label:'2025 markdown'},
   {s:99, e:105,kind:'markdown',label:'2025-26 continued markdown'},
-  {s:105,e:106,kind:'markdown', label:'live: Phase D markdown'},
-  {s:106,e:107,kind:'acc',      label:'live: Phase C springs — Jul 13 & Jul 28 ($0.15340), confirmed Jul 30'},
-  {s:107,e:108,kind:'markup',   label:'live: Phase E — stalled above the LPS; volume −75.9%, BUY 4 armed but unexecutable'},
+  {s:105,e:106,kind:'markdown', label:'tracked: Phase D markdown'},
+  {s:106,e:107,kind:'acc',      label:'tracked: Phase C springs — Jul 13 & Jul 28 ($0.15340), confirmed Jul 30'},
+  {s:107,e:108,kind:'markup',   label:'LIVE: Phase E — stalled above the LPS; volume −75.9%, BUY 4 armed but unexecutable'},
 ];
 const liveStartIdx = 105; // June 2026 — verified index, where the framework's real-time RECORD begins
 // currentIdx is a DIFFERENT thing and the two must not be conflated: liveStartIdx is where live tracking started
@@ -531,7 +531,7 @@ function render(){
   rows.forEach(row=>{
     if(row.key==='wyckoff'){
       svg.appendChild(el('text',{x:padL-8,y:row.top+row.h/2-4,'text-anchor':'end','font-size':11,fill:TH().rowLabel,'font-weight':600,'dominant-baseline':'middle'},'Wyckoff'));
-      svg.appendChild(el('text',{x:padL-8,y:row.top+row.h/2+10,'text-anchor':'end','font-size':8,fill:TH().subLabel,'dominant-baseline':'middle'},'retro→live'));
+      svg.appendChild(el('text',{x:padL-8,y:row.top+row.h/2+10,'text-anchor':'end','font-size':8,fill:TH().subLabel,'dominant-baseline':'middle'},'retro→tracked'));
       for(let i=Math.max(0,Math.floor(vs)); i<Math.min(N,Math.ceil(ve)); i++){
         const block=wyckoffLabelFor(i); if(!block) continue;
         const x0=idxToX(i); const isLive=i>=liveStartIdx;
@@ -738,15 +738,18 @@ function render(){
   if(liveStartIdx>=vs && liveStartIdx<=ve){
     const lx=idxToX(liveStartIdx);
     svg.appendChild(el('line',{x1:lx,x2:lx,y1:padT,y2:priceTop+priceH,stroke:TH().seam,'stroke-width':2,'stroke-dasharray':'5 3'}));
-    svg.appendChild(el('text',{x:lx+4,y:padT+9,'font-size':8.5,fill:TH().seam,'font-weight':700},'live record (Jun 12+)'));
+    svg.appendChild(el('text',{x:lx+4,y:padT+9,'font-size':8.5,fill:TH().seam,'font-weight':700},'tracked calls from Jun 12'));
   }
-  // current-month marker — the ONE month still in progress, distinct from the seam above.
-  // The label sits a line below the seam label and is suppressed when zoomed out, where it would
-  // otherwise land on the year axis (y = H-12) and crowd the seam text two columns to its left.
-  if(currentIdx>=vs && currentIdx<=ve){
-    const cx=idxToX(currentIdx)+colW/2;
-    svg.appendChild(el('line',{x1:cx,x2:cx,y1:padT,y2:priceTop+priceH,stroke:TH().seam,'stroke-width':1,opacity:.45}));
-    if(span<=60) svg.appendChild(el('text',{x:cx+4,y:padT+20,'font-size':8.5,fill:TH().seam,'font-weight':700},'▲ Aug ’26 · live month'));
+  // current-month marker — the ONE month still in progress. Deliberately NOT a second vertical line:
+  // the seam above is already a cyan rule, and a second one two columns to its right reads as a
+  // duplicate seam rather than as a different object. So the live month is a highlighted COLUMN —
+  // a filled band over its own cell with a bright cap — which cannot be confused with the seam.
+  if(currentIdx>=vs && currentIdx<ve){
+    const x0=idxToX(currentIdx), w=colW;
+    svg.appendChild(el('rect',{x:x0,y:padT,width:w,height:priceTop+priceH-padT,fill:TH().seam,opacity:.10}));
+    svg.appendChild(el('rect',{x:x0,y:padT,width:w,height:2.5,fill:TH().seam,opacity:.85}));
+    if(span<=60) svg.appendChild(el('text',{x:x0+w/2,y:padT+20,'font-size':8.5,fill:TH().seam,
+      'font-weight':700,'text-anchor':'middle'},'▲ Aug ’26 · LIVE'));
   }
 
   // Shmita tie-through shading — 5782 in full, plus the opening months of 5789 that fall inside this horizon
