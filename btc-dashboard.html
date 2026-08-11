@@ -290,7 +290,12 @@ const wyckoff = [
 // LIVE CELL COLOUR: stays accumulation because the PRIMARY read is still Phase B re-accumulation. The split is
 // UNCHANGED at 57/33 this session; 33% sits with the Phase C->D "tenth cap" alternate. The colour tracks the
 // leading read, never a resolved structure — and both reads still explain the identical fact pattern.
-const liveStartIdx = 150; // July 2026 (Jan 2014 base: 12*12 + 6)
+const liveStartIdx = 150; // July 2026 (Jan 2014 base: 12*12 + 6) — where the framework's real-time RECORD begins
+// currentIdx is a DIFFERENT thing and the two must not be conflated: liveStartIdx is where live tracking started,
+// currentIdx is the single month still in progress. Every month in [liveStartIdx, currentIdx) is a settled month
+// inside the live record — tracked in real time, but CLOSED. Only currentIdx is month-to-date and still moving,
+// so only currentIdx may carry the "LIVE" badge. Jul 2026 SETTLED at $62,898; Aug 2026 is the live month.
+const currentIdx = 151; // August 2026 — the month-to-date cell (Aug 9 settled close, Aug 10 candle excluded)
 
 // ── Aug 10, 2026 Market GPS (Session 37, CRE v2.1) level ladder — the framework's own references, not history ──
 // The ceiling's close-through rate is now 0 of 8 in the current regime (Jul 27 - Aug 9), Laplace-smoothed 10.0%,
@@ -561,11 +566,19 @@ function render(){
     }
   }
 
-  // live seam (if in view)
+  // live seam (if in view) — marks where the framework's real-time RECORD begins, not the current month
   if(liveStartIdx>=vs && liveStartIdx<=ve){
     const lx = idxToX(liveStartIdx);
     svg.appendChild(el('line',{x1:lx,x2:lx,y1:padT,y2:priceTop+priceH,stroke:TH().seam,'stroke-width':2,'stroke-dasharray':'5 3'}));
-    svg.appendChild(el('text',{x:lx+4,y:padT+9,'font-size':8.5,fill:TH().seam,'font-weight':700},'live (Jul 1+)'));
+    svg.appendChild(el('text',{x:lx+4,y:padT+9,'font-size':8.5,fill:TH().seam,'font-weight':700},'live record (Jul 1+)'));
+  }
+  // current-month marker — the ONE month still in progress, distinct from the seam above.
+  // The label sits a line below the seam label and is suppressed when zoomed out, where it would
+  // otherwise land on the year axis (y = H-12) and crowd the seam text one column to its left.
+  if(currentIdx>=vs && currentIdx<=ve){
+    const cx = idxToX(currentIdx)+colW/2;
+    svg.appendChild(el('line',{x1:cx,x2:cx,y1:padT,y2:priceTop+priceH,stroke:TH().seam,'stroke-width':1,opacity:.45}));
+    if(span<=60) svg.appendChild(el('text',{x:cx+4,y:padT+20,'font-size':8.5,fill:TH().seam,'font-weight':700},'▲ Aug ’26 · live month'));
   }
 
   // shmita tie-through shading — all Shmita years in range (5775, 5782, and forward 5789)
@@ -595,7 +608,8 @@ function showTip(e, idx){
   const mo = months[idx];
   const monthLabel = `${monthNames[mo.m]} ${mo.y}`;
   const block = wyckoffLabelFor(idx);
-  const isLive = idx>=liveStartIdx;
+  const isCurrent = idx===currentIdx;                       // the one month still in progress
+  const isTracked = idx>=liveStartIdx && idx<currentIdx;    // settled, but inside the live record
   const fngVal = fng[idx];
   const priceVal = price[idx];
   const isFuture = priceVal==null && idx>liveStartIdx;
@@ -603,8 +617,8 @@ function showTip(e, idx){
   const mercOn = merc.has(`${mo.y}-${mo.m}`);
   const shmOn = shmita.has(`${mo.y}-${mo.m}`);
   tooltip.innerHTML = `
-    <div style="margin-bottom:4px"><b>${monthLabel}</b>${isLive&&!isFuture?' <span style="color:#5ec8f0;font-size:9px">● LIVE</span>':''}${isFuture?' <span style="color:var(--txt2);font-size:9px">future</span>':''}</div>
-    <div class="tt-row"><span class="tt-label">Price</span><span>${priceVal==null?'no data yet':'$'+priceVal.toLocaleString('en-US')}</span></div>
+    <div style="margin-bottom:4px"><b>${monthLabel}</b>${isCurrent&&!isFuture?' <span style="color:#5ec8f0;font-size:9px">● LIVE · month-to-date</span>':''}${isTracked&&!isFuture?' <span style="color:var(--txt2);font-size:9px">tracked · settled</span>':''}${isFuture?' <span style="color:var(--txt2);font-size:9px">future</span>':''}</div>
+    <div class="tt-row"><span class="tt-label">${isCurrent?'Price (MTD)':'Price'}</span><span>${priceVal==null?'no data yet':'$'+priceVal.toLocaleString('en-US')}</span></div>
     ${state.layers.wyckoff && block ? `<div class="tt-row"><span class="tt-label">Wyckoff</span><span>${block.label}</span></div>`:''}
     ${state.layers.fng ? `<div class="tt-row"><span class="tt-label">F&amp;G</span><span>${fngVal==null?(isFuture?'n/a (future)':(mo.y>=2018?'not verified':'n/a (pre-2018)')):fngVal}</span></div>`:''}
     ${state.layers.mercury ? `<div class="tt-row"><span class="tt-label">Mercury</span><span>${mercOn?'Retrograde':'Direct'}</span></div>`:''}

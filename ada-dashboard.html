@@ -131,6 +131,11 @@
     <button class="theme-toggle" id="themeToggle">☀ Light</button>
   </div>
   <div class="ctrl-group">
+    <span class="ctrl-label">Bands</span>
+    <button class="toggle active" id="bandToggle" onclick="state.layers.bands=!state.layers.bands;this.classList.toggle('active');render();">Context Layer</button>
+    <button class="toggle" id="spineBtn" title="Spine is fixed at 24m. This peeks at the other spines to keep the sensitivity visible — it does not change the canonical read." onclick="SPINE=({'24':'36','36':'46','46':'24'})[SPINE];valBands=BANDSETS[SPINE];this.textContent=SPINE==='24'?'Spine 24m (canonical)':'peek: '+SPINE+'m — not canonical';this.classList.toggle('active',SPINE!=='24');render();">Spine 24m (canonical)</button>
+  </div>
+  <div class="ctrl-group">
     <span class="ctrl-label">Report</span>
     <a class="zoom-btn" href="ADA_monthly_map_aug10.html" style="text-decoration:none;">📊 Monthly Map (Aug 10)</a>
   </div>
@@ -141,6 +146,34 @@
     <svg id="chart" viewBox="0 0 1360 480"></svg>
   </div>
   <div class="tooltip" id="tooltip"></div>
+  <div style="border-top:1px solid var(--bord);margin-top:10px;padding:12px 4px 4px;">
+    <div style="font-size:10px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--txt2);margin-bottom:8px;">Context Layer · spine 24m fixed · <span style="color:var(--amber)">[MEASURED — DESCRIPTIVE, NO VOTE]</span></div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(232px,1fr));gap:9px;font-size:11.5px;line-height:1.55;">
+      <div style="background:var(--bg2);border:1px solid var(--bord);border-radius:9px;padding:9px 11px;">
+        <b>What this layer is.</b> A <b>measured position</b>, not a valuation. The bands are percentiles of the ratio price&divide;24-month mean over the 85 months that spine exists. Reading them tells you where price sits against its own two-year average — nothing about intrinsic worth. Names are percentile ranks for that reason; "Diamond / Undervalue" was removed because that language asserts a claim two separate tests could not support.
+      </div>
+      <div style="background:var(--bg2);border:1px solid var(--bord);border-radius:9px;padding:9px 11px;">
+        <b>Permitted / forbidden uses.</b> <b>May</b> be used for narrative context, regime framing, and as one input among several. <b>May not</b> be used as a Zone Layer anchor (Rule Z2), to set entries or exits, to adjust confidence or aggressiveness, or to appear anywhere as a signal. Status sits between the validated tiers and the zero-weight Shadow Layers: measured, descriptive, no vote.
+      </div>
+      <div style="background:var(--bg2);border:1px solid var(--bord);border-radius:9px;padding:9px 11px;">
+        <b>Spine fixed at 24 months — and why that one.</b> It covers 85 of 108 months, includes both the 2021 bull cycle and the markdown, and is the only spine whose walk-forward ordering holds at 3m and 6m. Chosen for <b>data coverage, not for the prettiest result</b> — it is also the spine whose lowest bucket rests on <b>e=1 independent episode</b>. The button peeks at 36m and 46m to keep the sensitivity in view; those reads are explicitly not canonical.
+      </div>
+      <div style="background:var(--bg2);border:1px solid var(--bord);border-radius:9px;padding:9px 11px;">
+        <b>Sensitivity, permanently displayed.</b> The August month-to-date close of $0.19459 reads <b>27th percentile</b> (24m spine, canonical) · <b>13th</b> (36m) · <b>12th</b> (46m). One price, three answers. Any statement drawn from this layer must carry its spine, because the spine choice moves the answer by 15 percentile points.
+      </div>
+      <div style="background:var(--bg2);border:1px solid var(--bord);border-radius:9px;padding:9px 11px;">
+        <b>&#9888; Warning flag — the p75&ndash;95 band.</b> The one cell that did <b>not</b> flip across any spine: the second-highest bucket returned <b>0% positive months</b> at both the 3-month and 6-month horizons (n=3&ndash;5, e=1&ndash;2). Far too small to be a sell signal, and it is <b>not</b> one. It is marked on the chart as a flag: if ADA enters that band, stop and examine rather than proceed on momentum.
+      </div>
+      <div style="background:var(--bg2);border:1px solid var(--bord);border-radius:9px;padding:9px 11px;">
+        <b>The two failed attempts, kept on the record.</b> (1) Price&divide;moving-average: ordering flips with spine length — 24m holds, 36m breaks, 46m holds only at 6m. A conclusion that depends on an arbitrary window is a window artifact. (2) <b>MVRV</b>, a genuinely price-independent cost-basis anchor: broken at 90d and 180d under every cut point; holds only at 365d where the value bucket is n=2, e=1. Neither supports a valuation claim for ADA.
+      </div>
+      <div style="background:var(--bg2);border:1px solid var(--bord);border-radius:9px;padding:9px 11px;">
+        <b>The same MVRV model held on BTC.</b> Identical construction, 15.9 years: monotone ordering holds at 90d, 180d and 365d with e=3&ndash;4 episodes. So the method is sound and <b>the asset is the constraint</b> — a measurable valuation regime exists for BTC and does not demonstrably exist for ADA. Two cross-asset refutations in one session; constructions do not port.
+      </div>
+      <div style="background:var(--bg2);border:1px solid var(--bord);border-radius:9px;padding:9px 11px;">
+        <b>Feed note.</b> Everything here derives from this dashboard's own audited monthly closes. The CoinMetrics ADA <i>price</i> series diverges +31% to +93% from that record and remains quarantined; MVRV was still testable because a systematic price scaling cancels inside a ratio. ADA's last MVRV observation was 0.581 = 23rd percentile of 8.5 years — reported as location only.
+      </div></div>
+  </div>
   <div class="hint">Drag/swipe to pan · pinch or scroll to zoom · tap or hover for values</div>
 </div>
 
@@ -164,6 +197,16 @@
   <span style="display:flex;align-items:center;gap:4px"><span style="display:inline-block;width:18px;border-top:2px dashed #8b8ff5"></span>5th / 95th percentile</span>
   <span style="display:flex;align-items:center;gap:4px"><span style="display:inline-block;width:18px;height:9px;background:rgba(99,102,241,.28);border-radius:2px"></span>central 50% (25th–75th)</span>
   <span style="display:flex;align-items:center;gap:4px"><span style="display:inline-block;width:18px;border-top:2px solid #6366f1"></span>median — flat, driftless by construction</span>
+</div>
+<div class="legend-row">
+  <span style="font-weight:700;color:var(--amber)">Context Layer <span style="font-weight:600;color:var(--txt2)">(percentiles of price ÷ 24-month mean · <b>measured, descriptive, no vote</b>)</span>:</span>
+  <span><i style="background:var(--dist);opacity:.55"></i>p95–100</span>
+  <span><i style="background:var(--markdown);opacity:.7"></i>⚠ p75–95 — flag, not a sell signal</span>
+  <span><i style="background:var(--amber);opacity:.45"></i>p25–75</span>
+  <span><i style="background:var(--markup);opacity:.6"></i>p5–25</span>
+  <span><i style="background:var(--acc);opacity:.65"></i>p0–5</span>
+  <span style="display:flex;align-items:center;gap:4px"><span style="display:inline-block;width:18px;border-top:2px dashed var(--amber)"></span>p50 median ratio</span>
+  <span style="color:var(--txt2)">Aug MTD $0.19459 = <b>27th pct</b> (24m) · 13th (36m) · 12th (46m)</span>
 </div>
 <div class="legend-row">
   <span style="font-weight:700;color:var(--amber)">Aug 10 levels:</span>
@@ -200,6 +243,49 @@
 // The horizon runs to Dec 2028 because that is the horizon of the Aug 10 monthly map itself — its volatility
 // cone and buy/sell calendar are specified all the way to Dec 2028, and the Apr 2028 halving is the next
 // dated cycle anchor after the Oct 2026 core window.
+// ── CONTEXT LAYER BANDS (recomputed Aug 10, 2026 · Aug MTD = $0.19459, the Aug 9 settled close) ──
+// spine fixed at 24m canonical; 36m/46m retained for the sensitivity peek only.
+// Percentiles are of the ratio price/spine over the months each spine exists. Forward months = null.
+// STATUS: [MEASURED — DESCRIPTIVE, NO VOTE]. Not a valuation; not a signal; not a Zone Layer anchor.
+const BANDSETS={
+  "24":{mult:[0.299, 0.384, 0.898, 1.473, 4.957],n:85,curRatio:0.4,curPct:27,
+    p5:[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,0.03704,0.03729,0.03754,0.03773,0.03723,0.02957,0.02367,0.02022,0.01764,0.01600,0.01539,0.01521,0.01558,0.01586,0.01620,0.01746,0.01922,0.02257,0.02786,0.04229,0.05869,0.07706,0.09401,0.11012,0.14096,0.16928,0.19590,0.21850,0.23476,0.24778,0.25890,0.26844,0.27576,0.28150,0.28621,0.29063,0.29492,0.29896,0.30189,0.30380,0.30461,0.30474,0.30337,0.29273,0.28004,0.26542,0.25068,0.23756,0.20938,0.18369,0.16030,0.14158,0.13218,0.12509,0.12012,0.11800,0.11601,0.11514,0.11421,0.11309,0.11147,0.11054,0.11079,0.11390,0.12229,0.13063,0.13424,0.13766,0.14039,0.14419,0.14848,0.15377,0.16030,0.16720,0.17119,0.17212,0.16957,0.16696,0.16347,0.15831,0.15495,0.15184,0.14884,0.14671,0.14515,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],
+    p25:[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,0.04762,0.04794,0.04826,0.04850,0.04786,0.03801,0.03043,0.02600,0.02267,0.02056,0.01979,0.01955,0.02003,0.02039,0.02083,0.02244,0.02471,0.02901,0.03581,0.05436,0.07544,0.09906,0.12085,0.14156,0.18121,0.21761,0.25183,0.28089,0.30179,0.31852,0.33282,0.34509,0.35449,0.36188,0.36793,0.37361,0.37913,0.38433,0.38808,0.39055,0.39159,0.39175,0.38999,0.37631,0.36000,0.34121,0.32226,0.30538,0.26916,0.23614,0.20607,0.18200,0.16992,0.16081,0.15441,0.15169,0.14913,0.14801,0.14681,0.14538,0.14330,0.14210,0.14242,0.14641,0.15721,0.16793,0.17256,0.17696,0.18048,0.18536,0.19088,0.19767,0.20607,0.21494,0.22006,0.22126,0.21798,0.21462,0.21015,0.20351,0.19919,0.19519,0.19134,0.18859,0.18659,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],
+    p50:[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,0.11138,0.11213,0.11287,0.11343,0.11194,0.08890,0.07117,0.06081,0.05303,0.04809,0.04628,0.04571,0.04684,0.04770,0.04871,0.05248,0.05780,0.06786,0.08375,0.12714,0.17644,0.23169,0.28264,0.33108,0.42380,0.50893,0.58898,0.65694,0.70583,0.74495,0.77839,0.80708,0.82907,0.84635,0.86051,0.87379,0.88669,0.89885,0.90764,0.91340,0.91583,0.91620,0.91209,0.88011,0.84196,0.79801,0.75369,0.71422,0.62950,0.55227,0.48195,0.42565,0.39741,0.37609,0.36113,0.35477,0.34879,0.34617,0.34337,0.34000,0.33514,0.33233,0.33308,0.34243,0.36768,0.39274,0.40359,0.41387,0.42210,0.43351,0.44641,0.46231,0.48195,0.50271,0.51468,0.51748,0.50981,0.50196,0.49149,0.47596,0.46586,0.45650,0.44750,0.44108,0.43639,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],
+    p75:[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,0.18273,0.18395,0.18518,0.18610,0.18365,0.14585,0.11676,0.09976,0.08700,0.07890,0.07592,0.07500,0.07684,0.07825,0.07991,0.08611,0.09482,0.11133,0.13741,0.20859,0.28947,0.38011,0.46370,0.54317,0.69529,0.83496,0.96628,1.07778,1.15798,1.22217,1.27703,1.32410,1.36018,1.38853,1.41176,1.43354,1.45471,1.47466,1.48908,1.49853,1.50252,1.50313,1.49638,1.44391,1.38132,1.30922,1.23650,1.17176,1.03277,0.90605,0.79068,0.69833,0.65200,0.61702,0.59248,0.58204,0.57223,0.56793,0.56333,0.55781,0.54983,0.54523,0.54645,0.56179,0.60322,0.64433,0.66213,0.67900,0.69250,0.71122,0.73239,0.75847,0.79068,0.82474,0.84438,0.84898,0.83640,0.82351,0.80633,0.78087,0.76430,0.74894,0.73417,0.72364,0.71594,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],
+    p95:[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,0.61507,0.61920,0.62333,0.62643,0.61817,0.49093,0.39302,0.33580,0.29284,0.26557,0.25556,0.25246,0.25865,0.26340,0.26898,0.28984,0.31918,0.37474,0.46253,0.70214,0.97438,1.27947,1.56087,1.82836,2.34042,2.81055,3.25259,3.62790,3.89788,4.11394,4.29860,4.45703,4.57849,4.67392,4.75210,4.82543,4.89670,4.96383,5.01237,5.04418,5.05761,5.05967,5.03695,4.86034,4.64965,4.40694,4.16217,3.94425,3.47639,3.04985,2.66152,2.35065,2.19469,2.07695,1.99433,1.95922,1.92617,1.91171,1.89621,1.87762,1.85077,1.83528,1.83941,1.89105,2.03048,2.16887,2.22878,2.28558,2.33102,2.39402,2.46529,2.55307,2.66152,2.77616,2.84226,2.85775,2.81540,2.77203,2.71419,2.62847,2.57270,2.52099,2.47130,2.43582,2.40992,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],
+  },
+  "36":{mult:[0.355, 0.492, 0.773, 1.554, 6.808],n:73,curRatio:0.419,curPct:13,
+    p5:[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,0.03494,0.03574,0.03657,0.03784,0.03889,0.03554,0.03524,0.04412,0.05536,0.06897,0.08209,0.09442,0.11854,0.14061,0.16134,0.17915,0.19199,0.20224,0.21087,0.21826,0.22377,0.22798,0.23155,0.23535,0.23938,0.24319,0.24615,0.24878,0.25087,0.25369,0.25699,0.26016,0.26340,0.26672,0.26863,0.27070,0.27218,0.27366,0.27559,0.27755,0.28154,0.28352,0.28401,0.27829,0.26921,0.25817,0.24756,0.23770,0.21600,0.19662,0.17867,0.16585,0.16171,0.16082,0.15816,0.15648,0.15608,0.15786,0.15944,0.16220,0.16545,0.16920,0.17196,0.17315,0.17448,0.17428,0.17310,0.17172,0.17004,0.16811,0.16683,0.16567,0.16508,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],
+    p25:[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,0.04844,0.04955,0.05071,0.05246,0.05392,0.04927,0.04886,0.06117,0.07676,0.09563,0.11382,0.13092,0.16435,0.19496,0.22370,0.24839,0.26619,0.28040,0.29237,0.30262,0.31025,0.31609,0.32105,0.32631,0.33190,0.33718,0.34129,0.34494,0.34784,0.35175,0.35631,0.36072,0.36520,0.36981,0.37246,0.37533,0.37738,0.37943,0.38210,0.38482,0.39036,0.39309,0.39378,0.38585,0.37326,0.35795,0.34325,0.32957,0.29949,0.27262,0.24773,0.22995,0.22421,0.22297,0.21928,0.21696,0.21641,0.21887,0.22106,0.22489,0.22940,0.23460,0.23843,0.24007,0.24191,0.24164,0.24000,0.23809,0.23576,0.23309,0.23130,0.22971,0.22888,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],
+    p50:[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,0.07609,0.07783,0.07966,0.08241,0.08470,0.07740,0.07676,0.09609,0.12058,0.15022,0.17879,0.20564,0.25816,0.30624,0.35139,0.39016,0.41813,0.44045,0.45925,0.47536,0.48735,0.49652,0.50430,0.51257,0.52136,0.52965,0.53609,0.54183,0.54638,0.55253,0.55970,0.56662,0.57366,0.58090,0.58506,0.58957,0.59279,0.59601,0.60020,0.60448,0.61318,0.61747,0.61855,0.60609,0.58633,0.56227,0.53917,0.51769,0.47044,0.42822,0.38913,0.36120,0.35218,0.35025,0.34445,0.34080,0.33994,0.34380,0.34724,0.35326,0.36034,0.36851,0.37452,0.37710,0.38000,0.37957,0.37699,0.37399,0.37033,0.36614,0.36333,0.36083,0.35953,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],
+    p75:[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,0.15293,0.15643,0.16010,0.16562,0.17024,0.15557,0.15427,0.19313,0.24235,0.30193,0.35935,0.41332,0.51888,0.61550,0.70625,0.78418,0.84039,0.88525,0.92303,0.95541,0.97950,0.99794,1.01358,1.03020,1.04786,1.06453,1.07748,1.08900,1.09816,1.11051,1.12493,1.13883,1.15299,1.16754,1.17589,1.18496,1.19144,1.19791,1.20633,1.21492,1.23241,1.24104,1.24320,1.21816,1.17844,1.13009,1.08367,1.04050,0.94552,0.86068,0.78210,0.72597,0.70784,0.70396,0.69230,0.68496,0.68323,0.69100,0.69791,0.71000,0.72425,0.74065,0.75274,0.75792,0.76375,0.76289,0.75771,0.75166,0.74432,0.73589,0.73025,0.72521,0.72260,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],
+    p95:[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,0.66990,0.68522,0.70130,0.72551,0.74574,0.68144,0.67577,0.84598,1.06157,1.32256,1.57409,1.81049,2.27289,2.69614,3.09368,3.43504,3.68127,3.87777,4.04325,4.18509,4.29062,4.37138,4.43989,4.51271,4.59006,4.66306,4.71979,4.77029,4.81038,4.86447,4.92764,4.98853,5.05056,5.11430,5.15089,5.19061,5.21898,5.24735,5.28422,5.32186,5.39845,5.43628,5.44573,5.33604,5.16205,4.95024,4.74693,4.55781,4.14174,3.77012,3.42592,3.18007,3.10064,3.08361,3.03255,3.00040,2.99284,3.02688,3.05714,3.11009,3.17250,3.24437,3.29732,3.32002,3.34555,3.34176,3.31907,3.29259,3.26044,3.22351,3.19881,3.17673,3.16530,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],
+  },
+  "46":{mult:[0.415, 0.51, 0.785, 1.22, 5.357],n:63,curRatio:0.451,curPct:12,
+    p5:[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,0.09422,0.10609,0.12864,0.14940,0.16840,0.17922,0.18680,0.19383,0.19996,0.20555,0.20997,0.21367,0.21714,0.22028,0.22364,0.22711,0.22983,0.23217,0.23397,0.23650,0.23918,0.24164,0.24400,0.24698,0.24909,0.25126,0.25320,0.25520,0.25761,0.26041,0.26546,0.26985,0.27425,0.27950,0.28291,0.28611,0.28864,0.29076,0.29269,0.29458,0.29620,0.29837,0.30243,0.30053,0.29395,0.28556,0.27763,0.27167,0.25454,0.24002,0.22739,0.21802,0.21152,0.20557,0.20070,0.19628,0.19285,0.19019,0.18776,0.18550,0.18275,0.18039,0.17907,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],
+    p25:[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,0.11589,0.13048,0.15821,0.18375,0.20712,0.22043,0.22974,0.23840,0.24594,0.25282,0.25825,0.26280,0.26707,0.27093,0.27505,0.27932,0.28267,0.28555,0.28777,0.29087,0.29418,0.29719,0.30010,0.30376,0.30636,0.30903,0.31142,0.31388,0.31684,0.32029,0.32649,0.33189,0.33730,0.34376,0.34796,0.35190,0.35500,0.35761,0.35999,0.36231,0.36431,0.36697,0.37196,0.36963,0.36153,0.35122,0.34146,0.33414,0.31306,0.29521,0.27968,0.26814,0.26016,0.25284,0.24685,0.24141,0.23720,0.23392,0.23093,0.22815,0.22476,0.22186,0.22025,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],
+    p50:[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,0.17840,0.20087,0.24356,0.28286,0.31884,0.33933,0.35367,0.36699,0.37860,0.38919,0.39756,0.40456,0.41113,0.41707,0.42342,0.43000,0.43516,0.43958,0.44299,0.44777,0.45286,0.45751,0.46198,0.46762,0.47161,0.47573,0.47940,0.48319,0.48775,0.49306,0.50261,0.51092,0.51925,0.52919,0.53565,0.54172,0.54650,0.55051,0.55418,0.55775,0.56082,0.56492,0.57260,0.56902,0.55655,0.54067,0.52565,0.51438,0.48194,0.45445,0.43054,0.41278,0.40049,0.38922,0.38000,0.37163,0.36514,0.36011,0.35550,0.35122,0.34601,0.34154,0.33905,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],
+    p75:[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,0.27720,0.31212,0.37845,0.43952,0.49542,0.52726,0.54954,0.57024,0.58828,0.60473,0.61773,0.62861,0.63882,0.64805,0.65792,0.66814,0.67615,0.68302,0.68833,0.69576,0.70366,0.71088,0.71784,0.72659,0.73280,0.73920,0.74490,0.75079,0.75787,0.76613,0.78096,0.79388,0.80682,0.82227,0.83231,0.84173,0.84916,0.85539,0.86109,0.86664,0.87141,0.87778,0.88972,0.88415,0.86478,0.84011,0.81676,0.79925,0.74884,0.70613,0.66898,0.64139,0.62229,0.60478,0.59045,0.57745,0.56737,0.55954,0.55238,0.54574,0.53763,0.53068,0.52683,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],
+    p95:[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,1.21681,1.37007,1.66122,1.92931,2.17470,2.31445,2.41228,2.50312,2.58231,2.65452,2.71158,2.75933,2.80417,2.84470,2.88802,2.93286,2.96803,2.99819,3.02148,3.05409,3.08880,3.12048,3.15102,3.18946,3.21671,3.24477,3.26981,3.29567,3.32676,3.36298,3.42808,3.48480,3.54163,3.60941,3.65349,3.69484,3.72745,3.75481,3.77985,3.80419,3.82516,3.85311,3.90551,3.88106,3.79604,3.68773,3.58525,3.50838,3.28711,3.09961,2.93656,2.81544,2.73159,2.65473,2.59184,2.53477,2.49052,2.45616,2.42472,2.39556,2.35997,2.32949,2.31256,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],
+  },
+};
+let SPINE='24';
+let valBands=BANDSETS[SPINE];
+
+// Which context band does month `idx` sit in? Returns null when the spine does not cover that month
+// or the month has no settled price. Percentile-rank names only — this reports a MEASURED POSITION
+// against ADA's own trailing mean, never a valuation claim.
+function bandOf(idx){
+  const v=price[idx]; if(v==null) return null;
+  const b=valBands; if(b.p5[idx]==null) return null;
+  if(v>=b.p95[idx]) return 'p95–100 (top 5%)';
+  if(v>=b.p75[idx]) return '\u26A0 p75–95';
+  if(v>=b.p25[idx]) return 'p25–75 (middle 50%)';
+  if(v>=b.p5[idx])  return 'p5–25 (next 20%)';
+  return 'p0–5 (bottom 5%)';
+}
+
 const yearNames=['2017','2018','2019','2020','2021','2022','2023','2024','2025','2026','2027','2028'];
 const monthsPerYear={2017:4}; // 2017 starts Sep (4 months: Sep-Dec); 2026-28 run full 12 (Sep'26+ is cone-only)
 const months=[];
@@ -294,7 +380,13 @@ const wyckoff = [
   {s:106,e:107,kind:'acc',      label:'live: Phase C springs — Jul 13 & Jul 28 ($0.15340), confirmed Jul 30'},
   {s:107,e:108,kind:'markup',   label:'live: Phase E — stalled above the LPS; volume −75.9%, BUY 4 armed but unexecutable'},
 ];
-const liveStartIdx = 105; // June 2026 — verified index, framework's real live tracking window
+const liveStartIdx = 105; // June 2026 — verified index, where the framework's real-time RECORD begins
+// currentIdx is a DIFFERENT thing and the two must not be conflated: liveStartIdx is where live tracking started
+// (Jun 12, 2026), currentIdx is the single month still in progress. Every month in [liveStartIdx, currentIdx) is
+// a settled month inside the live record — tracked in real time, but CLOSED. Only currentIdx is month-to-date and
+// still moving, so only currentIdx may carry the "LIVE" badge. Jun settled $0.1444 and Jul settled $0.16826;
+// Aug 2026 is the live month.
+const currentIdx = 107; // August 2026 — the month-to-date cell (Aug 9 settled close, Aug 10 candle excluded)
 
 // ── ADA forward distribution: the Aug 3, 2026 DRIFTLESS LOGNORMAL VOLATILITY CONE ──
 // This replaces the previous bull/base/bear scenario trajectory outright, and the replacement is not
@@ -401,7 +493,7 @@ function wyckoffLabelFor(monthIdx){
   return null;
 }
 
-const state = { layers: { wyckoff:true, shmita:true, mercury:true, fng:true, levels:true }, viewStart:0, viewEnd:N, scale:'log' };
+const state = { layers: { wyckoff:true, shmita:true, mercury:true, fng:true, levels:true, bands:true }, viewStart:0, viewEnd:N, scale:'log' };
 
 const NS='http://www.w3.org/2000/svg';
 function el(tag,attrs,text){const e=document.createElementNS(NS,tag);for(const k in attrs)e.setAttribute(k,attrs[k]);if(text!=null)e.textContent=text;return e;}
@@ -542,6 +634,55 @@ function render(){
     }
   }
 
+  // ── Context Layer: percentile bands of price ÷ 24-month mean ──────────────────────────────────────
+  // Drawn UNDER the price line and clipped to the plot, so it never rescales the y-axis or occludes price.
+  // These are percentile REGIONS, not valuation calls — the names are ranks for exactly that reason.
+  if(state.layers.bands){
+    const defs=el('defs',{}); const cp=el('clipPath',{id:'bandClip'});
+    cp.appendChild(el('rect',{x:padL,y:priceTop,width:plotW,height:priceH}));
+    defs.appendChild(cp); plotGroup.appendChild(defs);
+    const bandIdx=visIdx.filter(i=>valBands.p5[i]!=null);
+    if(bandIdx.length>1){
+      const fwd=(key)=>bandIdx.map(i=>`${px(i)},${py(valBands[key][i])}`).join(' ');
+      const rev=(key)=>[...bandIdx].reverse().map(i=>`${px(i)},${py(valBands[key][i])}`).join(' ');
+      const xL=px(bandIdx[0]), xR=px(bandIdx[bandIdx.length-1]);
+      const yTopPlot=priceTop-40, yBotPlot=priceTop+priceH+40;
+      const REGIONS=[
+        ['q5','top 5%',      `${xL},${yTopPlot} ${xR},${yTopPlot} ${rev('p95')}`, 'var(--dist)', .10],
+        ['q4','⚠ p75-95',`${fwd('p95')} ${rev('p75')}`,                       'var(--markdown)', .22],
+        ['q3','middle 50%',  `${fwd('p75')} ${rev('p25')}`,                       'var(--amber)', .10],
+        ['q2','next 20%',    `${fwd('p25')} ${rev('p5')}`,                        'var(--markup)', .16],
+        ['q1','bottom 5%',   `${fwd('p5')} ${xR},${yBotPlot} ${xL},${yBotPlot}`,  'var(--acc)', .20],
+      ];
+      for(const [id,name,ptsR,col,op] of REGIONS){
+        plotGroup.appendChild(el('polygon',{points:ptsR,fill:col,opacity:op,'clip-path':'url(#bandClip)','pointer-events':'none'}));
+      }
+      plotGroup.appendChild(el('polyline',{points:fwd('p50'),fill:'none',stroke:'var(--amber)','stroke-width':1.3,
+        'stroke-dasharray':'6 4',opacity:.85,'clip-path':'url(#bandClip)','pointer-events':'none'}));
+      // region names at the right edge, centred in each visible slice; slices under 15px are skipped
+      const lastI=bandIdx[bandIdx.length-1];
+      const edges=[Math.max(py(valBands.p95[lastI]),priceTop), py(valBands.p75[lastI]), py(valBands.p25[lastI]),
+                   py(valBands.p5[lastI]), Math.min(priceTop+priceH,yBotPlot)];
+      const tops=[priceTop, ...edges.slice(0,4)]; const bots=[...edges];
+      const names=['p95–100','⚠ p75–95','p25–75','p5–25','p0–5'];
+      const cols=['var(--dist)','var(--markdown)','var(--amber)','var(--markup)','var(--acc)'];
+      const vals=[`>$${valBands.p95[lastI].toFixed(2)}`,
+        `$${valBands.p75[lastI].toFixed(2)}–${valBands.p95[lastI].toFixed(2)}`,
+        `$${valBands.p25[lastI].toFixed(3)}–${valBands.p75[lastI].toFixed(2)}`,
+        `$${valBands.p5[lastI].toFixed(3)}–${valBands.p25[lastI].toFixed(3)}`,
+        `<$${valBands.p5[lastI].toFixed(3)}`];
+      for(let k=0;k<5;k++){
+        const t=Math.max(tops[k],priceTop), b=Math.min(bots[k],priceTop+priceH);
+        if(b-t<15) continue;
+        const ym=(t+b)/2;
+        plotGroup.appendChild(el('text',{x:padL+plotW-8,y:ym-2,fill:cols[k],'text-anchor':'end',
+          'font-size':'10.5','font-weight':'700','pointer-events':'none'},names[k]));
+        plotGroup.appendChild(el('text',{x:padL+plotW-8,y:ym+10,fill:cols[k],'text-anchor':'end',
+          'font-size':'8.5','font-family':'ui-monospace,monospace',opacity:.85,'pointer-events':'none'},vals[k]));
+      }
+    }
+  }
+
   let pts=visIdx.filter(i=>price[i]!=null).map(i=>`${px(i)},${py(price[i])}`).join(' ');
   if(pts){
     plotGroup.appendChild(el('polyline',{points:pts,fill:'none',stroke:TH().halo,'stroke-width':4,'stroke-linejoin':'round',opacity:0.7}));
@@ -593,10 +734,19 @@ function render(){
     }
   }
 
+  // live seam — marks where the framework's real-time RECORD begins, not the current month
   if(liveStartIdx>=vs && liveStartIdx<=ve){
     const lx=idxToX(liveStartIdx);
     svg.appendChild(el('line',{x1:lx,x2:lx,y1:padT,y2:priceTop+priceH,stroke:TH().seam,'stroke-width':2,'stroke-dasharray':'5 3'}));
-    svg.appendChild(el('text',{x:lx+4,y:padT+9,'font-size':8.5,fill:TH().seam,'font-weight':700},'live (Jun 12+)'));
+    svg.appendChild(el('text',{x:lx+4,y:padT+9,'font-size':8.5,fill:TH().seam,'font-weight':700},'live record (Jun 12+)'));
+  }
+  // current-month marker — the ONE month still in progress, distinct from the seam above.
+  // The label sits a line below the seam label and is suppressed when zoomed out, where it would
+  // otherwise land on the year axis (y = H-12) and crowd the seam text two columns to its left.
+  if(currentIdx>=vs && currentIdx<=ve){
+    const cx=idxToX(currentIdx)+colW/2;
+    svg.appendChild(el('line',{x1:cx,x2:cx,y1:padT,y2:priceTop+priceH,stroke:TH().seam,'stroke-width':1,opacity:.45}));
+    if(span<=60) svg.appendChild(el('text',{x:cx+4,y:padT+20,'font-size':8.5,fill:TH().seam,'font-weight':700},'▲ Aug ’26 · live month'));
   }
 
   // Shmita tie-through shading — 5782 in full, plus the opening months of 5789 that fall inside this horizon
@@ -626,7 +776,8 @@ function showTip(e, idx){
   const mo=months[idx];
   const monthLabel=`${monthNames[mo.m%12]} ${mo.y}`;
   const block=wyckoffLabelFor(idx);
-  const isLive=idx>=liveStartIdx;
+  const isCurrent=idx===currentIdx;                      // the one month still in progress
+  const isTracked=idx>=liveStartIdx && idx<currentIdx;   // settled, but inside the live record
   const fngVal=fng[idx];
   const priceVal=price[idx];
   const isFuture=priceVal==null && idx>liveStartIdx;
@@ -640,8 +791,9 @@ function showTip(e, idx){
   // places would silently round the settled closes the gates are judged on. Trailing zeros are trimmed.
   function fmtPrice(v){ return v<1 ? v.toPrecision(5).replace(/(\.\d*?)0+$/,'$1').replace(/\.$/,'') : v.toFixed(2); }
   tooltip.innerHTML=`
-    <div style="margin-bottom:4px"><b>${monthLabel}</b>${isLive&&!isFuture?' <span style="color:#5ec8f0;font-size:9px">● LIVE</span>':''}${isFuture?' <span style="color:var(--txt2);font-size:9px">future</span>':''}</div>
-    <div class="tt-row"><span class="tt-label">Price</span><span>${priceVal==null?'no data yet':'$'+fmtPrice(priceVal)}</span></div>
+    <div style="margin-bottom:4px"><b>${monthLabel}</b>${isCurrent&&!isFuture?' <span style="color:#5ec8f0;font-size:9px">● LIVE · month-to-date</span>':''}${isTracked&&!isFuture?' <span style="color:var(--txt2);font-size:9px">tracked · settled</span>':''}${isFuture?' <span style="color:var(--txt2);font-size:9px">future</span>':''}</div>
+    <div class="tt-row"><span class="tt-label">${isCurrent?'Price (MTD)':'Price'}</span><span>${priceVal==null?'no data yet':'$'+fmtPrice(priceVal)}</span></div>
+    ${state.layers.bands && bandOf(idx) ? `<div class="tt-row"><span class="tt-label" style="color:var(--amber)">Context band</span><span>${bandOf(idx)}</span></div>`:''}
     ${state.layers.wyckoff && block ? `<div class="tt-row"><span class="tt-label">Wyckoff</span><span>${block.label}</span></div>`:''}
     ${state.layers.fng ? `<div class="tt-row"><span class="tt-label">F&amp;G</span><span>${fngVal==null?(isFuture?'n/a (future)':(mo.y>=2018?'not verified':'n/a')):fngVal}</span></div>`:''}
     ${state.layers.mercury ? `<div class="tt-row"><span class="tt-label">Mercury</span><span>${mercOn?'Retrograde':'Direct'}</span></div>`:''}
@@ -665,7 +817,10 @@ function showTip(e, idx){
   tooltip.style.left=left+'px'; tooltip.style.top=top+'px'; tooltip.style.display='block';
 }
 
-document.querySelectorAll('button.toggle').forEach(btn=>{
+// Only data-layer buttons are driven here. The Context Layer and Spine buttons also carry class="toggle"
+// for styling but handle themselves inline, so without this guard they would double-toggle their own
+// 'active' class and write a junk state.layers[null] key.
+document.querySelectorAll('button.toggle[data-layer]').forEach(btn=>{
   btn.addEventListener('click',()=>{
     const layer=btn.getAttribute('data-layer');
     state.layers[layer]=!state.layers[layer];
