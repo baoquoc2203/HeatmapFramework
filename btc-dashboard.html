@@ -303,13 +303,19 @@ const currentIdx = 151; // August 2026 — the month-to-date cell (Aug 11 settle
 // across ELEVEN failed intraday pokes. The new fact this session is that the market STOPPED REACHING the level:
 // Aug 11's high stopped $497.37 short of the gate, the first session since Aug 4 not to touch it. The 20d SMA is
 // now a CONFIRMED sub-mean state (two consecutive closes below), not a pending one.
+// TIER = how loudly this level should speak, ranked by the decision it actually informs right now.
+//   1 = decision-critical (the live trigger and the hard invalidation) — solid, bright, always labelled
+//   2 = structural (this session's change, and what comes next if 1 breaks) — dashed, dim
+//   3 = distant, resolved, or a scoring object rather than a level — dotted, faint, deep-zoom labels only
+// `tag` is painted on the chart; `label` is the full sentence, kept verbatim and moved to the line's
+// native hover title. The same text also appears in the "Aug 12 Levels layer" paragraph below the chart.
 const levelLines = [
-  {p:66964, kind:'res',  label:'$66,964 · Jul 21 range high'},
-  {p:65411, kind:'res',  label:'$65,411 · Jul 31 upthrust high — NEVER reclaimed on a settled close; the Band A boundary'},
-  {p:65000, kind:'gate', label:'$65,000 · CEILING / BUY 4 gate — 11 failed pokes; close-through rate 0 of 9 since Jul 27 (Laplace 9.1%); Aug 11 stopped $497 SHORT, first miss since Aug 4'},
-  {p:64185, kind:'res',  label:'$64,185 · 20-day SMA — LOST: Aug 10 closed 0.52% below, Aug 11 0.92% below = confirmed sub-mean state (2 of 2)'},
-  {p:61821, kind:'res',  label:'$61,821 · Jul 13 terminal spring low — first target if the floor fails on closes'},
-  {p:57803, kind:'res',  label:'$57,803 · Jul 1 cycle low — FR-A008 reference, 10.96% below live (gap closing)'},
+  {p:66964, kind:'res',  tier:3, tag:'Jul 21 range high',   label:'$66,964 · Jul 21 range high'},
+  {p:65411, kind:'res',  tier:3, tag:'upthrust high',       label:'$65,411 · Jul 31 upthrust high — NEVER reclaimed on a settled close; the Band A boundary (posterior 3%)'},
+  {p:65000, kind:'gate', tier:1, tag:'GATE / BUY 4 · 0 of 9',label:'$65,000 · CEILING / BUY 4 gate — 11 failed pokes; close-through rate 0 of 9 since Jul 27 (Laplace 9.1%); Aug 11 stopped $497 SHORT, first miss since Aug 4'},
+  {p:64185, kind:'res',  tier:2, tag:'20d SMA · LOST',      label:'$64,185 · 20-day SMA — LOST: Aug 10 closed 0.52% below, Aug 11 0.92% below = confirmed sub-mean state (2 of 2)'},
+  {p:61821, kind:'res',  tier:2, tag:'spring low',          label:'$61,821 · Jul 13 terminal spring low — first target if the floor fails on closes'},
+  {p:57803, kind:'res',  tier:2, tag:'cycle low · FR-A008', label:'$57,803 · Jul 1 cycle low — FR-A008 reference, 10.96% below live (gap closing)'},
 ];
 
 // ── Zone Layer v1 (NEW in CRE v2.1) — registered, immutable, scoreable price zones ──
@@ -330,8 +336,11 @@ const zoneLayer = [
   {id:'BTC_0002', lo:57057, hi:57571, dist:'−11.05%', horizon:'S / C', state:'WATCHING'},
 ];
 const levelZones = [
-  {lo:62457, hi:62589, kind:'sup', label:'$62,457–62,589 · FLOOR — 29 straight settled closes above, 0 breaches; Aug 11 low came within 1.23%, closest since Aug 3; 2 closes below $62,457 = HARD INVALIDATION (0 of 2), now 0.86 ATR away'},
-  ...zoneLayer.map(z=>({lo:z.lo, hi:z.hi, kind:'zone',
+  {lo:62457, hi:62589, kind:'sup', tier:1, tag:'FLOOR · 0 of 2', label:'$62,457–62,589 · FLOOR — 29 straight settled closes above, 0 breaches; Aug 11 low came within 1.23%, closest since Aug 3; 2 closes below $62,457 = HARD INVALIDATION (0 of 2), now 0.86 ATR away'},
+  // Zone Layer bands are tier 3 BY CONSTRUCTION, not because they are unimportant: the framework
+  // registers them as scoring objects rather than trading levels, so they must never compete visually
+  // with a level you would actually act on. All three are WATCHING and 11-15% away.
+  ...zoneLayer.map(z=>({lo:z.lo, hi:z.hi, kind:'zone', tier:3, tag:`ZONE ${z.id.replace('BTC_','')} · ${z.dist}`,
     label:`ZONE_${z.id} · $${z.lo.toLocaleString('en-US')}–${z.hi.toLocaleString('en-US')} · ${z.dist} · ${z.horizon} · ${z.state} — registered & immutable, untouched`})),
 ];
 // Cycle-timing thesis: autumn 2026 (core Oct–Nov) highest-conviction bottom window
@@ -499,23 +508,40 @@ function render(){
   if(state.layers.levels){
     const yTop=priceTop, yBot=priceTop+priceH;
     const showLabels = span<=40; // labels only when zoomed in enough to read them
-    // The Aug 12 ladder plus three Zone Layer bands pack many references together, so labels are collected first
-    // and spread apart vertically before drawing. Each label carries its own price, so a small nudge off
-    // the line cannot be misread; drawing them at their raw y renders the cluster illegible.
+    // TIERED DRAWING, matching the ADA dashboard. The old version painted all ten references at identical
+    // weight with the full analytical sentence as the label — up to 192 characters each — which stacked ten
+    // strings into the gutter and made the cluster unreadable. Now line weight encodes the decision and only
+    // a short tag is painted; the full sentence moves to the element's native hover title.
+    const STYLE = {
+      1:{w:1.7, op:0.95, dash:null,  fs:8.6, tOp:1,    minSpan:40},
+      2:{w:1.0, op:0.50, dash:'6 4', fs:7.6, tOp:0.82, minSpan:40},
+      3:{w:1.0, op:0.24, dash:'2 4', fs:7.4, tOp:0.55, minSpan:18}, // distant / scoring objects: deep zoom only
+    };
+    const lvlNum = v => '$'+v.toLocaleString('en-US');
     const labels = [];
+    const withTitle = (node, text) => { const t=el('title',{}); t.textContent=text; node.appendChild(t); return node; };
     levelZones.forEach(z=>{
+      const st=STYLE[z.tier]||STYLE[2];
       let y1=py(z.hi), y2=py(z.lo);
       if(y2<yTop || y1>yBot) return;
       y1=Math.max(y1,yTop); y2=Math.min(y2,yBot);
-      // registered Zone Layer bands sit at lower opacity than the floor — they are scoring objects, not levels
-      plotGroup.appendChild(el('rect',{x:padL,y:y1,width:plotW,height:Math.max(y2-y1,1.5),fill:lvlColor(z.kind),opacity:z.kind==='zone'?0.16:0.10,'pointer-events':'none'}));
-      if(showLabels) labels.push({y:(y1+y2)/2+2.5, p:(z.lo+z.hi)/2, kind:z.kind, text:z.label});
+      // tier-1 band gets a stronger fill plus edge rules so the floor reads as a zone, not a smear;
+      // registered Zone Layer bands stay dim — they are scoring objects, not levels.
+      plotGroup.appendChild(withTitle(el('rect',{x:padL,y:y1,width:plotW,height:Math.max(y2-y1,1.5),
+        fill:lvlColor(z.kind),opacity:z.tier===1?0.20:0.12,style:'cursor:help'}), z.label));
+      if(z.tier===1) [y1,y2].forEach(yy=>plotGroup.appendChild(el('line',{x1:padL,x2:padL+plotW,y1:yy,y2:yy,
+        stroke:lvlColor(z.kind),'stroke-width':1.2,opacity:0.8,'pointer-events':'none'})));
+      if(showLabels && span<=st.minSpan) labels.push({y:(y1+y2)/2+2.5, p:(z.lo+z.hi)/2, kind:z.kind, text:z.tag, st,
+        ptext:lvlNum(z.lo)+'–'+z.hi.toLocaleString('en-US')}); // the BAND, never a synthetic midpoint
     });
     levelLines.forEach(L=>{
+      const st=STYLE[L.tier]||STYLE[2];
       const y=py(L.p);
       if(y<yTop||y>yBot) return;
-      plotGroup.appendChild(el('line',{x1:padL,x2:padL+plotW,y1:y,y2:y,stroke:lvlColor(L.kind),'stroke-width':1,'stroke-dasharray':'6 4',opacity:0.75,'pointer-events':'none'}));
-      if(showLabels) labels.push({y:y-3, p:L.p, kind:L.kind, text:L.label});
+      const attrs={x1:padL,x2:padL+plotW,y1:y,y2:y,stroke:lvlColor(L.kind),'stroke-width':st.w,opacity:st.op,style:'cursor:help'};
+      if(st.dash) attrs['stroke-dasharray']=st.dash;
+      plotGroup.appendChild(withTitle(el('line',attrs), L.label));
+      if(showLabels && span<=st.minSpan) labels.push({y:y-3, p:L.p, kind:L.kind, text:L.tag, st, ptext:lvlNum(L.p)});
     });
     // greedy top-down spread: enforce a minimum vertical gap, then clamp back inside the plot.
     // Sort by PRICE, not by the offset label y — the +2.5/-3 nudges are larger than the gap between
@@ -527,8 +553,9 @@ function render(){
     const overflow = labels.length ? labels[labels.length-1].y-(yBot-3) : 0;
     if(overflow>0) labels.forEach(L=>{ L.y-=overflow; });
     labels.forEach(L=>{
-      plotGroup.appendChild(el('text',{x:padL+plotW-6,y:Math.max(L.y,yTop+8),'text-anchor':'end','font-size':7.8,
-        fill:lvlColor(L.kind),'font-weight':700,'pointer-events':'none'},L.text));
+      // price first, then the tag — so the numbers stay scannable down a single column
+      plotGroup.appendChild(el('text',{x:padL+plotW-6,y:Math.max(L.y,yTop+8),'text-anchor':'end','font-size':L.st.fs,
+        fill:lvlColor(L.kind),'font-weight':700,opacity:L.st.tOp,'pointer-events':'none'},L.ptext+'  '+L.text));
     });
     if(autumnEnd>vs && autumnStart<ve){
       const x0=idxToX(Math.max(autumnStart,vs)), x1=idxToX(Math.min(autumnEnd,ve));
