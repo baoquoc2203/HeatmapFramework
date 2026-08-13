@@ -448,16 +448,23 @@ function coneProbs(idx){
 // $0.19 BUY 3 gate and the $0.1885 LPS are no longer support beneath price, they are overhead levels that were
 // LOST and BROKEN on Aug 11. Every upside gate is now above price. $0.1690 (the Jul 27 spring shelf) returns to
 // the ladder as the next structural reference below the EMA band.
+// TIER = how much this level should shout, ranked by the decision it actually informs TONIGHT.
+//   1 = decision-critical (the live test and the hard invalidation) — solid, bright, always labelled
+//   2 = structural (what comes next if 1 breaks)                    — dashed, dim
+//   3 = distant / already resolved                                  — dotted, faint, labelled only on deep zoom
+// `tag` is what gets painted on the chart. `label` is the full sentence, kept verbatim and moved to the
+// line's native hover title, so nothing is lost — it simply stops being printed over the plot. The same
+// text also already appears in the "Aug 12 Levels layer" paragraph below the chart.
 const levelLines = [
-  {p:0.2231,  kind:'res',   label:'$0.2231 · 100-day MA — distant overhead reference'},
-  {p:0.21156, kind:'res',   label:'$0.21156 · CAMPAIGN HIGH set Aug 6 — now +16.1% away, price 13.90% below it'},
-  {p:0.1900,  kind:'gate',  label:'$0.1900 · BUY 3 gate — LOST Aug 11, the seven-close run ended (+4.3% overhead)'},
-  {p:0.1690,  kind:'res',   label:'$0.1690 · Jul 27 spring shelf — next structural support if the EMA band fails (−7.2%)'},
-  {p:0.1596,  kind:'hard',  label:'$0.1596 · THESIS STOP — 2 consecutive closes below = full exit · 0 of 2 (−12.4%), NOT threatened'},
-  {p:0.1480,  kind:'hard',  label:'$0.1480 · DEATH LEVEL — the bear threshold of the monthly probability bands (−18.8%)'},
+  {p:0.2231,  kind:'res',  tier:3, tag:'100d MA',            label:'$0.2231 · 100-day MA — distant overhead reference'},
+  {p:0.21156, kind:'res',  tier:3, tag:'campaign high',      label:'$0.21156 · CAMPAIGN HIGH set Aug 6 — now +16.1% away, price 13.90% below it'},
+  {p:0.1900,  kind:'gate', tier:3, tag:'BUY 3 gate · LOST',  label:'$0.1900 · BUY 3 gate — LOST Aug 11, the seven-close run ended (+4.3% overhead). Superseded as the upside reference by $0.1885, which is the re-arm level.'},
+  {p:0.1690,  kind:'res',  tier:2, tag:'spring shelf',       label:'$0.1690 · Jul 27 spring shelf — next structural support if the EMA band fails (−7.2%)'},
+  {p:0.1596,  kind:'hard', tier:1, tag:'THESIS STOP · 0 of 2',label:'$0.1596 · THESIS STOP — 2 consecutive closes below = full exit · 0 of 2 (−12.4%), NOT threatened'},
+  {p:0.1480,  kind:'hard', tier:2, tag:'death level',        label:'$0.1480 · DEATH LEVEL — the bear threshold of the monthly probability bands (−18.8%)'},
 ];
 const levelZones = [
-  {lo:0.1810, hi:0.1885, kind:'sup', label:'$0.1810–0.1885 · 50-day EMA band — $0.1885 LPS BROKEN Aug 11 on expanding volume (bear trigger fired, +3.5% overhead); $0.1810 is the LIVE TEST, live low $0.18184 only 0.46% above it'},
+  {lo:0.1810, hi:0.1885, kind:'sup', tier:1, tag:'EMA band · LIVE TEST', label:'$0.1810–0.1885 · 50-day EMA band — $0.1885 LPS BROKEN Aug 11 on expanding volume (bear trigger fired, +3.5% overhead); $0.1810 is the LIVE TEST, live low $0.18184 only 0.46% above it'},
 ];
 // Oct 4-17, 2026 core deployment window (month 29 post-halving, from the 363-376 day post-peak interval
 // off BTC's Oct 6, 2025 top). Shaded across Oct-Nov 2026 to match the BTC dashboard's autumn window.
@@ -600,35 +607,57 @@ function render(){
   if(state.layers.levels){
     const yTop=priceTop, yBot=priceTop+priceH;
     const showLabels = span<=40; // labels only when zoomed in enough to read them
-    // ADA's ladder clusters far more tightly in log space than BTC's, so labels are collected first and
-    // spread apart vertically before drawing. Each label carries its own price, so a small nudge off the
-    // line cannot be misread; drawing them at their raw y would render the $0.1480-$0.1900 group illegible.
+    // TIERED DRAWING. The old version painted all seven levels at identical weight with the full
+    // analytical sentence as the label — 49 to 182 characters each — which stacked twelve strings into
+    // 66px of gutter and made the whole group unreadable. Now the line weight encodes the decision and
+    // only a short tag is painted; the full sentence moves to the line's native hover title.
+    const STYLE = {
+      1:{w:1.7, op:0.95, dash:null,  fs:8.6, tOp:1,    minSpan:40},
+      2:{w:1.0, op:0.50, dash:'6 4', fs:7.6, tOp:0.82, minSpan:40},
+      3:{w:1.0, op:0.24, dash:'2 4', fs:7.4, tOp:0.55, minSpan:18}, // distant/resolved: deep zoom only
+    };
+    // 5 significant digits, the same rule fmtPrice() uses in the tooltip: the reports quote $0.21156
+    // and $0.15340, so 4 digits would silently round the levels the gates are judged on.
+    const lvlNum = v => v.toPrecision(5).replace(/(\.\d*?)0+$/,'$1').replace(/\.$/,'');
     const labels = [];
+    const withTitle = (node, text) => { const t=el('title',{}); t.textContent=text; node.appendChild(t); return node; };
     levelZones.forEach(z=>{
+      const st=STYLE[z.tier]||STYLE[2];
       let y1=py(z.hi), y2=py(z.lo);
       if(y2<yTop || y1>yBot) return;
       y1=Math.max(y1,yTop); y2=Math.min(y2,yBot);
-      plotGroup.appendChild(el('rect',{x:padL,y:y1,width:plotW,height:Math.max(y2-y1,1.5),fill:lvlColor(z.kind),opacity:0.10,'pointer-events':'none'}));
-      if(showLabels) labels.push({y:(y1+y2)/2+2.5, p:(z.lo+z.hi)/2, kind:z.kind, text:z.label});
+      // tier-1 band gets a visible fill plus edge rules so the live test reads as a zone, not a smear
+      plotGroup.appendChild(withTitle(el('rect',{x:padL,y:y1,width:plotW,height:Math.max(y2-y1,1.5),
+        fill:lvlColor(z.kind),opacity:z.tier===1?0.20:0.10,style:'cursor:help'}), z.label));
+      if(z.tier===1) [y1,y2].forEach(yy=>plotGroup.appendChild(el('line',{x1:padL,x2:padL+plotW,y1:yy,y2:yy,
+        stroke:lvlColor(z.kind),'stroke-width':1.2,opacity:0.8,'pointer-events':'none'})));
+      if(showLabels && span<=st.minSpan) labels.push({y:(y1+y2)/2+2.5, p:(z.lo+z.hi)/2, kind:z.kind, text:z.tag, st,
+        ptext:lvlNum(z.lo)+'–'+lvlNum(z.hi)}); // the BAND, never a synthetic midpoint
     });
     levelLines.forEach(L=>{
+      const st=STYLE[L.tier]||STYLE[2];
       const y=py(L.p);
       if(y<yTop||y>yBot) return;
-      plotGroup.appendChild(el('line',{x1:padL,x2:padL+plotW,y1:y,y2:y,stroke:lvlColor(L.kind),'stroke-width':1,'stroke-dasharray':'6 4',opacity:0.75,'pointer-events':'none'}));
-      if(showLabels) labels.push({y:y-3, p:L.p, kind:L.kind, text:L.label});
+      const attrs={x1:padL,x2:padL+plotW,y1:y,y2:y,stroke:lvlColor(L.kind),'stroke-width':st.w,opacity:st.op,style:'cursor:help'};
+      if(st.dash) attrs['stroke-dasharray']=st.dash;
+      plotGroup.appendChild(withTitle(el('line',attrs), L.label));
+      if(showLabels && span<=st.minSpan) labels.push({y:y-3, p:L.p, kind:L.kind, text:L.tag, st, ptext:lvlNum(L.p)});
     });
     // greedy top-down spread: enforce a minimum vertical gap, then clamp back inside the plot.
-    // Sort by PRICE, not by the offset label y — the +2.5/-3 nudges exceed the gap between adjacent
-    // levels here (the $0.1810-0.1885 band sits 0.8% off $0.1900) and would invert their order.
-    const GAP=10.5; // 7.8px type single-spaces at ~9.4; 10.5 keeps the dense $0.148-$0.19 group readable
+    // Sort by PRICE, not by the offset label y — the nudges exceed the gap between adjacent levels here
+    // (the $0.1810-0.1885 band sits 0.8% off $0.1900) and would invert their order.
+    const GAP=10.5;
     labels.sort((a,b)=>b.p-a.p);
     let prev=-Infinity;
     labels.forEach(L=>{ L.y=Math.max(L.y, prev+GAP); prev=L.y; });
     const overflow = labels.length ? labels[labels.length-1].y-(yBot-3) : 0;
     if(overflow>0) labels.forEach(L=>{ L.y-=overflow; });
     labels.forEach(L=>{
-      plotGroup.appendChild(el('text',{x:padL+plotW-6,y:Math.max(L.y,yTop+8),'text-anchor':'end','font-size':7.8,
-        fill:lvlColor(L.kind),'font-weight':700,'pointer-events':'none'},L.text));
+      const y=Math.max(L.y,yTop+8);
+      // price first in mono, then the tag — so the number is scannable down a column
+      plotGroup.appendChild(el('text',{x:padL+plotW-6,y,'text-anchor':'end','font-size':L.st.fs,
+        fill:lvlColor(L.kind),'font-weight':700,opacity:L.st.tOp,'pointer-events':'none'},
+        '$'+L.ptext+'  '+L.text));
     });
     if(autumnEnd>vs && autumnStart<ve){
       const x0=idxToX(Math.max(autumnStart,vs)), x1=idxToX(Math.min(autumnEnd,ve));
@@ -674,14 +703,17 @@ function render(){
         `$${valBands.p25[lastI].toFixed(3)}–${valBands.p75[lastI].toFixed(2)}`,
         `$${valBands.p5[lastI].toFixed(3)}–${valBands.p25[lastI].toFixed(3)}`,
         `<$${valBands.p5[lastI].toFixed(3)}`];
+      // Anchored LEFT, not right. These name full-width horizontal regions so the side is arbitrary —
+      // and the right gutter is already spoken for by the level ladder. Splitting the two systems onto
+      // opposite edges is what removes the collision, rather than shrinking either of them.
       for(let k=0;k<5;k++){
         const t=Math.max(tops[k],priceTop), b=Math.min(bots[k],priceTop+priceH);
-        if(b-t<15) continue;
+        if(b-t<22) continue; // needs room for both lines, else the pair overlaps its neighbour
         const ym=(t+b)/2;
-        plotGroup.appendChild(el('text',{x:padL+plotW-8,y:ym-2,fill:cols[k],'text-anchor':'end',
-          'font-size':'10.5','font-weight':'700','pointer-events':'none'},names[k]));
-        plotGroup.appendChild(el('text',{x:padL+plotW-8,y:ym+10,fill:cols[k],'text-anchor':'end',
-          'font-size':'8.5','font-family':'ui-monospace,monospace',opacity:.85,'pointer-events':'none'},vals[k]));
+        plotGroup.appendChild(el('text',{x:padL+8,y:ym-2,fill:cols[k],
+          'font-size':'10.5','font-weight':'700',opacity:.9,'pointer-events':'none'},names[k]));
+        plotGroup.appendChild(el('text',{x:padL+8,y:ym+10,fill:cols[k],
+          'font-size':'8.5','font-family':'ui-monospace,monospace',opacity:.7,'pointer-events':'none'},vals[k]));
       }
     }
   }
@@ -704,18 +736,18 @@ function render(){
     const band = visT.map(i=>`${px(i)},${py(conePct(i,0.6745))}`)
       .concat(visT.slice().reverse().map(i=>`${px(i)},${py(conePct(i,-0.6745))}`)).join(' ');
     plotGroup.appendChild(el('polygon',{points:band,fill:TH().coneBand,opacity:0.10,'pointer-events':'none'}));
-    // Cone labels sit at the LEFT end of the cone, clear of the level ladder's right-anchored labels.
-    const firstI = visT[0];
-    [[1.645,'P95'],[-1.645,'P05']].forEach(([z,name])=>{
+    // No in-chart P95/P05/median captions. The legend row already decodes the cone (dashed = 5th/95th,
+    // filled = central 50%, solid flat = median) and the tooltip gives the exact percentiles for the month
+    // under the cursor — so those three strings were duplicating the legend from inside the busiest part
+    // of the plot. Removing them costs no information and clears the cone's left end entirely.
+    [1.645,-1.645].forEach(z=>{
       const p = visT.map(i=>`${px(i)},${py(conePct(i,z))}`).join(' ');
       plotGroup.appendChild(el('polyline',{points:p,fill:'none',stroke:TH().coneEdge,'stroke-width':1.4,
         'stroke-linejoin':'round','stroke-dasharray':'5 3',opacity:0.8}));
-      plotGroup.appendChild(el('text',{x:px(firstI)+4,y:py(conePct(firstI,z))+(z>0?-4:9),'font-size':8,fill:TH().coneEdge,'font-weight':700,'pointer-events':'none'},name));
     });
     const med = visT.map(i=>`${px(i)},${py(CONE_SPOT)}`).join(' ');
     plotGroup.appendChild(el('polyline',{points:med,fill:'none',stroke:TH().halo,'stroke-width':3.5,'stroke-linejoin':'round',opacity:0.6}));
     plotGroup.appendChild(el('polyline',{points:med,fill:'none',stroke:TH().coneMid,'stroke-width':2,'stroke-linejoin':'round',opacity:0.9}));
-    plotGroup.appendChild(el('text',{x:px(firstI)+4,y:py(CONE_SPOT)-4,'font-size':8,fill:TH().coneMid,'font-weight':700,'pointer-events':'none'},'median (flat)'));
   }
 
   let acc=0;
@@ -749,8 +781,10 @@ function render(){
   // a filled band over its own cell with a bright cap — which cannot be confused with the seam.
   if(currentIdx>=vs && currentIdx<ve){
     const x0=idxToX(currentIdx), w=colW;
-    svg.appendChild(el('rect',{x:x0,y:padT,width:w,height:priceTop+priceH-padT,fill:TH().seam,opacity:.10}));
-    svg.appendChild(el('rect',{x:x0,y:padT,width:w,height:2.5,fill:TH().seam,opacity:.85}));
+    // pointer-events OFF: this band spans the full plot height over the live month, so without it the
+    // highlight swallows hover on that month's own price dot and its tooltip can never open.
+    svg.appendChild(el('rect',{x:x0,y:padT,width:w,height:priceTop+priceH-padT,fill:TH().seam,opacity:.10,'pointer-events':'none'}));
+    svg.appendChild(el('rect',{x:x0,y:padT,width:w,height:2.5,fill:TH().seam,opacity:.85,'pointer-events':'none'}));
     if(span<=60) svg.appendChild(el('text',{x:x0+w/2,y:padT+20,'font-size':8.5,fill:TH().seam,
       'font-weight':700,'text-anchor':'middle'},'▲ Aug ’26 · LIVE'));
   }
