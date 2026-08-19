@@ -103,7 +103,7 @@
   <img src="cardano-logo.svg" class="ada-logo" style="width:26px;height:26px;object-fit:contain;">
   ADA Framework Dashboard — Interactive
 </h1>
-<div class="meta">Crypto Reconnaissance Engine · <b>Sep 2017 → Aug 2026 live</b> (Aug 12 level ladder &amp; driftless volatility cone to Dec 2028) · drag to pan, scroll/pinch to zoom, hover/tap for values, toggle layers below</div>
+<div class="meta">Crypto Reconnaissance Engine · <b>Sep 2017 → Aug 2026 live</b> (Aug 19 level ladder &amp; driftless volatility cone to Dec 2028) · drag to pan, scroll/pinch to zoom, hover/tap for values, toggle layers below</div>
 
 <div class="controls">
   <div class="ctrl-group">
@@ -112,7 +112,7 @@
     <button class="toggle active" data-layer="shmita">Shmita</button>
     <button class="toggle active" data-layer="mercury">Mercury Rx</button>
     <button class="toggle active" data-layer="fng">Fear &amp; Greed</button>
-    <button class="toggle active" data-layer="levels">Aug 12 Levels</button>
+    <button class="toggle active" data-layer="levels">Aug 19 Levels</button>
   </div>
   <div class="ctrl-group">
     <span class="ctrl-label">Zoom</span>
@@ -137,7 +137,7 @@
   </div>
   <div class="ctrl-group">
     <span class="ctrl-label">Report</span>
-    <a class="zoom-btn" href="ADA_monthly_map_aug12.html" style="text-decoration:none;">📊 Monthly Map (Aug 12)</a>
+    <a class="zoom-btn" href="ADA_Market_GPS_Aug_19_2026.txt" style="text-decoration:none;">📊 Market GPS (Aug 19)</a>
   </div>
 </div>
 
@@ -159,7 +159,7 @@
         <b>Spine fixed at 24 months — and why that one.</b> It covers 85 of 108 months, includes both the 2021 bull cycle and the markdown, and is the only spine whose walk-forward ordering holds at 3m and 6m. Chosen for <b>data coverage, not for the prettiest result</b> — it is also the spine whose lowest bucket rests on <b>e=1 independent episode</b>. The button peeks at 36m and 46m to keep the sensitivity in view; those reads are explicitly not canonical.
       </div>
       <div style="background:var(--bg2);border:1px solid var(--bord);border-radius:9px;padding:9px 11px;">
-        <b>Sensitivity, permanently displayed.</b> As computed on <b>Aug 10</b>, the then month-to-date close of $0.19459 read <b>27th percentile</b> (24m spine, canonical) · <b>13th</b> (36m) · <b>12th</b> (46m). One price, three answers — any statement drawn from this layer must carry its spine, because the spine choice moves the answer by 15 percentile points. <b>Aug MTD has since fallen to $0.18705</b>; the chart bands and the hover read update with it, but the <i>exact</i> percentile rank is <b>not recomputable</b> from the five published cut points — it needs the full ratio distribution — so no refreshed rank is quoted rather than one being estimated. The band the current close sits in is shown on hover.
+        <b>Sensitivity, permanently displayed.</b> As computed on <b>Aug 10</b>, the then month-to-date close of $0.19459 read <b>27th percentile</b> (24m spine, canonical) · <b>13th</b> (36m) · <b>12th</b> (46m). One price, three answers — any statement drawn from this layer must carry its spine, because the spine choice moves the answer by 15 percentile points. <b>Aug MTD has since fallen to $0.17457</b>; the chart bands and the hover read update with it, but the <i>exact</i> percentile rank is <b>not recomputable</b> from the five published cut points — it needs the full ratio distribution — so no refreshed rank is quoted rather than one being estimated. The band the current close sits in is shown on hover.
       </div>
       <div style="background:var(--bg2);border:1px solid var(--bord);border-radius:9px;padding:9px 11px;">
         <b>&#9888; Warning flag — the p75&ndash;95 band.</b> The one cell that did <b>not</b> flip across any spine: the second-highest bucket returned <b>0% positive months</b> at both the 3-month and 6-month horizons (n=3&ndash;5, e=1&ndash;2). Far too small to be a sell signal, and it is <b>not</b> one. It is marked on the chart as a flag: if ADA enters that band, stop and examine rather than proceed on momentum.
@@ -193,7 +193,7 @@
   <span><i style="background:#2f6fb0"></i>Extreme greed</span>
   <span style="margin-left:12px"><i style="background:var(--amber)"></i>Mercury Rx / Shmita (on)</span>
   <span><i style="background:#1a1d24;border:1px solid #5ec8f0"></i>ADA price</span>
-  <span style="margin-left:8px;border-left:1px solid var(--bord);padding-left:12px;font-weight:700;color:var(--amber)">Aug 12 cone:</span>
+  <span style="margin-left:8px;border-left:1px solid var(--bord);padding-left:12px;font-weight:700;color:var(--amber)">Aug 19 cone:</span>
   <span style="display:flex;align-items:center;gap:4px"><span style="display:inline-block;width:18px;border-top:2px dashed #8b8ff5"></span>5th / 95th percentile</span>
   <span style="display:flex;align-items:center;gap:4px"><span style="display:inline-block;width:18px;height:9px;background:rgba(99,102,241,.28);border-radius:2px"></span>central 50% (25th–75th)</span>
   <span style="display:flex;align-items:center;gap:4px"><span style="display:inline-block;width:18px;border-top:2px solid #6366f1"></span>median — flat, driftless by construction</span>
@@ -209,19 +209,20 @@
   <span style="color:var(--txt2)">sensitivity as computed Aug 10 on the then-MTD $0.19459: <b>27th pct</b> (24m) · 13th (36m) · 12th (46m)</span>
 </div>
 <div class="legend-row">
-  <span style="font-weight:700;color:var(--amber)">Aug 12 levels:</span>
-  <span><i style="background:rgba(224,168,63,.5)"></i>$0.1900 BUY 3 gate — LOST Aug 11, now overhead</span>
-  <span><i style="background:rgba(91,191,134,.5)"></i>$0.1810–0.1885 50-day EMA band — $0.1885 LPS BROKEN, $0.1810 is the live test</span>
-  <span><i style="background:rgba(224,129,95,.5)"></i>$0.2231 100-day MA · $0.21156 campaign high · $0.1690 spring shelf · $0.1596 thesis stop · $0.1480 death level</span>
+  <span style="font-weight:700;color:var(--amber)">Aug 19 levels:</span>
+  <span><i style="background:rgba(224,168,63,.5)"></i>$0.1900 BUY 3 RE-ENTRY gate — 2 closes above, +7.74%</span>
+  <span><i style="background:rgba(224,168,63,.5)"></i>$0.173 BUY 2 stop — DEFENDED by the Aug 18 Spring, 0 of 2</span>
+  <span><i style="background:rgba(91,191,134,.5)"></i>ADA-Z006 $0.1900–0.1997 — registered, WATCHING</span>
+  <span><i style="background:rgba(224,129,95,.5)"></i>$0.21156 campaign high · $0.18 BUY 3 stop (fired) · $0.17562 0.618 fib · $0.1596 thesis stop · $0.1480 death level</span>
   <span><i style="background:rgba(91,191,134,.25)"></i>Oct–Nov '26 core window</span>
 </div>
 
 <div class="src-note">
-  <b>What's real:</b> ADA price = real monthly closes, anchored to public price history (launch ~$0.02 Sep'17, 2019 high $0.0977, 2020 year-end >$0.19, ATH $3.09 Sep'21, 2023 year-end high $0.6655, late-2024 pop >$1.00, Jun 2026 closed $0.1444 (−38.7%, rev2-audited), <b>Jul 2026 SETTLED at $0.16826 = +16.52%</b>, and Aug 2026 is <b>month-to-date $0.18705</b>, the Aug 11 settled close — <b>+11.17% on the month</b>, down from +19.56% at the Aug 6 peak), as of the Aug 12, 2026 monthly map (session established 11:18 UTC). The live Aug 12 candle — spot <b>$0.18216</b>, 12h41m remaining — is <b>excluded from every determination</b> and is plotted nowhere; it is used only as the anchor of the forward cone, exactly as the report uses it. Drawdown is <b>−93.9%</b> from the $3.09 ATH. <b>Fear &amp; Greed shown here is the crypto-market-wide index (BTC-driven)</b> — there is no separate, established ADA-specific fear/greed index, so this row reflects overall crypto sentiment, not an ADA-only signal; July carries <b>28 (Fear)</b>, the last attributable print (Jul 29), and August is blank — the BTC thread has now carried the provenance as <b>unresolved for an eighth session</b> with no reading attributed and no adjustment taken in either direction. Nothing is plotted for August because nothing is attributable. Mercury = real astronomical retrograde windows. Shmita = real Hebrew-calendar release years: <b>5782 (Sep'21–Sep'22)</b>, notably the <b>same year as ADA's own all-time high</b> — visually striking but still n=1 — and the opening months of <b>5789 (from Sep 21, 2028)</b>, plotted forward as calendar only.
-  <b>Wyckoff row:</b> retrospective phase labeling derived month-by-month from ADA's own price line — <b>not</b> a backtest of your framework, which only began live ADA tracking Jun 12, 2026 (cyan dashed seam). Left of the seam is independent structural reading of known history; right of it is the framework's actual reported calls: <b>Phase E, failing</b>. <b>The pre-committed bear trigger has fired, and both legs cleanly.</b> The rule, stated verbatim in the Aug 6, 7 and 10 reports, was <i>a settled close below $0.1885 on volume expanding versus the prior session</i>. Aug 11 closed <b>$0.18705</b> — 0.77% below the LPS — on <b>9.42M with volume expanding 18.3%</b>, and clear of the ±0.15% void band by 0.62 points, so the determination is unambiguous. <b>The stall resolved down.</b> The volume turn is the whole event: 23.77M (Aug 6) → 13.04M → 5.66M → 5.73M → <b>7.96M → 9.42M</b>. The Aug 8–9 lull was thin and uninformative and the framework declined to read it either way at the time; Aug 10 and Aug 11 changed that, with volume expanding <b>40.7% then 66.4%</b> off the trough <i>while price fell</i>. Sellers are pressing, not merely absent — the difference between a stall and distribution, and it took two sessions of confirming volume to establish. <b>Six consecutive lower closes</b> — 0.20117 → 0.20079 → 0.19953 → 0.19459 → 0.19084 → <b>0.18705</b> — have given back <b>7.02% in five sessions</b> and put price <b>13.90% below the Aug 6 campaign high</b>. The <b>$0.19 BUY 3 gate is lost</b> and the <b>$0.1885 LPS is broken</b>. Composite confidence falls to <b>54/100</b> from 63; aggressiveness <b>3/10</b>, down from 5. <b>The live cell keeps its markup tint because the report does not declare a phase transition</b> — it says Phase E <i>failing</i>, and a reclaim of $0.1885 on a settled close would re-establish the LPS and make this a deep back-test rather than a failure. Read the label, not the colour.
-  <b>BUY 4 is now DISARMED, and the reserve conflict has resolved itself the hard way.</b> The LPS that armed BUY 4 on Aug 6 has failed, so the entry signal is <b>invalidated rather than merely unexecutable</b> — the four-session standoff over how to size a tranche the framework had no capital policy for has been settled by the signal dying, not by a decision. The book stays at <b>75% deployed with 25% powder</b>, and the <b>Oct 4–17 core window is now 53–66 days out</b>. <b>The level that matters is tonight's.</b> Live price sits at <b>$0.18216</b>, just <b>0.64% above the $0.1810 EMA band low</b>, with the live low already at $0.18184 — 0.46% above it. That is the lower edge of the 50-day EMA band price cleared on Aug 2 to trigger the entire markup: a settled close below it puts the whole Aug 2 breakout in question and leaves the <b>$0.1690 spring shelf</b> as the next structural reference, 7.2% lower. <b>The re-arm condition is $0.1885, not $0.19</b> — a settled close back above the LPS would reclassify this as a deep back-test. Hard invalidation is unchanged at <b>two consecutive settled closes below $0.1596</b>, <b>0 of 2</b> and 12.38% below live, <b>not threatened</b>. Prohibited this session and stated explicitly: <b>no exit on the trigger, no averaging down into a fired bear signal, no action on the live Aug 12 candle</b> — the two-close rule stays symmetric. <b>The blocking item is now materially worse:</b> the <b>BUY 1 fill price is unresolved for a 27th session</b>, and at the Aug 11 close it is the difference between <b>−1.03%</b> ($0.189 basis) and <b>+6.89%</b> ($0.175 basis) — the spread has become the difference between a losing and a winning tranche, not merely a magnitude. BUY 2 marks <b>−1.36%</b> and BUY 3 <b>−3.41%</b>, both worse at live: three tranches, two underwater, 75% deployed at an average entry above current price.
-  <b>Maximum exposure into a fired bear signal.</b> The largest position of the campaign is still held with the stop <b>12.38% below spot</b>, and the <b>stop decision is now partly moot at its 7th session</b>: the $0.1885 candidate has been broken and $0.1810 is being tested, leaving <b>$0.1690</b> (the spring shelf, −7.2%) as the remaining defensible candidate — it would tighten open risk from 12.38% to 7.2%. Framework change, <b>your call</b>. <b>The bull read is now the minority case, and its terms are precise:</b> price is unwinding a vertical move on market-wide risk-off rather than ADA-specific news, the Jul 27 spring low at $0.15340 and the $0.1690 shelf both remain far below, and Aug MTD is still <b>+11.17%</b>. <b>What would confirm it:</b> a settled close back above $0.1885. <b>What would kill it:</b> a settled close below $0.1810. <b>Cross-asset risk has tightened sharply.</b> BTC closed <b>$63,592.62</b> on Aug 11 and sits $63,535 live, having fallen 2.01% over two sessions after three closes spanning 0.09%; the <b>$62,457 cross-asset kill level is now only 1.73% below</b>, against 3.56% two sessions ago — <b>the tightest since Aug 3</b> — and it fires on two consecutive closes below, count 0 of 2. <b>ADA/BTC is at 2.8671</b>, down 8.32% from the Aug 6 peak but still <b>+8.62% above the Jul 22 level</b>, so ADA's relative gain from this campaign has not been erased. <b>The register is about to record a genuinely bad score, and that is the design working.</b> <b>F-ADA-0004</b> is tracking <b>BEAR</b>, the branch it assigned 29%: under the wider bands adopted Aug 10 a bear resolution scores <b>0.8486</b>, worse than the 0.6667 uniform reference, for a skill score of <b>−0.273</b> — against 0.2886 and +0.567 had it resolved neutral. That asymmetry was stated explicitly when the bands were adopted ("a wrong bull call costs 1.1486… that is what committing looks like"), and committing means the register can now record a bad score rather than hedging its way to mediocrity. Separately <b>F-ADA-0002 has become a live boundary risk</b> — its BULL/NEUTRAL edge is $0.1810 and live price is 0.64% above it, so a <b>VOID</b> resolution is plausible; it is <b>flagged 16 days ahead</b> so it cannot later look like a post-hoc escape.
-  <b>Aug 12 cone (Sep 2026 → Dec 2028):</b> the previous Bull/Base/Bear scenario lines are <b>gone, not re-based</b>. They were hand-drawn cycle-shaped forward paths, and the Aug 3 report retired exactly that construct by name — assuming a recovery drift "is exactly where invented forward targets enter a report". What replaces them is the report's own method: a <b>driftless lognormal cone</b> anchored at the <b>$0.18216</b> spot, whose <b>median is flat by construction</b> because no drift is assumed, with all the information in the widening bands. Realized daily σ is <b>2.98%</b> (n=34 log returns, Jul 8 – Aug 11, broadly stable), annualising to <b>57.0%</b> and reaching <b>88.0% by Dec 2028</b> (872 days). It is computed here from σ rather than transcribed, so the band, the tooltip percentiles and the probability split cannot drift apart. Hover any forecast month for its 5th/25th/75th/95th percentiles and its split against the two <b>fixed</b> campaign thresholds — BULL ≥ $0.19 (the BUY 3 gate), BEAR &lt; $0.1480 (the death level). <b>The cone's direction changed this session, and the reason is arithmetic rather than a change of view.</b> Spot has fallen back <i>below</i> the $0.19 threshold, so <b>the August bull bucket drops from 59% to 37% in two sessions</b> and the near months no longer read majority-bull — August now computes roughly <b>37% bull / 57% neutral / 6% bear</b>. Neutral decays from <b>57% in Aug 2026 to 11% by Dec 2028</b> as the distribution widens against fixed thresholds. That is the same mechanism that produced the majority-bull reading two sessions ago, working in reverse: a consequence of price crossing a line fixed in advance, <b>not conviction in either direction</b>. The threshold is unchanged for a <b>sixth consecutive map</b> — moving it <i>down</i> now that price has fallen through it would be exactly the goalpost-shifting the fixed-threshold rule exists to prevent, just as moving it up would have been. <b>These are month-end distributions, not price targets</b>, and the shaded Oct–Nov 2026 band is the <b>core deployment window</b> (Oct 4–17, month 29 post-halving, from the 363–376 day post-peak interval off BTC's Oct 6 2025 top) — a planned action, not a forecast — now <b>53–66 days out</b>. Dated events inside the horizon: the <b>Senate's five-week recess from Aug 10</b>, returning Sep 14 with the first CLARITY cloture vote <b>Sep 15</b> and 2026 passage priced at <b>21%</b>; the <b>Sep 15–16 FOMC</b>; and the <b>Apr 2028 halving</b>.
+  <b>What's real:</b> ADA price = real monthly closes, anchored to public price history (launch ~$0.02 Sep'17, 2019 high $0.0977, 2020 year-end >$0.19, ATH $3.09 Sep'21, 2023 year-end high $0.6655, late-2024 pop >$1.00, Jun 2026 closed $0.1444, <b>Jul 2026 SETTLED at $0.16826 = +16.52%</b>, and Aug 2026 is <b>month-to-date $0.17457</b>, the Aug 18 settled close &mdash; <b>+3.75% on the month</b>, down from +19.56% at the Aug 7 peak), as of the Aug 19, 2026 Market GPS session (established 14:57 UTC, <b>CRE v2.1</b>). The live Aug 19 candle &mdash; spot <b>$0.176346</b> &mdash; is <b>excluded from every determination</b> and is plotted nowhere; it is used only as the anchor of the forward distribution, exactly as the report uses it. <b>The Aug 18 close was cross-verified</b>: Crypto.com $0.17457 against CoinGecko $0.174402, a spread of 0.10%, and both sit above $0.173 &mdash; so the determination that the level held does not depend on the feed. <b>Fear &amp; Greed shown here is the crypto-market-wide index (BTC-driven)</b> &mdash; there is no separate, established ADA-specific index, so this row is macro backdrop, not an ADA signal; July carries <b>28 (Fear)</b>, the last attributable print, and August stays <b>blank</b>: the only reading available is <b>27 from Aug 2, now seventeen days stale and tagged UNVALIDATED</b>, and the BTC thread still reports the provenance as unresolved with no attributed reading. Nothing is plotted for August because nothing current is attributable. Mercury = real astronomical retrograde windows. Shmita = real Hebrew-calendar release years: <b>5782 (Sep'21&ndash;Sep'22)</b>, the same year as ADA's own all-time high &mdash; visually striking but still n=1 &mdash; and the opening months of <b>5789 (from Sep 21, 2028)</b>, plotted forward as calendar only.
+  <b>Wyckoff row:</b> retrospective phase labeling derived month-by-month from ADA's own price line &mdash; <b>not</b> a backtest of your framework, which only began live ADA tracking Jun 12, 2026 (cyan dashed seam). Left of the seam is independent structural reading of known history; right of it is the framework's actual reported calls: <b>Phase D &mdash; a Spring at $0.173</b>. <b>The eleven-session decline streak broke, and it broke on a Spring at the last remaining structure.</b> Aug 18 printed O $0.17434, H $0.17699, <b>L $0.17126</b>, C <b>$0.17457</b>: it swept a full <b>1.01% below</b> the $0.173 breakout level and then <b>reclaimed it</b>, closing 0.91% above, on <b>7.90M &mdash; the heaviest volume since Aug 13</b> and expanding cleanly through the sequence 4.92M &rarr; 6.01M &rarr; 6.57M &rarr; <b>7.90M</b>. That is the first higher close in twelve sessions. Aug 19 has extended to $0.17650 on a <b>higher low of $0.17334</b>, the 0.618 retracement at $0.17562 is reclaimed, and the stop cushion has been restored from <b>+0.47% to +1.93%</b>. <b>And the framework's own base-rate library says that is worth nothing yet.</b> Spring and reversal <i>event days</i> carry <b>no edge</b> &mdash; 47% positive forward-30d against a 55% baseline &mdash; so the edge lives entirely in the confirmation window, and under the event-day neutrality rule this registers as <b>&ldquo;setup detected, edge pending&rdquo;</b>: not a bottom, not a signal, and explicitly not grounds for adding. That library was built in July precisely so a good-looking reversal day could not talk the framework into a position. <b>The live cell is tinted markdown because the report's own cycle map places the location at Phase D</b>, with the Spring as an event inside it rather than a resolved transition. Read the label, not the colour.
+  <b>The position structure changed: the BUY 3 stop fired and the book is now half size.</b> The <b>$0.18 BUY 3 stop FIRED on Aug 15</b> and is realized, so the ladder is <b>BUY 1 + BUY 2 at half size</b> rather than three tranches deployed. Confidence is now reported <b>per horizon class and not blended</b>: <b>T (48h&ndash;7d) 50/100</b> &mdash; improving but unconfirmed, with the streak broken, the Spring at the last structure, volume expanding into the reclaim and a higher low on Aug 19, against which ADA still lags BTC's bounce and one reclaim is not a confirmation window; <b>S (1&ndash;6 weeks) 47/100</b> &mdash; neutral-bearish, because $0.19 remains broken and 7.74% overhead and two weeks of structural damage is not undone by two sessions; <b>C (quarterly) 59/100</b> &mdash; unchanged with BTC strong and the Oct&ndash;Nov window intact on <b>75% dry powder untouched</b>. <b>Aggressiveness is pinned at 2/10 and that is the whole story of the session.</b> Every read improved &mdash; streak broken, Spring confirmed, cushion nearly quadrupled, 0.618 fib reclaimed, BTC at multi-week highs &mdash; and the natural move is to raise deployment appetite. The base-rate library forbids it: raising size on the <i>event</i> rather than the <i>confirmation</i> is precisely the error the event-day neutrality rule exists to prevent. Risk profile improves to <b>Medium-High from High</b>. <b>The levels that now govern:</b> two consecutive settled closes below <b>$0.173</b> reduces BUY 2 to quarter size &mdash; <b>0 of 2</b>, cushion <b>+1.93%</b>; two settled closes above <b>$0.19</b> re-enters BUY 3, <b>+7.74% overhead</b> and required to be a fresh structure rather than a relief rally; hard invalidation is unchanged at two consecutive closes below <b>$0.1596</b>, <b>0 of 2</b> with cushion +10.49%, and the death level at $0.1480 sits +19.15% away. Cross-asset: the BTC leg would need a close below <b>$59,129</b>, remote against $65,736. <b>The blocking item is unchanged and now at 30 sessions:</b> the BUY 1 fill price is still unresolved, and with one tranche realized and the position at half size, that number is the difference between knowing and guessing what this campaign has cost.
+  <b>The alternate read is mandatory and still live.</b> Primary is the Spring / terminal shakeout at $0.173 &mdash; swept, reclaimed, expanding volume, higher low, 0.618 fib recovered. <b>Alternate: a dead-cat bounce inside a confirmed markdown</b> &mdash; $0.19 is broken and 7.74% overhead, ADA underperformed BTC even on the bounce, and <b>two sessions do not reverse eleven</b>. It confirms bearish on two closes below $0.173. <b>The relative-strength layer turned first for the third time, and was formally ignored for the third time.</b> ADA/BTC now reads <b>2.6992</b>, and the campaign's entire relative outperformance has been surrendered &mdash; from +18.48% at the Aug 6 peak to <b>+2.27%</b> above the Jul 22 baseline. It moved ahead of price on Aug 6, again on Aug 10, and again into this week: <b>three for three, each time while formally excluded from moving any parameter</b> for want of a pre-registered test. The report states the process remains correct but that the cost is now visible enough that computing the test on history should become the next piece of work rather than a standing note. <b>The macro backdrop reversed in ADA's favour and it still lagged.</b> BTC is <b>$65,904.75 with a high of $65,972.86, its best level since late July</b> &mdash; a genuinely supportive tape, and a reversal of the "supportive tape, ADA falling anyway" configuration flagged one session earlier as the most bearish possible setup. ADA nonetheless trailed the bounce by <b>0.72pp</b>: improved, but not resolved. <b>Volatility is still coiled, and the expansion has not actually happened.</b> &sigma;<sub>10d</sub> has ticked only from 16.7% to <b>18.9% annualised</b> against &sigma;<sub>20d</sub> <b>55.5%</b> &mdash; still a <b>2.9&times; compression</b>. The prior session called this a coil resolving into expansion with <i>direction unspecified</i>; it is resolving upward so far, but the coil has barely unwound, so two green sessions must not be read as the release. <b>Tier 3.5 is dark for an eleventh session</b>, and notably no order-book read was taken this session <i>on purpose</i>: with $0.173 now 1.93% below spot and the depth span about 1%, the decision level has moved back outside the book, so a pull would have been a micro read rather than an informative one.
+  <b>Aug 19 distribution (Sep 2026 &rarr; Dec 2028):</b> the previous Bull/Base/Bear scenario lines are <b>gone, not re-based</b> &mdash; they were hand-drawn cycle-shaped forward paths, and the framework retired exactly that construct by name, because assuming a recovery drift is where invented forward targets enter a report. What replaces them is the report's own method: a <b>driftless lognormal cone</b> anchored at the <b>$0.176346</b> spot, whose <b>median is flat by construction</b> because no drift is assumed, with all the information in the widening bands. Realized <b>&sigma;<sub>20d</sub> is 2.905% per day</b>, giving a 7-day &sigma; of <b>7.69%</b>. <b>This is computed here from &sigma; rather than transcribed, and it was verified against the report's own published bands rather than only its prose:</b> the same two inputs reproduce all five of its 7-day boundaries exactly &mdash; p05 <b>$0.1554</b>, p25 <b>$0.1674</b>, p50 <b>$0.1763</b>, p75 <b>$0.1857</b>, p95 <b>$0.2001</b> &mdash; so the band, the tooltip percentiles and the probability split cannot drift apart from each other or from the source. The report's own 7-day probability ladder reads <b>9% below $0.1554 &middot; 18% $0.1554&ndash;0.1674 &middot; 24% $0.1674&ndash;0.1763 &middot; 24% $0.1763&ndash;0.1857 &middot; 15% $0.1857&ndash;0.2001 &middot; 5% above $0.2001</b>, with a mandatory <b>5% residual</b> for structural or model failure. <b>One caveat the report states against its own distribution, and it is the important one:</b> empirically, 7-day moves have exceeded &plusmn;13.5% in <b>35% of cases (n=20) against the 10% a lognormal predicts</b> &mdash; <b>the tails remain materially understated</b>, so the band should be read as a floor on dispersion rather than a description of it. Hover any forward month for its 5th/25th/75th/95th percentiles and its split against the two <b>fixed</b> thresholds &mdash; BULL &ge; $0.19, which is now also the BUY 3 re-entry gate, and BEAR &lt; $0.1480, the death level. Spot sits <i>below</i> the bull threshold, so the near months read majority neutral-to-bear: that is arithmetic from price sitting under a line fixed in advance, <b>not conviction</b>, and moving the threshold down to flatter the current price would be exactly the goalpost-shifting the fixed-threshold rule prevents. <b>These are month-end distributions, not price targets</b>, and the shaded Oct&ndash;Nov 2026 band remains the <b>core deployment window</b> with <b>75% dry powder untouched</b>; the next hard dated catalyst is <b>~Oct 23</b>, 65 days out.
   No buy/sell signal layer, no liquidity-regime row, no hit-rate statistics — left out rather than fabricated. The report's 31 monthly timeline cards are likewise <b>not</b> registered forecasts and are not scored.
 </div>
 
@@ -240,12 +241,12 @@
 
 <script>
 // ── DATA: Sep 2017 → Aug 2026 live, forward calendar to Dec 2028 ──
-// The horizon runs to Dec 2028 because that is the horizon of the Aug 12 monthly map itself — its volatility
+// The horizon runs to Dec 2028 because that is the horizon the ADA monthly map specified — its volatility
 // cone and buy/sell calendar are specified all the way to Dec 2028, and the Apr 2028 halving is the next
 // dated cycle anchor after the Oct 2026 core window.
 // ── CONTEXT LAYER BANDS (computed Aug 10, 2026 · Aug MTD then = $0.19459) ──
 // VINTAGE: the per-month percentile arrays and the curRatio/curPct summaries below are the Aug 10 computation
-// and are NOT recomputed here. The Aug 12 ADA report contains no Context Layer, and the exact percentile rank
+// and are NOT recomputed here. The Aug 19 ADA report contains no Context Layer, and the exact percentile rank
 // of a new price cannot be derived from five published cut points — it needs the full ratio distribution. So the
 // arrays stand as issued, bandOf() reports the CURRENT close's band from them, and no refreshed rank is invented.
 // spine fixed at 24m canonical; 36m/46m retained for the sensitivity peek only.
@@ -312,7 +313,7 @@ const price=[
   0.32,0.36,0.345,0.36,0.375,0.275,0.285,0.255,0.255,0.30,0.345,0.585, // 2023 (Dec high 0.6655, using 0.585 close)
   0.51,0.52,0.62,0.46,0.43,0.385,0.34,0.32,0.355,0.36,0.55,0.92,  // 2024 (late-2024 pop >1.00 post-election; Nov/Dec rally)
   0.99,0.65,0.62,0.58,0.68,0.62,0.71,0.78,0.81,0.62,0.42,0.38,    // 2025 (subdued, declining)
-  0.30,0.24,0.205,0.19,0.1797,0.1444,0.16826,0.18705,             // 2026 Jan-Aug. Jun closed $0.1444 (−38.7%, rev2-audited); Jul SETTLED at $0.16826 = +16.52%; Aug = MONTH-TO-DATE $0.18705, the Aug 11 settled close, +11.17% on the month. The live Aug 12 candle ($0.18216 spot, 12h41m remaining) is excluded from every determination and is drawn nowhere — it is used only as the cone anchor. BEAR TRIGGER FIRED, BOTH LEGS: the rule stated verbatim in the Aug 6/7/10 reports was a settled close below $0.1885 on volume EXPANDING vs the prior session. Aug 11 closed $0.18705, 0.77% below the LPS, on 9.42M with volume expanding 18.3% — and clear of the +/-0.15% void band by 0.62 points, so the determination is unambiguous. The stall resolved DOWN: volume turned up two consecutive sessions off the 5.66M Aug 8 trough (+40.7%, then +66.4%) WHILE price fell, which is the supply signature. Six consecutive lower closes: 0.20117 -> 0.20079 -> 0.19953 -> 0.19459 -> 0.19084 -> 0.18705. The $0.19 BUY 3 gate is LOST and the $0.1885 LPS is BROKEN. BUY 4 is now DISARMED — the LPS that armed it on Aug 6 has failed, so the entry signal is invalidated rather than merely unexecutable.
+  0.30,0.24,0.205,0.19,0.1797,0.1444,0.16826,0.17457,             // 2026 Jan-Aug. Jun closed $0.1444 (−38.7%, rev2-audited); Jul SETTLED at $0.16826 = +16.52%; Aug = MONTH-TO-DATE $0.17457, the Aug 18 settled close, +3.75% on the month. The live Aug 19 candle ($0.176346 spot) is excluded from every determination and is drawn nowhere — it is used only as the cone anchor. THE ELEVEN-SESSION DECLINE STREAK BROKE, ON A SPRING AT THE LAST STRUCTURE. Aug 18: O $0.17434 H $0.17699 L $0.17126 C $0.17457 — it SWEPT $0.17126, a full 1.01% BELOW the $0.173 breakout, then RECLAIMED to close +0.91% above it, on 7.90M, the heaviest volume since Aug 13 and expanding through the sequence (4.92 -> 6.01 -> 6.57 -> 7.90M). That broke 11 consecutive lower closes — the first higher close in twelve sessions. Cross-verified: Crypto.com $0.17457 vs CoinGecko $0.174402, spread 0.10%, both above $0.173. The 0.618 retracement ($0.17562) is reclaimed. BUT THE BASE-RATE LIBRARY GOVERNS AND IT IS NOT FLATTERING: Spring/reversal EVENT DAYS carry NO EDGE — 47% positive forward-30d against a 55% baseline — so under the event-day neutrality rule this is "setup detected, edge pending", NOT a bottom, NOT a signal, and explicitly not grounds for adding.
   null,null,null,null,                                            // 2026 Sep-Dec: future, no real price data -- see the volatility cone
   null,null,null,null,null,null,null,null,null,null,null,null,     // 2027: future, no real price data
   null,null,null,null,null,null,null,null,null,null,null,null      // 2028: future (Apr 2028 halving; Shmita 5789 opens Sep 21)
@@ -382,7 +383,7 @@ const wyckoff = [
   {s:99, e:105,kind:'markdown',label:'2025-26 continued markdown'},
   {s:105,e:106,kind:'markdown', label:'tracked: Phase D markdown'},
   {s:106,e:107,kind:'acc',      label:'tracked: Phase C springs — Jul 13 & Jul 28 ($0.15340), confirmed Jul 30'},
-  {s:107,e:108,kind:'markup',   label:'LIVE: Phase E FAILING — bear trigger fired, LPS broken on expanding volume; BUY 4 disarmed'},
+  {s:107,e:108,kind:'markdown', label:'LIVE: Phase D — Spring at $0.173 swept & reclaimed on expanding volume; setup detected, edge pending'},
 ];
 const liveStartIdx = 105; // June 2026 — verified index, where the framework's real-time RECORD begins
 // currentIdx is a DIFFERENT thing and the two must not be conflated: liveStartIdx is where live tracking started
@@ -390,7 +391,7 @@ const liveStartIdx = 105; // June 2026 — verified index, where the framework's
 // a settled month inside the live record — tracked in real time, but CLOSED. Only currentIdx is month-to-date and
 // still moving, so only currentIdx may carry the "LIVE" badge. Jun settled $0.1444 and Jul settled $0.16826;
 // Aug 2026 is the live month.
-const currentIdx = 107; // August 2026 — the month-to-date cell (Aug 11 settled close, Aug 12 candle excluded)
+const currentIdx = 107; // August 2026 — the month-to-date cell (Aug 18 settled close, Aug 19 candle excluded)
 
 // ── ADA forward distribution: the Aug 3, 2026 DRIFTLESS LOGNORMAL VOLATILITY CONE ──
 // This replaces the previous bull/base/bear scenario trajectory outright, and the replacement is not
@@ -404,24 +405,24 @@ const currentIdx = 107; // August 2026 — the month-to-date cell (Aug 11 settle
 // the information in the widening bands. Computing it here from sigma instead of pasting a snapshot of
 // its output means the chart, the tooltip percentiles and the probability split can never drift apart.
 //
-// Verified against the report's own figures: sigma_daily 2.98% (n=34 daily log returns, Jul 8 - Aug 11 —
-// broadly stable) annualises to 57.0% (x sqrt 365) and reaches 88.0% at Dec 2028 (872 days from the Aug 12
-// anchor); neutral computes to 57.2% for Aug 2026 and 11.2% for Dec 2028, matching the 57% -> 11% decay the
-// report states in its methodology appendix. The resulting Aug 2026 split is 37% bull / 57% neutral / 6% bear.
+// VERIFIED AGAINST THE REPORT'S OWN 7-DAY BANDS, not merely against its prose. sigma_20d = 2.905%/day and spot
+// $0.176346 give a 7-day sigma of 7.69% — the report's stated figure — and reproduce all five of its published
+// band boundaries exactly: p05 $0.1554, p25 $0.1674, p50 $0.1763, p75 $0.1857, p95 $0.2001. Because the cone is
+// computed here from sigma rather than transcribed, the band, the tooltip percentiles and the probability split
+// cannot drift apart from each other or from the source.
 //
-// READ THE CONE CORRECTLY, AND NOTE THE DIRECTION CHANGED. Spot has now fallen back BELOW the $0.19 bull
-// threshold, so the Aug bull bucket drops from 59% to 37% in two sessions and the near months no longer read
-// majority-bull. That is the same arithmetic working in reverse: it is a consequence of price crossing a
-// threshold fixed in advance, NOT a change of view. The threshold is unchanged for a sixth consecutive map —
-// moving it DOWN now that price has fallen through it would be the same goalpost-shifting the rule bars.
-const CONE_SPOT    = 0.18216;               // Aug 12 spot — the report anchors the cone here, not on the settled close
-const CONE_SIGMA_D = 0.0298;                // realized daily sigma, n=34
-const CONE_ANCHOR  = Date.UTC(2026,7,12);   // Aug 12, 2026
+// READ THE CONE CORRECTLY. Spot sits BELOW the $0.19 bull threshold — which is now also the BUY 3 re-entry gate,
+// 7.74% overhead — so the near months read majority-neutral/bear. That is arithmetic from price sitting under a
+// threshold fixed in advance, NOT conviction. The threshold is unchanged; moving it DOWN to flatter the current
+// price would be exactly the goalpost-shifting the fixed-threshold rule exists to prevent.
+const CONE_SPOT    = 0.176346;              // Aug 19 spot — the report anchors its distribution bands here
+const CONE_SIGMA_D = 0.02905;               // realized sigma_20d, 2.905%/day (report's own stated figure)
+const CONE_ANCHOR  = Date.UTC(2026,7,19);   // Aug 19, 2026
 const GATE_BULL    = 0.1900;                // BUY 3 gate    -> BULL band  (month-end close >= this)
 const GATE_BEAR    = 0.1480;                // death level   -> BEAR band  (month-end close <  this)
 const trajStart    = 107;                   // Aug 2026 — the first forecast month (Jul is a realised close)
 
-// days from the Aug 12 anchor to the last calendar day of the month at `idx`
+// days from the Aug 19 anchor to the last calendar day of the month at `idx`
 function coneDays(idx){ const mo=months[idx]; return (Date.UTC(mo.y, (mo.m%12)+1, 0) - CONE_ANCHOR)/86400000; }
 function coneSigma(idx){ const t=coneDays(idx); return t>0 ? CONE_SIGMA_D*Math.sqrt(t) : 0; }
 // percentile of the driftless lognormal: median = CONE_SPOT at z=0, +/-0.6745 sigma = 25th/75th, +/-1.645 = 5th/95th
@@ -434,7 +435,7 @@ function normCdf(x){
   return 0.5*(1 + s*y);
 }
 // month-end probability split against the two FIXED campaign thresholds. They stay fixed while the
-// distribution widens, which is why neutral decays from 57% (Aug 2026) to 11% (Dec 2028) — arithmetic, not a view.
+// distribution widens against them — arithmetic, not a view. GATE_BULL is also the BUY 3 re-entry gate.
 function coneProbs(idx){
   const s = coneSigma(idx);
   if(!(s>0)) return null;
@@ -443,28 +444,36 @@ function coneProbs(idx){
   return {bull, neutral: 1-bull-bear, bear};
 }
 
-// ── Aug 12, 2026 level ladder — the framework's own references, not price history ──
-// Distances quoted against the $0.18216 spot the report itself uses. THE LADDER INVERTED THIS SESSION: the
-// $0.19 BUY 3 gate and the $0.1885 LPS are no longer support beneath price, they are overhead levels that were
-// LOST and BROKEN on Aug 11. Every upside gate is now above price. $0.1690 (the Jul 27 spring shelf) returns to
-// the ladder as the next structural reference below the EMA band.
+// ── Aug 19, 2026 level ladder — the framework's own references, not price history ──
+// Distances quoted against the $0.176346 spot the report itself uses.
+// AUG 19 LADDER. The position structure changed: the $0.18 BUY 3 stop FIRED on Aug 15 and is realized, so the
+// book is now BUY 1 + BUY 2 at HALF SIZE, and $0.173 — the level defended by the Aug 18 Spring — is the BUY 2
+// stop rather than a mere reference. $0.19 is no longer a lost gate but the BUY 3 RE-ENTRY gate, 7.74% overhead.
+//
 // TIER = how much this level should shout, ranked by the decision it actually informs TONIGHT.
 //   1 = decision-critical (the live test and the hard invalidation) — solid, bright, always labelled
 //   2 = structural (what comes next if 1 breaks)                    — dashed, dim
 //   3 = distant / already resolved                                  — dotted, faint, labelled only on deep zoom
 // `tag` is what gets painted on the chart. `label` is the full sentence, kept verbatim and moved to the
 // line's native hover title, so nothing is lost — it simply stops being printed over the plot. The same
-// text also already appears in the "Aug 12 Levels layer" paragraph below the chart.
+// text also already appears in the "Aug 19 Levels layer" paragraph below the chart.
 const levelLines = [
-  {p:0.2231,  kind:'res',  tier:3, tag:'100d MA',            label:'$0.2231 · 100-day MA — distant overhead reference'},
-  {p:0.21156, kind:'res',  tier:3, tag:'campaign high',      label:'$0.21156 · CAMPAIGN HIGH set Aug 6 — now +16.1% away, price 13.90% below it'},
-  {p:0.1900,  kind:'gate', tier:3, tag:'BUY 3 gate · LOST',  label:'$0.1900 · BUY 3 gate — LOST Aug 11, the seven-close run ended (+4.3% overhead). Superseded as the upside reference by $0.1885, which is the re-arm level.'},
-  {p:0.1690,  kind:'res',  tier:2, tag:'spring shelf',       label:'$0.1690 · Jul 27 spring shelf — next structural support if the EMA band fails (−7.2%)'},
-  {p:0.1596,  kind:'hard', tier:1, tag:'THESIS STOP · 0 of 2',label:'$0.1596 · THESIS STOP — 2 consecutive closes below = full exit · 0 of 2 (−12.4%), NOT threatened'},
-  {p:0.1480,  kind:'hard', tier:2, tag:'death level',        label:'$0.1480 · DEATH LEVEL — the bear threshold of the monthly probability bands (−18.8%)'},
+  {p:0.21156, kind:'res',  tier:3, tag:'campaign high',        label:'$0.21156 · CAMPAIGN HIGH set Aug 6 — distant overhead'},
+  {p:0.1997,  kind:'res',  tier:3, tag:'100d MA',              label:'$0.1997 · 100-day moving average — the upper anchor of registered zone ADA-Z006'},
+  {p:0.1900,  kind:'gate', tier:1, tag:'BUY 3 RE-ENTRY',       label:'$0.1900 · BUY 3 RE-ENTRY gate — two settled closes above re-enters, +7.74% overhead. NOT MET. The report is explicit that this must be a fresh structure, not a relief rally, and that between here and there is a lot of broken structure.'},
+  {p:0.18,    kind:'res',  tier:3, tag:'BUY 3 stop · FIRED',   label:'$0.18 · BUY 3 stop — FIRED Aug 15, realized. The book is now BUY 1 + BUY 2 at half size.'},
+  {p:0.17562, kind:'res',  tier:2, tag:'0.618 fib · reclaimed',label:'$0.17562 · 0.618 retracement — RECLAIMED, now 0.41% below spot'},
+  {p:0.173,   kind:'gate', tier:1, tag:'BUY 2 stop · SPRING',  label:'$0.173 · BUY 2 stop and the level defended by the Aug 18 Spring — swept to $0.17126 (−1.01%) then reclaimed to close +0.91% above on 7.90M. Two consecutive closes below reduces BUY 2 to quarter size · 0 of 2, cushion +1.93%'},
+  {p:0.1596,  kind:'hard', tier:1, tag:'THESIS STOP · 0 of 2', label:'$0.1596 · THESIS STOP — 2 consecutive closes below = full exit · 0 of 2, cushion +10.49%'},
+  {p:0.1480,  kind:'hard', tier:2, tag:'death level',          label:'$0.1480 · DEATH LEVEL — cushion +19.15%'},
 ];
 const levelZones = [
-  {lo:0.1810, hi:0.1885, kind:'sup', tier:1, tag:'EMA band · LIVE TEST', label:'$0.1810–0.1885 · 50-day EMA band — $0.1885 LPS BROKEN Aug 11 on expanding volume (bear trigger fired, +3.5% overhead); $0.1810 is the LIVE TEST, live low $0.18184 only 0.46% above it'},
+  // ADA-Z006, registered this session at $0.1900-$0.1997 (+7.74% / +13.24%). Anchors are Z2-compliant and
+  // price-independent: the prior confirmed breakout level $0.19 and the 100-day MA. It is the register's first
+  // CLEAN standoff registration since Z005 — registered while price was genuinely distant rather than
+  // approaching, which is the timing discipline that got Z001 and Z005 stamped POST-HOC/UNSCORED. Tier 3
+  // because, like BTC's zones, it is a scoring object rather than a level to act on.
+  {lo:0.1900, hi:0.1997, kind:'sup', tier:3, tag:'ADA-Z006 · WATCHING', label:'ADA-Z006 · $0.1900–$0.1997 · +7.74% / +13.24% · REGISTERED — WATCHING. Anchors: the prior confirmed breakout level $0.19 and the 100-day MA $0.1997. First clean standoff registration since Z005.'},
 ];
 // Oct 4-17, 2026 core deployment window (month 29 post-halving, from the 363-376 day post-peak interval
 // off BTC's Oct 6, 2025 top). Shaded across Oct-Nov 2026 to match the BTC dashboard's autumn window.
@@ -587,7 +596,7 @@ function render(){
     if(i>=trajStart){ allowedPrices.push(conePct(i,1.645), conePct(i,-1.645)); }
   });
   // include the level-ladder extremes so the Aug 3 ladder is never clipped off-scale when the layer is on
-  if(state.layers.levels){ allowedPrices.push(0.1480, 0.2231); } // death level .. the 100-day MA
+  if(state.layers.levels){ allowedPrices.push(0.1480, 0.21156); } // death level .. the Aug 6 campaign high
   let pMin,pMax;
   if(allowedPrices.length===0){ pMin=-1; pMax=1; }
   else if(state.scale==='log'){ pMin=Math.log10(Math.min(...allowedPrices)*0.85); pMax=Math.log10(Math.max(...allowedPrices)*1.15); }
@@ -603,7 +612,7 @@ function render(){
     svg.appendChild(el('text',{x:padL+plotW+8,y:gy+3,'font-size':9,fill:TH().subLabel},'$'+(v<1?v.toFixed(2):v.toFixed(1))));
   });
 
-  // ── Aug 12 level ladder + Oct-Nov '26 core window (drawn under the price line) ──
+  // ── Aug 19 level ladder + Oct-Nov '26 core window (drawn under the price line) ──
   if(state.layers.levels){
     const yTop=priceTop, yBot=priceTop+priceH;
     const showLabels = span<=40; // labels only when zoomed in enough to read them
@@ -840,7 +849,7 @@ function showTip(e, idx){
     ${state.layers.shmita ? `<div class="tt-row"><span class="tt-label">Shmita</span><span>${shmOn?(mo.y<=2022?'Yes (5782)':'Yes (5789)'):'No'}</span></div>`:''}
     ${state.layers.levels && inCore ? `<div class="tt-row" style="border-top:1px solid rgba(128,128,128,.2);margin-top:4px;padding-top:4px;"><span class="tt-label" style="color:#5bbf86">Cycle thesis</span><span style="color:#5bbf86">core window (Oct 4–17 '26)</span></div>`:''}
     ${hasCone&&pr?`<div style="border-top:1px solid rgba(128,128,128,.2);margin-top:4px;padding-top:4px;">
-    <div class="tt-row"><span class="tt-label" style="color:var(--amber)">Aug 12 cone</span><span style="color:var(--txt2)">σ ${(coneSigma(idx)*100).toFixed(1)}%</span></div>
+    <div class="tt-row"><span class="tt-label" style="color:var(--amber)">Aug 19 cone</span><span style="color:var(--txt2)">σ ${(coneSigma(idx)*100).toFixed(1)}%</span></div>
     <div class="tt-row"><span class="tt-label">95th</span><span>${f(conePct(idx,1.645))}</span></div>
     <div class="tt-row"><span class="tt-label">50% range</span><span>${f(conePct(idx,-0.6745))} – ${f(conePct(idx,0.6745))}</span></div>
     <div class="tt-row"><span class="tt-label">median (flat)</span><span>${f(CONE_SPOT)}</span></div>
@@ -879,7 +888,7 @@ document.querySelectorAll('button[data-zoom]').forEach(btn=>{
       state.viewEnd=months.findIndex(m=>m.y===2022&&m.m===11)+1;
     } else if(z==='live'){
       state.viewStart=Math.max(0,liveStartIdx-3);
-      // cap the span so the Aug 12 level-ladder labels stay readable (they hide when span>40, and the
+      // cap the span so the Aug 19 level-ladder labels stay readable (they hide when span>40, and the
       // month labels when span>30); N now runs to Dec 2028, which would otherwise blow the span open
       state.viewEnd=Math.min(N,liveStartIdx+24);
     }
