@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BTC · Market GPS — Session 48 · Fri 21 Aug 2026 · CRE v2.4</title>
+<style>
+:root{
+  --bg:#ffffff;--bg2:#f7f5f0;--bg3:#efece4;--txt:#22221f;--txt2:#63625c;--txt3:#8d8b83;--bord:#e2dfd5;
+  --red:#9a3a1b;--redbg:#faeae4;--amb:#7f4d09;--ambbg:#faeed9;--grn:#37680f;--grnbg:#e9f3dc;
+  --blu:#165c9f;--blubg:#e5f0fb;--gry:#7b7a74;--grybg:#eceae2;--vio:#5b3f8c;--viobg:#efe9f8;
+  --up:#3f8f3f;--dn:#c0492a;--acc:#b8792b;
+}
+@media(prefers-color-scheme:dark){:root{
+  --bg:#1c1b19;--bg2:#25241f;--bg3:#2e2d26;--txt:#f2f0e8;--txt2:#b3b1a7;--txt3:#8f8d84;--bord:#393831;
+  --red:#f0997b;--redbg:#48190a;--amb:#f8c674;--ambbg:#3f2302;--grn:#9ac55c;--grnbg:#163302;
+  --blu:#86b8ec;--blubg:#052b52;--gry:#9c9a91;--grybg:#2e2c28;--vio:#c3aae8;--viobg:#241a3a;
+  --up:#7dbb6a;--dn:#e0765a;--acc:#dba54a;
+}}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--txt);padding:20px;font-size:13.5px;line-height:1.6;
+ font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;max-width:960px;margin:0 auto}
+h1{font-size:20px;font-weight:700;letter-spacing:-.01em}
+.sub{font-size:11.5px;color:var(--txt2);margin:3px 0 14px}
+.sec{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:var(--bg3);border-radius:7px;padding:8px 12px;margin:26px 0 12px}
+.lbl{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--txt2);margin:16px 0 7px}
+.card{background:var(--bg2);border:1px solid var(--bord);border-radius:11px;padding:14px 16px;margin-bottom:10px}
+.cA{border-left:3px solid var(--acc)}.cR{border-left:3px solid var(--dn)}
+.cG{border-left:3px solid var(--up)}.cB{border-left:3px solid var(--blu)}.cY{border-left:3px solid var(--gry)}
+.cV{border-left:3px solid var(--vio)}
+.hero{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;margin-bottom:6px}
+.h3{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-bottom:10px}
+@media(max-width:700px){.hero{grid-template-columns:repeat(2,1fr)}.h3{grid-template-columns:1fr}}
+.hb{text-align:center;padding:11px 6px;border:1px solid var(--bord);border-radius:10px;background:var(--bg2)}
+.hb .l{font-size:9.5px;text-transform:uppercase;letter-spacing:.05em;color:var(--txt2)}
+.hb .m{font-size:19px;font-weight:650;margin:3px 0 1px;font-variant-numeric:tabular-nums}
+.hb .s{font-size:10px;color:var(--txt2)}
+.bg{display:inline-block;padding:2px 7px;border-radius:5px;font-size:10px;font-weight:700;white-space:nowrap}
+.gR{background:var(--redbg);color:var(--red)}.gA{background:var(--ambbg);color:var(--amb)}
+.gG{background:var(--grnbg);color:var(--grn)}.gB{background:var(--blubg);color:var(--blu)}
+.gY{background:var(--grybg);color:var(--gry)}.gV{background:var(--viobg);color:var(--vio)}
+table{width:100%;border-collapse:collapse;font-size:11.8px}
+th{text-align:left;padding:7px 8px;background:var(--bg3);font-size:9.5px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--txt2);border-bottom:1px solid var(--bord)}
+td{padding:8px;border-bottom:1px solid var(--bord);vertical-align:top;line-height:1.45}
+tr:last-child td{border-bottom:none}
+.mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-variant-numeric:tabular-nums}
+.trow{display:flex;gap:10px;padding:8px 0;border-bottom:1px solid var(--bord)}
+.trow:last-child{border-bottom:none}
+.tdot{width:9px;height:9px;border-radius:50%;flex-shrink:0;margin-top:6px}
+.tp{width:40px;flex-shrink:0;font-weight:700;font-variant-numeric:tabular-nums}
+svg{width:100%;height:auto;display:block}
+.gap{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media(max-width:700px){.gap{grid-template-columns:1fr}}
+.sb{height:7px;background:var(--bg3);border-radius:99px;overflow:hidden;margin-top:5px}
+.sb i{display:block;height:100%;border-radius:99px;background:var(--acc)}
+details{background:var(--bg2);border:1px solid var(--bord);border-radius:11px;padding:12px 15px;margin-bottom:10px}
+summary{cursor:pointer;font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--txt2)}
+details[open] summary{margin-bottom:11px;padding-bottom:9px;border-bottom:1px solid var(--bord)}
+.foot{font-size:10.5px;color:var(--txt3);line-height:1.6;margin-top:22px;border-top:1px solid var(--bord);padding-top:12px}
+b,strong{font-weight:650}
+.q{font-size:14px;line-height:1.72}
+ul{margin:6px 0 0 18px}li{margin-bottom:4px}
+.dl{font-size:11.5px;display:grid;grid-template-columns:158px 1fr;gap:4px 12px}
+@media(max-width:700px){.dl{grid-template-columns:1fr}}
+.dl dt{color:var(--txt2);font-weight:600}
+.key{background:var(--grnbg);border:2px solid var(--up);border-radius:11px;padding:14px 16px;margin-bottom:10px;font-size:12.5px;line-height:1.65}
+.warn{background:var(--redbg);border:2px solid var(--dn);border-radius:11px;padding:14px 16px;margin-bottom:10px;font-size:12.5px;line-height:1.65}
+.pend{background:var(--ambbg);border:2px solid var(--amb);border-radius:11px;padding:14px 16px;margin-bottom:10px;font-size:12.5px;line-height:1.65}
+.shadow{background:var(--viobg);border:1px dashed var(--vio);border-radius:11px;padding:14px 16px;margin-bottom:10px}
+.autopsy{background:var(--blubg);border:2px solid var(--blu);border-radius:11px;padding:14px 16px;margin-bottom:10px}
+.gpsmap{background:var(--bg3);border-radius:11px;padding:14px 16px;margin-bottom:10px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11.5px;line-height:1.85;overflow-x:auto;white-space:pre}
+</style>
+<style>.backlink{display:inline-flex;align-items:center;gap:5px;font-size:12px;color:var(--blu);text-decoration:none;font-weight:600;margin-bottom:12px;}.backlink:hover{text-decoration:underline;}</style>
+</head>
+<body>
+
+<a class="backlink" href="btc-dashboard.html">← BTC Dashboard</a>
+<h1>Bitcoin · Market GPS</h1>
+<div class="sub">Session 48 · Friday 21 August 2026 · <b>CRE v2.4</b> · session epoch <span class="mono">2026-08-21T23:05:00Z</span> <span class="bg gR">clock corrected +17h01m — see correction 1</span> · <b>Aug 21 candle IN PROGRESS — excluded from every determination</b> · last settled close = <span class="mono">Aug 20, $73,026.02</span> · feed: Crypto.com <span class="mono">BTC_USDT 1D</span> · cross-verified Coinbase Exchange + Kraken <span class="bg gG">THREE FEEDS AGREE</span></div>
+
+<!-- ═════════ 10-SECOND RULE: VISUAL FIRST ═════════ -->
+<div class="gpsmap"><b>MARKET GPS</b>  [SYSTEM STATUS: OPERATIONAL // SYSTEMIC BIAS: MARKUP CONFIRMED]
+
+WYCKOFF CYCLE MAP:
+A (Accumulation) ──&gt; <b>B (Markup)</b> ──&gt; C (Distribution) ──&gt; D (Markdown)
+
+Current Location: [███████████████████]  ──&gt;  <b>B</b>
+Current Phase:    <b>Phase E — Markup underway · confirmation trigger COMPLETE · no LPS yet formed</b>
+Current Action:   <b>HOLD</b>  (carried inventory)  ·  <b>WAIT</b>  (incremental entry — fill zone stranded 8.25% below)</div>
+
+<div class="hero">
+  <div class="hb" style="border-color:var(--up)"><div class="l">Last settled close</div><div class="m">$73,026</div><div class="s">Aug 20 · <b>+5.32%</b> · 2nd expansion day</div></div>
+  <div class="hb" style="border-color:var(--acc)"><div class="l">Live (unsettled)</div><div class="m">$78,464</div><div class="s"><b>+7.45%</b> above the settle</div></div>
+  <div class="hb" style="border-color:var(--up)"><div class="l">Wyckoff</div><div class="m" style="font-size:15px;color:var(--grn)">B · 62–28</div><div class="s">alternate narrows, survives</div></div>
+  <div class="hb" style="border-color:var(--amb)"><div class="l">Action</div><div class="m" style="font-size:16px;color:var(--amb)">HOLD / WAIT</div><div class="s">BUY 4 <b>ARMED · STRANDED</b></div></div>
+</div>
+
+<div class="lbl">Confidence by horizon class — never blended</div>
+<div class="h3">
+  <div class="hb" style="border-color:var(--up)"><div class="l">T · tactical 48h–7d</div><div class="m" style="font-size:17px">64<span style="font-size:12px;color:var(--txt2)">/100</span></div><div class="s"><span class="bg gG">↑6</span> <span class="bg gG">95% COVERAGE</span></div></div>
+  <div class="hb" style="border-color:var(--up)"><div class="l">S · swing 1–6 weeks</div><div class="m" style="font-size:17px">71<span style="font-size:12px;color:var(--txt2)">/100</span></div><div class="s"><span class="bg gG">↑7</span> full coverage</div></div>
+  <div class="hb" style="border-color:var(--dn)"><div class="l">C · cycle quarterly</div><div class="m" style="font-size:17px">61<span style="font-size:12px;color:var(--txt2)">/100</span></div><div class="s"><span class="bg gR">↓2 — third consecutive fall</span></div></div>
+</div>
+
+<!-- ═════════ POSITION MATRIX ═════════ -->
+<div class="gpsmap"><b>POSITION PROGRESSION MATRIX</b>  [Quant PM Sizing Layer]
+
+BUY 1 (Early Accum) ──&gt; BUY 2 (Spring/Sweep) ──&gt; BUY 3 (Test) ──&gt; <b>BUY 4 (LPS)</b> ──&gt; BUY 5 (Markup Pullback)
+   filled              filled                  filled           <b>ARMED · STRANDED</b>      not reached
+
+Current Matrix Classification: <b>BUY 3 held · BUY 4 ARMED, fill zone $65,000–$67,000 now 8.25%–10.99% BELOW the settled close</b></div>
+
+<!-- ═════════ THE HEADLINE ═════════ -->
+<div class="sec">The confirmation trigger completed exactly as pre-committed — and the plan's own reward is a tranche it can no longer fill</div>
+<div class="key">
+  <div style="font-size:13px"><b>Session 47 wrote, before the settle and not after: "if Aug 20 settles ≥ $65,000, the confirmation trigger completes and BUY 4 remains armed with the fill zone unchanged — completion of the confirmation trigger does not authorise a market fill and does not widen the zone." Aug 20 settled at $73,026.02 on 3,637.73 BTC. Both legs of the confirmation trigger are satisfied. The zone is not widened. BUY 4 will now, in all probability, never fill.</b></div>
+  <div class="card" style="margin:11px 0 0;padding:6px 10px;background:var(--bg)">
+  <table>
+    <tr><th>Measure</th><th>Session 47 · Aug 19 close</th><th>Session 48 · Aug 20 close</th><th>Change</th></tr>
+    <tr><td>Settled close</td><td class="mono">$69,337.54</td><td class="mono">$73,026.02</td><td class="mono" style="color:var(--grn)">+5.320%</td></tr>
+    <tr><td>Confirmation trigger</td><td class="mono">leg 1 of 2 · vol 3,162.17</td><td class="mono" style="color:var(--grn)"><b>leg 2 of 2 · vol 3,637.73 — COMPLETE</b></td><td>bar 1,768 cleared by <b>105.8%</b></td></tr>
+    <tr><td>vs 20-day mean</td><td class="mono" style="color:var(--grn)">+8.097% (3rd above)</td><td class="mono" style="color:var(--grn)"><b>+12.956% (4th above)</b></td><td class="mono">mean now $64,650.11</td></tr>
+    <tr><td>Cushion over invalidation</td><td class="mono">$6,880.54 = <b>4.964 ATR</b></td><td class="mono">$10,569.02 = <b>6.414 ATR</b></td><td class="mono" style="color:var(--grn)">+53.6%</td></tr>
+    <tr><td>Closes above $62,457</td><td class="mono">37</td><td class="mono">38</td><td>counter still <b>0 of 2</b></td></tr>
+    <tr><td>BUY 4 fill zone vs close</td><td class="mono" style="color:var(--amb)">zone top 3.37% below</td><td class="mono" style="color:var(--red)"><b>zone top 8.252% below · floor 10.991%</b></td><td class="mono" style="color:var(--red)"><b>stranded</b></td></tr>
+    <tr><td>ATR(14)</td><td class="mono">$1,386.11 = 2.00%</td><td class="mono">$1,647.81 = <b>2.256%</b></td><td class="mono" style="color:var(--amb)">+18.9% — second expansion</td></tr>
+    <tr><td>Session volume</td><td class="mono">3,162.17 = 2.51×</td><td class="mono"><b>3,637.73 = 2.73×</b></td><td class="mono" style="color:var(--grn)">largest of the campaign</td></tr>
+  </table>
+  </div>
+  <div style="font-size:12.5px;margin-top:10px"><b>Aug 20 anatomy.</b> O $69,337.54, H $73,410.93, L $68,902.60, C $73,026.02. True range <b>$4,508.33 = 3.253× the prior ATR(14)</b>. Closed at <b>91.5% of range</b> — tighter to the high than Aug 19's 87.5%. The four-session move from the Aug 16 close of $62,900.42 is <b>+16.098%</b>, against a prior archive maximum four-day move of <b>+9.905%</b>: <b>1 of 40 windows</b> in the archive reaches this magnitude, and that one window is this one. The close now sits <b>5.08 ATR above its own 20-day mean.</b></div>
+</div>
+
+<!-- ═════════ THE STRANDED TRANCHE ═════════ -->
+<div class="pend">
+  <div style="font-size:13px"><b>The framework has just discovered the failure mode on the other side of A7: a fill zone published at arming stops the chase, and then nothing ever retires it. BUY 4 is armed, correctly priced, and structurally unreachable — and the rule as written leaves it armed forever.</b></div>
+  <div style="font-size:12.5px;margin-top:10px">A7 was written one session ago against a real defect — a trigger that fired 9.87% below the market had silently become a market order. The fix worked: no chase was executed, and the market has since travelled a further <b>5.32% on the settle and 13.16% on the live tape</b>, which would have compounded the error. <b>But A7 specified a zone and never specified an expiry.</b> BUY 4's zone of $65,000–$67,000 now requires a <b>−8.252%</b> retracement merely to touch its ceiling, and a <b>−10.991%</b> retracement to reach its floor — which is also, by construction, the BUY 4 tranche invalidation. The tranche can therefore only fill by travelling to within a whisker of the level that kills it.</div>
+  <div style="font-size:12.5px;margin-top:10px"><b>Resolution, and the discipline is in what is NOT done.</b> New amendment <b>A9</b> requires every future arming to declare an expiry condition alongside its fill zone. <b>A9 is not applied retroactively to BUY 4.</b> Adding an expiry to a live armed tranche would be recalibrating a pre-committed rule while the signal is live — the exact thing the framework refused to do to the 1,768 BTC volume bar last session, when doing so would have been convenient in the other direction. <b>BUY 4 therefore remains armed and stranded, indefinitely, as a disclosed live defect of v2.3 that v2.4 fixes only going forward.</b> The cost of that consistency is an untidy register entry. The cost of the alternative is a framework whose rules bend whenever they become inconvenient.</div>
+  <div style="font-size:12.5px;margin-top:10px"><b>What this does not license.</b> Completion of the confirmation trigger is not an instruction to buy. The campaign holds BUY 1–3 into markup at existing size, exactly as Session 47 pre-committed. <b>Dry powder stays at 75%</b>, and the incremental-entry answer remains WAIT.</div>
+</div>
+
+<!-- ═════════ WHAT MOVED IT ═════════ -->
+<div class="autopsy">
+  <div style="font-size:13px"><b>The mechanism split this session, and the split is the single most important input in the report: the forced component got bigger in absolute terms, and the discretionary component finally got big enough to stand on its own.</b></div>
+  <div class="card" style="margin:11px 0 0;padding:6px 10px;background:var(--bg)">
+  <table>
+    <tr><th>Driver</th><th>Figure</th><th>Read</th></tr>
+    <tr><td><b>Short liquidations</b></td><td class="mono">Aug 20–21 24h total <b>$3.5bn</b>, of which <b>&gt;$3bn shorts</b>; BTC share <b>$1.76bn</b>, ETH $1.16bn. A further <b>~$1bn</b> of shorts on the Aug 21 tape out of $1.23bn total across <b>140,416 traders</b>. Two-day short total <b>&gt;$4bn</b>.</td><td><span class="bg gR">MECHANICALLY BEARISH</span> Still non-repeatable demand — and now largely spent. Two consecutive record days consume the short book that funds them.</td></tr>
+    <tr><td><b>Spot ETF net flow</b></td><td class="mono"><b>Aug 20 +$606.29m</b> — second-largest daily print on record behind May 1's $629.73m. Aug 17 +$297.56m, Aug 18 +$189.30m, Aug 19 +$517.19m. <b>Four consecutive inflow days totalling $1.6103bn.</b> IBIT took $502.99m of Aug 20 — over 80%. Category net assets <b>$90.16bn</b>. Ether ETFs +$221m, fourth straight day.</td><td><span class="bg gG">STRUCTURALLY BULLISH</span> This is the layer that separates the two Wyckoff reads, and it is no longer a single print — it is a four-day discretionary bid running in parallel across two assets.</td></tr>
+    <tr><td><b>Funding rate</b> <span class="bg gG">FIRST DATA IN 12 SESSIONS</span></td><td class="mono"><b>+0.0016% per 8 hours</b> — positive but far below any extreme threshold; positive in 40 of 42 observed periods.</td><td><span class="bg gG">ARGUES AGAINST BLOW-OFF</span> <b>Decisive for the dual read.</b> A terminal buying climax is normally accompanied by euphoric long funding. This is a mild, unlevered bid.</td></tr>
+    <tr><td><b>Open interest</b> <span class="bg gG">FIRST DATA IN 12 SESSIONS</span></td><td class="mono">Futures OI <b>$54.42–54.58bn</b>, <b>+13.6% over two days</b>.</td><td><span class="bg gA">MIXED</span> Rising OI with rising price and flat funding is new positioning, not leverage mania — but it is also fresh fuel for a reaction.</td></tr>
+    <tr><td><b>US Treasury buyback expansion</b></td><td class="mono">Long-end buyback cap doubled to <b>at least $4bn</b> per operation, <b>Sep 9 – Nov 4</b>. Cited across sources as the proximate driver of the risk bid.</td><td><span class="bg gG">LIQUIDITY POSITIVE</span> Unchanged from Session 47, and still explicitly dated to Nov 4.</td></tr>
+  </table>
+  </div>
+  <div style="font-size:12.5px;margin-top:11px"><b>The Global Macro Strategist's revision.</b> Session 47 argued the tape was pricing fiscal liquidity rather than monetary easing, and nothing this session contradicts that — but the funding print materially changes the <em>character</em> of the move. A rally on flat funding, rising open interest and four consecutive days of record-adjacent spot ETF demand is a re-pricing with real balance sheet behind it, not a leverage spiral. <b>That is the strongest single piece of evidence the primary Wyckoff read has received in the campaign, and it arrives from the derivatives layer that has been dark for eleven sessions.</b> The offsetting point is unchanged and load-bearing: <b>Jackson Hole opens Aug 27 — six days out</b>, Chair Warsh's first symposium address, and it falls on the resolution date of this session's new band tree. The liquidity thesis this tape is priced on has a published end date of Nov 4 and its first public test in six days.</div>
+</div>
+
+<!-- ═════════ CROSS-VERIFICATION ═════════ -->
+<div class="sec">Cross-verification — the primary cross-feed went dark, and the substitute overturned a convention Session 47 nearly made general</div>
+<div class="autopsy">
+  <div style="font-size:13px"><b>CoinGecko was unreachable this session. A2 makes cross-verification mandatory, so two different feeds were substituted — and running Session 47's own A5 alignment test on each produced the opposite answer to the one A5 was born from.</b></div>
+  <div style="font-size:12.5px;margin-top:10px"><b>Disclosed failure.</b> The CoinGecko OHLC endpoint returned <span class="mono">ROBOTS_DISALLOWED</span> and could not be retrieved. No alternative retrieval route was attempted. Rather than skip the mandatory check, <b>Coinbase Exchange</b> (<span class="mono">BTC-USD</span> daily candles) and <b>Kraken</b> (<span class="mono">XBTUSD</span> 1440m OHLC) were substituted, and the A5 alignment test was run independently against each.</div>
+  <div class="card" style="margin:9px 0 0;padding:6px 10px;background:var(--bg)">
+  <table>
+    <tr><th>Feed</th><th>offset 0 (label = same UTC day)</th><th>offset +1</th><th>offset −1</th><th>Convention established</th></tr>
+    <tr><td><b>Coinbase Exchange</b></td><td class="mono" style="color:var(--grn)"><b>0.0882%</b> (worst 0.1203%, n=21)</td><td class="mono" style="color:var(--red)">1.1328%</td><td class="mono" style="color:var(--red)">1.3319%</td><td><b>period START</b></td></tr>
+    <tr><td><b>Kraken</b></td><td class="mono" style="color:var(--grn)"><b>0.0612%</b> (worst 0.0758%, n=3)</td><td class="mono" style="color:var(--red)">5.9220%</td><td class="mono" style="color:var(--red)">4.6255%</td><td><b>period START</b></td></tr>
+    <tr><td><b>CoinGecko</b> <span style="font-size:10px">(S47)</span></td><td class="mono" style="color:var(--red)">1.1140%</td><td class="mono" style="color:var(--grn)"><b>0.0839%</b></td><td class="mono">—</td><td><b>period END</b></td></tr>
+  </table>
+  </div>
+  <div style="font-size:12.5px;margin-top:10px"><b>High/low corroboration on Aug 20, the highest-range settled session available.</b> Crypto.com H $73,410.93 / L $68,902.60. Kraken $73,387.0 / $68,850.9 → errors <b>−0.033% / −0.075%</b>. Coinbase $73,391.43 / $68,853.22 → errors <b>−0.027% / −0.072%</b>. Unambiguous at offset 0 on both feeds.</div>
+  <div class="lbl">Correctly aligned basis series — Crypto.com vs Coinbase, 21 paired settled closes, Jul 31 → Aug 20</div>
+  <div class="card" style="margin:0;padding:6px 10px;background:var(--bg)">
+  <table>
+    <tr><th>UTC day</th><th>Crypto.com</th><th>Coinbase</th><th>Basis</th><th>UTC day</th><th>Crypto.com</th><th>Coinbase</th><th>Basis</th></tr>
+    <tr><td>Jul 31</td><td class="mono">62,897.98</td><td class="mono">62,825.90</td><td class="mono">−0.1146%</td><td>Aug 11</td><td class="mono">63,592.62</td><td class="mono">63,531.75</td><td class="mono">−0.0957%</td></tr>
+    <tr><td>Aug 1</td><td class="mono">62,823.63</td><td class="mono">62,764.20</td><td class="mono">−0.0946%</td><td>Aug 12</td><td class="mono">63,488.10</td><td class="mono">63,411.72</td><td class="mono">−0.1203%</td></tr>
+    <tr><td>Aug 2</td><td class="mono">63,573.12</td><td class="mono">63,499.49</td><td class="mono">−0.1158%</td><td>Aug 13</td><td class="mono">63,483.46</td><td class="mono">63,425.35</td><td class="mono">−0.0915%</td></tr>
+    <tr><td>Aug 3</td><td class="mono">63,520.01</td><td class="mono">63,466.51</td><td class="mono">−0.0842%</td><td>Aug 14</td><td class="mono">63,048.33</td><td class="mono">62,975.19</td><td class="mono">−0.1160%</td></tr>
+    <tr><td>Aug 4</td><td class="mono">64,103.07</td><td class="mono">64,050.51</td><td class="mono">−0.0820%</td><td>Aug 15</td><td class="mono">63,088.74</td><td class="mono">63,018.75</td><td class="mono">−0.1109%</td></tr>
+    <tr><td>Aug 5</td><td class="mono">64,665.24</td><td class="mono">64,603.03</td><td class="mono">−0.0962%</td><td>Aug 16</td><td class="mono">62,900.42</td><td class="mono">62,836.66</td><td class="mono">−0.1014%</td></tr>
+    <tr><td>Aug 6</td><td class="mono">64,330.27</td><td class="mono">64,267.30</td><td class="mono">−0.0979%</td><td>Aug 17</td><td class="mono">64,539.91</td><td class="mono">64,484.18</td><td class="mono">−0.0863%</td></tr>
+    <tr><td>Aug 7</td><td class="mono">64,927.10</td><td class="mono">64,891.61</td><td class="mono">−0.0547%</td><td>Aug 18</td><td class="mono">64,724.81</td><td class="mono">64,681.33</td><td class="mono">−0.0672%</td></tr>
+    <tr><td>Aug 8</td><td class="mono">64,957.80</td><td class="mono">64,908.72</td><td class="mono">−0.0756%</td><td>Aug 19</td><td class="mono">69,337.54</td><td class="mono">69,300.01</td><td class="mono">−0.0541%</td></tr>
+    <tr><td>Aug 9</td><td class="mono">64,897.49</td><td class="mono">64,848.69</td><td class="mono">−0.0752%</td><td><b>Aug 20</b></td><td class="mono"><b>73,026.02</b></td><td class="mono"><b>73,011.87</b></td><td class="mono"><b>−0.0194%</b></td></tr>
+    <tr><td>Aug 10</td><td class="mono">63,974.44</td><td class="mono">63,911.88</td><td class="mono">−0.0978%</td><td colspan="4"><b>Coinbase: mean −0.0882% · σ 0.0241% · max 0.1203% · n = 21</b><br><b>Kraken: mean −0.0612% · σ 0.0191% · max 0.0758% · n = 3</b></td></tr>
+  </table>
+  </div>
+  <div style="font-size:12.5px;margin-top:11px"><b>The basis is confirmed as a small, stable, one-directional venue premium and the Branch 3 margin band holds at ±0.15%</b> — max(0.15%, 0.1203%). Session 47's corrected CoinGecko figure was mean −0.0842%, σ 0.0199%, max 0.1262%; this session's independent Coinbase series gives −0.0882%, σ 0.0241%, max 0.1203%. <b>Two different cross-feeds, measured a day apart, agree to within 0.004% on the mean.</b> That is the strongest corroboration the basis measurement has received, and it retrospectively confirms that Session 46's ±0.4523% band was an artifact and Session 47 was right to withdraw it.</div>
+  <div style="font-size:12.5px;margin-top:10px"><b>Both determinations that matter clear every band by orders of magnitude.</b> Aug 20 closed at $73,026.02 (Crypto.com), $73,011.87 (Coinbase), $73,001.10 (Kraken) — <b>+12.348% / +12.326% / +12.309%</b> above the $65,000 gate and <b>+16.922% / +16.899% / +16.882%</b> above the campaign invalidation. The confirmation trigger clears the gate by <b>103 times the maximum measured basis.</b></div>
+</div>
+
+<!-- ═════════ v2.4 ═════════ -->
+<div class="sec">Framework update — CRE v2.3 → v2.4 · four amendments and one zone rule, all earned against this session's own failures</div>
+<div class="card" style="padding:6px 10px">
+<table>
+  <tr><th style="width:17%">Amendment</th><th style="width:29%">v2.3</th><th>v2.4 — adopted this session</th></tr>
+  <tr><td><b>A9 · Every arming must declare an expiry condition, not only a fill zone</b></td>
+    <td>A7 required a published fill zone at arming and made WAIT the default absent one. It said nothing about what retires an armed tranche whose zone the market has left behind.</td>
+    <td>Every future arming must publish, at arming, <b>both</b> a fill zone <b>and</b> an expiry condition — a date, a structural event, or a distance beyond which the tranche is stood down. <b>Explicitly NOT applied retroactively:</b> BUY 4 was armed under v2.3 with no expiry and remains armed indefinitely with its zone unchanged at $65,000–$67,000. Retro-fitting an expiry to a live tranche is recalibrating a pre-committed rule mid-flight, which is precisely what was refused for the 1,768 BTC volume bar. <b>The defect is disclosed and carried, not patched.</b></td></tr>
+  <tr><td><b>A10 · The modal-gap metric splits into a direction component and an entropy component</b></td>
+    <td>Session 47 flagged the single modal-gap number as conflated — a confident disagreement and a high-entropy agreement both produced large negative gaps — and carried the recommendation without adopting it.</td>
+    <td><b>Recommendation discharged.</b> Every band tree now publishes two independent quantities. <b>DIRECTION:</b> does the tree's modal band differ from persistence's modal band, and by how many bands. <b>ENTROPY:</b> H(tree) − H(persistence) in bits over the published bands. This session's FR-B003: <b>DIRECTION = DISAGREE by 1 band</b> (tree modal B, persistence modal C); <b>ENTROPY = +1.0612 bits</b> (tree 2.0547 bits, persistence 0.9936 bits — the tree is materially flatter). The legacy conflated figure would have been <b>−47.6 points</b>, indistinguishable in kind from Session 47's −41.7, which was pure conviction shortfall with no directional disagreement at all. <b>The two sessions are now distinguishable.</b></td></tr>
+  <tr><td><b>A11 · Period-labelling convention is a property of the feed, never of the class of feed</b></td>
+    <td>A5 established, correctly, that CoinGecko stamps daily rows at period end, and instructed the sibling threads accordingly. The finding was one feed's convention stated as a discovery about feeds.</td>
+    <td>The alignment test must be run <b>per feed, every session, and never inherited</b> — including from a feed of the same type or from this same framework's own prior finding. Established this session: <b>Coinbase Exchange and Kraken both stamp period START (offset 0); CoinGecko stamps period END.</b> Had Session 47's convention been carried across to the substitute feeds, every basis observation this session would have been misaligned by a day in the opposite direction — a 1.13% and 5.92% mean error respectively, reproducing the exact Session 46 failure by the exact opposite route.</td></tr>
+  <tr><td><b>A12 · The session epoch must come from an authoritative external clock</b></td>
+    <td>No rule. The execution environment's clock was used implicitly for the ephemeris epoch and for reporting the in-progress candle's elapsed fraction.</td>
+    <td>The session epoch is established from an external timestamped source and cross-checked against a second before any time-dependent layer is computed. <b>Applied immediately, and it caught a live error:</b> the execution environment reported <span class="mono">2026-08-21T06:04Z</span>; the Crypto.com ticker stamp reported <span class="mono">23:00:02Z</span> and Kraken's server-time endpoint <span class="mono">23:04:55Z</span>. <b>The environment clock is 17h01m behind.</b> See correction 1 for what that would have corrupted.</td></tr>
+  <tr><td><b>Z7 · Zone touch semantics — settled candles only</b></td>
+    <td>Carried as the top framework debt since Session 42 and escalated to "no longer deferrable" in Session 47, with BTC_0001 then 0.61% away and no defined behaviour for a touch.</td>
+    <td><b>Debt discharged.</b> A zone is <b>TOUCHED</b> when a <em>settled</em> candle's [low, high] intersects its bounds. An in-progress candle may register <b>APPROACH</b> and never a touch — the no-mid-candle rule governs the zone layer exactly as it governs positioning. A touched zone becomes <b>TRAVERSED</b> if the settled candle closes beyond the far bound, or <b>TESTED</b> if it closes back inside or short of it. Applied: <b>BTC_0001 is TRAVERSED</b> (Aug 20 settled candle spanned $68,902.60–$73,410.93 and closed at $73,026.02, above the upper bound of $72,364). <b>BTC_0003 is APPROACH, not touched</b> — the Aug 20 settled high fell <b>$230.07 = 0.31%</b> short of $73,641, and the in-progress Aug 21 candle's traversal of it is explicitly not a touch.</td></tr>
+</table>
+</div>
+
+<!-- ═════════ EXECUTIVE ═════════ -->
+<div class="sec">✱ Is the plan changing?</div>
+<div class="card cA">
+  <div class="q">
+    <b>The plan is completing, not changing.</b> The confirmation trigger — pre-committed forty-plus sessions ago and re-affirmed in writing before the settle that satisfied it — is <b>COMPLETE</b>. Carried inventory stays at <b>BUY 3</b>. Aggressiveness holds at <b>3 of 10</b>: BUY 4 is armed, and it is not deployable, so nothing is added. Dry powder stays at <b>75%</b>, reserved for the Oct 3 – Nov 15 cycle window now <b>43 to 86 days</b> out.
+  </div>
+  <div class="q" style="margin-top:9px">
+    <b>The derivatives layer came back after eleven dark sessions and it argues for the bulls, which is not what the panel expected.</b> Funding at <b>+0.0016% per 8h</b> is the single most decisive input this session. The buying-climax alternate's core mechanism claim — that this move is forced covering with no real bid underneath — predicts euphoric long funding at the top. The tape shows mild, near-flat funding alongside <b>four consecutive days and $1.6103bn</b> of spot ETF demand. <b>The alternate is cut from 33% to 28%, and this time it is cut on evidence that speaks directly to its own mechanism rather than to its price claim.</b>
+  </div>
+  <div class="q" style="margin-top:9px">
+    <b>Structural risk stays split, and the split has widened.</b> On carried inventory it is <b>Low</b>: 6.414 ATR of cushion, 38 consecutive closes above the invalidation, counter 0 of 2. On <em>incremental</em> entry at market it is <b>Extreme</b>, up from High: the close is <b>5.08 ATR above its own 20-day mean</b>, the four-session move of <b>+16.098%</b> is the largest in the archive by a margin of 62%, ATR has expanded in two consecutive sessions, and Fear &amp; Greed has run <b>46 → 62 → 72</b> in three days.
+  </div>
+  <div class="q" style="margin-top:9px">
+    <b>The register is now carrying four badly underwater bearish claims and one that is deep in the money, and none has been revised.</b> FR-A030 and FR-A022 both now require moves that occur in <b>0 of 36</b> and <b>0 of 33</b> archive windows respectively. FR-A008's gap widened another <b>4.211 points</b>. They will all be scored at full weight. FR-B001, the register's first genuinely directional tree, remains its best claim.
+  </div>
+</div>
+
+<!-- ═════════ STRUCTURE ═════════ -->
+<div class="sec">Current market structure</div>
+<div class="card">
+<svg viewBox="0 0 900 372" xmlns="http://www.w3.org/2000/svg" role="img"
+ aria-label="BTC daily candles August 1 to August 21 2026. August 19 closes plus 7.13 percent converting the 65,000 gate, August 20 closes plus 5.32 percent at 73,026 on the largest volume of the campaign completing the confirmation trigger. The BUY 4 fill zone of 65,000 to 67,000 is now stranded far below price. August 21 in progress at 78,464 with a high of 79,526.">
+  <g stroke="var(--bord)" stroke-width="1" opacity=".65">
+    <line x1="62" y1="310" x2="888" y2="310"/><line x1="62" y1="265" x2="888" y2="265"/>
+    <line x1="62" y1="220" x2="888" y2="220"/><line x1="62" y1="175" x2="888" y2="175"/>
+    <line x1="62" y1="130" x2="888" y2="130"/><line x1="62" y1="85" x2="888" y2="85"/>
+    <line x1="62" y1="40" x2="888" y2="40"/>
+  </g>
+  <g fill="var(--txt3)" font-size="9.5" font-family="ui-monospace,monospace" text-anchor="end">
+    <text x="56" y="313">62,000</text><text x="56" y="268">65,000</text><text x="56" y="223">68,000</text>
+    <text x="56" y="178">71,000</text><text x="56" y="133">74,000</text><text x="56" y="88">77,000</text>
+    <text x="56" y="43">80,000</text>
+  </g>
+  <rect x="62" y="299.7" width="826" height="6.9" fill="var(--up)" opacity=".16"/>
+  <line x1="62" y1="303.1" x2="888" y2="303.1" stroke="var(--dn)" stroke-width="2" stroke-dasharray="6 3"/>
+  <text x="66" y="316" fill="var(--dn)" font-size="9.5" font-weight="700">CAMPAIGN INVALIDATION $62,457 · immutable · 38 straight closes above · counter 0 of 2 · cushion 6.41 ATR</text>
+  <rect x="62" y="235" width="826" height="30" fill="var(--acc)" opacity=".16"/>
+  <line x1="62" y1="265" x2="888" y2="265" stroke="var(--up)" stroke-width="2.1" stroke-dasharray="6 3"/>
+  <text x="66" y="277" fill="var(--up)" font-size="9.5" font-weight="700">$65,000 GATE — converted Aug 19 · now BUY 4 tranche invalidation · 10.99% / 4.87 ATR below the settle</text>
+  <text x="66" y="248" fill="var(--acc)" font-size="9" font-weight="700">BUY 4 FILL ZONE $65,000–$67,000 — ARMED &amp; STRANDED · ceiling now 8.25% below the settled close</text>
+  <line x1="62" y1="235.5" x2="888" y2="235.5" stroke="var(--txt3)" stroke-width="1" stroke-dasharray="2 4"/>
+  <text x="884" y="232" fill="var(--txt3)" font-size="9" text-anchor="end">Jul 21 swing high $66,963.90 — reclaimed, 8.30% below the settle</text>
+  <line x1="62" y1="270.3" x2="888" y2="270.3" stroke="var(--blu)" stroke-width="1.6"/>
+  <text x="884" y="283" fill="var(--blu)" font-size="9" font-weight="700" text-anchor="end">20d SMA $64,650.11 — 4 consecutive closes above · settle is 5.08 ATR over the mean</text>
+  <rect x="62" y="154.5" width="826" height="7.7" fill="var(--vio)" opacity=".22"/>
+  <text x="66" y="152" fill="var(--vio)" font-size="8.5" font-weight="700">ZONE_BTC_0001 $71,850–72,364 — TRAVERSED Aug 20 (Z7)</text>
+  <rect x="62" y="127.7" width="826" height="7.7" fill="var(--blu)" opacity=".22"/>
+  <text x="884" y="125" fill="var(--blu)" font-size="8.5" font-weight="700" text-anchor="end">ZONE_BTC_0003 $73,641–74,155 — APPROACH · settled high fell $230.07 short</text>
+  <g stroke-width="1.1">
+  <line x1="81.7" y1="292.6" x2="81.7" y2="306.1" stroke="var(--dn)"/><rect x="69.7" y="296.6" width="24" height="1.5" fill="var(--dn)"/>
+  <line x1="121.0" y1="283.0" x2="121.0" y2="297.9" stroke="var(--up)"/><rect x="109.0" y="286.4" width="24" height="11.2" fill="var(--up)"/>
+  <line x1="160.3" y1="278.6" x2="160.3" y2="305.6" stroke="var(--dn)"/><rect x="148.3" y="286.4" width="24" height="1.5" fill="var(--dn)"/>
+  <line x1="199.7" y1="271.7" x2="199.7" y2="290.2" stroke="var(--up)"/><rect x="187.7" y="278.5" width="24" height="8.7" fill="var(--up)"/>
+  <line x1="239.0" y1="264.3" x2="239.0" y2="282.0" stroke="var(--up)"/><rect x="227.0" y="270.0" width="24" height="8.4" fill="var(--up)"/>
+  <line x1="278.3" y1="264.9" x2="278.3" y2="277.5" stroke="var(--dn)"/><rect x="266.3" y="270.0" width="24" height="5.0" fill="var(--dn)"/>
+  <line x1="317.7" y1="259.0" x2="317.7" y2="277.6" stroke="var(--up)"/><rect x="305.7" y="266.1" width="24" height="8.9" fill="var(--up)"/>
+  <line x1="357.0" y1="262.0" x2="357.0" y2="267.7" stroke="var(--up)"/><rect x="345.0" y="265.6" width="24" height="1.5" fill="var(--up)"/>
+  <line x1="396.3" y1="257.3" x2="396.3" y2="269.1" stroke="var(--dn)"/><rect x="384.3" y="265.6" width="24" height="1.5" fill="var(--dn)"/>
+  <line x1="435.7" y1="259.1" x2="435.7" y2="282.8" stroke="var(--dn)"/><rect x="423.7" y="266.5" width="24" height="13.8" fill="var(--dn)"/>
+  <line x1="475.0" y1="272.5" x2="475.0" y2="291.6" stroke="var(--dn)"/><rect x="463.0" y="280.4" width="24" height="5.7" fill="var(--dn)"/>
+  <line x1="514.3" y1="272.2" x2="514.3" y2="290.5" stroke="var(--dn)"/><rect x="502.3" y="286.1" width="24" height="1.6" fill="var(--dn)"/>
+  <line x1="553.7" y1="279.7" x2="553.7" y2="297.5" stroke="var(--dn)"/><rect x="541.7" y="287.7" width="24" height="1.5" fill="var(--dn)"/>
+  <line x1="593.0" y1="285.7" x2="593.0" y2="302.0" stroke="var(--dn)"/><rect x="581.0" y="287.6" width="24" height="6.6" fill="var(--dn)"/>
+  <line x1="632.3" y1="292.1" x2="632.3" y2="296.4" stroke="var(--up)"/><rect x="620.3" y="293.7" width="24" height="1.5" fill="var(--up)"/>
+  <line x1="671.7" y1="289.1" x2="671.7" y2="299.3" stroke="var(--dn)"/><rect x="659.7" y="293.7" width="24" height="2.8" fill="var(--dn)"/>
+  <line x1="711.0" y1="270.4" x2="711.0" y2="298.8" stroke="var(--up)"/><rect x="699.0" y="271.9" width="24" height="24.6" fill="var(--up)"/>
+  <line x1="750.3" y1="264.1" x2="750.3" y2="279.5" stroke="var(--up)"/><rect x="738.3" y="269.1" width="24" height="2.8" fill="var(--up)"/>
+  <line x1="789.7" y1="188.9" x2="789.7" y2="277.6" stroke="var(--up)"/><rect x="777.7" y="199.9" width="24" height="69.2" fill="var(--up)"/>
+  <line x1="829.0" y1="138.8" x2="829.0" y2="206.5" stroke="var(--up)"/><rect x="817.0" y="144.6" width="24" height="55.3" fill="var(--up)"/>
+  <line x1="868.3" y1="47.1" x2="868.3" y2="144.8" stroke="var(--acc)" stroke-dasharray="3 2"/><rect x="856.3" y="63.0" width="24" height="81.6" fill="none" stroke="var(--acc)" stroke-width="1.6" stroke-dasharray="3 2"/>
+  </g>
+  <text x="711.0" y="326" fill="var(--up)" font-size="8.5" font-weight="700" text-anchor="middle">JAC</text>
+  <circle cx="789.7" cy="188.9" r="3.6" fill="var(--up)"/>
+  <text x="789.7" y="182" fill="var(--grn)" font-size="8.5" font-weight="700" text-anchor="middle">SOS +7.13%</text>
+  <circle cx="829.0" cy="138.8" r="4" fill="var(--up)"/>
+  <text x="829.0" y="132" fill="var(--grn)" font-size="9" font-weight="700" text-anchor="middle">CONFIRM LEG 2 · vol 2.73×</text>
+  <text x="868.3" y="43" fill="var(--acc)" font-size="8.5" font-weight="700" text-anchor="middle">LIVE 78,464</text>
+  <g fill="var(--txt3)" font-size="9" text-anchor="middle" font-family="ui-monospace,monospace">
+    <text x="81.7" y="345">Aug 1</text><text x="199.7" y="345">4</text><text x="317.7" y="345">7</text>
+    <text x="435.7" y="345">10</text><text x="553.7" y="345">13</text><text x="671.7" y="345">16</text>
+    <text x="789.7" y="345">19</text><text x="829.0" y="345">20</text><text x="868.3" y="345">21*</text>
+  </g>
+  <text x="62" y="363" fill="var(--txt3)" font-size="9">* dashed hollow candle = Aug 21 in progress at 23:05 UTC · gates nothing · no determination in this report uses it · registers APPROACH, never a zone touch (Z7)</text>
+</svg>
+</div>
+
+<div class="lbl">The $65,000 gate — the record after two conversions</div>
+<div class="card" style="padding:6px 10px">
+<table>
+  <tr><th>Cohort</th><th>Sessions with high ≥ $65,000</th><th>Converted to settled close ≥ $65,000</th><th>Rate</th></tr>
+  <tr><td>Jul 14 – Jul 26</td><td class="mono">8</td><td class="mono" style="color:var(--grn)">6</td><td class="mono" style="color:var(--grn)">75.0%</td></tr>
+  <tr><td>Jul 27 – Aug 18</td><td class="mono">10</td><td class="mono" style="color:var(--red)"><b>0</b></td><td class="mono" style="color:var(--red)"><b>0.0%</b> — closed historical regime</td></tr>
+  <tr><td><b>Aug 19 – Aug 20</b></td><td class="mono"><b>2</b></td><td class="mono" style="color:var(--grn)"><b>2</b></td><td class="mono" style="color:var(--grn)"><b>100%</b></td></tr>
+  <tr><td><b>Full archive</b></td><td class="mono"><b>20</b></td><td class="mono"><b>8</b></td><td class="mono"><b>40.0%</b> <span class="bg gG">↑ from 36.8%</span></td></tr>
+</table>
+</div>
+<div class="card cY" style="font-size:11.5px">
+  <b>The gate has stopped being the question.</b> With the settled close 12.348% above it and the confirmation trigger complete, $65,000 is no longer a threshold being tested — it is the BUY 4 tranche invalidation, sitting <b>4.871 ATR below the market</b>. The base rate is retained and will keep updating, but it now describes a level the campaign has left rather than a level it is fighting. <b>The live structural question has moved up: whether the Aug 20 settled candle's traversal of the ZONE_BTC_0001 supply shelf without pause is a sign of genuine demand absorption or of a market with no resting offers left because the shorts that placed them have been liquidated.</b> The archive cannot answer that; the funding print is the closest thing to evidence either way, and it favours the former.
+</div>
+
+<div class="lbl">Mandatory dual Wyckoff read — the mechanism evidence finally speaks, and it speaks against the alternate</div>
+<div class="gap">
+  <div class="card cG">
+    <div><span class="bg gG">PRIMARY · 62%</span> &nbsp;<b>Phase E — Markup underway, re-accumulation schematic complete and confirmed</b></div>
+    <div style="font-size:12px;margin-top:8px">The July 27 – Aug 18 range is a completed re-accumulation: <b>LPS on the Aug 14–16 floor tests</b>, <b>Jump Across the Creek Aug 17</b>, <b>Sign of Strength Aug 19</b>, and now <b>the confirmation leg on Aug 20</b> — the largest volume session of the campaign at 2.73× the 20-day average, closing at 91.5% of range. Effort and result agree on two consecutive sessions. The confirming inputs are discretionary and cumulative: <b>four straight days of spot ETF demand totalling $1.6103bn</b>, the Aug 20 print of $606.29m second only to May 1 in the product's history, running in parallel with a four-day ether ETF streak. <b>Decisively, funding sits at +0.0016% per 8h.</b> A markup that the crowd has not levered into is a markup with room. <b>+5 points.</b></div>
+  </div>
+  <div class="card cR">
+    <div><span class="bg gR">ALTERNATE · 28%</span> &nbsp;<b>Buying Climax extended — Phase A of distribution, automatic reaction still pending</b></div>
+    <div style="font-size:12px;margin-top:8px">The mechanism claim is <em>not</em> dead and the raw numbers grew: <b>&gt;$4bn of shorts liquidated across Aug 20–21</b>, $3.5bn in a single 24h window with BTC's share at $1.76bn, and 140,416 traders closed out. Demand that is manufactured by an exchange engine cannot repeat, and two record days in a row consume the short book faster than one. The extension itself is the alternate's best evidence: <b>a +16.098% four-session move that occurs in 1 of 40 archive windows, a close 5.08 ATR above its own 20-day mean, and Fear &amp; Greed at 72 after running 46 → 62 → 72 in three sessions</b> — that is the profile of a climax, not of a measured markup. <b>−5 points</b>, and the cut is larger in substance than in size: it is the first time the alternate has lost ground on evidence addressed to its own mechanism (flat funding) rather than merely to its price forecast. <b>Confirms on:</b> two consecutive settled closes below $73,026.02 accompanied by a settled close back inside ZONE_BTC_0001 ($71,850–$72,364), or any settled close below $67,000.</div>
+  </div>
+</div>
+<div class="card cY" style="font-size:11.5px">
+  <b>Residual 10% — unchanged and not folded into either read.</b> It carries the case that both schematics are wrong because the archive is 44 settled sessions long and contains exactly one move of this magnitude, which is this one. <b>A structure with no precedent in its own sample cannot be classified with confidence in either direction, and pretending otherwise by splitting the residual between two named reads would manufacture certainty the data does not contain.</b>
+</div>
+
+<!-- ═════════ PATH TREE ═════════ -->
+<div class="sec">Probability path trees — structural trajectories [MSA]</div>
+<div class="card cB">
+<div style="font-size:12.5px"><b>Current spot price: $78,464.43</b> (unsettled) · last settled close <b>$73,026.02</b></div>
+<div class="trow" style="margin-top:6px"><div class="tdot" style="background:var(--up)"></div><div class="tp" style="color:var(--grn)">62%</div>
+  <div><b>Primary Path — markup continues, first LPS forms above the reclaimed structure.</b> Logic: with the confirmation trigger complete on record volume and a four-day discretionary ETF bid underneath, the expected next event is a shallow reaction that holds above <b>$71,850</b> — the traversed ZONE_BTC_0001 shelf flipped to support — and forms the Last Point of Support that BUY 5 would classify.</div></div>
+<div class="trow"><div class="tdot" style="background:var(--acc)"></div><div class="tp" style="color:var(--amb)">28%</div>
+  <div><b>Secondary Path — buying climax, automatic reaction toward the breakout base.</b> Logic: forced covering exhausts within days once the short book is gone, and price reverts toward <b>$67,000–$71,000</b>, where the Jul 21 swing high and the pre-breakout consolidation sit, with the Secondary Test that follows deciding whether the range resolution was real.</div></div>
+<div class="trow"><div class="tdot" style="background:var(--dn)"></div><div class="tp" style="color:var(--red)">10%</div>
+  <div><b>Tail-Risk Path — full round trip and liquidity flush.</b> Logic: a reversal that carries back through <b>$67,000</b> re-enters the BUY 4 fill zone from above and then threatens the $65,000 tranche invalidation; a −16.9% move from the settle would retest the campaign invalidation at <b>$62,457</b>, which no 8-day window in the archive has produced but which the archive has never had to price after a 16% four-day advance either.</div></div>
+<div style="font-size:11px;color:var(--txt2);margin-top:9px;padding-top:8px;border-top:1px solid var(--bord)">These weights track the Wyckoff dual read (62/28) and are <b>not</b> the band tree below, which answers a different question — a price band on a fixed date rather than a structural sequence. The two are computed independently and are not required to agree.</div>
+</div>
+
+<!-- ═════════ BAND TREE ═════════ -->
+<div class="sec">Band tree — FR-B003, resolves Aug 27 · reference is the Aug 20 settled close</div>
+<div class="card cV">
+  <div class="lbl" style="margin-top:0">Step 1 · computed priors — and the largest reference-sensitivity problem the instrument has faced</div>
+  <div style="font-size:11.5px"><b>The live tape is 7.451% above the settled close that the priors must be computed from.</b> That is the widest live/settled divergence in campaign history, and it is the dominant weakness of this tree — wider than the volatility-regime problem that dominated FR-B002. Volatility itself has stabilised at the new level rather than expanded again: 30d σ = <b>1.9121%</b> (36.53% annualised), 20d σ = <b>1.9618%</b> (37.48%), with 20d still above 30d. 60/90-day still NOT COMPUTABLE; 43 returns held, <b>47 sessions</b> to a 90-day figure. Empirical 7-day forward quantiles (n=37): p5 <b>−3.11%</b>, p50 <b>+0.32%</b>, p95 <b>+5.58%</b> — <b>and every one of those windows is drawn from a sample whose largest four-day move is +9.905%, against the +16.098% just observed — the new observation is 62.5% larger than anything the sample contains.</b> The empirical column below should be read as a lower bound on dispersion, not an estimate of it.</div>
+  <div class="card" style="margin:9px 0 0;padding:6px 10px;background:var(--bg)">
+  <table>
+    <tr><th>Band (7-day horizon → Aug 27)</th><th>Empirical n=37<br><span style="font-weight:400;text-transform:none">ref = Aug 20 close</span></th><th>Lognormal σ30<br><span style="font-weight:400;text-transform:none">ref = Aug 20 close</span></th><th>Lognormal σ30<br><span style="font-weight:400;text-transform:none">ref = LIVE 78,464</span></th><th>Posterior</th></tr>
+    <tr><td>A ≥ $80,000 — markup extends through the round number</td><td class="mono">2.7%</td><td class="mono">3.6%</td><td class="mono">35.1%</td><td class="mono"><b>25%</b></td></tr>
+    <tr><td>B $75,000 – $79,999.99 — holds the live extension</td><td class="mono">13.5%</td><td class="mono">26.3%</td><td class="mono">46.3%</td><td class="mono"><b>32%</b></td></tr>
+    <tr><td>C $70,000 – $74,999.99 — reaction into the Aug 20 close and the BTC_0003 shelf</td><td class="mono">83.8%</td><td class="mono">50.0%</td><td class="mono">17.4%</td><td class="mono"><b>30%</b></td></tr>
+    <tr><td>D &lt; $70,000 — automatic reaction confirms, alternate promoted</td><td class="mono">0.0%</td><td class="mono">20.1%</td><td class="mono">1.2%</td><td class="mono"><b>8%</b></td></tr>
+    <tr><td>Residual — mandatory ≥5% branch</td><td class="mono">—</td><td class="mono">—</td><td class="mono">—</td><td class="mono"><b>5%</b></td></tr>
+    <tr><td><b>PERSISTENCE baseline (ref band = C)</b></td><td class="mono" colspan="3"><b>83.8% (31/37)</b> — 7-day forward close stays within −4.144% to +2.703% of the reference</td><td class="mono">—</td></tr>
+  </table>
+  </div>
+  <div class="lbl">A10 · the modal-gap metric, split — first application</div>
+  <div class="card" style="margin:0;padding:6px 10px;background:var(--bg)">
+  <table>
+    <tr><th>Component</th><th>FR-B003 (this session)</th><th>FR-B002 (Session 47)</th><th>What it measures</th></tr>
+    <tr><td><b>DIRECTION</b></td><td><b style="color:var(--amb)">DISAGREE by 1 band</b> — tree modal <b>B</b>, persistence modal <b>C</b></td><td><b>AGREE</b> — both modal <b>B</b></td><td>Whether the tree is making a directional call against naive persistence at all.</td></tr>
+    <tr><td><b>ENTROPY</b></td><td class="mono"><b>+1.0612 bits</b><br>H(tree) 2.0547 · H(persistence) 0.9936</td><td class="mono">not computed at issue</td><td>How much flatter the tree is than persistence. Positive = less confident.</td></tr>
+    <tr><td><b>Legacy conflated figure</b></td><td class="mono" style="color:var(--red)">−47.6 pts</td><td class="mono" style="color:var(--red)">−41.7 pts</td><td><b>Nearly identical numbers describing opposite situations</b> — which is precisely the defect Session 47 flagged and A10 now removes.</td></tr>
+  </table>
+  </div>
+  <div style="font-size:11.5px;color:var(--txt2);margin-top:9px"><b>Read the split, not the legacy number.</b> This tree makes a genuine directional call — it places its mode one band above where persistence places it, because persistence is anchored to a settled close the market has already left 7.451% behind. It also carries <b>a full bit more entropy than persistence</b>, which is the honest admission that a 62%/28% structural read and a 44-session archive containing one precedent do not license a concentrated distribution. <b>Direction: yes, a call is being made. Entropy: no, it is not a confident one.</b> Both statements are true and the old single number could express neither.</div>
+</div>
+<div class="card">
+  <div class="lbl" style="margin-top:0">Step 2 · posterior · <span class="bg gV">FR-B003</span></div>
+  <div class="trow"><div class="tdot" style="background:var(--up)"></div><div class="tp" style="color:var(--grn)">25%</div>
+    <div><b>Band A — close ≥ $80,000.</b> <span class="bg gV">priors 2.7% / 3.6% / 35.1%</span> → set well below the live prior and an order of magnitude above the settled priors. The live tape is <b>1.920% below</b> this band. The haircut from 35.1% is the price of the squeeze mechanic, and it is <b>smaller than the equivalent haircut in FR-B002</b> because the funding print materially weakened the pure-squeeze case since that tree was issued. <b>The single largest judgement in this tree.</b></div></div>
+  <div class="trow"><div class="tdot" style="background:var(--up)"></div><div class="tp" style="color:var(--grn)">32%</div>
+    <div><b>Band B — close $75,000 to $79,999.99.</b> <span class="bg gV">priors 13.5% / 26.3% / 46.3%</span> → the modal band, set between the settled and live lognormals and far under the live figure. This is where the market currently trades, but a 6.67% band on a 1.912% daily σ is only <b>1.32σ wide on a seven-day horizon</b>, and Jackson Hole opens on the resolution date.</div></div>
+  <div class="trow"><div class="tdot" style="background:var(--acc)"></div><div class="tp" style="color:var(--amb)">30%</div>
+    <div><b>Band C — close $70,000 to $74,999.99.</b> <span class="bg gV">priors 83.8% / 50.0% / 17.4%</span> → set far below both settled priors and well above the live prior. This is the band containing the Aug 20 settled close, the ZONE_BTC_0003 shelf and the reaction outcome the 28% Wyckoff alternate demands. <b>Assigning 30% against an 83.8% empirical prior is the tree's clearest statement that the settled reference is stale.</b></div></div>
+  <div class="trow"><div class="tdot" style="background:var(--dn)"></div><div class="tp" style="color:var(--red)">8%</div>
+    <div><b>Band D — close below $70,000.</b> <span class="bg gV">priors 0.0% / 20.1% / 1.2%</span> → <b>the empirical prior is zero and is not used as zero</b>, per the no-zero-branch rule. From the <em>settled</em> reference this band requires only <b>−4.144%</b>, which is <b>−0.82 standard deviations</b> on a seven-day horizon — barely a move at all; from the live tape it requires −10.79%, or <b>−2.13 σ</b>. <b>That spread is the reference-sensitivity problem in a single number.</b> Jackson Hole lands on the resolution date. Raised from FR-B002's equivalent 6%.</div></div>
+  <div class="trow"><div class="tdot" style="background:var(--gry)"></div><div class="tp" style="color:var(--gry)">5%</div>
+    <div><b>Residual.</b> Mandatory ≥5% branch. Carries the case that a 7.451% live/settled gap makes the entire band structure mis-centred, in either direction.</div></div>
+  <div style="font-size:11.5px;color:var(--txt2);margin-top:10px;padding-top:9px;border-top:1px solid var(--bord)"><b>This tree is flat again, and for a different reason than last time — which is the point of A10.</b> FR-B002 was flat because a volatility regime had just broken and the empirical sample was obsolete. FR-B003 is flat because the reference price is stale by 7.451% and the structural read is 62/28 rather than 80/20. The instrument is not entitled to a confident distribution simply because its directional call has been right for two sessions; <b>being right recently is not evidence, and the register will score this tree on its calibration, not on its narrative.</b></div>
+</div>
+
+<!-- ═════════ ADVERSE EXCURSION ═════════ -->
+<div class="sec">Live un-revised claims — mandatory adverse-excursion disclosure <span class="bg gV">A3</span></div>
+<div class="card" style="padding:6px 10px">
+<table>
+  <tr><th>ID</th><th>Claim</th><th>p</th><th>Position at issue</th><th>Position now</th><th>Adverse excursion</th></tr>
+  <tr><td><b>FR-A031</b><br><span class="bg gY">Aug 15</span></td><td>Aug 21 close band; <b>Band A ≥$65,000 given 7%</b></td><td class="mono">.07 on A</td><td class="mono">live $63,085<br>2.95% below gate</td><td class="mono">live $78,464.43<br><b>20.714% above gate</b></td><td><span class="bg gR">RESOLVES AT THE AUG 21 SETTLE — NOT YET SCOREABLE</span> The settle is <b>~55 minutes</b> after this session's epoch. It is effectively determined into the 7% branch, and <b>it is not scored here</b>, because a claim that resolves on a settled close is not resolved until that close settles. Scored in full at Session 49.</td></tr>
+  <tr><td><b>FR-A030</b><br><span class="bg gY">Aug 14</span></td><td>≥1 settled close &lt; $62,457 on or before Aug 28</td><td class="mono">.46</td><td class="mono">close $63,048.33<br>+0.947% above</td><td class="mono">close $73,026.02<br><b>+16.922% above</b></td><td class="mono" style="color:var(--red)"><b>needs −14.473% in 8 days · archive base rate for that move: 0 of 36 windows · 7 of 14 days elapsed</b></td></tr>
+  <tr><td><b>FR-A022</b><br><span class="bg gY">earlier</span></td><td>August closes red vs $62,897.98</td><td class="mono">—</td><td class="mono">+0.24% (Aug 14)</td><td class="mono"><b>+16.102%</b> (Aug 20)</td><td class="mono" style="color:var(--red)"><b>needs −13.869% in 11 days · archive base rate: 0 of 33 windows · margin widened 67× from issue</b></td></tr>
+  <tr><td><b>FR-A008</b><br><span class="bg gY">flagship</span></td><td>settled close &lt; $57,803 before Nov 30</td><td class="mono">.65</td><td class="mono">gap −8.320%<br><span style="font-size:10px">(Aug 14 close)</span></td><td class="mono"><b>gap −20.846%</b><br><span style="font-size:10px">(Aug 20 close)</span></td><td class="mono" style="color:var(--amb)">widened <b>4.211 pts this session</b>, 12.5 pts in five sessions · 101 days left · drives the C decline</td></tr>
+  <tr><td><b>FR-B002</b><br><span class="bg gV">Aug 20</span></td><td>Aug 26 close band; modal <b>Band B</b> given 34%; Band A ≥$72,000 given 26%</td><td class="mono">.34 modal</td><td class="mono">close $69,337.54<br>inside Band B</td><td class="mono">close $73,026.02<br><b>inside Band A</b></td><td class="mono" style="color:var(--amb)"><b>MIXED · not revised.</b> Left its modal band after one session and sits in the 26% branch, +1.425% above Band A's floor on the settle and +8.978% on the live. Better than the 6% branch, worse than the mode.</td></tr>
+  <tr><td><b>FR-B001</b><br><span class="bg gV">Aug 19</span></td><td>Aug 25 close band; <b>Band A ≥$65,000 given 48%</b></td><td class="mono">.48 on A</td><td class="mono">close $64,724.81<br>0.42% below gate</td><td class="mono">close $73,026.02<br><b>+12.348% above gate</b></td><td class="mono" style="color:var(--grn)"><b>FAVOURABLE excursion · 2 of 6 days elapsed · still the best claim in the register</b></td></tr>
+  <tr><td><b>FR-A007</b></td><td>cycle bottom Oct–Nov 2026 · p=.42 vs .25 baseline</td><td class="mono">.42</td><td class="mono">—</td><td class="mono">window 43–86 days out</td><td class="mono" style="color:var(--amb)">not directly excurred, but structurally adverse: a cycle-bottom thesis requires a lower price and the market has moved 16.9% away from one</td></tr>
+</table>
+</div>
+<div class="card cY" style="font-size:11.5px">
+  <b>Two of the register's live claims now require moves with a zero base rate in the instrument's own archive, and neither has been revised.</b> That is not a defence of the claims — FR-A030 and FR-A022 are very probably going to resolve against the register, and FR-A031 is going to resolve into a 7% branch within the hour. <b>It is a statement about what the register is for.</b> A forecasting instrument that quietly retires losing claims when the tape turns has no denominator and therefore no calibration. The Session 42 rule survived its first bullish stress test in Session 47; this session it survives a second, harder one, in which not revising is now visibly expensive. <b>The offsetting entry is FR-B001, and the reason it matters is that it was issued the day before the break, at 48% against a 27-point persistence deficit, when the evidence for it was thinnest.</b>
+</div>
+
+<!-- ═════════ SHADOW ═════════ -->
+<div class="sec">✦ Shadow layers — voice, no vote · and a scan-resolution dispute finally settled</div>
+<div class="shadow">
+  <div style="font-size:11.5px;color:var(--txt2);margin-bottom:11px"><b>Firewall statement.</b> Computed from <span class="mono">ephem</span> 4.2.1 at the <b>externally verified</b> session epoch <span class="mono">2026-08-21T23:05:00Z</span> — see amendment A12 and correction 1, without which this entire layer would have been computed 17 hours early and placed on the wrong side of the Aug 20 First Quarter. Touched no probability, no confidence score, no aggressiveness value, no risk parameter in this report.</div>
+  <div class="dl" style="font-size:11.5px">
+    <dt>☾ Moon</dt><dd><b>67.50% illuminated, waxing gibbous</b>, 9.23 days past the New Moon of <b>Aug 12 17:36:39 UTC</b> — which reproduces the Session 42, 46 and 47 figure to the second for the fourth consecutive time. First Quarter passed <b>Aug 20 02:46:16 UTC</b>. <b>Full Moon Aug 28 04:18:26 UTC (6.22 days)</b>. <span class="bg gA">Sub-second discrepancy logged:</span> Session 47 reported 04:18:27; this session computes 04:18:26. One second, below any meaningful resolution, recorded because unlogged discrepancies compound. The Full Moon continues to coincide with the FR-A030 resolution date and the Jackson Hole window — noted as coincidence for the fourth time.</dd>
+    <dt>☿ Mercury</dt><dd><b>DIRECT</b>, ecliptic longitude 142.978°, motion <b>+2.0134°/day</b>; <b>28.96 days</b> past the station direct. <span class="bg gG">DISCREPANCY RESOLVED:</span> Session 46 reported station direct Jul 23 and next direct Nov 13; Session 47's 6-hour scan reported Jul 24 06:00 and Nov 14 00:00 and declined to reconcile them. <b>A 1-hour scan this session gives station direct Jul 24 00:00 UTC, station retrograde Oct 24 08:00 UTC (63.0 days), station direct Nov 13 17:00 UTC (83.8 days)</b> — vindicating Session 47 on the July date and Session 46 on the November date. <b>The dispute was a scan-resolution artifact in both directions, exactly as Session 47 suspected but could not demonstrate.</b> Zero weight either way; logged because a resolvable numerical disagreement should be resolved.</dd>
+    <dt><span class="bg gV">SL-M002</span> <b>NEW · issued this session</b></dt><dd>Claim: <b>the settled close on Aug 30 is below the settled close on Aug 26</b> — i.e. the Full Moon of Aug 28 04:18:26 UTC marks a local reversal. <b>Stated base rate: ~50%</b>, the unconditional frequency of any 4-day decline in the archive (18 of 40 windows = 45.0%). <b>Given 50%.</b> A claim pitched at its own base rate carries zero information by construction, which is the honest posterior for a layer with a two-observation ledger. Resolves Aug 30. <b>Weight: ZERO.</b></dd>
+    <dt>Shadow ledger</dt><dd><b>1 hit of 2 resolved</b> (SL-M001 hit, one prior miss), plus SL-M002 live. Unchanged in weight and unchangeable by result. <b>The ledger is now scoring in the direction that flatters the layer, which is exactly when the firewall is load-bearing:</b> two observations cannot distinguish a signal from a coin flip, and a hit rate of 50% on a claim pitched at a 50% base rate would remain uninformative even at n=100.</dd>
+    <dt>Shmita</dt><dd>Year 4 of 7; next release year Sep 2028. <span class="bg gY">NO SIGNAL</span>. <b>Fifth consecutive session producing nothing.</b> The mid-cycle position offered no discriminating prediction about a fiscal-liquidity operation, a record ETF week, or a $4bn short liquidation, which are the three things that actually moved this tape.</dd>
+  </div>
+</div>
+
+<!-- ═════════ AUDIT ═════════ -->
+<div class="sec">Layered analytical audit</div>
+<div class="card cA">
+  <div class="lbl" style="margin-top:0">Tier 1 · Wyckoff market structure — dominant [MSA]</div>
+  <div class="dl">
+    <dt>Aug 20 anatomy</dt><dd>O $69,337.54, H $73,410.93, L $68,902.60, C $73,026.02. True range <b>$4,508.33 = 3.253× the prior ATR(14)</b>. Closed at <b>91.5% of range</b>. Volume <b>3,637.73 = 2.73× the 20-day average</b> and <b>2.06× the confirmation bar</b>. <b>Second consecutive session in which effort and result agree.</b></dd>
+    <dt>Confirmation</dt><dd><b>COMPLETE.</b> Two consecutive settled closes ≥ $65,000 ($69,337.54 and $73,026.02) with volume ≥ 1,768 BTC (3,162.17 and 3,637.73). Bar held at 1,768 throughout and never recalibrated, though 1.5× the current 20-day average would now be <b>1,996 BTC</b> — which both legs also clear.</dd>
+    <dt>Extension</dt><dd>20d SMA $64,650.11; close <b>+12.956% above = 5.08 ATR</b> — fourth consecutive above-mean close. Four-session move <b>+16.098%</b> against an archive maximum of +9.905%; <b>1 of 40 windows</b>. Two-session move <b>+12.825%</b>. <b>This is the most extended the campaign has ever been and the primary tactical risk.</b></dd>
+    <dt>Ceiling</dt><dd>Gate close-through rate <b>40.0% (8 of 20)</b>, up from 36.8%. No live ceiling remains inside the archive; the nearest overhead structure is ZONE_BTC_0003 at $73,641–74,155, which the settled data records as APPROACH only.</dd>
+    <dt>Floor</dt><dd><b>38 consecutive settled closes above $62,457</b>, minimum $62,823.63. Counter <b>0 of 2</b>. Cushion <b>$10,569.02 = 6.414 ATR = 16.922%</b>. <b>New intermediate floor:</b> the traversed ZONE_BTC_0001 shelf at $71,850–72,364, untested from above.</dd>
+    <dt>Volatility</dt><dd>ATR(14) <b>$1,647.81 = 2.256%</b>, up from $1,386.11 — <b>+18.9%, a second consecutive expansion</b> and +57.3% over two sessions. 30d σ <b>1.9121%</b>, 20d σ <b>1.9618%</b>; 20d remains above 30d. <b>Every ATR-referenced distance in this report is measured against a denominator that has expanded by more than half in two sessions.</b></dd>
+  </div>
+</div>
+<div class="card cY">
+  <div class="lbl" style="margin-top:0">Tiers 2–5 · macro, liquidity, positioning, sentiment</div>
+  <div class="dl">
+    <dt>Tier 2 — macro <span class="bg gA">CARRIED</span></dt><dd><b>US Treasury long-end buyback cap doubled to at least $4bn per operation, Sep 9 – Nov 4</b> — carried from Session 47 and cited across sources as the proximate driver. <b>Jackson Hole Aug 27–29, six days out</b>, Chair Warsh's first symposium address, and <b>it falls on the FR-B003 resolution date</b>. Sep FOMC 15–16. A proposed SEC "Regulation Crypto Assets" framework is cited as supportive; <b>not independently verified and not scored.</b> July FOMC minutes (hawkish, three dissents for a hike) unchanged from Session 47. PPI and retail sales still unobtained and <b>not asserted</b>.</dd>
+    <dt>Tier 3 — flows <span class="bg gG">FRESH · FOURTH CONSECUTIVE DAY</span></dt><dd><b>Spot BTC ETF net: Aug 17 +$297.56m, Aug 18 +$189.30m, Aug 19 +$517.19m, Aug 20 +$606.29m. Four-day total $1.6103bn.</b> Aug 20 is the second-largest daily print on record behind May 1's $629.73m. <b>IBIT took $502.99m of Aug 20 — over 80%</b>, which is a concentration worth flagging: the discretionary bid is one issuer's book. Category net assets <b>$90.16bn</b>. Ether ETFs +$221m on Aug 20, also a fourth straight day. <b>This layer now carries the primary Wyckoff read.</b></dd>
+    <dt>Tier 3.5 — positioning <span class="bg gG">FULL COVERAGE — FIRST FUNDING &amp; OI IN 12 SESSIONS</span></dt><dd><b>Funding +0.0016% per 8 hours</b>, positive in 40 of 42 observed periods — mild, far from extreme. <b>Futures open interest $54.42–54.58bn, +13.6% over two days.</b> <b>Liquidations: $3.5bn 24h total, &gt;$3bn shorts, BTC share $1.76bn, ETH $1.16bn; a further ~$1bn of shorts on the Aug 21 tape out of $1.23bn across 140,416 traders; two-day short total &gt;$4bn.</b> <b>The funding print is the decisive input of the session</b> — see the dual read. Book series still <b>n=3, not extended</b>, <span class="bg gR">NO SIGNAL</span> at 2-of-3.</dd>
+    <dt>Tier 4–5 — sentiment <span class="bg gA">DISPERSION FLAGGED</span></dt><dd><b>Fear &amp; Greed 72 — "Greed"</b> as of the Aug 21 tape, having run <b>46 → 62 → 72</b> across three sessions. <b>Disclosed problem:</b> three secondary sources give <b>61, 64 and 72</b> for the Aug 20–21 window, the direct alternative.me API has previously returned a stale 2025 series, and one aggregator attributes its index to CoinGecko rather than Alternative. <b>The index is reported with its dispersion; it cannot be treated as a precise series and it adjusts nothing.</b> <span class="bg gA">[UNVALIDATED]</span> as a signal. Halving position ~month 27; bottom window <b>Oct 3 – Nov 15 — 43 to 86 days out</b>.</dd>
+    <dt>Cross-feed basis</dt><dd><b>Coinbase: mean −0.0882%, σ 0.0241%, max 0.1203% (n=21). Kraken: mean −0.0612%, σ 0.0191%, max 0.0758% (n=3).</b> Branch 3 margin band holds at <b>±0.15%</b>. Agrees with Session 47's independent CoinGecko measurement to within 0.004% on the mean.</dd>
+  </div>
+</div>
+
+<!-- ═════════ ZONE ═════════ -->
+<div class="sec">Zone Layer v1.1 — the top framework debt is discharged, and the layer records its first traversal</div>
+<div class="card" style="padding:6px 10px">
+<table>
+  <tr><th>ZONE_ID</th><th>Bounds</th><th>Dist. from settle</th><th>Dist. from live</th><th>Settled-candle touch?</th><th>State (Z7)</th></tr>
+  <tr><td class="mono"><b>BTC_0001</b></td><td class="mono">$71,850–$72,364</td><td class="mono" style="color:var(--red)">−1.61% (below)</td><td class="mono" style="color:var(--red)">−8.43%</td><td><b>YES — Aug 20</b>, candle spanned $68,902.60–$73,410.93 and closed at $73,026.02, above the upper bound</td><td><span class="bg gG">TRAVERSED</span></td></tr>
+  <tr><td class="mono"><b>BTC_0003</b></td><td class="mono">$73,641–$74,155</td><td class="mono" style="color:var(--grn)">+0.84%</td><td class="mono" style="color:var(--red)">−6.15%</td><td>No — Aug 20 settled high fell <b>$230.07 = 0.31%</b> short. In-progress Aug 21 traversed it; <b>explicitly not a touch under Z7</b></td><td><span class="bg gA">APPROACH</span></td></tr>
+  <tr><td class="mono"><b>BTC_0002</b></td><td class="mono">$57,057–$57,571</td><td class="mono" style="color:var(--red)">−21.87%</td><td class="mono" style="color:var(--red)">−27.28%</td><td>No</td><td><span class="bg gB">WATCHING</span></td></tr>
+</table>
+</div>
+<div class="card cY" style="font-size:11.5px">
+  <b>Bounds immutable per Z6; semantics now defined per Z7.</b> BTC_0001 travelled from +14.00% away (Session 42) to +8.94% (Session 46) to +0.61% (Session 47) to <b>traversed inside a single settled candle</b> — the market did not pause at the supply shelf, it went through it and closed above. <b>That is a real output and it points one way: a supply zone that does not produce even a settled close inside it is a zone with no supply left in it.</b> The counter-reading, and it is not weak, is that the offers were removed by liquidation rather than absorbed by demand. <b>The layer cannot distinguish those two and should not pretend to</b> — its output is "traversed without pause", and the funding and ETF layers are what argue for one interpretation over the other. Session 47 wrote that the Session 42 verdict of "structurally inert" was conclusively wrong; that stands, and the layer has now produced a classification rather than a proximity reading for the first time.
+</div>
+
+<!-- ═════════ ROADMAP ═════════ -->
+<div class="sec">Macro cycle roadmap — class C</div>
+<div class="card cB">
+  <div style="font-size:12.5px">Interval arithmetic unchanged: Oct 3 – Nov 15, 2026, <b>43 to 86 days out</b>. Halving month ~27. <b>75% dry powder reserved</b> — unchanged, and the case for spending it has weakened for a fourth consecutive session, since the cycle-bottom thesis requires a lower price and the market has now moved 16.9% away from the campaign invalidation.</div>
+  <div style="font-size:12.5px;margin-top:9px"><b>C falls 2 to 61 — the third consecutive decline, and A4's proportional scale is applied in the direction it was written to constrain.</b> The FR-A008 gap widened from <b>−16.635%</b> to <b>−20.846%</b>, a move of <b>4.211 points</b>. The convention adopted last session — ~1 point of C per 2 points of gap movement, floored at 1 and capped at 3 — gives <b>2 points</b>. Last session took the cap at 3 on a 5.94-point move; this session takes 2 on a 4.211-point move. <b>The scale is holding and producing different answers for different magnitudes, which is what it was written to do.</b> Note the asymmetry test that has not yet been run: the convention has now been applied three times, all downward. <b>It has never once been tested on evidence favourable to FR-A008, and until it is, its symmetry is asserted rather than demonstrated.</b> Flagged.</div>
+  <div style="font-size:12px;margin-top:9px;padding-top:9px;border-top:1px solid var(--bord)"><b>Live flagship forecasts, unmodified:</b> FR-A007 p=0.42 (cycle bottom Oct–Nov 2026 vs 0.25 baseline) · FR-A008 p=0.65 (settled close below $57,803 before Nov 30). <b>FR-A008 now requires a −20.8% decline in 101 days from a market in confirmed markup with four consecutive days of record-adjacent ETF demand behind it.</b> It is not revised. It is disclosed at full adverse excursion and it will be scored on Nov 30. Longer-horizon context carried unchanged: most probable bull-run ignition month <b>October 2027</b>, Sept–Dec 2027 primary window at 33%.</div>
+</div>
+
+<!-- ═════════ EXECUTION ═════════ -->
+<div class="sec">Risk engineering &amp; execution commands [CRO &amp; Quant PM sign-off]</div>
+<div class="gap">
+<div class="card cA">
+  <div class="lbl" style="margin-top:0">Commands</div>
+  <div class="dl">
+    <dt>Matrix classification</dt><dd><b>BUY 3</b> held · <b>BUY 4 ARMED, STRANDED</b> — fill zone 8.25%–10.99% below the settled close</dd>
+    <dt>System action</dt><dd><b>HOLD</b> carried inventory · <b>WAIT</b> on incremental entry. <b>No chase. No market fill. No zone widening. No anticipatory sizing on the live candle.</b></dd>
+    <dt>Aggressiveness</dt><dd><b>3 / 10</b> <span class="bg gY">unchanged</span><div class="sb"><i style="width:30%"></i></div></dd>
+    <dt>Confidence · T</dt><dd><b>64 / 100</b> <span class="bg gG">↑6</span> <span class="bg gG">95% coverage</span><div class="sb"><i style="width:64%"></i></div></dd>
+    <dt>Confidence · S</dt><dd><b>71 / 100</b> <span class="bg gG">↑7</span><div class="sb"><i style="width:71%"></i></div></dd>
+    <dt>Confidence · C</dt><dd><b>61 / 100</b> <span class="bg gR">↓2</span><div class="sb"><i style="width:61%"></i></div></dd>
+    <dt>Structural risk</dt><dd><b>Low</b> on carried inventory <span class="bg gY">unchanged</span><br><b>Extreme</b> on incremental entry at market <span class="bg gR">↑ from High</span></dd>
+    <dt>Campaign counter</dt><dd><b>0 of 2</b> · cushion <b>$10,569.02 = 6.414 ATR</b></dd>
+    <dt>Profit-taking ladder</dt><dd><span class="bg gR">DOES NOT EXIST</span> The SELL matrix has never been armed and the campaign has no defined distribution rule. <b>Top framework debt for Session 49</b> — see the CRO note.</dd>
+  </div>
+</div>
+<div class="card cR">
+  <div class="lbl" style="margin-top:0">Triggers — settled UTC closes only</div>
+  <div class="dl">
+    <dt>Immediate trigger <span class="bg gG">SATISFIED Aug 19</span></dt><dd>Settled close ≥ $65,000 → fired at $69,337.54. BUY 4 armed. Fill withheld under A7.</dd>
+    <dt>Confirmation trigger <span class="bg gG">COMPLETE Aug 20</span></dt><dd>Two consecutive settled closes ≥ $65,000 with volume ≥ 1,768 BTC. <b>Leg 1: Aug 19, $69,337.54, 3,162.17 BTC (1.79×). Leg 2: Aug 20, $73,026.02, 3,637.73 BTC (2.06×).</b> Bar never recalibrated. <b>Completion authorises no fill and widens no zone</b> — pre-committed in writing by Session 47 before the settle.</dd>
+    <dt>Fill zone <span class="bg gR">STRANDED</span></dt><dd><b>$65,000 – $67,000, unchanged.</b> Requires a <b>−8.252%</b> retracement to touch its ceiling and <b>−10.991%</b> to reach its floor. <b>No expiry exists</b> because none was declared at arming; A9 fixes this prospectively and is <b>not</b> applied retroactively. BUY 4 remains armed indefinitely as a disclosed defect.</dd>
+    <dt>Branch 1 — one close below $62,457</dt><dd><b>Log 1 of 2. No action.</b> Now 16.922% away.</dd>
+    <dt>Branch 2 — two consecutive closes below $62,457</dt><dd><b>Campaign position off in full, without renegotiation.</b> Unchanged, immutable, never moved up across 38 consecutive closes above it and a 16.9% favourable excursion.</dd>
+    <dt>Branch 2T — BUY 4 tranche</dt><dd><b>Two consecutive settled closes below $65,000 kill the BUY 4 tranche</b> without affecting BUY 1–3. Distance from settled close: <b>−10.991% = 4.871 ATR.</b></dd>
+    <dt>Branch 3 — margin band</dt><dd>Band <b>holds at ±0.15%</b> — max(0.15%, measured max basis 0.1203%). Invalidation band <b>$62,363.31–$62,550.69</b>; gate band <b>$64,902.50–$65,097.50</b>. <b>No determination in this report sits within any band</b>, and the confirmation trigger clears the gate by 103× the maximum measured basis.</dd>
+    <dt>New watch level <span class="bg gV">Z7</span></dt><dd><b>ZONE_BTC_0001 $71,850–$72,364, traversed and now untested from above.</b> A settled close back inside it, combined with a settled close below $73,026.02, is the alternate read's confirmation condition. <b>This is a classification trigger, not an execution trigger — it arms nothing.</b></dd>
+  </div>
+</div>
+</div>
+<div class="card cG">
+  <div class="lbl" style="margin-top:0">CRO note — the framework has a complete entry ladder and no exit ladder, and it has just spent five sessions proving why that matters</div>
+  <div style="font-size:12px">Every pre-committed rule survived a second consecutive record session. The gate converted and was confirmed on the exact volume bar written before either leg existed. The invalidation was never moved despite a 16.9% favourable excursion — which is the harder test, because moving a stop up after a good move feels like prudence and is actually renegotiation. No position was taken mid-candle across forty-eight sessions. <b>A7 did precisely its job: it prevented a chase that would now be 13.16% underwater on the live tape, and its only cost is an untidy armed tranche that A9 will prevent recurring.</b><br><br>
+  <b>But the panel must name what this session has exposed, because it is larger than any of the amendments.</b> The Position Progression Matrix has five BUY tranches, a campaign invalidation, tranche-local invalidations, fill zones and now expiry conditions. <b>It has no rule of any kind for taking profit.</b> The SELL 1–5 ladder exists in the specification and has never once been armed. The campaign now sits 16.9% above its invalidation, 5.08 ATR above its own mean, and 12.9% above the level at which the last tranche was contemplated — and the framework's entire answer to "what now" is HOLD, by default rather than by rule. <b>HOLD-by-default is not the same institution as WAIT-by-rule, and the difference has never been tested because until this week the campaign never had a gain to manage.</b><br><br>
+  <b>This is declared the top framework debt for Session 49</b>, replacing the Zone Layer question discharged today: define the conditions under which the SELL ladder arms, and do it <em>before</em> a distribution structure appears, not during one. A framework that writes its exit rules while holding a large gain will write them to justify holding.</div>
+</div>
+
+<!-- ═════════ EXECUTIVE BRIEF ═════════ -->
+<div class="sec">Final executive brief</div>
+<div class="key">
+<div class="q"><b>Bitcoin sits in Wyckoff location B, Phase E — markup underway on a completed re-accumulation schematic whose confirmation trigger closed on Aug 20 at $73,026.02, on the largest volume of the campaign at 2.73× average, with 38 consecutive settled closes above a campaign invalidation now 6.41 ATR and 16.9% below.</b> The immediate next structural event is the first reaction of the markup, which decides between the two live reads: a pullback that holds above the traversed $71,850–$72,364 shelf forms the Last Point of Support and confirms Phase E, while a settled close back inside that shelf together with a close below $73,026.02 confirms that a two-day advance funded by over $4bn of forced short covering was a buying climax — and the flat funding rate of +0.0016% per 8h alongside four consecutive days and $1.6103bn of spot ETF demand is currently the strongest evidence against that. <b>The enforced action is HOLD on carried inventory at BUY 3 and WAIT on every increment: BUY 4 stays armed with its fill zone unchanged at $65,000–$67,000 — now stranded 8.25% below the market and, by the framework's own refusal to recalibrate a live rule, left armed with no expiry as a disclosed defect rather than patched into convenience.</b></div>
+</div>
+
+<!-- ═════════ CORRECTIONS ═════════ -->
+<div class="sec">Corrections logged this session</div>
+<div class="card" style="padding:6px 10px">
+<table>
+  <tr><th style="width:20%">Item</th><th style="width:31%">Before</th><th>After</th></tr>
+  <tr><td><b>1 · The execution environment's clock was 17 hours wrong and would have corrupted two layers</b></td>
+    <td>The session epoch was taken implicitly from the execution environment, which reported <span class="mono">2026-08-21T06:04Z</span>. On that basis the Aug 21 candle would have been reported as <b>25% elapsed</b> and the ephemeris computed 17 hours early — placing the lunar epoch <b>on the wrong side of the Aug 20 02:46 First Quarter</b> and shifting the reported illumination.</td>
+    <td>Two independent external sources agree: the Crypto.com ticker stamp reads <span class="mono">2026-08-21T23:00:02Z</span> and Kraken's server-time endpoint <span class="mono">2026-08-21T23:04:55Z</span>. <b>The environment clock is 17h01m behind.</b> The epoch is set to <span class="mono">23:05:00Z</span>, the Aug 21 candle is <b>~96% elapsed</b> and still excluded, and the ephemeris is recomputed. <b>Adopted as amendment A12.</b> Note what this nearly did: the shadow layer is zero-weight, so a wrong Moon phase would have changed no decision — but the same clock also governs elapsed-fraction reporting and every "days out" interval in the macro roadmap, which are not zero-weight.</td></tr>
+  <tr><td><b>2 · The mandatory cross-feed was unreachable; A2 was satisfied by substitution, and the substitutes broke A5's inherited convention</b></td>
+    <td>A2 makes CoinGecko cross-verification mandatory every session. A5, written last session, established that CoinGecko stamps daily rows at period end — a finding the report generalised into instructions for the sibling threads.</td>
+    <td>CoinGecko returned <span class="mono">ROBOTS_DISALLOWED</span> and could not be retrieved; no alternative retrieval route was attempted. <b>Coinbase Exchange and Kraken were substituted and the A5 alignment test run independently on each.</b> Both stamp at period <b>START</b>, not end: mean absolute close error <b>0.0882%</b> and <b>0.0612%</b> at offset 0 versus 1.13% and 5.92% at offset +1. <b>Had Session 47's convention been inherited, every basis observation would have been misaligned — reproducing Session 46's failure by the opposite route.</b> Adopted as amendment A11.</td></tr>
+  <tr><td><b>3 · A7's fill zone had no expiry, and the tranche it protected is now unreachable</b></td>
+    <td>A7 required a fill zone at arming and made WAIT the default absent one. BUY 4 was armed on Aug 19 with a zone of $65,000–$67,000 and no expiry condition.</td>
+    <td>Price has since travelled a further 5.32% on the settle and 13.16% on the live tape. <b>The zone ceiling is now 8.252% below the settled close and its floor coincides with the tranche invalidation</b> — the tranche can only fill by reaching the level that kills it. <b>A9 requires an expiry at every future arming and is explicitly NOT applied to BUY 4</b>, because retro-fitting a live pre-committed rule is the failure the framework refused when the volume bar was inconvenient. Defect disclosed and carried.</td></tr>
+  <tr><td><b>4 · The modal-gap metric was conflated; Session 47 recommended a split and did not adopt one</b></td>
+    <td>Session 47 flagged that −27.0 (directional disagreement) and −41.7 (conviction shortfall under full agreement) were not comparable quantities, recommended splitting the metric "before the next tree is scored", and carried the recommendation.</td>
+    <td><b>Discharged as amendment A10 and applied to FR-B003 at issue.</b> DIRECTION: disagree by 1 band. ENTROPY: +1.0612 bits. The legacy conflated figure would have been <b>−47.6</b>, nearly identical to FR-B002's −41.7 despite describing the opposite situation. <b>A carried recommendation that is not discharged within a session or two becomes framework decoration; this one is closed.</b></td></tr>
+  <tr><td><b>5 · The Zone Layer's touch semantics were undefined while a zone was 0.61% from being touched</b></td>
+    <td>Carried as an open recommendation since Session 42 and escalated in Session 47 to "no longer deferrable" and "top framework debt going into Session 48".</td>
+    <td><b>Discharged as Z7.</b> Touch requires a settled candle; in-progress candles register APPROACH only; a touched zone is TRAVERSED or TESTED by where the settled candle closes. Applied: <b>BTC_0001 TRAVERSED</b> on Aug 20; <b>BTC_0003 APPROACH</b> — the settled high fell $230.07 short, and the in-progress Aug 21 traversal is explicitly not a touch. <b>The rule was written before the ambiguous case was resolved in the framework's favour, not after.</b></td></tr>
+  <tr><td><b>6 · A published four-day ETF total was internally impossible and was not adopted</b></td>
+    <td>A secondary source reporting the Aug 20 ETF print also stated a <b>"four-day cumulative total of $53.40 billion"</b> alongside four daily figures.</td>
+    <td>The four dated daily figures sum to <b>$1,610.34m = $1.6103bn</b>. The $53.4bn figure is a since-inception cumulative mislabelled as a four-day total. <b>The computed figure is used and the published one is discarded</b>; the daily prints themselves are consistent across three sources and are retained.</td></tr>
+  <tr><td><b>7 · The Fear &amp; Greed reading disperses across sources for the same window</b></td>
+    <td>Session 47 resolved the 17-session provenance gap by obtaining an attributed reading of 62 and tagging it second-hand.</td>
+    <td>Three secondary sources give <b>61, 64 and 72</b> for the Aug 20–21 window, and one aggregator attributes its index to <b>CoinGecko</b> rather than Alternative. <b>The headline 72 is reported with its dispersion disclosed.</b> The provenance problem is narrower than before but not closed: the index is a reported observation, remains <span class="bg gA">[UNVALIDATED]</span> as a signal, and adjusts nothing.</td></tr>
+  <tr><td><b>8 · The Mercury station discrepancy carried since Session 46 is resolved</b></td>
+    <td>Session 46: station direct Jul 23, next direct Nov 13. Session 47's 6-hour scan: Jul 24 06:00 and Nov 14 00:00, "within scan resolution and not reconciled".</td>
+    <td>A <b>1-hour</b> scan gives station direct <b>Jul 24 00:00 UTC</b>, station retrograde <b>Oct 24 08:00 UTC</b>, station direct <b>Nov 13 17:00 UTC</b>. <b>Session 47 was right on July; Session 46 was right on November.</b> Both prior figures were scan-resolution artifacts. Zero weight, and logged because the alternative is an open numerical dispute in a layer that is supposed to be the easiest thing in the report to compute correctly.</td></tr>
+</table>
+</div>
+
+<!-- ═════════ APPENDIX ═════════ -->
+<div class="sec">Appendix</div>
+<details>
+<summary>Horizon-separated confidence — rubrics and deltas</summary>
+<table>
+  <tr><th>Class</th><th>Component</th><th>Cap</th><th>Session 47</th><th>Session 48</th><th>Basis</th></tr>
+  <tr><td rowspan="3"><b>T</b><br>48h–7d</td><td>Wyckoff local structure</td><td>60</td><td>42</td><td><b>41</b></td><td><b>Down one — and the direction is deliberate.</b> The structural evidence improved (confirmation trigger complete, second consecutive effort/result agreement, largest campaign volume, 91.5% close-of-range). The <em>tactical</em> read did not: a close 5.08 ATR above its own 20-day mean, a four-session move of +16.098% occurring in 1 of 40 archive windows, a second consecutive ATR expansion totalling +57.3%, and F&amp;G at 72. <b>Tactical confidence is confidence about the next 48h–7d, and the most extended tape in campaign history is not a high-confidence 48-hour environment however good the structure is.</b></td></tr>
+  <tr><td>Positioning / derivatives</td><td>40</td><td>16</td><td><b>23</b></td><td><b>Up seven. Funding and open interest obtained for the first time in 12 sessions</b>, closing the gap flagged since Session 36. Funding +0.0016%/8h is directly informative about the dual read; OI +13.6% over two days is genuine but ambiguous. Scored 23/40 rather than higher because the book series is still n=3 and the liquidation-composition read remains unvalidated.</td></tr>
+  <tr><td colspan="2"><b>T total on available evidence</b></td><td>58</td><td><b>64</b></td><td>Coverage rises 85% → <b>95%</b>. <b>The entire increase is coverage, not conviction</b> — the structural component fell. Stated explicitly so the next session can tell the two apart.</td></tr>
+  <tr><td rowspan="4"><b>S</b><br>1–6 weeks</td><td>Wyckoff structural</td><td>40</td><td>27</td><td><b>31</b></td><td>Up four: the confirmation trigger completed on the pre-committed volume bar, the schematic is complete, and ZONE_BTC_0001 was traversed without a settled close inside it. Capped by the buying-climax alternate at 28%, by the 10% residual that neither read owns, and by the absence of any pullback structure against which to test the breakout.</td></tr>
+  <tr><td>Liquidity &amp; flows</td><td>30</td><td>19</td><td><b>24</b></td><td><b>Up five.</b> Four consecutive inflow days totalling $1.6103bn, the Aug 20 print second-largest on record, parallel four-day ether streak. Held below 27 by issuer concentration: IBIT was over 80% of Aug 20, so the discretionary bid is substantially one book.</td></tr>
+  <tr><td>Macro</td><td>30</td><td>18</td><td><b>16</b></td><td><b>Down two.</b> Nothing macro improved; the Treasury buyback support is unchanged and still dated to Nov 4, and <b>Jackson Hole moved from 7–9 days out to 6 days out and now lands on the FR-B003 resolution date.</b> Proximity to an unresolved binary reduces swing confidence regardless of its expected direction.</td></tr>
+  <tr><td colspan="2"><b>S total</b></td><td>64</td><td><b>71</b></td><td>Full coverage. Highest S reading of the campaign.</td></tr>
+  <tr><td rowspan="3"><b>C</b><br>quarterly</td><td>Halving interval arithmetic</td><td>50</td><td>37</td><td><b>37</b></td><td>Unchanged. Window 43–86 days out.</td></tr>
+  <tr><td>Macro regime</td><td>50</td><td>26</td><td><b>24</b></td><td><b>Down two — A4's proportional scale, below the cap.</b> FR-A008 gap widened −16.635% → −20.846% (4.211 pts) → 2 points at ~1 per 2. Four consecutive days of ETF demand are structurally adverse to a Q4 capitulation thesis.</td></tr>
+  <tr><td colspan="2"><b>C total</b></td><td>63</td><td><b>61</b></td><td>Full coverage. <b>Third consecutive decline.</b> Cumulative −5 from Session 46's 66.</td></tr>
+</table>
+</details>
+<details>
+<summary>Forecast Register — resolutions, live entries, and this session's issue</summary>
+<div style="font-size:11.5px;color:var(--txt2);margin-bottom:10px"><b>No resolutions this session.</b> FR-A031 resolves at the Aug 21 settle, approximately 55 minutes after this session's epoch, and is <b>not scored here</b> — a claim on a settled close is unresolved until the close settles, however determined the outcome appears. The seventeen scored entries and the register mean of <b>+0.5156</b> are carried unchanged from Session 42 with its standing qualification: twelve of the seventeen are band trees scored against a uniform-four baseline that naive persistence beats, and the instrument stands at <b>1 win in 10</b> against persistence; the seven binary threshold claims average <b>+0.4710</b> against a genuine 0.25 baseline and are where demonstrated skill sits. Entries resolved in the unretrieved sessions 43–45 are still not reflected, and FR-A029 remains recorded as an unscoreable resolution.</div>
+<table>
+  <tr><th>ID</th><th>Claim</th><th>Status</th><th>Resolves</th><th>Current position</th></tr>
+  <tr><td><b>FR-B003</b> <span class="bg gV">NEW</span></td><td>Aug 27 close band · posterior .25/.32/.30/.08/.05 · modal band <b>B</b> ($75,000–$79,999.99)</td><td><span class="bg gA">LIVE</span></td><td>Aug 27</td><td><b>A10 split at issue:</b> DIRECTION <b>disagree by 1 band</b> (persistence modal C) · ENTROPY <b>+1.0612 bits</b> · persistence baseline <b>83.8% (31/37)</b></td></tr>
+  <tr><td><b>SL-M002</b> <span class="bg gV">NEW · shadow</span></td><td>Aug 30 settled close below the Aug 26 settled close (Full Moon reversal) · p=.50 vs stated base rate 45.0% (18/40)</td><td><span class="bg gA">LIVE</span></td><td>Aug 30</td><td><b>ZERO WEIGHT.</b> Pitched at its own base rate and therefore uninformative by construction</td></tr>
+  <tr><td><b>FR-A031</b></td><td>Aug 21 close band · Band A given <b>.07</b></td><td><span class="bg gA">LIVE · resolves within the hour</span></td><td>Aug 21</td><td class="mono" style="color:var(--red)">live 20.714% above the Band A floor · <b>not scored this session</b> · scored in full at S49</td></tr>
+  <tr><td><b>FR-B002</b></td><td>Aug 26 close band · modal Band B given <b>.34</b>; Band A ≥$72,000 given .26</td><td><span class="bg gA">LIVE · not revised</span></td><td>Aug 26</td><td class="mono" style="color:var(--amb)">settled close left the modal band after one session; sits in the <b>.26</b> branch, +1.425% above Band A's floor</td></tr>
+  <tr><td><b>FR-B001</b></td><td>Aug 25 close band · Band A ≥$65,000 given <b>.48</b></td><td><span class="bg gG">LIVE · favourable</span></td><td>Aug 25</td><td class="mono" style="color:var(--grn)">settled close +12.348% into Band A · 2 of 6 days elapsed</td></tr>
+  <tr><td><b>FR-A022</b></td><td>August closes red vs $62,897.98</td><td><span class="bg gA">LIVE · not revised</span></td><td>Aug 31</td><td class="mono" style="color:var(--red)">+16.102% · needs −13.869% in 11 days · <b>base rate 0 of 33</b></td></tr>
+  <tr><td><b>FR-A030</b></td><td>≥1 settled close &lt; $62,457 by Aug 28 · p=.46</td><td><span class="bg gA">LIVE · not revised</span></td><td>Aug 28</td><td class="mono" style="color:var(--red)">+16.922% away · 7 of 14 days gone · needs −14.473% · <b>base rate 0 of 36</b></td></tr>
+  <tr><td><b>FR-A007</b></td><td>cycle bottom Oct–Nov 2026 · p=.42 vs .25 baseline</td><td><span class="bg gA">LIVE</span></td><td>Nov 2026</td><td>window 43–86 days out</td></tr>
+  <tr><td><b>FR-A008</b></td><td>settled close &lt; $57,803 before Nov 30 · p=.65</td><td><span class="bg gA">LIVE · not revised</span></td><td>Nov 30</td><td class="mono" style="color:var(--red)">gap −20.846%, widened 4.211 pts this session</td></tr>
+  <tr><td><b>SL-M001</b></td><td><span class="bg gV">shadow</span> settled close &gt; $65,000 by Aug 20</td><td><span class="bg gG">RESOLVED — HIT (S47)</span></td><td>Aug 20</td><td>shadow ledger <b>1 of 2 · weight remains ZERO</b></td></tr>
+</table>
+<div style="font-size:11px;color:var(--txt2);margin-top:8px"><b>Not fabricated:</b> FR-A001–A006 are not restated. FR-A029's posterior and any forecast issued in sessions 43–45 were not retrieved and are not reconstructed from inference.</div>
+</details>
+<details>
+<summary>Data provenance, volume debt, signal validation queue</summary>
+<div class="dl" style="font-size:11.5px">
+  <dt>Session epoch</dt><dd><b>2026-08-21T23:05:00Z</b>, established externally per A12 from the Crypto.com ticker stamp (<span class="mono">23:00:02Z</span>) and Kraken server time (<span class="mono">23:04:55Z</span>). <b>The execution environment reported 06:04Z and is 17h01m behind — see correction 1.</b> Aug 21 candle in progress (O $73,024.40, H $79,525.99, L $73,014.49, last $78,464.43, vol 4,545.88 at ~96% of day elapsed); every determination uses the <b>Aug 20</b> settled close. <b>No projection of the in-progress figures is made, per A8.</b></dd>
+  <dt>Archive</dt><dd><b>44 settled rows, Jul 8 → Aug 20</b>, rebuilt independently from the authoritative feed. 43 log returns.</dd>
+  <dt>Volume debt</dt><dd><span class="bg gG">44 rows</span>. 30d σ <b>1.9121%</b>, 20d σ <b>1.9618%</b> — 20d still above 30d, stable at the post-break level rather than expanding further. 60/90d NOT COMPUTABLE; <b>47 sessions</b> to a 90-day figure.</dd>
+  <dt>Cross-verification</dt><dd><span class="bg gA">PERFORMED BY SUBSTITUTION — mandatory under A2, primary feed unreachable.</span> CoinGecko returned ROBOTS_DISALLOWED; <b>Coinbase Exchange and Kraken substituted</b>, with the A5 alignment test run independently on each and both established as period-START (A11). Determinations agree on all three feeds. Basis: Coinbase mean −0.0882%, σ 0.0241%, max 0.1203%, n=21; Kraken mean −0.0612%, σ 0.0191%, max 0.0758%, n=3.</dd>
+  <dt>Book series</dt><dd>n=3, not extended this session. <span class="bg gR">NO SIGNAL</span> at 2-of-3, P(≥2 | fair coin) = 0.500.</dd>
+  <dt>Ephemeris</dt><dd><span class="mono">ephem</span> 4.2.1 at the externally verified epoch. New Moon figure reproduces Sessions 42, 46 and 47 to the second. Full Moon differs from Session 47 by <b>1 second</b> (04:18:26 vs 04:18:27) — logged. <b>Mercury station scan refined from 6-hour to 1-hour resolution; the Session 46/47 dispute is resolved in both directions — see correction 8.</b></dd>
+  <dt>Signal validation queue</dt><dd><span class="bg gA">[UNVALIDATED]</span>: Coinbase Premium, Fear &amp; Greed contrarian read, August seasonality, miner-transfer signal, exchange netflows, easing-breadth correlation, liquidation-composition read, <b>funding-rate level read (new — +0.0016%/8h is an observation used qualitatively in the dual read; the threshold separating "mild" from "extreme" has never been measured on this archive and is asserted, not computed)</b>. <b>Measured, NO SIGNAL:</b> book imbalance 2-of-3. <b>Computed and in use:</b> realized volatility, ATR, persistence baseline, <b>A10 direction/entropy split (new, replaces the conflated modal-gap metric)</b>, FR-A030 and FR-A022 threshold base rates (both 0 of 36 / 0 of 33), $65,000 close-through base rate (<b>40.0%, 20 pokes</b>), cross-feed basis series (two independent feeds). <b>Removed:</b> intraday volume extrapolation (A8); conflated modal-gap metric (A10). <b>Newly reported:</b> funding rate and open interest, first in 12 sessions; neither adjusts a probability.</dd>
+  <dt>Not verified</dt><dd>Coinbase Premium (last Jul 29, 23 days). Whale layer — <b>29 days</b> stale. PPI and retail sales — still not obtained. The cited SEC "Regulation Crypto Assets" framework — not independently verified, not scored.</dd>
+</div>
+</details>
+<details>
+<summary>Cross-thread notes</summary>
+<div style="font-size:11.5px">
+<ul>
+<li><b>Reverse the A5 instruction that Session 47 sent to the ADA and AERO threads, then generalise it correctly.</b> Session 47 told them CoinGecko stamps daily rows at period end. That is true of CoinGecko and false of Coinbase Exchange and Kraken, both of which stamp at period start. <b>The portable rule is A11: run the alignment test on every feed, every session, and never inherit a convention — not from another feed, not from another asset, and not from this framework's own prior finding.</b> Inheriting a correct finding about the wrong feed is the same class of error as Session 46's, and it is harder to catch because the source looks authoritative.</li>
+<li><b>A9 is the missing half of A7 and both threads have the exposure.</b> Any armed-with-a-zone rule needs an expiry, or the ledger silently accumulates tranches that can never fill and can never be retired. ADA's unresolved BUY 1 fill price, flagged last session as an A7 defect, is now an A7 <em>and</em> A9 defect: it needs a zone <b>and</b> a condition under which the arming lapses. Write both at the same time or the second one never gets written.</li>
+<li><b>A12 applies to every thread immediately and is the cheapest fix in the framework.</b> A 17-hour environment clock error is not exotic and it silently poisons every "days out", every elapsed-fraction report, and every ephemeris epoch. Two external timestamps cost one call each. <b>Any thread that has been reporting time-to-event intervals without an external clock check should re-derive them.</b></li>
+<li><b>A10's split should be back-applied before any thread compares band trees across sessions.</b> The single modal-gap number cannot distinguish "made a directional call" from "agreed with persistence but weakly", and both threads have series of these numbers that currently mean two different things at different points.</li>
+<li><b>The exit-ladder debt is probably not BTC-specific.</b> If ADA and AERO also have BUY ladders, campaign invalidations and no armed SELL conditions, they have the same structural asymmetry and will discover it the same way — while holding a gain, which is the worst moment to write the rule.</li>
+<li><b>Pre-commitment for Session 49, made before the Aug 21 settle and not after:</b> if Aug 21 settles ≥ $73,026.02, the markup read is unchanged, <b>BUY 4 remains armed and stranded with its zone unchanged, and no new tranche is armed</b> — extension is not an entry signal and the framework will not invent one to participate. If Aug 21 settles between $71,850 and $73,026.01, that is the first settled reaction of the markup and is logged as such with no action. <b>If Aug 21 settles below $71,850 — back inside the traversed ZONE_BTC_0001 — that is the first leg of the alternate's confirmation condition and the buying-climax read is promoted above 35%.</b> All three branches are written now, while none is known.</li>
+</ul>
+</div>
+</details>
+
+<div class="foot">
+<b>Evidence hierarchy under CRE v2.4:</b> Tier 1 Wyckoff market structure is dominant and load-bearing. Tiers 2, 3, 3.5, 4 and 5 modify confidence within their horizon class only and never override Tier 1. Confidence is computed per horizon class (T / S / C) and <b>never blended</b>, and under A4 — with the proportional scale stated in Session 47 and applied below its cap here — each class must respond with equal and equally-scaled sensitivity to evidence for and against its own thesis; the scale's symmetry is noted as asserted rather than demonstrated, having been applied downward three times and upward none. Every probability begins from a computed historical frequency or is explicitly tagged NO BASE RATE; no branch is assigned zero probability even where the empirical prior is zero; judgement adjustments against a computed prior are flagged as such; band trees publish a persistence baseline and, under A10, a direction component and an entropy component at issue. Structural and threshold claims are issued once and revised only on a pre-declared structural trigger, and under A3 every un-revised live claim publishes its adverse excursion. Cross-verification is mandatory each session under A2 and was satisfied this session by disclosed substitution; under A5 no cross-feed basis may be computed until the feeds' period-labelling conventions have been established by an explicit alignment test, and under A11 that test is run per feed, every session, and never inherited. Under A6 each tranche carries its own invalidation and the campaign invalidation is never moved. Under A7 no trigger is complete without a published fill zone; under A9 no future arming is complete without a published expiry — and A9 is <b>not</b> applied to the live BUY 4 tranche, which remains armed and stranded as a disclosed defect rather than a patched one. Under A8 intraday extrapolation of event-clustered quantities is prohibited. Under A12 the session epoch is established from an authoritative external clock. Under Z7 a zone is touched only by a settled candle. Shmita, Mercury retrograde and lunar cycles are <b>zero-weight</b>: disclosed each session, recorded in a firewalled shadow ledger, and they adjusted no probability, confidence score, aggressiveness value or risk parameter here — <b>including the shadow ledger's move to 1 hit of 2, which is weighted exactly as it was when it stood at 0 of 1: zero.</b><br><br>
+No mid-candle positioning: every determination uses settled 00:00 UTC closes, and the Aug 21 candle in progress — trading 7.451% above the settle at the time of writing — is excluded throughout, including from the Zone Layer under Z7. Context gaps, feed failures, computation errors and unavailable layers are disclosed rather than substituted, inferred or scored; the primary cross-feed was unreachable and the substitution is disclosed; FR-A031 resolves within the hour and is <b>not</b> scored, because a claim on a settled close is unresolved until that close settles. Pre-committed rules are not altered while a signal is live — the confirmation-trigger volume bar was held at 1,768 BTC through both legs rather than recalibrated to the current 1,996, and BUY 4's fill zone is neither widened nor given a retroactive expiry. Zone bounds are immutable once registered. Structural orientation and probabilistic forecasting output — <b>not financial advice</b>. Size positions yourself and consult a licensed advisor.
+</div>
+</body>
+</html>
