@@ -103,7 +103,7 @@
   <img src="cardano-logo.svg" class="ada-logo" style="width:26px;height:26px;object-fit:contain;">
   ADA Framework Dashboard — Interactive
 </h1>
-<div class="meta">Crypto Reconnaissance Engine · <b>Sep 2017 → Aug 2026 live</b> (Aug 21 level ladder &amp; driftless volatility cone to Dec 2028) · drag to pan, scroll/pinch to zoom, hover/tap for values, toggle layers below</div>
+<div class="meta">Crypto Reconnaissance Engine · <b>Sep 2017 → Aug 2026 live</b> (Aug 23 level ladder &amp; driftless volatility cone to Dec 2028) · drag to pan, scroll/pinch to zoom, hover/tap for values, toggle layers below</div>
 
 <div class="controls">
   <div class="ctrl-group">
@@ -112,7 +112,7 @@
     <button class="toggle active" data-layer="shmita">Shmita</button>
     <button class="toggle active" data-layer="mercury">Mercury Rx</button>
     <button class="toggle active" data-layer="fng">Fear &amp; Greed</button>
-    <button class="toggle active" data-layer="levels">Aug 21 Levels</button>
+    <button class="toggle active" data-layer="levels">Aug 23 Levels</button>
   </div>
   <div class="ctrl-group">
     <span class="ctrl-label">Zoom</span>
@@ -137,7 +137,7 @@
   </div>
   <div class="ctrl-group">
     <span class="ctrl-label">Report</span>
-    <a class="zoom-btn" href="ADA_monthly_map_aug21.html" style="text-decoration:none;">📊 Monthly Map (Aug 21)</a>
+    <a class="zoom-btn" href="ADA_MarketGPS_2026-08-23.html" style="text-decoration:none;">📊 Market GPS (Aug 23)</a>
   </div>
 </div>
 
@@ -159,7 +159,7 @@
         <b>Spine fixed at 24 months — and why that one.</b> It covers 85 of 108 months, includes both the 2021 bull cycle and the markdown, and is the only spine whose walk-forward ordering holds at 3m and 6m. Chosen for <b>data coverage, not for the prettiest result</b> — it is also the spine whose lowest bucket rests on <b>e=1 independent episode</b>. The button peeks at 36m and 46m to keep the sensitivity in view; those reads are explicitly not canonical.
       </div>
       <div style="background:var(--bg2);border:1px solid var(--bord);border-radius:9px;padding:9px 11px;">
-        <b>Sensitivity, permanently displayed.</b> As computed on <b>Aug 10</b>, the then month-to-date close of $0.19459 read <b>27th percentile</b> (24m spine, canonical) · <b>13th</b> (36m) · <b>12th</b> (46m). One price, three answers — any statement drawn from this layer must carry its spine, because the spine choice moves the answer by 15 percentile points. <b>Aug MTD now stands at $0.19896</b>; the chart bands and the hover read update with it, but the <i>exact</i> percentile rank is <b>not recomputable</b> from the five published cut points — it needs the full ratio distribution — so no refreshed rank is quoted rather than one being estimated. The band the current close sits in is shown on hover.
+        <b>Sensitivity, permanently displayed.</b> As computed on <b>Aug 10</b>, the then month-to-date close of $0.19459 read <b>27th percentile</b> (24m spine, canonical) · <b>13th</b> (36m) · <b>12th</b> (46m). One price, three answers — any statement drawn from this layer must carry its spine, because the spine choice moves the answer by 15 percentile points. <b>Aug MTD now stands at $0.22601</b>; the chart bands and the hover read update with it, but the <i>exact</i> percentile rank is <b>not recomputable</b> from the five published cut points — it needs the full ratio distribution — so no refreshed rank is quoted rather than one being estimated. The band the current close sits in is shown on hover.
       </div>
       <div style="background:var(--bg2);border:1px solid var(--bord);border-radius:9px;padding:9px 11px;">
         <b>&#9888; Warning flag — the p75&ndash;95 band.</b> The one cell that did <b>not</b> flip across any spine: the second-highest bucket returned <b>0% positive months</b> at both the 3-month and 6-month horizons (n=3&ndash;5, e=1&ndash;2). Far too small to be a sell signal, and it is <b>not</b> one. It is marked on the chart as a flag: if ADA enters that band, stop and examine rather than proceed on momentum.
@@ -193,7 +193,7 @@
   <span><i style="background:#2f6fb0"></i>Extreme greed</span>
   <span style="margin-left:12px"><i style="background:var(--amber)"></i>Mercury Rx / Shmita (on)</span>
   <span><i style="background:#1a1d24;border:1px solid #5ec8f0"></i>ADA price</span>
-  <span style="margin-left:8px;border-left:1px solid var(--bord);padding-left:12px;font-weight:700;color:var(--amber)">Aug 21 cone:</span>
+  <span style="margin-left:8px;border-left:1px solid var(--bord);padding-left:12px;font-weight:700;color:var(--amber)">Aug 23 cone:</span>
   <span style="display:flex;align-items:center;gap:4px"><span style="display:inline-block;width:18px;border-top:2px dashed #8b8ff5"></span>5th / 95th percentile</span>
   <span style="display:flex;align-items:center;gap:4px"><span style="display:inline-block;width:18px;height:9px;background:rgba(99,102,241,.28);border-radius:2px"></span>central 50% (25th–75th)</span>
   <span style="display:flex;align-items:center;gap:4px"><span style="display:inline-block;width:18px;border-top:2px solid #6366f1"></span>median — flat, driftless by construction</span>
@@ -209,20 +209,20 @@
   <span style="color:var(--txt2)">sensitivity as computed Aug 10 on the then-MTD $0.19459: <b>27th pct</b> (24m) · 13th (36m) · 12th (46m)</span>
 </div>
 <div class="legend-row">
-  <span style="font-weight:700;color:var(--amber)">Aug 21 levels:</span>
-  <span><i style="background:rgba(224,168,63,.5)"></i>$0.21156 TRIGGER LEVEL — settled close above + vol ≥12.16M confirms markup</span>
-  <span><i style="background:rgba(224,168,63,.5)"></i>$0.20117 BEAR TRIGGER — a settled close below converts the SOS to an upthrust</span>
-  <span><i style="background:rgba(224,129,95,.5)"></i>$0.23287 new campaign high · $0.19896 Aug 20 settle · $0.19 BUY 3 gate (reclaimed) · $0.1596 thesis stop</span>
-  <span><i style="background:rgba(91,191,134,.5)"></i>$0.1810–0.1885 50-day EMA band — now context, far beneath price</span>
+  <span style="font-weight:700;color:var(--amber)">Aug 23 levels:</span>
+  <span><i style="background:rgba(224,168,63,.5)"></i>$0.25845 CONTINUATION TRIGGER — settled close above + vol ≥13.71M</span>
+  <span><i style="background:rgba(224,168,63,.5)"></i>$0.21156 BEAR TRIGGER · THE LEVEL — settled close below flips to SELL 1 (cone: 43.8% in 7 sessions)</span>
+  <span><i style="background:rgba(154,163,187,.45)"></i>$0.23332–0.25845 proven supply band — empty two days ago, not empty now</span>
+  <span><i style="background:rgba(224,129,95,.5)"></i>$0.22601 Aug 22 settle · $0.20694 swept &amp; reclaimed · $0.19 warning line · $0.1596 thesis stop</span>
   <span><i style="background:rgba(91,191,134,.25)"></i>Oct–Nov '26 core window</span>
 </div>
 
 <div class="src-note">
-  <b>What's real:</b> ADA price = real monthly closes, anchored to public price history (launch ~$0.02 Sep'17, 2019 high $0.0977, 2020 year-end &gt;$0.19, ATH $3.09 Sep'21, 2023 year-end high $0.6655, late-2024 pop &gt;$1.00, Jun 2026 closed $0.1444, <b>Jul 2026 SETTLED at $0.16826 = +16.52%</b>, and Aug 2026 is <b>month-to-date $0.19896</b>, the Aug 20 settled close &mdash; <b>+18.25% on the month</b>), as of the Aug 21, 2026 monthly map (session established 23:10 UTC). The live Aug 21 candle &mdash; <b>$0.22979, with 49 minutes still to run</b> &mdash; is <b>excluded from every determination</b> and is plotted nowhere; it is used only as the anchor of the forward cone, exactly as the report uses it. Drawdown is <b>&minus;92.6%</b> from the $3.09 ATH. <b>Fear &amp; Greed shown here is the crypto-market-wide index (BTC-driven)</b> &mdash; there is no separate, established ADA-specific index, so this row is macro backdrop, not an ADA signal; July carries <b>28 (Fear)</b>, the last attributable print, and August stays <b>blank</b> because no current attributable reading has been obtained. Mercury = real astronomical retrograde windows. Shmita = real Hebrew-calendar release years: <b>5782 (Sep'21&ndash;Sep'22)</b>, the same year as ADA's own all-time high &mdash; visually striking but still n=1 &mdash; and the opening months of <b>5789 (from Sep 21, 2028)</b>, plotted forward as calendar only.
-  <b>Wyckoff row:</b> retrospective phase labeling derived month-by-month from ADA's own price line &mdash; <b>not</b> a backtest of your framework, which only began live ADA tracking Jun 12, 2026 (cyan dashed seam). Left of the seam is independent structural reading of known history; right of it is the framework's actual reported calls: <b>Phase E markup, extending &mdash; pending settlement</b>. <b>The single most important thing in this session is a rule being obeyed when it would be easy not to.</b> Every leg of the pre-registered confirmation trigger is <i>satisfied</i>: the live close of <b>$0.22979</b> is <b>8.62% above the $0.21156 campaign high</b> on <b>30.33M</b>, which is <b>2.49&times;</b> the 12.16M volume threshold and the heaviest session the campaign has recorded. <b>And it is still not fired</b>, because the rule says <i>settled</i> close and the candle had 49 minutes to run. A framework that observes its rules only when the margin is narrow has no rules at all. <b>Aug 20 was the Sign of Strength</b> &mdash; $0.19896 closed through the $0.19 gate on 22.47M against an 11.67M mean, which confirmed the structure and retired the August distribution read by the framework's own written discriminator. Aug 21 extended it to a new campaign high of <b>$0.23287</b>. <b>Volume is on a third consecutive expansion &mdash; 15.28M &rarr; 22.47M &rarr; 30.33M &mdash; the cleanest demand sequence the archive contains.</b> Four sessions from the Aug 18 close have delivered <b>+31.63%</b>, and +47.69% from the Jul 27 low close. <b>The qualifier that keeps all of it provisional:</b> the Aug 19&ndash;20 leg was funded by <b>$3.1B of forced short covering against $277M of longs</b>. Forced buying and accumulation are indistinguishable inside a rally and separable only on a back-test that has not yet happened.
-  <b>HOLD at 75% deployed, and the answer to "what now" is: nothing.</b> Composite confidence rises to <b>61/100</b>; aggressiveness holds at <b>4/10</b>. <b>No add</b> &mdash; spot is at a new campaign high after a +31.63% four-session run funded substantially by forced covering, and the next tranche buys pullbacks, not breakouts. <b>No exit</b> &mdash; the structure was confirmed on the framework's own pre-registered condition and the invalidation sits <b>30.55% below at 0 of 2</b>, the furthest from threat at any point in this campaign. <b>BUY 5 is the entry this framework actually wants, and it does not exist yet:</b> it requires a <i>higher low holding above $0.20117 on <b>contracting</b> volume</i>, and today is that condition's exact opposite at 30.33M. Adding here would be the chase the framework has spent four sessions warning against. <b>All five position marks are green</b> &mdash; on the Aug 20 settled close BUY 1 is <b>+5.27%</b> ($0.189 basis) or <b>+13.69%</b> ($0.175), BUY 2 +4.92%, BUY 3 +2.74%, BUY 4 flat; on the live tape +21.58% / +31.31% / +21.18% / +18.66% / +15.50%. <b>That changes the character of the longest-standing blocking item:</b> the BUY 1 fill price reaches its <b>35th session</b> unresolved, but it is <b>non-binding as of Aug 21</b> &mdash; BUY 1 is profitable on either basis, so it no longer determines whether the campaign is red or green. It still governs the exact return figure and should be resolved, but it has stopped blocking. <b>The October reserve is the item that got more expensive:</b> 25% remains against a thesis wanting 75%, the window is <b>44&ndash;57 days out</b>, and the deployment entry is now <b>36.6% above the Aug 18 close</b> against 25.12% one session earlier. Every session this stays open has visibly cost optionality. The stop decision reaches a <b>12th session</b>: the recommendation to move the two-close warning line to <b>$0.19</b>, the reclaimed BUY 3 gate, stands and is now 17.32% below live &mdash; two settled closes below it would mean the SOS, the LPS reclaim and the gate had failed in sequence, which is a thesis change rather than noise. Still your call; the framework does not move a stop unilaterally.
-  <b>The alternate has weakened but is not retired, and the framework refuses to claim its own win early.</b> The upthrust read held that the Aug 6 high was a ceiling and a second approach on liquidation-driven volume was the anatomy of a failure. Price has now traded <b>10.07% through that ceiling on record volume</b>, which is not what an upthrust looks like. <b>What would still confirm it:</b> a settled close back below <b>$0.20117</b>, meaning the Sign of Strength failed to hold its own breakout level &mdash; 12.45% below live and requiring a violent reversal. <b>The read is not retired, because retirement requires the settled close.</b> <b>ADA led for the first time in this campaign</b> &mdash; +15.50% against BTC's +7.62% is <b>7.87 points of outperformance</b>, and ADA/BTC at <b>2.9238</b> sits +10.77% above the Jul 22 baseline, answering on the tape the "ADA is only beta" objection that dominated Aug 12&ndash;19. <b>It is not answered under the framework's own three-session rule</b>, adopted one session earlier after it over-read a single session in the other direction: two settled sessions plus a live one is not three settled sessions. <b>The rule binds symmetrically or it is worthless.</b> BTC is $78,592.08 live, +7.62%, extending its own confirmed markup. <b>The register is about to be right and still score badly, and that is worth naming.</b> All four live forecasts track BULL; if they resolve as they stand the engine will have called direction correctly in <b>6 of 7</b> forecasts and still show <b>mean skill &minus;0.068</b>. The reason is hedging &mdash; F-ADA-0005 put 25% on bull and F-ADA-0007 put 28%. <b>Direction is not calibration</b>, and a register that rewards the first while measuring the second is doing exactly what it was built to do. <b>One looseness in earlier reports is corrected:</b> prior sessions described a close above the campaign high as putting ADA "above every transacted price with no supply overhead anywhere". That is a claim about <i>this archive</i>, which spans Jul 8 &ndash; Aug 21 and holds 45 candles. ADA has traded far higher in prior cycles, so the correct phrasing is <b>"no transacted supply in the archive"</b> &mdash; and the archive's shortness is also why the ADA/BTC test still cannot be run.
-  <b>Aug 21 cone (Sep 2026 &rarr; Dec 2028):</b> the previous Bull/Base/Bear scenario lines are <b>gone, not re-based</b> &mdash; they were hand-drawn cycle-shaped forward paths, and the framework retired exactly that construct by name, because assuming a recovery drift is where invented forward targets enter a report. What replaces them is the report's own method: a <b>driftless lognormal cone</b> anchored at the <b>$0.22979</b> live close, whose <b>median is flat by construction</b> because no drift is assumed, with all the information in the widening bands. Realized daily &sigma; is <b>3.1490%</b> (n=40 <i>settled</i> log returns, Jul 11 &ndash; Aug 20), annualising to <b>60.16%</b>, with &sigma;<sub>7d</sub> = <b>8.3314%</b>. It is computed here from &sigma; rather than transcribed and reproduces the report's stated figures exactly. <b>&sigma; is understated by construction today and the report says so:</b> the live <b>+15.50%</b> session is excluded from the sample under the settled-only rule, so the widest move of the campaign is not yet in the denominator &mdash; read the cone as a <b>lower bound on dispersion</b>. Hover any forecast month for its 5th/25th/75th/95th percentiles and its split against the two <b>fixed</b> campaign thresholds &mdash; BULL &ge; $0.19, BEAR &lt; $0.1480. Because those thresholds stay fixed while price has moved far above one of them, <b>neutral now runs just 3% in Aug 2026, rising to 10% by Dec 2028</b> &mdash; the reverse of its usual decay, and pure arithmetic. <b>The August bull bucket has swung 61% (Aug 7) &rarr; 19% (Aug 18) &rarr; 46% (Aug 20) &rarr; 97% now.</b> That swing is the clearest demonstration on this page that the cone reports <i>where price sits relative to a line fixed in advance</i>, not what the framework believes; a 97% reading is a statement about distance, not conviction. The threshold stays put &mdash; moving it to flatter whichever way price last went is exactly the goalpost-shifting the fixed-threshold rule exists to prevent. <b>These are month-end distributions, not price targets</b>, and the shaded Oct&ndash;Nov 2026 band is the <b>core deployment window</b> &mdash; a planned action, not a forecast &mdash; now <b>44&ndash;57 days out</b>.
+  <b>What's real:</b> ADA price = real monthly closes, anchored to public price history (launch ~$0.02 Sep'17, 2019 high $0.0977, 2020 year-end &gt;$0.19, ATH $3.09 Sep'21, 2023 year-end high $0.6655, late-2024 pop &gt;$1.00, Jun 2026 closed $0.1444, <b>Jul 2026 SETTLED at $0.16826 = +16.52%</b>, and Aug 2026 is <b>month-to-date $0.22601</b>, the Aug 22 settled close &mdash; <b>+34.32% on the month</b>), as of the Aug 23, 2026 Market GPS (session established 06:05 UTC). The live Aug 23 candle &mdash; spot <b>$0.21486</b>, ~17h55m remaining &mdash; is <b>excluded from every determination</b> and is plotted nowhere; it is used only as the anchor of the forward cone, exactly as the report uses it. <b>Fear &amp; Greed shown here is the crypto-market-wide index (BTC-driven)</b> &mdash; there is no separate, established ADA-specific index, so this row is macro backdrop, not an ADA signal; July carries <b>28 (Fear)</b>, the last attributable print, and August stays <b>blank</b> because no current attributable reading has been obtained. Note also that <b>for a fifth consecutive session there is no ADA-specific flow data of any kind</b> &mdash; the ETF and liquidation figures quoted in the report are BTC-wide. Mercury = real astronomical retrograde windows. Shmita = real Hebrew-calendar release years: <b>5782 (Sep'21&ndash;Sep'22)</b>, the same year as ADA's own all-time high &mdash; visually striking but still n=1 &mdash; and the opening months of <b>5789 (from Sep 21, 2028)</b>, plotted forward as calendar only.
+  <b>Wyckoff row:</b> retrospective phase labeling derived month-by-month from ADA's own price line &mdash; <b>not</b> a backtest of your framework, which only began live ADA tracking Jun 12, 2026 (cyan dashed seam). Left of the seam is independent structural reading of known history; right of it is the framework's actual reported calls &mdash; and this session those calls sit at <b>exact 50/50 parity for the first time in the campaign</b>. <b>Both pre-registered discriminators were tested and neither fired.</b> The prior session wrote two conditions <i>in advance</i>: continuation on a settled close above <b>$0.23332</b> with volume &ge; 13.11M, climax confirmation on a settled close below <b>$0.21156</b>. The Aug 22 candle <b>traded through both</b> &mdash; high <b>$0.25845</b>, low <b>$0.20694</b> &mdash; and <b>settled between them at $0.22601</b>. The volume leg was met by a wide margin (34.11M, +160% over the bar), but volume alone confirms nothing: <b>the close is the gate, and the close did not clear it</b>. Neither read is retired and neither is promoted. <b>Aug 22 set archive records for both volume and range:</b> <b>34,112,746 units</b>, the largest of all 47 candles and +9.30% over Aug 21's own record, with a range of <b>24.89% of its low</b> against a prior maximum of 17.52%. It reached the highest price ever transacted in the archive and closed <b>12.55% below that high</b>, in the <b>lower 37%</b> of its range. It also reached $0.20694 &mdash; 2.18% <i>below</i> the breakout ceiling &mdash; and was bought back <b>9.22% off that low</b> into the close. <b>Record volume with a wide spread and a poor close at the end of a markup is a buying climax. A sweep below a reclaimed ceiling that closes back well above it is a successful back-test. Aug 22 is both, and the honest weighting is 50/50.</b>
+  <b>HOLD &mdash; no add, no exit &mdash; and the aggressiveness score falls again while the position is untouched.</b> Composite confidence drops to <b>52/100</b> and aggressiveness to <b>2/10</b>, <b>both the lowest of the campaign</b>, and the report says why in as many words: <b>the framework is genuinely less certain of where it is than it was yesterday, and says so rather than manufacturing conviction</b>. <b>No add</b> &mdash; BUY 5 buys a pullback on <i>contracting</i> volume, and Aug 22 delivered a lower low on <i>record</i> volume, which is the opposite of the setup, so the tranche is armed but <b>its precondition is damaged</b>. <b>No exit</b> &mdash; the hard invalidation sits <b>25.72% below spot at 0 of 2</b>, every tranche is green by <b>11% to 23%</b>, and the bear trigger has not fired. <b>What discriminates the two reads, mechanically and in advance, using settled levels only:</b> continuation now requires a settled close above <b>$0.25845</b> on volume &ge; 13.71M &mdash; and <b>that level had to move</b>. It was $0.23332 one session ago and no longer qualifies, because <b>Aug 22 proved transacted supply exists between $0.23332 and $0.25845</b>, a 10.77% band of the chart that was empty two days ago and is not empty now. <b>The trigger has to be the level where the rejection happened</b>; at 20.29% above spot that makes it a slow discriminator, and the report states that as a cost rather than hiding it. Climax confirmation is unchanged at a settled close below <b>$0.21156</b>, now only <b>1.54% below spot</b>. <b>Three framework debts, and one that finally improved.</b> The BUY 1 fill price is unresolved for a <b>36th session</b> and remains non-binding &mdash; at +13.68% or +22.78% depending on basis, the campaign is green either way. The ADA/BTC pre-registered test remains <b>uncomputable</b>: the venue endpoint returns 47 candles against a documented 50 cap, and a rolling-60-day, n&ge;20 test needs roughly two years of them. <b>The October reserve is unresolved for a 36th session &mdash; but for the first time in this campaign the wait got cheaper:</b> the deployment entry is <b>23.08% above the Aug 18 close, down from 32.19%</b>, so <b>9.11 percentage points of the cost of waiting was returned in a single session</b> &mdash; reported here with exactly the prominence the increase received.
+  <b>The cross-asset evidence cuts against the benign reading, and it is the strongest single argument for the climax.</b> BTC closed <b>$77,074.12</b> on Aug 22, &minus;1.62%, only <b>2.23% below its own daily high</b>. ADA closed <b>12.55% below its high</b>. <b>ADA's intraday rejection was 5.6 times deeper than BTC's on the same session</b> &mdash; that is ADA-specific supply hitting an ADA-specific level, not market beta. <b>The offsetting fact is reported because it is inconvenient for the bear case:</b> on a <i>close-to-close</i> basis ADA <b>outperformed</b> BTC by 0.25pp, and the ADA/BTC ratio still expanded 0.26% to <b>2.9324</b>, its best settled reading of the campaign at <b>+11.10%</b> versus the Jul 22 baseline &mdash; though still 6.23% below the Aug 6 relative peak, and 9.70% below it on live prices. <b>The liquidation regime flipped, and this is the mechanical change that matters most.</b> The 24 hours to Aug 22 show <b>$1.675bn of global liquidations split $858M longs / $816M shorts across 283,359 accounts &mdash; balanced</b>. That follows <b>$3bn of short liquidations on Aug 20</b>, described as the largest single-day figure in records going back to 2021, and ~$1.2bn of shorts on Aug 21. <b>The squeeze fuel that powered the vertical is not merely spent &mdash; the flow has reversed, and longs are now the ones being carried out.</b> Under the climax read the forward label is <b>SELL 1 (Early Distribution)</b>, not BUY 5. Under the back-test read the full sequence still stands: the Jul 28 spring at $0.15340, Aug 2 through the EMA band, the Aug 6 LPS at $0.20117, the eleven-session shakeout to $0.17425 that never fired a second bear trigger, the Aug 19 reclaim of $0.1810, the Aug 20 Sign of Strength, and the Aug 21 blue-sky break on record volume. <b>A shakeout that ends with the level held on a closing basis is textbook &mdash; and it is why the bear trigger was written on closes rather than lows.</b>
+  <b>Aug 23 cone (Sep 2026 &rarr; Dec 2028):</b> the previous Bull/Base/Bear scenario lines are <b>gone, not re-based</b> &mdash; they were hand-drawn cycle-shaped forward paths, and the framework retired exactly that construct by name, because assuming a recovery drift is where invented forward targets enter a report. What replaces them is the report's own method: a <b>driftless lognormal cone</b> anchored at the <b>$0.21486</b> spot, whose <b>median is flat by construction</b> because no drift is assumed, with all the information in the widening bands. Realized daily &sigma; is <b>3.7570%</b> (n=40 log returns, closes Jul 13 &ndash; Aug 22), annualising to <b>71.78%</b>. <b>&sigma; fell from 3.7871% because a larger log return rolled <i>out</i> of the trailing window, not because the tape calmed down</b> &mdash; stated so the decline is not misread as easing. It is computed here from &sigma; rather than transcribed, and it reproduces the report's own figures exactly &mdash; including <b>the single most useful number in the session: a 43.8% probability of a settled close below $0.21156 within seven sessions</b>. That is <b>very nearly a coin flip, and it is the quantitative statement of the same 50/50 the structural layer reached independently</b>. Hover any forecast month for its 5th/25th/75th/95th percentiles and its split against the two <b>fixed</b> campaign thresholds &mdash; BULL &ge; $0.19, BEAR &lt; $0.1480. <b>The August bull bucket has printed 61% &rarr; 19% &rarr; 46% &rarr; 85% &rarr; 96% &rarr; 88% in sixteen days.</b> That is arithmetic tracking distance from a line fixed in advance, <b>not a view changing six times</b>, and it is disclosed each session precisely so no reading is ever mistaken for conviction. <b>These are month-end distributions, not price targets</b>, and the shaded Oct&ndash;Nov 2026 band remains the <b>core deployment window</b> &mdash; a planned action, not a forecast.
   No buy/sell signal layer, no liquidity-regime row, no hit-rate statistics — left out rather than fabricated. The report's 31 monthly timeline cards are likewise <b>not</b> registered forecasts and are not scored.
 </div>
 
@@ -246,7 +246,7 @@
 // dated cycle anchor after the Oct 2026 core window.
 // ── CONTEXT LAYER BANDS (computed Aug 10, 2026 · Aug MTD then = $0.19459) ──
 // VINTAGE: the per-month percentile arrays and the curRatio/curPct summaries below are the Aug 10 computation
-// and are NOT recomputed here. The Aug 21 ADA report contains no Context Layer, and the exact percentile rank
+// and are NOT recomputed here. The Aug 23 ADA report contains no Context Layer, and the exact percentile rank
 // of a new price cannot be derived from five published cut points — it needs the full ratio distribution. So the
 // arrays stand as issued, bandOf() reports the CURRENT close's band from them, and no refreshed rank is invented.
 // spine fixed at 24m canonical; 36m/46m retained for the sensitivity peek only.
@@ -313,21 +313,22 @@ const price=[
   0.32,0.36,0.345,0.36,0.375,0.275,0.285,0.255,0.255,0.30,0.345,0.585, // 2023 (Dec high 0.6655, using 0.585 close)
   0.51,0.52,0.62,0.46,0.43,0.385,0.34,0.32,0.355,0.36,0.55,0.92,  // 2024 (late-2024 pop >1.00 post-election; Nov/Dec rally)
   0.99,0.65,0.62,0.58,0.68,0.62,0.71,0.78,0.81,0.62,0.42,0.38,    // 2025 (subdued, declining)
-  0.30,0.24,0.205,0.19,0.1797,0.1444,0.16826,0.19896,             // 2026 Jan-Aug. Jun closed $0.1444 (-38.7%, rev2-audited); Jul SETTLED at $0.16826 = +16.52%; Aug = MONTH-TO-DATE
-// $0.19896, the Aug 20 settled close, +18.25% on the month. The live Aug 21 candle is excluded from every
-// determination and drawn nowhere — it is used only as the cone anchor. IT HAD 49 MINUTES LEFT TO RUN AT THE
-// SESSION STAMP, and that is the single most important fact in the report: every leg of the pre-registered
-// confirmation trigger is SATISFIED — live $0.22979 is 8.62% above the $0.21156 campaign high on 30.33M, which
-// is 2.49x the 12.16M threshold and the heaviest session the campaign has recorded — AND IT IS STILL NOT FIRED,
-// because the rule says SETTLED close. A framework that observes its rules only when the margin is narrow has
-// no rules at all.
-// Aug 20 was the Sign of Strength: $0.19896 closed through the $0.19 gate on 22.47M against an 11.67M mean,
-// which confirmed the structure and retired the August distribution read by the framework's own written
-// discriminator. Volume is now on a THIRD consecutive expansion — 15.28M -> 22.47M -> 30.33M — the cleanest
-// demand sequence the archive contains.
-// THE QUALIFIER THAT KEEPS IT PROVISIONAL: the Aug 19-20 leg was funded by $3.1B of forced short covering
-// against $277M of longs. Forced buying and accumulation are indistinguishable inside a rally and separable only
-// on a back-test that has not yet happened.
+  0.30,0.24,0.205,0.19,0.1797,0.1444,0.16826,0.22601,             // 2026 Jan-Aug. Jun closed $0.1444 (-38.7%, rev2-audited); Jul SETTLED at $0.16826 = +16.52%; Aug = MONTH-TO-DATE
+// $0.22601, the Aug 22 settled close, +34.32% on the month. The live Aug 23 candle ($0.21486 spot, ~17h55m
+// remaining) is excluded from every determination and drawn nowhere — it is used only as the cone anchor.
+// BOTH PRE-REGISTERED DISCRIMINATORS WERE TESTED AND NEITHER FIRED. The prior session wrote two conditions in
+// ADVANCE: continuation on a settled close above $0.23332 with volume >= 13.11M, climax confirmation on a
+// settled close below $0.21156. The Aug 22 candle TRADED THROUGH BOTH — high $0.25845, low $0.20694 — and
+// SETTLED BETWEEN THEM at $0.22601. The volume leg was met by a wide margin (34.11M, +160% over the bar) but
+// volume alone confirms nothing; the close is the gate and it did not clear. Neither read is retired and
+// neither is promoted.
+// AUG 22 SET ARCHIVE RECORDS FOR BOTH VOLUME AND RANGE: 34,112,746 units, the largest of all 47 candles and
+// +9.30% over Aug 21's own record; a range of 24.89% of its low against a prior maximum of 17.52%. It reached
+// the highest price ever transacted in the archive and closed 12.55% below that high, in the LOWER 37% of its
+// range. It also reached $0.20694 — 2.18% BELOW the breakout ceiling — and was bought back 9.22% off that low.
+// Record volume, wide spread and a poor close at the end of a markup is a BUYING CLIMAX. A sweep below a
+// reclaimed ceiling that closes back well above it is a SUCCESSFUL BACK-TEST. Aug 22 is both, and the honest
+// weighting is 50/50 — the first genuine structural ambiguity of this campaign.
   null,null,null,null,                                            // 2026 Sep-Dec: future, no real price data -- see the volatility cone
   null,null,null,null,null,null,null,null,null,null,null,null,     // 2027: future, no real price data
   null,null,null,null,null,null,null,null,null,null,null,null      // 2028: future (Apr 2028 halving; Shmita 5789 opens Sep 21)
@@ -397,7 +398,7 @@ const wyckoff = [
   {s:99, e:105,kind:'markdown',label:'2025-26 continued markdown'},
   {s:105,e:106,kind:'markdown', label:'tracked: Phase D markdown'},
   {s:106,e:107,kind:'acc',      label:'tracked: Phase C springs — Jul 13 & Jul 28 ($0.15340), confirmed Jul 30'},
-  {s:107,e:108,kind:'markup',   label:'LIVE: Phase E markup extending — Aug 20 SOS through the $0.19 gate; confirmation trigger satisfied but UNFIRED pending the settle'},
+  {s:107,e:108,kind:'markup',   label:'LIVE: Aug 22 is BOTH a buying climax and a successful back-test — dual read at exact 50/50 parity; neither discriminator fired'},
 ];
 const liveStartIdx = 105; // June 2026 — verified index, where the framework's real-time RECORD begins
 // currentIdx is a DIFFERENT thing and the two must not be conflated: liveStartIdx is where live tracking started
@@ -405,7 +406,7 @@ const liveStartIdx = 105; // June 2026 — verified index, where the framework's
 // a settled month inside the live record — tracked in real time, but CLOSED. Only currentIdx is month-to-date and
 // still moving, so only currentIdx may carry the "LIVE" badge. Jun settled $0.1444 and Jul settled $0.16826;
 // Aug 2026 is the live month.
-const currentIdx = 107; // August 2026 — the month-to-date cell (Aug 20 settled close, Aug 21 candle excluded)
+const currentIdx = 107; // August 2026 — the month-to-date cell (Aug 22 settled close, Aug 23 candle excluded)
 
 // ── ADA forward distribution: the Aug 3, 2026 DRIFTLESS LOGNORMAL VOLATILITY CONE ──
 // This replaces the previous bull/base/bear scenario trajectory outright, and the replacement is not
@@ -419,26 +420,25 @@ const currentIdx = 107; // August 2026 — the month-to-date cell (Aug 20 settle
 // the information in the widening bands. Computing it here from sigma instead of pasting a snapshot of
 // its output means the chart, the tooltip percentiles and the probability split can never drift apart.
 //
-// VERIFIED AGAINST THE REPORT'S OWN OUTPUT, not merely against its prose. sigma_daily = 3.1490% (n=40 SETTLED
-// log returns, Jul 11 - Aug 20) and spot $0.22979 reproduce its stated figures exactly: sigma_7d = 8.3314%, an
-// Aug 2026 bull bucket of 97% and neutral of just 3%, and Dec 2028 neutral of 10%. Computed here from sigma
-// rather than transcribed, so band, tooltip percentiles and probability split cannot drift apart.
+// VERIFIED AGAINST THE REPORT'S OWN OUTPUT, not merely its prose. sigma_daily = 3.7570% (n=40 daily log
+// returns, closes Jul 13 - Aug 22) and spot $0.21486 reproduce its stated figures exactly: 71.78% annualised,
+// an Aug 2026 bull bucket of 88%, and — the one that matters most this session — a 43.8% probability of a
+// SETTLED CLOSE BELOW $0.21156 within seven sessions. That last number is the quantitative statement of the
+// same 50/50 the structural layer reached independently, and it is computed here rather than transcribed.
 //
-// SIGMA IS UNDERSTATED BY CONSTRUCTION TODAY, and the report says so: the live +15.50% session is EXCLUDED from
-// the sample per the settled-only rule, so the widest move of the campaign is not yet in the denominator. Read
-// the cone as a lower bound on dispersion.
+// SIGMA FELL from 3.7871% because a larger log return rolled OUT of the trailing window, not because the tape
+// calmed down. Stated so the decline is not read as easing.
 //
-// READ THE CONE CORRECTLY. The Aug bull bucket has swung 61% (Aug 7) -> 19% (Aug 18) -> 46% (Aug 20) -> 97% now,
-// purely as spot moved against a threshold fixed in advance. That swing is the clearest demonstration on this
-// page that the cone reports WHERE PRICE SITS, not what the framework believes. The threshold stays put.
-const CONE_SPOT    = 0.22979;               // Aug 21 live close — the report anchors its cone here
-const CONE_SIGMA_D = 0.031490;              // realized daily sigma, n=40 settled log returns
-const CONE_ANCHOR  = Date.UTC(2026,7,21);   // Aug 21, 2026
+// READ THE CONE CORRECTLY. The Aug bull bucket has printed 61% -> 19% -> 46% -> 85% -> 96% -> 88% in sixteen
+// days. That is arithmetic tracking distance from a line fixed in advance, NOT a view changing six times.
+const CONE_SPOT    = 0.21486;               // Aug 23 spot — the report anchors its cone here
+const CONE_SIGMA_D = 0.037570;              // realized daily sigma, n=40
+const CONE_ANCHOR  = Date.UTC(2026,7,23);   // Aug 23, 2026
 const GATE_BULL    = 0.1900;                // BUY 3 gate    -> BULL band  (month-end close >= this)
 const GATE_BEAR    = 0.1480;                // death level   -> BEAR band  (month-end close <  this)
 const trajStart    = 107;                   // Aug 2026 — the first forecast month (Jul is a realised close)
 
-// days from the Aug 21 anchor to the last calendar day of the month at `idx`
+// days from the Aug 23 anchor to the last calendar day of the month at `idx`
 function coneDays(idx){ const mo=months[idx]; return (Date.UTC(mo.y, (mo.m%12)+1, 0) - CONE_ANCHOR)/86400000; }
 function coneSigma(idx){ const t=coneDays(idx); return t>0 ? CONE_SIGMA_D*Math.sqrt(t) : 0; }
 // percentile of the driftless lognormal: median = CONE_SPOT at z=0, +/-0.6745 sigma = 25th/75th, +/-1.645 = 5th/95th
@@ -460,31 +460,30 @@ function coneProbs(idx){
   return {bull, neutral: 1-bull-bear, bear};
 }
 
-// ── Aug 21, 2026 level ladder — the framework's own references, not price history ──
-// Distances quoted against the $0.22979 live close the report itself uses.
-// AUG 21 LADDER. The whole ladder has flipped from overhead resistance to underfoot structure. $0.21156 — the
-// Aug 6 campaign high that was the ceiling for two weeks — is now THE TRIGGER LEVEL: a settled close above it on
-// volume >= 12.16M confirms markup. $0.20117, the Aug 6 LPS, is now the BEAR TRIGGER: a settled close below it
-// would mean the Sign of Strength failed to hold its own breakout level.
-// A LOOSENESS IN PRIOR REPORTS, CORRECTED HERE TOO: earlier sessions said a close above the campaign high put
-// ADA "above every transacted price with no supply overhead anywhere". That is a claim about THIS ARCHIVE, which
-// spans Jul 8 - Aug 21 and contains 45 candles. ADA has traded far higher in prior cycles. The correct phrasing
-// is "no transacted supply in the archive".
+// ── Aug 23, 2026 level ladder — the framework's own references, not price history ──
+// Distances quoted against the $0.21486 spot the report itself uses.
+// AUG 23 LADDER. The ladder now brackets a genuinely ambiguous structure, and BOTH discriminators are drawn.
+// The continuation trigger MOVED, and the reason is the important part: it was $0.23332 (the Aug 21 high) and
+// no longer qualifies, because Aug 22 PROVED transacted supply exists between $0.23332 and $0.25845 — a 10.77%
+// band of the chart that was empty two days ago and is not empty now. The trigger has to be the level where the
+// rejection actually happened. It is 20.29% above spot, which makes it a SLOW discriminator, and the report
+// states that as a cost rather than hiding it.
 const levelLines = [
-  {p:0.23287, kind:'res',  tier:2, tag:'NEW CAMPAIGN HIGH',   label:'$0.23287 \u00b7 NEW CAMPAIGN HIGH, set on the live Aug 21 candle (+1.34% above the live close)'},
-  {p:0.21947, kind:'res',  tier:3, tag:'F-0007 bull band',    label:'$0.21947 \u00b7 the F-ADA-0007 bull band. Live price is above it.'},
-  {p:0.21156, kind:'gate', tier:1, tag:'TRIGGER LEVEL',       label:'$0.21156 \u00b7 THE TRIGGER LEVEL \u2014 the Aug 6 campaign high. A settled close above it on volume >= 12.16M confirms markup. Both legs are SATISFIED on the live tape (+8.62% on 30.33M = 2.49x) and NEITHER IS CONFIRMED, because the candle had 49 minutes left to run.'},
-  {p:0.20117, kind:'gate', tier:1, tag:'BEAR TRIGGER',        label:'$0.20117 \u00b7 BEAR TRIGGER \u2014 the Aug 6 LPS. A settled close below it converts the Sign of Strength into an upthrust, meaning the SOS failed to hold its own breakout level. Now 12.45% below live and would require a violent reversal.'},
-  {p:0.19896, kind:'res',  tier:2, tag:'Aug 20 settle',       label:'$0.19896 \u00b7 the Aug 20 settled close \u2014 the binding reference until midnight, and the Sign of Strength that closed through the $0.19 gate on 22.47M against an 11.67M mean.'},
-  {p:0.19,    kind:'res',  tier:2, tag:'BUY 3 gate \u00b7 reclaimed', label:'$0.19 \u00b7 BUY 3 gate, RECLAIMED Aug 20. Proposed as the two-close warning line \u2014 the recommendation stands and is now 17.32% below live. Your call; the framework does not move a stop unilaterally.'},
-  {p:0.1596,  kind:'hard', tier:1, tag:'THESIS STOP \u00b7 0 of 2', label:'$0.1596 \u00b7 THESIS STOP \u2014 two consecutive settled closes below = full exit \u00b7 0 of 2, 30.55% below live, the furthest from threat at any point in this campaign.'},
+  {p:0.25845, kind:'gate', tier:1, tag:'CONTINUATION TRIGGER', label:'$0.25845 \u00b7 CONTINUATION TRIGGER \u2014 the Aug 22 high and the highest price transacted in the archive. Markup continuation confirms only on a settled close above it with volume >= 13.71M (the restated 20-session mean). +20.29% above spot: a deliberately slow discriminator, and the cost is stated rather than hidden.'},
+  {p:0.23332, kind:'res',  tier:3, tag:'retired trigger',      label:'$0.23332 \u00b7 the Aug 21 high \u2014 RETIRED AS A TRIGGER. It was the continuation level one session ago and was demoted because Aug 22 transacted above it and rejected. It is now the lower edge of a proven supply band.'},
+  {p:0.22915, kind:'res',  tier:3, tag:'F-0009 bull band',     label:'$0.22915 \u00b7 the Aug 21 blue-sky breakout close and the Aug 22 open \u2014 the F-ADA-0009 bull band. Structural, not volatility-derived.'},
+  {p:0.22601, kind:'res',  tier:2, tag:'Aug 22 settle',        label:'$0.22601 \u00b7 the Aug 22 settled close (\u22121.37% on 34.11M) \u2014 the binding determination of this session, and 6.83% above the breakout floor.'},
+  {p:0.21156, kind:'gate', tier:1, tag:'BEAR TRIGGER \u00b7 THE LEVEL', label:'$0.21156 \u00b7 BEAR TRIGGER, THE LEVEL \u2014 the old campaign high, now the breakout floor. A settled close BELOW it confirms the buying climax and flips the Matrix to SELL 1. Only 1.54% below spot, and the cone puts the probability of a settled close beneath it within seven sessions at 43.8%.'},
+  {p:0.20694, kind:'res',  tier:2, tag:'swept & reclaimed',    label:'$0.20694 \u00b7 the Aug 22 low \u2014 price traded 2.18% BELOW the breakout ceiling and closed 9.22% back above it. The single strongest piece of evidence for the back-test read.'},
+  {p:0.20117, kind:'res',  tier:3, tag:'F-0009 bear band',     label:'$0.20117 \u00b7 the Aug 6 LPS close \u2014 second line of defence and the F-ADA-0009 bear band.'},
+  {p:0.19,    kind:'res',  tier:2, tag:'BUY 3 gate \u00b7 warning line', label:'$0.19 \u00b7 BUY 3 gate, reclaimed Aug 20 \u2014 the recommended two-close warning line, unchanged. 11.57% below spot.'},
+  {p:0.1596,  kind:'hard', tier:1, tag:'THESIS STOP \u00b7 0 of 2', label:'$0.1596 \u00b7 THESIS STOP \u2014 two consecutive settled closes below = full exit \u00b7 0 of 2, 25.72% below spot.'},
 ];
 const levelZones = [
-  // The 50-day EMA band is now well beneath price and no longer the live question, so it drops to tier 2 context.
-  // The band that matters is the BUY 5 shelf: the next tranche buys a HIGHER LOW holding above $0.20117 on
-  // CONTRACTING volume, and today is its exact opposite at 30.33M. BUY 5 is the entry this framework actually
-  // wants and it does not exist yet.
-  {lo:0.1810, hi:0.1885, kind:'sup', tier:2, tag:'50d EMA band', label:'$0.1810\u20130.1885 \u00b7 50-day EMA band \u2014 reclaimed Aug 19 and now far beneath price; context rather than a live decision level.'},
+  // The PROVEN SUPPLY BAND. Two days ago this 10.77% stretch of chart was empty; Aug 22 transacted through it,
+  // rejected, and closed 12.55% below its high. That is what demoted the continuation trigger from $0.23332 to
+  // $0.25845 — the trigger has to sit where the rejection happened, not where the last high was.
+  {lo:0.23332, hi:0.25845, kind:'zone', tier:2, tag:'proven supply band', label:'$0.23332\u2013$0.25845 \u00b7 PROVEN SUPPLY \u2014 a 10.77% band that was empty two days ago. Aug 22 traded through it and rejected, closing 12.55% below its high in the lower 37% of its range. The continuation trigger sits at its ceiling for exactly that reason.'},
 ];
 // Oct 4-17, 2026 core deployment window (month 29 post-halving, from the 363-376 day post-peak interval
 // off BTC's Oct 6, 2025 top). Shaded across Oct-Nov 2026 to match the BTC dashboard's autumn window.
@@ -607,7 +606,7 @@ function render(){
     if(i>=trajStart){ allowedPrices.push(conePct(i,1.645), conePct(i,-1.645)); }
   });
   // include the level-ladder extremes so the Aug 3 ladder is never clipped off-scale when the layer is on
-  if(state.layers.levels){ allowedPrices.push(0.1596, 0.23287); } // thesis stop .. the new Aug 21 campaign high
+  if(state.layers.levels){ allowedPrices.push(0.1596, 0.25845); } // thesis stop .. the Aug 22 high / continuation trigger
   let pMin,pMax;
   if(allowedPrices.length===0){ pMin=-1; pMax=1; }
   else if(state.scale==='log'){ pMin=Math.log10(Math.min(...allowedPrices)*0.85); pMax=Math.log10(Math.max(...allowedPrices)*1.15); }
@@ -623,7 +622,7 @@ function render(){
     svg.appendChild(el('text',{x:padL+plotW+8,y:gy+3,'font-size':9,fill:TH().subLabel},'$'+(v<1?v.toFixed(2):v.toFixed(1))));
   });
 
-  // ── Aug 21 level ladder + Oct-Nov '26 core window (drawn under the price line) ──
+  // ── Aug 23 level ladder + Oct-Nov '26 core window (drawn under the price line) ──
   if(state.layers.levels){
     const yTop=priceTop, yBot=priceTop+priceH;
     const showLabels = span<=40; // labels only when zoomed in enough to read them
@@ -860,7 +859,7 @@ function showTip(e, idx){
     ${state.layers.shmita ? `<div class="tt-row"><span class="tt-label">Shmita</span><span>${shmOn?(mo.y<=2022?'Yes (5782)':'Yes (5789)'):'No'}</span></div>`:''}
     ${state.layers.levels && inCore ? `<div class="tt-row" style="border-top:1px solid rgba(128,128,128,.2);margin-top:4px;padding-top:4px;"><span class="tt-label" style="color:#5bbf86">Cycle thesis</span><span style="color:#5bbf86">core window (Oct 4–17 '26)</span></div>`:''}
     ${hasCone&&pr?`<div style="border-top:1px solid rgba(128,128,128,.2);margin-top:4px;padding-top:4px;">
-    <div class="tt-row"><span class="tt-label" style="color:var(--amber)">Aug 21 cone</span><span style="color:var(--txt2)">σ ${(coneSigma(idx)*100).toFixed(1)}%</span></div>
+    <div class="tt-row"><span class="tt-label" style="color:var(--amber)">Aug 23 cone</span><span style="color:var(--txt2)">σ ${(coneSigma(idx)*100).toFixed(1)}%</span></div>
     <div class="tt-row"><span class="tt-label">95th</span><span>${f(conePct(idx,1.645))}</span></div>
     <div class="tt-row"><span class="tt-label">50% range</span><span>${f(conePct(idx,-0.6745))} – ${f(conePct(idx,0.6745))}</span></div>
     <div class="tt-row"><span class="tt-label">median (flat)</span><span>${f(CONE_SPOT)}</span></div>
@@ -899,7 +898,7 @@ document.querySelectorAll('button[data-zoom]').forEach(btn=>{
       state.viewEnd=months.findIndex(m=>m.y===2022&&m.m===11)+1;
     } else if(z==='live'){
       state.viewStart=Math.max(0,liveStartIdx-3);
-      // cap the span so the Aug 21 level-ladder labels stay readable (they hide when span>40, and the
+      // cap the span so the Aug 23 level-ladder labels stay readable (they hide when span>40, and the
       // month labels when span>30); N now runs to Dec 2028, which would otherwise blow the span open
       state.viewEnd=Math.min(N,liveStartIdx+24);
     }
