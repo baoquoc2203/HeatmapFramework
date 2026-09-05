@@ -56,6 +56,23 @@
   .hint{font-size:10.5px;color:var(--txt2);margin-top:8px;text-align:center;}
 
   .legend-row{display:flex;flex-wrap:wrap;gap:13px;font-size:10.5px;color:var(--txt2);margin:14px 0 4px;align-items:center;}
+  /* ── Wyckoff cycle schematic (weekly) — reuses .controls/.chart-card/.tooltip/.hint/.legend-row ── */
+  .wyk-sec{margin-top:26px;padding-top:20px;border-top:1px solid var(--bord);}
+  .wyk-head{display:flex;align-items:flex-start;gap:18px;flex-wrap:wrap;}
+  .wyk-head h2{font-size:15px;font-weight:700;letter-spacing:-.01em;}
+  .wyk-head .wyk-sub{font-size:11px;color:var(--txt2);margin-top:3px;}
+  .wyk-px{margin-left:auto;text-align:right;font-variant-numeric:tabular-nums;}
+  .wyk-px .p{font-size:20px;font-weight:700;letter-spacing:-.01em;}
+  .wyk-px .d{font-size:11px;margin-top:1px;font-weight:600;}
+  .wyk-px .src{font-size:10px;color:var(--txt2);margin-top:3px;}
+  #wykHolder{width:100%;position:relative;cursor:crosshair;touch-action:pan-y;}
+  #wykCv{display:block;width:100%;height:600px;}
+  @media(max-width:900px){#wykCv{height:460px;}.wyk-px{display:none;}}
+  @media(max-width:560px){#wykCv{height:380px;}}
+  .wyk-bx{display:inline-block;padding:2px 6px;font-size:9.5px;font-weight:700;
+    border:1px solid var(--txt);border-radius:3px;color:var(--txt);line-height:1.3;}
+  .wyk-bx.i{border-style:dashed;border-color:var(--txt2);color:var(--txt2);}
+  .legend-row .wyk-sw{width:14px;height:0;border-top:2px solid;display:inline-block;border-radius:0;}
   .legend-row span{display:flex;align-items:center;gap:5px;}
   .legend-row i{width:11px;height:11px;border-radius:3px;display:inline-block;}
 
@@ -178,6 +195,64 @@
   <span><i style="background:rgba(91,191,134,.5)"></i>$0.20694–0.21156 the 2.23% band — reclaim held, floor lost Sep 4</span>
   <span><i style="background:rgba(224,129,95,.5)"></i>$0.25845 campaign high · $0.22718 Sep 4 high · $0.21134 Sep 4 settle · $0.1596 thesis stop · $0.1480 death level</span>
   <span><i style="background:rgba(91,191,134,.25)"></i>Oct–Nov '26 core window</span>
+</div>
+
+<div class="wyk-sec">
+  <div class="wyk-head">
+    <div>
+      <h2>Wyckoff cycle — events &amp; phases</h2>
+      <div class="wyk-sub">ADA/USD · <b>weekly</b> · Jan 2024 → Sep 2026 · schematic layout after Bogomazov / Pruden</div>
+    </div>
+    <div class="wyk-px">
+      <div class="p" id="wykP">—</div>
+      <div class="d" id="wykD">—</div>
+      <div class="src">CoinGecko · 140 weekly bars<br>separate feed from the monthly Crypto.com series above</div>
+    </div>
+  </div>
+
+  <div class="controls">
+    <div class="ctrl-group">
+      <span class="ctrl-label">Layers</span>
+      <button class="toggle active" data-wyk="zig">Swing line</button>
+      <button class="toggle" data-wyk="can">Candles</button>
+      <button class="toggle active" data-wyk="lab">Event labels</button>
+      <button class="toggle active" data-wyk="sr">Support / Resistance</button>
+      <button class="toggle active" data-wyk="ph">Phases</button>
+      <button class="toggle" data-wyk="vol">Volume</button>
+    </div>
+    <div class="ctrl-group">
+      <span class="ctrl-label">Zoom</span>
+      <button class="zoom-btn active" data-wykz="all">Full range</button>
+      <button class="zoom-btn" data-wykz="dis">Distribution</button>
+      <button class="zoom-btn" data-wykz="acc">Accumulation</button>
+    </div>
+    <div class="ctrl-group">
+      <span class="ctrl-label">Scale</span>
+      <button class="zoom-btn active" data-wyks="log">Log</button>
+      <button class="zoom-btn" data-wyks="lin">Linear</button>
+    </div>
+  </div>
+
+  <div class="chart-card">
+    <div id="wykHolder"><canvas id="wykCv"></canvas></div>
+    <div class="tooltip" id="wykTip"></div>
+    <div class="hint">Scroll to zoom · drag to pan · hover or tap for the weekly bar</div>
+  </div>
+
+  <div class="legend-row">
+    <span style="font-weight:700;color:var(--txt)">Cycle stage:</span>
+    <span><i style="background:var(--acc)"></i>Base / Accumulation</span>
+    <span><i style="background:var(--markup)"></i>Markup</span>
+    <span><i style="background:var(--dist)"></i>Distribution</span>
+    <span><i style="background:var(--markdown)"></i>Markdown</span>
+    <span style="margin-left:8px;border-left:1px solid var(--bord);padding-left:12px"><span class="wyk-bx">SOS</span>&nbsp;event confirmed by a measured price–volume signature</span>
+    <span><span class="wyk-bx i">UTAD</span>&nbsp;label is interpretive — the Aug 2025 push to $1.01446 never exceeded the range high of $1.30450; the alternative read is that it is only an LPSY and the Mar 2025 UT at $1.13332, on the heaviest volume in 140 weeks, is the real UTAD</span>
+  </div>
+  <div class="legend-row">
+    <span><i class="wyk-sw" style="border-color:var(--amber)"></i>Support / resistance drawn from the labelled events</span>
+    <span><i class="wyk-sw" style="border-color:var(--txt)"></i>Swing line — ZigZag on real weekly highs/lows, 16% threshold</span>
+    <span style="color:var(--txt2)">Phase E of the accumulation has not started — that column is left hatched and empty, no projection is drawn.</span>
+  </div>
 </div>
 
 
@@ -988,6 +1063,441 @@ document.getElementById('themeToggle').addEventListener('click', ()=>{
 let savedTheme = 'dark';
 try{ const s = localStorage.getItem('cre-theme'); if(s==='light'||s==='dark') savedTheme = s; }catch(e){}
 applyTheme(savedTheme);
+
+// ═══════════════════════════════════════════════════════════════════════════
+// Wyckoff cycle schematic — weekly ADA/USD, Jan 2024 → Sep 2026.
+// Wrapped in an IIFE on purpose: this file already owns top-level W, H, state,
+// price, wyckoff, svg, tooltip and render(), and every one of them would clash.
+// Nothing below leaks, and nothing above is touched.
+//
+// SEPARATE FEED, STATED RATHER THAN BLENDED. These are CoinGecko WEEKLY bars.
+// The monthly series on the chart above is Crypto.com and is the authoritative
+// one for every determination; this panel is structural context at a different
+// resolution and a different provider. The last bar here (w/c 2026-08-31) is an
+// IN-PROGRESS weekly candle at 0.22001 — it is not the Sep 4 settled close of
+// $0.21134 and is never used as one.
+// ═══════════════════════════════════════════════════════════════════════════
+(function(){
+const B=[
+["2024-01-01",0.59428,0.63521,0.49540,0.49540,4335],["2024-01-08",0.49414,0.61414,0.47532,0.53387,5086],
+["2024-01-15",0.52562,0.54405,0.47613,0.50532,2457],["2024-01-22",0.50265,0.50445,0.45240,0.48749,2635],
+["2024-01-29",0.48988,0.53463,0.48565,0.49738,2779],["2024-02-05",0.49360,0.56402,0.47513,0.53977,3083],
+["2024-02-12",0.54182,0.63546,0.53339,0.62295,3845],["2024-02-19",0.61903,0.63819,0.57249,0.59060,3686],
+["2024-02-26",0.59142,0.76058,0.57455,0.72923,6984],["2024-03-04",0.72884,0.79393,0.63806,0.70416,8144],
+["2024-03-11",0.71704,0.80097,0.64468,0.68060,7688],["2024-03-18",0.68037,0.69073,0.58042,0.64468,5082],
+["2024-03-25",0.64586,0.68191,0.63478,0.64854,3579],["2024-04-01",0.65100,0.65100,0.56407,0.58425,3299],
+["2024-04-08",0.58914,0.62195,0.41746,0.47167,4773],["2024-04-15",0.46729,0.50867,0.43177,0.49977,4014],
+["2024-04-22",0.49954,0.52098,0.45192,0.46340,2614],["2024-04-29",0.46024,0.47424,0.42529,0.45709,2466],
+["2024-05-06",0.45803,0.47144,0.43633,0.43663,2121],["2024-05-13",0.43761,0.48799,0.42643,0.47033,2067],
+["2024-05-20",0.46719,0.50482,0.45630,0.45961,2610],["2024-05-27",0.45800,0.47255,0.44357,0.44620,1917],
+["2024-06-03",0.44633,0.48699,0.43405,0.44385,2479],["2024-06-10",0.44416,0.44882,0.40392,0.41692,2726],
+["2024-06-17",0.41648,0.41648,0.36924,0.38156,2291],["2024-06-24",0.37951,0.40021,0.36636,0.39220,1920],
+["2024-07-01",0.39162,0.42145,0.32029,0.34922,2724],["2024-07-08",0.34616,0.44436,0.33765,0.43372,2411],
+["2024-07-15",0.43111,0.45494,0.41704,0.44420,2614],["2024-07-22",0.44673,0.44673,0.38511,0.40616,2833],
+["2024-07-29",0.40730,0.42518,0.33840,0.34934,2493],["2024-08-05",0.34456,0.35369,0.28725,0.32975,3217],
+["2024-08-12",0.32758,0.34438,0.32261,0.33845,1730],["2024-08-19",0.33421,0.39926,0.32972,0.38816,2142],
+["2024-08-26",0.38475,0.38527,0.32788,0.32788,2231],["2024-09-02",0.33139,0.33965,0.30533,0.33595,2335],
+["2024-09-09",0.33911,0.36469,0.33084,0.33887,2003],["2024-09-16",0.33858,0.36053,0.32745,0.35251,2025],
+["2024-09-23",0.35165,0.41427,0.35165,0.39819,2489],["2024-09-30",0.39741,0.39741,0.33521,0.35570,2381],
+["2024-10-07",0.35733,0.36753,0.33331,0.34748,1810],["2024-10-14",0.34820,0.37023,0.34147,0.36454,2274],
+["2024-10-21",0.36521,0.36992,0.32384,0.34031,2649],["2024-10-28",0.33965,0.36142,0.32981,0.33465,2529],
+["2024-11-04",0.33392,0.63565,0.32206,0.59110,8435],["2024-11-11",0.58922,0.77226,0.52533,0.70258,25556],
+["2024-11-18",0.70307,1.12291,0.70307,1.02716,27389],["2024-11-25",1.02351,1.13536,0.89501,1.12666,19366],
+["2024-12-02",1.15033,1.30450,1.06414,1.19213,25052],["2024-12-09",1.19553,1.19553,0.92104,1.07747,16689],
+["2024-12-16",1.09780,1.11325,0.76943,0.88390,13663],["2024-12-23",0.88285,0.94427,0.85166,0.85166,6436],
+["2024-12-30",0.85662,1.11428,0.83327,1.09518,9064],["2025-01-06",1.09257,1.13919,0.88384,0.96360,10432],
+["2025-01-13",0.96861,1.15766,0.89523,1.01585,11953],["2025-01-20",0.99099,1.09392,0.95629,0.97246,9721],
+["2025-01-27",0.95317,0.97924,0.78744,0.78744,5679],["2025-02-03",0.79968,0.81934,0.63190,0.66950,10395],
+["2025-02-10",0.68242,0.82483,0.66803,0.78117,6380],["2025-02-17",0.77164,0.82465,0.73747,0.76632,5151],
+["2025-02-24",0.77032,1.06627,0.58818,1.06627,7444],["2025-03-03",1.13332,1.13332,0.71400,0.71400,27080],
+["2025-03-10",0.72075,0.76126,0.66377,0.70111,8724],["2025-03-17",0.70528,0.75058,0.68516,0.70377,5104],
+["2025-03-24",0.71096,0.77109,0.66015,0.66015,5386],["2025-03-31",0.66087,0.69247,0.56964,0.56964,5092],
+["2025-04-07",0.57340,0.66267,0.51758,0.63320,7978],["2025-04-14",0.63727,0.65158,0.60147,0.61856,3694],
+["2025-04-21",0.62025,0.73412,0.62005,0.71094,5522],["2025-04-28",0.70391,0.72427,0.67108,0.67707,4946],
+["2025-05-05",0.67664,0.84012,0.64624,0.80478,6896],["2025-05-12",0.80515,0.84820,0.73339,0.74642,8135],
+["2025-05-19",0.75322,0.83126,0.71740,0.75663,6632],["2025-05-26",0.75948,0.77310,0.65811,0.68201,4691],
+["2025-06-02",0.68533,0.70204,0.62505,0.66990,3687],["2025-06-09",0.66973,0.72601,0.61837,0.63284,4440],
+["2025-06-16",0.63363,0.65571,0.52366,0.53942,4285],["2025-06-23",0.54136,0.59249,0.53380,0.58077,4286],
+["2025-06-30",0.57776,0.60874,0.53797,0.58945,4332],["2025-07-07",0.58591,0.75330,0.57423,0.73344,7722],
+["2025-07-14",0.73720,0.87836,0.71699,0.85905,11888],["2025-07-21",0.85863,0.92434,0.76661,0.83413,12464],
+["2025-07-28",0.83105,0.85357,0.68952,0.72669,9255],["2025-08-04",0.72712,0.83323,0.71301,0.79993,8160],
+["2025-08-11",0.80138,1.01446,0.77034,0.96471,21026],["2025-08-18",0.96310,0.96310,0.83161,0.91342,15874],
+["2025-08-25",0.90908,0.92252,0.81152,0.81964,11704],["2025-09-01",0.81059,0.84505,0.78838,0.83409,8346],
+["2025-09-08",0.83455,0.95164,0.83276,0.89604,12256],["2025-09-15",0.88823,0.93798,0.85608,0.88745,12242],
+["2025-09-22",0.88455,0.88455,0.75730,0.80894,10439],["2025-09-29",0.80819,0.88158,0.78308,0.83707,9655],
+["2025-10-06",0.83707,0.88027,0.61278,0.69880,14513],["2025-10-13",0.70022,0.73291,0.59908,0.65831,10860],
+["2025-10-20",0.65269,0.68395,0.61608,0.68395,7336],["2025-10-27",0.68123,0.69124,0.58896,0.60007,8030],
+["2025-11-03",0.61060,0.61060,0.50719,0.57899,9224],["2025-11-10",0.57832,0.60113,0.47812,0.48298,7338],
+["2025-11-17",0.48431,0.49537,0.39326,0.41486,8312],["2025-11-24",0.40860,0.43707,0.40560,0.42378,4673],
+["2025-12-01",0.41485,0.45246,0.37223,0.41514,5167],["2025-12-08",0.41711,0.47929,0.39666,0.39666,5929],
+["2025-12-15",0.39654,0.40554,0.34787,0.36442,4076],["2025-12-22",0.36627,0.37978,0.34242,0.36563,3437],
+["2025-12-29",0.36827,0.40344,0.33175,0.40057,2992],["2026-01-05",0.40193,0.42690,0.38821,0.40727,1998],
+["2026-01-12",0.40950,0.43357,0.38742,0.41764,2208],["2026-01-19",0.38545,0.39420,0.35105,0.35311,1927],
+["2026-01-26",0.35623,0.38082,0.29286,0.30193,2395],["2026-02-02",0.29625,0.31527,0.24991,0.28387,3177],
+["2026-02-09",0.29687,0.31952,0.26235,0.29751,1888],["2026-02-16",0.29221,0.31026,0.27766,0.29536,1522],
+["2026-02-23",0.28305,0.32140,0.25624,0.28609,1978],["2026-03-02",0.28846,0.30162,0.25255,0.27603,1942],
+["2026-03-09",0.26805,0.29465,0.25827,0.29076,1685],["2026-03-16",0.29061,0.31259,0.25566,0.27143,1697],
+["2026-03-23",0.26940,0.29233,0.23935,0.23935,1594],["2026-03-30",0.23997,0.25256,0.23648,0.24626,1441],
+["2026-04-06",0.25492,0.26395,0.23731,0.23731,1616],["2026-04-13",0.23640,0.26633,0.23640,0.24272,1822],
+["2026-04-20",0.24276,0.25585,0.24276,0.25187,1652],["2026-04-27",0.25226,0.25582,0.24165,0.25100,1407],
+["2026-05-04",0.24945,0.28706,0.24838,0.28297,1978],["2026-05-11",0.28246,0.28246,0.25284,0.25381,1821],
+["2026-05-18",0.25205,0.25389,0.23760,0.24091,1644],["2026-05-25",0.24214,0.24724,0.22923,0.23556,1802],
+["2026-06-01",0.23549,0.23659,0.14969,0.16456,4841],["2026-06-08",0.16509,0.17492,0.15911,0.17492,3138],
+["2026-06-15",0.18288,0.18908,0.15891,0.15891,2923],["2026-06-22",0.15655,0.16288,0.13883,0.14183,2659],
+["2026-06-29",0.14364,0.19961,0.14211,0.19025,2935],["2026-07-06",0.18940,0.18988,0.16188,0.16188,2299],
+["2026-07-13",0.16199,0.16842,0.15613,0.16581,1846],["2026-07-20",0.16605,0.17994,0.16133,0.16566,1766],
+["2026-07-27",0.16587,0.18984,0.15417,0.18964,2345],["2026-08-03",0.18937,0.20882,0.18271,0.19722,3269],
+["2026-08-10",0.19443,0.19815,0.17521,0.17521,1404],["2026-08-17",0.17481,0.25429,0.17173,0.22666,4112],
+["2026-08-24",0.22683,0.22699,0.19823,0.19823,2834],["2026-08-31",0.19267,0.22568,0.19232,0.22001,2682]];
+
+// swing-line vertices — every value is a real weekly high or low
+const ZIG=[["2024-01-01",0.63521],["2024-01-22",0.4524],["2024-03-11",0.80097],["2024-04-15",0.43177],
+["2024-04-22",0.52098],["2024-04-29",0.42529],["2024-05-20",0.50482],["2024-07-01",0.32029],
+["2024-07-15",0.45494],["2024-08-05",0.28725],["2024-08-19",0.39926],["2024-09-02",0.30533],
+["2024-11-04",0.63565],["2024-11-11",0.52533],["2024-11-18",1.12291],["2024-11-25",0.89501],
+["2024-12-02",1.3045],["2024-12-16",0.76943],["2025-01-13",1.15766],["2025-02-03",0.6319],
+["2025-03-03",1.13332],["2025-04-07",0.51758],["2025-05-12",0.8482],["2025-06-16",0.52366],
+["2025-07-21",0.92434],["2025-08-04",0.71301],["2025-08-11",1.01446],["2025-09-01",0.78838],
+["2025-09-08",0.95164],["2025-09-22",0.7573],["2025-09-29",0.88158],["2025-10-06",0.61278],
+["2025-10-13",0.73291],["2025-12-01",0.37223],["2025-12-08",0.47929],["2025-12-29",0.33175],
+["2026-01-12",0.43357],["2026-02-02",0.24991],["2026-02-23",0.3214],["2026-03-02",0.25255],
+["2026-03-16",0.31259],["2026-04-13",0.2364],["2026-05-04",0.28706],["2026-06-01",0.14969],
+["2026-06-15",0.18908],["2026-06-22",0.13883],["2026-06-29",0.19961],["2026-07-27",0.15417],
+["2026-08-03",0.20882],["2026-08-10",0.17521],["2026-08-17",0.25429],["2026-08-31",0.19232]];
+const NOW=0.22001;   // in-progress weekly bar, drawn half a slot past the last vertex
+
+// s:+1 label above, -1 below.  f:false = interpretive (dashed box)
+const EV=[
+ {d:"2024-08-05",p:0.28725,k:"Base low",     s:-1,f:false,dx:0},
+ {d:"2024-11-04",p:0.63565,k:"SOS / JAC",    s:+1,f:true, dx:-34},
+ {d:"2024-11-18",p:1.12291,k:"PSY",          s:+1,f:false,dx:-26},
+ {d:"2024-12-02",p:1.30450,k:"BC",           s:+1,f:true, dx:6},
+ {d:"2024-12-16",p:0.76943,k:"AR",           s:-1,f:true, dx:-6},
+ {d:"2025-01-13",p:1.15766,k:"ST",           s:+1,f:true, dx:14},
+ {d:"2025-02-03",p:0.63190,k:"SOW",          s:-1,f:true, dx:-10},
+ {d:"2025-03-03",p:1.13332,k:"UT",           s:+1,f:true, dx:8},
+ {d:"2025-06-16",p:0.52366,k:"ST in Phase B",s:-1,f:false,dx:0},
+ {d:"2025-08-11",p:1.01446,k:"UTAD",         s:+1,f:false,dx:0},
+ {d:"2025-09-08",p:0.95164,k:"LPSY",         s:+1,f:false,dx:34},
+ {d:"2025-10-06",p:0.61278,k:"Markdown",     s:-1,f:true, dx:30},
+ {d:"2026-06-01",p:0.14969,k:"SC",           s:-1,f:true, dx:-14},
+ {d:"2026-06-15",p:0.18908,k:"AR",           s:+1,f:true, dx:-4},
+ {d:"2026-06-22",p:0.13883,k:"ST",           s:-1,f:true, dx:16},
+ {d:"2026-08-10",p:0.17521,k:"LPS",          s:-1,f:false,dx:-16},
+ {d:"2026-08-17",p:0.25429,k:"SOS",          s:+1,f:true, dx:0},
+ {d:"2026-08-31",p:0.19232,k:"BU/LPS",       s:-1,f:false,dx:26}
+];
+// row 1 = cycle stage, row 2 = Wyckoff phase within the range.
+// `c` maps each stage onto the SAME colour the heatmap's Wyckoff row uses above,
+// so the two readings of the same structure are visually one system.
+const STAGE=[
+ {k:"BASE",        from:"2024-01-01",to:"2024-10-28",c:"acc"},
+ {k:"MARKUP",      from:"2024-11-04",to:"2024-11-11",c:"up"},
+ {k:"DISTRIBUTION",from:"2024-11-18",to:"2025-09-29",c:"dn"},
+ {k:"MARKDOWN",    from:"2025-10-06",to:"2026-05-25",c:"mdn"},
+ {k:"ACCUMULATION",from:"2026-06-01",to:"2026-08-31",c:"acc"}
+];
+const PH=[
+ {k:"A",from:"2024-11-18",to:"2025-01-20"},{k:"B",from:"2025-01-27",to:"2025-07-28"},
+ {k:"C",from:"2025-08-04",to:"2025-09-01"},{k:"D",from:"2025-09-08",to:"2025-09-29"},
+ {k:"E",from:"2025-10-06",to:"2026-05-25"},
+ {k:"A",from:"2026-06-01",to:"2026-06-22"},{k:"B",from:"2026-06-29",to:"2026-08-03"},
+ {k:"C",from:"2026-08-10",to:"2026-08-10"},{k:"D",from:"2026-08-17",to:"2026-08-31"},
+ {k:"E",from:null,to:null}
+];
+const LV=[
+ {y:1.30450,from:"2024-12-02",to:"2025-10-06",g:"R",t:"BC  1.30450"},
+ {y:1.15766,from:"2025-01-13",to:"2025-10-06",g:"R",t:"ST  1.15766"},
+ {y:0.76943,from:"2024-12-16",to:"2025-10-06",g:"S",t:"AR  0.76943"},
+ {y:0.52366,from:"2025-06-16",to:"2025-10-06",g:"S",t:"ST in Phase B  0.52366"},
+ {y:0.25429,from:"2026-08-17",to:null,        g:"R",t:"SOS  0.25429"},
+ {y:0.20882,from:"2026-06-29",to:null,        g:"R",t:"0.20882"},
+ {y:0.14969,from:"2026-06-01",to:null,        g:"S",t:"SC  0.14969"},
+ {y:0.13883,from:"2026-06-22",to:null,        g:"S",t:"ST in B  0.13883"}
+];
+
+const IDX={};B.forEach((b,i)=>IDX[b[0]]=i);
+const NPAD=6, NTOT=B.length+NPAD;
+const cv=document.getElementById('wykCv');
+if(!cv) return;
+const ctx=cv.getContext('2d'), tip=document.getElementById('wykTip'), holder=document.getElementById('wykHolder');
+let S={s:0,e:NTOT-1,hover:-1,zig:true,can:false,lab:true,sr:true,ph:true,vol:false,log:true};
+let CW=0,CH=0;
+const PADL=10,PADR=132,PADT=62,PADB=28;
+const FS='-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif';
+const FM='ui-monospace,Menlo,Consolas,monospace';
+const fx=v=>v>=1?v.toFixed(3):v.toFixed(4);
+
+// ── colours come from the dashboard's own CSS tokens, so the panel follows the
+// light/dark toggle without the toggle needing to know this panel exists ──
+let C={};
+const V=n=>getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+function readTheme(){
+  C={bord:V('--bord'),txt:V('--txt'),txt2:V('--txt2'),card:V('--card'),
+     amber:V('--amber'),acc:V('--acc'),up:V('--markup'),dn:V('--dist'),
+     mdn:V('--markdown'),cyan:V('--tt-accent')};
+}
+readTheme();
+
+function resize(){const r=cv.getBoundingClientRect(),d=window.devicePixelRatio||1;
+  if(!r.width) return;
+  CW=r.width;CH=r.height;cv.width=Math.round(CW*d);cv.height=Math.round(CH*d);
+  ctx.setTransform(d,0,0,d,0,0);draw();}
+
+function rr(x0,y0,w,h,r){ // roundRect fallback — Safari <16 has no ctx.roundRect
+  if(ctx.roundRect){ctx.roundRect(x0,y0,w,h,r);return;}
+  ctx.moveTo(x0+r,y0);ctx.arcTo(x0+w,y0,x0+w,y0+h,r);ctx.arcTo(x0+w,y0+h,x0,y0+h,r);
+  ctx.arcTo(x0,y0+h,x0,y0,r);ctx.arcTo(x0,y0,x0+w,y0,r);}
+
+function draw(){
+  if(!CW) return;
+  ctx.clearRect(0,0,CW,CH);
+  const s=S.s,e=S.e,n=e-s+1;
+  const volH=S.vol?Math.round((CH-PADT-PADB)*0.16):0,gap=S.vol?8:0;
+  const pT=PADT,pB=CH-PADB-volH-gap,pW=CW-PADL-PADR,pH=pB-pT,vT=pB+gap,vB=CH-PADB;
+  if(pH<40) return;
+
+  let lo=Infinity,hi=-Infinity;
+  for(let i=s;i<=e&&i<B.length;i++){if(B[i][3]<lo)lo=B[i][3];if(B[i][2]>hi)hi=B[i][2];}
+  if(!isFinite(lo)){lo=B[B.length-1][3];hi=B[B.length-1][2];}
+  if(S.sr)LV.forEach(l=>{if(l.y>=lo*0.6&&l.y<=hi*1.7){if(l.y<lo)lo=l.y;if(l.y>hi)hi=l.y;}});
+  const tr=v=>S.log?Math.log(v):v;
+  let a=tr(lo),b2=tr(hi);const pd=(b2-a)*0.10;a-=pd;b2+=pd;
+  const y=p=>pT+(b2-tr(p))/(b2-a)*pH;
+  const bw=pW/n,x=i=>PADL+(i-s+0.5)*bw;
+  const cl=v=>Math.max(PADL,Math.min(CW-PADR,v));
+  let vm=1;for(let i=s;i<=e&&i<B.length;i++)if(B[i][5]>vm)vm=B[i][5];
+  const vy=v=>vB-(v/vm)*(vB-vT);
+
+  // ---- phase / stage columns ----
+  if(S.ph){
+    const span=(fr,to)=>{
+      const i0=fr===null?B.length:IDX[fr], i1=to===null?NTOT-1:IDX[to];
+      if(i1<s||i0>e)return null;
+      const x0=cl(x(Math.max(i0,s))-bw/2),x1=cl(x(Math.min(i1,e))+bw/2);
+      return x1>x0?[x0,x1,i0]:null;};
+    const eSp=span(null,null);
+    if(eSp){ctx.save();ctx.beginPath();ctx.rect(eSp[0],pT,eSp[1]-eSp[0],pH);ctx.clip();
+      ctx.strokeStyle=C.bord;ctx.globalAlpha=.75;ctx.lineWidth=1;
+      for(let d=-pH;d<eSp[1]-eSp[0]+pH;d+=7){ctx.beginPath();
+        ctx.moveTo(eSp[0]+d,pT+pH);ctx.lineTo(eSp[0]+d+pH,pT);ctx.stroke();}
+      ctx.restore();}
+    let phR=-1e9;   // right edge of the last phase label drawn, so they never overlap
+    PH.forEach(p=>{const sp=span(p.from,p.to);if(!sp)return;
+      const [x0,x1,i0]=sp;
+      if(i0>=s&&x0>PADL+1){ctx.strokeStyle=C.bord;ctx.lineWidth=1;ctx.setLineDash([5,4]);
+        ctx.beginPath();ctx.moveTo(Math.round(x0)+.5,pT);ctx.lineTo(Math.round(x0)+.5,vB);
+        ctx.stroke();ctx.setLineDash([]);}
+      ctx.font="700 11px "+FS;
+      const lt="Phase "+p.k, lw=ctx.measureText(lt).width, mid=(x0+x1)/2;
+      if(x1-x0<lw+10 || mid-lw/2 < phR+8) return;   // no room, or it would touch its neighbour
+      phR=mid+lw/2;
+      ctx.fillStyle=p.from===null?C.txt2:C.amber;
+      ctx.globalAlpha=p.from===null?.6:1;
+      ctx.textAlign="center";
+      ctx.fillText(lt,mid,pT-10);ctx.globalAlpha=1;});
+    let stR=-1e9;
+    STAGE.forEach(st=>{const sp=span(st.from,st.to);if(!sp)return;
+      const [x0,x1,i0]=sp;
+      if(i0>=s&&x0>PADL+1){ctx.strokeStyle=C.txt2;ctx.lineWidth=1.4;ctx.setLineDash([7,4]);
+        ctx.beginPath();ctx.moveTo(Math.round(x0)+.5,pT-24);ctx.lineTo(Math.round(x0)+.5,vB);
+        ctx.stroke();ctx.setLineDash([]);}
+      ctx.font="800 12.5px "+FS;
+      const lw=ctx.measureText(st.k).width, mid=(x0+x1)/2;
+      if(x1-x0<lw+8 || mid-lw/2 < stR+10) return;
+      stR=mid+lw/2;
+      ctx.fillStyle=C[st.c];ctx.textAlign="center";
+      ctx.fillText(st.k,mid,pT-31);});
+  }
+
+  // ---- grid ----
+  ctx.font="10.5px "+FM;ctx.textAlign="left";
+  const ticks=[];
+  if(S.log){for(const m of [0.1,0.15,0.2,0.3,0.5,0.7,1,1.5])if(tr(m)>=a&&tr(m)<=b2)ticks.push(m);}
+  else{const st2=nice((b2-a)/6);for(let g=Math.ceil(a/st2)*st2;g<=b2;g+=st2)ticks.push(g);}
+  ticks.forEach(g=>{const yy=Math.round(y(g))+.5;if(yy<pT||yy>pB)return;
+    ctx.strokeStyle=C.bord;ctx.globalAlpha=.55;ctx.lineWidth=1;
+    ctx.beginPath();ctx.moveTo(PADL,yy);ctx.lineTo(CW-PADR,yy);ctx.stroke();ctx.globalAlpha=1;
+    ctx.fillStyle=C.txt2;ctx.fillText(fx(g),CW-PADR+8,yy+3);});
+  ctx.textAlign="center";ctx.fillStyle=C.txt2;ctx.font="10px "+FM;
+  const ev2=Math.max(1,Math.ceil(n/Math.max(2,Math.floor(pW/78))));
+  for(let i=s;i<=e&&i<B.length;i++){if((i-s)%ev2)continue;const xx=x(i);
+    if(xx<PADL+20||xx>CW-PADR-20)continue;ctx.fillText(B[i][0].slice(0,7),xx,CH-9);}
+
+  // ---- support / resistance ----
+  if(S.sr){
+    LV.forEach(l=>{
+      const yy=Math.round(y(l.y))+.5;if(yy<pT||yy>pB)return;
+      const i0=IDX[l.from],i1=l.to===null?NTOT-1:IDX[l.to];
+      if(i1<s||i0>e)return;
+      const x0=cl(x(Math.max(i0,s))-bw/2),x1=cl(x(Math.min(i1,e))+bw/2);
+      ctx.strokeStyle=C.amber;ctx.lineWidth=1.35;
+      ctx.beginPath();ctx.moveTo(x0,yy);ctx.lineTo(x1,yy);ctx.stroke();
+      if(x1-x0>96){ctx.font="600 9.5px "+FS;ctx.textAlign="left";
+        const tw=ctx.measureText(l.t).width;
+        ctx.fillStyle=C.card;ctx.globalAlpha=.92;ctx.fillRect(x0+5,yy-11,tw+7,12);ctx.globalAlpha=1;
+        ctx.fillStyle=C.amber;ctx.fillText(l.t,x0+8,yy-2);}});
+    const brk=[];
+    ["R","S"].forEach(g=>{
+      const ys=LV.filter(l=>l.g===g&&l.to===null).map(l=>y(l.y)).filter(v=>v>pT&&v<pB);
+      if(ys.length<1)return;
+      const t1=Math.min(...ys),t2=Math.max(...ys);
+      ctx.strokeStyle=C.amber;ctx.lineWidth=1;
+      ctx.beginPath();ctx.moveTo(CW-PADR+2,t1);ctx.lineTo(CW-PADR+9,t1);
+      ctx.moveTo(CW-PADR+9,t1);ctx.lineTo(CW-PADR+9,t2);
+      ctx.moveTo(CW-PADR+2,t2);ctx.lineTo(CW-PADR+9,t2);ctx.stroke();
+      brk.push({g,mid:(t1+t2)/2});});
+    // single line each, and pushed apart if the two brackets sit close together
+    brk.sort((a,b3)=>a.mid-b3.mid);
+    if(brk.length===2&&brk[1].mid-brk[0].mid<15){const c0=(brk[0].mid+brk[1].mid)/2;
+      brk[0].mid=c0-8;brk[1].mid=c0+8;}
+    ctx.fillStyle=C.txt;ctx.font="700 10.5px "+FS;ctx.textAlign="left";
+    brk.forEach(o=>ctx.fillText(o.g==="R"?"Resistance":"Support",CW-PADR+14,
+      Math.max(pT+8,Math.min(pB-2,o.mid+3.5))));
+  }
+
+  // ---- volume ----
+  if(S.vol){
+    for(let i=s;i<=e&&i<B.length;i++){const q=B[i];
+      ctx.globalAlpha=.42;ctx.fillStyle=q[4]>=q[1]?C.up:C.dn;
+      const w=Math.max(1,bw*.62);ctx.fillRect(x(i)-w/2,vy(q[5]),w,vB-vy(q[5]));ctx.globalAlpha=1;}
+    ctx.fillStyle=C.txt2;ctx.font="9.5px "+FS;ctx.textAlign="left";
+    ctx.fillText("VOLUME",PADL+3,vT+11);ctx.fillText(vm.toLocaleString()+"M",CW-PADR+8,vT+9);}
+
+  // ---- candles ----
+  if(S.can){const cw=Math.max(1,bw*.58);
+    for(let i=s;i<=e&&i<B.length;i++){const q=B[i],up=q[4]>=q[1],c=up?C.up:C.dn;
+      ctx.strokeStyle=c;ctx.lineWidth=1;ctx.globalAlpha=S.zig?.45:1;
+      ctx.beginPath();ctx.moveTo(x(i),y(q[2]));ctx.lineTo(x(i),y(q[3]));ctx.stroke();
+      const yo=y(q[1]),yc=y(q[4]);ctx.fillStyle=c;
+      ctx.fillRect(x(i)-cw/2,Math.min(yo,yc),cw,Math.max(1,Math.abs(yc-yo)));ctx.globalAlpha=1;}}
+
+  // ---- swing line ----
+  if(S.zig){
+    ctx.strokeStyle=C.txt;ctx.lineWidth=1.9;ctx.lineJoin="round";ctx.lineCap="round";
+    ctx.beginPath();let go=false;
+    ZIG.forEach(([d,p])=>{const i=IDX[d];if(i===undefined)return;
+      if(!go){ctx.moveTo(x(i),y(p));go=true;}else ctx.lineTo(x(i),y(p));});
+    if(go)ctx.lineTo(x(B.length-1)+bw*0.9,y(NOW));
+    ctx.stroke();
+    ctx.beginPath();ctx.arc(x(B.length-1)+bw*0.9,y(NOW),3.2,0,7);
+    ctx.fillStyle=C.cyan;ctx.fill();}
+
+  // ---- event labels ----
+  if(S.lab){
+    const placed=[];
+    EV.forEach(v=>{
+      const i=IDX[v.d];if(i===undefined||i<s-1||i>e+1)return;
+      const xx=x(i),yy=y(v.p);
+      ctx.beginPath();ctx.arc(xx,yy,3.4,0,7);ctx.fillStyle=C.card;ctx.fill();
+      ctx.strokeStyle=C.txt;ctx.lineWidth=1.6;ctx.stroke();
+      let ly=v.s>0?yy-22:yy+24,tries=0;
+      while(placed.some(q=>Math.abs(q.x-(xx+v.dx))<62&&Math.abs(q.y-ly)<17)&&tries<14){
+        ly+=v.s>0?-18:18;tries++;}
+      ly=Math.max(pT+16,Math.min(pB-6,ly));
+      const lx=xx+v.dx;placed.push({x:lx,y:ly});
+      ctx.font="700 11.5px "+FS;ctx.textAlign="center";
+      const tw=ctx.measureText(v.k).width;
+      ctx.strokeStyle=C.txt2;ctx.globalAlpha=.7;ctx.lineWidth=1;ctx.setLineDash([2,3]);
+      ctx.beginPath();ctx.moveTo(xx,yy+(v.s>0?-5:5));ctx.lineTo(lx,ly+(v.s>0?8:-9));ctx.stroke();
+      ctx.setLineDash([]);ctx.globalAlpha=1;
+      ctx.fillStyle=C.card;ctx.strokeStyle=v.f?C.txt:C.txt2;
+      ctx.lineWidth=1;ctx.setLineDash(v.f?[]:[3,2]);
+      ctx.beginPath();rr(lx-tw/2-5,ly-11,tw+10,16,3);ctx.fill();ctx.stroke();
+      ctx.setLineDash([]);
+      ctx.fillStyle=v.f?C.txt:C.txt2;ctx.fillText(v.k,lx,ly+1);});
+  }
+
+  if(S.hover>=s&&S.hover<=e&&S.hover<B.length){const xx=Math.round(x(S.hover))+.5;
+    ctx.strokeStyle=C.txt2;ctx.globalAlpha=.5;ctx.setLineDash([3,3]);ctx.lineWidth=1;
+    ctx.beginPath();ctx.moveTo(xx,pT);ctx.lineTo(xx,vB);ctx.stroke();
+    ctx.setLineDash([]);ctx.globalAlpha=1;}
+}
+function nice(r){const p=Math.pow(10,Math.floor(Math.log10(r))),q=r/p;return (q<1.5?1:q<3?2:q<7?5:10)*p;}
+
+function idxAt(px){const n=S.e-S.s+1,bw=(CW-PADL-PADR)/n;
+  return Math.max(S.s,Math.min(S.e,S.s+Math.floor((px-PADL)/bw)));}
+
+function showTipAt(i,px,py){
+  if(i>=B.length){tip.style.display='none';return;}
+  const q=B[i],evs=EV.filter(v=>v.d===q[0]);
+  tip.innerHTML=`<div style="margin-bottom:4px"><b>Week of ${q[0]}</b></div>`+
+    `<div class="tt-row"><span class="tt-label">O</span><span>${fx(q[1])}</span></div>`+
+    `<div class="tt-row"><span class="tt-label">H</span><span>${fx(q[2])}</span></div>`+
+    `<div class="tt-row"><span class="tt-label">L</span><span>${fx(q[3])}</span></div>`+
+    `<div class="tt-row"><span class="tt-label">C</span><span style="color:${q[4]>=q[1]?'var(--markup)':'var(--dist)'}">${fx(q[4])}</span></div>`+
+    `<div class="tt-row"><span class="tt-label">Vol</span><span>${q[5].toLocaleString()}M</span></div>`+
+    (evs.length?`<div style="margin-top:5px;padding-top:5px;border-top:1px solid var(--bord);font-weight:600">${
+      evs.map(v=>v.k+(v.f?'':' <span style="color:var(--txt2);font-weight:400">(interpretive)</span>')).join(' · ')}</div>`:'');
+  tip.style.display='block';
+  const tw=tip.offsetWidth,th=tip.offsetHeight;
+  tip.style.left=Math.min(CW-tw-10,Math.max(6,px+16))+'px';
+  tip.style.top=Math.min(CH-th-10,Math.max(6,py-th/2))+'px';
+}
+
+let drag=false,dx0=0;
+cv.addEventListener('mousemove',ev=>{
+  const r=cv.getBoundingClientRect(),px=ev.clientX-r.left,py=ev.clientY-r.top;
+  if(drag){const n=S.e-S.s+1,bw=(CW-PADL-PADR)/n,sh=Math.round((dx0-px)/bw);
+    if(sh){let p=S.s+sh,q=S.e+sh;
+      if(p<0){q-=p;p=0;}if(q>NTOT-1){p-=(q-(NTOT-1));q=NTOT-1;}
+      if(p>=0&&q<=NTOT-1){S.s=p;S.e=q;dx0=px;draw();}}return;}
+  const i=idxAt(px);S.hover=i;draw();showTipAt(i,px,py);});
+cv.addEventListener('mouseleave',()=>{S.hover=-1;tip.style.display='none';draw();});
+cv.addEventListener('wheel',ev=>{ev.preventDefault();
+  const px=ev.clientX-cv.getBoundingClientRect().left,c=idxAt(px),n=S.e-S.s+1;
+  const nn=Math.max(10,Math.min(NTOT,Math.round(n*(ev.deltaY>0?1.15:.87))));
+  const fr=(c-S.s)/Math.max(1,n-1);
+  let p=Math.round(c-fr*(nn-1)),q=p+nn-1;
+  if(p<0){q-=p;p=0;}if(q>NTOT-1){p-=(q-(NTOT-1));q=NTOT-1;}
+  S.s=Math.max(0,p);S.e=Math.min(NTOT-1,q);draw();},{passive:false});
+cv.addEventListener('mousedown',e=>{drag=true;dx0=e.clientX-cv.getBoundingClientRect().left;
+  cv.style.cursor='grabbing';tip.style.display='none';});
+window.addEventListener('mouseup',()=>{drag=false;cv.style.cursor='crosshair';});
+let tx=null;
+cv.addEventListener('touchstart',e=>{if(e.touches.length===1){
+  tx=e.touches[0].clientX;
+  const r=cv.getBoundingClientRect();
+  const i=idxAt(tx-r.left);S.hover=i;draw();showTipAt(i,tx-r.left,e.touches[0].clientY-r.top);}},{passive:true});
+cv.addEventListener('touchmove',e=>{if(tx===null||e.touches.length!==1)return;
+  const px=e.touches[0].clientX,n=S.e-S.s+1,bw=(CW-PADL-PADR)/n,sh=Math.round((tx-px)/bw);
+  if(sh){let p=S.s+sh,q=S.e+sh;
+    if(p<0){q-=p;p=0;}if(q>NTOT-1){p-=(q-(NTOT-1));q=NTOT-1;}
+    S.s=p;S.e=q;tx=px;draw();}},{passive:true});
+cv.addEventListener('touchend',()=>{tx=null;},{passive:true});
+
+// ---- controls, using the dashboard's own button classes ----
+document.querySelectorAll('button[data-wyk]').forEach(b=>{
+  b.addEventListener('click',()=>{const k=b.getAttribute('data-wyk');
+    S[k]=!S[k];b.classList.toggle('active',S[k]);draw();});});
+function zm(a,b3){S.s=Math.max(0,IDX[a]-2);S.e=Math.min(NTOT-1,(b3===null?NTOT-1:IDX[b3]+2));draw();}
+document.querySelectorAll('button[data-wykz]').forEach(b=>{
+  b.addEventListener('click',()=>{
+    document.querySelectorAll('button[data-wykz]').forEach(o=>o.classList.remove('active'));
+    b.classList.add('active');
+    const z=b.getAttribute('data-wykz');
+    if(z==='all'){S.s=0;S.e=NTOT-1;draw();}
+    else if(z==='dis')zm("2024-10-28","2025-11-03");
+    else zm("2026-05-04",null);});});
+document.querySelectorAll('button[data-wyks]').forEach(b=>{
+  b.addEventListener('click',()=>{
+    document.querySelectorAll('button[data-wyks]').forEach(o=>o.classList.remove('active'));
+    b.classList.add('active');S.log=b.getAttribute('data-wyks')==='log';draw();});});
+
+// header price readout — the in-progress weekly bar, against its own open
+(function(){const o=B[B.length-1][1],d=(NOW-o)/o*100;
+  document.getElementById('wykP').textContent='$'+NOW.toFixed(5);
+  const el2=document.getElementById('wykD');
+  el2.textContent=(d>=0?'+':'')+d.toFixed(2)+'% · week in progress';
+  el2.style.color=d>=0?'var(--markup)':'var(--dist)';})();
+
+// follow the dashboard's light/dark toggle without touching applyTheme()
+new MutationObserver(()=>{readTheme();draw();})
+  .observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']});
+new ResizeObserver(resize).observe(cv);
+resize();
+})();
+
 </script>
 </body>
 </html>
