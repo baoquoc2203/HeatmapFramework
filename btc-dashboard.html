@@ -10,14 +10,14 @@
     --amber:#e0a83f;
     --acc:#2f6fb0; --markup:#39b873; --dist:#c0291f; --markdown:#cf5b42;
     --btn-bg:#1a1e25; --btn-hover:#5ec8f0; --tt-bg:#1a1e25; --tt-bord:#3a4150; --tt-shadow:rgba(0,0,0,.5);
-    --tt-accent:#5ec8f0; --link:#5ec8f0; --srcnote:#6b7180; --srcnote-b:#aeb4bf;
+    --tt-accent:#5ec8f0; --link:#5ec8f0;
   }
   :root[data-theme="light"]{
     --bg:#f7f6f2; --bg2:#ffffff; --card:#ffffff; --bord:#e1ded6; --txt:#1c1b18; --txt2:#6b6a64;
     --amber:#b07e20;
     --acc:#2f6fb0; --markup:#1e8a52; --dist:#a32d2d; --markdown:#cc5236;
     --btn-bg:#f0eee8; --btn-hover:#2f6fb0; --tt-bg:#ffffff; --tt-bord:#d8d5cc; --tt-shadow:rgba(0,0,0,.12);
-    --tt-accent:#2f6fb0; --link:#2f6fb0; --srcnote:#6b7180; --srcnote-b:#55534d;
+    --tt-accent:#2f6fb0; --link:#2f6fb0;
   }
   *{box-sizing:border-box;margin:0;padding:0;}
   body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--txt);padding:18px 14px;}
@@ -59,8 +59,6 @@
   .legend-row span{display:flex;align-items:center;gap:5px;}
   .legend-row i{width:11px;height:11px;border-radius:3px;display:inline-block;}
 
-  .src-note{font-size:10.5px;color:var(--srcnote);margin:14px 0;line-height:1.6;background:var(--bg2);border:1px solid var(--bord);border-radius:8px;padding:11px 13px;}
-  .src-note b{color:var(--srcnote-b);}
 
 
   @media (max-width:640px){
@@ -90,7 +88,7 @@
   </a>
 </div>
 <h1>BTC Framework Dashboard — Interactive</h1>
-<div class="meta">Crypto Reconnaissance Engine · <b>Jan 2014 → Aug 2026 live</b> (CRE v2.9 · Aug 27 level ladder, Zone Layer v1, cycle window &amp; calendar to Shmita 5789, Sep 2028–Sep 2029) · drag to pan, scroll/pinch to zoom, double-click to reset, hover for values, toggle layers below</div>
+<div class="meta">Crypto Reconnaissance Engine · <b>Jan 2014 → Sep 2026 live</b> (CRE v3.1 · Session 62 · Sep 5 level ladder, margin bands, cycle window &amp; calendar to Shmita 5789, Sep 2028–Sep 2029) · drag to pan, scroll/pinch to zoom, double-click to reset, hover for values, toggle layers below</div>
 
 <div class="controls">
   <div class="ctrl-group">
@@ -99,14 +97,14 @@
     <button class="toggle active" data-layer="shmita">Shmita</button>
     <button class="toggle active" data-layer="mercury">Mercury Rx</button>
     <button class="toggle active" data-layer="fng">Fear &amp; Greed</button>
-    <button class="toggle active" data-layer="levels">Aug 27 Levels + Zones</button>
+    <button class="toggle active" data-layer="levels">Sep 5 Levels + Bands</button>
   </div>
   <div class="ctrl-group">
     <span class="ctrl-label">Zoom</span>
     <button class="zoom-btn active" data-zoom="all">2014–Now</button>
     <button class="zoom-btn" data-zoom="cycle14">2014–17</button>
     <button class="zoom-btn" data-zoom="cycle22">2021–23</button>
-    <button class="zoom-btn" data-zoom="live">Live (Aug'26)</button>
+    <button class="zoom-btn" data-zoom="live">Live (Sep'26)</button>
     <button class="zoom-btn" data-zoom="reset">Reset</button>
   </div>
   <div class="ctrl-group">
@@ -120,7 +118,7 @@
   </div>
   <div class="ctrl-group">
     <span class="ctrl-label">Report</span>
-    <a class="zoom-btn" href="BTC_MarketGPS_S53_2026-08-27.html" style="text-decoration:none;">📊 Market GPS (Aug 27)</a>
+    <a class="zoom-btn" href="BTC_report_S62_sep05.html" style="text-decoration:none;">📊 Market GPS (Sep 5 · S62)</a>
   </div>
 </div>
 
@@ -148,27 +146,16 @@
   <span><i style="background:#2f6fb0"></i>Extreme greed</span>
   <span style="margin-left:12px"><i style="background:var(--amber)"></i>Mercury Rx / Shmita (on)</span>
   <span><i style="background:#1a1d24;border:1px solid #5ec8f0"></i>BTC price</span>
-  <span style="margin-left:8px;border-left:1px solid var(--bord);padding-left:12px;font-weight:700;color:var(--amber)">Aug 27 levels:</span>
-  <span><i style="background:rgba(224,168,63,.5)"></i>$81,271 supply ceiling — 2 closes above promote the primary AND kill the alternate</span>
-  <span><i style="background:rgba(224,168,63,.5)"></i>$78,344 → $77,619 alternate's two promotion legs</span>
-  <span><i style="background:rgba(224,129,95,.5)"></i>$79,025 Aug 26 settle — BELOW RESOLUTION (A23) · $68,984 20d SMA (settle 3.87 ATR over)</span>
-  <span><i style="background:rgba(91,191,134,.5)"></i>$62,457–62,589 campaign invalidation — 44 straight closes above, 0 of 2, cushion 6.38 ATR</span>
-  <span><i style="background:rgba(224,129,95,.5)"></i>$61,821 spring low · $57,803 cycle low</span>
+  <span style="margin-left:8px;border-left:1px solid var(--bord);padding-left:12px;font-weight:700;color:var(--amber)">Sep 5 levels:</span>
+  <span><i style="background:rgba(224,168,63,.5)"></i>$81,484 UTAD high — 0.67 ATR above, approached twice intraday, never closed above</span>
+  <span><i style="background:rgba(224,168,63,.5)"></i>$80,256 zone floor — upside counter RESET 1 of 2 → 0 of 2 on Sep 4</span>
+  <span><i style="background:rgba(224,168,63,.5)"></i>$76,864 UTAD low — downside 0 of 2, 1.03 ATR below</span>
+  <span><i style="background:rgba(224,129,95,.5)"></i>$79,661 Sep 4 settle (reference close) · $75,627 20d SMA (close +5.33%)</span>
+  <span><i style="background:rgba(91,191,134,.5)"></i>$76,864–$80,256 post-UTAD range — Band C .44, six of seven closes inside</span>
+  <span><i style="background:rgba(224,129,95,.5)"></i>$57,803 FR-A008 cycle reference — 37.90% below, under pressure</span>
   <span><i style="background:rgba(91,191,134,.25)"></i>Autumn '26 window</span>
-  <span style="margin-left:8px;border-left:1px solid var(--bord);padding-left:12px;font-weight:700;color:#9aa3bb">Zone Layer v1:</span>
-  <span><i style="background:rgba(154,163,187,.45)"></i>3 registered zones, all WATCHING — bounds immutable, none touched</span>
-</div>
-
-<div class="src-note">
-  <b>What's real:</b> BTC price = real monthly closes (2014–17 are rounded public-history anchors: Mt.Gox bear, the ~$152 intraday cycle low Jan 14 2015, the Jul 2016 halving grind, the $19.7K Dec 2017 peak; Jun 2026 closed $58,634 and <b>Jul 2026 SETTLED at $62,898</b> = <b>+7.2%</b>, the first green month since April; Aug 2026 is <b>month-to-date $79,025</b>, the Aug 26 settled close = <b>+25.64%</b> on the month — the Aug 27 candle was still in progress at the session epoch, <b>trading at $78,823.82, 0.26% below the settle, and excluded from every determination</b>, drawn nowhere, gating nothing), as of the Aug 27, 2026 Market GPS session (Session 53, <b>CRE v2.9</b>, epoch 2026-08-27T07:22:00Z) — Crypto.com <code>BTC_USDT</code> the authoritative feed. Drawdown is <b>−37.4%</b> from the $126,198 ATH. Fear &amp; Greed = real Alternative.me index (launched Feb 2018 — earlier months genuinely have no reading), regime-anchored to documented extremes. <b>July carries 28 (Fear), and August now reads 44</b> — and the five-week blank that preceded it was correct rather than an oversight. Aug 3 obtained no reliable print; Aug 5 found <b>three values in circulation for the same window (25 “extreme fear”, 28, and 36 “fear”)</b> and ruled them near-certainly <i>different indices</i> rather than conflicting measurements of one; and the provenance then stood <b>unresolved for eight consecutive sessions</b>, with no reading attributed and no adjustment taken in either direction. <b>The framework attributed its first print of the campaign on Aug 20</b> and has carried one every session since. <b>The number shown is deliberately not the headline one.</b> The Aug 25 report's freshest figure is <b>75 “Greed”</b> — but that is CFGI’s <i>Bitcoin</i> index, a different scope from this row, which is and always has been the <b>crypto-wide</b> series. The same provider’s crypto-wide index reads <b>44</b>, and the report notes it reproduces its own prior session’s separately reported 44 — so 44 is the scope-matching figure and the only one corroborated twice. <b>Using the Bitcoin 75 here would repeat exactly the index-mixing error the framework identified on Aug 5.</b> One seam is disclosed rather than blended away: the history is Alternative.me and this value is CFGI — same 0–100 construction, different provider. The layer stays <b>[UNVALIDATED]</b> and this thread weights it at <b>zero</b>; the report separately notes the implied series fell <b>87 → 75 while price rose</b>, a textbook divergence that adjusts nothing. Mercury = real astronomical retrograde windows. Shmita = all real Hebrew-calendar release years in range: <b>5775 (Sep'14–Sep'15)</b>, inside which the 2015 cycle low printed, <b>5782 (Sep'21–Sep'22)</b>, which opened at a fresh ATH and was consumed by the crash, and the upcoming <b>5789 (Sep 21, 2028 – Sep 9, 2029)</b>, plotted forward as pure calendar (no price data) — the only two completed observations produced <b>opposite</b> outcomes, which is the empirical case for zero-weighting Shmita directionally.
-  <b>Wyckoff row:</b> retrospective phase labels re-derived month-by-month directly from this price line &mdash; left of the cyan dashed seam (Jul 1, 2026) this is independent structural reading of known history, <b>not</b> your framework's calls. Right of the seam is the framework's own live read: <b>Phase E &mdash; markup intact, hot data absorbed, and the first settled close inside registered supply</b>. The split is <b>HELD at PRIMARY 68% / ALTERNATE 20%</b> (residual 12%) by the prior session's pre-commitment, for a <b>third consecutive session</b> &mdash; and this time <b>the freeze costs the primary 3 to 5 points</b> that an honest assessment would have awarded. Two sessions earlier the same instrument suppressed a gain for the <i>alternate</i>. <b>It has now cut in both directions, which is the only way to tell a rule from an excuse.</b> <b>The session's defining fact is that the framework disagrees with the news and can show its work.</b> The external record attributes a fall to the hot July PCE print using figures &mdash; a $81,235 high, a $78,432 close, &minus;0.61% &mdash; that belong to the <b>Aug 25 UTC candle, which settled twelve hours before the data was published</b>. The bar that actually contains the 12:30 UTC release is Aug 26: O $78,533.33, H $79,248.79, L $77,618.97, C <b>$79,025.30</b>. It flushed <b>1.79% intrabar to $77,618.97 and closed UP 0.638% at 86.29% of range</b>, on a true range of <b>0.635&times; the prior ATR &mdash; the first contraction after seven consecutive expansions</b>. <b>A framework reading only headlines would have recorded "hot PCE, Bitcoin fell", downgraded the primary read, and been wrong about the sign of the day.</b> The standing hazard is now written down: US releases land 12:30&ndash;14:00 UTC, roughly mid-candle, so every external causal account must be checked against which UTC bar contains the event. Supporting the primary: <b>eight consecutive closes</b> above the pre-breakout base of $64,957.80, three beyond the validated five-close threshold (<b>81% positive, +21.5% median at 30 days</b>), and across all eight the market has <b>never once closed below the prior bar's low</b>. <b>Promotion trigger:</b> two consecutive settled closes above $81,271.25 (+2.842%). <b>Invalidation:</b> any settled close back inside $73,641&ndash;$74,155.
-  <b>Three things got worse this session and none of them is price.</b> Confidence is computed <b>per horizon class and never blended</b>: <b>T 70/100, unchanged</b> &mdash; a better bar against <b>worse coverage, which falls to 92%</b>; <b>S 72/100, up 1</b> for a resolved binary rather than for its content; <b>C 59/100, unchanged</b>, and that is a new amendment working (below). <b>First, a determination failed the margin band outright for the first time in campaign history.</b> Aug 26's close exceeds the prior campaign closing high by <b>$36.66 = +0.0464%</b> against a band of <b>&plusmn;0.184%</b> &mdash; a clearance of <b>0.25&times;</b>. CoinGecko independently gives +0.0559%. <b>Both feeds agree on the sign of a number four times smaller than their combined uncertainty</b>, which is not confirmation; it is two rulers agreeing about a millimetre while admitting a four-millimetre error bar. New rule <b>A23</b>: such a determination is <b>BELOW RESOLUTION</b> &mdash; it gates no trigger, arms no tranche and sets no reference, even when both feeds agree. The campaign closing high is recorded as a <b>declared tie</b>. <b>The prior session predicted this exact failure in writing two sessions before it happened.</b> <b>Second, derivatives coverage lapsed entirely:</b> no contemporaneous open interest and no funding reading were obtained, and the layer that has been the primary read's cleanest support for three sessions <b>is not carried forward as current</b>. <b>Third, and most material: the year-to-date ETF picture arrived, and it is roughly $2.9bn of NET OUTFLOW across 2026.</b> The Aug 17&ndash;21 week of $1.918bn is confirmed and is the strongest since Oct 2025 &mdash; but it sits inside a redemption year. <b>Every flow argument this framework has made in four sessions was built on weekly and monthly windows that concealed it</b>, and neither Wyckoff read has priced it, which is why it goes to the residual. Stance is <b>HOLD the remaining 80% of inventory, WAIT</b>; aggressiveness <b>3/10 unchanged</b> &mdash; a constructive bar and a resolved binary argue for more, price inside fresh supply with a first-ever keynote 1.28 days out argues for less, <b>they cancel, and saying so beats moving the number</b>. Structural risk <b>Low</b> carried / <b>High</b> incremental, the latter now sitting <i>inside</i> active supply rather than beneath it &mdash; a worse entry and a better-defined stop.
-  <b>A pre-commitment spoke wrongly, and refusing it costs the carried position &mdash; which is why the refusal is credible.</b> The prior session's branch two directed that a settled close <i>inside</i> ZONE_BTC_0005 opens its supply-invalidation counter at 1 of 2. But this framework opened BTC_0004's counter one session earlier only when a close sat <b>above</b> that zone's ceiling. <b>A close inside a supply zone is a touch, not a step toward invalidating it.</b> The clause is refused under new rule <b>A24</b>: a pre-commitment branch selects among outcomes; it never redefines the semantics of a state machine a standing rule owns. <b>The consequence is adverse:</b> at 0 of 2 the zone is <b>fully intact as resistance directly above an 80%-sized long</b>, where 1 of 2 would have put it one close from invalidation. The rest of branch two is honoured verbatim. <b>A21 was refined rather than withdrawn, and the reasoning matters more than the number.</b> A third data pull reproduces the second <b>exactly &mdash; 10 of 10 values, zero error</b> &mdash; against the prior session's measured 0.1836% max reproduction error. <b>Two observations, opposite answers.</b> The finding is downgraded from "the feed does not reproduce" to "a 35-day lookback did not reproduce against a 10-day one, once"; an aggregation-threshold hypothesis is named and <b>not adopted</b> at n=1; and <b>the margin band is HELD at &plusmn;0.184% on a declared n=2</b>, with a formal review pre-registered at n=5. <b>Reverting a risk parameter to match the newest observation is precisely the failure that parameter exists to prevent.</b> Today's cross-verification is meanwhile the cleanest of the campaign: Aug 26 reads $79,025.30 against CoinGecko's $79,018.03, a basis of <b>&minus;0.0092%</b> &mdash; inside the band by 20&times; and the smallest absolute basis of the entire paired series.
-  <b>Probability path tree (FR-B008)</b> &mdash; resolving against the <b>Sep 2, 2026</b> settled close over a 7-day horizon, referenced to the Aug 26 settled close of $79,025.30. Posterior: <b>11%</b> close &ge; $85,000 &middot; <b>27%</b> close $80,000&ndash;$84,999.99 &middot; <b>43%</b> close $74,000&ndash;$79,999.99 &middot; <b>14%</b> close below $74,000 &middot; <b>5%</b> residual. Volatility: 30d &sigma; <b>2.1903%</b> (41.84% annualised) &mdash; <b>which fell for the first time in the series</b>, the Aug 26 true-range contraction entering the window &mdash; and 20d &sigma; <b>2.5109%</b>, above 30d for a ninth session. <b>Band edges are carried unchanged for a fifth consecutive tree</b>, which continues to cost the tree its centring: the reference sits &minus;6.359% to +1.233% within Band C, so a resolution inside it is compatible with anything from a small advance to a 6% decline, and <b>it is explicitly not read as a "no change" band</b>. <b>Band B rises 24% &rarr; 27% because price is now inside ZONE_BTC_0005 rather than beneath it</b> &mdash; the prior session cut this band when price was rejected from the zone, and it is raised now that price closed inside it. <b>The band moves with the structural fact, in both directions.</b> Band D is cut from 16% to 14% because PCE resolved without a regime change, <b>but held above the lognormal</b> because the keynote, a <b>$6.44bn options expiry with max pain 13.95% below the settle</b>, and the newly-discovered YTD redemption picture are all downside-asymmetric and unmodelled. <b>A10's split, sixth application:</b> DIRECTION <b>AGREE</b> with a 16-point modal lead; ENTROPY <b>+1.0068 bits</b>, the lowest of the series &mdash; <b>and the reason is not growing confidence</b>. The persistence baseline itself has fallen from 84.62% to 55.81% over five trees, so there is less to be flatter than. <b>The legacy conflated figure would read this as the instrument becoming decisive; it is not, and that is exactly why A10 split it.</b> <b>FR-B002 resolved as a MISS</b>, and unlike the first resolution its skill bound <b>straddles zero</b> at [&minus;0.0976, +0.0446]: the unrecorded posterior genuinely determines the sign, so it is recorded as <b>SIGN-INDETERMINATE</b> rather than given a point estimate. <b>And a weakness in the register itself is named:</b> six of nine live entries are favourable <i>for the same reason</i> &mdash; five share the modal band $74,000&ndash;$79,999.99 and price has sat inside it for six sessions. <b>They are not six independent confirmations; they are one observation counted six times</b>, and if price closes above $80,000 on any of the next five sessions several will fail together.
-  <b>Aug 27 Levels layer:</b> quoted from the framework's own Aug 27 ladder. <b>$81,271.25</b> is the ceiling of ZONE_BTC_0005 and the single most consequential level on the chart: <b>two consecutive settled closes above it promote the primary read above 75% and simultaneously invalidate the alternate</b> (+2.842%), and it is also the only level that can open the zone's supply-invalidation counter. <b>$79,025.30</b> is the Aug 26 settled close, and it is drawn but deliberately not treated as a new reference &mdash; it exceeds the prior campaign closing high by <b>$36.66 = +0.0464%</b> against a &plusmn;0.184% band, a <b>0.25&times; clearance</b>, so under A23 it is <b>BELOW RESOLUTION</b> and the campaign closing high is a <b>declared tie</b>. <b>$78,344.39 then $77,618.97</b> are the alternate's two promotion legs, the second tightened to the Aug 26 low as the structure rose &mdash; and both are now <i>measurable</i>, clearing the band by 4.7&times; and 9.7&times; against the prior session's 1.16&times;. <b>$68,984</b> is the 20-day SMA, with the close <b>3.868 ATR above it</b>, a third consecutive fall from 4.003 &mdash; and this one is roughly <b>two-thirds price-driven</b> rather than denominator-driven, unlike the prior two. Thirty-three consecutive above-mean closes. <b>$65,000</b> remains the BUY 4 tranche invalidation with the tranche still armed and stranded 15.212%&ndash;17.748% below. The <b>$62,457&ndash;$62,589</b> confluence is the campaign invalidation, immutable across <b>44 consecutive closes</b>, cushion <b>$16,568.30 = 6.382 ATR</b>. And <b>$57,803</b>, the FR-A008 reference, whose gap widened 0.467 points to &minus;26.855% and <b>scored ZERO under new rule A22's dead zone</b> &mdash; movements below 1.0 point no longer score, which held the cycle number and ended a four-session 58&rarr;59&rarr;58&rarr;59 alternation. <b>The amendment was written last session on a movement that helped the score and takes effect on the first one that would have hurt it, which is the correct order for a rule to arrive in.</b> ATR(14) is <b>$2,596.06 = 3.285%</b>, an eighth consecutive expansion but <b>by far the smallest at +1.13%</b>; it has grown <b>147.7% in eight sessions</b>, which flatters every cushion figure here and is stated so it is not read as safety. The autumn window is unchanged &mdash; Oct 3 &ndash; Nov 15, now <b>36.7&ndash;79.7 days out</b>, <b>75% dry powder reserved</b>.
-  <b>Zone Layer v1.2 &mdash; one state change, one counter advanced, one counter refused.</b> <b>ZONE_BTC_0005 $78,988.64&ndash;$81,271.25 is ACTIVE SUPPLY and price is now INSIDE it</b>: the Aug 26 candle entered on a high of $79,248.79 and closed within, moving the state to <b>TOUCHED</b> under Z5 &mdash; which Z5 is explicit is <b>not a signal</b>. Its counter stays <b>0 of 2</b>, per the A24 refusal above, so <b>the zone is fully intact as resistance directly above an 80%-sized long</b>. <b>ZONE_BTC_0004 $78,344.39&ndash;$78,832.47</b> was traversed by the same candle and <i>its</i> counter <b>does advance to 1 of 2</b>, because the Aug 26 close sits above its ceiling. <b>One close, one rule, two zones, two different and correct outcomes &mdash; which is the clearest evidence available that it is a rule.</b> BTC_0003 and BTC_0001 remain TRAVERSED, with the <b>primary read's invalidation sitting at BTC_0003</b> ($73,641&ndash;$74,155, now 6.16%&ndash;6.81% below); BTC_0002 alone remains WATCHING at &minus;27.15%. <b>Z8 was tested and correctly registered nothing.</b> The Aug 26 high exceeded the 10-session closing-high reference, satisfying leg (i) &mdash; but the close came in <i>above</i> that reference rather than below it, failing leg (ii), and the 86.29% close-of-range failed leg (iii) decisively against a 40% requirement. <b>A rule that fires only on rejections did not fire on an absorption bar</b>, which is the second consecutive session in which Z8's silence is informative rather than absent. The same three legs were tested on the newly-live SELL 3 rung and <b>it correctly declined</b>: a rung written one session ago because a bar deserved it has now declined on a bar that did not.
-  <b>Shadow layers &mdash; voice, no vote.</b> Computed from ephemeris at the session epoch <b>2026-08-27T07:22:00Z</b>. It touched no probability, no confidence score, no aggressiveness value and no risk parameter &mdash; <b>including the A23 below-resolution ruling</b>, decided on band arithmetic alone, <b>the A24 refusal</b>, decided on Z5's semantics alone, and <b>the PCE attribution correction</b>, decided on UTC candle boundaries alone. The Moon is <b>99.21% illuminated, waxing gibbous</b>, 14.57 days past the New Moon of Aug 12 17:36:39 UTC &mdash; reproducing that figure <b>to the second for the ninth consecutive time</b>. <b>Full Moon Aug 28 04:18 UTC &mdash; 0.87 days &mdash; and it now falls inside the same 24 hours as the Warsh keynote, the $6.44bn options expiry, and two register resolutions.</b> That is <b>the densest coincidence the shadow ledger has ever recorded</b>, and it is recorded as a coincidence for the ninth time. The report states the reason plainly: <b>a zero-weight layer is most tempting to promote precisely when it lines up with something that matters, which is why the firewall is stated above the table rather than below it.</b> Mercury is <b>direct</b> at longitude 153.656&deg;, 57.7 days to the October station retrograde, cross-checking against the prior session's figure to three decimals for a second consecutive session. <b>SL-M002</b> stays live at .50 against a ~45% base rate, its reference now fixed at the settled $79,025.30; <b>no new shadow claim is issued for a fifth consecutive session</b>, same reason as before &mdash; the ledger's problem is two resolved observations, not too few live ones. Shmita remains year 4 of 7 with <b>no scoreable claim for a tenth consecutive session</b>: it offered nothing discriminating about a hot PCE print being absorbed, a determination falling below measurement resolution, or a year-to-date redemption figure appearing for the first time. The rows on this chart stay exactly as they were: disclosed, and worth zero.
-  <b>The live Wyckoff cell stays markup-tinted</b>, tracking the leading read &mdash; Phase E markup at <b>68%</b>, held by pre-commitment. 20% sits with the distribution alternate and <b>12% with the residual</b>, which is <i>not</i> cut despite a constructive bar because it now carries the year-to-date ETF net outflow of ~$2.9bn that neither schematic has priced. Read the label, not the colour. <b>The sentiment row is worth a note of its own:</b> Fear &amp; Greed is <b>two days stale and explicitly not carried forward as current</b> &mdash; the last readings were CFGI's Bitcoin index at 77, its crypto-wide index at <b>44</b>, and a third aggregator at 62. The August cell on this chart shows <b>44</b>, the crypto-wide figure, because that is the scope this row has always been; the layer is <b>[UNVALIDATED]</b>, carries <b>zero weight</b>, and may never arm a SELL tranche, <b>so its staleness costs nothing operationally and is disclosed rather than papered over</b>. <b>No buy/sell signal layer, no liquidity-regime row, no hit-rate statistics</b> are shown &mdash; those would require either fabricated data or an n too small to mean anything. The framework's own top debt is likewise carried rather than quietly dropped: the unrecorded BUY 1&ndash;3 fill basis, now in its third session, followed by backtesting the funding threshold on this archive, and a new fourth item &mdash; <b>a rule for reporting correlated live claims, so that six entries holding together are never read as six confirmations.</b>
+  <span style="margin-left:8px;border-left:1px solid var(--bord);padding-left:12px;font-weight:700;color:#9aa3bb">Margin bands ±0.15%:</span>
+  <span><i style="background:rgba(154,163,187,.45)"></i>$80,135–$80,376 and $81,362–$81,606 — a close inside is VOID; bands govern closes, not highs</span>
 </div>
 
 </div>
@@ -195,32 +182,37 @@ const price=[
   23100,23100,28500,29200,27200,30500,29200,25900,26900,34500,37700,42300,
   42600,61200,71300,60600,67500,62700,64600,58900,63300,70200,96400,93400,
   102000,84000,82000,94000,104000,107000,117000,112000,114000,126000,95000,87000,
-  88000,65000,70000,67000,71000,58634,62898,79025,
-  null,null,null,null,                                             // 2026 Sep-Dec: future, no real price data yet
+  88000,65000,70000,67000,71000,58634,62898,78587,79661,
+  null,null,null,                                                  // 2026 Oct-Dec: future, no real price data yet
   null,null,null,null,null,null,null,null,null,null,null,null,     // 2027: future, no real price data
   null,null,null,null,null,null,null,null,null,null,null,null,     // 2028: future (Shmita 5789 opens Sep 21)
   null,null,null,null,null,null,null,null,null,null,null,null      // 2029: future (Shmita 5789 closes Sep 9)
 ];
-// Jun 2026 closed $58,634 and Jul 2026 SETTLED at $62,898 (Crypto.com) = +7.2%, the first green month since April.
-// Aug 2026 = $79,025 MONTH-TO-DATE (the Aug 26 settled close = +25.64% on the month; the Aug 27 candle was
-// still in progress at the 07:22:00Z session epoch, trading at $78,823.82 — 0.26% BELOW the settle — and is
-// excluded from every determination, drawn nowhere, gating nothing). WYCKOFF B, SPLIT 68/20 with residual 12 —
-// HELD by pre-commitment for a THIRD consecutive session.
+// Jun 2026 closed $58,634 and Jul 2026 SETTLED at $62,898 (Crypto.com) = +7.2%. AUGUST 2026 IS NOW A
+// SETTLED MONTH at $78,587.39 (the Aug 31 settled close, from the S62 post-UTAD session table) — it is no
+// longer month-to-date and no longer carries the LIVE badge. SEP 2026 = $79,660.75 MONTH-TO-DATE, the Sep 4
+// settled close. The Sep 5 candle was still in progress at the 13:02:06Z session epoch, trading at $79,712
+// (+0.06% vs Sep 4) on 0.127x volume with a range of only 0.45% — excluded from every determination, drawn
+// nowhere, gating nothing. Weekend session.
 //
-// THE SESSION'S DEFINING FACT IS THAT THE FRAMEWORK DISAGREES WITH THE NEWS AND CAN SHOW ITS WORK. The external
-// record attributes a fall to the hot July PCE print using figures ($81,235 high, $78,432 close, -0.61%) that
-// belong to the AUG 25 UTC candle — which settled at 00:00 UTC Aug 26, TWELVE HOURS BEFORE the 12:30 UTC
-// release. The bar that actually contains the release is Aug 26: O $78,533.33 H $79,248.79 L $77,618.97
-// C $79,025.30 — it flushed 1.79% intrabar to $77,618.97 and CLOSED UP 0.638% at 86.29% OF RANGE, on a true
-// range of 0.635x the prior ATR, the first contraction after seven consecutive expansions. A framework reading
-// only headlines would have recorded "hot PCE, Bitcoin fell" and been wrong about the SIGN of the day.
-// Standing hazard now written down: US releases land 12:30-14:00 UTC, roughly mid-candle, so every external
-// causal account must be checked against which UTC bar actually contains the event.
+// THE STRUCTURE IS NO LONGER A MARKUP READ. Aug 28 printed a UTAD at $81,484.26 and the reversal read has
+// stood for seven settled sessions without either side confirming. Sep 3 rose 5.09% and closed $81,270.10 —
+// the first close above the $80,255.76 zone floor, taking the upside falsification counter to 1 of 2 and
+// filling the pre-committed SELL 3 order at its 20% cap. Sep 4 fell 1.98% and closed $79,660.75, back below
+// the floor by $595.01 = 0.741%, and THE UPSIDE COUNTER RESET FROM 1 OF 2 TO 0 OF 2. The reset clause was
+// written into the S61 trigger block one session before it could fire, and it fired against the more
+// interesting reading. Downside 0 of 2, upside 0 of 2 — seven settled sessions, neither side ever at 2.
 //
-// 44 consecutive settled closes above $62,457; counter 0 of 2, cushion $16,568.30 = 6.382 ATR = 26.528%.
-// Eight consecutive closes above the pre-breakout base of $64,957.80 — three beyond the validated five-close
-// threshold (81% positive, +21.5% median at 30d) — and across all eight the market has NEVER once closed below
-// the prior bar's low. Inventory is 80% after SELL 2 was spent.
+// Net over the Sep 3-4 pair from the Sep 2 close: +3.00%, combined span $5,330.76 = 6.69%. Sep 4's high of
+// $81,438.93 finished $45.33 (0.056%) BELOW the UTAD high and landed inside the +/-0.15% margin band
+// ($81,362.03-$81,606.49) — recorded as a fact and producing NO determination, because the bands govern
+// closes, not highs. ATR(14) fell to $2,710.50 = 3.40% of close, a second consecutive contraction.
+// 20d SMA $75,627.35, close +5.33% above. Drawdown -36.9% from the $126,198 ATH. 75% dry powder reserved
+// and untouched; SELL 3 filled and closed as an item; no new order armed.
+//
+// NO ATTRIBUTION for either the Sep 3 advance or the Sep 4 reversal — the report obtained no verified cause
+// for either and invents none. Sep 5 is a Saturday: Tiers 2-5 obtained NO NEW DATA, so no macro, liquidity,
+// positioning or sentiment figure is asserted as fresh anywhere on this page.
 
 const fng=[
   null,null,null,null,null,null,null,null,null,null,null,null,     // 2014 — Alternative.me index did not exist yet
@@ -256,6 +248,10 @@ const fng=[
   // DISCLOSED SEAM: the history above is Alternative.me; this value is CFGI. Same construction and same 0-100
   // scale, different provider. The switch is recorded here rather than blended in silently, and the layer stays
   // [UNVALIDATED] — the BTC thread weights it at ZERO and the ADA thread gives it a small contrarian weight.
+  //
+  // SEP 2026 IS DELIBERATELY BLANK. Session 62 is a Saturday and records "WEEKEND — NO NEW DATA OBTAINED" for
+  // Tiers 2-5: no releases, no filings, no flow prints, and no sentiment reading is asserted as fresh. There is
+  // therefore no September figure to carry, and none is estimated from August's.
   null,null,null,null,null,null,null,null,null,null,null,null,
   null,null,null,null,null,null,null,null,null,null,null,null,
   null,null,null,null,null,null,null,null,null,null,null,null
@@ -315,89 +311,69 @@ const wyckoff = [
   {s:132,e:134,kind:'markdown',label:'early-25 crash'},
   {s:134,e:141,kind:'markup',  label:'2025 markup to ATH'},
   {s:141,e:150,kind:'markdown',label:'post-ATH markdown'},
-  {s:150,e:152,kind:'markup',   label:'tracked: Phase E markup 68/20 — hot PCE absorbed; first settled close INSIDE registered supply'},
+  {s:150,e:151,kind:'markup',   label:'tracked: Jul 2026 markup'},
+  {s:151,e:153,kind:'dist',     label:'tracked: UTAD Aug 28 $81,484.26 — post-UTAD range, both counters 0 of 2'},
 ];
-// LIVE CELL COLOUR: MARKUP. The split is HELD at 68/20 with residual 12 by the prior session's pre-commitment,
-// for a THIRD consecutive session — and this time the freeze COSTS THE PRIMARY. An honest assessment would have
-// moved it up 3 to 5 points on a hot print absorbed with an 86.29% close-of-range and an eighth consecutive
-// close above the base. It is not moved. Two sessions ago the same instrument suppressed a gain for the
-// ALTERNATE; it has now cut in both directions, which is the only way to tell a rule from an excuse.
-// The alternate holds 20 on the fact that price sits INSIDE ZONE_BTC_0005 with the Warsh keynote 1.28 days out
-// and the campaign closing high has not advanced by a MEASURABLE amount in two sessions (see A23). Its problem
-// is that the Aug 26 bar is the wrong SHAPE for it: a distribution range under supply does not usually absorb
-// hot inflation data and close at 86% of range on contracting true range.
-// RESIDUAL 12% — held, and it absorbs a NEW item: US spot Bitcoin ETFs stand at roughly $2.9bn NET OUTFLOW
-// YEAR-TO-DATE. Four consecutive reports argued flows on weekly and monthly windows in which August reads as
-// adoption; on an annual window it reads as a reversal inside a REDEMPTION YEAR. Neither read has priced that,
-// because neither read knew it — which is why the residual is not cut despite a constructive bar.
+// LIVE CELL COLOUR: DISTRIBUTION. The framework's live read is no longer a markup. Aug 28 printed a UTAD at
+// $81,484.26 and the UTAD reversal read has now stood for SEVEN settled sessions with NEITHER SIDE EVER
+// REACHING 2 OF 2. Downside 0 of 2, upside 0 of 2. The structure has tested its low twice intraday, its high
+// twice intraday, and its upper boundary once on a close — and confirmed nothing.
+// THE UPSIDE COUNTER RESET THIS SESSION. Sep 3 closed $81,270.10, above the $80,255.76 zone floor, taking the
+// upside falsification counter to 1 of 2 and filling the pre-committed SELL 3 order at its 20% cap. Sep 4
+// closed $79,660.75 — back below the floor by $595.01 = 0.741% — and the counter reverted to 0 of 2. The reset
+// clause was written into the S61 trigger block ONE SESSION BEFORE it could fire: "a settled close back below
+// $80,255.76 resets the upside counter to 0 of 2. The two-close rule cuts both ways and is not relaxed because
+// the first close was large." The first close was a 5.09% session that also filled a standing order. It still
+// counted for exactly one, and the reset is mechanical. The UTAD reversal read is NOT falsified.
+// The determination was clean at 0.741% clear of the margin band, so it did not need the second daily-close
+// feed the framework still lacks after twenty-seven sessions.
+// NO ATTRIBUTION for the Sep 3-4 pair — a 5.09% advance and a 1.98% reversal on near-average volume plainly had
+// drivers; none was obtained and none is invented. Second consecutive session recording that gap. The Aug 28
+// two-catalyst problem stands eight sessions old: a $6.4bn Deribit settlement and the Warsh Jackson Hole
+// keynote shared the UTAD candle with no clean causal attribution.
 const liveStartIdx = 150; // July 2026 (Jan 2014 base: 12*12 + 6) — where the framework's real-time RECORD begins
 // currentIdx is a DIFFERENT thing and the two must not be conflated: liveStartIdx is where live tracking started,
 // currentIdx is the single month still in progress. Every month in [liveStartIdx, currentIdx) is a settled month
 // inside the live record — tracked in real time, but CLOSED. Only currentIdx is month-to-date and still moving,
-// so only currentIdx may carry the "LIVE" badge. Jul 2026 SETTLED at $62,898; Aug 2026 is the live month.
-const currentIdx = 151; // August 2026 — the month-to-date cell (Aug 26 settled close, Aug 27 candle excluded)
+// so only currentIdx may carry the "LIVE" badge. Jul 2026 SETTLED at $62,898 and Aug 2026 SETTLED at $78,587;
+// Sep 2026 is the live month.
+const currentIdx = 152; // September 2026 — the month-to-date cell (Sep 4 settled close; Sep 5 candle excluded)
 
-// ── Aug 27, 2026 Market GPS (Session 53, CRE v2.9) level ladder — the framework's own references, not history ──
-// PRICE IS NOW INSIDE ITS FIRST NAMED SUPPLY ZONE. ZONE_BTC_0005 ($78,988.64-$81,271.25) was entered by the
-// Aug 26 candle (high $79,248.79) and the close settled INSIDE it — state TOUCHED under Z5, which is explicitly
-// NOT a signal. Its supply-invalidation counter stays 0 of 2, and that is the session's most self-costing call:
-// the prior session's pre-commitment directed the counter to open at 1 of 2, and THE CLAUSE IS REFUSED under
-// new rule A24, because a close INSIDE a supply zone is a touch, not a step toward invalidating it —
-// invalidation requires closing ABOVE the ceiling, which is $81,271.25 and 2.842% away. At 0 of 2 the zone is
-// FULLY INTACT AS RESISTANCE directly above an 80%-sized long, which is why the refusal is credible.
-// MEANWHILE THE SAME RULE ADVANCES BTC_0004's COUNTER TO 1 OF 2 on its own correct terms, because the Aug 26
-// close sits ABOVE that zone's ceiling of $78,832.47. One close, one rule, two zones, two opposite and correct
-// outcomes — which is what a rule looks like.
+// ── Sep 5, 2026 Market GPS (Session 62, CRE v3.1) level ladder — the framework's own references, not history ──
+// THE STRUCTURE IS A POST-UTAD RANGE AND EVERY COUNTER IS AT ZERO. Aug 28 printed a UTAD at $81,484.26. Seven
+// settled sessions later neither the upside nor the downside falsification counter has ever reached 2 of 2.
+// Sep 3 closed above the $80,255.76 zone floor (upside 1 of 2, SELL 3 filled at its 20% cap); Sep 4 closed
+// $595.01 = 0.741% back below it and THE COUNTER RESET TO 0 OF 2. Sep 4's high of $81,438.93 finished $45.33
+// (0.056%) short of the UTAD high and printed INSIDE the +/-0.15% margin band — no determination, because the
+// bands govern CLOSES, not highs, exactly as they produced none when three sessions traded through the
+// UTAD-low band intraday last week. The exposure migrated to the opposite end of the structure; the rule did not.
 // TIER = how loudly this level should speak, ranked by the decision it actually informs right now.
-//   1 = decision-critical (the live trigger and the hard invalidation) — solid, bright, always labelled
-//   2 = structural (this session's change, and what comes next if 1 breaks) — dashed, dim
-//   3 = distant, resolved, or a scoring object rather than a level — dotted, faint, deep-zoom labels only
+//   1 = decision-critical (the two falsification boundaries and the live reference close) — solid, bright, labelled
+//   2 = structural (the mean, and the level that governs the counters) — dashed, dim
+//   3 = distant or resolved — dotted, faint, deep-zoom labels only
 // `tag` is painted on the chart; `label` is the full sentence, kept verbatim and moved to the line's
-// native hover title. The same text also appears in the "Aug 27 Levels layer" paragraph below the chart.
+// native hover title. The same text also appears in the "Sep 5 Levels layer" paragraph below the chart.
 const levelLines = [
-  {p:81271, kind:'gate', tier:1, tag:'supply ceiling \u00b7 promotion', label:'$81,271.25 \u00b7 the ceiling of ZONE_BTC_0005 and the single most consequential level on the chart. TWO consecutive settled closes above it promote the primary read above 75% AND simultaneously invalidate the alternate (+2.842%). It is also the only level that opens the zone\u2019s supply-invalidation counter \u2014 a close INSIDE the zone does not, which is the A24 refusal.'},
-  {p:79025, kind:'res',  tier:2, tag:'Aug 26 settle \u00b7 BELOW RESOLUTION', label:'$79,025.30 \u00b7 the Aug 26 settled close. It exceeds the prior campaign closing high of $78,988.64 by only $36.66 = +0.0464%, against a margin band of \u00b10.184% \u2014 a clearance of 0.25x. Under new rule A23 this is BELOW RESOLUTION: it sets no reference and gates no trigger even though both feeds agree on its sign. The campaign closing high is a declared TIE.'},
-  {p:78344, kind:'gate', tier:1, tag:'alternate leg 1',        label:'$78,344.39 \u00b7 the alternate read\u2019s promotion leg one \u2014 a settled close below it, THEN a settled close below $77,618.97, would give the advance its first lower low in eight sessions and promote the alternate above 35%. Now 0.862% below. Leg one clears the margin band by 4.7x, leg two by 9.7x \u2014 both measurable, unlike the prior session\u2019s 1.16x.'},
-  {p:77619, kind:'res',  tier:2, tag:'Aug 26 low \u00b7 alt leg 2', label:'$77,618.97 \u00b7 the Aug 26 low \u2014 the flush the PCE coverage describes, and the level a healthy markup should not close beneath. The alternate\u2019s leg two, tightened to this level as the structure rose (\u22121.780%).'},
-  {p:68984, kind:'res',  tier:2, tag:'20d SMA \u00b7 +3.87 ATR', label:'$68,984 \u00b7 20-day SMA \u2014 close +14.556% = 3.868 ATR above it, a THIRD consecutive fall from 4.003, and this one is roughly two-thirds price-driven rather than denominator-driven. Thirty-three consecutive above-mean closes.'},
-  {p:65000, kind:'gate', tier:3, tag:'BUY 4 invalidation',  label:'$65,000 \u00b7 BUY 4 TRANCHE INVALIDATION \u2014 the tranche remains ARMED and STRANDED, needing \u221215.212% to touch its fill ceiling and \u221217.748% = 5.403 ATR to reach its floor. No expiry exists because none was declared at arming, and A9 is not applied retroactively.'},
-  {p:57803, kind:'res',  tier:3, tag:'cycle low \u00b7 FR-A008', label:'$57,803 \u00b7 Jul 1 cycle low \u2014 FR-A008 reference. The gap widened 0.467 points to \u221226.855% and scored ZERO under new rule A22\u2019s dead zone (movements below 1.0 point score nothing), so the cycle score held. First application of that amendment.'},
+  {p:81484, kind:'gate', tier:1, tag:'UTAD HIGH \u00b7 0.67 ATR above', label:'$81,484.26 \u00b7 the AUG 28 UTAD HIGH \u2014 the top of the structure and Band A\u2019s floor. A settled close above it requires +2.29% = 0.67 ATR. TWO sessions have now approached this level intraday without closing above it, and Sep 4\u2019s high fell $45.33 (0.056%) short. Its margin band is $81,362.03\u2013$81,606.49, and Sep 4\u2019s HIGH printed inside it \u2014 no determination, because bands govern closes.'},
+  {p:80256, kind:'gate', tier:1, tag:'ZONE FLOOR \u00b7 counter RESET 0 of 2', label:'$80,255.76 \u00b7 the ZONE FLOOR \u2014 the upside falsification level. TWO consecutive settled closes above it falsify the UTAD reversal read. Sep 3 closed $81,270.10 above it (1 of 2) and filled the pre-committed SELL 3 order at its 20% cap; Sep 4 closed $79,660.75, $595.01 = 0.741% back below, and THE COUNTER RESET TO 0 OF 2. Requires +0.75% = 0.22 ATR and then a second close. No position action attaches \u2014 SELL 3 has filled and the reserve is untouched.'},
+  {p:79661, kind:'res',  tier:1, tag:'Sep 4 settle \u00b7 reference close', label:'$79,660.75 \u00b7 the Sep 4 settled close, \u22121.98% on a $2,805.87 = 3.52% range, closing at 36.6% of range on 0.967\u00d7 volume. Every determination in Session 62 is made against this figure. VOID check: it sits +3.638% from the UTAD low, \u22120.741% from the zone floor and \u22122.238% from the UTAD high \u2014 all outside the \u00b10.15% margin, though the zone-floor clearance is the tightest of the three.'},
+  {p:76864, kind:'gate', tier:1, tag:'UTAD LOW \u00b7 1.03 ATR below', label:'$76,864.09 \u00b7 the UTAD LOW \u2014 the downside falsification level. TWO consecutive settled closes below it CONFIRM the UTAD reversal. Requires \u22123.51% = 1.03 ATR. Counter 0 of 2; three sessions traded through its margin band intraday last week and produced no determination, because bands govern closes.'},
+  {p:75627, kind:'ema',  tier:2, tag:'20d SMA \u00b7 +5.33%', label:'$75,627.35 \u00b7 20-day SMA, rising steeply \u2014 the Sep 4 close sits +5.33% above it, narrowing from +8.65%.'},
+  {p:57803, kind:'res',  tier:3, tag:'FR-A008 reference', label:'$57,803 \u00b7 the FR-A008 flagship cycle reference \u2014 a settled close below it before Nov 30, p=0.65. It sits 37.90% below live price, narrowing from 40.40% at S61. NOT REVISED: a narrowing gap is no more a trigger than a widening one. Status UNDER PRESSURE, fourth consecutive session.'},
 ];
 
-// ── Zone Layer v1 (NEW in CRE v2.1) — registered, immutable, scoreable price zones ──
-// These are NOT support/resistance calls. They are pre-registered bands whose bounds are frozen once issued (Z6)
-// so that a touch becomes a scoreable event rather than a retrospective story. All three are WATCHING (untouched).
-// They render through the SAME zone component as the floor, dimmed and dashed-labelled to keep the two readings
-// distinct. Distances below are to each zone's MIDPOINT from the live print, matching the report.
-//
-// ZONE LAYER v1.2 — one state change, one counter advanced, one counter REFUSED.
-// BTC_0005 is ACTIVE SUPPLY and price is INSIDE it: the Aug 26 candle entered (high $79,248.79) and closed
-// within, moving the state to TOUCHED under Z5 — which Z5 is explicit is NOT a signal. Counter 0 of 2.
-// BTC_0004's counter DOES advance to 1 of 2, because the Aug 26 close sits above its ceiling of $78,832.47.
-// The same rule, applied to two zones on one bar, produced opposite and correct answers.
-// Z8 was tested and correctly registered nothing: the Aug 26 high exceeded the 10-session closing-high
-// reference (leg i passed), but the close was ABOVE that reference rather than below it (leg ii failed) and the
-// 86.29% close-of-range failed leg iii against a 40% requirement. A rule that fires only on rejections did not
-// fire on an absorption bar — the second consecutive session in which Z8's silence is informative.
-const zoneLayer = [
-  {id:'BTC_0005', lo:78989, hi:81271, dist:'inside',   horizon:'T / S', state:'TOUCHED \u00b7 0 of 2'},
-  {id:'BTC_0004', lo:78344, hi:78832, dist:'\u22120.24%',  horizon:'T / S', state:'TOUCHED \u00b7 1 of 2'},
-  {id:'BTC_0003', lo:73641, hi:74155, dist:'\u22126.16%',  horizon:'C',     state:'TRAVERSED'},
-  {id:'BTC_0001', lo:71850, hi:72364, dist:'\u22128.44%',  horizon:'S / C', state:'TRAVERSED'},
-  {id:'BTC_0002', lo:57057, hi:57571, dist:'\u221227.15%', horizon:'S / C', state:'WATCHING'},
-];
+// ── Margin bands and the post-UTAD range (CRE v3.1) — drawn through the same zone component, dimmed ──
+// These are NOT support/resistance calls. The two margin bands are the +/-0.15% measurement tolerance around
+// each falsification level: a close inside one is VOID and produces no determination, which is what makes a
+// determination outside one scoreable rather than a story told afterwards. Session 62 exercised the rule at
+// the top of the structure for the first time — Sep 4's HIGH printed inside the UTAD-high band and registered
+// nothing, because the bands govern closes on either side of the structure.
+// The post-UTAD range is Band C of the live tree: the span between the two falsification levels, where six of
+// the seven post-UTAD closes have landed.
 const levelZones = [
-  {lo:62457, hi:62589, kind:'sup', tier:1, tag:'CAMPAIGN INVALIDATION \u00b7 0 of 2', label:'$62,457\u201362,589 \u00b7 CAMPAIGN INVALIDATION \u2014 immutable, never moved up across 44 consecutive settled closes above it. Cushion $16,568.30 = 6.382 ATR = 26.528%. NOTE the ATR denominator has grown 147.7% in eight sessions, which flatters every cushion figure here \u2014 stated so it is not read as safety. Two closes below $62,457 = position off in full, without renegotiation (0 of 2).'},
-  // Zone Layer bands are tier 3 BY CONSTRUCTION, not because they are unimportant: the framework
-  // registers them as scoring objects rather than trading levels, so they must never compete visually
-  // with a level you would actually act on. Under Z7 they now carry real states: TRAVERSED, APPROACH, WATCHING.
-  // BUY 4's fill zone, ARMED and STRANDED 15.212%-17.748% below the settled close. Tier 3 because it is not
-  // actionable: it can only fill by travelling to within a whisker of $65,000, which is also the level that
-  // kills the tranche. No expiry exists because none was declared at arming; A9 fixes that prospectively and is
-  // explicitly NOT applied retroactively, so the defect is disclosed and carried rather than patched mid-flight.
-  {lo:65000, hi:67000, kind:'zone', tier:3, tag:'BUY 4 fill \u00b7 STRANDED', label:'$65,000\u2013$67,000 \u00b7 BUY 4 FILL ZONE \u2014 ARMED & STRANDED. Needs a \u221215.212% retracement to touch its ceiling and \u221217.748% = 5.403 ATR to reach its floor, which is also the BUY 4 tranche invalidation. A7 withheld the fill and prevented a chase that would now be 13.16% underwater on the live tape; its only cost is this untidy armed tranche.'},
-  ...zoneLayer.map(z=>({lo:z.lo, hi:z.hi, kind:'zone', tier:3, tag:`ZONE ${z.id.replace('BTC_','')} · ${z.dist}`,
-    label:`ZONE_${z.id} · $${z.lo.toLocaleString('en-US')}–${z.hi.toLocaleString('en-US')} · ${z.dist} · ${z.horizon} · ${z.state} — registered & immutable, untouched`})),
+  {lo:76864, hi:80256, kind:'sup', tier:2, tag:'post-UTAD range \u00b7 Band C .44', label:'$76,864.09\u2013$80,255.75 \u00b7 the POST-UTAD RANGE \u2014 Band C of FR-B014 at p=.44, the modal branch, and where SIX of the SEVEN post-UTAD settled closes have landed. Bounded by the two falsification levels; the range holds until one of them takes two consecutive closes.'},
+  {lo:80135, hi:80376, kind:'zone', tier:3, tag:'zone-floor margin band \u00b10.15%', label:'$80,135.38\u2013$80,376.14 \u00b7 the \u00b10.15% MARGIN BAND around the zone floor. A close inside it is VOID and determines nothing. The Sep 4 close cleared it by 0.741% \u2014 the tightest clearance of the three active levels, but clean, so the counter reset did not need the second daily-close feed the framework still lacks.'},
+  {lo:81362, hi:81606, kind:'zone', tier:3, tag:'UTAD-high margin band \u00b10.15%', label:'$81,362.03\u2013$81,606.49 \u00b7 the \u00b10.15% MARGIN BAND around the UTAD high. Sep 4\u2019s HIGH of $81,438.93 printed inside it. Recorded as a fact and producing NO determination \u2014 the bands govern closes, not highs, and the same answer applies at both ends of the structure.'},
 ];
 // Cycle-timing thesis: autumn 2026 (core Oct–Nov) highest-conviction bottom window
 const autumnStart = 153, autumnEnd = 155; // Oct 2026 .. Nov 2026 (exclusive end)
@@ -538,7 +514,7 @@ function render(){
   const visIdx=[]; for(let i=Math.max(0,Math.floor(vs)); i<Math.min(N,Math.ceil(ve)); i++) visIdx.push(i);
   const allowedPrices = visIdx.map(i=>price[i]).filter(p=>p!=null);
   // include the level-map extremes so the Jul 1 ladder is never clipped off-scale when the layer is on
-  if(state.layers.levels){ allowedPrices.push(57803, 81271); } // span of the Aug 27 level ladder: Jul 1 cycle low .. the Jul 21 range high. NOTE the Zone Layer bands are
+  if(state.layers.levels){ allowedPrices.push(57803, 81607); } // span of the Sep 5 level ladder: FR-A008 reference .. the top of the UTAD-high margin band. NOTE the margin bands are
   // deliberately NOT pushed here: all three already fall inside this range, and forcing them in would compress
   // the live price action to make room for zones that are 10-15% away.
   let pMin, pMax;
@@ -582,7 +558,7 @@ function render(){
       if(y2<yTop || y1>yBot) return;
       y1=Math.max(y1,yTop); y2=Math.min(y2,yBot);
       // tier-1 band gets a stronger fill plus edge rules so the floor reads as a zone, not a smear;
-      // registered Zone Layer bands stay dim — they are scoring objects, not levels.
+      // the ±0.15% margin bands stay dim — they are scoring objects, not levels.
       plotGroup.appendChild(withTitle(el('rect',{x:padL,y:y1,width:plotW,height:Math.max(y2-y1,1.5),
         fill:lvlColor(z.kind),opacity:z.tier===1?0.20:0.12,style:'cursor:help'}), z.label));
       if(z.tier===1) [y1,y2].forEach(yy=>plotGroup.appendChild(el('line',{x1:padL,x2:padL+plotW,y1:yy,y2:yy,
@@ -601,7 +577,7 @@ function render(){
     });
     // greedy top-down spread: enforce a minimum vertical gap, then clamp back inside the plot.
     // Sort by PRICE, not by the offset label y — the +2.5/-3 nudges are larger than the gap between
-    // adjacent levels here ($79,025 vs the $78,344 alternate leg is 0.87%) and would invert their order.
+    // adjacent levels here ($79,661 vs the $80,256 zone floor is 0.75%) and would invert their order.
     const GAP=10.5; // 7.8px type single-spaces at ~9.4
     labels.sort((a,b)=>b.p-a.p);
     let prev=-Infinity;
@@ -748,7 +724,7 @@ document.querySelectorAll('button[data-zoom]').forEach(btn=>{
       state.viewEnd = months.findIndex(m=>m.y===2023&&m.m===11)+1;
     } else if(z==='live'){
       state.viewStart = Math.max(0, liveStartIdx-3);
-      // cap the span so the Aug 27 level-ladder labels stay visible (labels hide when span>40, see render());
+      // cap the span so the Sep 5 level-ladder labels stay visible (labels hide when span>40, see render());
       // N now runs out to Sep 2029 for the Shmita 5789 calendar, which would otherwise blow the span open
       state.viewEnd = Math.min(N, liveStartIdx+24);
     }

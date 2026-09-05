@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BTC · Market GPS — Session 62 · Sat 5 Sep 2026 · CRE v3.1</title>
+<style>
+:root{
+  --bg:#ffffff;--bg2:#f7f5f0;--bg3:#efece4;--txt:#22221f;--txt2:#63625c;--txt3:#8d8b83;--bord:#e2dfd5;
+  --red:#9a3a1b;--redbg:#faeae4;--amb:#7f4d09;--ambbg:#faeed9;--grn:#37680f;--grnbg:#e9f3dc;
+  --blu:#165c9f;--blubg:#e5f0fb;--gry:#7b7a74;--grybg:#eceae2;--vio:#5b3f8c;--viobg:#efe9f8;
+  --up:#3f8f3f;--dn:#c0492a;--acc:#b8792b;
+}
+@media(prefers-color-scheme:dark){:root{
+  --bg:#1c1b19;--bg2:#25241f;--bg3:#2e2d26;--txt:#f2f0e8;--txt2:#b3b1a7;--txt3:#8f8d84;--bord:#393831;
+  --red:#f0997b;--redbg:#48190a;--amb:#f8c674;--ambbg:#3f2302;--grn:#9ac55c;--grnbg:#163302;
+  --blu:#86b8ec;--blubg:#052b52;--gry:#9c9a91;--grybg:#2e2c28;--vio:#c3aae8;--viobg:#241a3a;
+  --up:#7dbb6a;--dn:#e0765a;--acc:#dba54a;
+}}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--txt);padding:20px;font-size:13.5px;line-height:1.6;
+ font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;max-width:960px;margin:0 auto}
+h1{font-size:20px;font-weight:700;letter-spacing:-.01em}
+.sub{font-size:11.5px;color:var(--txt2);margin:3px 0 14px}
+.sec{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:var(--bg3);border-radius:7px;padding:8px 12px;margin:26px 0 12px}
+.lbl{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--txt2);margin:16px 0 7px}
+.card{background:var(--bg2);border:1px solid var(--bord);border-radius:11px;padding:14px 16px;margin-bottom:10px}
+.cA{border-left:3px solid var(--acc)}.cR{border-left:3px solid var(--dn)}
+.cG{border-left:3px solid var(--up)}.cB{border-left:3px solid var(--blu)}.cY{border-left:3px solid var(--gry)}
+.cV{border-left:3px solid var(--vio)}
+.hero{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;margin-bottom:10px}
+@media(max-width:700px){.hero{grid-template-columns:repeat(2,1fr)}}
+.hb{text-align:center;padding:11px 6px;border:1px solid var(--bord);border-radius:10px;background:var(--bg2)}
+.hb .l{font-size:9.5px;text-transform:uppercase;letter-spacing:.05em;color:var(--txt2)}
+.hb .m{font-size:19px;font-weight:650;margin:3px 0 1px;font-variant-numeric:tabular-nums}
+.hb .s{font-size:10px;color:var(--txt2)}
+.bg{display:inline-block;padding:2px 7px;border-radius:5px;font-size:10px;font-weight:700;white-space:nowrap}
+.gR{background:var(--redbg);color:var(--red)}.gA{background:var(--ambbg);color:var(--amb)}
+.gG{background:var(--grnbg);color:var(--grn)}.gB{background:var(--blubg);color:var(--blu)}
+.gY{background:var(--grybg);color:var(--gry)}.gV{background:var(--viobg);color:var(--vio)}
+table{width:100%;border-collapse:collapse;font-size:11.8px}
+th{text-align:left;padding:7px 8px;background:var(--bg3);font-size:9.5px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--txt2);border-bottom:1px solid var(--bord)}
+td{padding:8px;border-bottom:1px solid var(--bord);vertical-align:top;line-height:1.45}
+tr:last-child td{border-bottom:none}
+.mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-variant-numeric:tabular-nums}
+.trow{display:flex;gap:10px;padding:8px 0;border-bottom:1px solid var(--bord)}
+.trow:last-child{border-bottom:none}
+.tdot{width:9px;height:9px;border-radius:50%;flex-shrink:0;margin-top:6px}
+.tp{width:40px;flex-shrink:0;font-weight:700;font-variant-numeric:tabular-nums}
+svg{width:100%;height:auto;display:block}
+.gap{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media(max-width:700px){.gap{grid-template-columns:1fr}}
+details{background:var(--bg2);border:1px solid var(--bord);border-radius:11px;padding:12px 15px;margin-bottom:10px}
+summary{cursor:pointer;font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--txt2)}
+details[open] summary{margin-bottom:11px;padding-bottom:9px;border-bottom:1px solid var(--bord)}
+.foot{font-size:10.5px;color:var(--txt3);line-height:1.6;margin-top:22px;border-top:1px solid var(--bord);padding-top:12px}
+b,strong{font-weight:650}
+.q{font-size:14px;line-height:1.72}
+ul{margin:6px 0 0 18px}li{margin-bottom:4px}
+.dl{font-size:11.5px;display:grid;grid-template-columns:158px 1fr;gap:4px 12px}
+@media(max-width:700px){.dl{grid-template-columns:1fr}}
+.dl dt{color:var(--txt2);font-weight:600}
+.key{background:var(--grnbg);border:2px solid var(--up);border-radius:11px;padding:14px 16px;margin-bottom:10px;font-size:12.5px;line-height:1.65}
+.warn{background:var(--redbg);border:2px solid var(--dn);border-radius:11px;padding:14px 16px;margin-bottom:10px;font-size:12.5px;line-height:1.65}
+.pend{background:var(--ambbg);border:2px solid var(--amb);border-radius:11px;padding:14px 16px;margin-bottom:10px;font-size:12.5px;line-height:1.65}
+.shadow{background:var(--viobg);border:1px dashed var(--vio);border-radius:11px;padding:14px 16px;margin-bottom:10px}
+</style>
+</head>
+<body>
+
+<h1>Bitcoin · Market GPS</h1>
+<div class="sub">Session 62 · Saturday 5 September 2026 · CRE v3.1 · ticker stamp <span class="mono">2026-09-05T13:02:06Z</span> · <b>Sep 5 candle IN PROGRESS — excluded from every determination</b> · last settled close = <span class="mono">Sep 4, $79,660.75</span> · feed: Crypto.com <span class="mono">BTC_USDT 1D</span></div>
+
+<div class="hero">
+  <div class="hb"><div class="l">Last settled close</div><div class="m">$79,661</div><div class="s">Sep 4 · −1.98% · 0.97× vol</div></div>
+  <div class="hb"><div class="l">Live (unsettled)</div><div class="m">$79,712</div><div class="s">+0.06% vs Sep 4</div></div>
+  <div class="hb" style="border-color:var(--dn)"><div class="l">Falsification</div><div class="m" style="font-size:15px;color:var(--dn)">RESET</div><div class="s">1 of 2 → 0 of 2</div></div>
+  <div class="hb" style="border-color:var(--amb)"><div class="l">Action</div><div class="m" style="font-size:16px;color:var(--amb)">WAIT</div><div class="s">SELL 3 filled · reserve intact</div></div>
+</div>
+
+<!-- ═════════ THE RESET ═════════ -->
+<div class="sec">The falsification counter reset — one close was not two</div>
+
+<div class="warn">
+  <div style="font-size:13px"><b>September 4 closed at $79,660.75, back below the $80,255.76 zone floor by $595.01 (0.741%). The upside falsification counter reverts from 1 of 2 to 0 of 2.</b> The UTAD reversal read is <b>not</b> falsified.</div>
+  <div style="font-size:12.5px;margin-top:10px"><b>This was written in advance, yesterday, in the exact circumstance where it would be tempting not to.</b> The S61 trigger block read: <em>"A settled close back below $80,255.76 resets the upside counter to 0 of 2. The two-close rule cuts both ways and is not relaxed because the first close was large."</em> The first close was a 5.09% session that also filled a standing order. It still counted for exactly one, and the reset is mechanical.</div>
+  <div style="font-size:12.5px;margin-top:10px"><b>Seven settled sessions since the UTAD and neither side has ever reached 2 of 2.</b> Downside 0 of 2, upside 0 of 2. The structure has now tested its low twice intraday, its high once intraday, and its upper boundary once on a close — and confirmed nothing. <b>The determination was clean at 0.741% clear of the margin band</b>, so it did not need the second feed the framework still lacks.</div>
+</div>
+
+<!-- ═════════ EXECUTIVE ═════════ -->
+<div class="sec">✱ Is the plan changing?</div>
+
+<div class="card cA">
+  <div class="q">
+    <b>No. WAIT. SELL 3 is filled and closed as an item; 75% dry powder remains reserved and untouched; no new order is armed.</b> Yesterday's fill was the execution of a pre-committed instruction and today's reset is the operation of a pre-committed rule. Neither is a change of view, and between them they are the whole of this week's activity.
+  </div>
+  <div class="q" style="margin-top:9px">
+    <b>The Sep 3–4 pair is worth reading as one event.</b> Sep 3 rose 5.09% and closed at 80.8% of range; Sep 4 fell 1.98% and closed at 36.6%. Net over the two sessions from the Sep 2 close: <b>+3.00%</b>, with a combined span of <b>$5,330.76 (6.69%)</b>. The market went to $82,292.62, was rejected, came back to $78,633.06, and settled in the middle. <b>Sep 4's high of $81,438.93 finished $45.33 below the UTAD high</b> — the second consecutive session to approach that level without closing above it.
+  </div>
+  <div class="q" style="margin-top:9px">
+    <b>Volatility contracted for a second session and the live tape has gone very quiet.</b> ATR(14) fell to <b>$2,710.50 = 3.40%</b> of close, from $2,975.18. The live Sep 5 candle has a range of <b>$355.80 — 0.45% of price</b> — on 0.127× volume with more than half the session elapsed. That is the narrowest partial bar since the mid-August compression, and it is a weekend session, so it carries the same caveats.
+  </div>
+</div>
+
+<div class="pend">
+<b>⏱ FR-B008 resolves on tonight's Sep 5 settled close and has not resolved yet.</b> It is <b>tracking Band C</b> (p=.41) on the Sep 4 close, having tracked Band B yesterday. <b>No score is recorded here.</b> FR-B011 resolves Sep 6; FR-B009, FR-B010 and FR-B012 on Sep 7; FR-B013 on Sep 9. <b>All six live trees currently track Band C</b> — a complete reversal of yesterday's picture, where all five then-live trees tracked Band B.
+</div>
+
+<!-- ═════════ STRUCTURE ═════════ -->
+<div class="sec">Current market structure</div>
+
+<div class="card">
+<svg viewBox="0 0 900 380" xmlns="http://www.w3.org/2000/svg" role="img"
+ aria-label="BTC daily candles August 18 to September 5 2026. September 3 spikes to 82,293 and closes inside the fill zone; September 4 reverses to close at 79,661, back below the zone floor.">
+  <g stroke="var(--bord)" stroke-width="1" opacity=".65">
+    <line x1="68" y1="321.9" x2="880" y2="321.9"/><line x1="68" y1="257.5" x2="880" y2="257.5"/>
+    <line x1="68" y1="193.1" x2="880" y2="193.1"/><line x1="68" y1="128.7" x2="880" y2="128.7"/>
+    <line x1="68" y1="64.3" x2="880" y2="64.3"/>
+  </g>
+  <g fill="var(--txt3)" font-size="9.5" font-family="ui-monospace,monospace" text-anchor="end">
+    <text x="62" y="326">64,000</text><text x="62" y="261">68,000</text><text x="62" y="197">72,000</text>
+    <text x="62" y="132">76,000</text><text x="62" y="68">80,000</text>
+  </g>
+  <rect x="68" y="40.4" width="812" height="19.8" fill="var(--acc)" opacity=".20"/>
+  <line x1="68" y1="40.4" x2="880" y2="40.4" stroke="var(--dn)" stroke-width="2" stroke-dasharray="6 3"/>
+  <text x="876" y="36" fill="var(--dn)" font-size="9" font-weight="700" text-anchor="end">UTAD HIGH $81,484.26</text>
+  <line x1="68" y1="60.2" x2="880" y2="60.2" stroke="var(--acc)" stroke-width="1.8" stroke-dasharray="4 3"/>
+  <text x="876" y="73" fill="var(--acc)" font-size="9" font-weight="700" text-anchor="end">ZONE FLOOR $80,255.76 — SELL 3 filled Sep 3 · Sep 4 closed back below · counter reset</text>
+  <line x1="68" y1="114.8" x2="880" y2="114.8" stroke="var(--dn)" stroke-width="1.8" stroke-dasharray="2 3"/>
+  <text x="876" y="128" fill="var(--dn)" font-size="9" font-weight="700" text-anchor="end">UTAD LOW $76,864.09 — 1.03 ATR below</text>
+  <line x1="300" y1="134.7" x2="880" y2="134.7" stroke="var(--blu)" stroke-width="1.6"/>
+  <text x="876" y="146" fill="var(--blu)" font-size="9" font-weight="700" text-anchor="end">20d SMA $75,627 — close 5.33% above</text>
+
+  <g stroke-width="1.1">
+  <line x1="89.4" y1="304.9" x2="89.4" y2="321.4" stroke="var(--up)"/><rect x="77.0" y="310.3" width="24.8" height="3.0" fill="var(--up)"/>
+  <line x1="132.1" y1="224.1" x2="132.1" y2="319.3" stroke="var(--up)"/><rect x="119.7" y="236.0" width="24.8" height="74.3" fill="var(--up)"/>
+  <line x1="174.8" y1="170.4" x2="174.8" y2="243.0" stroke="var(--up)"/><rect x="162.4" y="176.6" width="24.8" height="59.4" fill="var(--up)"/>
+  <line x1="217.6" y1="71.9" x2="217.6" y2="176.8" stroke="var(--up)"/><rect x="205.2" y="91.0" width="24.8" height="85.6" fill="var(--up)"/>
+  <line x1="260.3" y1="83.1" x2="260.3" y2="120.8" stroke="var(--dn)"/><rect x="247.9" y="91.0" width="24.8" height="20.4" fill="var(--dn)"/>
+  <line x1="303.1" y1="95.6" x2="303.1" y2="135.9" stroke="var(--up)"/><rect x="290.7" y="100.8" width="24.8" height="10.6" fill="var(--up)"/>
+  <line x1="345.8" y1="64.1" x2="345.8" y2="118.1" stroke="var(--up)"/><rect x="333.4" y="80.6" width="24.8" height="20.1" fill="var(--up)"/>
+  <line x1="388.5" y1="43.8" x2="388.5" y2="98.9" stroke="var(--dn)"/><rect x="376.1" y="80.6" width="24.8" height="7.5" fill="var(--dn)"/>
+  <line x1="431.3" y1="76.4" x2="431.3" y2="102.6" stroke="var(--up)"/><rect x="418.9" y="80.0" width="24.8" height="7.9" fill="var(--up)"/>
+  <line x1="474.0" y1="50.4" x2="474.0" y2="87.6" stroke="var(--up)"/><rect x="461.6" y="60.2" width="24.8" height="19.8" fill="var(--up)"/>
+  <line x1="516.7" y1="40.4" x2="516.7" y2="114.8" stroke="var(--dn)"/><rect x="504.3" y="60.2" width="24.8" height="38.8" fill="var(--dn)"/>
+  <line x1="559.5" y1="91.1" x2="559.5" y2="106.5" stroke="var(--up)"/><rect x="547.1" y="92.8" width="24.8" height="6.2" fill="var(--up)"/>
+  <line x1="602.2" y1="73.8" x2="602.2" y2="112.8" stroke="var(--dn)"/><rect x="589.8" y="92.8" width="24.8" height="8.6" fill="var(--dn)"/>
+  <line x1="644.9" y1="76.3" x2="644.9" y2="106.5" stroke="var(--up)"/><rect x="632.5" y="87.1" width="24.8" height="14.5" fill="var(--up)"/>
+  <line x1="687.7" y1="76.8" x2="687.7" y2="122.3" stroke="var(--dn)"/><rect x="675.3" y="87.1" width="24.8" height="18.4" fill="var(--dn)"/>
+  <line x1="730.4" y1="99.7" x2="730.4" y2="124.6" stroke="var(--dn)"/><rect x="718.0" y="105.5" width="24.8" height="1.7" fill="var(--dn)"/>
+  <line x1="773.2" y1="27.4" x2="773.2" y2="113.2" stroke="var(--up)"/><rect x="760.8" y="43.9" width="24.8" height="63.3" fill="var(--up)"/>
+  <line x1="815.9" y1="41.1" x2="815.9" y2="86.3" stroke="var(--dn)"/><rect x="803.5" y="43.9" width="24.8" height="25.9" fill="var(--dn)"/>
+  <line x1="858.6" y1="67.5" x2="858.6" y2="73.3" stroke="var(--txt3)" stroke-dasharray="3 2"/><rect x="846.2" y="68.9" width="24.8" height="1.3" fill="none" stroke="var(--txt3)" stroke-width="1.4" stroke-dasharray="3 2"/>
+  </g>
+  <circle cx="773.2" cy="27.4" r="3.4" fill="var(--up)"/>
+  <text x="773.2" y="21" fill="var(--up)" font-size="8.5" font-weight="700" text-anchor="middle">$82,293</text>
+  <circle cx="815.9" cy="69.8" r="3.4" fill="var(--dn)"/>
+  <text x="828" y="86" fill="var(--dn)" font-size="8.5" font-weight="700" text-anchor="middle">reset</text>
+  <text x="516.7" y="130" fill="var(--dn)" font-size="9" font-weight="700" text-anchor="middle">UTAD</text>
+  <text x="132.1" y="333" fill="var(--up)" font-size="8.5" font-weight="700" text-anchor="middle">ignition</text>
+  <g fill="var(--txt3)" font-size="9" text-anchor="middle" font-family="ui-monospace,monospace">
+    <text x="89.4" y="348">Aug 18</text><text x="217.6" y="348">21</text><text x="345.8" y="348">24</text>
+    <text x="474.0" y="348">27</text><text x="602.2" y="348">30</text><text x="730.4" y="348">Sep 2</text>
+    <text x="858.6" y="348">5*</text>
+  </g>
+  <text x="68" y="368" fill="var(--txt3)" font-size="9">* dashed hollow candle = Sep 5 in progress at 13:02 UTC, 0.127× volume, range only 0.45% · weekend session · gates nothing</text>
+</svg>
+</div>
+
+<div class="lbl">Seven settled sessions since the UTAD — every counter still at zero</div>
+<div class="card" style="padding:6px 10px">
+<table>
+  <tr><th>Session</th><th>Close</th><th>Change</th><th>&lt; UTAD low?</th><th>&gt; zone floor?</th><th>Range %</th><th>Close in range</th><th>Down / Up</th></tr>
+  <tr><td>Aug 29</td><td class="mono">$78,232.58</td><td class="mono">+0.49%</td><td>No</td><td>No</td><td class="mono">1.23%</td><td class="mono">89.0%</td><td class="mono">0 / 0</td></tr>
+  <tr><td>Aug 30</td><td class="mono">$77,695.35</td><td class="mono">−0.69%</td><td>No</td><td>No</td><td class="mono">3.11%</td><td class="mono">29.2%</td><td class="mono">0 / 0</td></tr>
+  <tr><td>Aug 31</td><td class="mono">$78,587.39</td><td class="mono">+1.15%</td><td>No</td><td>No</td><td class="mono">2.39%</td><td class="mono">64.3%</td><td class="mono">0 / 0</td></tr>
+  <tr><td>Sep 1</td><td class="mono">$77,439.01</td><td class="mono">−1.46%</td><td>No</td><td>No</td><td class="mono">3.64%</td><td class="mono">36.8%</td><td class="mono">0 / 0</td></tr>
+  <tr><td>Sep 2</td><td class="mono">$77,337.34</td><td class="mono">−0.13%</td><td>No</td><td>No</td><td class="mono">2.00%</td><td class="mono">70.1%</td><td class="mono">0 / 0</td></tr>
+  <tr><td><b>Sep 3</b></td><td class="mono"><b>$81,270.10</b></td><td class="mono" style="color:var(--grn)"><b>+5.09%</b></td><td>No</td><td style="color:var(--grn)"><b>Yes</b></td><td class="mono">6.56%</td><td class="mono">80.8%</td><td class="mono"><b>0 / 1</b></td></tr>
+  <tr><td><b>Sep 4</b></td><td class="mono"><b>$79,660.75</b></td><td class="mono" style="color:var(--red)"><b>−1.98%</b></td><td>No</td><td style="color:var(--red)"><b>No</b></td><td class="mono">3.52%</td><td class="mono">36.6%</td><td class="mono" style="color:var(--dn)"><b>0 / 0</b></td></tr>
+</table>
+</div>
+<div class="card cY" style="font-size:11.5px">
+  <b>Sep 4's high of $81,438.93 landed inside the ±0.15% margin band around the UTAD high ($81,362.03–$81,606.49).</b> That is recorded as a fact and produces no determination — <b>the bands govern closes, not highs</b>, exactly as the UTAD-low band produced no determination when three sessions traded through it last week. Two sessions have now approached the UTAD high without closing above it, and Sep 4's high fell <b>$45.33 (0.056%) short</b> of the level itself. <span class="bg gY">NO BASE RATE</span> — seven sessions of a structure that has tested both boundaries and confirmed neither is n=1 in this 55-row archive.
+</div>
+
+<!-- ═════════ TREE ═════════ -->
+<div class="sec">Probability path tree — FR-B014, resolves Sep 9 · same date as FR-B013</div>
+
+<div class="card cV">
+  <div class="lbl" style="margin-top:0">Step 1 · computed priors on the 55-row archive</div>
+  <div style="font-size:11.5px">Realized volatility: <b>10d σ = 2.2280% (42.57% ann.)</b>, <b>20d σ = 2.8512% (54.47%)</b>, <b>30d σ = 2.4297% (46.42%)</b>, <b>45d σ = 2.1637% (41.34%)</b>. 60d and 90d NOT COMPUTABLE — 54 returns held, <b>36 sessions</b> to a 90-day figure. Empirical 5-day forward quantiles (n=50): p5 −3.27%, p50 +0.19%, p95 +16.34%. Exceedance of ±1.65σ: <b>6 of 50 = 12.0%</b>.</div>
+  <div style="font-size:11.5px;margin-top:8px"><b>FR-B014 shares the Sep 9 resolution date with FR-B013</b>, making them a same-date pair one session apart — the third such pair in this series, and the cleanest test yet of whether daily revision adds information at this horizon.</div>
+  <div class="card" style="margin:9px 0 0;padding:6px 10px;background:var(--bg)">
+  <table>
+    <tr><th>Band (ref $79,660.75, 5-day → Sep 9)</th><th>Empirical (n=50)</th><th>Lognormal 30d</th><th>Lognormal 10d</th><th>FR-B013</th><th>FR-B014</th></tr>
+    <tr><td>A ≥ $81,484.26 — UTAD high exceeded on a close</td><td class="mono">30.0%</td><td class="mono">33.8%</td><td class="mono">32.5%</td><td class="mono">.42</td><td class="mono"><b>.26</b></td></tr>
+    <tr><td>B $80,255.76 – $81,484.25 — above the zone floor</td><td class="mono">14.0%</td><td class="mono">10.7%</td><td class="mono">11.6%</td><td class="mono">.17</td><td class="mono"><b>.13</b></td></tr>
+    <tr><td>C $76,864.09 – $80,255.75 — post-UTAD range holds</td><td class="mono">52.0%</td><td class="mono">29.9%</td><td class="mono">32.3%</td><td class="mono">.26</td><td class="mono"><b>.44</b></td></tr>
+    <tr><td>D &lt; $76,864.09 — UTAD low breached on a close</td><td class="mono">4.0%</td><td class="mono">25.5%</td><td class="mono">23.7%</td><td class="mono">.10</td><td class="mono"><b>.12</b></td></tr>
+    <tr><td><b>Residual</b> — mandatory ≥5%</td><td class="mono" colspan="3">—</td><td class="mono">.05</td><td class="mono"><b>.05</b></td></tr>
+  </table>
+  </div>
+  <div style="font-size:11.5px;margin-top:9px"><b>Persistence still withheld</b> — the bands are eight days old and <b>43 of 50 windows predate them</b>. Reinstatement at ten settled post-UTAD sessions: <b>three more</b>.</div>
+</div>
+
+<div class="card">
+  <div class="lbl" style="margin-top:0">Step 2 · posterior · <span class="bg gV">FR-B014</span> · class T/S</div>
+  <div style="font-size:11.5px;color:var(--txt2);margin-bottom:9px"><b>Band A falls 42 → 26 and Band C rises 26 → 44, reversing most of yesterday's revision.</b> The reference close is $1,609.35 lower, which mechanically moves every band; but the substantive point is that the empirical prior for A fell from 52.1% to 30.0% and for C rose from 29.2% to 52.0%. <b>Band C is nonetheless set 8 points below its empirical figure</b>, because the 52.0% reading is inflated by the same overlapping-window fragility that produced the S58 damping rule — and the two lognormals sit near 30%. <b>Band D is raised slightly to .12 despite an empirical 4.0%</b>, held toward the lognormals at 25.5% and 23.7% per the non-zero-branch discipline.</div>
+  <div style="font-size:11.5px;color:var(--txt2);margin-bottom:9px"><b>Two consecutive sessions of 16-point-plus revisions in opposite directions is worth naming as a cost.</b> FR-B013 and FR-B014 resolve on the same day and disagree materially. One of them will score badly, and the disagreement is driven mostly by a single 5% session and its partial retracement. That is the daily-revision question the August cadence work identified, now running live in the v3.1 series.</div>
+  <div class="trow"><div class="tdot" style="background:var(--up)"></div><div class="tp" style="color:var(--grn)">26%</div>
+    <div><b>Band A — close ≥ $81,484.26.</b> <span class="bg gV">priors 30.0% / 33.8% / 32.5%</span> → below all three. Requires +2.29%. Two sessions have now approached this level intraday without closing above it.</div></div>
+  <div class="trow"><div class="tdot" style="background:var(--acc)"></div><div class="tp" style="color:var(--amb)">13%</div>
+    <div><b>Band B — close $80,255.76 to $81,484.25.</b> <span class="bg gV">priors 14.0% / 10.7% / 11.6%</span> → between them. Requires +0.75%; <b>0.22 ATR</b> away. Structural outcome only — the SELL 3 order has filled and this band no longer carries an execution meaning.</div></div>
+  <div class="trow"><div class="tdot" style="background:var(--acc)"></div><div class="tp" style="color:var(--amb)">44%</div>
+    <div><b>Band C — close $76,864.09 to $80,255.75.</b> <span class="bg gV">priors 52.0% / 29.9% / 32.3%</span> → damped 8 points below the empirical figure. Modal, and where six of the seven post-UTAD closes have landed.</div></div>
+  <div class="trow"><div class="tdot" style="background:var(--dn)"></div><div class="tp" style="color:var(--red)">12%</div>
+    <div><b>Band D — close below $76,864.09.</b> <span class="bg gV">priors 4.0% / 25.5% / 23.7%</span> → held between the empirical figure and the parametrics. Requires −3.51% = <b>1.03 ATR</b>.</div></div>
+  <div class="trow"><div class="tdot" style="background:var(--gry)"></div><div class="tp" style="color:var(--gry)">5%</div>
+    <div><b>Residual.</b> Mandatory ≥5%.</div></div>
+  <div style="font-size:11px;color:var(--txt2);margin-top:9px"><b>VOID check:</b> the Sep 4 reference sits +3.638% from $76,864.09, −0.741% from $80,255.76 and −2.238% from $81,484.26 — all outside the ±0.15% margin, though the zone-floor clearance is the tightest of the three.</div>
+</div>
+
+<!-- ═════════ SHADOW ═════════ -->
+<div class="sec">✦ Shadow layers — voice, no vote</div>
+<div class="shadow">
+  <div style="font-size:11.5px;color:var(--txt2);margin-bottom:11px"><b>Firewall statement.</b> Computed from <span class="mono">ephem</span> at the session epoch. Touched no probability, no confidence score, no aggressiveness value, no risk parameter in this report. Zero-weight classification settled Jul 22 and permanent.</div>
+  <div class="dl" style="font-size:11.5px">
+    <dt>☿ Mercury</dt><dd><b>DIRECT</b>, longitude 170.683°, motion +1.7923°/day. Next station <b>retrograde 2026-10-24 07:08 UTC (49 days)</b>, direct <b>2026-11-13 15:57 UTC (69 days)</b> — inside the Oct–Nov core accumulation window.</dd>
+    <dt>☾ Moon</dt><dd><b>36.2% illuminated, waning crescent</b>, 8.36 days past the Aug 28 Full Moon. New Moon <b>Sep 11 03:26 UTC</b>, 5.6 days out — the SL-L003 resolution date.</dd>
+    <dt><span class="bg gV">SL-L003</span></dt><dd><b>LIVE, resolves Sep 11 — tracking toward a miss.</b> Claim: the Sep 11 settled close is below the Aug 28 UTAD close of $77,847.63. The Sep 4 settled close of $79,660.75 sits <b>2.33% above</b> that level. Tracking has flipped three times in five sessions.</dd>
+    <dt>Ledger standing</dt><dd><b>0 of 1</b> resolved. SL-L001 missed at a 33.3% base rate on Aug 14. A second miss on Sep 11 would put the ledger at 0 of 2 — <b>still evidentially worthless at that sample size</b>, which is the point of accumulating a record rather than arguing.</dd>
+  </div>
+  <div style="font-size:11px;color:var(--txt2);margin-top:10px"><b>Shmita:</b> year 4 of 7; next release year Sep 2028. <span class="bg gY">NO SIGNAL</span>.</div>
+</div>
+
+<!-- ═════════ AUDIT ═════════ -->
+<div class="sec">Layered analytical audit</div>
+
+<div class="card cA">
+  <div class="lbl" style="margin-top:0">Tier 1 · Wyckoff market structure — dominant [MSA]</div>
+  <div class="dl">
+    <dt>Sep 4 anatomy</dt><dd>O $81,265.94, H $81,438.93, L $78,633.06, C $79,660.75. Range <b>$2,805.87 = 3.52%</b> (−47% versus Sep 3), closed at <b>36.6% of range</b>, high-to-close <b>−2.18%</b>. Volume 2,131.84 = <b>0.967×</b>.</dd>
+    <dt>Counters</dt><dd><b>Downside 0 of 2. Upside 0 of 2 — reset from 1 of 2.</b> Seven settled sessions since the UTAD; neither side has reached 2.</dd>
+    <dt>UTAD high</dt><dd>Sep 4's high fell <b>$45.33 (0.056%) short</b> and landed inside the ±0.15% band. <b>No determination — bands govern closes.</b> Second consecutive session approaching the level without closing above it.</dd>
+    <dt>Geometry</dt><dd>Zone floor <b>0.22 ATR</b> above; UTAD high <b>0.67 ATR</b> above; UTAD low <b>1.03 ATR</b> below. Closest configuration to symmetric since Aug 31.</dd>
+    <dt>Mean</dt><dd>20d SMA $75,627.35, rising steeply; close <b>+5.33%</b> above, narrowing from +8.65%.</dd>
+    <dt>Volatility</dt><dd>ATR(14) <b>$2,710.50 = 3.40%</b> — second consecutive contraction. Live Sep 5 range <b>0.45%</b> on 0.127× volume, the narrowest partial bar since mid-August.</dd>
+  </div>
+</div>
+
+<div class="card cY">
+  <div class="lbl" style="margin-top:0">Tiers 2–5 · macro, liquidity, positioning, sentiment</div>
+  <div class="dl">
+    <dt>Session type</dt><dd><span class="bg gA">WEEKEND — NO NEW DATA OBTAINED.</span> September 5 is a Saturday. No releases, filings or flow prints. Nothing in Tiers 2–5 is asserted as fresh.</dd>
+    <dt>Attribution</dt><dd><b>Still none for the Sep 3–4 pair.</b> A 5.09% advance and a 1.98% reversal on near-average volume plainly had drivers; no verified cause was obtained for either and none is invented. This is the second consecutive session recording that gap rather than filling it with a plausible story.</dd>
+    <dt>Carried, unverified</dt><dd>The Aug 28 two-catalyst problem stands, eight sessions old: a <b>$6.4bn Deribit settlement</b> and the <b>Warsh Jackson Hole keynote</b> shared the UTAD candle with no clean causal attribution.</dd>
+    <dt>Tier 3.5</dt><dd>No funding, open-interest or liquidation data. Order book not sampled at 0.127× partial weekend volume.</dd>
+    <dt>Cycle position</dt><dd>Halving month ~27. Oct 3 – Nov 15 window <b>28 to 71 days out</b>. <b>75% dry powder reserved and untouched.</b></dd>
+    <dt>FR-A008</dt><dd>The flagship cycle claim (settled close below <b>$57,803</b> before Nov 30, p=0.65) sits <b>37.90% below</b> live price, narrowing from 40.40% at S61. <b>Not revised</b> — a narrowing gap is no more a trigger than a widening one. Status <b>under pressure</b>, fourth consecutive session.</dd>
+  </div>
+</div>
+
+<!-- ═════════ EXECUTION ═════════ -->
+<div class="sec">Execution plan · Risk engineering sign-off</div>
+
+<div class="gap">
+<div class="card cA">
+  <div class="lbl" style="margin-top:0">Commands</div>
+  <div class="dl">
+    <dt>System action</dt><dd><b>WAIT.</b> No add, no reduce, no new arming.</dd>
+    <dt>SELL 3</dt><dd><b>FILLED Sep 3</b> at the 20% cap, clean determination. Closed as an item; the Sep 7 expiry is now moot.</dd>
+    <dt>Counters</dt><dd>Downside <b>0 of 2</b> · upside <b>0 of 2</b> (reset).</dd>
+    <dt>Dry powder</dt><dd><b>75% reserved.</b> Untouched.</dd>
+    <dt>Structural risk</dt><dd><b>High</b> — ATR at 3.40% of close, both boundaries tested, neither confirmed.</dd>
+  </div>
+</div>
+<div class="card cR">
+  <div class="lbl" style="margin-top:0">Triggers — settled UTC closes only</div>
+  <div class="dl">
+    <dt>UTAD falsified</dt><dd><b>Two consecutive settled closes above $80,255.76.</b> Counter back to <b>0 of 2</b>; requires +0.75% and then a second close. <b>No position action attaches</b> — SELL 3 has filled and the reserve is untouched.</dd>
+    <dt>UTAD confirms</dt><dd><b>Two consecutive settled closes below $76,864.09.</b> Requires −3.51% = 1.03 ATR.</dd>
+    <dt>Counter reset</dt><dd>Applies symmetrically. A single close on either side resets the opposite counter. <b>Exercised for the first time today</b>, against the more exciting reading.</dd>
+    <dt>Margin-band watch</dt><dd>Zone floor band <b>$80,135.38–$80,376.14</b> — the Sep 4 close cleared it by 0.741%, the tightest clearance of the three active levels. UTAD-high band <b>$81,362.03–$81,606.49</b> — Sep 4's <em>high</em> printed inside it. Still <b>no second daily-close feed</b>, twenty-seven sessions.</dd>
+  </div>
+</div>
+</div>
+
+<div class="card cY">
+  <div class="lbl" style="margin-top:0">CRO note — the week the rules did the work</div>
+  <div style="font-size:12px">Over seven sessions this structure has tested its low twice intraday, its high twice intraday, filled a standing order, and reset a confirmation counter — and the framework has made <b>exactly one position decision</b>, which was written before any of it happened. Yesterday's fill and today's reset were both mechanical. <b>The value of that is easiest to see in what did not happen:</b> no widening of the zone when it looked unreachable, no extension when the expiry approached, and no declaration that the reversal was falsified on the strength of one large close. The next scheduled events are five band-tree resolutions between tonight and Sep 9, and the front edge of the Oct–Nov accumulation window in <b>28 days</b>. The 75% reserve is intact and stays that way.</div>
+</div>
+
+<!-- ═════════ CORRECTIONS ═════════ -->
+<div class="sec">Corrections and framework notes this session</div>
+<div class="card" style="padding:6px 10px">
+<table>
+  <tr><th style="width:20%">Item</th><th style="width:31%">Before</th><th>After</th></tr>
+  <tr><td><b>1 · Counter-reset rule exercised for the first time</b></td>
+    <td>The reset clause was written into the S61 trigger block one session before it could fire: <em>"a settled close back below $80,255.76 resets the upside counter to 0 of 2 … not relaxed because the first close was large."</em></td>
+    <td>Sep 4 closed <b>$595.01 (0.741%) below</b> the floor and <b>the counter reverted from 1 of 2 to 0 of 2</b>. The clause fired against the more interesting reading — a 5.09% session that also filled a standing order — one day after being written. <b>Recording the rule working, not only the rule being written.</b></td></tr>
+  <tr><td><b>2 · Margin bands govern closes, not highs — applied again</b></td>
+    <td>The rule was applied last week when three sessions traded through the UTAD-low band intraday without producing a determination.</td>
+    <td>Sep 4's <b>high of $81,438.93 printed inside</b> the UTAD-high band ($81,362.03–$81,606.49). <b>No determination.</b> Recorded because the band is now being touched at the opposite end of the structure and the same answer must apply — the exposure has migrated but the rule has not.</td></tr>
+  <tr><td><b>3 · Same-date pair disagrees materially</b></td>
+    <td>FR-B013 (issued S61) and FR-B014 (issued today) share a Sep 9 resolution date.</td>
+    <td>They differ by <b>16 points on Band A</b> (.42 vs .26) and <b>18 on Band C</b> (.26 vs .44), driven mostly by one 5% session and its partial retracement. <b>One of them will score badly and the pair is a direct measurement of what daily revision costs at this horizon</b> — the v3.1 continuation of the August cadence finding. Named in advance rather than explained after resolution.</td></tr>
+  <tr><td><b>4 · Empirical Band C damped downward</b></td>
+    <td>The convergence condition says follow the priors when all three agree; the damping rule says resist when one input moves alone.</td>
+    <td>Band C's empirical figure jumped to <b>52.0%</b> while both lognormals sat near <b>30%</b> — one input moving, two not. <b>Band C is set at 44%, eight points below the empirical figure</b>, and Band D held at 12% against an empirical 4.0%. This is the damping rule, not the convergence rule, and the distinction is stated so the two are not confused when the register is audited.</td></tr>
+  <tr><td><b>5 · Attribution gap recorded a second time</b></td>
+    <td>S61 recorded that no verified cause was available for the Sep 3 move and declined to invent one.</td>
+    <td>The same applies to Sep 4's <b>−1.98%</b> reversal. <b>Two consecutive large sessions with no obtained driver</b>, logged as an evidence gap rather than narrated. The Aug 28 two-catalyst candle remains the standing example of why a plausible story is not an attribution.</td></tr>
+</table>
+</div>
+
+<!-- ═════════ APPENDIX ═════════ -->
+<div class="sec">Appendix</div>
+
+<details>
+<summary>Forecast Register</summary>
+<table>
+  <tr><th>ID</th><th>Status</th><th>Claim</th><th>Prob.</th><th>Resolves</th></tr>
+  <tr><td><b>FR-B014</b></td><td><span class="bg gG">NEW · T/S</span></td><td>Sep 9 band tree. Same-date pair with FR-B013, disagreeing by 16–18 points on Bands A and C.</td><td class="mono"><b>.26/.13/.44/.12/.05</b></td><td>Sep 9</td></tr>
+  <tr><td><b>FR-B013</b></td><td><span class="bg gB">LIVE</span></td><td>.42/.17/.26/.10/.05 — tracking <b>Band C (.26)</b>.</td><td>—</td><td>Sep 9</td></tr>
+  <tr><td><b>FR-B012</b></td><td><span class="bg gA">RESOLVES SEP 7</span></td><td>.09/.06/.42/.38/.05 — tracking <b>Band C (.42)</b>.</td><td>—</td><td>Sep 7</td></tr>
+  <tr><td><b>FR-B011</b></td><td><span class="bg gA">RESOLVES SEP 6</span></td><td>.11/.07/.42/.35/.05 — tracking <b>Band C (.42)</b>.</td><td>—</td><td>Sep 6</td></tr>
+  <tr><td><b>FR-B010</b></td><td><span class="bg gA">RESOLVES SEP 7</span></td><td>.18/.11/.44/.22/.05 — tracking <b>Band C (.44)</b>.</td><td>—</td><td>Sep 7</td></tr>
+  <tr><td><b>FR-B009</b></td><td><span class="bg gA">RESOLVES SEP 7</span></td><td>.16/.07/.42/.30/.05 — tracking <b>Band C (.42)</b>.</td><td>—</td><td>Sep 7</td></tr>
+  <tr><td><b>FR-B008</b></td><td><span class="bg gA">RESOLVES TONIGHT</span></td><td>.18/.08/.41/.28/.05 — tracking <b>Band C (.41)</b> on the Sep 4 close, having tracked Band B yesterday. <b>Not scored in this report.</b></td><td>—</td><td>Sep 5</td></tr>
+  <tr><td><b>SL-L003</b></td><td><span class="bg gV">LIVE · shadow</span></td><td>Sep 11 settled close below $77,847.63. Tracking toward a miss. Firewalled, zero-weight.</td><td>—</td><td>Sep 11</td></tr>
+  <tr><td><b>FR-A007 / A008</b></td><td><span class="bg gB">LIVE · class C</span></td><td>Cycle bottom Oct–Nov 2026 (p=.42) · settled close below $57,803 before Nov 30 (p=.65). Gap <b>37.90%</b>. <b>Under pressure, unrevised.</b></td><td>—</td><td>Nov 2026</td></tr>
+</table>
+<div style="font-size:11.5px;color:var(--txt2);margin-top:10px"><b>Carried from the v3.1 state and not re-derived here:</b> FR-B004 HIT at +0.3299; FR-B003 MISS with the register at 1 hit in 3; the four S56 resolutions at a mean skill of <b>−0.6556</b>; FR-A022's <b>−0.3456</b> at S58. <b>Five losses share one root cause — the Aug 19 regime misread.</b></div>
+</details>
+
+<details>
+<summary>Data provenance and open items</summary>
+<div class="dl" style="font-size:11.5px">
+  <dt>Session timestamp</dt><dd><span class="mono">Crypto.com:get_ticker</span> → 2026-09-05T13:02:06.566Z. Sep 5 candle in progress at 0.127× volume; determinations use the <b>Sep 4</b> settled close.</dd>
+  <dt>Archive</dt><dd><span class="bg gG">55 rows</span>, Jul 12 → Sep 4. <b>Stale check passed</b> — archive ended Sep 3, feed last settled Sep 4, one row appended. 54 log returns. 60d/90d NOT COMPUTABLE; <b>36 sessions</b> to a 90-day figure.</dd>
+  <dt>Cross-verification</dt><dd><span class="bg gR">NOT PERFORMED — no second daily-close feed, twenty-seven sessions.</span> The Sep 4 close cleared the zone-floor band by 0.741%, so the reset determination was clean on one feed.</dd>
+  <dt>Ephemeris</dt><dd><span class="mono">ephem</span>, computed at the session epoch.</dd>
+  <dt>Open items carried</dt><dd><b>S52–S53 consolidation pass</b> — outstanding. <b>Five hardening proposals</b> from the S54–S55 postmortem — unadopted. <b>ADA BUY 1 fill price</b> — unresolved at 40+ sessions. <b>Second daily-close feed</b> — absent.</dd>
+</div>
+</details>
+
+<div class="foot">
+<b>Evidence hierarchy under CRE v3.1:</b> Wyckoff market structure is dominant (Tier 1), then macro/FOMC (Tier 2), liquidity and ETF flows (Tier 3), positioning and derivatives (Tier 3.5), sentiment (Tier 4), halving backdrop (Tier 5). Lower tiers modify confidence within their horizon class only and never override Tier 1. Every probability begins from a computed historical frequency or is explicitly tagged NO BASE RATE; <b>no tree sums to 100% and every tree carries a residual branch of at least 5%</b>; an empirical zero or near-zero is never taken at face value; posteriors are damped against single-input swings and follow converging priors, in either direction, with the distinction stated. Shadow layers — Mercury, lunar, Shmita — are permanently zero-weight, disclosure-only, and adjusted nothing here.<br><br>
+All confirmations, invalidations and fills require <b>settled UTC-midnight closes</b>; an intraday breach increments no counter and margin bands govern closes rather than highs or lows, on either side of the structure. <b>A single close on one side resets the opposite counter</b>, and the rule is not relaxed because the close was large. No mid-candle positioning, and no in-progress candle counts toward a confirmation tally. Pre-committed orders execute on their written terms and are never widened, extended or re-priced. Tracking status is stated against the last settled close only and is not evidence. Structural claims are revised only on a pre-declared structural trigger. Where no verified cause for a move is available, none is asserted. No fabrication and no silent revision. Structural orientation and probabilistic forecasting output — <b>not financial advice</b>. Size positions yourself and consult a licensed advisor.
+</div>
+
+</body>
+</html>
