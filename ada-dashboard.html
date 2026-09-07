@@ -456,7 +456,7 @@ const liveStartIdx = 105; // June 2026 — verified index, where the framework's
 // (Jun 12, 2026), currentIdx is the single month still in progress. Every month in [liveStartIdx, currentIdx) is
 // a settled month inside the live record — tracked in real time, but CLOSED. Only currentIdx is month-to-date and
 // still moving, so only currentIdx may carry the "LIVE" badge. Jun settled $0.1444 and Jul settled $0.16826;
-// Aug 2026 is the live month.
+// Sep 2026 is the live month.
 const currentIdx = 108; // September 2026 — the month-to-date cell (Sep 4 settled close; Sep 5 candle excluded)
 
 // ── ADA forward distribution: the Aug 3, 2026 DRIFTLESS LOGNORMAL VOLATILITY CONE ──
@@ -864,8 +864,12 @@ function render(){
     // highlight swallows hover on that month's own price dot and its tooltip can never open.
     svg.appendChild(el('rect',{x:x0,y:padT,width:w,height:priceTop+priceH-padT,fill:TH().seam,opacity:.10,'pointer-events':'none'}));
     svg.appendChild(el('rect',{x:x0,y:padT,width:w,height:2.5,fill:TH().seam,opacity:.85,'pointer-events':'none'}));
+    // label derived from currentIdx, never hardcoded — a literal here went stale the moment the live
+    // month rolled from Aug to Sep and printed "Aug '26" over the September column.
+    const cm=months[currentIdx];
+    const cLbl='▲ '+monthNames[cm.m%12]+' ’'+String(cm.y).slice(2)+' · LIVE';
     if(span<=60) svg.appendChild(el('text',{x:x0+w/2,y:padT+20,'font-size':8.5,fill:TH().seam,
-      'font-weight':700,'text-anchor':'middle'},'▲ Aug ’26 · LIVE'));
+      'font-weight':700,'text-anchor':'middle'},cLbl));
   }
 
   // Shmita tie-through shading — 5782 in full, plus the opening months of 5789 that fall inside this horizon

@@ -642,8 +642,12 @@ function render(){
     // highlight swallows hover on that month's own price dot and its tooltip can never open.
     svg.appendChild(el('rect',{x:x0,y:padT,width:w,height:priceTop+priceH-padT,fill:TH().seam,opacity:.10,'pointer-events':'none'}));
     svg.appendChild(el('rect',{x:x0,y:padT,width:w,height:2.5,fill:TH().seam,opacity:.85,'pointer-events':'none'}));
+    // label derived from currentIdx, never hardcoded — a literal here went stale the moment the live
+    // month rolled from Aug to Sep and printed "Aug '26" over the September column.
+    const cm=months[currentIdx];
+    const cLbl='▲ '+monthNames[cm.m%12]+' ’'+String(cm.y).slice(2)+' · LIVE';
     if(span<=60) svg.appendChild(el('text',{x:x0+w/2,y:padT+20,'font-size':8.5,fill:TH().seam,
-      'font-weight':700,'text-anchor':'middle'},'▲ Aug ’26 · LIVE'));
+      'font-weight':700,'text-anchor':'middle'},cLbl));
   }
 
   // shmita tie-through shading — all Shmita years in range (5775, 5782, and forward 5789)
