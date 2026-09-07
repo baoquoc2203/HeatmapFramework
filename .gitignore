@@ -1,0 +1,3 @@
+# Local, per-machine Claude Code permissions — never publish these.
+# launch.json IS tracked on purpose: the dev-server config is shared.
+.claude/settings.local.json
