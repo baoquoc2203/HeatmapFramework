@@ -111,7 +111,7 @@
   <img src="cardano-logo.svg" class="ada-logo" style="width:26px;height:26px;object-fit:contain;">
   ADA Framework Dashboard — Interactive
 </h1>
-<div class="meta">Crypto Reconnaissance Engine · <b>Sep 2017 → Sep 2026 live</b> (Sep 5 level ladder &amp; driftless volatility cone to Dec 2028) · drag to pan, scroll/pinch to zoom, hover/tap for values, toggle layers below</div>
+<div class="meta">Crypto Reconnaissance Engine · <b>Sep 2017 → Sep 2026 live</b> (Sep 9 level ladder &amp; driftless volatility cone to Dec 2028) · drag to pan, scroll/pinch to zoom, hover/tap for values, toggle layers below</div>
 
 <div class="controls">
   <div class="ctrl-group">
@@ -120,7 +120,7 @@
     <button class="toggle active" data-layer="shmita">Shmita</button>
     <button class="toggle active" data-layer="mercury">Mercury Rx</button>
     <button class="toggle active" data-layer="fng">Fear &amp; Greed</button>
-    <button class="toggle active" data-layer="levels">Sep 5 Levels</button>
+    <button class="toggle active" data-layer="levels">Sep 9 Levels</button>
   </div>
   <div class="ctrl-group">
     <span class="ctrl-label">Zoom</span>
@@ -145,7 +145,7 @@
   </div>
   <div class="ctrl-group">
     <span class="ctrl-label">Report</span>
-    <a class="zoom-btn" href="ADA_monthly_map_sep05.html" style="text-decoration:none;">📊 Monthly Map (Sep 5)</a>
+    <a class="zoom-btn" href="ADA_monthly_map_sep09.html" style="text-decoration:none;">📊 Monthly Map (Sep 9)</a>
   </div>
 </div>
 
@@ -173,7 +173,7 @@
   <span><i style="background:#2f6fb0"></i>Extreme greed</span>
   <span style="margin-left:12px"><i style="background:var(--amber)"></i>Mercury Rx / Shmita (on)</span>
   <span><i style="background:#1a1d24;border:1px solid #5ec8f0"></i>ADA price</span>
-  <span style="margin-left:8px;border-left:1px solid var(--bord);padding-left:12px;font-weight:700;color:var(--amber)">Sep 5 cone:</span>
+  <span style="margin-left:8px;border-left:1px solid var(--bord);padding-left:12px;font-weight:700;color:var(--amber)">Sep 9 cone:</span>
   <span style="display:flex;align-items:center;gap:4px"><span style="display:inline-block;width:18px;border-top:2px dashed #8b8ff5"></span>5th / 95th percentile</span>
   <span style="display:flex;align-items:center;gap:4px"><span style="display:inline-block;width:18px;height:9px;background:rgba(99,102,241,.28);border-radius:2px"></span>central 50% (25th–75th)</span>
   <span style="display:flex;align-items:center;gap:4px"><span style="display:inline-block;width:18px;border-top:2px solid #6366f1"></span>median — flat, driftless by construction</span>
@@ -189,11 +189,11 @@
   <span style="color:var(--txt2)">sensitivity, recomputed Sep 7 — the reading quoted against $0.21827 is <b>33rd pct</b> (24m, canonical) · <b>20th</b> (36m) · <b>25th</b> (46m); one price, three answers, and the spine still moves it by 13 points. <b>Spines now run through Sep 2026</b></span>
 </div>
 <div class="legend-row">
-  <span style="font-weight:700;color:var(--amber)">Sep 5 levels:</span>
-  <span><i style="background:rgba(224,168,63,.5)"></i>$0.23332 CONTINUATION — settled close above confirms markup, +9.00%</span>
-  <span><i style="background:rgba(224,168,63,.5)"></i>$0.20694 FAILURE TRIGGER — reclaim holds on two closes, −3.32% · <b>2.7× nearer</b></span>
-  <span><i style="background:rgba(91,191,134,.5)"></i>$0.20694–0.21156 the 2.23% band — reclaim held, floor lost Sep 4</span>
-  <span><i style="background:rgba(224,129,95,.5)"></i>$0.25845 campaign high · $0.22718 Sep 4 high · $0.21134 Sep 4 settle · $0.1596 thesis stop · $0.1480 death level</span>
+  <span style="font-weight:700;color:var(--amber)">Sep 9 levels:</span>
+  <span><i style="background:rgba(224,168,63,.5)"></i>$0.23332 CONTINUATION — <b>rejected 3× in five sessions</b>, +7.09%</span>
+  <span><i style="background:rgba(224,168,63,.5)"></i>$0.21156 FLOOR / failure trigger — <b>held 4 closes</b>, −2.90% · 2.45× nearer</span>
+  <span><i style="background:rgba(91,191,134,.5)"></i>$0.21156–0.23332 the compressing range · $0.20694 climax, held 6 closes</span>
+  <span><i style="background:rgba(224,129,95,.5)"></i>$0.25845 campaign high · $0.23201 Sep 8 high (0.56% short) · $0.21939 Sep 8 settle · $0.1596 thesis stop · $0.1480 death level</span>
   <span><i style="background:rgba(91,191,134,.25)"></i>Oct–Nov '26 core window</span>
 </div>
 
@@ -273,13 +273,16 @@
 // rank 27th→33rd percentile, because price rose against a 24-month mean that is still falling
 // ($0.48612→$0.48035). Still the lower third; still no vote.
 //
-// FEED CAVEAT — READ THIS BEFORE QUOTING curRatio/curPct. The recomputation was supplied against a price
-// series whose AUGUST CLOSE IS $0.19267, while this dashboard's price array carries $0.19781 for August, the
-// figure the authoritative Sep 5 Crypto.com monthly map states. Its curRatio 0.454 / curPct 33 are therefore
-// quoted against Sep = $0.21827 (a Sep 6 close), not against the $0.21134 this file carries. The per-month
-// percentile ARRAYS are materially unaffected — one month moving $0.00514 shifts a 24-month mean by
-// $0.000214, i.e. 0.045% — so they are adopted. curRatio/curPct are metadata that no code reads and are
-// carried as issued rather than recomputed against a series they were not derived from.
+// FEED CAVEAT, NOW PARTLY RESOLVED. The Sep 7 recomputation was supplied against a price series whose AUGUST
+// CLOSE IS $0.19267, against the $0.19781 this dashboard carries. THE SEP 9 MONTHLY MAP RESTATES AUGUST AT
+// $0.19781 — so the authoritative Crypto.com series has now stated that figure twice, on Sep 5 and Sep 9, and
+// the $0.19267 series is the outlier. The price array is correct as it stands and needs no change.
+// What remains is that curRatio 0.454 / curPct 33 were quoted against Sep = $0.21827 (a Sep 6 close), not the
+// $0.21939 Sep 8 close this file now carries. The per-month percentile ARRAYS are materially unaffected — one
+// month moving $0.00514 shifts a 24-month mean by $0.000214, i.e. 0.045% — so they stand. curRatio/curPct are
+// metadata that no code reads; bandOf() computes the live band from price[] and the arrays, so the chart and
+// tooltip already reflect the Sep 8 close. Neither the Sep 5 nor the Sep 9 map contains a Context Layer, so
+// there is nothing newer to adopt.
 //
 // spine fixed at 24m canonical; 36m/46m retained for the sensitivity peek only.
 // Percentiles are of the ratio price/spine over the months each spine exists. Forward months = null.
@@ -345,35 +348,38 @@ const price=[
   0.32,0.36,0.345,0.36,0.375,0.275,0.285,0.255,0.255,0.30,0.345,0.585, // 2023 (Dec high 0.6655, using 0.585 close)
   0.51,0.52,0.62,0.46,0.43,0.385,0.34,0.32,0.355,0.36,0.55,0.92,  // 2024 (late-2024 pop >1.00 post-election; Nov/Dec rally)
   0.99,0.65,0.62,0.58,0.68,0.62,0.71,0.78,0.81,0.62,0.42,0.38,    // 2025 (subdued, declining)
-  0.30,0.24,0.205,0.19,0.1797,0.1444,0.16826,0.19781,0.21134,     // 2026 Jan-Sep
-// Jun closed $0.1444 (-38.7%). Jul SETTLED at $0.16826 = +16.52%. AUGUST HAS NOW SETTLED at $0.19781 = +17.56%
-// — the third realised bar on the timeline, and it is no longer month-to-date. SEP 2026 = $0.21134 MONTH-TO-DATE,
-// the Sep 4 settled close, +6.84% on the month. The live Sep 5 candle ($0.21405, 16h14m remaining, 2.06M volume)
-// is excluded from every determination and drawn nowhere — it is used only as the cone anchor, exactly as the
-// report uses it.
+  0.30,0.24,0.205,0.19,0.1797,0.1444,0.16826,0.19781,0.21939,     // 2026 Jan-Sep
+// Jun closed $0.1444 (-38.7%). Jul SETTLED at $0.16826 = +16.52%. AUGUST SETTLED at $0.19781 = +17.56% —
+// re-confirmed by the Sep 9 map, which restates the August close and its 31.5% intramonth range on closes
+// ($0.17425 low close Aug 17, $0.22915 high close Aug 21, finishing in the lower half). SEP 2026 = $0.21939
+// MONTH-TO-DATE, the Sep 8 settled close on 11.30M, +10.91% on the month. The live Sep 9 candle ($0.21787,
+// 6h45m remaining) is excluded from every determination and drawn nowhere — it anchors the cone only.
 //
-// AUGUST TRAVELLED 31.5% AND FINISHED UP 17.56%, WHICH IS THE POINT OF READING THE CONE AS A BAND. The month ran
-// from a $0.17425 low close (Aug 17) to a $0.22915 high close (Aug 21) — a 31.5% peak-to-trough range ON CLOSES —
-// and settled in the LOWER HALF of that span. The Aug 22 blowoff printed the campaign high $0.25845 on 34.11M.
-// A month can travel 31% and end 17.6% up, which is why the central 50% band is a band and not a target.
+// A CAPPED BREAK-EVEN ATTEMPT INSIDE A COMPRESSING RANGE. The floor at $0.21156 has held FOUR consecutive
+// closes and the $0.20694 climax level SIX. The ceiling at $0.23332 has been approached three times in five
+// sessions and rejected every time, without a single settled close through it: Sep 4 high $0.22718 (2.63%
+// short, −6.97% give-back), Sep 7 $0.22639 (2.97% short, −2.69%), Sep 8 $0.23201 (only 0.56% short, −5.44%).
 //
-// A CAPPED BREAK-EVEN ATTEMPT, NOW OSCILLATING IN A 2.23% BAND. Sep 3 squeezed +9.94% on 12.40M and cleared BOTH
-// the $0.20694 climax reclaim and the $0.21156 breakout floor in one candle. Sep 4 gave one of them back: it
-// closed $0.21134, 0.10% BELOW the floor. THE RECLAIM HOLDS ON TWO CONSECUTIVE CLOSES; THE FLOOR DOES NOT.
-// Price now oscillates inside a 2.23%-wide band between a level it reclaimed and one it gave back.
+// THE APPROACHES TIGHTENED; THE GIVE-BACKS DID NOT, AND THAT IS THE WHOLE ARGUMENT. Tightening approaches into
+// a level read as building pressure — or as a terminal test. The give-back column (−6.97%, −2.69%, −5.44%) has
+// no trend and cannot separate the two hypotheses at n=3. Held as GENUINELY TWO-SIDED rather than mildly
+// bullish, which is the same discipline the Aug 27 rank rule was adopted to enforce.
 //
-// THE VOLUME SIGNATURE IS THE WHOLE READ AND IT POINTS THE OTHER WAY THIS SESSION. Sep 4 traded 14.08M on a
-// -4.42% DOWN day against 12.40M on Sep 3's +9.94% UP day — a 1.14x ratio, the heaviest session since the Aug 22
-// blowoff, with price reaching $0.22718 and surrendering 6.97% into the close. Under the volume rule adopted
-// Aug 6, an up move on expanding volume is demand and a down move on expanding volume is SUPPLY. This was the
-// latter, and it arrived within twenty-four hours of the squeeze that produced the reclaim. It is the clearest
-// bearish evidence since the Aug 11 trigger. It has FIRED NOTHING — the discriminator is a settled close below
-// $0.20694 and that has not happened — but it is why both near-horizon reads sit at 50 despite every tranche
-// being green.
+// THE VOLUME ASYMMETRY IS NOW MEASURED RATHER THAN IMPRESSIONISTIC, AND IT FAVOURS THE BEARS. Up sessions
+// (Sep 5 +3.29%, Sep 6 +2.39%) averaged 6.54M; down sessions (Sep 4 −4.42%, Sep 7 −1.44%, Sep 8 −0.41%)
+// averaged 12.01M — a 1.84x ratio. Sep 8 is the sharpest case: 11.30M of turnover for a −0.41% move, enormous
+// two-way transaction producing almost no price change. Under the Aug 6 volume rule that is supply meeting
+// every bid, and it is a five-session pattern rather than a one-day observation.
 //
-// THREE SQUEEZES, TWO FAILURES. This campaign has produced three squeeze-driven reclaims — Aug 19-20, Aug 21-22
-// and Sep 3 — of which two subsequently gave back the ground they took. That is not a prediction about the third;
-// it is a base rate from this campaign's own tape, n=3, and it is stated as small rather than ignored.
+// WHAT GENUINELY IMPROVED: the risk/reward geometry moved in the position's favour. On Sep 5 failure sat 3.32%
+// below and continuation 9.00% above — a 2.7x adverse asymmetry. Now failure is 2.90% below and continuation
+// 7.09% above, a 2.45x ratio, with the floor defended on four consecutive closes. A real structural
+// improvement, not a narrative one. The thesis stop is 26.75% below at 0 of 2 and has never been threatened.
+//
+// LIVE, AND UNFAVOURABLE, RECORDED ANYWAY: the rising-lows sequence broke on the Sep 9 candle —
+// $0.21546 -> $0.21438 -> $0.21500 -> $0.21348, the last 0.71% below Sep 8's low. It determines nothing and
+// the candle can still close anywhere, but it cuts against one of the two constructive arguments and is put on
+// the record while it is unfavourable.
   null,null,null,                                                 // 2026 Oct-Dec: future, no real price data -- see the volatility cone
   null,null,null,null,null,null,null,null,null,null,null,null,     // 2027: future, no real price data
   null,null,null,null,null,null,null,null,null,null,null,null      // 2028: future (Apr 2028 halving; Shmita 5789 opens Sep 21)
@@ -449,7 +455,7 @@ const wyckoff = [
   {s:105,e:106,kind:'markdown', label:'tracked: Phase D markdown'},
   {s:106,e:107,kind:'acc',      label:'tracked: Phase C springs — Jul 13 & Jul 28 ($0.15340), confirmed Jul 30'},
   {s:107,e:108,kind:'markup',   label:'tracked: Aug closed $0.19781 (+17.56%) — travelled 31.5% on closes, finished in the lower half'},
-  {s:108,e:109,kind:'markup',   label:'LIVE: reclaim holds, floor lost — 2.23% band, rank held 43/30/22 · volume says supply on Sep 4'},
+  {s:108,e:109,kind:'markup',   label:'LIVE: ceiling rejected 3×, floor held 4 closes — range compressing, rank held 44/27/24'},
 ];
 const liveStartIdx = 105; // June 2026 — verified index, where the framework's real-time RECORD begins
 // currentIdx is a DIFFERENT thing and the two must not be conflated: liveStartIdx is where live tracking started
@@ -492,14 +498,14 @@ const currentIdx = 108; // September 2026 — the month-to-date cell (Sep 4 sett
 // price happened to sit relative to it. THE 97% WAS MEASURING DISTANCE, NOT CONFIDENCE, and the month's final
 // ten days were spent falling back toward the line it had run from. Every session carried that disclosure; a
 // finished month now demonstrates it.
-const CONE_SPOT    = 0.21405;               // Sep 5 live price — the report anchors its cone here
-const CONE_SIGMA_D = 0.039640;              // full-window sigma, 3.9640%/day, n=48 (Jul 18 - Sep 4; 75.7% annualised)
-const CONE_ANCHOR  = Date.UTC(2026,8,5);    // Sep 5, 2026
+const CONE_SPOT    = 0.21787;               // Sep 9 live price — the report anchors its cone here
+const CONE_SIGMA_D = 0.039881;              // full-window sigma, 3.9881%/day, n=48 (Jul 22 - Sep 8; 76.2% annualised)
+const CONE_ANCHOR  = Date.UTC(2026,8,9);    // Sep 9, 2026
 const GATE_BULL    = 0.1900;                // BUY 3 gate    -> BULL band  (month-end close >= this)
 const GATE_BEAR    = 0.1480;                // death level   -> BEAR band  (month-end close <  this)
 const trajStart    = 108;                   // Sep 2026 — the first forecast month (Jun/Jul/Aug are realised closes)
 
-// days from the Sep 5 anchor to the last calendar day of the month at `idx`
+// days from the Sep 9 anchor to the last calendar day of the month at `idx`
 function coneDays(idx){ const mo=months[idx]; return (Date.UTC(mo.y, (mo.m%12)+1, 0) - CONE_ANCHOR)/86400000; }
 function coneSigma(idx){ const t=coneDays(idx); return t>0 ? CONE_SIGMA_D*Math.sqrt(t) : 0; }
 // percentile of the driftless lognormal: median = CONE_SPOT at z=0, +/-0.6745 sigma = 25th/75th, +/-1.645 = 5th/95th
@@ -521,29 +527,25 @@ function coneProbs(idx){
   return {bull, neutral: 1-bull-bear, bear};
 }
 
-// ── Sep 5, 2026 level ladder — the framework's own references, not price history ──
-// Distances quoted against the $0.21405 live price the report itself uses.
-// SEP 5 LADDER. The structural question is narrow and ASYMMETRIC AGAINST THE POSITION: the failure line at
-// $0.20694 is 3.32% below, the continuation line at $0.23332 is 9.00% above, so THE DOWNSIDE TRIGGER IS 2.7x
-// NEARER. That asymmetry is not a forecast — it is a measurement, and it is the single most decision-relevant
-// number in the report. Ordinary daily volatility reaches the downside trigger and does not reach the upside one,
-// on a 75%-deployed book.
+// ── Sep 9, 2026 level ladder — the framework's own references, not price history ──
+// Distances quoted against the $0.21787 live price the report itself uses.
+// SEP 9 LADDER. A compressing range: a defended floor and a thrice-rejected ceiling, resolving on a settled
+// close above $0.23332 or below $0.21156. THE ASYMMETRY HAS IMPROVED but still runs against the position —
+// failure is 2.90% below, continuation 7.09% above, a 2.45x ratio, down from 2.7x on Sep 5.
 const levelLines = [
-  {p:0.25845, kind:'res',  tier:3, tag:'campaign high',        label:'$0.25845 \u00b7 the Aug 22 buying climax high on 34.11M \u2014 campaign peak on both price and volume. Now +20.7% away.'},
-  {p:0.23332, kind:'gate', tier:1, tag:'CONTINUATION \u00b7 +9.00%',   label:'$0.23332 \u00b7 the CONTINUATION TRIGGER \u2014 a settled close at or above this confirms markup and retires the distribution read outright. +9.00% above live. Explicitly may NOT be lowered because price is below it.'},
-  {p:0.22718, kind:'res',  tier:2, tag:'Sep 4 high \u00b7 surrendered', label:'$0.22718 \u00b7 the Sep 4 intraday high \u2014 reached and then surrendered 6.97% into the close, on the heaviest volume since the Aug 22 blowoff. Supply exceeded demand at the highs. +6.1% above live.'},
-  {p:0.21156, kind:'res',  tier:2, tag:'breakout floor \u00b7 LOST',    label:'$0.21156 \u00b7 the BREAKOUT FLOOR \u2014 cleared by the Sep 3 squeeze and LOST again on Sep 4, which closed $0.21134, a 0.10% margin. Inside the \u00b10.15% band that normally forces a verification-pending classification, but independent feeds resolved it: Crypto.com $0.21134 (\u22120.10%) and CoinGecko $0.211273 (\u22120.13%), a 0.032% spread with BOTH on the same side of the level. The determination is dispute-proof despite the thin margin. \u22121.16% from live.'},
-  {p:0.21134, kind:'res',  tier:1, tag:'Sep 4 settle \u00b7 reference',  label:'$0.21134 \u00b7 the Sep 4 settled close, on 14.08M \u2014 the reference for every determination in this session. \u22124.42% on the day, and \u22121.27% from the live price.'},
-  {p:0.20694, kind:'gate', tier:1, tag:'FAILURE TRIGGER \u00b7 reclaim holds', label:'$0.20694 \u00b7 the FAILURE TRIGGER \u2014 a settled close below it re-promotes the distribution read. The climax reclaim HOLDS on two consecutive closes and the live Sep 5 low of $0.20914 stayed above it. 3.32% below live \u2014 2.7\u00d7 nearer than the continuation trigger, which is the most decision-relevant number in the report. Explicitly may NOT be raised because price is above it.'},
-  {p:0.1596,  kind:'hard', tier:1, tag:'THESIS STOP \u00b7 0 of 2', label:'$0.1596 \u00b7 THESIS STOP \u2014 two consecutive settled closes below = full exit \u00b7 0 of 2, 25.44% below live, untouched all campaign.'},
-  {p:0.148,   kind:'hard', tier:3, tag:'death level',          label:'$0.1480 \u00b7 DEATH LEVEL \u2014 30.86% below live. Also the BEAR threshold of the forward cone.'},
+  {p:0.25845, kind:'res',  tier:3, tag:'campaign high',        label:'$0.25845 \u00b7 the Aug 22 buying climax high on 34.11M \u2014 campaign peak on both price and volume. Now +18.6% away.'},
+  {p:0.23332, kind:'gate', tier:1, tag:'CONTINUATION \u00b7 REJECTED 3\u00d7',   label:'$0.23332 \u00b7 the CONTINUATION TRIGGER \u2014 a settled close at or above this confirms markup and retires the distribution read. +7.09% above live. APPROACHED THREE TIMES IN FIVE SESSIONS AND REJECTED EVERY TIME, without one settled close through it: Sep 4 ($0.22718, 2.63% short), Sep 7 ($0.22639, 2.97% short), Sep 8 ($0.23201, only 0.56% short). Explicitly may NOT be lowered because price is below it.'},
+  {p:0.23201, kind:'res',  tier:2, tag:'Sep 8 high \u00b7 0.56% short', label:'$0.23201 \u00b7 the Sep 8 intraday high \u2014 the closest the campaign has come to confirming markup, half a percent short of the trigger, then giving back 5.44% into the close. The approaches tightened (2.63% \u2192 2.97% \u2192 0.56%) but the give-backs did not (\u22126.97%, \u22122.69%, \u22125.44%): at n=3 that cannot separate building pressure from a terminal test, and it is held two-sided. +6.49% above live.'},
+  {p:0.21939, kind:'res',  tier:1, tag:'Sep 8 settle \u00b7 reference',  label:'$0.21939 \u00b7 the Sep 8 settled close, on 11.30M \u2014 the reference for every determination this session. That is 11.30M of turnover for a \u22120.41% move: enormous two-way transaction producing almost no price change, which under the Aug 6 volume rule is supply meeting every bid. +0.70% above live.'},
+  {p:0.21156, kind:'gate', tier:1, tag:'FLOOR \u00b7 held 4 closes', label:'$0.21156 \u00b7 the FLOOR and the FAILURE TRIGGER \u2014 a settled close below it re-promotes the distribution read. DEFENDED ON FOUR CONSECUTIVE CLOSES. 2.90% below live, and 2.45\u00d7 nearer than the continuation trigger. Explicitly may NOT be raised because price is above it.'},
+  {p:0.20694, kind:'sup',  tier:2, tag:'climax \u00b7 held 6 closes', label:'$0.20694 \u00b7 the Aug 22 CLIMAX LEVEL \u2014 reclaimed and now held on six consecutive closes. 5.02% below live. The deeper of the two structural supports beneath the current range.'},
+  {p:0.1596,  kind:'hard', tier:1, tag:'THESIS STOP \u00b7 0 of 2', label:'$0.1596 \u00b7 THESIS STOP \u2014 two consecutive settled closes below = full exit \u00b7 0 of 2, 26.75% below live, NEVER THREATENED all campaign.'},
+  {p:0.148,   kind:'hard', tier:3, tag:'death level',          label:'$0.1480 \u00b7 DEATH LEVEL \u2014 the BEAR threshold of the forward cone.'},
 ];
 const levelZones = [
-  // The 2.23% band the market is now caught inside: between a level it reclaimed and one it gave back. Same two
-  // bounds as the post-climax range, with the states now split — the reclaim holds on two consecutive closes,
-  // the floor does not. Neither discriminator is reachable in a normal session, which is why the four-branch
-  // tree carries "band persists" as its modal branch at 43%.
-  {lo:0.20694, hi:0.21156, kind:'sup', tier:2, tag:'the 2.23% band', label:'$0.20694\u2013$0.21156 \u00b7 THE 2.23% BAND \u2014 price oscillates between the climax reclaim, which HOLDS on two consecutive closes, and the breakout floor, which was LOST on Sep 4 at $0.21134. Band persists is the modal branch of the structural tree at 43%: neither discriminator is reachable in a normal session, and two weeks of oscillation suggest more of the same.'},
+  // The compressing range itself: a defended floor and a thrice-rejected ceiling. Everything resolves on a
+  // settled close through one edge or the other, and neither has happened.
+  {lo:0.21156, hi:0.23332, kind:'sup', tier:2, tag:'the compressing range', label:'$0.21156\u2013$0.23332 \u00b7 THE COMPRESSING RANGE \u2014 bounded below by a floor held on four consecutive closes and above by a continuation trigger rejected three times in five sessions. "Band persists" is the modal branch of the structural tree at 44%: the whole question resolves on a settled close through one edge, and neither has come.'},
 ];
 // Oct 4-17, 2026 core deployment window (month 29 post-halving, from the 363-376 day post-peak interval
 // off BTC's Oct 6, 2025 top). Shaded across Oct-Nov 2026 to match the BTC dashboard's autumn window.
@@ -682,7 +684,7 @@ function render(){
     svg.appendChild(el('text',{x:padL+plotW+8,y:gy+3,'font-size':9,fill:TH().subLabel},'$'+(v<1?v.toFixed(2):v.toFixed(1))));
   });
 
-  // ── Sep 5 level ladder + Oct-Nov '26 core window (drawn under the price line) ──
+  // ── Sep 9 level ladder + Oct-Nov '26 core window (drawn under the price line) ──
   if(state.layers.levels){
     const yTop=priceTop, yBot=priceTop+priceH;
     const showLabels = span<=40; // labels only when zoomed in enough to read them
@@ -923,7 +925,7 @@ function showTip(e, idx){
     ${state.layers.shmita ? `<div class="tt-row"><span class="tt-label">Shmita</span><span>${shmOn?(mo.y<=2022?'Yes (5782)':'Yes (5789)'):'No'}</span></div>`:''}
     ${state.layers.levels && inCore ? `<div class="tt-row" style="border-top:1px solid rgba(128,128,128,.2);margin-top:4px;padding-top:4px;"><span class="tt-label" style="color:#5bbf86">Cycle thesis</span><span style="color:#5bbf86">core window (Oct 4–17 '26)</span></div>`:''}
     ${hasCone&&pr?`<div style="border-top:1px solid rgba(128,128,128,.2);margin-top:4px;padding-top:4px;">
-    <div class="tt-row"><span class="tt-label" style="color:var(--amber)">Sep 5 cone</span><span style="color:var(--txt2)">σ ${(coneSigma(idx)*100).toFixed(1)}%</span></div>
+    <div class="tt-row"><span class="tt-label" style="color:var(--amber)">Sep 9 cone</span><span style="color:var(--txt2)">σ ${(coneSigma(idx)*100).toFixed(1)}%</span></div>
     <div class="tt-row"><span class="tt-label">95th</span><span>${f(conePct(idx,1.645))}</span></div>
     <div class="tt-row"><span class="tt-label">50% range</span><span>${f(conePct(idx,-0.6745))} – ${f(conePct(idx,0.6745))}</span></div>
     <div class="tt-row"><span class="tt-label">median (flat)</span><span>${f(CONE_SPOT)}</span></div>
@@ -962,7 +964,7 @@ document.querySelectorAll('button[data-zoom]').forEach(btn=>{
       state.viewEnd=months.findIndex(m=>m.y===2022&&m.m===11)+1;
     } else if(z==='live'){
       state.viewStart=Math.max(0,liveStartIdx-3);
-      // cap the span so the Sep 5 level-ladder labels stay readable (they hide when span>40, and the
+      // cap the span so the Sep 9 level-ladder labels stay readable (they hide when span>40, and the
       // month labels when span>30); N now runs to Dec 2028, which would otherwise blow the span open
       state.viewEnd=Math.min(N,liveStartIdx+24);
     }
@@ -1090,8 +1092,8 @@ applyTheme(savedTheme);
 // The monthly series on the chart above is Crypto.com and is the authoritative
 // one for every determination; this panel is structural context at a different
 // resolution and a different provider. The last bar here (w/c 2026-08-31) is an
-// IN-PROGRESS weekly candle at 0.22001 — it is not the Sep 4 settled close of
-// $0.21134 and is never used as one.
+// IN-PROGRESS weekly candle at 0.22001 — it is not the Sep 8 settled close of
+// $0.21939 and is never used as one.
 // ═══════════════════════════════════════════════════════════════════════════
 (function(){
 const B=[

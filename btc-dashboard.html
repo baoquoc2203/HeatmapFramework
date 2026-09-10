@@ -88,7 +88,7 @@
   </a>
 </div>
 <h1>BTC Framework Dashboard — Interactive</h1>
-<div class="meta">Crypto Reconnaissance Engine · <b>Jan 2014 → Sep 2026 live</b> (CRE v3.1 · Session 62 · Sep 5 level ladder, margin bands, cycle window &amp; calendar to Shmita 5789, Sep 2028–Sep 2029) · drag to pan, scroll/pinch to zoom, double-click to reset, hover for values, toggle layers below</div>
+<div class="meta">Crypto Reconnaissance Engine · <b>Jan 2014 → Sep 2026 live</b> (CRE v3.1 · Session 65 · Sep 9 level ladder, margin bands, cycle window &amp; calendar to Shmita 5789, Sep 2028–Sep 2029) · drag to pan, scroll/pinch to zoom, double-click to reset, hover for values, toggle layers below</div>
 
 <div class="controls">
   <div class="ctrl-group">
@@ -97,7 +97,7 @@
     <button class="toggle active" data-layer="shmita">Shmita</button>
     <button class="toggle active" data-layer="mercury">Mercury Rx</button>
     <button class="toggle active" data-layer="fng">Fear &amp; Greed</button>
-    <button class="toggle active" data-layer="levels">Sep 5 Levels + Bands</button>
+    <button class="toggle active" data-layer="levels">Sep 9 Levels + Bands</button>
   </div>
   <div class="ctrl-group">
     <span class="ctrl-label">Zoom</span>
@@ -118,7 +118,7 @@
   </div>
   <div class="ctrl-group">
     <span class="ctrl-label">Report</span>
-    <a class="zoom-btn" href="BTC_report_S62_sep05.html" style="text-decoration:none;">📊 Market GPS (Sep 5 · S62)</a>
+    <a class="zoom-btn" href="BTC_report_S65_sep09.html" style="text-decoration:none;">📊 Market GPS (Sep 9 · S65)</a>
   </div>
 </div>
 
@@ -146,16 +146,16 @@
   <span><i style="background:#2f6fb0"></i>Extreme greed</span>
   <span style="margin-left:12px"><i style="background:var(--amber)"></i>Mercury Rx / Shmita (on)</span>
   <span><i style="background:#1a1d24;border:1px solid #5ec8f0"></i>BTC price</span>
-  <span style="margin-left:8px;border-left:1px solid var(--bord);padding-left:12px;font-weight:700;color:var(--amber)">Sep 5 levels:</span>
-  <span><i style="background:rgba(224,168,63,.5)"></i>$81,484 UTAD high — 0.67 ATR above, approached twice intraday, never closed above</span>
-  <span><i style="background:rgba(224,168,63,.5)"></i>$80,256 zone floor — upside counter RESET 1 of 2 → 0 of 2 on Sep 4</span>
-  <span><i style="background:rgba(224,168,63,.5)"></i>$76,864 UTAD low — downside 0 of 2, 1.03 ATR below</span>
-  <span><i style="background:rgba(224,129,95,.5)"></i>$79,661 Sep 4 settle (reference close) · $75,627 20d SMA (close +5.33%)</span>
-  <span><i style="background:rgba(91,191,134,.5)"></i>$76,864–$80,256 post-UTAD range — Band C .44, six of seven closes inside</span>
-  <span><i style="background:rgba(224,129,95,.5)"></i>$57,803 FR-A008 cycle reference — 37.90% below, under pressure</span>
+  <span style="margin-left:8px;border-left:1px solid var(--bord);padding-left:12px;font-weight:700;color:var(--amber)">Sep 9 levels:</span>
+  <span><i style="background:rgba(224,168,63,.5)"></i>$81,484 UTAD high — 1.32 ATR above, never closed through in 11 sessions</span>
+  <span><i style="background:rgba(224,168,63,.5)"></i>$80,256 zone floor — 0.78 ATR above, counter fired twice and reset twice</span>
+  <span><i style="background:rgba(224,168,63,.5)"></i>$76,864 UTAD low — <b>0.70 ATR below, the nearer trigger for the first time since Sep 2</b></span>
+  <span><i style="background:rgba(224,129,95,.5)"></i>$78,461 Sep 8 settle (reference close) · $78,440 20d SMA — <b>price at the mean</b></span>
+  <span><i style="background:rgba(91,191,134,.5)"></i>$76,864–$80,256 post-UTAD range — Band C .48, nine of eleven closes inside</span>
+  <span><i style="background:rgba(224,129,95,.5)"></i>$57,803 FR-A008 cycle reference — 36.34% below, under pressure</span>
   <span><i style="background:rgba(91,191,134,.25)"></i>Autumn '26 window</span>
   <span style="margin-left:8px;border-left:1px solid var(--bord);padding-left:12px;font-weight:700;color:#9aa3bb">Margin bands ±0.15%:</span>
-  <span><i style="background:rgba(154,163,187,.45)"></i>$80,135–$80,376 and $81,362–$81,606 — a close inside is VOID; bands govern closes, not highs</span>
+  <span><i style="background:rgba(154,163,187,.45)"></i>$80,135–$80,376 (fired Sep 6, bar later revised by the venue) · $76,749–$76,979 <b>now live</b></span>
 </div>
 
 </div>
@@ -182,37 +182,37 @@ const price=[
   23100,23100,28500,29200,27200,30500,29200,25900,26900,34500,37700,42300,
   42600,61200,71300,60600,67500,62700,64600,58900,63300,70200,96400,93400,
   102000,84000,82000,94000,104000,107000,117000,112000,114000,126000,95000,87000,
-  88000,65000,70000,67000,71000,58634,62898,78587,79661,
+  88000,65000,70000,67000,71000,58634,62898,78587,78461,
   null,null,null,                                                  // 2026 Oct-Dec: future, no real price data yet
   null,null,null,null,null,null,null,null,null,null,null,null,     // 2027: future, no real price data
   null,null,null,null,null,null,null,null,null,null,null,null,     // 2028: future (Shmita 5789 opens Sep 21)
   null,null,null,null,null,null,null,null,null,null,null,null      // 2029: future (Shmita 5789 closes Sep 9)
 ];
-// Jun 2026 closed $58,634 and Jul 2026 SETTLED at $62,898 (Crypto.com) = +7.2%. AUGUST 2026 IS NOW A
-// SETTLED MONTH at $78,587.39 (the Aug 31 settled close, from the S62 post-UTAD session table) — it is no
-// longer month-to-date and no longer carries the LIVE badge. SEP 2026 = $79,660.75 MONTH-TO-DATE, the Sep 4
-// settled close. The Sep 5 candle was still in progress at the 13:02:06Z session epoch, trading at $79,712
-// (+0.06% vs Sep 4) on 0.127x volume with a range of only 0.45% — excluded from every determination, drawn
-// nowhere, gating nothing. Weekend session.
+// Jun 2026 closed $58,634 and Jul 2026 SETTLED at $62,898 (Crypto.com) = +7.2%. AUGUST 2026 SETTLED at
+// $78,587.39 (the Aug 31 close). SEP 2026 = $78,460.68 MONTH-TO-DATE, the Sep 8 settled close, carried from
+// Session 65. The Sep 9 candle was still in progress at the 11:21:27Z session epoch, trading at $78,806
+// (+0.44% vs Sep 8) on 0.300x volume — excluded from every determination, drawn nowhere, gating nothing.
 //
-// THE STRUCTURE IS NO LONGER A MARKUP READ. Aug 28 printed a UTAD at $81,484.26 and the reversal read has
-// stood for seven settled sessions without either side confirming. Sep 3 rose 5.09% and closed $81,270.10 —
-// the first close above the $80,255.76 zone floor, taking the upside falsification counter to 1 of 2 and
-// filling the pre-committed SELL 3 order at its 20% cap. Sep 4 fell 1.98% and closed $79,660.75, back below
-// the floor by $595.01 = 0.741%, and THE UPSIDE COUNTER RESET FROM 1 OF 2 TO 0 OF 2. The reset clause was
-// written into the S61 trigger block one session before it could fire, and it fired against the more
-// interesting reading. Downside 0 of 2, upside 0 of 2 — seven settled sessions, neither side ever at 2.
+// ELEVEN SETTLED SESSIONS SINCE THE UTAD AND BOTH COUNTERS STILL READ 0 OF 2. The upside counter has been
+// non-zero twice and reset twice: Sep 3 closed $81,270.10 above the $80,255.76 zone floor (1 of 2, and the
+// pre-committed SELL 3 filled at its 20% cap) and Sep 4 reset it; Sep 6 closed $80,344.15, inside the margin
+// band and therefore LOW-CONFIDENCE, and Sep 7 reset it again. Both resets landed against a close that had
+// looked like the start of something. Downside 0 of 2 throughout.
 //
-// Net over the Sep 3-4 pair from the Sep 2 close: +3.00%, combined span $5,330.76 = 6.69%. Sep 4's high of
-// $81,438.93 finished $45.33 (0.056%) BELOW the UTAD high and landed inside the +/-0.15% margin band
-// ($81,362.03-$81,606.49) — recorded as a fact and producing NO determination, because the bands govern
-// closes, not highs. ATR(14) fell to $2,710.50 = 3.40% of close, a second consecutive contraction.
-// 20d SMA $75,627.35, close +5.33% above. Drawdown -36.9% from the $126,198 ATH. 75% dry powder reserved
-// and untouched; SELL 3 filled and closed as an item; no new order armed.
+// PRICE IS BACK AT ITS MEAN FOR THE FIRST TIME SINCE THE AUG 19 BREAKOUT. Two down sessions — Sep 7 −1.54%
+// closing at 24.9% of range, Sep 8 −0.82% at 45.0% — put the Sep 8 close of $78,460.68 just +0.03% above the
+// 20-day SMA of $78,439.69, having been +10.09% above it at S56. Volume 0.501x then 0.770x, still below
+// average for a tenth consecutive session.
 //
-// NO ATTRIBUTION for either the Sep 3 advance or the Sep 4 reversal — the report obtained no verified cause
-// for either and invents none. Sep 5 is a Saturday: Tiers 2-5 obtained NO NEW DATA, so no macro, liquidity,
-// positioning or sentiment figure is asserted as fresh anywhere on this page.
+// THE GEOMETRY HAS TURNED SYMMETRIC FOR THE FIRST TIME SINCE THE UTAD. UTAD low 0.70 ATR below, zone floor
+// 0.78 ATR above, UTAD high 1.32 ATR above — and for the first time since Sep 2 the DOWNSIDE trigger is the
+// nearer one, needing only −2.03%. ATR(14) contracted a sixth consecutive session to $2,292.60 = 2.92% of
+// close, under 3% for the first time since Aug 22. The structure is compressing toward the middle of its own
+// range with both boundaries roughly equidistant.
+//
+// STILL NO ATTRIBUTION — none obtained for the Sep 3-4 pair (six sessions old), for Sep 6, or for the
+// two-session decline. None is invented. A one-session reporting gap is disclosed: no report was produced for
+// Sep 8, so S65 accounts for both Sep 7 and Sep 8 rather than skipping one.
 
 const fng=[
   null,null,null,null,null,null,null,null,null,null,null,null,     // 2014 — Alternative.me index did not exist yet
@@ -249,9 +249,9 @@ const fng=[
   // scale, different provider. The switch is recorded here rather than blended in silently, and the layer stays
   // [UNVALIDATED] — the BTC thread weights it at ZERO and the ADA thread gives it a small contrarian weight.
   //
-  // SEP 2026 IS DELIBERATELY BLANK. Session 62 is a Saturday and records "WEEKEND — NO NEW DATA OBTAINED" for
-  // Tiers 2-5: no releases, no filings, no flow prints, and no sentiment reading is asserted as fresh. There is
-  // therefore no September figure to carry, and none is estimated from August's.
+  // SEP 2026 IS DELIBERATELY BLANK. Session 65 again records "NO NEW DATA OBTAINED" for Tiers 2-5 — nothing in
+  // macro, liquidity, positioning or sentiment is asserted as fresh, and Tier 3.5 has no funding, open-interest
+  // or liquidation data. There is therefore still no September figure to carry, and none is estimated.
   null,null,null,null,null,null,null,null,null,null,null,null,
   null,null,null,null,null,null,null,null,null,null,null,null,
   null,null,null,null,null,null,null,null,null,null,null,null
@@ -312,68 +312,68 @@ const wyckoff = [
   {s:134,e:141,kind:'markup',  label:'2025 markup to ATH'},
   {s:141,e:150,kind:'markdown',label:'post-ATH markdown'},
   {s:150,e:151,kind:'markup',   label:'tracked: Jul 2026 markup'},
-  {s:151,e:153,kind:'dist',     label:'tracked: UTAD Aug 28 $81,484.26 — post-UTAD range, both counters 0 of 2'},
+  {s:151,e:153,kind:'dist',     label:'tracked: UTAD Aug 28 $81,484.26 — 11 sessions, both counters 0 of 2, price at the mean'},
 ];
-// LIVE CELL COLOUR: DISTRIBUTION. The framework's live read is no longer a markup. Aug 28 printed a UTAD at
-// $81,484.26 and the UTAD reversal read has now stood for SEVEN settled sessions with NEITHER SIDE EVER
-// REACHING 2 OF 2. Downside 0 of 2, upside 0 of 2. The structure has tested its low twice intraday, its high
-// twice intraday, and its upper boundary once on a close — and confirmed nothing.
-// THE UPSIDE COUNTER RESET THIS SESSION. Sep 3 closed $81,270.10, above the $80,255.76 zone floor, taking the
-// upside falsification counter to 1 of 2 and filling the pre-committed SELL 3 order at its 20% cap. Sep 4
-// closed $79,660.75 — back below the floor by $595.01 = 0.741% — and the counter reverted to 0 of 2. The reset
-// clause was written into the S61 trigger block ONE SESSION BEFORE it could fire: "a settled close back below
-// $80,255.76 resets the upside counter to 0 of 2. The two-close rule cuts both ways and is not relaxed because
-// the first close was large." The first close was a 5.09% session that also filled a standing order. It still
-// counted for exactly one, and the reset is mechanical. The UTAD reversal read is NOT falsified.
-// The determination was clean at 0.741% clear of the margin band, so it did not need the second daily-close
-// feed the framework still lacks after twenty-seven sessions.
-// NO ATTRIBUTION for the Sep 3-4 pair — a 5.09% advance and a 1.98% reversal on near-average volume plainly had
-// drivers; none was obtained and none is invented. Second consecutive session recording that gap. The Aug 28
-// two-catalyst problem stands eight sessions old: a $6.4bn Deribit settlement and the Warsh Jackson Hole
-// keynote shared the UTAD candle with no clean causal attribution.
+// LIVE CELL COLOUR: DISTRIBUTION. The framework's live read is the UTAD reversal, and after ELEVEN settled
+// sessions NEITHER SIDE HAS EVER REACHED 2 OF 2. Downside 0 of 2, upside 0 of 2. That is not a claim that
+// distribution is confirmed — it explicitly is not — it is the read that has not been falsified.
+// THE UPSIDE COUNTER HAS FIRED TWICE AND RESET TWICE, both times against a close that had looked like the
+// start of something. Sep 3 closed $81,270.10 clean above the $80,255.76 zone floor (1 of 2) and filled the
+// pre-committed SELL 3 at its 20% cap; Sep 4 closed back below and reset it. Sep 6 closed $80,344.15 — inside
+// the +/-0.15% margin band, so a LOW-CONFIDENCE 1 of 2 — and Sep 7 reset it again. The reset rule is symmetric
+// and has now been exercised twice in five sessions.
+// PRICE IS BACK AT ITS MEAN. The Sep 8 close of $78,460.68 sits +0.03% above the 20-day SMA of $78,439.69,
+// the first time since the Aug 19 breakout and down from +10.09% at S56. ATR(14) contracted a sixth session to
+// $2,292.60 = 2.92%, under 3% for the first time since Aug 22, and the geometry is near-symmetric — but the
+// DOWNSIDE trigger is now the nearer one at 0.70 ATR against 0.78 ATR to the zone floor.
+// A KNOWN BUG CLASS RECURRED THIS SESSION and was caught by hand rather than by the assertion written to
+// prevent it. An ascending band index was written into a descending probability vector, placing persistence
+// mass on the wrong band and flipping three losses into three apparent wins. Corrected: all three resolutions
+// LOSE to persistence. Adopted — one function returns the probability-vector slot directly and the ascending
+// helper is deleted, because two coexisting conventions were the defect and asserting between them did not hold.
+// NO ATTRIBUTION for the Sep 3-4 pair, for Sep 6, or for the two-session decline. None is invented.
 const liveStartIdx = 150; // July 2026 (Jan 2014 base: 12*12 + 6) — where the framework's real-time RECORD begins
 // currentIdx is a DIFFERENT thing and the two must not be conflated: liveStartIdx is where live tracking started,
 // currentIdx is the single month still in progress. Every month in [liveStartIdx, currentIdx) is a settled month
 // inside the live record — tracked in real time, but CLOSED. Only currentIdx is month-to-date and still moving,
 // so only currentIdx may carry the "LIVE" badge. Jul 2026 SETTLED at $62,898 and Aug 2026 SETTLED at $78,587;
 // Sep 2026 is the live month.
-const currentIdx = 152; // September 2026 — the month-to-date cell (Sep 4 settled close; Sep 5 candle excluded)
+const currentIdx = 152; // September 2026 — the month-to-date cell (Sep 8 settled close; Sep 9 candle excluded)
 
-// ── Sep 5, 2026 Market GPS (Session 62, CRE v3.1) level ladder — the framework's own references, not history ──
-// THE STRUCTURE IS A POST-UTAD RANGE AND EVERY COUNTER IS AT ZERO. Aug 28 printed a UTAD at $81,484.26. Seven
-// settled sessions later neither the upside nor the downside falsification counter has ever reached 2 of 2.
-// Sep 3 closed above the $80,255.76 zone floor (upside 1 of 2, SELL 3 filled at its 20% cap); Sep 4 closed
-// $595.01 = 0.741% back below it and THE COUNTER RESET TO 0 OF 2. Sep 4's high of $81,438.93 finished $45.33
-// (0.056%) short of the UTAD high and printed INSIDE the +/-0.15% margin band — no determination, because the
-// bands govern CLOSES, not highs, exactly as they produced none when three sessions traded through the
-// UTAD-low band intraday last week. The exposure migrated to the opposite end of the structure; the rule did not.
+// ── Sep 9, 2026 Market GPS (Session 65, CRE v3.1) level ladder — the framework's own references, not history ──
+// ELEVEN SETTLED SESSIONS SINCE THE UTAD AND EVERY COUNTER IS STILL AT ZERO. The upside counter has fired
+// twice and reset twice — Sep 3 clean above the zone floor then reset by Sep 4, and Sep 6 LOW-CONFIDENCE
+// inside the margin band then reset by Sep 7. Downside 0 of 2 throughout. The UTAD high has never been closed
+// through in eleven sessions.
+// THE NEAREST TRIGGER HAS SWITCHED SIDES. For the first time since Sep 2 the DOWNSIDE boundary is the closer
+// one: the UTAD low needs only −2.03% = 0.70 ATR, against +2.29% = 0.78 ATR to the zone floor. Price sits
+// +0.03% above its 20-day mean, back at the mean for the first time since the Aug 19 breakout.
 // TIER = how loudly this level should speak, ranked by the decision it actually informs right now.
 //   1 = decision-critical (the two falsification boundaries and the live reference close) — solid, bright, labelled
 //   2 = structural (the mean, and the level that governs the counters) — dashed, dim
 //   3 = distant or resolved — dotted, faint, deep-zoom labels only
 // `tag` is painted on the chart; `label` is the full sentence, kept verbatim and moved to the line's
-// native hover title. The same text also appears in the "Sep 5 Levels layer" paragraph below the chart.
+// native hover title.
 const levelLines = [
-  {p:81484, kind:'gate', tier:1, tag:'UTAD HIGH \u00b7 0.67 ATR above', label:'$81,484.26 \u00b7 the AUG 28 UTAD HIGH \u2014 the top of the structure and Band A\u2019s floor. A settled close above it requires +2.29% = 0.67 ATR. TWO sessions have now approached this level intraday without closing above it, and Sep 4\u2019s high fell $45.33 (0.056%) short. Its margin band is $81,362.03\u2013$81,606.49, and Sep 4\u2019s HIGH printed inside it \u2014 no determination, because bands govern closes.'},
-  {p:80256, kind:'gate', tier:1, tag:'ZONE FLOOR \u00b7 counter RESET 0 of 2', label:'$80,255.76 \u00b7 the ZONE FLOOR \u2014 the upside falsification level. TWO consecutive settled closes above it falsify the UTAD reversal read. Sep 3 closed $81,270.10 above it (1 of 2) and filled the pre-committed SELL 3 order at its 20% cap; Sep 4 closed $79,660.75, $595.01 = 0.741% back below, and THE COUNTER RESET TO 0 OF 2. Requires +0.75% = 0.22 ATR and then a second close. No position action attaches \u2014 SELL 3 has filled and the reserve is untouched.'},
-  {p:79661, kind:'res',  tier:1, tag:'Sep 4 settle \u00b7 reference close', label:'$79,660.75 \u00b7 the Sep 4 settled close, \u22121.98% on a $2,805.87 = 3.52% range, closing at 36.6% of range on 0.967\u00d7 volume. Every determination in Session 62 is made against this figure. VOID check: it sits +3.638% from the UTAD low, \u22120.741% from the zone floor and \u22122.238% from the UTAD high \u2014 all outside the \u00b10.15% margin, though the zone-floor clearance is the tightest of the three.'},
-  {p:76864, kind:'gate', tier:1, tag:'UTAD LOW \u00b7 1.03 ATR below', label:'$76,864.09 \u00b7 the UTAD LOW \u2014 the downside falsification level. TWO consecutive settled closes below it CONFIRM the UTAD reversal. Requires \u22123.51% = 1.03 ATR. Counter 0 of 2; three sessions traded through its margin band intraday last week and produced no determination, because bands govern closes.'},
-  {p:75627, kind:'ema',  tier:2, tag:'20d SMA \u00b7 +5.33%', label:'$75,627.35 \u00b7 20-day SMA, rising steeply \u2014 the Sep 4 close sits +5.33% above it, narrowing from +8.65%.'},
-  {p:57803, kind:'res',  tier:3, tag:'FR-A008 reference', label:'$57,803 \u00b7 the FR-A008 flagship cycle reference \u2014 a settled close below it before Nov 30, p=0.65. It sits 37.90% below live price, narrowing from 40.40% at S61. NOT REVISED: a narrowing gap is no more a trigger than a widening one. Status UNDER PRESSURE, fourth consecutive session.'},
+  {p:81484, kind:'gate', tier:1, tag:'UTAD HIGH \u00b7 1.32 ATR above', label:'$81,484.26 \u00b7 the AUG 28 UTAD HIGH \u2014 the top of the structure and Band A\u2019s floor. A settled close above it requires +3.85% = 1.32 ATR. THE LEVEL HAS NEVER BEEN CLOSED THROUGH IN ELEVEN SESSIONS. Its margin band is $81,362.03\u2013$81,606.49.'},
+  {p:80256, kind:'gate', tier:1, tag:'ZONE FLOOR \u00b7 0.78 ATR above', label:'$80,255.76 \u00b7 the ZONE FLOOR \u2014 the upside falsification level. TWO consecutive settled closes above it falsify the UTAD reversal read; requires +2.29% = 0.78 ATR. The counter has been non-zero twice and reset twice: Sep 3 closed $81,270.10 clean above it (and filled SELL 3 at the 20% cap) before Sep 4 reset it, then Sep 6 closed $80,344.15 INSIDE the margin band \u2014 a LOW-CONFIDENCE 1 of 2 \u2014 before Sep 7 reset it again. No position action attaches.'},
+  {p:78461, kind:'res',  tier:1, tag:'Sep 8 settle \u00b7 reference close', label:'$78,460.68 \u00b7 the Sep 8 settled close, \u22120.82% on a $1,878.44 = 2.39% range, closing at 45.0% of range on 0.770\u00d7 volume. Every determination in Session 65 is made against this figure. VOID check: it sits +2.077% from the UTAD low, \u22122.237% from the zone floor and \u22123.711% from the UTAD high \u2014 all clear of the \u00b10.15% margin.'},
+  {p:78440, kind:'ema',  tier:2, tag:'20d SMA \u00b7 close +0.03%', label:'$78,439.69 \u00b7 20-day SMA \u2014 the Sep 8 close sits just +0.03% above it. PRICE IS AT ITS MEAN FOR THE FIRST TIME SINCE THE AUG 19 BREAKOUT, having been +10.09% above it at S56.'},
+  {p:76864, kind:'gate', tier:1, tag:'UTAD LOW \u00b7 0.70 ATR below', label:'$76,864.09 \u00b7 the UTAD LOW \u2014 the downside falsification level, and THE NEAREST TRIGGER FOR THE FIRST TIME SINCE SEP 2. TWO consecutive settled closes below it CONFIRM the UTAD reversal; requires only \u22122.03% = 0.70 ATR. Counter 0 of 2. The level has been tested twice and reclaimed twice, which is why Band D is still set below both lognormals.'},
+  {p:57803, kind:'res',  tier:3, tag:'FR-A008 reference', label:'$57,803 \u00b7 the FR-A008 flagship cycle reference \u2014 a settled close below it before Nov 30, p=0.65. It sits 36.34% below live price, narrowing from 37.41%. NOT REVISED. Status UNDER PRESSURE, seventh consecutive session.'},
 ];
 
 // ── Margin bands and the post-UTAD range (CRE v3.1) — drawn through the same zone component, dimmed ──
-// These are NOT support/resistance calls. The two margin bands are the +/-0.15% measurement tolerance around
-// each falsification level: a close inside one is VOID and produces no determination, which is what makes a
-// determination outside one scoreable rather than a story told afterwards. Session 62 exercised the rule at
-// the top of the structure for the first time — Sep 4's HIGH printed inside the UTAD-high band and registered
-// nothing, because the bands govern closes on either side of the structure.
-// The post-UTAD range is Band C of the live tree: the span between the two falsification levels, where six of
-// the seven post-UTAD closes have landed.
+// The two margin bands are the +/-0.15% measurement tolerance around each falsification level: a close inside
+// one is LOW-CONFIDENCE or VOID and produces no clean determination. The zone-floor band fired once, on Sep 6
+// — and the venue subsequently REVISED that exact bar, from $80,344.16 to $80,344.15 with volume 828.58511 ->
+// 828.58438. The determination is unchanged and the magnitude is one cent, but the framework had already
+// flagged that close as unverifiable and the venue then revised it, which is the point.
+// THE UTAD-LOW BAND IS NOW THE LIVE ONE at 0.70 ATR. Still no second daily-close feed, thirty-one sessions.
 const levelZones = [
-  {lo:76864, hi:80256, kind:'sup', tier:2, tag:'post-UTAD range \u00b7 Band C .44', label:'$76,864.09\u2013$80,255.75 \u00b7 the POST-UTAD RANGE \u2014 Band C of FR-B014 at p=.44, the modal branch, and where SIX of the SEVEN post-UTAD settled closes have landed. Bounded by the two falsification levels; the range holds until one of them takes two consecutive closes.'},
-  {lo:80135, hi:80376, kind:'zone', tier:3, tag:'zone-floor margin band \u00b10.15%', label:'$80,135.38\u2013$80,376.14 \u00b7 the \u00b10.15% MARGIN BAND around the zone floor. A close inside it is VOID and determines nothing. The Sep 4 close cleared it by 0.741% \u2014 the tightest clearance of the three active levels, but clean, so the counter reset did not need the second daily-close feed the framework still lacks.'},
-  {lo:81362, hi:81606, kind:'zone', tier:3, tag:'UTAD-high margin band \u00b10.15%', label:'$81,362.03\u2013$81,606.49 \u00b7 the \u00b10.15% MARGIN BAND around the UTAD high. Sep 4\u2019s HIGH of $81,438.93 printed inside it. Recorded as a fact and producing NO determination \u2014 the bands govern closes, not highs, and the same answer applies at both ends of the structure.'},
+  {lo:76864, hi:80256, kind:'sup', tier:2, tag:'post-UTAD range \u00b7 Band C .48', label:'$76,864.09\u2013$80,255.75 \u00b7 the POST-UTAD RANGE \u2014 Band C of FR-B017 at p=.48, the modal branch, and where NINE of the ELEVEN post-UTAD settled closes have landed. Price now sits at the 20-day mean inside it.'},
+  {lo:80135, hi:80376, kind:'zone', tier:3, tag:'zone-floor margin band \u00b10.15%', label:'$80,135.38\u2013$80,376.14 \u00b7 the \u00b10.15% MARGIN BAND around the zone floor. FIRED ONCE, on Sep 6, whose close of $80,344.15 sat 0.1101% inside it \u2014 logged as a LOW-CONFIDENCE 1 of 2 and VOID for FR-B011. The venue later revised that same bar by one cent, on the one close the framework had already called unverifiable.'},
+  {lo:76749, hi:76979, kind:'zone', tier:3, tag:'UTAD-low margin band \u00b7 LIVE', label:'$76,748.79\u2013$76,979.39 \u00b7 the \u00b10.15% MARGIN BAND around the UTAD low \u2014 NOW THE LIVE ONE at 0.70 ATR below the close. A close inside it determines nothing cleanly, and there is still no second daily-close feed after thirty-one sessions.'},
 ];
 // Cycle-timing thesis: autumn 2026 (core Oct–Nov) highest-conviction bottom window
 const autumnStart = 153, autumnEnd = 155; // Oct 2026 .. Nov 2026 (exclusive end)
