@@ -201,12 +201,12 @@
   <div class="wyk-head">
     <div>
       <h2>Wyckoff cycle — events &amp; phases</h2>
-      <div class="wyk-sub">ADA/USD · <b>weekly</b> · Jan 2024 → Sep 2026 · schematic layout after Bogomazov / Pruden</div>
+      <div class="wyk-sub">ADA/USD · <b>weekly</b> · Jan 2024 → 10 Sep 2026 · schematic layout after Bogomazov / Pruden</div>
     </div>
     <div class="wyk-px">
       <div class="p" id="wykP">—</div>
       <div class="d" id="wykD">—</div>
-      <div class="src">CoinGecko · 140 weekly bars<br>separate feed from the monthly Crypto.com series above</div>
+      <div class="src">CoinGecko · 141 weekly bars · live spot<br>separate feed from the monthly Crypto.com series above</div>
     </div>
   </div>
 
@@ -246,7 +246,7 @@
     <span><i style="background:var(--dist)"></i>Distribution</span>
     <span><i style="background:var(--markdown)"></i>Markdown</span>
     <span style="margin-left:8px;border-left:1px solid var(--bord);padding-left:12px"><span class="wyk-bx">SOS</span>&nbsp;event confirmed by a measured price–volume signature</span>
-    <span><span class="wyk-bx i">UTAD</span>&nbsp;label is interpretive — the Aug 2025 push to $1.01446 never exceeded the range high of $1.30450; the alternative read is that it is only an LPSY and the Mar 2025 UT at $1.13332, on the heaviest volume in 140 weeks, is the real UTAD</span>
+    <span><span class="wyk-bx i">UTAD</span>&nbsp;label is interpretive — the Aug 2025 push to $1.01446 never exceeded the range high of $1.30450; the alternative read is that it is only an LPSY and the Mar 2025 UT at $1.13332, on the heaviest volume in 141 weeks, is the real UTAD</span>
   </div>
   <div class="legend-row">
     <span><i class="wyk-sw" style="border-color:var(--amber)"></i>Support / resistance drawn from the labelled events</span>
@@ -1083,7 +1083,7 @@ try{ const s = localStorage.getItem('cre-theme'); if(s==='light'||s==='dark') sa
 applyTheme(savedTheme);
 
 // ═══════════════════════════════════════════════════════════════════════════
-// Wyckoff cycle schematic — weekly ADA/USD, Jan 2024 → Sep 2026.
+// Wyckoff cycle schematic — weekly ADA/USD, Jan 2024 → 10 Sep 2026. 141 bars.
 // Wrapped in an IIFE on purpose: this file already owns top-level W, H, state,
 // price, wyckoff, svg, tooltip and render(), and every one of them would clash.
 // Nothing below leaks, and nothing above is touched.
@@ -1091,9 +1091,20 @@ applyTheme(savedTheme);
 // SEPARATE FEED, STATED RATHER THAN BLENDED. These are CoinGecko WEEKLY bars.
 // The monthly series on the chart above is Crypto.com and is the authoritative
 // one for every determination; this panel is structural context at a different
-// resolution and a different provider. The last bar here (w/c 2026-08-31) is an
-// IN-PROGRESS weekly candle at 0.22001 — it is not the Sep 8 settled close of
-// $0.21939 and is never used as one.
+// resolution and a different provider, and the two do NOT agree to the digit.
+// The w/c 2026-08-31 bar has settled and was revised in the process — close
+// 0.22001 → 0.22128, volume 2682 → 3097. The last bar (w/c 2026-09-07) is
+// IN PROGRESS, and NOW = 0.21254 is a LIVE SPOT, not a close. Neither is the
+// Sep 8 Crypto.com settled close of $0.21939, and neither is ever used as one.
+//
+// BU/LPS HAS HELD SO FAR, AND THE PANEL SAYS ONLY THAT. The Aug 31 low of
+// $0.19232 was followed by a recovery to $0.22936, and the current week's low of
+// $0.20973 still sits above the old range ceiling of $0.20882 — broken
+// resistance now acting as support. But price has NOT taken out the SOS high of
+// $0.25429: two weeks sideways between $0.2097 and $0.2294. Phase D therefore
+// extends to the current week WITHOUT a fresh SOS, and it is negated by a close
+// below $0.17173. Phase E has not begun, so that column stays hatched and empty
+// and no projection is drawn.
 // ═══════════════════════════════════════════════════════════════════════════
 (function(){
 const B=[
@@ -1166,7 +1177,8 @@ const B=[
 ["2026-07-13",0.16199,0.16842,0.15613,0.16581,1846],["2026-07-20",0.16605,0.17994,0.16133,0.16566,1766],
 ["2026-07-27",0.16587,0.18984,0.15417,0.18964,2345],["2026-08-03",0.18937,0.20882,0.18271,0.19722,3269],
 ["2026-08-10",0.19443,0.19815,0.17521,0.17521,1404],["2026-08-17",0.17481,0.25429,0.17173,0.22666,4112],
-["2026-08-24",0.22683,0.22699,0.19823,0.19823,2834],["2026-08-31",0.19267,0.22568,0.19232,0.22001,2682]];
+["2026-08-24",0.22683,0.22699,0.19823,0.19823,2834],["2026-08-31",0.19267,0.22568,0.19232,0.22128,3097],
+["2026-09-07",0.22332,0.22936,0.20973,0.21484,1913]];
 
 // swing-line vertices — every value is a real weekly high or low
 const ZIG=[["2024-01-01",0.63521],["2024-01-22",0.4524],["2024-03-11",0.80097],["2024-04-15",0.43177],
@@ -1181,8 +1193,8 @@ const ZIG=[["2024-01-01",0.63521],["2024-01-22",0.4524],["2024-03-11",0.80097],[
 ["2026-01-12",0.43357],["2026-02-02",0.24991],["2026-02-23",0.3214],["2026-03-02",0.25255],
 ["2026-03-16",0.31259],["2026-04-13",0.2364],["2026-05-04",0.28706],["2026-06-01",0.14969],
 ["2026-06-15",0.18908],["2026-06-22",0.13883],["2026-06-29",0.19961],["2026-07-27",0.15417],
-["2026-08-03",0.20882],["2026-08-10",0.17521],["2026-08-17",0.25429],["2026-08-31",0.19232]];
-const NOW=0.22001;   // in-progress weekly bar, drawn half a slot past the last vertex
+["2026-08-03",0.20882],["2026-08-10",0.17521],["2026-08-17",0.25429],["2026-08-31",0.19232],["2026-09-07",0.22936]];
+const NOW=0.21254;   // live spot, drawn half a slot past the last vertex
 
 // s:+1 label above, -1 below.  f:false = interpretive (dashed box)
 const EV=[
@@ -1213,14 +1225,14 @@ const STAGE=[
  {k:"MARKUP",      from:"2024-11-04",to:"2024-11-11",c:"up"},
  {k:"DISTRIBUTION",from:"2024-11-18",to:"2025-09-29",c:"dn"},
  {k:"MARKDOWN",    from:"2025-10-06",to:"2026-05-25",c:"mdn"},
- {k:"ACCUMULATION",from:"2026-06-01",to:"2026-08-31",c:"acc"}
+ {k:"ACCUMULATION",from:"2026-06-01",to:"2026-09-07",c:"acc"}
 ];
 const PH=[
  {k:"A",from:"2024-11-18",to:"2025-01-20"},{k:"B",from:"2025-01-27",to:"2025-07-28"},
  {k:"C",from:"2025-08-04",to:"2025-09-01"},{k:"D",from:"2025-09-08",to:"2025-09-29"},
  {k:"E",from:"2025-10-06",to:"2026-05-25"},
  {k:"A",from:"2026-06-01",to:"2026-06-22"},{k:"B",from:"2026-06-29",to:"2026-08-03"},
- {k:"C",from:"2026-08-10",to:"2026-08-10"},{k:"D",from:"2026-08-17",to:"2026-08-31"},
+ {k:"C",from:"2026-08-10",to:"2026-08-10"},{k:"D",from:"2026-08-17",to:"2026-09-07"},
  {k:"E",from:null,to:null}
 ];
 const LV=[
@@ -1307,8 +1319,13 @@ function draw(){
         ctx.beginPath();ctx.moveTo(Math.round(x0)+.5,pT);ctx.lineTo(Math.round(x0)+.5,vB);
         ctx.stroke();ctx.setLineDash([]);}
       ctx.font="700 11px "+FS;
-      const lt="Phase "+p.k, lw=ctx.measureText(lt).width, mid=(x0+x1)/2;
-      if(x1-x0<lw+10 || mid-lw/2 < phR+8) return;   // no room, or it would touch its neighbour
+      // Fall back to the bare letter when "Phase X" will not fit. Without this the CURRENT phase
+      // disappears at narrow widths precisely when it matters — Phase D measured 49.8px of span
+      // against a 55.2px label and was dropped, while wider neighbours kept their names.
+      let lt="Phase "+p.k, lw=ctx.measureText(lt).width;
+      if(x1-x0<lw+10){ lt=p.k; lw=ctx.measureText(lt).width; }
+      const mid=(x0+x1)/2;
+      if(x1-x0<lw+6 || mid-lw/2 < phR+8) return;    // still no room, or it would touch its neighbour
       phR=mid+lw/2;
       ctx.fillStyle=p.from===null?C.txt2:C.amber;
       ctx.globalAlpha=p.from===null?.6:1;
