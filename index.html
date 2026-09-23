@@ -126,26 +126,26 @@
 const tokens = {
   BTC: {
     full:'Bitcoin', symbol:'\u20bf', color:'#F7931A',
-    tagline:'The UTAD is falsified and the structure that governed this campaign for twenty-two sessions is gone. Sep 18 and Sep 19 both closed above the $80,255.76 zone floor, outside the margin band, CLEAN and cross-verified \u2014 under a trigger that had sat dormant since it was written. Four sessions, three structural states, no trades: the read went confirmed markdown \u2192 markdown held \u2192 reclaim \u2192 falsified while the position did not move once, because every structural change since the UTAD was deliberately left unarmed. Two details cut the other way and are recorded now rather than after: Sep 19 pierced the old UTAD high intraday and closed back below it for the second straight day, and the whole advance ran on lighter volume than the selling it reversed.',
-    phase:'Range \u00b7 upper edge under test', phaseSub:'UTAD FALSIFIED 2 of 2 \u00b7 markup gate 0 of 2 \u00b7 range re-entry 0 of 2',
-    conf:'\u2014', confLabel:'Confidence \u00b7 not reported in Session 75',
-    confSub:'CRE v3.1 S75 publishes no per-horizon confidence score, so none is shown. Structural risk MEDIUM, lowered from High \u00b7 action WAIT, no order attached to any branch \u00b7 the framework holds NO directional structural claim and says so \u00b7 75% dry powder reserved, window opens in 13 days.',
-    price:'$81,265', priceSub:'Sep 19, 2026 settled close (+0.45%, 0.61\u00d7 vol) \u00b7 Sep MTD; Aug settled $78,587',
+    tagline:'Markup is confirmed. Sep 22 settled +4.754% above the $82,292.62 gate, a second consecutive close outside the margin band, CLEAN and cross-verified within 0.025%. Structural risk drops to Medium\u2013Low exactly as pre-registered, and the confirmation arms nothing. Spot demand finally appears in the record rather than just in liquidation prints: $998.95M of US spot-ETF net inflows on Sep 21, about 11,530 BTC with every reporting fund positive. The gate now inverts into the invalidation \u2014 two closes back below it would undo the markup as quickly as it was confirmed, which the last three weeks have demonstrated twice.',
+    phase:'Markup \u00b7 CONFIRMED 2 of 2', phaseSub:'gate now the invalidation, 0 of 2 \u00b7 swing high $87,411 reported, not gated',
+    conf:'\u2014', confLabel:'Confidence \u00b7 not reported in Session 78',
+    confSub:'CRE v3.1 + Astro Overlay S78 publishes no per-horizon confidence score, so none is shown. Structural risk MEDIUM\u2013LOW, lowered from Medium \u00b7 action WAIT, the confirmation arms nothing \u00b7 75% dry powder reserved, window opens in 10 days.',
+    price:'$86,205', priceSub:'Sep 22, 2026 settled close (\u22120.47%, 1.03\u00d7 vol) \u00b7 Sep MTD; Aug settled $78,587',
     reports:[
       {label:'Heatmap', href:'btc-dashboard.html'},
-      {label:'\ud83d\udcca Market GPS (Sep 20 \u00b7 S75)', href:'BTC_report_S75_sep20.html'},
+      {label:'\ud83d\udcca Market GPS (Sep 23 \u00b7 S78)', href:'BTC_report_S78_sep23.html'},
     ]
   },
   ADA: {
     full:'Cardano', symbol:'\u20b3', logo:'cardano-logo.svg', color:'#2a52d4',
-    tagline:'The reclaim structure is fully intact and the ceiling is the only unresolved level. Every lower boundary has held \u2014 the floor on two closes, the discriminator on two, the shelf on three since it was reclaimed Sep 17. The $0.23332 trigger has now been rejected four times in sixteen sessions, and Sep 19 cleared it INTRADAY for the first time at $0.23500 before closing 2.31% below. The approaches tightened monotonically; the give-backs did not, and at n=4 that still cannot separate building pressure from a terminal test. Volume is the honest counterweight: 14.08M \u2192 10.66M \u2192 11.30M \u2192 9.72M, each attempt lighter than the first while Sep 19 printed the highest.',
-    phase:'Range persists \u00b7 42/30/23', phaseSub:'ceiling rejected 4\u00d7, first intraday clear \u00b7 all lower levels held',
-    conf:'54 / 56 / 58', confLabel:'Confidence \u00b7 T / S / C (never blended)',
-    confSub:'Aggressiveness 3/10 \u00b7 75% deployed, all four tranches +10.9% to +26.0% \u00b7 stop 0 of 2, 27.64% below, never tested this campaign',
-    price:'$0.22792', priceSub:'Sep 19, 2026 settled close (Sep MTD +15.22%, round-tripped twice) \u00b7 Aug settled $0.19781',
+    tagline:'The continuation trigger confirmed on two consecutive settled closes, after four rejections. Sep 21 closed +5.19% over $0.23332 and Sep 22 +8.96%, clearing the void band by 35\u00d7 and 60\u00d7 \u2014 and the volume signature inverted with it: 11.60M to 16.80M, +44.9%, the heaviest session since the Aug 22 blowoff, on an up close. The four failed attempts had each printed higher on lighter participation, which was the distribution case; that case is now retired by the market rather than by reinterpretation. SELL 1 has still not armed: it needs a settled close above $0.25845 and the live candle\u2019s $0.26217 print is intraday only. A wick is not a close.',
+    phase:'Phase E markup \u00b7 CONFIRMED', phaseSub:'distribution alternate retired \u00b7 Z004 first scoreable touch \u00b7 invalidation ladder adopted',
+    conf:'62 / 64 / 60', confLabel:'Confidence \u00b7 T / S / C (never blended)',
+    confSub:'Aggressiveness 4/10 \u00b7 75% deployed, all four tranches +27% to +40% \u00b7 invalidation ladder $0.19000 / $0.18050 / $0.17300 / $0.15960, all 25\u201337% below live',
+    price:'$0.25423', priceSub:'Sep 22, 2026 settled close (Sep MTD +28.52%, travelled 30.1%) \u00b7 Aug settled $0.19781',
     reports:[
       {label:'Heatmap', href:'ada-dashboard.html'},
-      {label:'\ud83d\udcca Monthly Map (Sep 20)', href:'ADA_monthly_map_sep20.html'},
+      {label:'\ud83d\udcca Monthly Map (Sep 23)', href:'ADA_monthly_map_sep23.html'},
     ]
   }
 };
@@ -164,8 +164,8 @@ function applyToken(key){
   document.getElementById('tagline').textContent = t.tagline;
   document.getElementById('phaseVal').textContent = t.phase;
   document.getElementById('phaseSub').textContent = t.phaseSub;
-  // Confidence is reported per horizon class and never blended. ADA (Sep 20) gives T 54 / S 56 / C 58; BTC's
-  // Session 75 report gives NO confidence score at all, so its card shows an em dash and says so rather than
+  // Confidence is reported per horizon class and never blended. ADA (Sep 23) gives T 62 / S 64 / C 60; BTC's
+  // Session 78 report gives NO confidence score at all, so its card shows an em dash and says so rather than
   // carrying the stale S53 figures or inventing one — the card renders whatever shape its asset actually reports.
   document.getElementById('confLabel').textContent = t.confLabel || 'Model Confidence';
   document.getElementById('confVal').textContent = t.conf;
