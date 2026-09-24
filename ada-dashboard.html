@@ -201,12 +201,12 @@
   <div class="wyk-head">
     <div>
       <h2>Wyckoff cycle — events &amp; phases</h2>
-      <div class="wyk-sub">ADA/USD · <b>weekly</b> · Jan 2024 → 20 Sep 2026 · schematic layout after Bogomazov / Pruden</div>
+      <div class="wyk-sub">ADA/USD · <b>weekly</b> · Jan 2024 → 24 Sep 2026 · schematic layout after Bogomazov / Pruden</div>
     </div>
     <div class="wyk-px">
       <div class="p" id="wykP">—</div>
       <div class="d" id="wykD">—</div>
-      <div class="src">CoinGecko · 142 weekly bars · live spot<br>separate feed from the monthly Crypto.com series above</div>
+      <div class="src">CoinGecko · 143 weekly bars · live spot<br>separate feed from the monthly Crypto.com series above</div>
     </div>
   </div>
 
@@ -246,7 +246,8 @@
     <span><i style="background:var(--dist)"></i>Distribution</span>
     <span><i style="background:var(--markdown)"></i>Markdown</span>
     <span style="margin-left:8px;border-left:1px solid var(--bord);padding-left:12px"><span class="wyk-bx">SOS</span>&nbsp;event confirmed by a measured price–volume signature</span>
-    <span><span class="wyk-bx i">UTAD</span>&nbsp;label is interpretive — the Aug 2025 push to $1.01446 never exceeded the range high of $1.30450; the alternative read is that it is only an LPSY and the Mar 2025 UT at $1.13332, on the heaviest volume in 142 weeks, is the real UTAD</span>
+    <span><span class="wyk-bx i">SOS 2?</span>&nbsp;the live interpretive label — Sep 23 cleared the $0.25429 SOS high by 2.16% then gave back 89% of the day's range; a weekly close above $0.25429 is what would confirm it</span>
+  <span><span class="wyk-bx i">UTAD</span>&nbsp;also interpretive — the Aug 2025 push to $1.01446 never exceeded the range high of $1.30450; the alternative read is that it is only an LPSY and the Mar 2025 UT at $1.13332, on the heaviest volume in 143 weeks, is the real UTAD</span>
   </div>
   <div class="legend-row">
     <span><i class="wyk-sw" style="border-color:var(--amber)"></i>Support / resistance drawn from the labelled events</span>
@@ -1089,7 +1090,7 @@ try{ const s = localStorage.getItem('cre-theme'); if(s==='light'||s==='dark') sa
 applyTheme(savedTheme);
 
 // ═══════════════════════════════════════════════════════════════════════════
-// Wyckoff cycle schematic — weekly ADA/USD, Jan 2024 → 20 Sep 2026. 142 bars.
+// Wyckoff cycle schematic — weekly ADA/USD, Jan 2024 → 24 Sep 2026. 143 bars.
 // Wrapped in an IIFE on purpose: this file already owns top-level W, H, state,
 // price, wyckoff, svg, tooltip and render(), and every one of them would clash.
 // Nothing below leaks, and nothing above is touched.
@@ -1098,28 +1099,29 @@ applyTheme(savedTheme);
 // The monthly series on the chart above is Crypto.com and is the authoritative
 // one for every determination; this panel is structural context at a different
 // resolution and a different provider, and the two do NOT agree to the digit.
-// The w/c 2026-09-07 bar was IN PROGRESS at the last refresh and has now SETTLED
-// well below where it then stood — low 0.20973 → 0.20233 and close 0.21484 →
-// 0.20258 on volume 1913 → 3045. That is the bar completing, not a revision, and
-// it is the reason a live weekly print is never treated as a close here.
-// NOW = 0.21978 is a LIVE SPOT. Neither it nor the 0.21943 weekly close is the
-// Sep 22 Crypto.com settled close of $0.25423, and neither is ever used as one.
+// The w/c Sep 14 close has moved 0.21943 -> 0.22840 (volume 3311 -> 3281) since
+// the last refresh: that bar was pulled on its own final day, so it had not
+// finished moving. NOW = 0.24195 is a LIVE SPOT. Neither it nor the 0.24103
+// weekly close is the Sep 22 Crypto.com settled close of $0.25423, and neither
+// is ever used as one.
 //
-// THE OLD RANGE CEILING WAS RECLAIMED ON A WEEKLY CLOSE — AND THE DAMAGE STANDS.
-// The w/c Sep 14 bar dug to $0.19103 and closed $0.21943 after tagging $0.23441,
-// so the $0.20882 ceiling of the old range is reclaimed by a full weekly close:
-// broken resistance now acting as support. That is a point FOR Phase D, and the
-// BU/LPS marker moves down to this deeper low.
-// It does not erase what the probe cost. $0.19103 gave back 76.6% of the entire
-// SOS impulse ($0.17173 → $0.25429), and the back-up has now run FOUR WEEKS.
-// Price is still nowhere near the SOS high of $0.25429.
+// THE CONDITION SET LAST REFRESH WAS MET — AND THE BREAK WAS NOT DECISIVE.
+// The threshold written here last time was a move above the SOS high of
+// $0.25429 to restore Phase D. Price reached $0.25978 on Sep 23, clearing it by
+// 2.16%, and the demand behind it is real: four days into the week volume is
+// already 3,106M, about 777M/day against the 587M/day of the original SOS week.
+// But on that same Sep 23 price was pushed back from $0.25978 to close $0.23862,
+// giving back 89% OF THE DAY'S RANGE, and spot now sits at $0.24195, −5.4% on
+// 24h. A thin new high that is immediately rejected is also the signature of an
+// UPTHRUST, not only of strength.
 //
-// THE CAUTIOUS READ IS CARRIED UNCHANGED, NOT QUIETLY DROPPED. The UPTHRUST
-// alternative — that $0.25429 was a false high and the range is still building a
-// base in Phase B/C — is NOT eliminated by a ceiling reclaim. Only a decisive
-// move above $0.25429 restores Phase D outright. Negation of the whole structure
-// remains a close below $0.17173. Phase E has not begun, so that column stays
-// hatched and empty and no projection is drawn.
+// SO THE NEW MARKER IS DASHED. "SOS 2?" is registered as INTERPRETIVE, in the
+// same class as the 2025 UTAD label: the balance has tilted toward Phase D but
+// it is NOT settled. CONFIRMATION REQUIRES A WEEKLY CLOSE ABOVE $0.25429 —
+// an intraday print does not supply it, the same standard the monthly chart
+// above applies to its own campaign high. Negation remains a close below
+// $0.17173. Phase E has not begun, so that column stays hatched and empty and
+// no projection is drawn.
 // ═══════════════════════════════════════════════════════════════════════════
 (function(){
 const B=[
@@ -1194,7 +1196,8 @@ const B=[
 ["2026-08-10",0.19443,0.19815,0.17521,0.17521,1404],["2026-08-17",0.17481,0.25429,0.17173,0.22666,4112],
 ["2026-08-24",0.22683,0.22699,0.19823,0.19823,2834],["2026-08-31",0.19267,0.22568,0.19232,0.22128,3097],
 ["2026-09-07",0.22332,0.22936,0.20233,0.20258,3045],
-["2026-09-14",0.20365,0.23441,0.19103,0.21943,3311]];
+["2026-09-14",0.20365,0.23441,0.19103,0.22840,3281],
+["2026-09-21",0.22789,0.25978,0.22721,0.24103,3106]];
 
 // swing-line vertices — every value is a real weekly high or low
 const ZIG=[["2024-01-01",0.63521],["2024-01-22",0.4524],["2024-03-11",0.80097],["2024-04-15",0.43177],
@@ -1209,8 +1212,8 @@ const ZIG=[["2024-01-01",0.63521],["2024-01-22",0.4524],["2024-03-11",0.80097],[
 ["2026-01-12",0.43357],["2026-02-02",0.24991],["2026-02-23",0.3214],["2026-03-02",0.25255],
 ["2026-03-16",0.31259],["2026-04-13",0.2364],["2026-05-04",0.28706],["2026-06-01",0.14969],
 ["2026-06-15",0.18908],["2026-06-22",0.13883],["2026-06-29",0.19961],["2026-07-27",0.15417],
-["2026-08-03",0.20882],["2026-08-10",0.17521],["2026-08-17",0.25429],["2026-08-31",0.19232],["2026-09-07",0.22936],["2026-09-14",0.19103]];
-const NOW=0.21978;   // live spot, drawn half a slot past the last vertex
+["2026-08-03",0.20882],["2026-08-10",0.17521],["2026-08-17",0.25429],["2026-08-31",0.19232],["2026-09-07",0.22936],["2026-09-14",0.19103],["2026-09-21",0.25978]];
+const NOW=0.24195;   // live spot, drawn half a slot past the last vertex
 
 // s:+1 label above, -1 below.  f:false = interpretive (dashed box)
 const EV=[
@@ -1230,7 +1233,8 @@ const EV=[
  {d:"2026-06-15",p:0.18908,k:"AR",           s:+1,f:true, dx:-4},
  {d:"2026-06-22",p:0.13883,k:"ST",           s:-1,f:true, dx:16},
  {d:"2026-08-10",p:0.17521,k:"LPS",          s:-1,f:false,dx:-16},
- {d:"2026-08-17",p:0.25429,k:"SOS",          s:+1,f:true, dx:0},
+ {d:"2026-08-17",p:0.25429,k:"SOS",          s:+1,f:true, dx:-18},
+ {d:"2026-09-21",p:0.25978,k:"SOS 2?",       s:+1,f:false,dx:20},
  {d:"2026-09-14",p:0.19103,k:"BU/LPS",       s:-1,f:false,dx:26}
 ];
 // row 1 = cycle stage, row 2 = Wyckoff phase within the range.
@@ -1241,14 +1245,14 @@ const STAGE=[
  {k:"MARKUP",      from:"2024-11-04",to:"2024-11-11",c:"up"},
  {k:"DISTRIBUTION",from:"2024-11-18",to:"2025-09-29",c:"dn"},
  {k:"MARKDOWN",    from:"2025-10-06",to:"2026-05-25",c:"mdn"},
- {k:"ACCUMULATION",from:"2026-06-01",to:"2026-09-14",c:"acc"}
+ {k:"ACCUMULATION",from:"2026-06-01",to:"2026-09-21",c:"acc"}
 ];
 const PH=[
  {k:"A",from:"2024-11-18",to:"2025-01-20"},{k:"B",from:"2025-01-27",to:"2025-07-28"},
  {k:"C",from:"2025-08-04",to:"2025-09-01"},{k:"D",from:"2025-09-08",to:"2025-09-29"},
  {k:"E",from:"2025-10-06",to:"2026-05-25"},
  {k:"A",from:"2026-06-01",to:"2026-06-22"},{k:"B",from:"2026-06-29",to:"2026-08-03"},
- {k:"C",from:"2026-08-10",to:"2026-08-10"},{k:"D",from:"2026-08-17",to:"2026-09-14"},
+ {k:"C",from:"2026-08-10",to:"2026-08-10"},{k:"D",from:"2026-08-17",to:"2026-09-21"},
  {k:"E",from:null,to:null}
 ];
 const LV=[
