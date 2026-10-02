@@ -157,81 +157,86 @@
 <body>
 
 <h1>ADA Cardano — Monthly Map &amp; Forecast Report</h1>
-<div class="meta">Crypto Reconnaissance Engine · <strong>Tue Sep 29, 2026 · 08:01 UTC</strong> (15:01 ICT) · last settled close <span class="mono">$0.24731</span> (Sep 28) · Sep 29 candle live, 15h58m remaining, excluded from all determinations · <strong>single-feed session</strong> (CoinGecko 429, per report) · timeline Jun 2026 → Dec 2028</div>
+<div class="meta">Crypto Reconnaissance Engine · <strong>Fri Oct 2, 2026 · 12:50 UTC</strong> (19:50 ICT) · last settled close <span class="mono">$0.24636</span> (Oct 1) · Oct 2 candle live, 11h09m remaining, excluded from all determinations · no new CRE report since Sep 29 — state carried from the project record · timeline Jun 2026 → Dec 2028</div>
 
 <div class="price-hero">
-  <span class="ph-price mono">$0.25300</span>
-  <span class="ph-up" style="color:var(--sell)">▬ SELL 1 ARMED (low-confidence) · awaiting your ruling</span>
-  <span class="ph-detail">−91.6% from ATH · Phase E by rank, UTAD strengthening · 75% deployed, all four +24% to +36% · Oct window in 5 days</span>
-</div>
-
-<div class="banner warn">
-  <strong>⚠ SELL 1 is armed on a close that the same framework judged too ambiguous to score.</strong>
-  Sep 25 settled <span class="mono">$0.25864</span> — <strong>+0.074% over the $0.25845 campaign high, inside the ±0.15% margin band.</strong> The rule, applied exactly as written, does two things with that one close:
-  for <em>scoring</em>, an in-band close VOIDs the resolution, so <strong>FR-ADA-002 resolved VOID</strong>; for <em>position</em>, it counts on the authoritative feed with a LOW-CONFIDENCE tag, so it satisfied SELL 1's first step. Sep 26 ($0.25403) and Sep 27 ($0.25517) then closed below, and <strong>SELL 1 armed on the Sep 27 close.</strong>
-  <strong>That is rule-consistent, and the report labels it correctly.</strong> It is still worth seeing plainly before you rule: a close judged insufficient to resolve a forecast is the foundation under a real-money sell. The asymmetry is deliberate in the rules — position and scoring are meant to be treated differently — but it is exactly the kind of thing a ruling should be made with in view.
+  <span class="ph-price mono">$0.25689</span>
+  <span class="ph-up" style="color:#a16207">▲ +4.27% live · 4th excursion above the campaign high · SELL 1 armed, unruled</span>
+  <span class="ph-detail">September closed +24.71% · Jun→Sep +70.84% · 75% deployed, all four +24% to +35% · Oct window opens in 2 days</span>
 </div>
 
 <div class="banner">
-  <strong>★ The register now has two scored ADA tactical forecasts, both below their own base rates — and the response to that is the right one.</strong>
-  FR-ADA-001 resolved in its modal band B3, skill <strong>−0.0004</strong>: the ±1pp adjustments added nothing. FR-ADA-003 resolved YES, skill <strong>−0.6384</strong>: the −5.25pp adjustment hurt. Mean T-class skill <strong>−0.3194</strong>.
-  The report's answer is FR-ADA-004 with <strong>zero adjustment</strong> — pure base rate. That is the correct move: if judgment is not adding value, stop adding it and test whether the base rate itself is calibrated.
-  <strong>One bookkeeping fix before Oct 5:</strong> FR-ADA-004's register row lists its base as 5/20/25/25/20/5 <em>without</em> the residual, while FR-ADA-001's listed base carried +R5. Scored against base×0.95+R5, a zero-adjustment tree scores exactly 0.0000 on every outcome. Scored against the raw row, it scores −0.25 to −0.99pp if a central band hits and +1.17pp if a tail hits — <strong>pure accounting noise inside a test designed to read zero.</strong> Stating the base with +R5 closes that.
+  <strong>★ September closed at <span class="mono">$0.24669</span>, +24.71% — the fourth realised month and the largest of the campaign.</strong>
+  It travelled <strong>32.3%</strong> on closes, from $0.19544 (Sep 15) to $0.25864 (Sep 25), and finished at 81% of that range. Three consecutive positive months: Jul +16.52%, Aug +17.56%, Sep +24.71% — <strong>+70.84% from the June close</strong>.
+  Against this map's own record: the September bull bucket read 65% → 61% → 88% → 100% → 100% as the month progressed, and September closed 29.84% above the fixed $0.19 line. <strong>The band was right; the readings were distance, not conviction</strong> — the same lesson August taught, now with two completed months behind it.
+</div>
+
+<div class="banner warn">
+  <strong>⚠ The campaign high is being tested again with SELL 1 armed and no ruling on it.</strong>
+  After four tight closes between $0.24435 and $0.24731 (a 1.21% coil), the live Oct 2 candle has run to <span class="mono">$0.25911</span> — <strong>0.26% above $0.25845</strong>, the fourth intraday excursion above it — and sits at $0.25689, 0.60% under.
+  <strong>Declared in advance:</strong> if Oct 2 settles between <span class="mono">$0.25806</span> and <span class="mono">$0.25884</span> it is in-band and LOW-CONFIDENCE. A settle above $0.25884 is the first of the two out-of-band closes that disarm SELL 1. Either way, the candle determines nothing yet.
+  <strong>The point worth making now, before the outcome is known:</strong> SELL 1 has been armed for five sessions and correctly not executed, because there was no ruling and no size. If price disarms it, that will look like the right call; if price fails here, it will look like a missed sell. Neither reading is fair to a decision that has not been made — <strong>the cost of not ruling is real in both directions.</strong>
+</div>
+
+<div class="banner" style="background:#fdecea;border-color:#c0392b;color:#6e2018">
+  <strong>★ A defect in my own chart, found this session and fixed.</strong>
+  When the price axis was widened to $0.04–$2.00 on Sep 23, six horizontal reference lines kept the y-positions computed under the old axis. The Sep 23, 25 and 29 maps therefore drew, for example, the line labelled <strong>"$0.1480 death level" at about $0.180</strong> and the line labelled <strong>"$0.20" at about $0.285</strong>. The cone, the hover tooltips and every number in the text were correct; the reference lines were not. My verification checked that the chart rendered and that figures were present — <strong>it never checked that a line sits at the price its label states.</strong> Every reference line is now recomputed from the current axis and verified to within 0.11% of its label.
 </div>
 
 <!-- 1 EXEC SUMMARY -->
 <div class="section">
   <h2><span class="num">01</span> Executive summary</h2>
   <div class="verdict">
-    <div class="v1"><div class="k">Action now</div><div class="v" style="color:#a16207">HOLD</div><div class="n">SELL 1 armed, not executed</div></div>
-    <div class="v1"><div class="k">Position</div><div class="v">75%</div><div class="n">+24% to +36% on tranches</div></div>
-    <div class="v1" style="border:2px solid #c0392b"><div class="k">SELL 1</div><div class="v" style="font-size:14px;color:var(--sell)">ARMED · LOW-CONF</div><div class="n">Rests on a +0.074% close</div></div>
-    <div class="v1"><div class="k">T-class skill</div><div class="v mono" style="font-size:15px;color:var(--sell)">−0.3194</div><div class="n">n=2, both negative</div></div>
-    <div class="v1"><div class="k">Oct window</div><div class="v mono" style="font-size:15px">5 days</div><div class="n">Reserve still open</div></div>
+    <div class="v1"><div class="k">Action now</div><div class="v" style="color:#a16207">HOLD</div><div class="n">SELL 1 armed, unruled</div></div>
+    <div class="v1"><div class="k">September</div><div class="v mono" style="font-size:15px;color:var(--buy)">+24.71%</div><div class="n">4th realised month</div></div>
+    <div class="v1" style="border:2px solid #b8860b"><div class="k">Campaign high</div><div class="v mono" style="font-size:14px">−0.60%</div><div class="n">live high +0.26% over</div></div>
+    <div class="v1"><div class="k">FR-ADA-004</div><div class="v" style="font-size:14px">B4 → B5 live</div><div class="n">resolves Oct 5 close</div></div>
+    <div class="v1"><div class="k">Oct window</div><div class="v mono" style="font-size:15px">2 days</div><div class="n">reserve undecided</div></div>
   </div>
 
-  <p class="body"><strong>The report's tape reproduces on every close</strong> — Sep 25 $0.25864, Sep 26 $0.25403, Sep 27 $0.25517, Sep 28 $0.24731 on 9.04M (+77.7%). This was a single-feed session on the report's side; every determination in it clears its boundary by at least 1.27%, which is more than three times the largest cross-feed gap this campaign has recorded, so none depends on the second feed. <strong>The one close that <em>was</em> inside a band — Sep 25's +0.074% — was settled in an earlier session.</strong></p>
+  <p class="body"><strong>Three settled closes since the Sep 29 map, and they were quiet.</strong> Sep 29 $0.24435, Sep 30 $0.24669 (the monthly close), Oct 1 $0.24636 — volume 7.9M to 9.6M, nothing like the +77.7% Sep 28 session that strengthened the UTAD alternate. Eleven consecutive closes now sit above the $0.23332 continuation trigger, so <strong>rank holds at Phase E</strong>, and the coil under the high has resolved upward on the live candle.</p>
 
-  <p class="body"><strong>Three intraday excursions above the campaign high in four sessions, and not one decisive close.</strong> Sep 23 printed $0.26217, Sep 25 $0.25974, Sep 26 $0.26529. The only close above the line was Sep 25, and it was inside the margin band. Price has now fallen back inside the old Z004 range on the settled close (Z004's INVALIDATED status is final — this is a price fact, not a state change). That is the anatomy the UTAD alternate describes, and the report is right that it has strengthened. <strong>Rank has not changed</strong> — eight closes above $0.23332 — and it will not change until two closes land below it.</p>
+  <p class="body"><strong>No CRE report has been issued since Sep 29, so this map carries state from the project record rather than from a session report.</strong> That record shows no ruling yet on SELL 1, the October reserve, or the σ-scaled zone standoff. It also confirms the BUY 4 discrepancy I flagged on Sep 29 is in the written rules themselves: the Sep 23 ladder says <strong>two</strong> consecutive closes below $0.19000, while the standing non-negotiables make BUY 4 a <strong>single-close</strong> tactical tranche. Both are on the record; only one can be the live stop.</p>
 
-  <p class="body"><strong>SELL 1 needs your ruling, and the report correctly refuses to make it for you.</strong> On option (c) there are two readings and they disagree today: the literal "a close below $0.25423" is met (Sep 28, −2.72%); the strict base-rate definition — two consecutive closes immediately after the crossing — broke on Sep 27 ($0.25517, +0.37%). If you choose (c), say which reading.</p>
+  <p class="body"><strong>FR-ADA-004 is drifting across a boundary three days before it resolves.</strong> The Oct 1 settle sits in B4 ($0.24229–$0.25582); the live candle is in B5, 0.42% over the edge and 0.27% clear of its void zone ($0.25544–$0.25620). Declared now: a settle on Oct 5 inside that zone resolves VOID. And because FR-ADA-004 carries zero adjustment, its score will test the base rate, not my judgment — the bookkeeping fix from Sep 29 (stating its base with +R5) still applies.</p>
 
-  <p class="body"><strong>One discrepancy I cannot resolve from what I have.</strong> BUY 4's invalidation reads <strong>one close</strong> below $0.19000 in this report; the Sep 23 adoption and the Sep 25 report both had <strong>two</strong>. The v3.1 spec does make BUY 4 a single-close tactical tranche, so the new reading may be the correct one — but I do not see the change in this report's corrections, and I do not have the Sep 26–28 reports to check whether it was logged there. Worth confirming which is standing, since it is a live stop.</p>
-
-  <p class="body"><strong>Five days to the October window.</strong> The 25% reserve is still the only open item that moves real capital; the SELL 1 ruling is now the second.</p>
+  <p class="body"><strong>Two days to the October window.</strong> SELL 1 and the 25% reserve now meet head-on: one would trim, the other would deploy, inside the same fortnight. They are better decided together.</p>
 </div>
 
 <!-- 2 MARKET STRUCTURE -->
 <div class="section">
   <h2><span class="num">02</span> Current market structure</h2>
-  <p class="body"><strong>Phase E by rank; UTAD alternate strengthening.</strong> Eight settled closes above the $0.23332 continuation trigger, eleven above the $0.21156 floor. Against that, the campaign high has been exceeded intraday three times without a decisive close, and SELL 1 is armed.</p>
+  <p class="body"><strong>Phase E by rank; UTAD alternate live; now re-testing the high.</strong></p>
 
   <div class="table-wrap" style="margin:14px 0"><table>
     <tr><th>Session</th><th>High</th><th>Close</th><th style="width:78px">vs $0.25845</th><th>Volume</th><th>Read</th></tr>
-    <tr><td>Sep 24</td><td class="mono">$0.25151</td><td class="mono">$0.24772</td><td class="mono">−4.15%</td><td class="mono">8.30M</td><td>back-test held</td></tr>
-    <tr style="background:var(--hd)"><td><strong>Sep 25</strong></td><td class="mono">$0.25974</td><td class="mono"><strong>$0.25864</strong></td><td class="mono"><strong>+0.074%</strong></td><td class="mono">11.65M</td><td><strong>in-band</strong>: FR-ADA-002 VOID · SELL 1 step one (low-conf)</td></tr>
-    <tr style="background:var(--sell-bg)"><td>Sep 26</td><td class="mono"><strong>$0.26529</strong></td><td class="mono">$0.25403</td><td class="mono">−1.71%</td><td class="mono">7.81M</td><td>excursion above high, closed below · Z004 INVALIDATED</td></tr>
-    <tr style="background:var(--sell-bg)"><td>Sep 27</td><td class="mono">$0.25961</td><td class="mono">$0.25517</td><td class="mono">−1.27%</td><td class="mono">5.09M</td><td>second close below → <strong>SELL 1 ARMED</strong></td></tr>
-    <tr style="background:var(--sell-bg)"><td>Sep 28</td><td class="mono">$0.25809</td><td class="mono">$0.24731</td><td class="mono">−4.31%</td><td class="mono">9.04M</td><td>−3.08% on +77.7% volume · FR-ADA-001 → B3</td></tr>
-    <tr><td><strong>Sep 29 live</strong></td><td class="mono">$0.25300</td><td class="mono"><strong>$0.25300</strong></td><td class="mono">−2.11%</td><td class="mono">1.95M</td><td>15h58m left · determines nothing</td></tr>
+    <tr><td>Sep 25</td><td class="mono">$0.25974</td><td class="mono">$0.25864</td><td class="mono">+0.074%</td><td class="mono">11.65M</td><td>in-band close · FR-ADA-002 VOID · SELL 1 step one</td></tr>
+    <tr><td>Sep 26</td><td class="mono">$0.26529</td><td class="mono">$0.25403</td><td class="mono">−1.71%</td><td class="mono">7.81M</td><td>excursion, closed below</td></tr>
+    <tr><td>Sep 27</td><td class="mono">$0.25961</td><td class="mono">$0.25517</td><td class="mono">−1.27%</td><td class="mono">5.09M</td><td>SELL 1 ARMED</td></tr>
+    <tr><td>Sep 28</td><td class="mono">$0.25809</td><td class="mono">$0.24731</td><td class="mono">−4.31%</td><td class="mono">9.04M</td><td>−3.08% on +77.7% volume</td></tr>
+    <tr><td>Sep 29</td><td class="mono">$0.25467</td><td class="mono">$0.24435</td><td class="mono">−5.46%</td><td class="mono">7.89M</td><td>coil</td></tr>
+    <tr style="background:var(--hd)"><td><strong>Sep 30</strong></td><td class="mono">$0.25684</td><td class="mono"><strong>$0.24669</strong></td><td class="mono">−4.55%</td><td class="mono">9.17M</td><td><strong>September monthly close</strong></td></tr>
+    <tr><td>Oct 1</td><td class="mono">$0.25444</td><td class="mono">$0.24636</td><td class="mono">−4.68%</td><td class="mono">9.58M</td><td>coil — 4 closes within 1.21%</td></tr>
+    <tr style="background:var(--buy-bg)"><td><strong>Oct 2 live</strong></td><td class="mono"><strong>$0.25911</strong></td><td class="mono"><strong>$0.25689</strong></td><td class="mono">−0.60%</td><td class="mono">4.45M</td><td>4th excursion · 11h09m left · determines nothing</td></tr>
   </table></div>
 
-  <p class="body"><strong>The volume on Sep 28 is the piece that strengthens the alternate.</strong> A −3.08% close on volume up 77.7% is the supply signature under the Aug 6 rule — the same shape that fired the Aug 11 bear trigger. It came the session after SELL 1 armed. <strong>It does not move rank</strong> (rank moves on two closes below $0.23332, still 5.66% below the settled close), but it is the heaviest down-day since the Sep 23 upthrust and it is not ambiguous.</p>
+  <p class="body"><strong>What the coil says, and what it does not.</strong> Four closes inside 1.21% after the Sep 28 supply day, on volume that never re-expanded, is absorption rather than continued selling — the supply signature of Sep 28 was not followed through. That modestly weakens the UTAD alternate the report strengthened on Sep 29. <strong>It does not retire it:</strong> the high has now been exceeded intraday four times with one in-band close, which is precisely the repeated-test shape a UTAD describes. Only closes resolve it — two out-of-band closes above $0.25845 disarm SELL 1; two closes below $0.23332 move rank to Phase C.</p>
 
   <div class="table-wrap" style="margin:14px 0"><table>
     <tr><th>Level</th><th style="width:62px">vs live</th><th>Status</th></tr>
-    <tr><td class="mono">$0.26529</td><td class="mono">+4.86%</td><td>Sep 26 excursion high — highest print of the campaign.</td></tr>
-    <tr><td class="mono">$0.25845</td><td class="mono">+2.15%</td><td><span class="bdg b-rd">CAMPAIGN HIGH</span> Two closes above, outside the band → SELL 1 disarms.</td></tr>
-    <tr><td class="mono">$0.25423</td><td class="mono">+0.49%</td><td><span class="bdg b-am">Option (c) line</span> Literal reading met Sep 28; strict reading broke Sep 27.</td></tr>
-    <tr style="background:var(--hd)"><td class="mono"><strong>$0.25300</strong></td><td>—</td><td><strong>LIVE</strong> · determines nothing</td></tr>
-    <tr><td class="mono">$0.25050</td><td class="mono">−0.99%</td><td>Old Z004 upper. INVALIDATED Sep 26 — final. Sep 28 closed back inside the old range.</td></tr>
-    <tr><td class="mono">$0.23332</td><td class="mono">−7.78%</td><td><span class="bdg b-gn">8 CLOSES ABOVE</span> Two below → UTAD confirmed, rank to Phase C.</td></tr>
-    <tr><td class="mono">$0.21156</td><td class="mono">−16.38%</td><td>Floor, 11 closes above. Two below negates Phase E.</td></tr>
-    <tr><td class="mono">$0.19000</td><td class="mono">−24.90%</td><td><span class="bdg b-am">BUY 4</span> <strong>1 close</strong> per this report · 2 closes per Sep 23/25 — unconfirmed which stands.</td></tr>
-    <tr><td class="mono">$0.1805 / $0.173 / $0.1596</td><td class="mono">−29% to −37%</td><td><span class="bdg b-bl">BUY 3 / 2 / 1</span> Two consecutive closes below each.</td></tr>
+    <tr><td class="mono">$0.26529</td><td class="mono">+3.27%</td><td>Sep 26 excursion high — highest print of the campaign.</td></tr>
+    <tr><td class="mono">$0.25884</td><td class="mono">+0.76%</td><td>Upper edge of the $0.25845 band. A settle above it starts the SELL 1 disarm count.</td></tr>
+    <tr><td class="mono">$0.25845</td><td class="mono">+0.61%</td><td><span class="bdg b-rd">CAMPAIGN HIGH</span> SELL 1 armed (low-confidence).</td></tr>
+    <tr style="background:var(--hd)"><td class="mono"><strong>$0.25689</strong></td><td>—</td><td><strong>LIVE</strong> · determines nothing</td></tr>
+    <tr><td class="mono">$0.25582</td><td class="mono">−0.42%</td><td>FR-ADA-004 B4/B5 edge — void zone $0.25544–$0.25620.</td></tr>
+    <tr><td class="mono">$0.25423</td><td class="mono">−1.04%</td><td>Option (c) line. Every close since Sep 28 below it; live above.</td></tr>
+    <tr><td class="mono">$0.23332</td><td class="mono">−9.18%</td><td><span class="bdg b-gn">11 CLOSES ABOVE</span> Two below → UTAD confirmed, Phase C.</td></tr>
+    <tr><td class="mono">$0.21156</td><td class="mono">−17.65%</td><td>Floor. Two below negates Phase E.</td></tr>
+    <tr><td class="mono">$0.19000</td><td class="mono">−26.04%</td><td><span class="bdg b-am">BUY 4</span> one close or two — both in the written rules.</td></tr>
+    <tr><td class="mono">$0.1805 / $0.173 / $0.1596</td><td class="mono">−30% to −38%</td><td><span class="bdg b-bl">BUY 3 / 2 / 1</span> Two consecutive closes below each.</td></tr>
   </table></div>
 
-  <p class="body"><strong>Cross-asset.</strong> BTC closed $83,497.82 on Sep 28 (−1.16%) after a new pullback low of $82,551.72, and trades $84,058.52 live. The $59,129 kill is 29.7% below. ADA's four settled deltas read +4.77, −2.18, +0.39, −1.92pp — alternating again. <strong>No directional attribution;</strong> the report's reading of Sep 28 as market-wide risk with ADA falling harder is a single-session description, which is what it should be.</p>
+  <p class="body"><strong>Cross-asset.</strong> BTC closed $84,876.20 on Oct 1 (+1.50%) and runs $86,700.70 live (+2.15%). The $59,129 kill is 31.8% below. ADA's three settled deltas read −1.39, +1.00, −1.63pp, and the live session +2.12pp — small and alternating. <strong>No directional attribution.</strong></p>
 </div>
 
 <!-- 3 BUY/SELL CALENDAR -->
@@ -299,7 +304,7 @@
   <p class="sn">June and July 2026 are <strong>realised</strong>: actual monthly closes, no probabilities. From August the chart becomes a volatility cone anchored at spot. Each band is the <strong>central 50%</strong> of the distribution. Probabilities are the chance of finishing that month above <span class="mono">$0.19</span> (BUY 3 gate), between the gates, or below <span class="mono">$0.1480</span> (death level). <strong>The bands widen and the middle collapses from 58% to 12%</strong> — that decay is arithmetic, not a view, and it is the most honest thing on this page.</p>
 
   <div class="chart-host" id="chartHost">
-  <svg viewBox="0 0 760 220" id="cone" role="img" aria-label="ADA monthly map. June 2026 realised close 0.1444 and July 2026 realised close 0.16826 shown as history, then a volatility cone from August 2026 to December 2028 anchored at spot 0.18820. The central 50 percent band widens from roughly 0.168 to 0.211 in August 2026 out to 0.099 to 0.357 by December 2028. Green squares mark buy months, red squares mark sell months. Hover or tap for detail.">
+  <svg viewBox="0 0 760 220" id="cone" role="img" aria-label="ADA monthly map. Realised closes June 2026 0.1444, July 0.16826, August 0.19781, September 0.24669, then a volatility cone from October 2026 to December 2028 anchored at live spot 0.25689, with reference lines at the campaign high, continuation trigger, floor, 0.19 threshold and thesis stop.">
     <desc>Interactive: move the pointer across the chart, or tap on touch devices, to read each month's expected range, probability split and recommended action. Click to open full detail.</desc>
     <line x1="54" y1="186.1" x2="748" y2="186.1" class="grd"/><text x="48" y="189.4" class="ax" text-anchor="end">$0.05</text>
     <line x1="54" y1="165.2" x2="748" y2="165.2" class="grd"/><text x="48" y="168.5" class="ax" text-anchor="end">$0.08</text>
@@ -309,40 +314,36 @@
     <line x1="54" y1="62.8" x2="748" y2="62.8" class="grd"/><text x="48" y="66.1" class="ax" text-anchor="end">$0.80</text>
     <line x1="54" y1="34.8" x2="748" y2="34.8" class="grd"/><text x="48" y="38.1" class="ax" text-anchor="end">$1.50</text>
 
-    <path d="M 100.3 114.0 L 123.4 110.8 146.5 96.2 169.7 89.3 192.8 83.7 215.9 79.1 239.1 75.3 262.2 71.6 285.3 68.2 308.5 65.0 331.6 62.1 354.7 59.2 377.9 56.5 401.0 54.0 424.1 51.5 447.3 49.2 470.4 46.9 493.5 44.7 516.7 42.7 539.8 40.6 562.9 38.6 586.1 36.6 609.2 34.7 632.3 32.8 655.5 31.0 678.6 29.2 701.7 27.4 724.9 25.7 748.0 24.0 L 748.0 203.9 724.9 202.2 701.7 200.5 678.6 198.7 655.5 197.0 632.3 195.1 609.2 193.2 586.1 191.3 562.9 189.3 539.8 187.4 516.7 185.3 493.5 183.2 470.4 181.0 447.3 178.7 424.1 176.4 401.0 173.9 377.9 171.4 354.7 168.7 331.6 165.8 308.5 162.9 285.3 159.7 262.2 156.3 239.1 152.6 215.9 148.8 192.8 144.2 169.7 138.6 146.5 131.7 123.4 117.1 L 100.3 114.0 Z" fill="#6366f1" opacity=".07"/>
-    <path d="M 100.3 114.0 L 123.4 112.7 146.5 106.7 169.7 103.8 192.8 101.6 215.9 99.7 239.1 98.1 262.2 96.6 285.3 95.2 308.5 93.9 331.6 92.7 354.7 91.5 377.9 90.4 401.0 89.4 424.1 88.4 447.3 87.4 470.4 86.5 493.5 85.6 516.7 84.7 539.8 83.9 562.9 83.1 586.1 82.2 609.2 81.5 632.3 80.7 655.5 79.9 678.6 79.2 701.7 78.5 724.9 77.8 748.0 77.1 L 748.0 150.8 724.9 150.1 701.7 149.4 678.6 148.7 655.5 148.0 632.3 147.2 609.2 146.5 586.1 145.7 562.9 144.9 539.8 144.1 516.7 143.2 493.5 142.4 470.4 141.4 447.3 140.5 424.1 139.6 401.0 138.5 377.9 137.5 354.7 136.4 331.6 135.2 308.5 134.0 285.3 132.7 262.2 131.3 239.1 129.8 215.9 128.3 192.8 126.3 169.7 124.1 146.5 121.2 123.4 115.2 L 100.3 114.0 Z" fill="#6366f1" opacity=".17"/>
-
-    <line x1="54" y1="112.1" x2="748" y2="112.1" stroke="#3f7d1e" stroke-width="1" stroke-dasharray="5 4"/>
-    <text x="746" y="109" class="lt" text-anchor="end" style="fill:var(--tx3)">$0.21156 breakout floor — +6.9% above</text>
-    <line x1="54" y1="112.7" x2="748" y2="112.7" stroke="#3f7d1e" stroke-width=".8" stroke-dasharray="2 3" opacity=".7"/>
-    <text x="200" y="122" class="lt" style="fill:#3f7d1e">$0.23332 — 8 closes above · 2 below → Phase C</text>
-    <line x1="54" y1="115.4" x2="748" y2="115.4" stroke="#b03a1c" stroke-width="1" stroke-dasharray="4 3"/>
-    <text x="420" y="110" class="lt" style="fill:#b03a1c">$0.25845 high — 3 excursions, 1 in-band close · SELL 1 ARMED</text>
-    <line x1="54" y1="120.1" x2="748" y2="120.1" stroke="#b8860b" stroke-width="1.4"/>
-    <text x="420" y="130" class="lt" style="fill:#6366f1">$0.19 / $0.1805 / $0.173 / $0.1596 — invalidation ladder</text>
-    
-    <line x1="54" y1="108.7" x2="748" y2="108.7" stroke="var(--tx3)" stroke-width=".7" stroke-dasharray="1 4"/>
-    <text x="60" y="106" class="ax" style="fill:var(--tx3)">$0.20</text>
-    <line x1="54" y1="129.0" x2="748" y2="129.0" stroke="#b03a1c" stroke-width="1" stroke-dasharray="5 4"/>
-    <text x="746" y="138" class="lt" text-anchor="end" style="fill:#b03a1c">$0.1480 — death level (bear threshold)</text>
-    <line x1="100.3" y1="114.0" x2="748" y2="114.0" stroke="#6366f1" stroke-width="2"/>
-    <text x="420" y="108" class="lt" style="fill:#6366f1">median flat — driftless by construction</text>
-
-    <path d="M 54.0 138.9 L 77.1 132.1 L 100.3 124.9" stroke="var(--tx)" stroke-width="2.4" fill="none"/>
-    <circle cx="54.0" cy="138.9" r="3.6" fill="#b03a1c"/><circle cx="77.1" cy="132.1" r="3.6" fill="#3f7d1e"/><circle cx="100.3" cy="124.9" r="3.6" fill="#3f7d1e"/>
-    <text x="54" y="153" class="ax" text-anchor="middle" style="fill:#b03a1c">$0.1444</text>
-    <text x="54" y="162" class="ax" text-anchor="middle" style="fill:#b03a1c">−38.7%</text>
-    <text x="58" y="129" class="ax" style="fill:#3f7d1e">Jul $0.16826</text>
-    <text x="86" y="122" class="ax" style="fill:#3f7d1e">Aug $0.19781</text>
+    <path d="M 123.4 113.3 L 146.5 96.5 169.7 89.3 192.8 83.7 215.9 79.0 239.1 75.2 262.2 71.5 285.3 68.1 308.5 64.9 331.6 62.0 354.7 59.1 377.9 56.4 401.0 53.9 424.1 51.4 447.3 49.1 470.4 46.8 493.5 44.6 516.7 42.6 539.8 40.5 562.9 38.5 586.1 36.5 609.2 34.6 632.3 32.7 655.5 30.9 678.6 29.1 701.7 27.4 724.9 25.7 748.0 24.0 L 748.0 202.6 724.9 200.9 701.7 199.2 678.6 197.4 655.5 195.7 632.3 193.8 609.2 191.9 586.1 190.1 562.9 188.1 539.8 186.1 516.7 184.0 493.5 182.0 470.4 179.8 447.3 177.5 424.1 175.1 401.0 172.7 377.9 170.2 354.7 167.4 331.6 164.6 308.5 161.7 285.3 158.4 262.2 155.1 239.1 151.3 215.9 147.6 192.8 142.8 169.7 137.2 146.5 130.1 L 123.4 113.3 Z" fill="#6366f1" opacity=".07"/>
+    <path d="M 123.4 113.3 L 146.5 106.4 169.7 103.5 192.8 101.2 215.9 99.2 239.1 97.7 262.2 96.1 285.3 94.8 308.5 93.4 331.6 92.2 354.7 91.1 377.9 90.0 401.0 88.9 424.1 87.9 447.3 87.0 470.4 86.0 493.5 85.1 516.7 84.3 539.8 83.4 562.9 82.6 586.1 81.8 609.2 81.0 632.3 80.3 655.5 79.5 678.6 78.8 701.7 78.1 724.9 77.4 748.0 76.7 L 748.0 149.9 724.9 149.2 701.7 148.5 678.6 147.8 655.5 147.1 632.3 146.3 609.2 145.5 586.1 144.8 562.9 143.9 539.8 143.1 516.7 142.3 493.5 141.5 470.4 140.5 447.3 139.6 424.1 138.6 401.0 137.6 377.9 136.6 354.7 135.5 331.6 134.3 308.5 133.1 285.3 131.8 262.2 130.4 239.1 128.9 215.9 127.3 192.8 125.4 169.7 123.1 146.5 120.2 L 123.4 113.3 Z" fill="#6366f1" opacity=".17"/>
+    <line x1="54" y1="113.0" x2="748" y2="113.0" stroke="#b03a1c" stroke-width="1.1" stroke-dasharray="5 4"/>
+    <text x="560" y="110.0" class="lt" style="fill:#b03a1c">$0.25845 campaign high — SELL 1 armed (low-conf)</text>
+    <line x1="54" y1="117.6" x2="748" y2="117.6" stroke="#3f7d1e" stroke-width="1" stroke-dasharray="5 4"/>
+    <text x="560" y="126.6" class="lt" style="fill:#3f7d1e">$0.23332 continuation — 11 closes above</text>
+    <line x1="54" y1="121.9" x2="748" y2="121.9" stroke="#3f7d1e" stroke-width=".8" stroke-dasharray="2 3"/>
+    <text x="660" y="130.9" class="lt" style="fill:#3f7d1e">$0.21156 floor</text>
+    <line x1="54" y1="126.7" x2="748" y2="126.7" stroke="var(--tx3)" stroke-width=".8" stroke-dasharray="1 4"/>
+    <text x="560" y="135.7" class="lt" style="fill:var(--tx3)">$0.19 map threshold · BUY 4 stop</text>
+    <line x1="54" y1="134.5" x2="748" y2="134.5" stroke="#b03a1c" stroke-width="1" stroke-dasharray="5 4"/>
+    <text x="560" y="143.5" class="lt" style="fill:#b03a1c">$0.1596 thesis stop · BUY 1 (0 of 2)</text>
+    <line x1="123.4" y1="113.3" x2="748" y2="113.3" stroke="#6366f1" stroke-width="2"/>
+    <text x="300" y="110" class="lt" style="fill:#6366f1">median flat — driftless by construction</text>
+    <path d="M 54.0 138.9 L 77.1 132.1 L 100.3 124.9 L 123.4 115.1" stroke="var(--tx)" stroke-width="2.4" fill="none"/>
+    <circle cx="54.0" cy="138.9" r="3.6" fill="#b03a1c"/>
+    <circle cx="77.1" cy="132.1" r="3.6" fill="#3f7d1e"/>
+    <circle cx="100.3" cy="124.9" r="3.6" fill="#3f7d1e"/>
+    <circle cx="123.4" cy="115.1" r="3.6" fill="#3f7d1e"/>
+    <text x="54" y="151.9" class="ax" text-anchor="middle" style="fill:#b03a1c">Jun $0.1444</text>
+    <text x="80" y="143.1" class="ax" style="fill:#3f7d1e">Jul +16.5%</text>
+    <text x="104" y="135.9" class="ax" style="fill:#3f7d1e">Aug +17.6%</text>
+    <text x="127" y="127.1" class="ax" style="fill:#3f7d1e">Sep $0.24669 +24.7%</text>
+    <line x1="123.4" y1="22" x2="123.4" y2="196" stroke="var(--tx3)" stroke-width="1" stroke-dasharray="2 3"/>
+    <text x="88" y="34" class="lt" text-anchor="middle" style="fill:var(--tx2)">realised (4 months)</text>
+    <text x="130" y="34" class="lt" style="fill:var(--tx2)">forecast →</text>
     <line x1="92" y1="98.0" x2="112" y2="98.0" stroke="#b8860b" stroke-width="1.2"/>
     <text x="115" y="96" class="ax" style="fill:#b8860b">Aug 22 climax hi $0.25845</text>
-    <circle cx="123.4" cy="114.0" r="3.4" fill="#b8860b"/>
-    <text x="127" y="109" class="ax" style="fill:#b8860b">Sep MTD +25.02% settled · 2 candles left</text>
     <line x1="90" y1="104.9" x2="115" y2="104.9" stroke="#b8860b" stroke-width="1"/>
     <text x="118" y="107.5" class="ax" style="fill:#b8860b">hi $0.21156</text>
-    <line x1="100.3" y1="22" x2="100.3" y2="196" stroke="var(--tx3)" stroke-width="1" stroke-dasharray="2 3"/>
-    <text x="76" y="34" class="lt" text-anchor="middle" style="fill:var(--tx2)">realised (3 months)</text>
-    <text x="122" y="34" class="lt" style="fill:var(--tx2)">forecast →</text>
 
     <line x1="130.9" y1="22" x2="130.9" y2="196" stroke="#3f7d1e" stroke-width="1.4"/>
     <text x="134" y="46" class="lt" style="fill:#3f7d1e">Oct 2026 CORE</text>
@@ -455,21 +456,21 @@
 <div class="section">
   <h2><span class="num">07</span> Execution plan</h2>
   <div class="table-wrap" style="margin-bottom:14px"><table>
-    <tr><th colspan="2" style="background:var(--sell-bg);color:var(--sell)">⚠ FOUR ITEMS WITH YOU — none is the framework's to decide</th></tr>
-    <tr><td style="width:140px"><strong>SELL 1 ruling</strong><br><span class="bdg b-rd">new</span></td><td>Armed on the Sep 27 close, LOW-CONFIDENCE, size undefined, not executed. Choose (a), (b) or (c); if (c), name the reading — literal "close below $0.25423" (met Sep 28) or strict "two consecutive closes right after the crossing" (broke Sep 27). Rule with the fact in view that step one rests on a +0.074% in-band close.</td></tr>
-    <tr><td><strong>October 25% reserve</strong><br><span class="bdg b-rd">5 days</span></td><td>Oct 4–17. Unresolved since July. Now interacts with SELL 1: a trim and a deployment in the same fortnight would be pulling in opposite directions, and the two decisions are better made together than separately.</td></tr>
-    <tr><td><strong>BUY 4 — 1 close or 2?</strong></td><td>This report: one close below $0.19000. Sep 23 adoption and Sep 25 report: two. v3.1 makes BUY 4 single-close. Confirm which stands; if the change was deliberate it wants a named correction row.</td></tr>
-    <tr><td><strong>Zone standoff by σ</strong></td><td>Registration still paused. The first-passage table from the Sep 25 map stands; the choice of k is yours.</td></tr>
+    <tr><th colspan="2" style="background:var(--sell-bg);color:var(--sell)">⚠ FOUR ITEMS WITH YOU — the window opens in two days</th></tr>
+    <tr><td style="width:140px"><strong>SELL 1 + October reserve</strong><br><span class="bdg b-rd">decide together</span></td><td>SELL 1 armed since the Sep 27 close (low-confidence, size undefined); the 25% reserve is earmarked for Oct 4–17. One trims, the other deploys, in the same fortnight. If SELL 1 is chosen as (c), name the reading — literal "close below $0.25423" or strict "two consecutive closes right after the crossing".</td></tr>
+    <tr><td><strong>BUY 4 — one close or two</strong></td><td>The Sep 23 ladder: two consecutive closes below $0.19000. The standing non-negotiables: BUY 4 is single-close in/out. Both are written rules; one needs retiring with a named correction row.</td></tr>
+    <tr><td><strong>Zone standoff by σ</strong></td><td>Registration paused since Sep 25. First-passage table from the Sep 25 map stands; choosing k is choosing the early-touch rate you accept.</td></tr>
   </table></div>
 
   <div class="table-wrap"><table>
     <tr><th style="width:126px">Parameter</th><th>Specification</th></tr>
-    <tr><td><strong>Action today</strong></td><td><strong>HOLD at 75%.</strong> Aggressiveness 3/10. Confidence T 52 / S 57 / C 58, not blended. Risk Medium-High. SELL 1 armed, not executed.</td></tr>
-    <tr><td><strong>SELL 1 disarm</strong></td><td>Two consecutive settled closes above <span class="mono">$0.25845</span>, outside the margin band. Live is 2.15% under.</td></tr>
-    <tr><td><strong>Hard structural invalidation</strong></td><td>Two consecutive closes below <span class="mono">$0.23332</span> → UTAD confirmed, rank to Phase C (5.66% under the settled close). Two below <span class="mono">$0.21156</span> → Phase E negated.</td></tr>
-    <tr><td><strong>Open forecast</strong></td><td><strong>FR-ADA-004</strong>, zero adjustment, anchor $0.24731, bands at base-rate quantiles, resolves on the Oct 5 close. State its base with +R5 before then.</td></tr>
-    <tr><td><strong>Position marks</strong></td><td>Sep 28 close: BUY 1 <strong>+35.88%</strong> <span class="bdg b-gy">ASSUMED $0.182</span> · BUY 2 <strong>+30.42%</strong> · BUY 3 <strong>+27.71%</strong> · BUY 4 <strong>+24.30%</strong>.</td></tr>
-    <tr><td><strong>Prohibited</strong></td><td>No determination on the live Sep 29 candle. No executing SELL 1 without a ruling and a size. No reading Sep 28's volume as a rank change. No directional attribution from the alternating relative deltas.</td></tr>
+    <tr><td><strong>Action today</strong></td><td><strong>HOLD at 75%.</strong> SELL 1 armed, not executed — no ruling, no size. No determination on the live Oct 2 candle.</td></tr>
+    <tr><td><strong>Tonight, declared</strong></td><td>Oct 2 settle <span class="mono">$0.25806–$0.25884</span> → in-band, LOW-CONFIDENCE. Above <span class="mono">$0.25884</span> → disarm count 1 of 2. Below <span class="mono">$0.25806</span> → SELL 1 remains armed, nothing changes.</td></tr>
+    <tr><td><strong>SELL 1 disarm</strong></td><td>Two consecutive settled closes above <span class="mono">$0.25845</span>, outside the band.</td></tr>
+    <tr><td><strong>Hard structural invalidation</strong></td><td>Two consecutive closes below <span class="mono">$0.23332</span> → UTAD confirmed, rank to Phase C (5.29% under the Oct 1 close). Two below <span class="mono">$0.21156</span> → Phase E negated.</td></tr>
+    <tr><td><strong>Open forecast</strong></td><td><strong>FR-ADA-004</strong> resolves on the Oct 5 close. Settled in B4, live in B5. VOID if it settles in <span class="mono">$0.25544–$0.25620</span>.</td></tr>
+    <tr><td><strong>Position marks</strong></td><td>Oct 1 close: BUY 1 <strong>+35.36%</strong> <span class="bdg b-gy">ASSUMED $0.182</span> · BUY 2 <strong>+29.92%</strong> · BUY 3 <strong>+27.22%</strong> · BUY 4 <strong>+23.82%</strong>.</td></tr>
+    <tr><td><strong>Cross-asset</strong></td><td>BTC $86,700.70 live; the $59,129 kill is 31.8% below.</td></tr>
   </table></div>
 </div>
 
@@ -478,13 +479,13 @@
   <h2><span class="num">08</span> Principal risks</h2>
   <div class="table-wrap"><table>
     <tr><th style="width:118px">Risk</th><th>Description</th><th style="width:70px">Severity</th></tr>
-    <tr><td><strong>UTAD confirmation</strong></td><td>Three excursions above the campaign high with no decisive close, a −3.08% day on +77.7% volume, and price back inside the old Z004 range. Two closes below $0.23332 would complete the pattern and move rank to Phase C.</td><td><span class="bdg b-rd">High</span></td></tr>
-    <tr><td><strong>SELL 1 on a thin premise</strong></td><td>Armed via a +0.074% in-band close that also VOIDed a forecast. Rule-consistent and correctly tagged low-confidence — but acting on it without that in view would be acting on less than it looks like.</td><td><span class="bdg b-rd">Decision</span></td></tr>
-    <tr><td><strong>Two decisions, one fortnight</strong></td><td>SELL 1 (trim) and the October reserve (deploy) both fall in the Oct 4–17 window. Made separately, they can partially cancel. Better made together.</td><td><span class="bdg b-am">Decision</span></td></tr>
-    <tr><td><strong>Judgment not adding value</strong></td><td>ADA T-class skill −0.3194 on n=2, both below their own base rates. FR-ADA-004's zero adjustment is the right response; n=2 is also far too few to conclude much either way.</td><td><span class="bdg b-am">Process</span></td></tr>
-    <tr><td><strong>Register bookkeeping</strong></td><td>FR-ADA-004's base listed without +R5. Unfixed, its skill reads −0.25 to −0.99pp (central outcome) or +1.17pp (tail) from the residual haircut alone.</td><td><span class="bdg b-gy">Fixable</span></td></tr>
-    <tr><td><strong>BUY 4 stop ambiguity</strong></td><td>One close vs two below $0.19000 — a live stop with two published definitions.</td><td><span class="bdg b-am">Process</span></td></tr>
-    <tr><td><strong>Single-feed, Tier 3.5 dark</strong></td><td>CoinGecko throttled this session; funding/OI dark for a 36th session. No current determination sits near a band, so neither bites today — both would on a tight close.</td><td><span class="bdg b-am">Medium</span></td></tr>
+    <tr><td><strong>Decisions colliding at the window</strong></td><td>SELL 1 and the 25% reserve both land in Oct 4–17. Decided separately, a trim and a deployment can partly cancel. Decided late, the market decides instead.</td><td><span class="bdg b-rd">Blocking</span></td></tr>
+    <tr><td><strong>Fourth test of the high</strong></td><td>Four intraday excursions above $0.25845 with one in-band close. Repeated tests either resolve upward on closes or complete the UTAD; the current candle says neither yet.</td><td><span class="bdg b-am">High</span></td></tr>
+    <tr><td><strong>Outcome-informed judgment of SELL 1</strong></td><td>Whatever price does next will make the unruled SELL 1 look right or wrong in hindsight. That is not evidence about the rule — it is one more reason to rule before the outcome rather than after.</td><td><span class="bdg b-am">Process</span></td></tr>
+    <tr><td><strong>Two written BUY 4 stops</strong></td><td>One close vs two below $0.19000, both in the standing rules. Harmless at 26% away; not harmless on the day it matters.</td><td><span class="bdg b-am">Process</span></td></tr>
+    <tr><td><strong>Chart verification gap</strong></td><td>Reference lines sat at wrong prices for three maps because the harness never compared a line's position with its label. Fixed and now checked; the lesson is that "renders" and "is correct" are different tests.</td><td><span class="bdg b-gy">Fixed</span></td></tr>
+    <tr><td><strong>No session report since Sep 29</strong></td><td>This map carries campaign state from the project record. Settled prices are independently pulled; rulings, Tier 3.5 and cross-feed status are not refreshed by a session.</td><td><span class="bdg b-am">Medium</span></td></tr>
+    <tr><td><strong>Fixed threshold</strong></td><td>October's bull bucket reads 91%: distance from a July-fixed $0.19 line, 26% below live. Never conviction — two completed months have now shown it.</td><td><span class="bdg b-gy">Structural</span></td></tr>
   </table></div>
 </div>
 
@@ -492,36 +493,31 @@
 <div class="grid-title" style="margin:22px 0 10px">09 · Appendix — forecast register, methodology, scoring, provenance</div>
 
 <details class="apx">
-  <summary>Verification, register checks, and method notes</summary>
+  <summary>Corrections, verification, and method notes</summary>
   <div class="apx-b">
-    <p><strong>Verification of the Sep 29 07:56 report.</strong> Independent Crypto.com pull five minutes later reproduces every settled figure: Sep 25 $0.25864 (11.65M), Sep 26 $0.25403 (high $0.26529), Sep 27 $0.25517, Sep 28 $0.24731 on 9,042,002.1 (+77.7%). Live $0.25300 against the report's $0.25155.</p>
-
-    <p style="margin-top:9px"><strong>Register arithmetic, recomputed rather than copied.</strong> FR-ADA-001 (outcome B3): Brier 0.6644 vs base 0.6641, skill −0.0004. FR-ADA-003 (YES): Brier 0.0576 vs base 0.0352, skill −0.6384. Mean −0.3194. All three reproduce — which matters because K4 in the report caught a hand-typed version of that mean; it is now traceable to a computation.</p>
-
-    <p style="margin-top:9px"><strong>FR-ADA-004 residual convention.</strong></p>
+    <p><strong>Correction — named before/after, mine.</strong></p>
     <div class="table-wrap" style="margin:8px 0"><table>
-      <tr><th>Outcome</th><th>Brier (posterior)</th><th>Skill vs raw base 5/20/25/25/20/5</th><th>Skill vs base×0.95 + R5</th></tr>
-      <tr><td>B1 or B6 (tails)</td><td class="mono">1.0970</td><td class="mono">+0.0117</td><td class="mono">0.0000</td></tr>
-      <tr><td>B2 or B5</td><td class="mono">0.8120</td><td class="mono">−0.0025</td><td class="mono">0.0000</td></tr>
-      <tr><td>B3 or B4 (central)</td><td class="mono">0.7170</td><td class="mono">−0.0099</td><td class="mono">0.0000</td></tr>
+      <tr><th>#</th><th>Before (Sep 23, 25, 29 maps)</th><th>After</th></tr>
+      <tr><td>C1</td><td>Six horizontal reference lines kept y-positions from the pre-Sep-23 axis. Drawn vs labelled: "$0.1480 death" at ≈$0.180; "$0.20" at ≈$0.285; "$0.21156 floor" at ≈$0.264; others similar.</td><td>All reference lines rebuilt from the current $0.04–$2.00 axis. Each now verified against its label: errors +0.03%, −0.09%, +0.04%, −0.01%, −0.11% (sub-pixel rounding).</td></tr>
+      <tr><td>C2</td><td>Verification checked rendering, tooltips, figure presence and probability sums.</td><td>Adds a label-vs-position check for every reference line. Should have existed from the first axis change.</td></tr>
     </table></div>
-    <p>A zero-adjustment forecast should score exactly zero against its own base, and it does — if the base carries the same residual convention FR-ADA-001's did. Stated without it, the score picks up small, outcome-dependent noise from bookkeeping alone. The fix is to write the base as 4.75/19/23.75/23.75/19/4.75 + R5.</p>
+    <p>Not affected by C1: the cone, the median, hover tooltips, month cards, and every figure in the text — all were computed directly and were correct. The defect was confined to the decorative reference lines, which is also why nothing caught it: none of the existing checks looked at them.</p>
 
-    <p style="margin-top:9px"><strong>My Sep 25 declaration, scored.</strong> I declared VOID risk for FR-ADA-001 at the $0.2505 edge, with live 0.32% under it and three days to run. It settled 1.27% under — not VOID. A declared possibility that did not occur; it was a reasonable declaration and needed no more than that.</p>
+    <p style="margin-top:9px"><strong>Verification.</strong> Independent Crypto.com pull: Sep 29 $0.24435 (7.89M), Sep 30 $0.24669 (9.17M), Oct 1 $0.24636 (9.58M); Oct 2 live $0.25689, high $0.25911, 4.45M, 11h09m remaining. BTC Oct 1 $84,876.20 matches the project record exactly. <strong>No CoinGecko cross-check this session</strong> — but no settled close is within its margin band of any level, so no determination depends on it.</p>
 
-    <p style="margin-top:9px"><strong>The margin-band rule, both halves.</strong> The v3.1 rule says an in-band close is governed by the authoritative feed with a LOW-CONFIDENCE tag for position purposes, and VOIDs the forecast resolution for scoring. Sep 25's +0.074% close did both at once. That is the rule working as written. Whether a <em>sell</em> should be armable on a low-confidence step is a fair question to settle as part of the SELL 1 ruling — it is not a bug in the report.</p>
+    <p style="margin-top:9px"><strong>State provenance.</strong> No CRE report has been issued since Sep 29. Campaign state — SELL 1 armed and unruled, reserve undecided, standoff paused, FR-ADA-004 open, tranche ladder — is carried from the Sep 29 report and the project record. The project record contains <strong>both</strong> BUY 4 definitions (two-close in the Sep 23 ladder, single-close in the standing non-negotiables), which upgrades the Sep 29 flag from "unverifiable" to "confirmed inconsistency in the written rules".</p>
 
-    <p style="margin-top:9px"><strong>Project overview.</strong> The report's K3 notes that the ADA section of the project overview is frozen at early September and now carries several items that are no longer true. Worth consolidating; I can do it on request.</p>
+    <p style="margin-top:9px"><strong>Declared in advance, while outcomes are unknown.</strong> (1) Oct 2 settle in $0.25806–$0.25884 → in-band, LOW-CONFIDENCE for position. (2) FR-ADA-004 settle in $0.25544–$0.25620 on Oct 5 → VOID with hypothetical score. (3) FR-ADA-004, being zero-adjustment, scores 0.0000 against base×0.95+R5 by construction; its outcome tests base-rate calibration, not judgment.</p>
 
-    <p style="margin-top:9px"><strong>Method.</strong> Forward cone σ = 4.2817%/day (full window, n=48, Aug 11 – Sep 28; 81.8% annualised). σ<sub>20d</sub> 81.0%, σ<sub>10d</sub> 77.6%. Settled-only; live excluded. Astro Overlay separately scored and firewalled — AO-ADA-001 post-hoc unscored, 002–004 open, AO-ADA-002's anchor is the Oct 4 close. Shmita and lunar contributed nothing to any core probability, band, label, trigger or size.</p>
+    <p style="margin-top:9px"><strong>Method.</strong> Forward cone σ = 4.2594%/day (full window, n=48, Aug 14 – Oct 1; 81.4% annualised). σ<sub>20d</sub> 77.2%, σ<sub>10d</sub> 64.5%. Settled-only; live excluded. The cone now pivots from September, the fourth realised month. Astro Overlay separately scored and firewalled; AO-ADA-002 anchors on the Oct 4 close. Shmita and lunar contributed nothing to any core probability, band, label, trigger or size.</p>
   </div>
 </details>
 
 <details class="apx">
   <summary>Methodology — probabilities, monthly bands, and how buy/sell months are assigned</summary>
   <div class="apx-b">
-    <p><strong>Volatility basis.</strong> Forward cone σ = <strong>4.2817%/day</strong> (full window, n=48, Aug 11 – Sep 28; 81.8% annualised). σ<sub>20d</sub> 81.0%, σ<sub>10d</sub> 77.6%. Settled-only; the live Sep 29 session is excluded. Price axis $0.04–$2.00.</p>
-    <p style="margin-top:9px"><strong>Monthly timeline.</strong> Driftless lognormal cone anchored at live spot $0.25300 — a live-candle figure, used for the cone only and never for a determination. <strong>The last map's anchor was a live candle that settled 5.93% lower</strong>; that is why the anchor is never used for anything but drawing. Three realised months precede it: Jun $0.1444, Jul $0.16826, Aug $0.19781. Driftless is deliberate: assuming a recovery drift or a cycle-shaped price path is exactly where invented forward targets enter a report, and this framework removed them once already. The median stays flat and <em>all</em> the information sits in the widening bands. Cards show the 25th–75th percentile (±0.6745σ); the chart's outer band is 5th–95th (±1.645σ). June and July 2026 are realised closes, not cone output.</p>
+    <p><strong>Volatility basis.</strong> Forward cone σ = <strong>4.2594%/day</strong> (full window, n=48, Aug 14 – Oct 1; 81.4% annualised). σ<sub>20d</sub> 77.2%, σ<sub>10d</sub> 64.5%. Settled-only; the live Oct 2 session is excluded. Price axis $0.04–$2.00; reference lines recomputed this session (correction C1).</p>
+    <p style="margin-top:9px"><strong>Monthly timeline.</strong> Driftless lognormal cone anchored at live spot $0.25689 — a live-candle figure, used for drawing only. <strong>The last map's anchor was a live candle that settled 5.93% lower</strong>; that is why the anchor is never used for anything but drawing. Four realised months precede it: Jun $0.1444, Jul $0.16826, Aug $0.19781, Sep $0.24669. Driftless is deliberate: assuming a recovery drift or a cycle-shaped price path is exactly where invented forward targets enter a report, and this framework removed them once already. The median stays flat and <em>all</em> the information sits in the widening bands. Cards show the 25th–75th percentile (±0.6745σ); the chart's outer band is 5th–95th (±1.645σ). June and July 2026 are realised closes, not cone output.</p>
     <p style="margin-top:9px"><strong>Monthly probabilities.</strong> Against two fixed campaign thresholds that stay meaningful across the whole horizon: BULL = month-end close ≥ <span class="mono">$0.19</span> (BUY 3 gate), BEAR = &lt; <span class="mono">$0.1480</span> (death level), NEUTRAL = between. Because thresholds are fixed and the distribution widens, neutral runs 0% (Sep 2026) to 8% (Dec 2028). <strong>September's bull bucket has printed 65% → 61% → 88% → 100% across this month</strong>, and the month round-tripped twice on the way: +12.99% (Sep 6), −1.20% (Sep 15), +28.52% (Sep 22). A 100% reading with seven days left is <strong>distance from a line fixed in July, at its most extreme</strong> — never conviction. Three consecutive months of large travel (Aug 31.5%, Sep 30.1%) is the clearest demonstration that the central band is a band rather than a path. Arithmetic, not a view — and the most honest statement on the timeline: the further out you look, the less the middle case is worth betting on.</p>
     <p style="margin-top:9px"><strong>How buy/sell months are assigned — and what they are not.</strong> Labels come from <em>dated cycle anchors only</em>. Oct–Nov 2026 from the 363–376 day post-peak interval off BTC's Oct 6, 2025 top. Jul–Oct 2027 as the 6–9 month pre-halving accumulation regime. Mar–Apr 2028 as pre-halving froth plus sell-the-news. Jul–Aug 2028 as months 3–4 post-halving re-accumulation. Dec 2026/2027 as year-end reduction <em>conditional on a profit existing</em>. Nov–Dec 2028 as markup distribution, the most speculative cells on the map.
     <br><br><strong>No seasonality and no calendar-astrology input was used.</strong> Earlier versions of this report assigned monthly calls on "September is historically ADA's strongest month" and similar; those justifications were removed and have not returned. Critically, the labels are <em>not blended into the probabilities</em>: the narrative never bends the numbers, and the numbers never inherit the narrative's confidence. A month labelled BUY with a 42% bear probability is exactly what it looks like — a planned action in a regime whose price outcome is genuinely uncertain.</p>
@@ -544,8 +540,8 @@
 <details class="apx">
   <summary>Data provenance &amp; disclosed failures</summary>
   <div class="apx-b">
-    <p><strong>Authoritative feed:</strong> Crypto.com <span class="mono">ADA_USDT</span> / <span class="mono">BTC_USDT</span>, 1D, UTC-midnight closes — callable first attempt. Session established Sep 29 08:01 UTC, five minutes after the uploaded 07:56 report. Crypto.com callable first attempt for both instruments. Base recovered from the Sep 25 deliverable. The Sep 29 candle is live with 15h58m remaining, excluded from every determination.</p>
-    <p style="margin-top:9px"><strong>Disclosed failure:</strong> the CoinGecko MCP remains not callable, so no same-instant cross-feed price-value verification. Material because Jul 28 and Jul 29 were both gate-relevant closes; <strong>the binding determination is FR-ADA-001's resolution</strong>: Sep 28 closed 1.27% under the $0.2505 B3/B4 edge — outside the ±0.15% band by more than eight times, so no VOID and no dependence on the absent second feed. <strong>The in-band close that matters</strong> — Sep 25's +0.074% over $0.25845 — was determined in an earlier session and carries the LOW-CONFIDENCE tag into SELL 1.</p>
+    <p><strong>Authoritative feed:</strong> Crypto.com <span class="mono">ADA_USDT</span> / <span class="mono">BTC_USDT</span>, 1D, UTC-midnight closes — callable first attempt. Session established Oct 2 12:50 UTC; three settled closes since the Sep 29 map, including the September monthly close. Crypto.com callable first attempt for both instruments. The Oct 2 candle is live with 11h09m remaining, excluded from every determination.</p>
+    <p style="margin-top:9px"><strong>Disclosed failure:</strong> the CoinGecko MCP remains not callable, so no same-instant cross-feed price-value verification. Material because Jul 28 and Jul 29 were both gate-relevant closes; <strong>the binding determination is the September monthly close</strong> at $0.24669 — 4.55% under the campaign high and 5.73% over the continuation trigger, far outside any margin band. <strong>The tight one is tonight:</strong> the Oct 2 live candle is 0.45% under the lower edge of the $0.25845 band, declared above in advance.</p>
     <p style="margin-top:9px"><strong>FOMC outcome</strong> verified via CryptoTimes live coverage (9–3 vote; Hammack, Kashkari and Logan dissenting for a hike) and Wells Fargo Investment Institute (range held at 3.50–3.75%). September odds ~77% per FinanceFeeds. Crude levels (Brent $86.68, WTI $81.25) via OilPrice.com through FinanceFeeds. Other macro: CME FedWatch, Polymarket, CBS, Kiplinger, CryptoSlate, Coinstack. Jul 27 market cause: Investing.com, CoinDesk, CoinPedia. On-chain: Santiment via secondary reporting, Jul 23 vintage — flagged stale and excluded.</p>
     <p style="margin-top:9px"><strong>Presentation note.</strong> Layout follows the uploaded reference (<span class="mono">ADA_report_jul06_interactive.html</span>). One deliberate deviation: the reference loads Chart.js from a CDN, which breaks the self-contained rule, so all charts here are hand-computed inline SVG. Dark mode added; it does not alter the light rendering. <strong>The forecasting engine is unchanged</strong> — same σ method, same MECE bands, same VOID rule, same Brier/skill/calibration architecture, all of it relocated to this appendix.</p>
   </div>
@@ -571,37 +567,37 @@
 
 <script>
 const M=[
-{m:"Jun 2026",t:-121,act:"STOPPED OUT",cat:"PAST",lo:0.1444,hi:0.1444,b:0,n:0,r:100,real:1,nar:"The realised loss of the campaign",det:"Thesis invalidated Jun 24 on a $0.1477 close below the $0.1480 stop. Closed $0.1444, down 38.7%.",cls:"a-sell"},
-{m:"Jul 2026",t:-60,act:"CLOSED +16.52%",cat:"PAST",lo:0.16826,hi:0.16826,b:0,n:0,r:0,real:1,nar:"A full Wyckoff cycle in one month",det:"Closed $0.16826 from June's $0.1444. Spring $0.15550 (Jul 13). Jul 28 spring #2 at $0.15340. Jul 30 confirmed at $0.16978.",cls:"a-buy"},
-{m:"Aug 2026",t:-29,act:"CLOSED +17.56%",cat:"PAST",lo:0.19781,hi:0.19781,b:0,n:0,r:0,real:1,nar:"Travelled 31.5%, finished up 17.56%",det:"Closed $0.19781. Low close $0.17425 (Aug 17), high close $0.22915 (Aug 21). The Aug 22 blowoff printed the campaign high $0.25845 on 34.11M.",cls:"a-buy"},
-{m:"Sep 2026",t:1,act:"HOLD · SELL 1 armed",cat:"NOW",lo:0.2458,hi:0.2604,b:100,n:0,r:0,real:0,nar:"Largest month of the campaign; closing on a sell signal",det:"September ran +12.99% to Sep 6, −1.20% at the Sep 15 low, confirmed continuation Sep 21-22, then spent its last week at the campaign high: intraday excursions to $0.26217 (Sep 23), $0.25974 (Sep 25) and $0.26529 (Sep 26), with one close above — Sep 25's $0.25864, only +0.074% and inside the margin band. That close VOIDed FR-ADA-002 and, with Sep 26-27 closing below, armed SELL 1 (low-confidence). Sep 28 fell 3.08% on +77.7% volume. MTD +25.02% settled with two candles left.",cls:"a-now"},
-{m:"Oct 2026",t:32,act:"CORE ACCUMULATE",cat:"BUY",lo:0.2149,hi:0.2979,b:88,n:11,r:1,real:0,nar:"THE ANCHOR — 5 days out, reserve unresolved",det:"Oct 4-17 = month 29 post-halving, from the 363-376 day post-peak interval off BTC's Oct 6 2025 top. The ADA spot ETF leg does not exist — Grayscale withdrew Aug 7. 25% remains against a thesis wanting 75%, and it now opens with SELL 1 armed and unruled. FR-ADA-004 resolves on the Oct 5 close. Mercury pre-shadow begins Oct 4 09:07 UTC — overlay only.",cls:"a-buy"},
-{m:"Nov 2026",t:62,act:"BUY (core 2nd half)",cat:"BUY",lo:0.2015,hi:0.3176,b:80,n:14,r:6,real:0,nar:"The buffer, not the target",det:"Interval arithmetic centres October. Mercury Rx Oct 24 07:12 - Nov 13 15:54 UTC; AO-ADA-003 is scored separately and changes nothing here.",cls:"a-buy"},
-{m:"Dec 2026",t:93,act:"REDUCE / assess",cat:"SELL",lo:0.1915,hi:0.3343,b:76,n:14,r:10,real:0,nar:"Year-end reduction — satisfiable",det:"Conditional on a profit existing; all four tranches sit +24.3% to +35.9% on the Sep 28 close.",cls:"a-sell"},
-{m:"Jan 2027",t:124,act:"HOLD",cat:"HOLD",lo:0.1834,hi:0.349,b:73,n:14,r:13,real:0,nar:"Everything downstream forks here",det:"Whether a base confirmed in Q4 2026 determines the 2027 regime.",cls:"a-hold"},
-{m:"Feb 2027",t:152,act:"HOLD",cat:"HOLD",lo:0.1772,hi:0.3612,b:71,n:14,r:15,real:0,nar:"No campaign structure at this range",det:"Band is pure volatility arithmetic.",cls:"a-hold"},
-{m:"Mar 2027",t:183,act:"HOLD",cat:"HOLD",lo:0.1712,hi:0.3739,b:69,n:13,r:18,real:0,nar:"No campaign structure at this range",det:"Earlier versions called March a BUY on seasonal grounds; removed and not returned.",cls:"a-hold"},
-{m:"Apr 2027",t:213,act:"HOLD",cat:"HOLD",lo:0.166,hi:0.3856,b:68,n:12,r:20,real:0,nar:"Pre-halving clock enters the window",det:"April 2028 halving comes inside the twelve-month forward window.",cls:"a-hold"},
-{m:"May 2027",t:244,act:"HOLD",cat:"HOLD",lo:0.1611,hi:0.3972,b:67,n:12,r:21,real:0,nar:"Pre-halving clock",det:"Anchored to the halving calendar. Seasonality carries no weight here.",cls:"a-hold"},
-{m:"Jun 2027",t:274,act:"HOLD",cat:"HOLD",lo:0.1569,hi:0.4081,b:66,n:12,r:22,real:0,nar:"Pre-halving clock",det:"Earlier versions called June a SELL on seasonal grounds; removed.",cls:"a-hold"},
-{m:"Jul 2027",t:305,act:"ACCUMULATE",cat:"BUY",lo:0.1528,hi:0.419,b:65,n:11,r:24,real:0,nar:"Pre-halving accumulation regime opens",det:"Roughly nine months before the halving. Conditional.",cls:"a-buy"},
-{m:"Aug 2027",t:336,act:"ACCUMULATE",cat:"BUY",lo:0.149,hi:0.4296,b:64,n:11,r:25,real:0,nar:"Pre-halving accumulation",det:"Eight months out. Conditional.",cls:"a-buy"},
-{m:"Sep 2027",t:366,act:"ACCUMULATE",cat:"BUY",lo:0.1456,hi:0.4396,b:64,n:10,r:26,real:0,nar:"Pre-halving accumulation",det:"Seven months out. Conditional on structure that does not yet exist.",cls:"a-buy"},
-{m:"Oct 2027",t:397,act:"ACCUMULATE",cat:"BUY",lo:0.1423,hi:0.4498,b:63,n:11,r:26,real:0,nar:"Six months to halving",det:"Historically the front edge of pre-halving positioning.",cls:"a-buy"},
-{m:"Nov 2027",t:427,act:"HOLD",cat:"HOLD",lo:0.1393,hi:0.4595,b:63,n:10,r:27,real:0,nar:"Market begins pricing the halving",det:"Forward curve starts embedding the event.",cls:"a-hold"},
-{m:"Dec 2027",t:458,act:"REDUCE / assess",cat:"SELL",lo:0.1364,hi:0.4694,b:62,n:10,r:28,real:0,nar:"Year-end reduction, conditional",det:"Trim only if a profit exists.",cls:"a-sell"},
-{m:"Jan 2028",t:489,act:"HOLD",cat:"HOLD",lo:0.1336,hi:0.4792,b:62,n:9,r:29,real:0,nar:"Halving year opens",det:"Q1 pre-halving historically the strongest pre-event stretch.",cls:"a-hold"},
-{m:"Feb 2028",t:518,act:"HOLD",cat:"HOLD",lo:0.1311,hi:0.4882,b:62,n:9,r:29,real:0,nar:"Pre-halving run",det:"Two months out.",cls:"a-hold"},
-{m:"Mar 2028",t:549,act:"TRIM (pre-halving froth)",cat:"SELL",lo:0.1286,hi:0.4977,b:61,n:9,r:30,real:0,nar:"Where froth has historically peaked",det:"One month before the halving.",cls:"a-sell"},
-{m:"Apr 2028",t:579,act:"SELL / sell-the-news",cat:"SELL",lo:0.1263,hi:0.5069,b:61,n:9,r:30,real:0,nar:"BTC HALVING — the event",det:"The next dated cycle anchor after Oct 2026.",cls:"a-sell"},
-{m:"May 2028",t:610,act:"HOLD",cat:"HOLD",lo:0.124,hi:0.5163,b:61,n:8,r:31,real:0,nar:"Post-halving lull",det:"Month 1 post-event.",cls:"a-hold"},
-{m:"Jun 2028",t:640,act:"HOLD",cat:"HOLD",lo:0.1218,hi:0.5253,b:60,n:9,r:31,real:0,nar:"Post-halving lull",det:"Month 2.",cls:"a-hold"},
-{m:"Jul 2028",t:671,act:"ACCUMULATE",cat:"BUY",lo:0.1197,hi:0.5346,b:60,n:9,r:31,real:0,nar:"Post-halving re-accumulation",det:"Month 3. Speculative.",cls:"a-buy"},
-{m:"Aug 2028",t:702,act:"ACCUMULATE",cat:"BUY",lo:0.1177,hi:0.5438,b:60,n:8,r:32,real:0,nar:"Post-halving re-accumulation",det:"Month 4.",cls:"a-buy"},
-{m:"Sep 2028",t:732,act:"HOLD",cat:"HOLD",lo:0.1158,hi:0.5527,b:60,n:8,r:32,real:0,nar:"Early markup window",det:"Months 5-6.",cls:"a-hold"},
-{m:"Oct 2028",t:763,act:"HOLD",cat:"HOLD",lo:0.1139,hi:0.5618,b:60,n:7,r:33,real:0,nar:"Early markup window",det:"Also the start of the next Shmita release year — disclosed, zero weight.",cls:"a-hold"},
-{m:"Nov 2028",t:793,act:"DISTRIBUTE (cond)",cat:"SELL",lo:0.1122,hi:0.5706,b:59,n:8,r:33,real:0,nar:"Markup distribution, if the cycle delivered",det:"A placeholder for a decision.",cls:"a-sell"},
-{m:"Dec 2028",t:824,act:"DISTRIBUTE / review",cat:"SELL",lo:0.1104,hi:0.5796,b:59,n:8,r:33,real:0,nar:"Horizon limit",det:"A review date, not a trade.",cls:"a-sell"},
+{m:"Jun 2026",t:-124,act:"STOPPED OUT",cat:"PAST",lo:0.1444,hi:0.1444,b:0,n:0,r:100,real:1,nar:"The realised loss of the campaign",det:"Thesis invalidated Jun 24 on a $0.1477 close below the $0.1480 stop. Closed $0.1444, down 38.7%.",cls:"a-sell"},
+{m:"Jul 2026",t:-63,act:"CLOSED +16.52%",cat:"PAST",lo:0.16826,hi:0.16826,b:0,n:0,r:0,real:1,nar:"A full Wyckoff cycle in one month",det:"Closed $0.16826 from June's $0.1444. Spring $0.15550 (Jul 13). Jul 28 spring #2 at $0.15340. Jul 30 confirmed at $0.16978.",cls:"a-buy"},
+{m:"Aug 2026",t:-32,act:"CLOSED +17.56%",cat:"PAST",lo:0.19781,hi:0.19781,b:0,n:0,r:0,real:1,nar:"Travelled 31.5%, finished up 17.56%",det:"Closed $0.19781. Low close $0.17425 (Aug 17), high close $0.22915 (Aug 21). The Aug 22 blowoff printed the campaign high $0.25845 on 34.11M.",cls:"a-buy"},
+{m:"Sep 2026",t:-2,act:"CLOSED +24.71%",cat:"PAST",lo:0.24669,hi:0.24669,b:0,n:0,r:0,real:1,nar:"The largest month of the campaign",det:"Closed $0.24669 from August's $0.19781. Low close $0.19544 (Sep 15), high close $0.25864 (Sep 25) — a 32.3% travel, finishing at 81% of the range. Continuation confirmed Sep 21-22 after four rejections; upthrust Sep 23; back-test held Sep 24; one in-band close above the campaign high Sep 25; SELL 1 armed Sep 27. This map's September bull bucket read 65/61/88/100/100 — the band was right, the readings were distance.",cls:"a-buy"},
+{m:"Oct 2026",t:29,act:"HOLD · SELL 1 armed",cat:"NOW",lo:0.2201,hi:0.2999,b:91,n:8,r:1,real:0,nar:"The core window opens with two decisions unmade",det:"Oct 4-17 = month 29 post-halving, from the 363-376 day post-peak interval off BTC's Oct 6 2025 top — the campaign's only hard-arithmetic anchor, never moved by price. Opens Oct 4 with 25% of a thesis-mandated 75% reserve and SELL 1 armed but unruled. Oct 2 live is testing the $0.25845 campaign high for the fourth time. FR-ADA-004 resolves on the Oct 5 close. Mercury pre-shadow Oct 4; AO-ADA-002 anchors on the Oct 4 close — overlay only.",cls:"a-now"},
+{m:"Nov 2026",t:59,act:"BUY (core 2nd half)",cat:"BUY",lo:0.206,hi:0.3203,b:82,n:13,r:5,real:0,nar:"The buffer, not the target",det:"Interval arithmetic centres October; November is the tolerance band. Mercury Rx Oct 24 - Nov 13 overlaps the core window; AO-ADA-003 is scored separately and changes nothing here. FOMC Oct 27-28.",cls:"a-buy"},
+{m:"Dec 2026",t:90,act:"REDUCE / assess",cat:"SELL",lo:0.1956,hi:0.3374,b:77,n:14,r:9,real:0,nar:"Year-end reduction — satisfiable",det:"Conditional on a profit existing; all four tranches sit +23.8% to +35.4% on the Oct 1 close.",cls:"a-sell"},
+{m:"Jan 2027",t:121,act:"HOLD",cat:"HOLD",lo:0.1873,hi:0.3524,b:74,n:14,r:12,real:0,nar:"Everything downstream forks here",det:"Whether a base confirmed in Q4 2026 determines the 2027 regime.",cls:"a-hold"},
+{m:"Feb 2027",t:149,act:"HOLD",cat:"HOLD",lo:0.1809,hi:0.3648,b:72,n:14,r:14,real:0,nar:"No campaign structure at this range",det:"Band is pure volatility arithmetic.",cls:"a-hold"},
+{m:"Mar 2027",t:180,act:"HOLD",cat:"HOLD",lo:0.1747,hi:0.3777,b:70,n:13,r:17,real:0,nar:"No campaign structure at this range",det:"Earlier versions called March a BUY on seasonal grounds; removed and not returned.",cls:"a-hold"},
+{m:"Apr 2027",t:210,act:"HOLD",cat:"HOLD",lo:0.1694,hi:0.3895,b:69,n:12,r:19,real:0,nar:"Pre-halving clock enters the window",det:"April 2028 halving comes inside the twelve-month forward window.",cls:"a-hold"},
+{m:"May 2027",t:241,act:"HOLD",cat:"HOLD",lo:0.1645,hi:0.4013,b:68,n:12,r:20,real:0,nar:"Pre-halving clock",det:"Seasonality carries no weight here.",cls:"a-hold"},
+{m:"Jun 2027",t:271,act:"HOLD",cat:"HOLD",lo:0.1601,hi:0.4122,b:67,n:11,r:22,real:0,nar:"Pre-halving clock",det:"Earlier versions called June a SELL on seasonal grounds; removed.",cls:"a-hold"},
+{m:"Jul 2027",t:302,act:"ACCUMULATE",cat:"BUY",lo:0.1559,hi:0.4232,b:66,n:11,r:23,real:0,nar:"Pre-halving accumulation regime opens",det:"Roughly nine months before the halving. Conditional.",cls:"a-buy"},
+{m:"Aug 2027",t:333,act:"ACCUMULATE",cat:"BUY",lo:0.1521,hi:0.4339,b:65,n:11,r:24,real:0,nar:"Pre-halving accumulation",det:"Eight months out. Conditional.",cls:"a-buy"},
+{m:"Sep 2027",t:363,act:"ACCUMULATE",cat:"BUY",lo:0.1486,hi:0.4441,b:64,n:11,r:25,real:0,nar:"Pre-halving accumulation",det:"Seven months out. Conditional on structure that does not yet exist.",cls:"a-buy"},
+{m:"Oct 2027",t:394,act:"ACCUMULATE",cat:"BUY",lo:0.1452,hi:0.4544,b:64,n:10,r:26,real:0,nar:"Six months to halving",det:"Historically the front edge of pre-halving positioning.",cls:"a-buy"},
+{m:"Nov 2027",t:424,act:"HOLD",cat:"HOLD",lo:0.1422,hi:0.4642,b:63,n:11,r:26,real:0,nar:"Market begins pricing the halving",det:"Forward curve starts embedding the event.",cls:"a-hold"},
+{m:"Dec 2027",t:455,act:"REDUCE / assess",cat:"SELL",lo:0.1392,hi:0.4741,b:63,n:10,r:27,real:0,nar:"Year-end reduction, conditional",det:"Trim only if a profit exists.",cls:"a-sell"},
+{m:"Jan 2028",t:486,act:"HOLD",cat:"HOLD",lo:0.1364,hi:0.484,b:63,n:9,r:28,real:0,nar:"Halving year opens",det:"Q1 pre-halving historically the strongest pre-event stretch.",cls:"a-hold"},
+{m:"Feb 2028",t:515,act:"HOLD",cat:"HOLD",lo:0.1338,hi:0.4931,b:62,n:10,r:28,real:0,nar:"Pre-halving run",det:"Two months out.",cls:"a-hold"},
+{m:"Mar 2028",t:546,act:"TRIM (pre-halving froth)",cat:"SELL",lo:0.1313,hi:0.5027,b:62,n:9,r:29,real:0,nar:"Where froth has historically peaked",det:"One month before the halving.",cls:"a-sell"},
+{m:"Apr 2028",t:576,act:"SELL / sell-the-news",cat:"SELL",lo:0.1289,hi:0.5119,b:62,n:9,r:29,real:0,nar:"BTC HALVING — the event",det:"The next dated cycle anchor after Oct 2026.",cls:"a-sell"},
+{m:"May 2028",t:607,act:"HOLD",cat:"HOLD",lo:0.1266,hi:0.5214,b:61,n:9,r:30,real:0,nar:"Post-halving lull",det:"Month 1 post-event.",cls:"a-hold"},
+{m:"Jun 2028",t:637,act:"HOLD",cat:"HOLD",lo:0.1244,hi:0.5305,b:61,n:9,r:30,real:0,nar:"Post-halving lull",det:"Month 2.",cls:"a-hold"},
+{m:"Jul 2028",t:668,act:"ACCUMULATE",cat:"BUY",lo:0.1223,hi:0.5398,b:61,n:8,r:31,real:0,nar:"Post-halving re-accumulation",det:"Month 3. Speculative.",cls:"a-buy"},
+{m:"Aug 2028",t:699,act:"ACCUMULATE",cat:"BUY",lo:0.1202,hi:0.5491,b:61,n:8,r:31,real:0,nar:"Post-halving re-accumulation",det:"Month 4.",cls:"a-buy"},
+{m:"Sep 2028",t:729,act:"HOLD",cat:"HOLD",lo:0.1183,hi:0.558,b:60,n:8,r:32,real:0,nar:"Early markup window",det:"Months 5-6.",cls:"a-hold"},
+{m:"Oct 2028",t:760,act:"HOLD",cat:"HOLD",lo:0.1164,hi:0.5672,b:60,n:8,r:32,real:0,nar:"Early markup window",det:"Also the start of the next Shmita release year — disclosed, zero weight.",cls:"a-hold"},
+{m:"Nov 2028",t:790,act:"DISTRIBUTE (cond)",cat:"SELL",lo:0.1146,hi:0.576,b:60,n:8,r:32,real:0,nar:"Markup distribution, if the cycle delivered",det:"A placeholder for a decision.",cls:"a-sell"},
+{m:"Dec 2028",t:821,act:"DISTRIBUTE / review",cat:"SELL",lo:0.1128,hi:0.5851,b:60,n:7,r:33,real:0,nar:"Horizon limit",det:"A review date, not a trade.",cls:"a-sell"},
 ];
 
 // month cards
@@ -690,7 +686,7 @@ chips.forEach(ch=>ch.addEventListener('click',()=>{
    can never drift out of agreement with the drawn bands. */
 const CX0=54, CX1=748, CY0=22, CY1=196;
 const LPMIN=Math.log(0.040), LPMAX=Math.log(2.00);
-const SPOT_ANCHOR=0.25300;
+const SPOT_ANCHOR=0.25689;
 const cY = p => CY1-(Math.log(p)-LPMIN)/(LPMAX-LPMIN)*(CY1-CY0);
 const cX = i => CX0+(CX1-CX0)*i/(M.length-1);
 

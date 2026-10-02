@@ -88,7 +88,7 @@
   </a>
 </div>
 <h1>BTC Framework Dashboard — Interactive</h1>
-<div class="meta">Crypto Reconnaissance Engine · <b>Jan 2014 → Sep 2026 live</b> (CRE v3.1 + Astro Overlay · Session 83 · Sep 29 level ladder, <b>markup by rank — back-up deepening</b>, cycle window &amp; calendar to Shmita 5789, Sep 2028–Sep 2029) · drag to pan, scroll/pinch to zoom, double-click to reset, hover for values, toggle layers below</div>
+<div class="meta">Crypto Reconnaissance Engine · <b>Jan 2014 → Oct 2026 live</b> (CRE v3.1 + Astro Overlay · Session 86 · Oct 2 level ladder, <b>markup — back-up complete, range high pending</b>, cycle window &amp; calendar to Shmita 5789, Sep 2028–Sep 2029) · drag to pan, scroll/pinch to zoom, double-click to reset, hover for values, toggle layers below</div>
 
 <div class="controls">
   <div class="ctrl-group">
@@ -97,14 +97,14 @@
     <button class="toggle active" data-layer="shmita">Shmita</button>
     <button class="toggle active" data-layer="mercury">Mercury Rx</button>
     <button class="toggle active" data-layer="fng">Fear &amp; Greed</button>
-    <button class="toggle active" data-layer="levels">Sep 29 Levels + Zones</button>
+    <button class="toggle active" data-layer="levels">Oct 2 Levels + Zones</button>
   </div>
   <div class="ctrl-group">
     <span class="ctrl-label">Zoom</span>
     <button class="zoom-btn active" data-zoom="all">2014–Now</button>
     <button class="zoom-btn" data-zoom="cycle14">2014–17</button>
     <button class="zoom-btn" data-zoom="cycle22">2021–23</button>
-    <button class="zoom-btn" data-zoom="live">Live (Sep'26)</button>
+    <button class="zoom-btn" data-zoom="live">Live (Oct'26)</button>
     <button class="zoom-btn" data-zoom="reset">Reset</button>
   </div>
   <div class="ctrl-group">
@@ -118,7 +118,7 @@
   </div>
   <div class="ctrl-group">
     <span class="ctrl-label">Report</span>
-    <a class="zoom-btn" href="BTC_report_S83_sep29.html" style="text-decoration:none;">📊 Market GPS (Sep 29 · S83)</a>
+    <a class="zoom-btn" href="BTC_report_S86_oct02.html" style="text-decoration:none;">📊 Market GPS (Oct 2 · S86)</a>
   </div>
 </div>
 
@@ -146,13 +146,13 @@
   <span><i style="background:#2f6fb0"></i>Extreme greed</span>
   <span style="margin-left:12px"><i style="background:var(--amber)"></i>Mercury Rx / Shmita (on)</span>
   <span><i style="background:#1a1d24;border:1px solid #5ec8f0"></i>BTC price</span>
-  <span style="margin-left:8px;border-left:1px solid var(--bord);padding-left:12px;font-weight:700;color:var(--amber)">Sep 29 levels:</span>
-  <span><i style="background:rgba(224,168,63,.5)"></i>$82,293 gate — <b>the only gated level</b> · 8 closes above but now 0.50 ATR away · 2 closes below → range</span>
-  <span><i style="background:rgba(224,129,95,.5)"></i>$83,498 Sep 28 settle · $82,552 pullback low — <b>higher-low sequence ended</b> · $80,708 20d SMA, close +3.46%</span>
-  <span><i style="background:rgba(224,129,95,.5)"></i>$85,264 range high intact · $87,411 closing-high marker — reported, not gated, 7 sessions without a new high</span>
-  <span><i style="background:rgba(91,191,134,.5)"></i>$82,293–$87,411 Read B range (Band B .46) · $81,484–$82,293 ZONE_BTC_0008 — <b>0.31% from a first touch</b></span>
-  <span><i style="background:rgba(154,163,187,.45)"></i>$82,169–$82,416 gate margin band · $73,014–$73,411 ZONE_BTC_0007 · $57,803 FR-A008, 30.77% below</span>
-  <span><i style="background:rgba(91,191,134,.25)"></i>Autumn '26 window — opens in 4 days</span>
+  <span style="margin-left:8px;border-left:1px solid var(--bord);padding-left:12px;font-weight:700;color:var(--amber)">Oct 2 levels:</span>
+  <span><i style="background:rgba(224,168,63,.5)"></i>$85,264 RANGE HIGH — <b>probed two days running, counted neither</b> · break 0 of 2, two closes cancel the upthrust candidate</span>
+  <span><i style="background:rgba(224,168,63,.5)"></i>$82,293 gate / markup invalidation — 11 closes held, now <b>1.04 ATR away, widened</b> from 0.50</span>
+  <span><i style="background:rgba(224,129,95,.5)"></i>$84,876 Oct 1 settle, closed at 81.1% of range · $87,411 swing high, untested, 10 sessions without a new high · $81,710 20d SMA, close +3.87%</span>
+  <span><i style="background:rgba(91,191,134,.5)"></i>$82,293–$87,411 Read B range (Band B .58, single-input swing flagged) · $81,484–$82,293 ZONE_BTC_0008 WATCHING</span>
+  <span><i style="background:rgba(154,163,187,.45)"></i>$82,169–$82,416 gate margin band · $73,014–$73,411 ZONE_BTC_0007 · $57,803 FR-A008, 31.90% below</span>
+  <span><i style="background:rgba(91,191,134,.25)"></i>Autumn '26 window — <b>now open</b> (Oct 3 – Nov 15)</span>
 </div>
 
 </div>
@@ -179,35 +179,34 @@ const price=[
   23100,23100,28500,29200,27200,30500,29200,25900,26900,34500,37700,42300,
   42600,61200,71300,60600,67500,62700,64600,58900,63300,70200,96400,93400,
   102000,84000,82000,94000,104000,107000,117000,112000,114000,126000,95000,87000,
-  88000,65000,70000,67000,71000,58634,62898,78587,83498,
-  null,null,null,                                                  // 2026 Oct-Dec: future, no real price data yet
+  88000,65000,70000,67000,71000,58634,62898,78587,83622,84876,
+  null,null,                                                       // 2026 Nov-Dec: future, no real price data yet
   null,null,null,null,null,null,null,null,null,null,null,null,     // 2027: future, no real price data
   null,null,null,null,null,null,null,null,null,null,null,null,     // 2028: future (Shmita 5789 opens Sep 21)
   null,null,null,null,null,null,null,null,null,null,null,null      // 2029: future (Shmita 5789 closes Sep 9)
 ];
-// Jun 2026 closed $58,634 and Jul 2026 SETTLED at $62,898 (Crypto.com) = +7.2%. AUGUST 2026 SETTLED at
-// $78,587.39. SEP 2026 = $83,497.82 MONTH-TO-DATE, the Sep 28 settled close, carried from Session 83.
-// Cross-verified: CoinGecko reads $83,479.25, a −0.022% gap.
+// Jun 2026 closed $58,634, Jul SETTLED at $62,898, AUGUST at $78,587.39. SEPTEMBER HAS NOW SETTLED at
+// $83,621.59 (the Sep 30 close) and is no longer the live month. OCT 2026 = $84,876.20 MONTH-TO-DATE, the
+// Oct 1 settled close carried from Session 86. The Oct 2 candle was in progress at the session epoch and is
+// excluded from every determination.
 //
-// MARKUP HOLDS BY RANK, BUT THE BACK-UP IS DEEPENING AND THE ALTERNATE GAINED ITS FIRST REAL EVIDENCE.
-// Eight settled closes now sit above the $82,292.62 gate, but the Sep 28 close is only 1.46% = 0.50 ATR
-// above it, down from 2.66% = 0.88 ATR a session earlier. Read A is Phase E markup backing up toward the
-// breakout level. Read B is a buying climax on Sep 21 plus an automatic reaction, making a new trading range
-// between roughly $82.3K and $87.4K — and S83 records that Read B STRENGTHENED.
+// PHASE E MARKUP, AND THE BACK-UP APPEARS COMPLETE. Eleven settled closes hold above the $82,292.62 gate,
+// which is now 3.14% = 1.04 ATR below — WIDENING from 0.50 ATR four sessions ago, the opposite of the
+// compression that had the alternate gaining ground. THREE CONSECUTIVE HIGHER LOWS have replaced the broken
+// sequence, and Oct 1 closed +1.500% at 81.1% of its range on 1.10x volume, reclaiming most of the Sep 30
+// upthrust wick. Confidence S is lifted 3 points for exactly that: T 28 / S 50 / C 20, never blended.
 //
-// WHAT STRENGTHENED IT, PRECISELY. Sep 28 printed a new pullback low of $82,551.72, undercutting Sep 24's
-// $82,866.66 and ENDING THE HIGHER-LOW SEQUENCE. It closed −1.163% at 38.5% of its range on 1.05x volume —
-// the first above-average-volume down day since Sep 22. The report caught its own draft overstating this
-// (it had claimed "first since the climax"; Sep 22 was already a down day at 1.03x) and corrected it before
-// publication, so the inference is worded weaker than the draft had it.
+// THE NEXT STRUCTURAL EVENT IS THE RANGE-HIGH BREAK, AND IT HAS NOT COUNTED YET. $85,263.63 was probed two
+// days running — Sep 30 to $85,651.96 and Oct 1 to $85,275.27, the latter exceeding it by 0.014% — and BOTH
+// closes came back below. Oct 1 settled 0.454% under it, so the counter reads 0 of 2. TWO settled closes
+// above would cancel the Sep 30 upthrust candidate outright and leave only the $87,411.33 swing high, which
+// is 2.99% = 1.02 ATR away and untested alongside its $87,286.99 twin. Ten sessions without a new high.
 //
-// CONFIDENCE IS PUBLISHED THIS SESSION, AND IT IS LOW. T 28 / S 47 / C 20, never blended, with S cut 3
-// points: the markup read lost its higher-low sequence on a volume-backed down day while Read B gained
-// evidence, and the gate itself has still not been tested. Aggressiveness 2/10. Structural risk MEDIUM-LOW
-// but explicitly UNDER WATCH, because price is 0.50 ATR from the gate.
-//
-// SEVEN SESSIONS WITHOUT A NEW HIGH and the premium over the 20-day mean compressing from +8.60% at S78 to
-// +3.46% now. None of that triggers a rule; it is recorded as a behavioural flag from core data only.
+// TWO THINGS WORTH NAMING THAT ARE NOT PRICE. The nine-day, roughly $3bn spot-ETF inflow streak ENDED on
+// Sep 30 with a net OUTFLOW of $149M — the first negative print since Sep 16, logged as a change of sign and
+// explicitly not as a trend. And realised 10-day volatility collapsed to 0.9573% as the Sep 21 markup day
+// left the window, going into a scheduled payrolls print; compressed realised volatility before a scheduled
+// event is a known source of underpriced tails, and the report logs it without weighting it.
 
 const fng=[
   null,null,null,null,null,null,null,null,null,null,null,null,     // 2014 — Alternative.me index did not exist yet
@@ -244,8 +243,9 @@ const fng=[
   // scale, different provider. The switch is recorded here rather than blended in silently, and the layer stays
   // [UNVALIDATED] — the BTC thread weights it at ZERO and the ADA thread gives it a small contrarian weight.
   //
-  // SEP 2026 = 51 (Neutral), carried unchanged — Session 83 records Fear & Greed as NOT OBTAINED current, so
-  // the Sep 16 reading still stands and nothing newer is invented. The scope is NOT stated by the source.
+  // SEP 2026 = 51 (Neutral) — now a SETTLED month, carrying the Sep 16 print, the only September reading ever
+  // obtained. OCT 2026 IS BLANK: Session 86 again records Fear & Greed as NOT OBTAINED, so October opens with
+  // no reading and none is carried forward from September. The scope of the 51 was never stated by its source.
   // Session 72's Tier 4 records "a Sep 16 report put the Fear & Greed Index at 51 (Neutral), down from 69 a day
   // earlier." It does not say whether that is the crypto-wide index or a Bitcoin-scoped one, and this row is and
   // always has been the CRYPTO-WIDE series. The figure is carried because it is what the report states, and the
@@ -314,59 +314,60 @@ const wyckoff = [
   {s:141,e:150,kind:'markdown',label:'post-ATH markdown'},
   {s:150,e:151,kind:'markup',   label:'tracked: Jul 2026 markup'},
   {s:151,e:152,kind:'dist',     label:'tracked: UTAD Aug 28 $81,484.26 — distribution, unconfirmed at the time'},
-  {s:152,e:153,kind:'markup',   label:'tracked: Phase E markup — back-up deepening, 0.50 ATR from the gate'},
+  {s:152,e:154,kind:'markup',   label:'tracked: Phase E markup — back-up complete, 3 higher lows, range high pending'},
 ];
-// LIVE CELL COLOUR: MARKUP — BY RANK, AND THE RANK IS NARROWING. Eight settled closes hold above the
-// $82,292.62 gate, so Phase E markup remains the primary read. But the Sep 28 close sits only 1.46% = 0.50
-// ATR above that gate, halved from 0.88 ATR one session earlier, and the alternate has gained evidence for
-// the first time. Read the label, not the colour: this is a markup backing up toward its breakout level, not
-// a markup extending.
-// THE HIGHER-LOW SEQUENCE ENDED. Sep 28 printed $82,551.72, undercutting Sep 24's $82,866.66, and closed
-// −1.163% at 38.5% of range on 1.05x volume — the first above-average-volume down day since Sep 22. Read B,
-// a Sep 21 buying climax plus automatic reaction forming a new range between roughly $82.3K and $87.4K, is
-// what that evidence supports. The framework carries both reads rather than switching on one bar.
-// CONFIDENCE IS PUBLISHED AND LOW: T 28 / S 47 / C 20, never blended, S cut three points for exactly the
-// reason above. Aggressiveness 2/10. Structural risk MEDIUM-LOW but UNDER WATCH at 0.50 ATR from the gate.
-// THE GATE HAS NOT BEEN TESTED. Eight closes have held above it and no settled bar has swept it; the zone
-// beneath it has not been touched either, sitting 0.31% from a first touch. Two consecutive settled closes
-// below $82,292.62 convert the markup read into a trading range and return risk to Medium — and a close
-// inside $82,169.18-$82,416.06 is LOW-CONFIDENCE for position and VOIDS any resolution on that line.
-// NOTHING IS ARMED. WAIT is enforced, the 75% reserve stays held for the Oct 3 - Nov 15 window, and a zone
-// tranche remains impossible until sizing and invalidation are pre-registered.
+// LIVE CELL COLOUR: MARKUP, AND THE RANK HAS WIDENED BACK OUT. Four sessions ago the gate was 0.50 ATR away
+// and the alternate was gaining; it is now 3.14% = 1.04 ATR below on eleven held closes, with THREE
+// CONSECUTIVE HIGHER LOWS replacing the sequence that had broken. S83's back-up is read as COMPLETE above the
+// breakout level, pending a close above the range high.
+// THE READ STILL HAS TWO SIDES AND BOTH ARE CARRIED. Read A is Phase E markup with the back-up finished.
+// Read B is a Sep 21 buying climax plus automatic reaction forming a range between roughly $82.3K and $87.4K,
+// now carrying a SEP 30 UPTHRUST CANDIDATE — whose first follow-through test FAILED when Oct 1 reclaimed most
+// of its wick and closed at 81.1% of range. Two settled closes above $85,263.63 would cancel that candidate.
+// THE RANGE HIGH HAS BEEN PROBED TWICE AND COUNTED NEITHER TIME. Sep 30 reached $85,651.96 and Oct 1 reached
+// $85,275.27 — exceeding $85,263.63 by 0.014% — and both closed back below. The counter is 0 of 2 and Oct 1
+// settled 0.454% under it. Above that sits only the $87,411.33 swing high and its $87,286.99 twin, both
+// untested, 1.02 ATR away, after ten sessions without a new high.
+// CONFIDENCE T 28 / S 50 / C 20, S lifted three points for the third higher low, the reclaiming close and the
+// widened gate. Aggressiveness 2/10. Structural risk MEDIUM-LOW with event risk flagged: realised 10-day
+// volatility collapsed to 0.9573% as the Sep 21 markup day left the window, going into a payrolls print.
+// THE RESERVE'S WINDOW IS NOW OPEN. Oct 3 - Nov 15 began this session, and 75% dry powder is still held with
+// NOTHING ARMED. The report refers the reserve-versus-markup tension to DiceQ rather than resolving it.
 const liveStartIdx = 150; // July 2026 (Jan 2014 base: 12*12 + 6) — where the framework's real-time RECORD begins
 // currentIdx is a DIFFERENT thing and the two must not be conflated: liveStartIdx is where live tracking started,
 // currentIdx is the single month still in progress. Every month in [liveStartIdx, currentIdx) is a settled month
 // inside the live record — tracked in real time, but CLOSED. Only currentIdx is month-to-date and still moving,
 // so only currentIdx may carry the "LIVE" badge. Jul 2026 SETTLED at $62,898 and Aug 2026 SETTLED at $78,587;
 // Sep 2026 is the live month.
-const currentIdx = 152; // September 2026 — the month-to-date cell (Sep 28 settled close; Sep 29 candle excluded)
+const currentIdx = 153; // October 2026 — the month-to-date cell (Oct 1 settled close; Oct 2 candle excluded)
 
-// ── Sep 29, 2026 Market GPS (Session 83, CRE v3.1 + Astro Overlay) level ladder ──
-// THE LADDER IS UNCHANGED IN SHAPE AND THE DISTANCES HAVE COMPRESSED. The gate is still the only gated
-// level; everything above it is reported and not gated. What moved is proximity: 0.50 ATR to the gate from
-// 0.88 a session ago, and a new pullback low that ended the higher-low sequence.
+// ── Oct 2, 2026 Market GPS (Session 86, CRE v3.1 + Astro Overlay) level ladder ──
+// THE GATE HAS WIDENED BACK OUT AND THE LIVE QUESTION MOVED UP. Four sessions ago the decisive level was the
+// gate at 0.50 ATR; it is now 1.04 ATR below on eleven held closes. What matters now is the RANGE HIGH, probed
+// two days running and counted neither time.
+// THE SEP 28 PULLBACK LOW IS DROPPED from the ladder: three consecutive higher lows have superseded it, which
+// is the structural fact that reversed the alternate's advance.
 // TIER = how loudly this level should speak, ranked by the decision it actually informs right now.
-//   1 = decision-critical (the invalidation and the reference close) — solid, bright, labelled
-//   2 = structural (the range edges being worked, the mean) — dashed, dim
+//   1 = decision-critical (the live break, the invalidation, the reference close) — solid, bright, labelled
+//   2 = structural (the swing high above, the mean below) — dashed, dim
 //   3 = deep reference or a scoring object — dotted, faint, deep-zoom labels only
 const levelLines = [
-  {p:87411, kind:'res',  tier:2, tag:'closing-high marker \u00b7 1.61 ATR', label:'$87,411.33 \u00b7 the CLOSING-HIGH MARKER \u2014 REPORTED, NOT GATED, 4.69% and 1.61 ATR above. A settled close above it sets a new closing high; TWO such closes would register a new continuation level. It pairs with $87,286.99 as equal-ish highs, and both are UNTESTED \u2014 seven sessions have now passed without a new high.'},
-  {p:85264, kind:'res',  tier:2, tag:'range high \u00b7 intact', label:'$85,263.63 \u00b7 the post-Sep-23 RANGE HIGH \u2014 intact; Sep 28\u2019s high of $85,008.99 did not reach it. A settled close above it breaks the range, REPORTED and not gated. It is the upper edge of the trading range Read B describes.'},
-  {p:83498, kind:'res',  tier:1, tag:'Sep 28 settle \u00b7 reference close', label:'$83,497.82 \u00b7 the Sep 28 settled close. \u22121.163% on a $2,457.27 = 2.91% range (about 1.0 ATR), closing at 38.5% of range on 1.05\u00d7 volume \u2014 the first above-average-volume DOWN day since Sep 22. CoinGecko reads $83,479.25, a \u22120.022% gap. It sits +3.46% over the 20-day mean, compressed from +8.60% at S78.'},
-  {p:82552, kind:'res',  tier:2, tag:'pullback low \u00b7 sequence ended', label:'$82,551.72 \u00b7 the Sep 28 PULLBACK LOW \u2014 it UNDERCUT Sep 24\u2019s $82,866.66 and ENDED THE HIGHER-LOW SEQUENCE. That is the single piece of evidence that strengthened the buying-climax alternate this session. Reported, not gated; it also leaves the zone beneath 0.31% from a first touch.'},
-  {p:82293, kind:'gate', tier:1, tag:'MARKUP INVALIDATION \u00b7 0.50 ATR', label:'$82,292.62 \u00b7 the GATE, and the only gated level on this chart \u2014 EIGHT settled closes have held above it and no settled bar has swept it. TWO consecutive closes BELOW convert the markup read into a trading range and return structural risk to Medium. 0 of 2, and now only 1.46% = 0.50 ATR below, halved from 0.88 ATR a session ago. A close inside $82,169.18\u2013$82,416.06 is LOW-CONFIDENCE for position and VOIDS any resolution on that line.'},
-  {p:80708, kind:'ema',  tier:2, tag:'20d SMA \u00b7 close +3.46%', label:'$80,707.83 \u00b7 20-day SMA \u2014 the Sep 28 close sits +3.46% above it, compressing from +5.00% one session ago and +8.60% at S78. The stretch that carried the buying-climax read is unwinding.'},
-  {p:57803, kind:'res',  tier:3, tag:'FR-A008 reference', label:'$57,803 \u00b7 the FR-A008 flagship cycle reference \u2014 a settled close below it before Nov 30, p=0.65. Gap now 30.77%. Carried as approximately ONE exposure with FR-A007 under A27, whose own base rate is 3.03%.'},
+  {p:87411, kind:'res',  tier:2, tag:'swing high \u00b7 1.02 ATR above', label:'$87,411.33 \u00b7 the CLOSING-HIGH MARKER and swing high \u2014 2.99% and 1.02 ATR above, UNTESTED alongside its $87,286.99 twin, after TEN sessions without a new high. REPORTED, NOT GATED: one settled close above sets a new closing high, TWO register a new continuation level. If the range high breaks, this is the only level left overhead.'},
+  {p:85264, kind:'gate', tier:1, tag:'RANGE HIGH \u00b7 break 0 of 2', label:'$85,263.63 \u00b7 the RANGE HIGH \u2014 the live structural question. PROBED TWO DAYS RUNNING and counted NEITHER time: Sep 30 reached $85,651.96, Oct 1 reached $85,275.27 (exceeding it by 0.014%), and both closes came back below. Oct 1 settled 0.454% under it, so the break counter is 0 of 2. TWO settled closes above CANCEL the Sep 30 upthrust candidate and leave only the swing high overhead.'},
+  {p:84876, kind:'res',  tier:1, tag:'Oct 1 settle \u00b7 reference close', label:'$84,876.20 \u00b7 the Oct 1 settled close. +1.500% on a $2,107.61 = 2.52% range, closing at 81.1% OF RANGE on 1.10\u00d7 volume \u2014 a strong close that reclaimed most of the Sep 30 upthrust wick, which is what failed that candidate\u2019s first follow-through test. It sits +3.87% over the 20-day mean.'},
+  {p:82293, kind:'gate', tier:1, tag:'MARKUP INVALIDATION \u00b7 1.04 ATR', label:'$82,292.62 \u00b7 the GATE and markup INVALIDATION \u2014 ELEVEN settled closes have held above it and it is UNSWEPT. Now 3.14% = 1.04 ATR below, WIDENED from 0.50 ATR four sessions ago. TWO consecutive closes below convert the markup read into a range and return risk to Medium; 0 of 2. A close inside $82,169.18\u2013$82,416.06 is LOW-CONFIDENCE for position and VOIDS any resolution on that line.'},
+  {p:81710, kind:'ema',  tier:2, tag:'20d SMA \u00b7 close +3.87%', label:'$81,710.31 \u00b7 20-day SMA \u2014 the Oct 1 close sits +3.87% above it, widening from +2.82% one session ago.'},
+  {p:57803, kind:'res',  tier:3, tag:'FR-A008 reference', label:'$57,803 \u00b7 the FR-A008 flagship cycle reference \u2014 a settled close below it before Nov 30, p=0.65. Gap now 31.90%. Carried as approximately ONE exposure with FR-A007 under A27, whose own computed base rate is 3.03%.'},
 ];
 
 // ── Zones: the range Read B describes, the gate's margin band, and two registered demand zones ──
-// ZONE_BTC_0008 IS STILL UNTOUCHED after six closes and now sits 0.31% from a first touch — the nearest the
-// structure has come. A touch carries NO SIGNAL; it moves the state to TOUCHED and nothing more, and no
-// tranche can attach to it until sizing and invalidation are pre-registered.
+// Both zones remain WATCHING and untouched. A touch carries NO SIGNAL; it moves the state to TOUCHED and
+// nothing more, and no tranche can attach until sizing and invalidation are pre-registered — an open item
+// the report refers to DiceQ rather than resolving.
 const levelZones = [
-  {lo:82293, hi:87411, kind:'sup', tier:2, tag:'Read B range \u00b7 Band B .46', label:'$82,292.62\u2013$87,411.33 \u00b7 THE TRADING RANGE Read B describes \u2014 a Sep 21 buying climax plus automatic reaction \u2014 and Band B of FR-B042 at p=.46, the modal branch. Price sits near its floor rather than its middle.'},
-  {lo:82169, hi:82416, kind:'zone', tier:3, tag:'gate margin band \u00b10.15%', label:'$82,169.18\u2013$82,416.06 \u00b7 the \u00b10.15% MARGIN BAND around the gate. A settled close inside it counts for position with a LOW-CONFIDENCE tag and VOIDS any forecast resolution on that line. No close has landed in any margin band this session.'},
-  {lo:81484, hi:82293, kind:'zone', tier:2, tag:'ZONE_BTC_0008 \u00b7 0.31% from touch', label:'$81,484.26\u2013$82,292.62 \u00b7 ZONE_BTC_0008, the supply-to-demand flip registered at S78 \u2014 still WATCHING and UNTOUCHED after six closes, now only 0.31% from a first touch after the Sep 28 low of $82,551.72. A first touch is SCOREABLE and carries no signal. An external estimate puts ETF-holder cost basis at $81,722, inside this zone; the framework NOTES the coincidence and gives it no weight.'},
+  {lo:82293, hi:87411, kind:'sup', tier:2, tag:'Read B range \u00b7 Band B .58', label:'$82,292.62\u2013$87,411.33 \u00b7 THE TRADING RANGE Read B describes, and Band B of FR-B045 at p=.58 \u2014 the heaviest single-band weight of the series, and the report FLAGS it as a single-input swing: the 10-day lognormal alone moves B about +7.5 points, which conflicts with the standing damping rule. It is registered mechanical and unchanged, with the rule conflict referred rather than resolved after seeing the numbers.'},
+  {lo:82169, hi:82416, kind:'zone', tier:3, tag:'gate margin band \u00b10.15%', label:'$82,169.18\u2013$82,416.06 \u00b7 the \u00b10.15% MARGIN BAND around the gate. A settled close inside counts for position with a LOW-CONFIDENCE tag and VOIDS any forecast resolution on that line. No close has landed in any margin band.'},
+  {lo:81484, hi:82293, kind:'zone', tier:2, tag:'ZONE_BTC_0008 \u00b7 WATCHING', label:'$81,484.26\u2013$82,292.62 \u00b7 ZONE_BTC_0008, the supply-to-demand flip \u2014 still WATCHING and UNTOUCHED, and further away than it was: the gate above it has widened to 1.04 ATR. A first touch is scoreable and carries no signal.'},
   {lo:73014, hi:73411, kind:'zone', tier:3, tag:'ZONE_BTC_0007 \u00b7 WATCHING', label:'$73,014.49\u2013$73,410.93 \u00b7 ZONE_BTC_0007, the Aug 20\u201321 breakout base \u2014 untouched and far below. No tranche is linked to either zone.'},
 ];
 // Cycle-timing thesis: autumn 2026 (core Oct–Nov) highest-conviction bottom window
