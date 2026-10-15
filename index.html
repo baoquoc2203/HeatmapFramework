@@ -126,26 +126,26 @@
 const tokens = {
   BTC: {
     full:'Bitcoin', symbol:'\u20bf', color:'#F7931A',
-    tagline:'The range-high breakout held three closes and then failed on the retest. Oct 7 closed $83,325.35, \u22122.594%, back 2.27% BELOW the $85,263.63 range high, at 19.7% of its range on 1.249\u00d7 volume \u2014 and the low $82,765.28 ENDED the eight-session higher-low sequence, landing within $0.13 of Sep 29\u2019s low. The dual read is now explicit and the weights have swapped: markup (Read A) stays primary but WEAKENED on seventeen closes above the $82,292.62 gate, while the buying-climax-and-range read (Read B) is STRENGTHENED, with Oct 4\u20136 re-read as a failed breakout from the range\u2019s upper half. The gate has closed back in to 1.25% = 0.53 ATR, and the Oct 8 live candle has already traded 0.12% through it intraday. Three things landed on the same day \u2014 the largest ETF outflow of the move (\u2212$484.9M), a reported ~$546M long-liquidation wave, and an ask-heavy book at 34.6% bid share. The report sets them beside the failed retest and asserts no cause.',
-    phase:'Phase E markup \u00b7 under test', phaseSub:'Range-high retest FAILED \u00b7 17 closes hold the gate but it is 0.53 ATR away \u00b7 reads diverge on two closes below $82,293 or above $87,411',
-    conf:'28 / 47 / 20', confLabel:'Confidence \u00b7 T / S / C (never blended)',
-    confSub:'S cut 7 \u2014 a failed retest, the end of the higher-low sequence, a bottom-fifth close on 1.25\u00d7 volume and the largest ETF outflow of the move, partly offset by seventeen closes still holding \u00b7 FR-B051 .12/.51/.19/.13/.05, explicitly NOT a single-input swing \u00b7 ZONE_BTC_0008 becomes TOUCHED at tonight\u2019s settle \u2014 mechanically certain, no signal \u00b7 SELL 2 counter 1 of 2 with a CRO VETO on the fill \u00b7 risk MEDIUM\u2013LOW, elevated \u00b7 75% dry powder, day 6 of the window.',
-    price:'$83,325', priceSub:'Oct 7, 2026 settled close (\u22122.59%) \u00b7 Oct MTD; Sep settled $83,622 (Oct 8 candle excluded)',
+    tagline:'The invalidation count reset, and this time it reset clean. Oct 13 closed $83,180.66, +1.641%, back 1.079% above the $82,292.62 gate and 0.928% clear of its margin band \u2014 exactly the condition the pre-registered table named \u2014 so markup invalidation and TR-BTC-001\u2019s exit count both returned to 0 of 2. The bar swept 0.56% under ZONE_BTC_0008\u2019s floor to $81,025.01, held $636.57 ABOVE the Oct 8 sweep low, and closed at 68.3% of range on 1.233\u00d7 volume: the FIRST above-average session of the recovery, which answers the volume objection standing since S95. The report is careful about what that buys \u2014 a second spring is \u201cdetected, edge pending\u201d. The two reads now differ only on direction: Read A expects the range high 2.50% above to be retaken, Read B expects rotation beneath it.',
+    phase:'Phase E markup back-up \u00b7 strengthened', phaseSub:'Invalidation RESET to 0 of 2 \u00b7 spring Oct 8, higher-low test Oct 13 \u00b7 gate 0.41 ATR below \u00b7 reads diverge on two closes below $82,293 or above $87,411',
+    conf:'27 / 52 / 20', confLabel:'Confidence \u00b7 T / S / C (never blended)',
+    confSub:'S +7 for a clean reset on above-average volume with a higher low on the second test and the largest ETF inflow since Oct 2; T +1 as FR-B052 beat persistence for a second consecutive win \u00b7 held back by CPI inside the horizon and a close still 0.95% under the 20d mean \u00b7 TR-BTC-001 LIVE at 10%, filled $82,984.89, mark +0.236% \u2014 the first draw on the reserve, dry powder now 65% \u00b7 SELL 2 still vetoed, its hypothetical sale 1.75% under water \u00b7 risk MEDIUM\u2013LOW with event risk through Friday.',
+    price:'$83,181', priceSub:'Oct 13, 2026 settled close (+1.64% on 1.23\u00d7 vol) \u00b7 Oct MTD; Sep settled $83,622 (Oct 14 candle excluded)',
     reports:[
       {label:'Heatmap', href:'btc-dashboard.html'},
-      {label:'\ud83d\udcca Market GPS (Oct 8 \u00b7 S92)', href:'BTC_report_S92_oct08.html'},
+      {label:'\ud83d\udcca Market GPS (Oct 14 \u00b7 S98)', href:'BTC_report_S98_oct14.html'},
     ]
   },
   ADA: {
     full:'Cardano', symbol:'\u20b3', logo:'cardano-logo.svg', color:'#2a52d4',
-    tagline:'The campaign high was ACCEPTED and the UTAD alternate is FALSIFIED \u2014 Oct 4 closed $0.25976 and Oct 5 closed $0.27041, two clean closes above $0.25845 and both outside the margin band. Oct 6 then printed a new campaign high of $0.28217 on volume DOWN 44.8%, and Oct 7 fell 4.44% to $0.25558, back under the accepted line. Falling volume into the high and rising volume on the way down is, under the framework\u2019s own rule, supply regaining control: a BUYING CLIMAX, counter 1 of 2. Tonight\u2019s settle decides it and all four branches were written down beforehand. SELL 1 filled as TR-ADA-001 at the Oct 4 close \u2014 which was the first out-of-band close above the line, step one of its own disarm. The map says plainly that a sell should not fill on a close that cuts against its own signal, and proposes R1 to forbid it.',
-    phase:'Phase E by rank \u00b7 accepted high under its first test', phaseSub:'Buying-climax counter 1 of 2 \u00b7 below $0.25806 confirms it and rank moves to Phase C range \u00b7 at or above $0.25884 is a clean reset',
-    conf:'52 / 58 / 58', confLabel:'Confidence \u00b7 T / S / C (never blended)',
-    confSub:'Published again this session after the Oct 2 map omitted it \u00b7 aggressiveness 3/10 \u00b7 risk Medium\u2013High \u00b7 72.5% deployed after the Oct 4 trim \u00b7 BUY 4 at $0.19000 is RESOLVED to ONE close \u2014 the record and this report both use the single-close exception, though a correction row retiring the Sep 23 wording may still be owed \u00b7 the 25% October reserve is STILL UNRULED with 9 days left in the window.',
-    price:'$0.25558', priceSub:'Oct 7, 2026 settled close (\u22124.44%) \u00b7 Oct MTD +3.60%; Sep settled $0.24669 \u00b7 live $0.25266',
+    tagline:'The buying climax CONFIRMED on Oct 8 and the rank has already moved. That session closed \u22129.23% on 10.31M, and its low $0.22384 became the AUTOMATIC REACTION \u2014 so the structure is now Phase B of a BC/AR range running to the $0.28217 climax high, with the Oct 14 close sitting at just 10.9% of it. The primary read holds by rank for ONE more close: the failed-breakout-into-markdown alternate is within a single close of promotion, and the continuation trigger $0.23332 is at 1 of 2 for the third time since Oct 8. Four pre-registered determinations settle tonight and the live candle sits on the bearish branch of the first two \u2014 though it has already recovered 2.84% off its morning low, which is exactly why nothing is called on a live candle.',
+    phase:'Phase B of the BC/AR range \u00b7 by rank, one more close', phaseSub:'Continuation 1 of 2 \u2014 a settle below $0.23297 fails it and promotes the failed-breakout read \u00b7 live has traded below the $0.22384 AR for the first time \u00b7 ADA-Z010 scoreable from tonight',
+    conf:'44 / 50 / 58', confLabel:'Confidence \u00b7 T / S / C (never blended)',
+    confSub:'Aggressiveness cut to 2/10 and risk raised to HIGH from Medium\u2013High \u00b7 72.5% deployed \u00b7 the cone\u2019s buckets changed this session: the fixed $0.19 / $0.1480 lines are RETIRED and the split is now up / within / down at \u00b125% of the anchor ($0.2877 / $0.1726) \u00b7 ADA lagged BTC on all three last settled sessions, which permits one modest statement and no attribution \u00b7 the core window CLOSES OCT 17 and the 25% reserve is still unruled \u2014 if nothing is decided, hold is recorded by default.',
+    price:'$0.23018', priceSub:'Oct 14, 2026 settled close (\u22122.41%) \u00b7 Oct MTD \u22126.69% settled; Sep settled $0.24669 \u00b7 live $0.22207',
     reports:[
       {label:'Heatmap', href:'ada-dashboard.html'},
-      {label:'\ud83d\udcca Monthly Map (Oct 8)', href:'ADA_monthly_map_oct08.html'},
+      {label:'\ud83d\udcca Monthly Map (Oct 15)', href:'ADA_monthly_map_oct15.html'},
     ]
   }
 };
@@ -164,10 +164,10 @@ function applyToken(key){
   document.getElementById('tagline').textContent = t.tagline;
   document.getElementById('phaseVal').textContent = t.phase;
   document.getElementById('phaseSub').textContent = t.phaseSub;
-  // Confidence is reported per horizon class and never blended. BOTH assets publish it this session: BTC
-  // (S92) T 28 / S 47 / C 20 and ADA (Oct 8) T 52 / S 58 / C 58, so the em dash that stood in for ADA last
-  // week is gone. The card renders whatever shape its asset actually reports; when a report omits the score
-  // the dash returns rather than a stale or invented number, and the reason is stated in confSub.
+  // Confidence is reported per horizon class and never blended. Both assets publish it this session and they
+  // move in opposite directions: BTC (S98) T 27 / S 52 / C 20 with S up seven on a clean reset, ADA (Oct 15)
+  // T 44 / S 50 / C 58 with risk raised to High. The card renders whatever shape its asset actually reports;
+  // when a report omits the score the dash returns rather than a stale or invented number.
   document.getElementById('confLabel').textContent = t.confLabel || 'Model Confidence';
   document.getElementById('confVal').textContent = t.conf;
   document.getElementById('confSub').textContent = t.confSub;
