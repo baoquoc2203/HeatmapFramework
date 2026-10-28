@@ -111,7 +111,7 @@
   <img src="cardano-logo.svg" class="ada-logo" style="width:26px;height:26px;object-fit:contain;">
   ADA Framework Dashboard — Interactive
 </h1>
-<div class="meta">Crypto Reconnaissance Engine · <b>Sep 2017 → Oct 2026 live</b> (Oct 22 level ladder &amp; driftless volatility cone to Dec 2028) · drag to pan, scroll/pinch to zoom, hover/tap for values, toggle layers below</div>
+<div class="meta">Crypto Reconnaissance Engine · <b>Sep 2017 → Oct 2026 live</b> (Oct 28 level ladder &amp; the Oct 22 driftless volatility cone to Dec 2028) · drag to pan, scroll/pinch to zoom, hover/tap for values, toggle layers below</div>
 
 <div class="controls">
   <div class="ctrl-group">
@@ -120,7 +120,7 @@
     <button class="toggle active" data-layer="shmita">Shmita</button>
     <button class="toggle active" data-layer="mercury">Mercury Rx</button>
     <button class="toggle active" data-layer="fng">Fear &amp; Greed</button>
-    <button class="toggle active" data-layer="levels">Oct 22 Levels</button>
+    <button class="toggle active" data-layer="levels">Oct 28 Levels</button>
   </div>
   <div class="ctrl-group">
     <span class="ctrl-label">Zoom</span>
@@ -145,7 +145,8 @@
   </div>
   <div class="ctrl-group">
     <span class="ctrl-label">Report</span>
-    <a class="zoom-btn" href="ADA_monthly_map_oct22.html" style="text-decoration:none;">📊 Monthly Map (Oct 22)</a>
+    <a class="zoom-btn" href="ADA_report_oct28.html" style="text-decoration:none;">📊 Market GPS (Oct 28)</a>
+    <a class="zoom-btn" href="ADA_monthly_map_oct22.html" style="text-decoration:none;">🔭 Cone source (Oct 22 map)</a>
   </div>
 </div>
 
@@ -189,12 +190,12 @@
   <span style="color:var(--txt2)">sensitivity, recomputed Sep 7 — the reading quoted against $0.21827 is <b>33rd pct</b> (24m, canonical) · <b>20th</b> (36m) · <b>25th</b> (46m); one price, three answers, and the spine still moves it by 13 points. <b>Spines now run through Sep 2026</b></span>
 </div>
 <div class="legend-row">
-  <span style="font-weight:700;color:var(--amber)">Oct 22 levels:</span>
-  <span><i style="background:rgba(224,168,63,.5)"></i>$0.22418 AR reversal gate — <b>decided tonight</b>: a settle ≥ $0.22452 reclaims the AR and flips the read, anything below resets the count</span>
-  <span><i style="background:rgba(224,168,63,.5)"></i>$0.22384 AR — <b>BROKEN 2 of 2 (Oct 17–18)</b>, which made markdown primary · $0.22518 Oct 21 settle, reversal 1 of 2 clean</span>
-  <span><i style="background:rgba(91,191,134,.5)"></i>$0.20117–$0.21156 ADA-Z010 — <b>CONFIRMED demand</b>, the first scoreable ADA zone confirmation · T-window 3 of 7 · carries no tranche</span>
-  <span><i style="background:rgba(224,129,95,.5)"></i>$0.24310–$0.25224 Z011 supply, WATCHING, scoreable after tonight · $0.28217 BC (Oct 6) · $0.23367 Band A line</span>
-  <span><i style="background:rgba(224,129,95,.5)"></i>Ladder: $0.19000 (ONE close) / $0.18050 / $0.17300 / $0.15960 · cone buckets up / within / down at ±25% of the anchor ($0.2815 / $0.1689)</span>
+  <span style="font-weight:700;color:var(--amber)">Oct 28 levels:</span>
+  <span><i style="background:rgba(224,168,63,.5)"></i>STR-ADA-002 — <b>a race, pre-registered</b>: floor $0.20117 (invalidate, .495) vs roof $0.21156 (reclaim, .455), whichever completes first by Nov 17 · both 0 of 2</span>
+  <span><i style="background:rgba(91,191,134,.5)"></i>$0.20117–$0.21156 ADA-Z010 — CONFIRMED demand, <b>5 closes inside</b>, range 5.9% → 2.98% on volume 5.45M → 2.43M: compressing, not breaking</span>
+  <span><i style="background:rgba(224,129,95,.5)"></i>$0.20600 Oct 27 settle — narrowest bar of the last 14 sessions · $0.20055 double-probe lows, the sell-side pool · $0.22418 AR gate, <b>reclaim failed</b>, 0 of 2</span>
+  <span><i style="background:rgba(224,129,95,.5)"></i>$0.19000 BUY 4 (ONE close) now the <b>nearest stop at −7.77%</b> · $0.18050 BUY 3 = ADA-Z007 roof, next zone if Z010 fails · $0.17300 / $0.15960</span>
+  <span><i style="background:rgba(154,163,187,.45)"></i>$0.24310–$0.25224 Z011 supply, WATCHING · cone is the <b>Oct 22</b> one (no Oct 28 monthly map was published — the session report carries no cone)</span>
 </div>
 
 <div class="wyk-sec">
@@ -279,7 +280,7 @@
 // $0.19781 — so the authoritative Crypto.com series has now stated that figure twice, on Sep 5 and Sep 9, and
 // the $0.19267 series is the outlier. The price array is correct as it stands and needs no change.
 // What remains is that curRatio 0.454 / curPct 33 were quoted against Sep = $0.21827 (a Sep 6 close), not the
-// $0.22518 Oct 21 close this file now carries. The per-month percentile ARRAYS are materially unaffected — one
+// $0.20600 Oct 27 close this file now carries. The per-month percentile ARRAYS are materially unaffected — one
 // month moving $0.00514 shifts a 24-month mean by $0.000214, i.e. 0.045% — so they stand. curRatio/curPct are
 // metadata that no code reads; bandOf() computes the live band from price[] and the arrays, so the chart and
 // tooltip already reflect the Sep 8 close. Neither the Sep 5 nor the Sep 9 map contains a Context Layer, so
@@ -349,47 +350,55 @@ const price=[
   0.32,0.36,0.345,0.36,0.375,0.275,0.285,0.255,0.255,0.30,0.345,0.585, // 2023 (Dec high 0.6655, using 0.585 close)
   0.51,0.52,0.62,0.46,0.43,0.385,0.34,0.32,0.355,0.36,0.55,0.92,  // 2024 (late-2024 pop >1.00 post-election; Nov/Dec rally)
   0.99,0.65,0.62,0.58,0.68,0.62,0.71,0.78,0.81,0.62,0.42,0.38,    // 2025 (subdued, declining)
-  0.30,0.24,0.205,0.19,0.1797,0.1444,0.16826,0.19781,0.24669,0.22518,   // 2026 Jan-Oct
+  0.30,0.24,0.205,0.19,0.1797,0.1444,0.16826,0.19781,0.24669,0.206,     // 2026 Jan-Oct
 // Jun closed $0.1444 (-38.7%), Jul SETTLED at $0.16826 = +16.52%, AUG at $0.19781 = +17.56%, SEPTEMBER at
 // $0.24669 = +24.71% — the largest month of the campaign, +70.84% from the June close.
-// OCT 2026 = $0.22518 MONTH-TO-DATE, the Oct 21 settled close, Oct MTD -8.72% SETTLED (-11.82% live). The
-// live Oct 22 candle ($0.21753, about 16h remaining) is excluded from every determination.
+// OCT 2026 = $0.20600 MONTH-TO-DATE, the Oct 27 settled close. The live Oct 28 candle ($0.20610) carries the
+// FOMC decision and is excluded from every determination.
 //
-// THE STRUCTURE BROKE DOWN AND IS NOW TESTING ITS WAY BACK. Three things happened in sequence since the last
-// adoption. Oct 15 closed $0.23001 and FAILED the Sep 21 continuation 2 of 2. Oct 17 closed $0.21956, the
-// first close below the AR, on 2.19M — the LIGHTEST VOLUME IN THE ARCHIVE. Oct 18 closed $0.22128 and broke
-// the AR 2 of 2, which made MARKDOWN the primary read, and its low of $0.21113 was a scoreable touch of
-// ADA-Z010.
+// THE SOURCE CHANGED THIS WEEK AND SO DID WHAT CAN BE UPDATED. There is NO Oct 28 monthly map — the newest
+// ADA report is the CRE v3.2 SESSION report, which publishes price, levels, zones, counters, confidence and
+// risk but NOT the monthly cone. It has no M array, no anchor-and-horizon table and no per-month bands. So
+// everything the session report covers is updated here, and THE CONE IS LEFT ON ITS OCT 22 CONSTANTS,
+// anchored at the Oct 21 settled close of $0.22518. Its label still says "Oct 22 cone" because that is what
+// it is. Recomputing it from the session report's annualised sigma-10 and sigma-20 would be inventing a
+// distribution the source does not publish, and would also destroy the only correctness check this file has
+// on the cone: reproducing the map's own published bands exactly.
 //
-// THEN THE DEEP ZONE HELD, AND IT IS THE FIRST SCOREABLE ADA ZONE CONFIRMATION THE FRAMEWORK HAS EVER HAD.
-// ADA-Z010, registered Oct 12, was touched Oct 18 and CONFIRMED as demand by Oct 20 on both readings. Its
-// T-window stands at 3 of 7 held. Oct 20 then printed an OUTSIDE-UP bar closing $0.22399, just inside the
-// gate's band below — LOW-CONFIDENCE, count 0 — and Oct 21 closed $0.22518, +0.45% over the $0.22418 gate:
-// the FIRST CLEAN CLOSE back above the broken AR, reversal counter 1 of 2.
+// MARKDOWN IS PRIMARY AND PRICE IS COMPRESSING INSIDE THE ZONE THAT CONFIRMED BENEATH IT. Oct 27 settled
+// $0.20600, -0.35% on 2.43M — volume down 45.3% and the lightest since Oct 17 — closing at 79.3% of a
+// $0.20124-$0.20724 bar. That bar's 2.98% range is the NARROWEST of all fourteen sessions from Oct 14. It is
+// the FIFTH consecutive close inside ADA-Z010, and the low stopped 0.03% above the floor with no probe.
 //
-// TONIGHT DECIDES THE DUAL READ AND THE LIVE CANDLE IS ON THE RESET BRANCH. A settle at or above $0.22452
-// reclaims the AR and promotes the deeper-spring read; ANY settle below the gate resets the count and keeps
-// markdown primary. Live is 2.97% under the gate. The report's own wording about the attempt is fair and
-// worth keeping: the reclaim is REAL BUT NOT STRONG — Oct 21 rejected from $0.23059 and closed at 36.9% of
-// its range, on less volume than Oct 20.
+// THE COMPRESSION IS THE WHOLE READ, AND BOTH SIDES OF IT ARE NAMED. Range has contracted from 5.9% (Oct 24)
+// to 2.98% (Oct 27) while volume fell from 5.45M to 2.43M. Primary: markdown — there has been no roof test
+// on a CLOSE since Oct 22. Alternate: a deeper spring — two floor probes were rejected (Oct 24, Oct 26) and
+// Z7 held. The report's framing is that the zone is COMPRESSING rather than breaking, and that compression
+// resolves one way or the other.
 //
-// TWO OPEN ITEMS THIS FILE HAS CARRIED SINCE OCT 8 ARE NOW CLOSED, BOTH ON OCT 19 WITH CRE v3.2. R1 — a sell
-// fill must sit on the signal side of its reference level, written after TR-ADA-001 filled on the close that
-// began disarming it — is ADOPTED. So is the +-2pp adjustment cap, and the sigma-standoff dual test is now
-// standing. The dashboard flagged R1 as a rule change in flight; it has landed.
+// SO IT IS PRE-REGISTERED AS A RACE. STR-ADA-002 asks which completes first by the Nov 17 settle: Z010
+// INVALIDATED on two closes below $0.20117, at .495, or the ROOF RECLAIMED on two closes at or above
+// $0.21156, at .455, with .05 residual. Both counters are 0 of 2. The skills are published IN ADVANCE —
+// +0.0778 if invalidation comes first, -0.0810 if the reclaim does — so neither outcome can be framed after
+// the fact. NO TRANCHE is linked to either side; a roof-reclaim entry would need sizing registered BEFORE
+// its trigger close.
 //
-// THE CORE WINDOW CLOSED OCT 17 WITH NO RULING, SO HOLD WAS RECORDED BY DEFAULT. The 25% reserve sits
-// UNDEPLOYED and post-window use is referred back. For the record the window's settled closes ran from
-// $0.27041 (Oct 5) to $0.21956 (Oct 17). NO REGISTERED TRANCHE FIRES on an AR reclaim either — any
-// reclaim-linked entry would need sizing registered BEFORE the trigger close.
+// STR-ADA-001 RESOLVED YES AND THE REPORT DISCLOSES WHY IT SCORED. The claim needed two closes at or above
+// $0.22418 by Oct 28 to resolve NO, and with the Oct 27 close 8.11% below the gate no path remained, so it
+// locked early: Brier 0.2550 against a 0.2756 base, skill +0.0747. The report then says the quiet part out
+// loud — the +2pp P5 tilt toward the primary read is what EARNED that positive score; an equal-split
+// forecast would have scored exactly 0.
 //
-// THE RELATIVE FILTER IS NO LONGER MET AND NO ATTRIBUTION IS MADE. The last three settled sessions against
-// BTC run -1.22pp (Oct 19), +1.36pp (Oct 20), -0.76pp (Oct 21) — MIXED SIGNS. The Oct 12-14 underperformance
-// run has ENDED, and the dashboard drops the claim rather than carrying it past its own test.
+// A FEED DIVERGENCE IS OPENING AND IT IS LOGGED, NOT EXPLAINED AWAY. CoinGecko printed $0.205686 against
+// Crypto.com's $0.20600 — -0.152%, OUTSIDE the +-0.15% agreement band for a SECOND day. CoinGecko has
+// printed below on all seven settles from Oct 21 to Oct 27, widening over the last two. A USD-versus-USDT
+// basis would produce that sign, but the report states plainly that the cause is NOT VERIFIED. Nothing sat
+// at a gate, so there is no sizing consequence; if the offset persists the agreement band will be breached
+// routinely and the ruling is DiceQ's.
 //
-// CONFIDENCE T 35 — AT ITS Q4 CAP — / S 42 / C 58, never blended, and UNCHANGED because a 1 of 2 counter is
-// not a structural change. T is labelled "Tier 1 only": ADA Tier 3.5 positioning has been NOT OBTAINED for a
-// 59th consecutive session. Aggressiveness 2/10, risk HIGH, 72.5% deployed, nothing armed.
+// CONFIDENCE T 35 — AT ITS Q4 CAP — / S 42 / C 58, UNCHANGED. Aggressiveness 2/10, risk HIGH with the FOMC
+// decision inside the live candle. 72.5% deployed, 25% reserve held by default plus 2.5% uncommitted,
+// NOTHING ARMED. ADA Tier 3.5 positioning is NOT OBTAINED for a 64th consecutive session.
   null,null,                                                      // 2026 Nov-Dec: future, no real price data -- see the volatility cone
   null,null,null,null,null,null,null,null,null,null,null,null,     // 2027: future, no real price data
   null,null,null,null,null,null,null,null,null,null,null,null      // 2028: future (Apr 2028 halving; Shmita 5789 opens Sep 21)
@@ -466,7 +475,7 @@ const wyckoff = [
   {s:106,e:107,kind:'acc',      label:'tracked: Phase C springs — Jul 13 & Jul 28 ($0.15340), confirmed Jul 30'},
   {s:107,e:108,kind:'markup',   label:'tracked: Aug closed $0.19781 (+17.56%) — travelled 31.5% on closes, finished in the lower half'},
   {s:108,e:109,kind:'markup',   label:'tracked: Sep closed $0.24669 (+24.71%) — the LARGEST month of the campaign, travelled 32.3% on closes and finished at 81% of its range'},
-  {s:109,e:110,kind:'markdown', label:'LIVE: MARKDOWN primary — AR broken 2 of 2 (Oct 17-18) · Z010 CONFIRMED demand · AR reversal 1 of 2'},
+  {s:109,e:110,kind:'markdown', label:'LIVE: markdown primary — compressing inside Z010, 5 closes in the zone · STR-ADA-002: floor vs roof'},
 ];
 const liveStartIdx = 105; // June 2026 — verified index, where the framework's real-time RECORD begins
 // currentIdx is a DIFFERENT thing and the two must not be conflated: liveStartIdx is where live tracking started
@@ -474,7 +483,7 @@ const liveStartIdx = 105; // June 2026 — verified index, where the framework's
 // a settled month inside the live record — tracked in real time, but CLOSED. Only currentIdx is month-to-date and
 // still moving, so only currentIdx may carry the "LIVE" badge. Jun settled $0.1444 and Jul settled $0.16826;
 // Sep 2026 is the live month.
-const currentIdx = 109; // October 2026 — the month-to-date cell (Oct 21 settled close; Oct 22 candle excluded)
+const currentIdx = 109; // October 2026 — the month-to-date cell (Oct 27 settled close; Oct 28 candle excluded)
 
 // ── ADA forward distribution: the Aug 3, 2026 DRIFTLESS LOGNORMAL VOLATILITY CONE ──
 // This replaces the previous bull/base/bear scenario trajectory outright, and the replacement is not
@@ -510,9 +519,18 @@ const currentIdx = 109; // October 2026 — the month-to-date cell (Oct 21 settl
 // MEASURING DISTANCE, NOT CONFIDENCE. Every session carried that disclosure for three months; the Oct 15 map
 // retired the fixed lines and moved the thresholds to +-25% of the anchor, which is the fix the disclosure had
 // been asking for. The old readings are kept here as the record of why, not as live figures.
-const CONE_SPOT    = 0.22518;               // Oct 21 SETTLED close — the anchor is a settled close, not a live price
+const CONE_SPOT    = 0.22518;               // Oct 21 SETTLED close — HELD: see the note below, the Oct 28 source is a session report
 const CONE_SIGMA_D = 0.038110;              // sigma 3.8110%/day, n=48 daily log returns (Sep 3 - Oct 21; 72.8% annualised), settled-only
 const CONE_ANCHOR  = Date.UTC(2026,9,21);   // Oct 21, 2026
+// THE CONE IS DELIBERATELY NOT UPDATED THIS SESSION. The newest ADA report is the Oct 28 CRE v3.2 SESSION
+// report, not a monthly map, and it publishes no M array, no anchor-and-horizon table and no per-month
+// bands. These three constants therefore stay on the Oct 22 map, which is the last source that actually
+// published a cone, and every label still names it the "Oct 22 cone". The Oct 22 map is therefore KEPT in
+// the repo and linked from the header as "Cone source", against the usual rule that a superseded report is
+// deleted: it is not superseded for the cone, and deleting it would leave figures on this page whose source
+// cannot be opened. The flat median of $0.2252 will read
+// ABOVE the $0.20600 month-to-date close for that reason — the cone is a forward distribution drawn from
+// its own anchor date, not a tracker of the current price, and the tooltip labels the two separately.
 // THE BUCKET THRESHOLDS CHANGED THIS SESSION. The fixed campaign lines $0.19 (BUY 3 gate) and $0.1480 (death
 // level) were shown for the last time in the Oct 14 map, as that map promised, and are now RETIRED. The
 // buckets are UP / WITHIN / DOWN against +-25% of the anchor, which makes them move with the anchor instead
@@ -551,30 +569,30 @@ function coneProbs(idx){
 // 101 on some months and read one point off the report. The tooltip now applies the report's stated rule.
 // coneProbs() itself is unchanged and still returns exact masses.
 
-// ── Oct 22, 2026 level ladder — the framework's own references, not price history ──
-// Distances quoted against the $0.22518 Oct 21 SETTLED close the report measures from.
-// OCT 22 LADDER — THE AR BROKE, THE DEEP ZONE HELD, AND ONE SETTLE DECIDES WHICH READ IS PRIMARY.
-// Markdown is primary because the AR broke 2 of 2 on Oct 17-18. The alternate is a deeper spring, built on
-// Z010 confirming as demand, an outside-up bar on Oct 20 and the first clean close back over the gate on
-// Oct 21. Tonight resolves it, and the live candle sits on the reset branch.
+// ── Oct 28, 2026 level ladder — the framework's own references, not price history ──
+// Distances quoted against the $0.20600 Oct 27 SETTLED close the report measures from.
+// OCT 28 LADDER — THE ZONE IS COMPRESSING, AND THE RACE OUT OF IT IS PRE-REGISTERED.
+// Markdown is primary on counters; the deeper-spring alternate is intact on two rejected floor probes.
+// Five consecutive closes sit inside Z010 with the bar range down to 2.98% and volume down to 2.43M.
+// STR-ADA-002 asks which completes first by Nov 17: the floor at $0.20117 or the roof at $0.21156.
 const levelLines = [
-  {p:0.28217, kind:'res',  tier:2, tag:'BC Oct 6 \u00b7 campaign high', label:'$0.28217 \u00b7 the BUYING CLIMAX high of Oct 6 and the campaign high, 25.31% above the close. The structure has spent two weeks moving away from it.'},
-  {p:0.23367, kind:'res',  tier:2, tag:'Band A line \u00b7 FR-ADA-007', label:'$0.23367 \u00b7 the BAND A LINE of FR-ADA-007, 3.77% above the close. The Oct 15-16 high cluster ($0.23229\u2013$0.23353) sits just under it, so the band edge and the recent rejection highs are nearly the same price \u2014 which is why it is on the ladder as a scoring object rather than a gate.'},
-  {p:0.22518, kind:'res',  tier:1, tag:'Oct 21 settle \u00b7 reversal 1 of 2 clean', label:'$0.22518 \u00b7 the Oct 21 settled close, +0.53% on 3.51M and +0.45% over the $0.22418 gate \u2014 the FIRST CLEAN CLOSE back above the broken AR, so the reversal counter is 1 of 2. The report\u2019s own wording is worth keeping: the reclaim attempt is REAL BUT NOT STRONG. The bar rejected from $0.23059 and closed at 36.9% of its range, on LESS volume than Oct 20.'},
-  {p:0.22418, kind:'gate', tier:1, tag:'AR REVERSAL GATE \u00b7 decided tonight', label:'$0.22418 \u00b7 the AR REVERSAL GATE \u2014 the line tonight turns on, 0.44% below the close. A settle AT OR ABOVE $0.22452 RECLAIMS the AR, flips the read and promotes the deeper-spring alternate. ANY settle below the gate RESETS the count to 0 and keeps markdown primary. The live candle is 2.97% under it, and decides nothing until midnight UTC.'},
-  {p:0.22384, kind:'gate', tier:1, tag:'AR \u00b7 BROKEN 2 of 2 Oct 17-18', label:'$0.22384 \u00b7 the AUTOMATIC REACTION, the Oct 8 climax low \u2014 BROKEN 2 of 2 on Oct 17-18, which is what made MARKDOWN the primary read. Oct 17 was the first close below it, on 2.19M, the LIGHTEST VOLUME IN THE ARCHIVE; Oct 18 completed the break.'},
-  {p:0.21156, kind:'sup',  tier:1, tag:'Z010 top \u00b7 CONFIRMED demand', label:'$0.21156 \u00b7 the TOP of ADA-Z010 \u2014 CONFIRMED as demand, 6.05% below the close. Registered Oct 12, touched Oct 18 on a low of $0.21113, and confirmed by Oct 20 on BOTH readings. This is the FIRST SCOREABLE ADA ZONE CONFIRMATION the framework has had; its T-window stands at 3 of 7 held. It still carries NO TRANCHE.'},
-  {p:0.20117, kind:'sup',  tier:2, tag:'Z010 floor \u00b7 Z007 next below', label:'$0.20117 \u00b7 the FLOOR of ADA-Z010, 10.66% below. TWO closes below INVALIDATE the zone, and Z007 is the next registered level beneath it.'},
-  {p:0.19,    kind:'hard', tier:2, tag:'BUY 4 \u00b7 ONE close', label:'$0.19000 \u00b7 BUY 4 INVALIDATION, 15.62% below the close \u2014 ONE settled close below, the single-close exception that is now consistent across the whole record. Implied fill $0.19365, marked +16.28%.'},
-  {p:0.1805,  kind:'hard', tier:3, tag:'BUY 3 invalidation', label:'$0.18050 \u00b7 BUY 3 INVALIDATION \u2014 two consecutive closes below, 19.84% beneath the close.'},
-  {p:0.173,   kind:'hard', tier:3, tag:'BUY 2 invalidation', label:'$0.17300 \u00b7 BUY 2 INVALIDATION \u2014 two consecutive closes below.'},
-  {p:0.1596,  kind:'hard', tier:1, tag:'BUY 1 / THESIS STOP \u00b7 0 of 2', label:'$0.1596 \u00b7 BUY 1 INVALIDATION and the THESIS STOP \u2014 two consecutive settled closes below = full exit \u00b7 0 of 2, 29.12% below the close, never tested this campaign.'},
+  {p:0.25224, kind:'res',  tier:3, tag:'Z011 supply top', label:'$0.25224 \u00b7 the TOP of ADA-Z011 supply \u2014 far overhead at 18.01% above the close. The zone is WATCHING and scoreable; no tranche is attached.'},
+  {p:0.23367, kind:'res',  tier:3, tag:'FR-ADA-008 Band A line', label:'$0.23367 \u00b7 the BAND A line of FR-ADA-008, 13.43% above. The tree resolves on the Oct 29 settle \u2014 the first full session after the FOMC decision \u2014 and its interim reading is Band D at 3 of 5.'},
+  {p:0.22418, kind:'gate', tier:2, tag:'AR gate \u00b7 RECLAIM FAILED \u00b7 0 of 2', label:'$0.22418 \u00b7 the AR REVERSAL GATE \u2014 the RECLAIM FAILED. A week ago this was the live question at 1 of 2; the count is back to 0 of 2 and the gate is 8.83% ABOVE the close. Its failure is what locked STR-ADA-001 as YES: with no path to two closes above it by Oct 28, the claim resolved early.'},
+  {p:0.21156, kind:'gate', tier:1, tag:'Z010 ROOF \u00b7 reclaim 0 of 2 \u00b7 STR-002', label:'$0.21156 \u00b7 the ROOF of ADA-Z010, and the C/D line \u2014 2.70% above the close and one of the two prices STR-ADA-002 races to. TWO consecutive settled closes at or above it mean the ROOF IS RECLAIMED and the claim resolves reclaimed-first; the counter is 0 of 2 and there has been NO roof test on a close since Oct 22. The band $0.21124\u2013$0.21188 is LOW-CONFIDENCE.'},
+  {p:0.206,   kind:'res',  tier:1, tag:'Oct 27 settle \u00b7 narrowest bar in 14', label:'$0.20600 \u00b7 the Oct 27 settled close \u2014 \u22120.35% on 2.43M, volume DOWN 45.3% and the lightest since Oct 17, closing at 79.3% of a $0.20124\u2013$0.20724 bar whose 2.98% range is the NARROWEST of all fourteen sessions since Oct 14. The fifth consecutive close inside Z010. Compression, not a break.'},
+  {p:0.20117, kind:'gate', tier:1, tag:'Z010 FLOOR \u00b7 invalidation 0 of 2 \u00b7 STR-002', label:'$0.20117 \u00b7 the FLOOR of ADA-Z010 \u2014 2.34% below the close and the other price STR-ADA-002 races to. TWO consecutive settled closes below INVALIDATE the zone, resolve the claim invalidated-first and put ADA-Z007 next in line. The counter is 0 of 2; the Oct 27 low stopped 0.03% above it with NO probe, after probes on Oct 24 and Oct 26 were both rejected. The band $0.20087\u2013$0.20147 is LOW-CONFIDENCE.'},
+  {p:0.20055, kind:'sup',  tier:3, tag:'double-probe lows \u00b7 sell-side pool', label:'$0.20055 \u00b7 the Oct 24 and Oct 26 double-probe lows ($0.20055\u2013$0.20058), with Sep 11\u2019s $0.20050 beside them. The report names this as the obvious SELL-SIDE POOL under the floor \u2014 a description of where stops sit, not a level the framework acts on.'},
+  {p:0.19,    kind:'hard', tier:1, tag:'BUY 4 \u00b7 ONE close \u00b7 7.77% below', label:'$0.19000 \u00b7 BUY 4 INVALIDATION \u2014 ONE settled close below, 7.77% beneath the close, against a 1.5\u00d7ATR14 distance of 7.46%. It is now the NEAREST tranche stop and it acts only on a settled close. BUY 4 is marked +6.37%.'},
+  {p:0.1805,  kind:'hard', tier:2, tag:'BUY 3 \u00b7 Z007 roof beside it', label:'$0.18050 \u00b7 BUY 3 INVALIDATION \u2014 two consecutive closes below, 12.38% beneath. It coincides with the ROOF of ADA-Z007, the zone that becomes next in line if Z010 invalidates. BUY 3 is marked +8.64%.'},
+  {p:0.173,   kind:'hard', tier:3, tag:'BUY 2 invalidation', label:'$0.17300 \u00b7 BUY 2 INVALIDATION \u2014 two consecutive closes below, 16.02% beneath. BUY 2 is the best-marked tranche at +17.71%.'},
+  {p:0.1596,  kind:'hard', tier:2, tag:'BUY 1 / THESIS STOP \u00b7 0 of 2', label:'$0.1596 \u00b7 BUY 1 INVALIDATION and the THESIS STOP \u2014 two consecutive settled closes below = full exit \u00b7 0 of 2, 22.52% below, never tested this campaign. BUY 1\u2019s fill is ASSUMED at $0.182 and marked +13.19%; the report publishes the sensitivity rather than hiding the assumption.'},
 ];
 const levelZones = [
-  // The supply zone above, still untested, and the demand zone below that has now been proven once.
-  {lo:0.2431, hi:0.25224, kind:'dist', tier:2, tag:'Z011 supply \u00b7 WATCHING \u00b7 standoff 2 of 3', label:'$0.24310\u2013$0.25224 \u00b7 ADA-Z011, SUPPLY \u2014 WATCHING, 7.96% above the close and untouched. Its Z1 standoff is at 2 of 3, so it becomes SCOREABLE after tonight. No tranche is attached.'},
-  {lo:0.20117, hi:0.21156, kind:'zone', tier:1, tag:'ADA-Z010 \u00b7 CONFIRMED demand', label:'$0.20117\u2013$0.21156 \u00b7 ADA-Z010 \u2014 CONFIRMED as demand, the first scoreable ADA zone confirmation on record. Registered Oct 12, touched Oct 18, confirmed by Oct 20 on both readings; T-window 3 of 7 held. Two closes below its floor INVALIDATE it. It carries NO TRANCHE \u2014 deploying the reserve into it would be a new decision, not an existing rule.'},
-  {lo:0.2235, hi:0.22452, kind:'zone', tier:3, tag:'gate band \u00b7 LOW-CONF below $0.22452', label:'$0.22350\u2013$0.22452 \u00b7 the margin band around the AR gate. Oct 20 closed $0.22399 INSIDE it \u2014 LOW-CONFIDENCE, count 0, which is why the outside-up bar did not start the reversal count and Oct 21 did. A settle at or above $0.22452 is the clean reclaim.'},
+  // The zone price is compressing inside, the zone that follows if it fails, and the supply far above.
+  {lo:0.20117, hi:0.21156, kind:'zone', tier:1, tag:'ADA-Z010 \u00b7 CONFIRMED \u00b7 5 closes inside', label:'$0.20117\u2013$0.21156 \u00b7 ADA-Z010 \u2014 CONFIRMED demand, Z7 HELD YES, with FIVE consecutive settled closes inside it (Oct 23-27). Range has contracted from 5.9% to 2.98% and volume from 5.45M to 2.43M across those sessions: the zone is COMPRESSING rather than breaking. Both exits are pre-registered as STR-ADA-002, and its S-window runs to Nov 17.'},
+  {lo:0.174,  hi:0.1805, kind:'zone', tier:2, tag:'ADA-Z007 \u00b7 next if Z010 fails', label:'$0.17400\u2013$0.18050 \u00b7 ADA-Z007 \u2014 WATCHING, and explicitly the NEXT zone in line if Z010 is invalidated. Its roof sits 12.38% below the close, coinciding with the BUY 3 stop.'},
+  {lo:0.2431, hi:0.25224, kind:'dist', tier:3, tag:'ADA-Z011 supply \u00b7 WATCHING', label:'$0.24310\u2013$0.25224 \u00b7 ADA-Z011 supply \u2014 WATCHING and scoreable, 18.01% above the close and untouched since the structure left it. No tranche is attached.'},
 ];
 // Oct 4-17, 2026 core deployment window (month 29 post-halving, from the 363-376 day post-peak interval
 // off BTC's Oct 6, 2025 top). THE WINDOW CLOSED ON OCT 17 WITH NO RULING, so (c) hold was recorded by
@@ -700,7 +718,7 @@ function render(){
     if(i>=trajStart){ allowedPrices.push(conePct(i,1.645), conePct(i,-1.645)); }
   });
   // include the level-ladder extremes so the Aug 3 ladder is never clipped off-scale when the layer is on
-  if(state.layers.levels){ allowedPrices.push(0.1596, 0.28217); } // BUY 1 thesis stop .. the Oct 6 campaign high — the current ladder's extremes
+  if(state.layers.levels){ allowedPrices.push(0.1596, 0.25224); } // BUY 1 thesis stop .. the Z011 supply top — the current ladder's extremes
   let pMin,pMax;
   if(allowedPrices.length===0){ pMin=-1; pMax=1; }
   else if(state.scale==='log'){ pMin=Math.log10(Math.min(...allowedPrices)*0.85); pMax=Math.log10(Math.max(...allowedPrices)*1.15); }
@@ -716,7 +734,7 @@ function render(){
     svg.appendChild(el('text',{x:padL+plotW+8,y:gy+3,'font-size':9,fill:TH().subLabel},'$'+(v<1?v.toFixed(2):v.toFixed(1))));
   });
 
-  // ── Oct 22 level ladder + Oct-Nov '26 core window (drawn under the price line) ──
+  // ── Oct 28 level ladder + Oct-Nov '26 core window (drawn under the price line) ──
   if(state.layers.levels){
     const yTop=priceTop, yBot=priceTop+priceH;
     const showLabels = span<=40; // labels only when zoomed in enough to read them
@@ -996,7 +1014,7 @@ document.querySelectorAll('button[data-zoom]').forEach(btn=>{
       state.viewEnd=months.findIndex(m=>m.y===2022&&m.m===11)+1;
     } else if(z==='live'){
       state.viewStart=Math.max(0,liveStartIdx-3);
-      // cap the span so the Oct 22 level-ladder labels stay readable (they hide when span>40, and the
+      // cap the span so the Oct 28 level-ladder labels stay readable (they hide when span>40, and the
       // month labels when span>30); N now runs to Dec 2028, which would otherwise blow the span open
       state.viewEnd=Math.min(N,liveStartIdx+24);
     }
@@ -1128,8 +1146,8 @@ applyTheme(savedTheme);
 // 0.25978 -> 0.26177, close 0.24103 -> 0.25263, volume 3106 -> 4758. That is the
 // second time running that a mid-week read understated the finish, and it is why
 // a live weekly print is never treated as a close here. NOW = 0.25143 is a LIVE
-// SPOT. Neither it nor the 0.25192 weekly close is the Oct 21 Crypto.com settled
-// close of $0.22518 this file now carries, and neither is ever used as one.
+// SPOT. Neither it nor the 0.25192 weekly close is the Oct 27 Crypto.com settled
+// close of $0.20600 this file now carries, and neither is ever used as one.
 //
 // THE CRITERION WAS MISSED BY 0.65%, AND THE THRESHOLD IS NOT MOVED. The test
 // written here was a WEEKLY CLOSE above the $0.25429 SOS high to confirm Phase D.
