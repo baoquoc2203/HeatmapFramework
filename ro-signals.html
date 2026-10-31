@@ -1,0 +1,458 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Radar tín hiệu · Robinhood Chain</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#eef2f7;--panel:#ffffff;--panel2:#f3f6fa;--line:rgba(40,60,90,.14);--text:#13203a;--muted:#5b6b85;--dim:#8796ad;
+  --mint:#0f9e86;--cyan:#1b86c9;--red:#d4424f;--green:#178a55;--amber:#b9770c;--violet:#6a4fd0;--blue:#2c6fd6;
+  --mono:'DM Mono',ui-monospace,SFMono-Regular,Menlo,monospace;--sans:'Manrope',system-ui,-apple-system,'Segoe UI',sans-serif;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#080d18;--panel:#101827;--panel2:#131e30;--line:rgba(158,181,220,.15);--text:#eaf2ff;--muted:#8091ad;--dim:#53647f;
+  --mint:#45e0c1;--cyan:#5ec9ff;--red:#ff6c78;--green:#72e3a6;--amber:#ffbf69;--violet:#ae92ff;--blue:#6da9ff;color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#080d18;--panel:#101827;--panel2:#131e30;--line:rgba(158,181,220,.15);--text:#eaf2ff;--muted:#8091ad;--dim:#53647f;
+  --mint:#45e0c1;--cyan:#5ec9ff;--red:#ff6c78;--green:#72e3a6;--amber:#ffbf69;--violet:#ae92ff;--blue:#6da9ff;color-scheme:dark}
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:env(safe-area-inset-top,0px);background:var(--bg)}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--text);font:400 14px/1.5 var(--sans);font-variant-numeric:tabular-nums;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:2px solid var(--mint);outline-offset:2px;border-radius:6px}
+.app{max-width:1500px;margin:0 auto;padding:16px 20px 60px}
+.top{display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;padding-bottom:12px;border-bottom:1px solid var(--line)}
+.brand{display:flex;align-items:center;gap:12px}
+.mark{width:36px;height:36px;border-radius:11px;display:grid;place-items:center;border:1px solid var(--line);background:var(--panel)}
+.brand h1{font-size:17px;font-weight:800;margin:0;letter-spacing:.01em}
+.brand p{margin:0;font-size:12px;color:var(--muted)}
+.tools{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.stamp{font:12px var(--mono);color:var(--muted)}
+.stamp b{color:var(--text);font-weight:500}
+.ghost{border:1px solid var(--line);background:var(--panel);border-radius:999px;padding:6px 12px;font-size:12px;color:var(--muted)}
+.ghost:hover{color:var(--text);border-color:var(--mint)}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin:14px 0 0}
+.stat{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:10px 14px}
+.stat span{display:block;font-size:12px;color:var(--muted)}
+.stat b{font-size:20px;font-weight:800;letter-spacing:-.01em}
+.lead{margin:12px 2px 0;font-size:14.5px;max-width:90ch}
+.stage{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(330px,.72fr);gap:16px;margin-top:16px;align-items:start}
+.space{position:relative;height:min(74vh,700px);min-height:440px;border:1px solid var(--line);border-radius:20px;overflow:hidden;background:radial-gradient(120% 90% at 50% 40%,var(--panel2),var(--bg) 75%);touch-action:pan-y;user-select:none;-webkit-user-select:none}
+.space canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.overlay-top{position:absolute;left:12px;right:12px;top:12px;display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;z-index:3;pointer-events:none}
+.overlay-top>*{pointer-events:auto}
+.chips{display:flex;gap:6px;flex-wrap:wrap}
+.chip{border:1px solid var(--line);background:color-mix(in srgb,var(--panel) 86%,transparent);border-radius:999px;padding:5px 11px;font-size:12px;color:var(--muted);display:inline-flex;align-items:center;gap:6px;backdrop-filter:blur(6px)}
+.chip i{width:8px;height:8px;border-radius:50%}
+.chip[aria-pressed="true"]{color:var(--text);border-color:var(--text);font-weight:700}
+.view{position:absolute;right:12px;bottom:10px;z-index:3;display:flex;gap:6px}
+.view button{border:1px solid var(--line);background:color-mix(in srgb,var(--panel) 86%,transparent);border-radius:10px;min-width:34px;height:32px;padding:0 9px;font-size:12px;color:var(--muted);backdrop-filter:blur(6px)}
+.view button[aria-pressed="true"]{color:var(--text);border-color:var(--text)}
+.hint{position:absolute;left:14px;bottom:16px;text-align:left;font-size:12px;color:var(--dim);z-index:2;pointer-events:none}
+.lbl{position:absolute;z-index:2;transform:translate(-50%,-100%);pointer-events:none;white-space:nowrap;text-align:center;font-weight:700;font-size:12.5px;color:var(--text);text-shadow:0 0 6px var(--bg),0 0 3px var(--bg);transition:opacity .15s}
+.lbl small{display:block;font:500 10.5px var(--mono);color:var(--muted)}
+.lbl.on{font-size:15px;z-index:3}
+.lbl.on small{color:var(--text)}
+.lbl.dim{opacity:.15}
+.readout{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:16px 16px 14px;position:sticky;top:calc(12px + env(safe-area-inset-top,0px))}
+.ro-top{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.grp{font-size:12px;font-weight:700;display:inline-flex;align-items:center;gap:6px}
+.grp i{width:9px;height:9px;border-radius:50%}
+.nav{display:flex;gap:6px}
+.nav button{border:1px solid var(--line);background:var(--panel2);border-radius:10px;width:34px;height:30px}
+.ro-name{display:flex;align-items:baseline;gap:10px;margin:8px 0 2px;flex-wrap:wrap}
+.ro-name h2{font-size:30px;line-height:1.05;font-weight:800;letter-spacing:-.02em;margin:0}
+.ro-name small{color:var(--muted);font-size:13px}
+.ro-px{font:500 16px var(--mono)}
+.ro-px span{font-size:12.5px;margin-left:8px}
+.today{margin:12px 0 0;padding:11px 14px;border-radius:14px;background:var(--panel2)}
+.today .l{font-size:12px;color:var(--muted)}
+.today .v{font-size:20px;font-weight:800}
+.today.go{background:color-mix(in srgb,var(--amber) 16%,var(--panel))}
+.today.go .v{color:var(--amber)}
+.next{margin:12px 0 0;font-size:12px;color:var(--muted)}
+.next b{display:block;font-size:16.5px;line-height:1.35;color:var(--text);margin:2px 0 3px}
+.dist{font-weight:700;font-size:13.5px}
+.ladder{margin:14px 0 2px}
+.ladder svg{display:block;width:100%;height:auto;overflow:visible}
+.ladder text{font:500 10.5px var(--sans);fill:var(--muted)}
+.ladder text.m{font-family:var(--mono)}
+.ladder text.v{fill:var(--text);font-weight:700}
+.kv{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}
+.kv div{background:var(--panel2);border-radius:10px;padding:7px 9px}
+.kv span{display:block;font-size:11px;color:var(--muted)}
+.kv b{font:500 13px var(--mono)}
+.steps{display:flex;gap:4px;margin-top:10px}
+.steps i{flex:1;height:6px;border-radius:3px;background:var(--line)}
+.steps i.done{background:var(--mint)}
+.steps i.cur{background:repeating-linear-gradient(90deg,var(--mint) 0 4px,transparent 4px 7px)}
+.ro-st{font-size:13px;color:var(--muted);margin:10px 0 0}
+.ro-det{margin:10px 0 0;display:grid;grid-template-columns:auto 1fr;gap:5px 12px;font-size:12.5px}
+.ro-det dt{color:var(--muted)}.ro-det dd{margin:0;word-break:break-word}
+code{font:11.5px var(--mono);color:var(--muted);word-break:break-all}
+.copy{border:1px solid var(--line);background:none;border-radius:8px;padding:2px 8px;font-size:11.5px;color:var(--muted);margin-left:6px}
+.list{margin-top:24px}
+.list h3,.sec h3{font-size:15px;font-weight:800;margin:0 0 6px}
+.row{display:grid;grid-template-columns:12px minmax(0,1fr) auto;gap:3px 12px;align-items:center;padding:10px 12px;border-radius:12px;border:1px solid transparent;width:100%;text-align:left;background:none}
+.row:hover{background:var(--panel)}
+.row.on{background:var(--panel);border-color:var(--line)}
+.row .mk{width:10px;height:10px;border-radius:50%}
+.row .nm{font-weight:700}
+.row .nm small{font-weight:500;color:var(--muted);margin-left:6px;font-size:12px}
+.row .ac{grid-column:2/3;font-size:12.5px;color:var(--muted)}
+.row .ds{text-align:right;font-weight:700;font-size:13px;white-space:nowrap}
+.row .px{grid-column:3;grid-row:2;text-align:right;font:12px var(--mono);color:var(--muted)}
+.gh{font-size:12.5px;font-weight:700;color:var(--muted);margin:14px 12px 2px;display:flex;align-items:center;gap:8px}
+.gh i{width:8px;height:8px;border-radius:50%}
+.more{margin-top:24px;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:12px}
+.more details,.sec{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:12px 16px}
+.more summary{cursor:pointer;font-weight:700}
+.more li,.more p{font-size:13px;color:var(--muted)}
+.more ul{padding-left:18px;margin:8px 0 2px}
+footer{margin-top:20px;font-size:12px;color:var(--muted);line-height:1.65;max-width:110ch}
+.toast{position:fixed;left:50%;bottom:calc(18px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--text);color:var(--bg);padding:8px 14px;border-radius:999px;font-size:12.5px;opacity:0;pointer-events:none;transition:opacity .2s;z-index:20}
+.toast.show{opacity:1}
+.lockbar{display:none}
+.tbl{width:100%;border-collapse:collapse;font-size:13px}
+.tbl th{text-align:left;font-weight:600;color:var(--muted);font-size:12px;padding:6px 8px;border-bottom:1px solid var(--line)}
+.tbl td{padding:7px 8px;border-bottom:1px solid var(--line);vertical-align:top}
+.tbl td.n,.tbl th.n{text-align:right;font-family:var(--mono);font-size:12.5px;white-space:nowrap}
+.scroll{overflow-x:auto}
+.pos{color:var(--green)}.neg{color:var(--red)}
+@media (max-width:980px){
+  .stage{grid-template-columns:1fr}
+  .readout{position:static}
+  .space{height:min(96vw,560px);min-height:360px;border-radius:16px}
+  .app{padding:12px 12px 90px}
+  .ro-name h2{font-size:26px}
+  .overlay-top{left:8px;right:8px;top:8px}
+  .chips{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;padding-bottom:2px}
+  .chip{flex:0 0 auto;padding:4px 9px;font-size:11.5px}
+  .view{right:8px;bottom:8px}.view button{height:30px;min-width:30px;font-size:11.5px}
+  .hint{display:none}
+  .lockbar{position:fixed;left:10px;right:10px;bottom:calc(10px + env(safe-area-inset-bottom,0px));z-index:15;border:1px solid var(--line);background:var(--panel);border-radius:16px;padding:10px 14px;text-align:left;box-shadow:0 10px 30px rgba(0,0,0,.3);display:grid;grid-template-columns:1fr auto;gap:2px 10px;transform:translateY(150%);transition:transform .25s}
+  .lockbar.show{transform:none}
+  .lockbar .n{font-weight:800;font-size:16px}
+  .lockbar .t{font-weight:700;font-size:13px;text-align:right}
+  .lockbar .a{grid-column:1/-1;font-size:13px}
+  .lockbar .d{grid-column:1/-1;font-size:12.5px;font-weight:700}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+
+.tags{position:absolute;inset:0;pointer-events:none;z-index:4}
+.tag{position:absolute;transform:translateY(-50%);display:flex;align-items:center;gap:6px;white-space:nowrap;font:500 11.5px var(--mono);color:var(--text);background:color-mix(in srgb,var(--panel) 88%,transparent);border:1px solid var(--line);border-left:3px solid var(--c);border-radius:8px;padding:3px 8px;backdrop-filter:blur(4px)}
+.tag b{font:700 11.5px var(--sans);color:var(--c)}
+.tag em{font-style:normal;color:var(--muted)}
+.tag span{font:700 10.5px var(--sans);color:var(--bg);background:var(--c);border-radius:5px;padding:1px 6px;margin-left:4px}
+.tag.next{border-width:1px 1px 1px 3px;box-shadow:0 0 0 1px var(--c)}
+.tag.now{border-left-color:var(--text)}
+.tag.now b{color:var(--text)}
+.scenecol{min-width:0}
+.legend{margin-top:8px;display:flex;flex-wrap:wrap;gap:4px 14px;font-size:11.5px;color:var(--muted);background:color-mix(in srgb,var(--panel) 85%,transparent);border:1px solid var(--line);border-radius:12px;padding:8px 10px;backdrop-filter:blur(6px);pointer-events:none}
+.legend span{display:flex;align-items:center;gap:6px}
+.legend .dot{width:9px;height:9px;border-radius:50%}
+.legend .ring{width:12px;height:12px;border-radius:50%;border:2px solid}
+.legend .plane{width:14px;height:7px;background:color-mix(in srgb,var(--amber) 35%,transparent);border:1px dashed var(--amber)}
+@media (max-width:980px){.legend{display:grid;grid-template-columns:1fr 1fr;font-size:11px}.space.desk .lbl:not(.on){opacity:0!important}.tag{font-size:10.5px}.tag b{font-size:10.5px}.tag span{display:none}}
+
+.lbl.av{transform:translate(-50%,-22px);display:flex;flex-direction:column;align-items:center;gap:1px;text-shadow:0 0 6px var(--bg),0 0 3px var(--bg)}
+.ava{position:relative;display:grid;place-items:center;width:40px;height:40px;border-radius:50%;border:3px solid var(--rc);background:var(--panel2);overflow:hidden;box-shadow:0 4px 14px rgba(0,0,0,.35);transition:width .15s,height .15s}
+.ava img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1}
+.ava em{font:800 13px var(--sans);font-style:normal;color:var(--muted)}
+.lbl.av b{font-size:12.5px;margin-top:2px}
+.lbl.av.on .ava{width:54px;height:54px;border-width:4px}
+.lbl.av.on{transform:translate(-50%,-29px)}
+.ro-ava{width:40px;height:40px;border-radius:50%;overflow:hidden;border:2px solid var(--line);flex:0 0 auto;background:var(--panel2);display:grid;place-items:center;font:800 13px var(--sans);color:var(--muted);position:relative;align-self:center}
+.ro-ava img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+
+</style>
+</head>
+<body>
+<div class="app">
+<header class="top">
+  <div class="brand"><div class="mark" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" opacity=".35"/><circle cx="12" cy="12" r="5" stroke="currentColor" opacity=".55"/><path d="M12 12 L19 7" stroke="var(--mint)" stroke-width="1.8" stroke-linecap="round"/><circle cx="12" cy="12" r="1.6" fill="var(--amber)"/></svg></div>
+    <div><h1>Radar tín hiệu Robinhood Chain</h1><p>Mỗi token đặt theo khoảng cách tới hành động gần nhất</p></div></div>
+  <div class="tools"><span class="stamp">Giá đóng cửa <b id="date"></b> UTC</span><a class="ghost" href="ro-desk.html" style="text-decoration:none">Bàn quản lý</a><button class="ghost" id="themeBtn" type="button">Sáng / tối</button><button class="ghost" id="csvBtn" type="button">Xuất CSV</button></div>
+</header>
+<div class="stats" id="stats"></div>
+<p class="lead" id="lead"></p>
+<section class="stage">
+  <div class="space" id="space" aria-label="Radar 3D. Di chuột hoặc kéo ngón tay để xem hành động; chạm để ghim; kéo bằng chuột để xoay.">
+    <div class="overlay-top"><div class="chips" id="chips" role="group" aria-label="Lọc nhóm"></div></div>
+    <div class="view"><button type="button" id="rotL" aria-label="Xoay trái">⟲</button><button type="button" id="rotR" aria-label="Xoay phải">⟳</button><button type="button" id="topBtn" aria-pressed="false">Nhìn từ trên</button></div>
+    <div class="hint" id="hint">Di chuột tới token để xem hành động. Bấm để ghim. Kéo để xoay.</div>
+  </div>
+  <aside class="readout" id="readout" aria-live="polite"></aside>
+</section>
+<section class="list" id="list"></section>
+<section class="more">
+  <details><summary>Cách đọc radar</summary><ul>
+    <li>Tâm đĩa là hành động ngay. Càng xa tâm, giá càng phải đi xa mới tới mức hành động gần nhất. Ba vòng: 5%, 20%, 60%.</li>
+    <li>Token nổi trên mặt đĩa: giá cần tăng để tới hành động (thường là chốt lời). Token chìm dưới đĩa: giá cần giảm (mua thêm, hoặc thoát). Token phát sáng ở tâm: tín hiệu bật hôm nay. Vòng rỗng ở mép: chờ một sự kiện, không chờ giá.</li>
+    <li>Màu theo nhóm: tím là có thể mua (ngoài danh mục), xanh ngọc là danh mục đang nắm, xanh dương là theo dõi. Tia quét chỉ vào token đang xem.</li></ul></details>
+  <details><summary>Luật mua và bán</summary><ul>
+    <li>Chỉ dùng giá đóng cửa ngày theo UTC (07:00 giờ Việt Nam). Biến động trong ngày không tính.</li>
+    <li>Meme vừa: mua lần đầu ở ngày đầu tiên giá đóng cửa không in đáy mới kể từ đỉnh. Mua thêm khi giá đóng cửa ≤ 80% giá vốn trung bình, cách lần trước ≥ 3 ngày, tối đa 4 lần.</li>
+    <li>Microcap ($0.5–5M, đã giảm ≥ 85% từ đỉnh): mua 1 lần khi giá không in đáy mới và volume ngày ≥ 2× trung vị 7 ngày.</li>
+    <li>Chốt 50% khi giá gấp đôi giá vốn, rồi bán dần ở ×5, ×10 (microcap thêm ×30, ×100). Phần còn lại thoát khi giá rơi mạnh từ đỉnh.</li>
+    <li>Bán hết khi thanh khoản cạn, 2 close liên tiếp dưới 25% giá vốn, hoặc có rủi ro bảo mật. Đây không phải mức lỗ tối đa được bảo đảm.</li></ul></details>
+  <details><summary>Nếu bạn mới bắt đầu</summary><p>Giá vốn trong nhóm "Đang nắm" là của danh mục gốc. Nếu mua ở giá khác, tự tính lại: mỗi bậc mua thêm = 80% giá vốn trung bình của bạn, chốt 50% ở 2× giá vốn của bạn. Quy mô gợi ý: 5% vốn meme mỗi lần, tối đa 20% một token, microcap 2%. Mua trễ cho kết quả kém hơn: chờ thêm 2–3 phiên sau tín hiệu làm tỷ lệ lệnh có lãi giảm từ 20.9% xuống 14.6%.</p></details>
+  <details><summary>Không đạt chuẩn</summary><ul id="avoid"></ul></details>
+</section>
+<footer id="foot"></footer>
+</div>
+<button type="button" class="lockbar" id="lockbar" aria-label="Xem chi tiết hành động"></button>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/three@0.149.0/build/three.min.js"></script>
+<script>
+/* Space: shared 3D view (three.js) with a 2D fallback. Nodes are picked by screen distance, so moving the pointer or a finger anywhere near a token locks onto it. */
+function Space(host,o){
+  const S={dirty:true,locked:null,hover:null,ready:false,proj:new Map(),theta:o.theta??0.6,phi:o.phi??1.0,r:o.radius??15,tTheta:null,tPhi:null,auto:o.autoRotate!==false&&!matchMedia("(prefers-reduced-motion: reduce)").matches,top:false};
+  const RM=matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const labels=new Map();
+  o.nodes.forEach(n=>{const d=document.createElement("div");
+    if(n.img!==undefined){d.className="lbl av";const ini=n.label.replace(/&[^;]+;/g,"").slice(0,2);
+      d.innerHTML=`<span class="ava" style="--rc:${n.ring||"var(--line)"}">${n.img?`<img src="${n.img}" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">`:""}<em>${ini}</em></span><b>${n.label}</b>${n.sub?`<small>${n.sub}</small>`:""}`}
+    else{d.className="lbl";d.innerHTML=`${n.label}${n.sub?`<small>${n.sub}</small>`:""}`}
+    host.appendChild(d);labels.set(n.id,d)});
+  let W=host.clientWidth,H=host.clientHeight,renderer,scene,camera,THREEok=false,orbs=new Map(),lockRing,beam,beamAng=o.beamStart??-Math.PI/2,beamTarget=beamAng,beamLen=1,beamLenT=1;
+  function size(){S.dirty=true;W=host.clientWidth;H=host.clientHeight;if(renderer){renderer.setSize(W,H,false);camera.aspect=W/H;camera.updateProjectionMatrix()}}
+  try{
+    if(!window.THREE)throw 0;
+    const T=THREE,cv=document.createElement("canvas");host.prepend(cv);
+    renderer=new T.WebGLRenderer({canvas:cv,alpha:true,antialias:true});
+    renderer.setPixelRatio(Math.min(devicePixelRatio,2));
+    scene=new T.Scene();camera=new T.PerspectiveCamera(40,W/H,.1,200);
+    scene.add(new T.AmbientLight(0xa9bfdc,1.15));
+    const k=new T.DirectionalLight(0xffffff,1.6);k.position.set(-5,9,7);scene.add(k);
+    const f=new T.DirectionalLight(0x6aa8ff,.6);f.position.set(6,-3,-4);scene.add(f);
+    o.decorate&&o.decorate(T,scene);
+    o.nodes.forEach(n=>{
+      let m;
+      if(n.hollow){m=new T.Mesh(new T.TorusGeometry(n.size*.9,n.size*.18,10,40),new T.MeshBasicMaterial({color:n.color}));m.userData.bill=1}
+      else{m=new T.Mesh(new T.SphereGeometry(n.size,40,28),new T.MeshStandardMaterial({color:n.color,emissive:n.color,emissiveIntensity:n.glow?.9:.28,metalness:.25,roughness:.32}))}
+      m.position.set(...n.pos);if(n.hide)m.userData.hide=1;scene.add(m);orbs.set(n.id,m);
+      if(n.glow){const h=new T.Mesh(new T.SphereGeometry(n.size*1.9,24,16),new T.MeshBasicMaterial({color:n.color,transparent:true,opacity:.14}));h.position.set(...n.pos);scene.add(h);m.userData.halo=h}
+    });
+    lockRing=new T.Mesh(new T.TorusGeometry(1,.06,8,64),new T.MeshBasicMaterial({color:0xffffff,transparent:true,opacity:.85}));lockRing.visible=false;scene.add(lockRing);
+    if(o.beam){const R=o.beam.r,pos=[0,.012,0],idx=[],N=24,w=.17;for(let i=0;i<=N;i++){const a=-w+2*w*i/N;pos.push(R*Math.cos(a),.012,R*Math.sin(a))}for(let i=1;i<=N;i++)idx.push(0,i,i+1);
+      const g=new T.BufferGeometry();g.setAttribute("position",new T.Float32BufferAttribute(pos,3));g.setIndex(idx);
+      beam=new T.Group();beam.add(new T.Mesh(g,new T.MeshBasicMaterial({color:o.beam.color,transparent:true,opacity:.2,side:T.DoubleSide,depthWrite:false})));
+      beam.add(new T.Line(new T.BufferGeometry().setFromPoints([new T.Vector3(0,.02,0),new T.Vector3(R,.02,0)]),new T.LineBasicMaterial({color:o.beam.color,transparent:true,opacity:.8})));scene.add(beam)}
+    THREEok=true;
+  }catch(e){THREEok=false}
+  let svg;
+  if(!THREEok){svg=document.createElementNS("http://www.w3.org/2000/svg","svg");svg.setAttribute("style","position:absolute;inset:0;width:100%;height:100%");host.prepend(svg);
+    const note=document.createElement("div");note.className="hint";note.style.bottom="30px";note.textContent="Không tải được 3D trên thiết bị này: đang hiện bản 2D nhìn từ trên.";host.appendChild(note)}
+  const vis=id=>!o.visible||o.visible(id);
+  function camPos(){const a=W/Math.max(1,H),k=a<1.35?1.2/a:1,r=S.r*Math.min(k,1.9);return[r*Math.sin(S.phi)*Math.sin(S.theta),r*Math.cos(S.phi)+(o.lookY||0),r*Math.sin(S.phi)*Math.cos(S.theta)]}
+  function project(){
+    S.proj.clear();
+    if(THREEok){const v=new THREE.Vector3();o.nodes.forEach(n=>{v.set(...n.pos);v.project(camera);S.proj.set(n.id,{x:(v.x*.5+.5)*W,y:(-v.y*.5+.5)*H,z:v.z,s:n.size})})}
+    else{const ext=o.extent||8,sc=Math.min(W,H)/(2*ext*1.08);o.nodes.forEach(n=>S.proj.set(n.id,{x:W/2+n.pos[0]*sc,y:H/2+n.pos[2]*sc,z:0,s:n.size}))}
+  }
+  function drawFallback(){
+    const ext=o.extent||8,sc=Math.min(W,H)/(2*ext*1.08);let h="";
+    (o.flatRings||[]).forEach(r=>h+=`<circle cx="${W/2}" cy="${H/2}" r="${r*sc}" fill="none" stroke="var(--line)"/>`);
+    o.nodes.forEach(n=>{const p=S.proj.get(n.id);const on=n.id===(S.hover||S.locked);h+=`<circle cx="${p.x}" cy="${p.y}" r="${(on?9:6)}" fill="${n.hollow?"none":"#"+n.color.toString(16).padStart(6,"0")}" stroke="#${n.color.toString(16).padStart(6,"0")}" stroke-width="2" opacity="${vis(n.id)?1:.15}"/>`});
+    svg.innerHTML=h;
+  }
+  function placeLabels(){
+    const cur=S.hover||S.locked,boxes=[];
+    const order=[...o.nodes].sort((a,b)=>(b.id===cur)-(a.id===cur)||(a.prio??0)-(b.prio??0));
+    order.forEach(n=>{const p=S.proj.get(n.id),d=labels.get(n.id);if(!p){return}
+      const av=n.img!==undefined;const off=av?0:(THREEok?Math.max(14,700/(Math.max(1,camera.position.distanceTo(new THREE.Vector3(...n.pos))))*n.size):12);
+      const x=p.x,y=p.y-off,w=Math.max(av?60:46,n.label.length*8+10),h=av?70:30,b=av?{l:x-w/2,r:x+w/2,t:y-28,b:y+42}:{l:x-w/2,r:x+w/2,t:y-h,b:y};
+      const clash=boxes.some(q=>!(b.r<q.l||b.l>q.r||b.b<q.t||b.t>q.b));
+      d.style.left=x+"px";d.style.top=y+"px";
+      const show=(p.z<1)&&(n.id===cur||!clash);
+      d.style.opacity=show?(vis(n.id)?1:.15):0;d.classList.toggle("on",n.id===cur);
+      if(show)boxes.push(b)});
+  }
+  function frame(t){
+    requestAnimationFrame(frame);
+    const anim=(S.auto&&!S.drag)||S.tTheta!=null||S.tPhi!=null||(beam&&(Math.abs(((beamTarget-beamAng+Math.PI*3)%(Math.PI*2))-Math.PI)>.002||Math.abs(beamLenT-beamLen)>.002));
+    if(!S.dirty&&!anim&&!S.drag)return;S.dirty=false;
+    if(S.tTheta!=null){S.theta+=(S.tTheta-S.theta)*(RM?1:.12);if(Math.abs(S.tTheta-S.theta)<.002)S.tTheta=null}
+    if(S.tPhi!=null){S.phi+=(S.tPhi-S.phi)*(RM?1:.12);if(Math.abs(S.tPhi-S.phi)<.002)S.tPhi=null}
+    if(S.auto&&!S.drag)S.theta+=.0011;
+    if(THREEok){
+      const c=camPos();camera.position.set(...c);camera.lookAt(0,o.lookY||0,0);
+      orbs.forEach((m,id)=>{const v=vis(id),on=id===(S.hover||S.locked);m.visible=!m.userData.hide;m.material.opacity=v?1:.12;m.material.transparent=!v;m.scale.setScalar(on?1.35:1);if(m.userData.bill)m.lookAt(camera.position);});
+      const cur=S.hover||S.locked,cm=orbs.get(cur);
+      if(cm&&!cm.userData.hide){lockRing.visible=true;lockRing.position.copy(cm.position);const n=o.nodes.find(x=>x.id===cur);lockRing.scale.setScalar(n.size*2.3);lockRing.lookAt(camera.position)}else lockRing.visible=false;
+      if(beam){let d=beamTarget-beamAng;while(d>Math.PI)d-=2*Math.PI;while(d<-Math.PI)d+=2*Math.PI;beamAng+=d*(RM?1:.1);beam.rotation.y=-beamAng;beamLen+=(beamLenT-beamLen)*(RM?1:.12);beam.scale.set(beamLen,1,beamLen)}
+      o.tick&&o.tick(t,cur);
+      renderer.render(scene,camera);
+    }
+    project();if(!THREEok)drawFallback();placeLabels();
+    if(o.overlay){const cur=S.hover||S.locked;o.overlay(pt=>{if(THREEok){const v=new THREE.Vector3(...pt).project(camera);return{x:(v.x*.5+.5)*W,y:(-v.y*.5+.5)*H,z:v.z}}const ext=o.extent||8,sc=Math.min(W,H)/(2*ext*1.08);return{x:W/2+pt[0]*sc,y:H/2+pt[2]*sc-pt[1]*sc*.5,z:0}},cur,THREEok)}
+  }
+  function nearest(cx,cy,maxd){let best=null,bd=1e9;S.proj.forEach((p,id)=>{if(!vis(id)||p.z>1)return;const d=Math.hypot(p.x-cx,p.y-cy);if(d<bd){bd=d;best=id}});return bd<=maxd?best:null}
+  let down=null,moved=0,last=null;
+  host.addEventListener("pointerdown",e=>{S.dirty=true;if(e.target.closest("button"))return;S.auto=false;const r=host.getBoundingClientRect();down={x:e.clientX,y:e.clientY,type:e.pointerType};last={x:e.clientX,y:e.clientY};moved=0;
+    if(e.pointerType!=="mouse"){const id=nearest(e.clientX-r.left,e.clientY-r.top,70);if(id){S.hover=id;o.onSelect(id,true)}}});
+  host.addEventListener("pointermove",e=>{S.dirty=true;const r=host.getBoundingClientRect(),x=e.clientX-r.left,y=e.clientY-r.top;
+    if(down){moved+=Math.abs(e.clientX-last.x)+Math.abs(e.clientY-last.y);
+      if(down.type==="mouse"&&moved>4&&THREEok){S.drag=true;S.theta-= (e.clientX-last.x)*.007;S.phi=Math.max(.12,Math.min(1.45,S.phi-(e.clientY-last.y)*.005));S.tTheta=S.tPhi=null;host.style.cursor="grabbing"}
+      else if(down.type!=="mouse"){const id=nearest(x,y,80);if(id&&id!==S.hover){S.hover=id;o.onSelect(id,true)}}
+      last={x:e.clientX,y:e.clientY};return}
+    if(e.pointerType==="mouse"){const id=nearest(x,y,70);host.style.cursor=id?"pointer":"grab";if(id!==S.hover){S.hover=id;o.onSelect(id||S.locked,!!id)}}});
+  const end=e=>{if(!down)return;const r=host.getBoundingClientRect();const id=(down.type==="mouse"&&moved<6)?nearest(e.clientX-r.left,e.clientY-r.top,70):(down.type!=="mouse"?(S.hover||nearest(e.clientX-r.left,e.clientY-r.top,70)):null);
+    if(id){S.locked=id;S.hover=null;o.onSelect(id,false)}else if(down.type!=="mouse"){S.hover=null;o.onSelect(S.locked,false)}
+    down=null;S.drag=false;host.style.cursor=""};
+  host.addEventListener("pointerup",e=>{S.dirty=true;end(e)});host.addEventListener("pointercancel",()=>{down=null;S.drag=false;S.hover=null;o.onSelect(S.locked,false)});
+  host.addEventListener("pointerleave",e=>{S.dirty=true;if(e.pointerType==="mouse"&&!down&&S.hover){S.hover=null;o.onSelect(S.locked,false)}});
+  new ResizeObserver(size).observe(host);size();requestAnimationFrame(frame);
+  return{
+    lock(id){S.locked=id;S.hover=null;S.dirty=true},
+    refresh(){S.dirty=true},
+    aim(rad,len){S.dirty=true;beamTarget=rad;if(len!=null)beamLenT=Math.max(.12,len)},
+    rotate(d){S.auto=false;S.tTheta=(S.tTheta??S.theta)+d},
+    topView(on){S.auto=false;S.top=on;S.tPhi=on?(o.altPhi??.13):(o.phi??1.0);if(on&&o.altTheta!=null)S.tTheta=o.altTheta},
+    faceNode(id){},
+    get webgl(){return THREEok}
+  };
+}
+
+</script>
+<script>
+const DATE="30/10/2026";
+const LEAD="Phiên 30/10 đi ngang (BTC −0.8%, danh mục +0.03%). PONS bật lại tín hiệu mua lần đầu, nên vào rổ gợi ý dưới dạng mua lại vì danh mục đã đủ 4/4. CASHCAT có tín hiệu cho người mới. GME vào radar. 富贵 chỉ còn cách mức thoát 0.9%.";
+/* g: gy có thể mua · dm đang nắm · td theo dõi
+   act: buy | add | tp | exit | rebuy | event ; px: giá đóng cửa ; trig: mức kích hoạt gần nhất ; lv: các mức trên thanh giá */
+const SIG=[
+ {id:"pons-gy",g:"gy",t:"PONS",sub:"mua lại",px:.2339592,ch:2.3,now:1,act:"buy",trig:.2339592,st:"Close 29/10 in đáy mới, close 30/10 không in đáy mới: tín hiệu mua lần đầu bật. Danh mục đã đủ 4/4 nên ghi vào rổ gợi ý (vị thế giấy).",lv:{kill:.0584898,add:.187167,cost:.2339592,tp:.4679184},det:[["Thang mua","0.2340 → ≤ 0.1872 → ≤ 0.1664 → ≤ 0.1536, cách nhau ≥ 3 ngày"],["Contract","0x39dbed3a2bd333467115de45665cc57f813c4571"]]},
+ {id:"gme",g:"gy",t:"GME",sub:"microcap",px:.00084356,ch:null,now:1,act:"buy",trig:.00084356,st:"Radar bật 30/10 (volume 7.4× trung vị). Greatest Meme Ever. Microcap: mua 1 lần ở giá đóng cửa 30/10.",lv:{kill:.00021089,cost:.00084356,tp:.00168712},det:[["Kiểm tra (29/10)","Pool $67k, 3,913 holder, top-10 34.6%, ví dev 0%"],["Bán hết","2 close ≤ 0.000211 hoặc pool < $25k"],["Lưu ý","Giảm −88% theo ATH trong phiên, −83% theo giá đóng cửa: định nghĩa còn chờ bạn chốt"],["Contract","0xef67e3064bef1a27e81925ec7132f23e533bd5f6"]]},
+ {id:"fugui",g:"gy",t:"富贵",sub:"microcap",px:.00089261,ch:-7.5,act:"exit",trig:.000885,st:"Vào 26/10 ở 0.000813, đã chốt 50% ở ×2.07 ngày 28/10. Phần còn lại ×1.10, chỉ còn cách mức thoát 0.9%.",lv:{kill:.000203,cost:.000812848,trail:.000885,tp:.001626},det:[["Kiểm tra","Pool $122k, 3,123 holder, top-10 35.8%"],["Contract","0xceebf25b318201f1f949be2fabbfcee231737139"]]},
+ {id:"ai-gy",g:"gy",t:"AI",sub:"mua lại",px:.06046822,ch:1.4,act:"add",trig:.0515,st:"Tín hiệu mua lần đầu 27/10 ở 0.0644, hiện ×0.94. Vị thế giấy.",lv:{kill:.0161,add:.0515,cost:.0643656,tp:.1287},det:[["Thang mua","0.0644 → ≤ 0.0515 → ≤ 0.0458 → ≤ 0.0423, cách nhau ≥ 3 ngày"],["Contract","0x2e8c31162b855a2ffa90f6f8634643ad6f111e18"]]},
+ {id:"zeal",g:"gy",t:"ZEAL",sub:"microcap",px:.0009087512,ch:20.4,act:"tp",trig:.00151,st:"Vào 29/10 ở 0.000755, hiện ×1.20.",lv:{kill:.000189,cost:.000754804,tp:.00151},det:[["Kiểm tra","Pool $76k, 1,395 holder, top-10 31.3%, ví dev 0.09%"],["Contract","0x9fa1c5e90a11294f83a9f135b81ad1b537a5ffdc"]]},
+ {id:"pcc",g:"gy",t:"PCC",sub:"microcap",px:.0008731548,ch:-10.2,act:"tp",trig:.001895,st:"Vào 26/10 ở 0.000948, hiện ×0.92.",lv:{kill:.000237,cost:.000947693,tp:.001895},det:[["Kiểm tra","Pool $105k, 12,936 holder, top-10 19.7%"],["Contract","0xbf3e53713a53e9c3d5d1ddc25dd2c65669244663"]]},
+ {id:"shroom",g:"gy",t:"SHROOM",sub:"microcap",px:.002694777,ch:-11.9,act:"exit",trig:.00109,st:"Vào 28/10 ở 0.00436, hiện ×0.62. Mức gần nhất là mức bán hết; chốt 50% ở 0.00873.",lv:{kill:.00109,cost:.00436297,tp:.00873},det:[["Kiểm tra","Pool $161k, 11,034 holder, top-10 34.7%, ví dev 0.21%"],["Contract","0xab093def657f15df31b33922a95e047add645b29"]]},
+ {id:"cashcat",g:"dm",t:"CASHCAT",sub:"2/4",px:.09242443,ch:3.0,act:"add",trig:.086031,st:"Đã mua $50, giá vốn 0.1075. Close 30/10 hồi +3.0%.",lv:{kill:.0269,add:.086031,cost:.107539,tp:.2151},det:[["Contract","0x020bfc650a365f8bb26819deaabf3e21291018b4"]]},
+ {id:"hmm",g:"dm",t:"HMM",sub:"1/4",px:.005936894,ch:-11.1,act:"add",trig:.00454335,st:"Đã mua $25, giá vốn 0.00568, đang lãi +4.5%.",lv:{kill:.00142,add:.00454335,cost:.00567919,tp:.01136},det:[["Contract","0x7fe995a80075df3dc8ae11a9b82c7fe4202cd87f"]]},
+ {id:"microduck",g:"dm",t:"MicroDuck",sub:"microcap",px:.004943797,ch:6.8,act:"exit",trig:.003085,st:"Đã chốt 50% ở ×2.13 và thu lại vốn. Phần còn lại ×1.83. Chốt tiếp 10% ở ×5 (0.0135).",lv:{cost:.00269974,trail:.003085,tp:.0134987},det:[["Contract","0xd5f1afea47b1a9eab414d2ee740cf1d6d039e725"]]},
+ {id:"pons",g:"dm",t:"PONS",sub:"4/4",px:.2339592,ch:2.3,act:"tp",trig:.547176,st:"Đã mua $100, giá vốn 0.2736. Không mua thêm.",lv:{kill:.0684,cost:.2735879,tp:.547176},det:[["Contract","0x39dbed3a2bd333467115de45665cc57f813c4571"]]},
+ {id:"ai-dm",g:"dm",t:"AI",sub:"4/4",px:.06046822,ch:1.4,act:"tp",trig:.1440312,st:"Đã mua $100, giá vốn 0.0720. Không mua thêm.",lv:{kill:.0180,cost:.0720156,tp:.1440312},det:[["Contract","0x2e8c31162b855a2ffa90f6f8634643ad6f111e18"]]},
+ {id:"kitsu",g:"dm",t:"KITSU",sub:"microcap",px:.0004645534,ch:-16.2,act:"tp",trig:.00116286,st:"Mua 1 lần $10, giá vốn 0.000581, hiện −20.1%. Pool $77k, 5,767 holder.",lv:{kill:.000145,cost:.00058143,tp:.00116286},det:[["Bán hết","Pool < $25k hai phiên, holder < 4,830, hoặc rủi ro bảo mật"],["Contract","0x8d4dfaaa4198b6486e0293fec914c2b6a821d4dc"]]},
+ {id:"cc-new",g:"td",t:"CASHCAT",sub:"người mới",px:.09242443,ch:3.0,now:1,act:"buy",trig:.09242443,st:"Tín hiệu mua lần đầu cho người mới ở close 30/10. Danh mục đã nắm CASHCAT và còn lần mua, nên không vào rổ gợi ý.",lv:{kill:.0231,add:.0739395,cost:.09242443,tp:.1848489},det:[["Thang người mới","0.0924 → ≤ 0.0739 → ≤ 0.0657 → ≤ 0.0607"]]},
+ {id:"md-re",g:"td",t:"MicroDuck",sub:"mua lại",px:.004943797,ch:6.8,act:"rebuy",trig:.0045227,st:"Đỉnh 28/10 là 0.00754. Close 30/10 cách đỉnh −34%; mốc mua lại là −40%, sau đó chờ một close không in đáy mới.",lv:{add:.0045227,tp:.0075378},det:[]},
+ {id:"kitsu-new",g:"td",t:"KITSU",sub:"người mới",ev:1,act:"event",st:"Close 0.000465 đã rơi khỏi vùng 0.00050–0.00061 (vốn hoá dưới $0.5M). Volume 1.3× trung vị.",ev_t:"Chờ vốn hoá về lại ≥ $0.5M và volume ≥ 2× trung vị",det:[]},
+ {id:"hood",g:"td",t:"HOOD Sword Inu",ev:1,act:"event",st:"Có dạng tín hiệu mua lần đầu ngày 30/10 nhưng mới 24 close.",ev_t:"Chờ đủ 30 close",det:[]},
+ {id:"tendies",g:"td",t:"TENDIES, BONER",ev:1,act:"event",st:"Đủ điều kiện cơ bản, chưa có tín hiệu.",ev_t:"Chờ tín hiệu mua lần đầu",det:[]}
+];
+const AVOID=["COUPONS: 10 ví lớn nhất giữ 62%, 1,034 holder.","AMC: pool chỉ ~$69k dù có 29,000 holder.","BUN: 10 ví lớn nhất giữ 83%.","MESH, FAB, PARE, BOW, PRISM: giao dịch dưới chuẩn hoặc đã giảm trên 80%.","NET: token rebase, giá không phản ánh lời lỗ thật.","Quantum Inu, Cat wif Hood: sập 97–99.98% trong một ngày.","Token tiện ích STONKBROKER, UP, INDEX: không có slot."];
+const FOOT="Tín hiệu theo luật của một khung phân tích có hệ thống, không phải lời khuyên đầu tư. Hệ thống chưa chứng minh được lợi thế: rổ 12 token gốc giảm 60.6% từ 30/9 đến 29/10 trong khi BTC giảm 6.9%. Token trên Robinhood Chain biến động 10–40% mỗi ngày và có thể mất toàn bộ vốn. Robinhood Markets không phát hành và không bảo trợ các token này. Luôn so khớp toàn bộ địa chỉ contract trước khi giao dịch vì có địa chỉ giả giống phần đầu và đuôi.";
+
+const LOGO={ai:"https://coin-images.coingecko.com/coins/images/102176647/small/5ou9sb7h478ezv28urbjpzf1fl3e.?1788401429",pons:"https://coin-images.coingecko.com/coins/images/102174571/small/jhitvkisdq8fhxvimdkpcw7y3dx5.?1784093932",cashcat:"https://coin-images.coingecko.com/coins/images/102174280/small/cashcat-logo.jpg?1782922765",hmm:"https://coin-images.coingecko.com/coins/images/102174672/small/fmu02lq7zai1iyp4qqwfnmu5wr1v.?1784552285",kitsu:"https://coin-images.coingecko.com/coins/images/102174287/small/kitsu-logo.jpg?1782940070",microduck:"https://coin-images.coingecko.com/coins/images/102176663/small/bvw8hqnmvgvs61nw2h4et0zj00jx.?1788422151",zeal:"https://coin-images.coingecko.com/coins/images/102176778/small/zeal_400x400.jpg?1788687773",gme:"https://coin-images.coingecko.com/coins/images/102176793/small/logo-512_%281%29.png?1792544829",fugui:"https://coin-images.coingecko.com/coins/images/102178312/small/puppy.jpg?1789275783",pcc:"https://coin-images.coingecko.com/coins/images/102176801/small/IMG_1919.jpeg?1788768859",shroom:"https://coin-images.coingecko.com/coins/images/102176720/small/shroom.jpg?1788592860"};
+const avaHTML=(key,t)=>`<span class="ro-ava">${LOGO[key]?`<img src="${LOGO[key]}" alt="" referrerpolicy="no-referrer" onerror="this.remove()">`:""}${t.replace(/[^A-Za-z0-9\u4e00-\u9fff]/g,"").slice(0,2)}</span>`;
+const $=id=>document.getElementById(id);
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const fp=v=>v==null?"—":String(Number(v.toPrecision(4)));
+const G={gy:{t:"Có thể mua",c:"var(--violet)",hex:0xa78bfa},dm:{t:"Đang nắm",c:"var(--mint)",hex:0x45e0c1},td:{t:"Theo dõi",c:"var(--blue)",hex:0x6da9ff}};
+SIG.forEach(s=>{s.dist=s.now?0:s.ev?null:(s.trig/s.px-1)*100});
+const ACT={buy:s=>`Mua 1 lần ở ${fp(s.trig)} (giá đóng cửa hôm nay)`,add:s=>`Mua thêm khi giá đóng cửa ≤ ${fp(s.trig)}`,tp:s=>`Chốt 50% khi giá đóng cửa ≥ ${fp(s.trig)}`,
+ exit:s=>s.lv&&s.lv.trail?`Thoát phần còn lại nếu giá đóng cửa ≤ ${fp(s.trig)}`:`Bán hết nếu 2 giá đóng cửa ≤ ${fp(s.trig)}`,rebuy:s=>`Xét mua lại khi giá đóng cửa ≤ ${fp(s.trig)}, rồi có close không in đáy mới`,event:s=>s.ev_t};
+const SHORT={buy:"Mua",add:"Mua thêm",tp:"Chốt lời",exit:"Thoát",rebuy:"Mua lại",event:"Chờ"};
+const dtxt=s=>s.now?"hôm nay":s.ev?"chờ":(s.dist>0?"+":"−")+Math.abs(s.dist).toFixed(Math.abs(s.dist)<10?1:0)+"%";
+const prio=s=>s.now?-1:s.ev?999:Math.abs(s.dist);
+const ORDER=[...SIG].sort((a,b)=>prio(a)-prio(b));
+let filter="all",current=ORDER[0].id;
+const visible=id=>{const s=SIG.find(x=>x.id===id);return filter==="all"||s.g===filter};
+
+/* geometry: radial distance = % to action (log), height = direction */
+const R=6,MAXD=150,rad=d=>d==null?R*1.02:Math.max(1.15,Math.min(R*.93,Math.log(1+Math.abs(d)/2)/Math.log(1+MAXD/2)*R));
+const SECT={gy:[-150,-30],dm:[-30,90],td:[90,210]};
+const P=[];
+Object.keys(SECT).forEach(g=>{const it=SIG.filter(s=>s.g===g).map(s=>({s,r:s.now?.75:rad(s.dist)})).sort((a,b)=>a.r-b.r);
+  const [a,b]=SECT[g],n=it.length,ord=[];for(let i=0,j=n-1;i<=j;i++,j--){ord.push(i);if(i!==j)ord.push(j)}
+  it.forEach((p,k)=>{p.ang=a+12+(b-a-24)*(ord.indexOf(k)+.5)/n;p.lo=a+8;p.hi=b-8;P.push(p)})});
+const xz=p=>[p.r*Math.cos(p.ang*Math.PI/180),p.r*Math.sin(p.ang*Math.PI/180)];
+for(let k=0;k<150;k++)for(let i=0;i<P.length;i++)for(let j=i+1;j<P.length;j++){const A=P[i],B=P[j];if(A.s.now||B.s.now)continue;const [x1,z1]=xz(A),[x2,z2]=xz(B);
+  if(Math.hypot(x1-x2,z1-z2)<1.05){const sg=A.ang<=B.ang?1:-1;if(A.s.g===B.s.g){A.ang=Math.max(A.lo,Math.min(A.hi,A.ang-1.2*sg));B.ang=Math.max(B.lo,Math.min(B.hi,B.ang+1.2*sg))}}}
+const hgt=s=>s.now?.9:s.ev?0:Math.sign(s.dist)*(.35+.85*Math.min(1,Math.log(1+Math.abs(s.dist)/8)/Math.log(20)));
+P.forEach(p=>{const [x,z]=xz(p);p.s.x=x;p.s.z=z;p.s.y=hgt(p.s);p.s.ang=Math.atan2(z,x)});
+
+/* header */
+$("date").textContent=DATE;$("lead").textContent=LEAD;$("foot").textContent=FOOT;$("avoid").innerHTML=AVOID.map(a=>`<li>${esc(a)}</li>`).join("");
+$("stats").innerHTML=[["Tín hiệu hôm nay",SIG.filter(s=>s.now).length],["Có thể mua",SIG.filter(s=>s.g==="gy").length],["Đang nắm",SIG.filter(s=>s.g==="dm").length],["Theo dõi",SIG.filter(s=>s.g==="td").length],["Gần hành động nhất",ORDER.filter(s=>!s.now&&!s.ev)[0].t+" "+dtxt(ORDER.filter(s=>!s.now&&!s.ev)[0])]].map(([k,v])=>`<div class="stat"><span>${k}</span><b>${esc(v)}</b></div>`).join("");
+$("chips").innerHTML=[["all","Tất cả",null],["gy",G.gy.t,G.gy.c],["dm",G.dm.t,G.dm.c],["td",G.td.t,G.td.c]].map(([k,t,c])=>`<button type="button" class="chip" data-f="${k}" aria-pressed="${k==="all"}">${c?`<i style="background:${c}"></i>`:""}${t}</button>`).join("");
+
+/* 3D */
+const space=Space($("space"),{
+  radius:19,phi:.9,theta:.5,extent:7,flatRings:[rad(5),rad(20),rad(60),R],
+  beam:{r:R*1.02,color:0x45e0c1},
+  nodes:SIG.map(s=>({id:s.id,pos:[s.x,s.y,s.z],size:s.now?.34:.24,color:s.now?0xffbf69:G[s.g].hex,glow:!!s.now,hollow:!!s.ev,label:esc(s.t),sub:dtxt(s),prio:prio(s)})),
+  visible,
+  decorate(T,scene){
+    const disc=new T.Mesh(new T.CircleGeometry(R*1.05,96),new T.MeshBasicMaterial({color:0x6f8fb8,transparent:true,opacity:.07,side:T.DoubleSide,depthWrite:false}));disc.rotation.x=-Math.PI/2;scene.add(disc);
+    const circ=(r,op,dash)=>{const pts=[];for(let i=0;i<=128;i++){const a=i/128*Math.PI*2;pts.push(new T.Vector3(r*Math.cos(a),0,r*Math.sin(a)))}const g=new T.BufferGeometry().setFromPoints(pts);const m=dash?new T.LineDashedMaterial({color:0x8aa3c7,dashSize:.18,gapSize:.22,transparent:true,opacity:op}):new T.LineBasicMaterial({color:0x8aa3c7,transparent:true,opacity:op});const l=new T.Line(g,m);if(dash)l.computeLineDistances();scene.add(l)};
+    [5,20,60].forEach(v=>circ(rad(v),.45));circ(R*1.05,.35,true);
+    const core=new T.Mesh(new T.RingGeometry(.0,rad(5)*.62,48),new T.MeshBasicMaterial({color:0xffbf69,transparent:true,opacity:.12,side:T.DoubleSide,depthWrite:false}));core.rotation.x=-Math.PI/2;core.position.y=.005;scene.add(core);
+    Object.entries(SECT).forEach(([g,[a,b]])=>{const t=a*Math.PI/180;const lg=new T.BufferGeometry().setFromPoints([new T.Vector3(0,0,0),new T.Vector3(R*1.05*Math.cos(t),0,R*1.05*Math.sin(t))]);scene.add(new T.Line(lg,new T.LineBasicMaterial({color:0x8aa3c7,transparent:true,opacity:.3})));
+      const arc=new T.Mesh(new T.RingGeometry(R*1.07,R*1.13,48,1,-(b*Math.PI/180),(b-a)*Math.PI/180),new T.MeshBasicMaterial({color:G[g].hex,transparent:true,opacity:.55,side:T.DoubleSide}));arc.rotation.x=-Math.PI/2;scene.add(arc)});
+    SIG.forEach(s=>{if(s.ev)return;const col=s.now?0xffbf69:G[s.g].hex;const lg=new T.BufferGeometry().setFromPoints([new T.Vector3(s.x,0,s.z),new T.Vector3(s.x,s.y,s.z)]);scene.add(new T.Line(lg,new T.LineBasicMaterial({color:col,transparent:true,opacity:.9})));
+      const dot=new T.Mesh(new T.CircleGeometry(.13,20),new T.MeshBasicMaterial({color:col,side:T.DoubleSide}));dot.rotation.x=-Math.PI/2;dot.position.set(s.x,.01,s.z);scene.add(dot)});
+  },
+  onSelect(id,hover){if(!id)return;show(id,hover)}
+});
+
+/* readout */
+function ladder(s){
+  if(!s.lv||s.px==null)return"";const L=[];const add=(k,v,lab,c)=>{if(v)L.push({k,v,lab,c})};
+  add("kill",s.lv.kill,"Bán hết","var(--red)");add("trail",s.lv.trail,"Thoát","var(--red)");add("add",s.lv.add,s.act==="rebuy"?"Mốc mua lại":"Mua thêm","var(--violet)");add("cost",s.lv.cost,s.now?"Giá vào":"Giá vốn","var(--dim)");add("tp",s.lv.tp,s.act==="rebuy"?"Đỉnh":"Chốt 50%","var(--green)");
+  const vals=L.map(l=>l.v).concat([s.px]);const lo=Math.log(Math.min(...vals))-.08,hi=Math.log(Math.max(...vals))+.08,Wd=320,X=v=>14+(Math.log(v)-lo)/(hi-lo)*(Wd-28);
+  let o=`<svg viewBox="0 0 ${Wd} 76" aria-hidden="true"><line x1="10" y1="36" x2="${Wd-10}" y2="36" stroke="var(--line)" stroke-width="3" stroke-linecap="round"/>`;
+  const px=X(s.px);if(!s.now&&s.trig)o+=`<line x1="${px}" y1="36" x2="${X(s.trig)}" y2="36" stroke="${s.dist>0?"var(--green)":"var(--red)"}" stroke-width="3"/>`;
+  L.sort((a,b)=>a.v-b.v).forEach((l,i)=>{const x=X(l.v),isT=s.trig&&Math.abs(l.v/s.trig-1)<1e-9,top=i%2===0;
+    o+=`<line x1="${x}" y1="${isT?24:29}" x2="${x}" y2="${isT?48:43}" stroke="${l.c}" stroke-width="${isT?3:2}"/><text x="${x}" y="${top?15:64}" text-anchor="middle" ${isT?'class="v"':""}>${l.lab}</text><text class="m" x="${x}" y="${top?4:75}" text-anchor="middle">${fp(l.v)}</text>`});
+  return `<div class="ladder">${o}<circle cx="${px}" cy="36" r="7" fill="var(--text)" stroke="var(--panel)" stroke-width="2.5"/></svg></div>`;
+}
+function show(id,hover){
+  const s=SIG.find(x=>x.id===id);if(!s)return;if(!hover)current=id;
+  space.aim(s.ang,Math.hypot(s.x,s.z)/(R*1.02));
+  const d=s.dist,col=G[s.g].c,ch=s.ch==null?(s.now?"mới":""):`${s.ch>0?"+":"−"}${Math.abs(s.ch).toFixed(1)}%`;
+  $("readout").innerHTML=`<div class="ro-top"><span class="grp" style="color:${col}"><i style="background:${col}"></i>${G[s.g].t}${hover?" · đang xem":""}</span><span class="nav"><button type="button" data-step="-1" aria-label="Token trước">←</button><button type="button" data-step="1" aria-label="Token sau">→</button></span></div>
+   <div class="ro-name">${avaHTML(s.id.split("-")[0]==="md"?"microduck":s.id.split("-")[0]==="cc"?"cashcat":s.id.split("-")[0],s.t)}<h2>${esc(s.t)}</h2>${s.sub?`<small>${esc(s.sub)}</small>`:""}</div>
+   ${s.px!=null?`<div class="ro-px">$${fp(s.px)}<span style="color:${s.ch<0?"var(--red)":"var(--muted)"}">${ch}</span></div>`:""}
+   <div class="today ${s.now?"go":""}"><div class="l">Hôm nay</div><div class="v">${s.now?SHORT[s.act]:s.g==="dm"?"Giữ, chưa làm gì":"Chưa làm gì"}</div></div>
+   <div class="next">Hành động kế tiếp<b>${esc(ACT[s.act](s))}</b>${s.now?`<span class="dist" style="color:var(--amber)">Đã bật ở giá đóng cửa ${DATE.slice(0,5)}</span>`:s.ev?`<span class="dist" style="color:var(--muted)">Không phụ thuộc mức giá</span>`:`<span class="dist" style="color:${d>0?"var(--green)":"var(--red)"}">${d>0?"▲ Giá cần tăng":"▼ Giá cần giảm"} ${Math.abs(d).toFixed(Math.abs(d)<10?1:0)}%</span>`}</div>
+   ${ladder(s)}<p class="ro-st">${esc(s.st)}</p>
+   ${s.det&&s.det.length?`<dl class="ro-det">${s.det.map(([k,v])=>`<dt>${esc(k)}</dt><dd>${k==="Contract"?`<code>${esc(v)}</code><button type="button" class="copy" data-copy="${esc(v)}">Copy</button>`:esc(v)}</dd>`).join("")}</dl>`:""}`;
+  $("lockbar").innerHTML=`<span class="n" style="color:${s.now?"var(--amber)":col}">${esc(s.t)} <small style="font-weight:500;font-size:12px;color:var(--muted)">${esc(s.sub||"")}</small></span><span class="t" style="color:${s.now?"var(--amber)":"var(--muted)"}">${s.now?"Hôm nay: "+SHORT[s.act]:"Hôm nay: chưa làm gì"}</span><span class="a">${esc(ACT[s.act](s))}</span><span class="d" style="color:${s.now?"var(--amber)":s.ev?"var(--muted)":d>0?"var(--green)":"var(--red)"}">${s.now?"Đã bật":s.ev?"Không phụ thuộc mức giá":(d>0?"▲ cần tăng ":"▼ cần giảm ")+Math.abs(d).toFixed(Math.abs(d)<10?1:0)+"%"}</span>`;
+  document.querySelectorAll(".row").forEach(r=>r.classList.toggle("on",r.dataset.id===id));
+}
+function drawList(){
+  let o=`<h3>Tất cả tín hiệu, gần hành động nhất ở trên</h3>`;
+  ["gy","dm","td"].forEach(g=>{if(filter!=="all"&&filter!==g)return;
+    o+=`<div class="gh"><i style="background:${G[g].c}"></i>${G[g].t}</div>`+ORDER.filter(s=>s.g===g).map(s=>`<button type="button" class="row" data-id="${s.id}"><span class="mk" style="background:${s.now?"var(--amber)":G[s.g].c}"></span><span class="nm">${esc(s.t)}${s.sub?`<small>${esc(s.sub)}</small>`:""}</span><span class="ds" style="color:${s.now?"var(--amber)":s.ev?"var(--muted)":s.dist>0?"var(--green)":"var(--red)"}">${s.now?"Hôm nay":s.ev?"Chờ":(s.dist>0?"▲ ":"▼ ")+dtxt(s).replace(/^[+−]/,"")}</span><span class="ac">${esc(ACT[s.act](s))}</span><span class="px">${s.px!=null?"$"+fp(s.px):""}</span></button>`).join("")});
+  $("list").innerHTML=o;
+}
+drawList();
+function step(n){const v=ORDER.filter(s=>visible(s.id));let i=v.findIndex(s=>s.id===current);i=(i+n+v.length)%v.length;current=v[i].id;space.lock(current);show(current,false)}
+$("readout").addEventListener("click",e=>{const b=e.target.closest("[data-step]");if(b)step(+b.dataset.step);const c=e.target.closest("[data-copy]");if(c)copy(c.dataset.copy)});
+$("list").addEventListener("click",e=>{const r=e.target.closest(".row");if(!r)return;current=r.dataset.id;space.lock(current);show(current,false);if(matchMedia("(max-width:980px)").matches)$("space").scrollIntoView({behavior:"smooth",block:"start"})});
+$("chips").addEventListener("click",e=>{const b=e.target.closest("[data-f]");if(!b)return;filter=b.dataset.f;document.querySelectorAll(".chip").forEach(c=>c.setAttribute("aria-pressed",c===b));if(!visible(current)){current=ORDER.find(s=>visible(s.id)).id;space.lock(current)}drawList();show(current,false);space.refresh()});
+document.addEventListener("keydown",e=>{if(e.target.closest("input,textarea,select"))return;if(e.key==="ArrowRight"){e.preventDefault();step(1)}if(e.key==="ArrowLeft"){e.preventDefault();step(-1)}});
+$("rotL").onclick=()=>space.rotate(-.7);$("rotR").onclick=()=>space.rotate(.7);
+$("topBtn").onclick=e=>{const on=e.currentTarget.getAttribute("aria-pressed")!=="true";e.currentTarget.setAttribute("aria-pressed",on);space.topView(on)};
+function toast(m){const t=$("toast");t.textContent=m;t.classList.add("show");clearTimeout(toast.h);toast.h=setTimeout(()=>t.classList.remove("show"),1800)}
+function copy(v){(navigator.clipboard?navigator.clipboard.writeText(v):Promise.reject()).then(()=>toast("Đã copy địa chỉ contract")).catch(()=>toast("Trình duyệt không cho copy tự động"))}
+const store={get(k){try{return localStorage.getItem(k)}catch(e){return null}},set(k,v){try{localStorage.setItem(k,v)}catch(e){}}};
+const th=store.get("rhs.theme");if(th)document.documentElement.dataset.theme=th;
+$("themeBtn").onclick=()=>{const r=document.documentElement,c=r.dataset.theme||(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"),n=c==="dark"?"light":"dark";r.dataset.theme=n;store.set("rhs.theme",n)};
+$("csvBtn").onclick=()=>{const rows=[["Nhóm","Token","Phụ","Giá đóng cửa","Hành động kế tiếp","Khoảng cách %","Contract"]];SIG.forEach(s=>{const c=(s.det||[]).find(x=>x[0]==="Contract");rows.push([G[s.g].t,s.t,s.sub||"",s.px??"",ACT[s.act](s),s.dist==null?"":s.dist.toFixed(1),c?c[1]:""])});
+  const csv=rows.map(r=>r.map(v=>'"'+String(v).replace(/"/g,'""')+'"').join(",")).join("\n");const a=document.createElement("a");a.href=URL.createObjectURL(new Blob(["\ufeff"+csv],{type:"text/csv;charset=utf-8"}));a.download="rh-radar-"+DATE.replaceAll("/","-")+".csv";a.click();setTimeout(()=>URL.revokeObjectURL(a.href),500);toast("Đã xuất CSV")};
+if("IntersectionObserver" in window)new IntersectionObserver(es=>es.forEach(e=>$("lockbar").classList.toggle("show",e.isIntersecting&&e.intersectionRatio>.35)),{threshold:[0,.35,.6]}).observe($("space"));
+$("lockbar").onclick=()=>$("readout").scrollIntoView({behavior:"smooth",block:"start"});
+space.lock(current);show(current,false);
+
+</script>
+</body>
+</html>

@@ -61,6 +61,12 @@
 
   .snapshot-note{font-size:11px;color:var(--txt2);margin-top:18px;line-height:1.6;}
   .snapshot-note b{color:#aeb0c0;}
+
+  /* section headings — the page carries two separate books, so each one says which it is */
+  .section-head{margin-bottom:20px;}
+  .section-head.spaced{margin-top:48px;padding-top:32px;border-top:1px solid var(--bord);}
+  .section-head .s-title{font-size:22px;font-weight:800;letter-spacing:-.01em;}
+  .section-head .s-sub{font-size:13px;color:var(--txt2);margin-top:7px;max-width:700px;line-height:1.55;}
 </style>
 </head>
 <body>
@@ -72,6 +78,11 @@
 </div>
 
 <div class="container">
+
+  <div class="section-head">
+    <div class="s-title">Wyckoff framework</div>
+    <div class="s-sub">Two majors tracked month by month on settled closes: phase, pre-registered levels and zones, scored forecasts, and a driftless volatility cone.</div>
+  </div>
 
   <div class="selector-row">
     <div class="token-select">
@@ -117,6 +128,43 @@
     <div class="report-links" id="reportLinks"></div>
     <div class="snapshot-note">
       <b>Note:</b> prices and scores are the latest <b>tracked snapshots</b> from this project's dated reports — not a live feed (this is a static page). Wyckoff phase, confidence, and stance are the framework's own most recent reported calls. Structural analysis — not financial advice.
+    </div>
+  </div>
+
+  <div class="section-head spaced">
+    <div class="s-title">Robinhood Chain</div>
+    <div class="s-sub">A separate book, not a third asset in the framework above: a rule-based microcap portfolio classified on UTC closes. It has no Wyckoff phase, no confidence score and no monthly cone, so it is not shown as one — the figures below are the ones the book actually publishes.</div>
+  </div>
+
+  <div class="cards">
+    <div class="card gold">
+      <div class="c-icon">◎</div>
+      <div class="c-label">Portfolio value</div>
+      <div class="c-val">$471.39</div>
+      <div class="c-sub">Oct 30 UTC close, +0.03% on the session · a $500 book plus $5.66 realised · peaked at $535.72 on Oct 28</div>
+    </div>
+    <div class="card green">
+      <div class="c-icon">◈</div>
+      <div class="c-label">Positions</div>
+      <div class="c-val">4 / 4 core · 2 micro</div>
+      <div class="c-sub">AI and PONS full at DCA 4/4 · CASHCAT 2/4, next add on a close ≤ 0.086031 · HMM 1/4 · KITSU micro 1/1 · MicroDuck half sold at ×2.13, cost already recovered</div>
+    </div>
+    <div class="card purple">
+      <div class="c-icon">⬡</div>
+      <div class="c-label">Cash</div>
+      <div class="c-val">$215.66</div>
+      <div class="c-sub">$100 of it held as reserve · $290 deployed across the six positions · realised +$5.66, all of it the MicroDuck half-sale</div>
+    </div>
+  </div>
+
+  <div class="below">
+    <div class="b-title">Pages for Robinhood Chain</div>
+    <div class="report-links">
+      <a href="ro-desk.html">🗂 Bàn quản lý <span class="arr">&rarr;</span></a>
+      <a href="ro-signals.html">📡 Radar tín hiệu <span class="arr">&rarr;</span></a>
+    </div>
+    <div class="snapshot-note">
+      <b>Note:</b> the two pages are in Vietnamese and carry their own light/dark toggle. Every figure here is the <b>Oct 30 UTC close</b> snapshot they publish — Oct 31 is the pending session. Classification follows fixed rules on settled closes; the book's own scorecard states it has <b>not yet demonstrated an edge</b>. Not financial advice.
     </div>
   </div>
 
