@@ -77,6 +77,19 @@
   .nav{display:flex;align-items:center;gap:18px;padding:10px 0 14px;border-bottom:1px solid var(--bord);margin-bottom:14px;}
   .brand{display:flex;align-items:center;gap:10px;text-decoration:none;}
   .brand .logo{width:30px;height:30px;border-radius:8px;background:radial-gradient(circle at 35% 30%, #4a7fff, #2540b0);display:flex;align-items:center;justify-content:center;font-size:15px;}
+  .nav-assets{display:flex;align-items:center;gap:4px;}
+  .nav-assets .lbl{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--txt2);opacity:.75;margin-right:3px;}
+  .nav-assets a{padding:7px 11px;border-radius:9px;font-size:12.5px;font-weight:600;letter-spacing:.02em;
+    color:var(--txt2);text-decoration:none;transition:color .12s, background-color .12s;}
+  .nav-assets a:hover{color:var(--txt);background:var(--btn-bg);}
+  .nav-assets a[aria-current="page"]{color:var(--txt);background:var(--btn-bg);
+    box-shadow:inset 0 0 0 1px var(--bord);}
+  @media(max-width:560px){
+    .nav{gap:12px;}
+    .nav-assets .lbl{display:none;}
+    .nav-assets a{padding:6px 9px;font-size:12px;}
+  }
 </style>
 </head>
 <body>
@@ -86,6 +99,11 @@
   <a href="index.html" class="brand" style="text-decoration:none;" title="Home">
     <div class="logo">📡</div>
   </a>
+  <nav class="nav-assets" aria-label="Tracked assets">
+    <span class="lbl">Heatmap</span>
+    <a href="btc-dashboard.html" aria-current="page">BTC</a>
+    <a href="ada-dashboard.html">ADA</a>
+  </nav>
 </div>
 <h1>BTC Framework Dashboard — Interactive</h1>
 <div class="meta">Crypto Reconnaissance Engine · <b>Jan 2014 → Oct 2026 live</b> (CRE v3.2 + Astro Overlay · Session 112 · Oct 28 level ladder, <b>markdown (LOW-CONF) at the C/D boundary — failed-breakdown 1 of 2</b>, cycle window &amp; calendar to Shmita 5789, Sep 2028–Sep 2029) · drag to pan, scroll/pinch to zoom, double-click to reset, hover for values, toggle layers below</div>
@@ -93,11 +111,11 @@
 <div class="controls">
   <div class="ctrl-group">
     <span class="ctrl-label">Layers</span>
-    <button class="toggle active" data-layer="wyckoff">Wyckoff</button>
-    <button class="toggle active" data-layer="shmita">Shmita</button>
-    <button class="toggle active" data-layer="mercury">Mercury Rx</button>
-    <button class="toggle active" data-layer="fng">Fear &amp; Greed</button>
-    <button class="toggle active" data-layer="levels">Oct 28 Levels + Zones</button>
+    <button class="toggle active" aria-pressed="true" data-layer="wyckoff">Wyckoff</button>
+    <button class="toggle active" aria-pressed="true" data-layer="shmita">Shmita</button>
+    <button class="toggle active" aria-pressed="true" data-layer="mercury">Mercury Rx</button>
+    <button class="toggle active" aria-pressed="true" data-layer="fng">Fear &amp; Greed</button>
+    <button class="toggle active" aria-pressed="true" data-layer="levels">Oct 28 Levels + Zones</button>
   </div>
   <div class="ctrl-group">
     <span class="ctrl-label">Zoom</span>
@@ -725,6 +743,7 @@ document.querySelectorAll('button.toggle').forEach(btn=>{
     const layer = btn.getAttribute('data-layer');
     state.layers[layer] = !state.layers[layer];
     btn.classList.toggle('active');
+    btn.setAttribute('aria-pressed', String(state.layers[layer]));
     render();
   });
 });
