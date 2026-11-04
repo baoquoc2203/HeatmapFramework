@@ -69,6 +69,26 @@
   #wykCv{display:block;width:100%;height:600px;}
   @media(max-width:900px){#wykCv{height:460px;}.wyk-px{display:none;}}
   @media(max-width:560px){#wykCv{height:380px;}}
+  #scHolder{width:100%;position:relative;cursor:crosshair;touch-action:pan-y;}
+  #scCv{display:block;width:100%;height:560px;}
+  @media(max-width:900px){#scCv{height:440px;}}
+  @media(max-width:560px){#scCv{height:360px;}}
+  .sc-tab{width:100%;border-collapse:collapse;font-size:11.5px;margin-top:12px;}
+  .sc-tab th{text-align:left;padding:6px 8px;background:var(--btn-bg);color:var(--txt2);
+    font-size:10.5px;font-weight:700;border-bottom:1px solid var(--bord);}
+  .sc-tab td{padding:7px 8px;border-top:1px solid var(--bord);vertical-align:top;color:var(--txt2);line-height:1.55;}
+  .sc-tab td b{color:var(--txt);}
+  .sc-tab td.k{font-weight:700;}
+  .sc-tab td.z,.sc-tab td.p{font-family:ui-monospace,Menlo,monospace;color:var(--txt);white-space:nowrap;}
+  .sc-rk{display:inline-block;margin-top:3px;padding:1px 6px;border:1px solid;border-radius:3px;
+    font-size:9.5px;font-weight:700;}
+  .sc-note{font-size:11px;color:var(--txt2);line-height:1.6;margin-top:10px;}
+  .sc-note b{color:var(--txt);}
+  .sc-score{margin-top:12px;padding:11px 13px;border:1px solid var(--bord);border-radius:9px;
+    background:var(--card);font-size:11.5px;color:var(--txt2);line-height:1.7;}
+  .sc-score .h{font-size:10px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--amber);margin-bottom:7px;}
+  .sc-score b{color:var(--txt);}
   .wyk-bx{display:inline-block;padding:2px 6px;font-size:9.5px;font-weight:700;
     border:1px solid var(--txt);border-radius:3px;color:var(--txt);line-height:1.3;}
   .wyk-bx.i{border-style:dashed;border-color:var(--txt2);color:var(--txt2);}
@@ -164,7 +184,6 @@
   <div class="ctrl-group">
     <span class="ctrl-label">Report</span>
     <a class="zoom-btn" href="ADA_monthly_map_nov5.html" style="text-decoration:none;">🔭 Monthly map (Nov 5)</a>
-    <a class="zoom-btn" href="ada-wyckoff.html" style="text-decoration:none;">📐 Weekly schematic (Nov 5)</a>
   </div>
 </div>
 
@@ -220,12 +239,12 @@
   <div class="wyk-head">
     <div>
       <h2>Wyckoff cycle — events &amp; phases</h2>
-      <div class="wyk-sub">ADA/USD · <b>weekly</b> · Jan 2024 → 29 Sep 2026 · schematic layout after Bogomazov / Pruden<br><span style="color:var(--amber)">This panel stops at 29 Sep 2026.</span> The <a href="ada-wyckoff.html" style="color:var(--link)">Nov 5 weekly schematic</a> carries five more bars and a different conclusion: the Phase D breakout is marked <b>failed</b> there, the $0.2794 top relabelled UTAD? and the SOS relabelled SOS?. Read that page for the current weekly structure; this one is kept as the record it was.</div>
+      <div class="wyk-sub">ADA/USD · <b>weekly</b> · Jan 2024 → 5 Nov 2026 · schematic layout after Bogomazov / Pruden</div>
     </div>
     <div class="wyk-px">
       <div class="p" id="wykP">—</div>
       <div class="d" id="wykD">—</div>
-      <div class="src">CoinGecko · 144 weekly bars · live spot<br>separate feed from the monthly Crypto.com series above</div>
+      <div class="src">CoinGecko · 149 weekly bars · live spot<br>separate feed from the monthly Crypto.com series above</div>
     </div>
   </div>
 
@@ -265,13 +284,88 @@
     <span><i style="background:var(--dist)"></i>Distribution</span>
     <span><i style="background:var(--markdown)"></i>Markdown</span>
     <span style="margin-left:8px;border-left:1px solid var(--bord);padding-left:12px"><span class="wyk-bx">SOS</span>&nbsp;event confirmed by a measured price–volume signature</span>
-    <span><span class="wyk-bx i">SOS 2?</span>&nbsp;the live interpretive label — the w/c Sep 21 bar closed $0.25263, missing the $0.25429 confirmation by 0.65%, so the threshold stands unmoved; but the upthrust reading weakened — the low held, the high was raised to $0.26177 and weekly volume beat the original SOS week by 15.7%</span>
-  <span><span class="wyk-bx i">UTAD</span>&nbsp;also interpretive — the Aug 2025 push to $1.01446 never exceeded the range high of $1.30450; the alternative read is that it is only an LPSY and the Mar 2025 UT at $1.13332, on the heaviest volume in 144 weeks, is the real UTAD</span>
+    <span><span class="wyk-bx i">UTAD?</span>&nbsp;<b>Phase D failed.</b> The w/c Sep 28 bar closed $0.26202, above the $0.25429 confirmation, and price ran to $0.2794 on Oct 6 — but that was the top. It then closed $0.20505 on Oct 25, under the old range ceiling $0.20882, broke the BU/LPS low $0.19103 and reached $0.18539 on Nov 4. So the $0.2794 high is relabelled <b>UTAD?</b>, the old SOS becomes <b>SOS?</b>, and Phase D is marked <b>✗</b>.</span>
+  <span><span class="wyk-bx i">UTAD</span>&nbsp;the 2024–25 distribution is also interpretive — the Aug 2025 push to $1.01446 never exceeded the range high of $1.30450; the alternative read is that it is only an LPSY and the Mar 2025 UT at $1.13332, on the heaviest volume in 149 weeks, is the real UTAD</span>
   </div>
   <div class="legend-row">
     <span><i class="wyk-sw" style="border-color:var(--amber)"></i>Support / resistance drawn from the labelled events</span>
     <span><i class="wyk-sw" style="border-color:var(--txt)"></i>Swing line — ZigZag on real weekly highs/lows, 16% threshold</span>
-    <span style="color:var(--txt2)">Phase E of the accumulation has not started — that column is left hatched and empty, no projection is drawn.</span>
+    <span style="color:var(--txt2)">Two readings are open, and $0.17173 decides between them: (1) the accumulation range survives and Phase D was a false break — the decline ran on thinning volume, ~245M/day last week against 615M on the Sep 21–Oct 11 advance; (2) the whole Jun–Oct 2026 range is <b>re-distribution</b> inside the markdown, $0.2794 the UTAD and $0.18539 the SOW. A weekly close below $0.17173 confirms (2). Phase E has not started — that column stays hatched and empty, no projection is drawn.</span>
+  </div>
+</div>
+
+<div class="wyk-sec">
+  <div class="wyk-head">
+    <div>
+      <h2>Range test &rarr; scenarios — the next 7–14 days</h2>
+      <div class="wyk-sub">ADA/USD · <b>daily</b> · 15/09 → 04/11 thực tế · 05/11 → 19/11 kịch bản · each branch is tied to a trigger level, not to a forecast</div>
+    </div>
+    <div class="wyk-px">
+      <div class="src">σ ngày 3.06% (đo 30 phiên)<br>Không phải dự báo — mỗi nhánh gắn với một mức kích hoạt</div>
+    </div>
+  </div>
+
+  <div class="chart-card">
+    <div id="scHolder"><canvas id="scCv"></canvas></div>
+    <div class="tooltip" id="scTip"></div>
+    <div class="hint">Hover a scenario band to read its value for that day</div>
+  </div>
+
+  <div class="controls">
+    <div class="ctrl-group">
+      <span class="ctrl-label">Layers</span>
+      <button class="toggle active" aria-pressed="true" data-sc="zig">Swing line</button>
+      <button class="toggle" aria-pressed="false" data-sc="can">Candles</button>
+      <button class="toggle active" aria-pressed="true" data-sc="lab">Event labels</button>
+      <button class="toggle active" aria-pressed="true" data-sc="sc">Nhánh kịch bản</button>
+      <button class="toggle active" aria-pressed="true" data-sc="cone">Biên ±1σ</button>
+      <button class="toggle active" aria-pressed="true" data-sc="lv">Support / Resistance</button>
+    </div>
+  </div>
+
+  <div class="legend-row">
+    <span><i class="wyk-sw" style="border-color:var(--markup);border-top-style:dashed"></i>A · Lấy lại range</span>
+    <span><i class="wyk-sw" style="border-color:var(--amber);border-top-style:dashed"></i>B · Test trong range</span>
+    <span><i class="wyk-sw" style="border-color:var(--dist);border-top-style:dashed"></i>C · SOW / tái phân phối</span>
+    <span><i class="wyk-sw" style="border-color:var(--acc);border-top-width:8px"></i>Biên ±1σ</span>
+    <span><i class="wyk-sw" style="border-color:var(--tt-accent)"></i>Ngưỡng lấy lại 0.20882</span>
+    <span><i class="wyk-sw" style="border-color:var(--dist)"></i>Ngưỡng phủ định 0.17173</span>
+  </div>
+
+  <div class="sc-score">
+    <div class="h">Chấm điểm kịch bản 01/10 → 15/10</div>
+    <b>04/10</b> · đóng tuần $0.26202 &gt; $0.25429 → <b>A kích hoạt</b>. 06/10 lên $0.2794, chạm vùng đích A ($0.26177–$0.28706).
+    Nhưng tiêu chí “xác nhận mạnh hơn” — volume tuần vượt 4,112M — <b>không đạt</b>: tuần kích hoạt chỉ 3,500M.<br>
+    <b>08/10</b> · đóng ngày $0.23456 &lt; $0.24051 → A mất hiệu lực, <b>chuyển B</b>. <b>15/10</b> (mốc 14 ngày) · đóng $0.2305 → nằm trong vùng B.
+    <b>16/10</b> · đóng ngày $0.22579 &lt; $0.22721 → <b>nghiêng C</b>. <b>25/10</b> · đóng tuần $0.20505 &lt; $0.20882 → <b>C kích hoạt</b>, rồi giá xuyên qua cả vùng C xuống $0.18539.<br>
+    <b>Bài học:</b> một phiên đóng tuần vượt ngưỡng 3% mà volume thấp hơn tuần SOS gốc là xác nhận giả. Các mức chuyển kịch bản báo đúng thứ tự A → B → C, nhưng chỉ sau khi giá đã rơi 16% từ đỉnh. Lần này điều kiện volume được gắn vào ngay mức kích hoạt.
+  </div>
+
+  <table class="sc-tab">
+    <thead><tr><th style="width:132px">Kịch bản</th><th>Kích hoạt khi</th><th style="width:112px">Vùng ngày 19/11</th>
+    <th style="width:86px">Xác suất nền*</th><th>Ý nghĩa Wyckoff</th><th style="width:170px">Mất hiệu lực khi</th></tr></thead>
+    <tbody>
+    <tr><td class="k" style="color:var(--markup)">A · Lấy lại range<br><span class="sc-rk" style="color:var(--markup)">Tích cực</span></td>
+      <td>Đóng tuần <b>08/11</b> hoặc <b>15/11</b> trên <b>0.20882</b>, <em>và</em> volume tuần đó vượt 2,022M (trung bình 3 tuần gần nhất). Đáy giữ trên 0.18539.</td>
+      <td class="z">0.20882–0.22890</td><td class="p" id="scPA">—</td>
+      <td>Cú thủng $0.19103 chỉ là test sâu trên volume cạn; range tích lũy còn nguyên. Đích gần là đỉnh hồi 21/10 ($0.22890).</td>
+      <td>Đóng ngày dưới 0.18539 → chuyển B.</td></tr>
+    <tr><td class="k" style="color:var(--amber)">B · Test trong range<br><span class="sc-rk" style="color:var(--amber)">Cơ sở</span></td>
+      <td>Không có phiên đóng tuần trên 0.20882; giá dao động 0.172–0.209 với volume tiếp tục cạn, giữ trên 0.17173.</td>
+      <td class="z">0.17173–0.20882</td><td class="p" id="scPB">—</td>
+      <td>Secondary test trong Phase B: cung cạn dần, điều kiện cần cho một Phase C mới. Volume 7 ngày ~245M/ngày, chưa bằng nửa mức 615M của đợt tăng.</td>
+      <td>Đóng ngày dưới 0.17173 → nghiêng C.</td></tr>
+    <tr><td class="k" style="color:var(--dist)">C · SOW / tái phân phối<br><span class="sc-rk" style="color:var(--dist)">Rủi ro</span></td>
+      <td>Đóng tuần dưới <b>0.17173</b>, nhất là nếu volume tuần tăng lên (cung mở rộng thay vì cạn).</td>
+      <td class="z">0.15417–0.17173</td><td class="p" id="scPC">—</td>
+      <td>Range 06–10/2026 là tái phân phối: $0.2794 là UTAD, $0.18539 là SOW. Luận điểm tích lũy bị phủ định; đích tiếp theo là đáy Phase B $0.15417, rồi đáy range $0.13883.</td>
+      <td>Đóng tuần lại trên 0.18539 → quay về B.</td></tr>
+    </tbody>
+  </table>
+
+  <div class="sc-note">
+    <b>*Xác suất nền</b> là xác suất giá đóng ngày 19/11 nằm trong vùng đó <em>nếu giá đi ngẫu nhiên</em> với σ ngày 3.06% đo từ 30 phiên gần nhất. Đây là mốc so sánh thống kê, không phải xác suất do Wyckoff đưa ra. Ba vùng nằm liền nhau từ $0.15417 tới $0.22890 nên phủ <b id="scPIn">—</b> kết quả; <b id="scPOut">—</b> còn lại nằm trên $0.22890 hoặc dưới $0.15417.
+    <b>Cách đọc nhánh:</b> chỉ các mức kích hoạt và vùng đích là có căn cứ trên chart; các điểm gãy giữa đường nhánh chỉ minh hoạ thứ tự sự kiện. Hai mốc quyết định là phiên đóng tuần <b>08/11</b> và <b>15/11</b>. Đây là phân tích cấu trúc, không phải khuyến nghị đầu tư.
   </div>
 </div>
 
@@ -1294,7 +1388,10 @@ const B=[
 ["2026-09-07",0.22332,0.22936,0.20233,0.20258,3045],
 ["2026-09-14",0.20365,0.23441,0.19103,0.22840,3281],
 ["2026-09-21",0.22789,0.26177,0.22721,0.25263,4758],
-["2026-09-28",0.25502,0.25502,0.24051,0.25192,1202]];
+["2026-09-28",0.25502,0.26202,0.23903,0.26202,3500],
+["2026-10-05",0.25973,0.27940,0.22544,0.25146,4662],["2026-10-12",0.25204,0.25475,0.21183,0.21926,2520],
+["2026-10-19",0.22099,0.22890,0.20315,0.20505,1801],["2026-10-26",0.20390,0.20770,0.18677,0.19173,1744],
+["2026-11-02",0.19293,0.19834,0.18539,0.19471,596]];
 
 // swing-line vertices — every value is a real weekly high or low
 const ZIG=[["2024-01-01",0.63521],["2024-01-22",0.4524],["2024-03-11",0.80097],["2024-04-15",0.43177],
@@ -1309,8 +1406,8 @@ const ZIG=[["2024-01-01",0.63521],["2024-01-22",0.4524],["2024-03-11",0.80097],[
 ["2026-01-12",0.43357],["2026-02-02",0.24991],["2026-02-23",0.3214],["2026-03-02",0.25255],
 ["2026-03-16",0.31259],["2026-04-13",0.2364],["2026-05-04",0.28706],["2026-06-01",0.14969],
 ["2026-06-15",0.18908],["2026-06-22",0.13883],["2026-06-29",0.19961],["2026-07-27",0.15417],
-["2026-08-03",0.20882],["2026-08-10",0.17521],["2026-08-17",0.25429],["2026-08-31",0.19232],["2026-09-07",0.22936],["2026-09-14",0.19103],["2026-09-21",0.26177],["2026-09-28",0.24051]];
-const NOW=0.25143;   // live spot, drawn half a slot past the last vertex
+["2026-08-03",0.20882],["2026-08-10",0.17521],["2026-08-17",0.25429],["2026-08-31",0.19232],["2026-09-07",0.22936],["2026-09-14",0.19103],["2026-09-21",0.26177],["2026-09-28",0.23903],["2026-10-05",0.2794],["2026-11-02",0.18539]];
+const NOW=0.19556;   // live spot, drawn half a slot past the last vertex
 
 // s:+1 label above, -1 below.  f:false = interpretive (dashed box)
 const EV=[
@@ -1330,26 +1427,28 @@ const EV=[
  {d:"2026-06-15",p:0.18908,k:"AR",           s:+1,f:true, dx:-4},
  {d:"2026-06-22",p:0.13883,k:"ST",           s:-1,f:true, dx:16},
  {d:"2026-08-10",p:0.17521,k:"LPS",          s:-1,f:false,dx:-16},
- {d:"2026-08-17",p:0.25429,k:"SOS",          s:+1,f:true, dx:-18},
- {d:"2026-09-21",p:0.26177,k:"SOS 2?",       s:+1,f:false,dx:20},
- {d:"2026-09-14",p:0.19103,k:"BU/LPS",       s:-1,f:false,dx:26}
+ {d:"2026-08-17",p:0.25429,k:"SOS?",         s:+1,f:false,dx:-18},
+ {d:"2026-10-05",p:0.27940,k:"UTAD?",        s:+1,f:false,dx:16},
+ {d:"2026-09-14",p:0.19103,k:"BU/LPS (thủng)",s:-1,f:false,dx:-30},
+ {d:"2026-11-02",p:0.18539,k:"SOW?",         s:-1,f:false,dx:14}
 ];
 // row 1 = cycle stage, row 2 = Wyckoff phase within the range.
 // `c` maps each stage onto the SAME colour the heatmap's Wyckoff row uses above,
 // so the two readings of the same structure are visually one system.
 const STAGE=[
- {k:"BASE",        from:"2024-01-01",to:"2024-10-28",c:"acc"},
- {k:"MARKUP",      from:"2024-11-04",to:"2024-11-11",c:"up"},
- {k:"DISTRIBUTION",from:"2024-11-18",to:"2025-09-29",c:"dn"},
- {k:"MARKDOWN",    from:"2025-10-06",to:"2026-05-25",c:"mdn"},
- {k:"ACCUMULATION",from:"2026-06-01",to:"2026-09-28",c:"acc"}
+ {k:"BASE",            c:"acc",from:"2024-01-01",to:"2024-10-28"},
+ {k:"MARKUP",          c:"up",from:"2024-11-04",to:"2024-11-11"},
+ {k:"DISTRIBUTION",    c:"dn",from:"2024-11-18",to:"2025-09-29"},
+ {k:"MARKDOWN",        c:"mdn",from:"2025-10-06",to:"2026-05-25"},
+ {k:"TRADING RANGE ?", c:"amber",from:"2026-06-01",to:"2026-11-02"}
 ];
 const PH=[
  {k:"A",from:"2024-11-18",to:"2025-01-20"},{k:"B",from:"2025-01-27",to:"2025-07-28"},
  {k:"C",from:"2025-08-04",to:"2025-09-01"},{k:"D",from:"2025-09-08",to:"2025-09-29"},
  {k:"E",from:"2025-10-06",to:"2026-05-25"},
  {k:"A",from:"2026-06-01",to:"2026-06-22"},{k:"B",from:"2026-06-29",to:"2026-08-03"},
- {k:"C",from:"2026-08-10",to:"2026-08-10"},{k:"D",from:"2026-08-17",to:"2026-09-28"},
+ {k:"C?",from:"2026-08-10",to:"2026-08-10"},{k:"D ✗",from:"2026-08-17",to:"2026-10-05"},
+ {k:"B/C ?",from:"2026-10-12",to:"2026-11-02"},
  {k:"E",from:null,to:null}
 ];
 const LV=[
@@ -1357,9 +1456,9 @@ const LV=[
  {y:1.15766,from:"2025-01-13",to:"2025-10-06",g:"R",t:"ST  1.15766"},
  {y:0.76943,from:"2024-12-16",to:"2025-10-06",g:"S",t:"AR  0.76943"},
  {y:0.52366,from:"2025-06-16",to:"2025-10-06",g:"S",t:"ST in Phase B  0.52366"},
- {y:0.25429,from:"2026-08-17",to:null,        g:"R",t:"SOS  0.25429"},
+ {y:0.27940,from:"2026-10-05",to:null,        g:"R",t:"UTAD?  0.27940"},
  {y:0.20882,from:"2026-06-29",to:null,        g:"R",t:"0.20882"},
- {y:0.14969,from:"2026-06-01",to:null,        g:"S",t:"SC  0.14969"},
+ {y:0.17173,from:"2026-08-17",to:null,        g:"S",t:"Phase C low  0.17173"},
  {y:0.13883,from:"2026-06-22",to:null,        g:"S",t:"ST in B  0.13883"}
 ];
 
@@ -1648,6 +1747,259 @@ new MutationObserver(()=>{readTheme();draw();})
   .observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']});
 new ResizeObserver(resize).observe(cv);
 resize();
+})();
+
+// ===== 7-14 day Wyckoff scenario panel (daily) =====
+// Ported from the Nov 5 standalone page into the dashboard, which is where this work belongs. The chart
+// logic is the page's own and is unchanged; what changed is that every hardcoded light-theme colour now
+// resolves through the dashboard's CSS variables, so the panel follows the theme toggle exactly as the
+// weekly panel above it does.
+let K={};
+window.__scReadTheme=function(){
+  const V=n=>getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+  const hx=h=>{h=(h||'#5ec8f0').replace('#','');if(h.length===3)h=h.split('').map(c=>c+c).join('');
+    return [parseInt(h.slice(0,2),16),parseInt(h.slice(2,4),16),parseInt(h.slice(4,6),16)];};
+  K={txt:V('--txt'),txt2:V('--txt2'),bord:V('--bord'),card:V('--card'),
+     acc:V('--tt-accent'),up:V('--markup'),dn:V('--dist'),amber:V('--amber'),shadow:V('--tt-shadow')};
+  const [r,g,b]=hx(V('--tt-accent'));
+  K.accA=a=>'rgba('+r+','+g+','+b+','+a+')';
+};
+window.__scReadTheme();
+// FS/FM are declared inside the weekly panel's IIFE, so they are not visible here; the standalone
+// page shared them from a common top-level scope. Same two stacks, re-declared for this panel.
+const FS='-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif';
+const FM='ui-monospace,Menlo,Consolas,monospace';
+
+// ===== 7–14 day Wyckoff scenario panel (daily, schematic style) =====
+(function(){
+const DB=[
+["2026-09-15",0.20853,0.20853,0.19405,0.19522,400],["2026-09-16",0.19535,0.19576,0.19103,0.19272,455],
+["2026-09-17",0.19616,0.20285,0.19522,0.20091,418],["2026-09-18",0.20251,0.22662,0.20251,0.22662,563],
+["2026-09-19",0.22447,0.23441,0.22161,0.22793,650],["2026-09-20",0.22778,0.23198,0.21913,0.22840,472],
+["2026-09-21",0.22789,0.24635,0.22721,0.24623,645],["2026-09-22",0.24504,0.25318,0.24440,0.25317,871],
+["2026-09-23",0.25402,0.25978,0.23596,0.23862,876],["2026-09-24",0.23845,0.24905,0.23419,0.24750,631],
+["2026-09-25",0.24759,0.25761,0.24716,0.25761,633],["2026-09-26",0.25862,0.26177,0.25022,0.25220,671],
+["2026-09-27",0.25398,0.25790,0.25055,0.25263,431],["2026-09-28",0.25502,0.25502,0.24099,0.24538,543],
+["2026-09-29",0.24719,0.25374,0.24051,0.24469,617],["2026-09-30",0.24440,0.25368,0.24266,0.24777,479],
+["2026-10-01",0.24650,0.25347,0.24489,0.24591,506],["2026-10-02",0.24629,0.25701,0.23903,0.24212,563],
+["2026-10-03",0.24428,0.24764,0.24314,0.24451,515],["2026-10-04",0.24389,0.26202,0.24316,0.26202,277],
+["2026-10-05",0.25973,0.27493,0.25973,0.27168,1006],["2026-10-06",0.27041,0.27940,0.26602,0.26791,792],
+["2026-10-07",0.26745,0.26745,0.25273,0.25420,702],["2026-10-08",0.25538,0.25694,0.22544,0.23456,571],
+["2026-10-09",0.23203,0.24104,0.23203,0.24104,668],["2026-10-10",0.24296,0.25635,0.24296,0.25076,527],
+["2026-10-11",0.24898,0.25559,0.24536,0.25146,396],["2026-10-12",0.25204,0.25475,0.23718,0.23718,379],
+["2026-10-13",0.23286,0.23996,0.22666,0.23654,491],["2026-10-14",0.23576,0.23774,0.22685,0.22946,346],
+["2026-10-15",0.23004,0.23109,0.21879,0.23050,473],["2026-10-16",0.22978,0.23161,0.22254,0.22579,357],
+["2026-10-17",0.22550,0.22550,0.21699,0.21903,242],["2026-10-18",0.21933,0.22143,0.21183,0.21926,232],
+["2026-10-19",0.22099,0.22210,0.21667,0.21825,257],["2026-10-20",0.21800,0.22569,0.21554,0.22398,235],
+["2026-10-21",0.22377,0.22890,0.22212,0.22644,272],["2026-10-22",0.22512,0.22582,0.21093,0.21155,297],
+["2026-10-23",0.21203,0.21780,0.20829,0.20829,266],["2026-10-24",0.21068,0.21180,0.20339,0.20641,250],
+["2026-10-25",0.20799,0.20884,0.20315,0.20505,224],["2026-10-26",0.20390,0.20634,0.20128,0.20496,211],
+["2026-10-27",0.20640,0.20640,0.20229,0.20522,205],["2026-10-28",0.20569,0.20770,0.20180,0.20578,208],
+["2026-10-29",0.20586,0.20621,0.19061,0.19150,330],["2026-10-30",0.19020,0.19494,0.18677,0.19432,460],
+["2026-10-31",0.19511,0.19625,0.19204,0.19310,195],["2026-11-01",0.19282,0.19383,0.19136,0.19173,135],
+["2026-11-02",0.19293,0.19366,0.18756,0.18836,174],["2026-11-03",0.18846,0.19107,0.18640,0.19090,185],
+["2026-11-04",0.18996,0.19834,0.18539,0.19471,237]];
+const SPOT=0.19556, SIG=0.03063, HZ=14;           // spot, daily σ of log returns (30 sessions), horizon
+const T0=DB.length, NT=DB.length+1+HZ;   // slot T0 = today (no candle yet)
+const D0=Date.UTC(2026,10,5);
+const dl=d=>new Date(D0+d*864e5).toISOString().slice(5,10).split('-').reverse().join('/');
+const IX={};DB.forEach((b,i)=>IX[b[0]]=i);
+
+// swing line: ZigZag 4.5% on real daily highs/lows
+const ZIG2=[["2026-09-15",0.20853],["2026-09-16",0.19103],["2026-09-19",0.23441],["2026-09-20",0.21913],["2026-09-23",0.25978],["2026-09-24",0.23419],["2026-09-26",0.26177],["2026-10-02",0.23903],["2026-10-06",0.2794],["2026-10-08",0.22544],["2026-10-10",0.25635],["2026-10-15",0.21879],["2026-10-16",0.23161],["2026-10-18",0.21183],["2026-10-21",0.2289],["2026-10-30",0.18677],["2026-10-31",0.19625],["2026-11-04",0.18539]];
+const EV2=[
+ {d:"2026-09-16",p:0.19103,k:"BU/LPS (thủng)",s:-1,f:false,dx:22},
+ {d:"2026-09-26",p:0.26177,k:"UT?",   s:+1,f:false,dx:-10},
+ {d:"2026-10-06",p:0.27940,k:"UTAD?", s:+1,f:false,dx:0},
+ {d:"2026-10-21",p:0.22890,k:"LPSY?", s:+1,f:false,dx:0},
+ {d:"2026-11-04",p:0.18539,k:"SOW / ST?",s:-1,f:false,dx:-26}
+];
+const LV=[
+ {y:0.27940,g:"R",t:"UTAD? · đỉnh range 06/10  0.27940"},
+ {y:0.22890,g:"R",t:"LPSY? 21/10  0.22890"},
+ {y:0.20882,g:"R",t:"NGƯỠNG LẤY LẠI RANGE  0.20882 · đóng tuần",key:true},
+ {y:0.19103,g:"S",t:"BU/LPS cũ (đã thủng)  0.19103"},
+ {y:0.18539,g:"S",t:"Đáy 04/11  0.18539"},
+ {y:0.17173,g:"S",t:"NGƯỠNG PHỦ ĐỊNH  0.17173 · đóng tuần",key:true,red:true},
+ {y:0.15417,g:"S",t:"Đáy Phase B 28/07  0.15417"}
+];
+// day offsets from 01/10; interior vertices are illustrative, zones are real chart levels
+const SC=[
+ {k:"A",c:"up",z:[0.20882,0.22890],pts:[[0,SPOT],[1,0.1900],[3,0.2010],[6,0.2080],[10,0.2170],[14,0.2200]]},
+ {k:"B",c:"amber",z:[0.17173,0.20882],pts:[[0,SPOT],[1,0.1980],[3,0.1930],[6,0.1820],[9,0.1800],[12,0.1880],[14,0.1900]]},
+ {k:"C",c:"dn",z:[0.15417,0.17173],pts:[[0,SPOT],[2,0.1900],[4,0.1800],[7,0.1700],[10,0.1650],[14,0.1600]]}
+];
+const DEC=[{d:3,t:"Đóng tuần 08/11"},{d:10,t:"Đóng tuần 15/11"}];
+
+const cone=(d,k)=>SPOT*Math.exp(k*SIG*Math.sqrt(d));
+const at=(s,d)=>{const P=s.pts;for(let j=1;j<P.length;j++)if(d<=P[j][0]){
+  const [d0,p0]=P[j-1],[d1,p1]=P[j];return p0+(p1-p0)*(d-d0)/(d1-d0);}return P[P.length-1][1];};
+
+// baseline probabilities under a lognormal random walk
+function Phi(z){const t=1/(1+0.2316419*Math.abs(z)),d=0.3989423*Math.exp(-z*z/2);
+  const p=d*t*(0.3193815+t*(-0.3565638+t*(1.781478+t*(-1.821256+t*1.330274))));return z>0?1-p:p;}
+const zz=v=>Math.log(v/SPOT)/(SIG*Math.sqrt(HZ));
+const pr=(a,b)=>Phi(zz(b))-Phi(zz(a));
+const pc=v=>(v*100).toFixed(1)+'%';
+const QA=pr(0.20882,0.22890),QB=pr(0.17173,0.20882),QC=pr(0.15417,0.17173);
+document.getElementById('scPA').textContent=pc(QA);
+document.getElementById('scPB').textContent=pc(QB);
+document.getElementById('scPC').textContent=pc(QC);
+document.getElementById('scPIn').textContent=pc(QA+QB+QC);
+document.getElementById('scPOut').textContent=pc(1-QA-QB-QC);
+
+const cv=document.getElementById('scCv'),cx=cv.getContext('2d'),tp=document.getElementById('scTip');
+let W=0,H=0,hov=-1;const SH={zig:true,can:false,lab:true,sc:true,cone:true,lv:true};
+const PL=10,PR=142,PT=74,PBT=28;
+let G=null;
+function rs(){const r=cv.getBoundingClientRect(),d=window.devicePixelRatio||1;
+  W=r.width;H=r.height;cv.width=Math.round(W*d);cv.height=Math.round(H*d);cx.setTransform(d,0,0,d,0,0);dr();}
+function dr(){
+  cx.clearRect(0,0,W,H);
+  const pW=W-PL-PR,pH=H-PT-PBT,bw=pW/NT,x=i=>PL+(i+0.5)*bw;
+  let lo=Infinity,hi=-Infinity;
+  DB.forEach(b=>{lo=Math.min(lo,b[3]);hi=Math.max(hi,b[2]);});
+  if(SH.lv)LV.forEach(l=>{lo=Math.min(lo,l.y);hi=Math.max(hi,l.y);});
+  if(SH.sc)SC.forEach(s=>{lo=Math.min(lo,s.z[0]);hi=Math.max(hi,s.z[1]);});
+  if(SH.cone){lo=Math.min(lo,cone(HZ,-1));hi=Math.max(hi,cone(HZ,1));}
+  const pd=(hi-lo)*0.06;lo-=pd;hi+=pd;
+  const y=p=>PT+(hi-p)/(hi-lo)*pH;
+  G={x,y,bw};
+  const xT=x(T0), xR=W-PR;
+
+  // scenario region: hatched like the unreached Phase E column
+  cx.save();cx.beginPath();cx.rect(xT,PT,xR-xT,pH);cx.clip();
+  cx.strokeStyle=K.bord;cx.lineWidth=1;
+  for(let d=-pH;d<xR-xT+pH;d+=7){cx.beginPath();cx.moveTo(xT+d,PT+pH);cx.lineTo(xT+d+pH,PT);cx.stroke();}
+  cx.restore();
+
+  // ±1σ cone
+  if(SH.cone){
+    cx.beginPath();for(let d=0;d<=HZ;d++)cx.lineTo(x(T0+d),y(cone(d,1)));
+    for(let d=HZ;d>=0;d--)cx.lineTo(x(T0+d),y(cone(d,-1)));cx.closePath();
+    cx.fillStyle=K.accA(.07);cx.fill();cx.strokeStyle=K.accA(.28);cx.lineWidth=1;cx.stroke();
+    cx.font="600 9.5px "+FS;cx.textAlign="center";cx.fillStyle=K.accA(.8);
+    cx.fillText("+1σ",x(T0+7),y(cone(7,1))-6);cx.fillText("−1σ",x(T0+7),y(cone(7,-1))+14);}
+
+  // grid + price axis
+  cx.font="10.5px "+FM;cx.textAlign="left";
+  for(let g=Math.ceil(lo/0.01)*0.01;g<=hi;g+=0.01){const yy=Math.round(y(g))+.5;
+    cx.strokeStyle=K.bord;cx.lineWidth=1;cx.beginPath();cx.moveTo(PL,yy);cx.lineTo(xR,yy);cx.stroke();
+    cx.fillStyle=K.txt2;cx.fillText(g.toFixed(2),xR+8,yy+3);}
+  // dates
+  cx.textAlign="center";cx.fillStyle=K.txt2;cx.font="10px "+FM;
+  for(let i=0;i<NT;i+=4){const lab=i<T0?DB[i][0].slice(5).split('-').reverse().join('/'):dl(i-T0);
+    const X=x(i);if(X>PL+14&&X<xR-14)cx.fillText(lab,X,H-9);}
+
+  // stage / phase header rows (schematic style)
+  cx.textAlign="center";
+  cx.font="800 13px "+FS;cx.fillStyle=K.acc;
+  cx.fillText("TRADING RANGE ?",(PL+xT)/2,PT-50);
+  cx.fillText("KỊCH BẢN 14 NGÀY",(xT+xR)/2,PT-50);
+  cx.font="700 12px "+FS;cx.fillStyle=K.amber;
+  cx.fillText("Phase D ✗  →  B/C ?",(PL+xT)/2,PT-30);
+  cx.fillStyle=K.txt2;cx.fillText("Phase B / C ?",(xT+xR)/2,PT-30);
+  // heavy divider at today, light dividers at the two weekly closes
+  const vl=(X,col,dash,w,top)=>{X=Math.round(X)+.5;cx.strokeStyle=col;cx.setLineDash(dash);cx.lineWidth=w;
+    cx.beginPath();cx.moveTo(X,top);cx.lineTo(X,H-PBT);cx.stroke();cx.setLineDash([]);};
+  vl(xT,K.txt,[7,4],1.4,PT-44);
+  DEC.forEach(q=>vl(x(T0+q.d),K.acc,[3,4],1,PT));
+  cx.font="700 10.5px "+FS;
+  cx.textAlign="right";cx.fillStyle=K.txt;cx.fillText("Hôm nay 05/11",xT-5,PT-9);
+  cx.textAlign="left";cx.fillStyle=K.acc;
+  DEC.forEach(q=>cx.fillText(q.t,x(T0+q.d)+5,PT-9));
+
+  // support / resistance lines + right-hand brackets
+  if(SH.lv){
+    LV.forEach(l=>{const yy=Math.round(y(l.y))+.5;
+      cx.strokeStyle=l.red?K.dn:l.key?K.acc:K.amber;cx.lineWidth=l.key?2:1.35;
+      cx.beginPath();cx.moveTo(PL,yy);cx.lineTo(xR,yy);cx.stroke();
+      cx.font=(l.key?"700 ":"600 ")+"9.5px "+FS;cx.textAlign="left";
+      const tw=cx.measureText(l.t).width;cx.fillStyle=K.card;cx.fillRect(PL+4,yy-11,tw+8,12);
+      cx.fillStyle=l.red?K.dn:l.key?K.acc:K.amber;cx.fillText(l.t,PL+8,yy-2);});
+    ["R","S"].forEach(g=>{
+      const ys=LV.filter(l=>l.g===g).map(l=>y(l.y));const t1=Math.min(...ys),t2=Math.max(...ys),mid=(t1+t2)/2;
+      const bx=xR+54;cx.strokeStyle=K.amber;cx.lineWidth=1;
+      cx.beginPath();cx.moveTo(bx-7,t1);cx.lineTo(bx,t1);cx.lineTo(bx,t2);cx.lineTo(bx-7,t2);cx.stroke();
+      cx.fillStyle=K.txt;cx.font="700 11.5px "+FS;cx.textAlign="left";
+      cx.fillText(g==="R"?"Resistance":"Support",bx+6,mid-2);cx.fillText("Lines",bx+6,mid+11);});
+  }
+
+  // candles (optional, faint under the swing line)
+  if(SH.can){const cw=Math.max(1.5,bw*.58);
+    DB.forEach((b,i)=>{const up=b[4]>=b[1],col=up?K.up:K.dn;
+      cx.globalAlpha=SH.zig?.4:1;cx.strokeStyle=col;cx.lineWidth=1;
+      cx.beginPath();cx.moveTo(x(i),y(b[2]));cx.lineTo(x(i),y(b[3]));cx.stroke();
+      const yo=y(b[1]),yc=y(b[4]);cx.fillStyle=col;cx.fillRect(x(i)-cw/2,Math.min(yo,yc),cw,Math.max(1,Math.abs(yc-yo)));
+      cx.globalAlpha=1;});}
+
+  // scenario branches continue the swing line
+  if(SH.sc)SC.forEach(s=>{
+    cx.strokeStyle=K[s.c];cx.lineWidth=2.2;cx.setLineDash([7,5]);cx.lineJoin="round";cx.lineCap="round";
+    cx.beginPath();s.pts.forEach(([d,p],j)=>{const X=x(T0+d),Y=y(p);j?cx.lineTo(X,Y):cx.moveTo(X,Y);});
+    cx.stroke();cx.setLineDash([]);
+    const X=x(T0+HZ),y1=y(s.z[1]),y2=y(s.z[0]);
+    cx.fillStyle=K[s.c];cx.globalAlpha=.16;cx.fillRect(X-5,y1,10,y2-y1);cx.globalAlpha=1;
+    cx.strokeStyle=K[s.c];cx.lineWidth=1.4;cx.strokeRect(X-5,y1,10,y2-y1);
+    const my=(y1+y2)/2;cx.beginPath();cx.arc(X-17,my,8,0,7);cx.fillStyle=K.card;cx.fill();
+    cx.strokeStyle=K[s.c];cx.lineWidth=1.6;cx.stroke();
+    cx.font="800 10.5px "+FS;cx.textAlign="center";cx.fillStyle=K[s.c];cx.fillText(s.k,X-17,my+4);});
+
+  // swing line (real data) ending at live spot
+  if(SH.zig){
+    cx.strokeStyle=K.txt;cx.lineWidth=1.9;cx.lineJoin="round";cx.lineCap="round";
+    cx.beginPath();ZIG2.forEach(([d,p],j)=>{const X=x(IX[d]),Y=y(p);j?cx.lineTo(X,Y):cx.moveTo(X,Y);});
+    cx.lineTo(xT,y(SPOT));cx.stroke();}
+  cx.beginPath();cx.arc(xT,y(SPOT),4,0,7);cx.fillStyle=K.acc;cx.fill();
+  cx.strokeStyle=K.card;cx.lineWidth=1.5;cx.stroke();
+
+  // event labels — solid box = measurable signature, dashed = interpretive
+  if(SH.lab){const placed=[];
+    EV2.forEach(v=>{const i=IX[v.d],X=x(i),Y=y(v.p);
+      cx.beginPath();cx.arc(X,Y,3.4,0,7);cx.fillStyle=K.card;cx.fill();cx.strokeStyle=K.txt;cx.lineWidth=1.6;cx.stroke();
+      let ly=v.s>0?Y-22:Y+24,tries=0;const lx=X+v.dx;
+      while(placed.some(q=>Math.abs(q.x-lx)<60&&Math.abs(q.y-ly)<17)&&tries<6){ly+=v.s>0?-18:18;tries++;}
+      ly=Math.max(PT+12,Math.min(H-PBT-8,ly));placed.push({x:lx,y:ly});
+      cx.font="700 12px "+FS;cx.textAlign="center";const tw=cx.measureText(v.k).width;
+      cx.strokeStyle=K.txt2;cx.lineWidth=1;cx.setLineDash([2,3]);
+      cx.beginPath();cx.moveTo(X,Y+(v.s>0?-5:5));cx.lineTo(lx,ly+(v.s>0?6:-11));cx.stroke();cx.setLineDash([]);
+      cx.fillStyle=K.card;cx.strokeStyle=v.f?K.txt:K.txt2;cx.lineWidth=1;cx.setLineDash(v.f?[]:[3,2]);
+      cx.beginPath();cx.roundRect(lx-tw/2-5,ly-11,tw+10,16,2);cx.fill();cx.stroke();cx.setLineDash([]);
+      cx.fillStyle=K.txt;cx.fillText(v.k,lx,ly+1);});}
+
+  if(hov>=0){const X=Math.round(x(hov))+.5;cx.strokeStyle=K.shadow;cx.setLineDash([3,3]);cx.lineWidth=1;
+    cx.beginPath();cx.moveTo(X,PT);cx.lineTo(X,H-PBT);cx.stroke();cx.setLineDash([]);}
+}
+cv.addEventListener('mousemove',ev=>{
+  if(!G)return;const r=cv.getBoundingClientRect(),px=ev.clientX-r.left,py=ev.clientY-r.top;
+  const i=Math.max(0,Math.min(NT-1,Math.floor((px-PL)/G.bw)));hov=i;dr();
+  const f4=v=>v.toFixed(4);
+  if(i<T0){const b=DB[i],e=EV2.filter(v=>v.d===b[0]);
+    tp.innerHTML=`<div class="th">${b[0]}</div>`+
+      `<div class="r"><span>O</span><span>${f4(b[1])}</span></div><div class="r"><span>H</span><span>${f4(b[2])}</span></div>`+
+      `<div class="r"><span>L</span><span>${f4(b[3])}</span></div>`+
+      `<div class="r"><span>C</span><span style="color:${b[4]>=b[1]?K.up:K.dn}">${f4(b[4])}</span></div>`+
+      `<div class="r"><span>Vol</span><span>${b[5]}M</span></div>`+
+      (e.length?`<div class="e" style="font-weight:700">${e.map(v=>v.k+(v.f?'':' (diễn giải)')).join(' · ')}</div>`:'');}
+  else{const d=i-T0;
+    tp.innerHTML=`<div class="th">${dl(d)} · ngày +${d} (kịch bản)</div>`+
+      `<div class="r"><span>+1σ</span><span>${f4(cone(d,1))}</span></div>`+
+      `<div class="r"><span>−1σ</span><span>${f4(cone(d,-1))}</span></div>`+
+      `<div class="e">`+SC.map(s=>`<div class="r"><span style="color:${K[s.c]};font-weight:700">${s.k}</span><span>${f4(at(s,d))}</span></div>`).join('')+
+      `<div style="color:var(--txt2);font-size:10px;margin-top:3px">giá trị nhánh chỉ minh hoạ</div></div>`;}
+  tp.style.display='block';const tw=tp.offsetWidth,th=tp.offsetHeight;
+  tp.style.left=Math.min(W-tw-10,Math.max(6,px+16))+'px';
+  tp.style.top=Math.min(H-th-10,Math.max(6,py-th/2))+'px';});
+cv.addEventListener('mouseleave',()=>{hov=-1;tp.style.display='none';dr();});
+document.querySelectorAll('button[data-sc]').forEach(b=>{
+  b.addEventListener('click',()=>{const k=b.getAttribute('data-sc');
+    SH[k]=!SH[k];b.classList.toggle('active',SH[k]);
+    b.setAttribute('aria-pressed',String(SH[k]));dr();});});
+new ResizeObserver(rs).observe(cv);rs();
+
+// follow the dashboard's light/dark toggle, same hook the weekly panel uses
+new MutationObserver(()=>{window.__scReadTheme();dr();})
+  .observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']});
 })();
 
 </script>
