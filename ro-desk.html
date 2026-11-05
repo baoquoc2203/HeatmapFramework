@@ -227,7 +227,7 @@ a.attn{color:inherit;text-decoration:none}
   <details><summary>Sổ lệnh</summary><div class="scroll"><table class="tbl" id="ledger"></table></div></details>
   <details><summary>Dự báo đã đăng ký</summary><div class="scroll"><table class="tbl" id="fr"></table></div></details>
   <details><summary>Sổ thử nghiệm: mua một lần (A) và mua thêm khi tăng (C)</summary><p>Mỗi token radar micro bật lần đầu được ghi một lần. C đổ 50% ở giá vào, thêm 25% khi close ≥ ×1.3 và 25% khi ≥ ×1.6. Chấm khi đủ 10 token hết cửa sổ 30 ngày; C phải thắng 9/10 cặp.</p><div class="scroll"><table class="tbl" id="shadow"></table></div></details>
-  <details><summary>Dòng tiền lệnh lớn (chỉ theo dõi)</summary><p>Mua ròng trừ bán ròng của các lệnh vượt ngưỡng trong ngày UTC. Ngưỡng: AI, PONS, CASHCAT ≥ $2k; HMM ≥ $1k; MicroDuck ≥ $500 (từ 27/10, trước đó $200); KITSU ≥ $200.</p><div class="scroll"><table class="tbl" id="flows"></table></div></details>
+  <details><summary>Dòng tiền lệnh lớn (chỉ theo dõi)</summary><p>"—" là không lấy được dữ liệu phiên đó. Mua ròng trừ bán ròng của các lệnh vượt ngưỡng trong ngày UTC. Ngưỡng: AI, PONS, CASHCAT ≥ $2k; HMM ≥ $1k; MicroDuck ≥ $500 (từ 27/10, trước đó $200); KITSU ≥ $200.</p><div class="scroll"><table class="tbl" id="flows"></table></div></details>
   <details><summary>Luật đang áp dụng</summary><ul id="rules"></ul></details>
   <details><summary>Ghi nhận cần xử lý</summary><ul id="find"></ul></details>
 </section>
@@ -236,23 +236,23 @@ a.attn{color:inherit;text-decoration:none}
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <script>
-const DATE="30/10/2026",SESSION="MEME-DCA v1 · phiên D28";
+const DATE="04/11/2026",SESSION="MEME-DCA v1 · phiên D33";
 
 const SUM={cap:500,cash:215.66,reserve:100,real:5.66,btc:"−0.8%"};
-const ALERTS=["Không có lệnh. Phiên đi ngang: danh mục $471.39 (+0.03%), BTC −0.8%.","PONS bật lại tín hiệu mua lần đầu ở 0.2339592; danh mục đủ 4/4 nên chỉ ghi vào rổ gợi ý. CASHCAT có tín hiệu cho người mới; danh mục vẫn chờ T3 ở 0.086031 (cách 6.9%).","KITSU −16.2% trong ngày, −20.1% so giá vốn; pool $77k, chưa chạm kill switch. Radar: GME vào sổ thử nghiệm (9/10)."];
+const ALERTS=["Không có lệnh. Danh mục $478.00 (+3.06%), BTC +4.0%. Phanh vốn R5 chưa bật (còn cách 19.5%).","HMM +12.8%, lên +11.6% so với giá vốn. PONS bật lại tín hiệu mua lần đầu (cho người mới; rổ gợi ý đã có vị thế giấy PONS từ 30/10).","KITSU có tín hiệu radar micro cho người mới (volume 2.3×). Theo R3 đây là vé số."];
 /* POS: vị thế vốn thật. lv: các mức hành động; next: khoá của mức kích hoạt gần nhất */
 const POS=[
- {id:"cashcat",t:"CASHCAT",grp:"core",slot:"Slot 3",st:"DCA 2/4",px:.09242443,avg:.107539,cost:50,units:50/.107539,steps:2,max:4,next:"add",lv:{add:.086031,tp:.215078,kill:.026885},
+ {id:"cashcat",t:"CASHCAT",grp:"core",slot:"Slot 3",st:"DCA 2/4",px:.1062627,avg:.107539,cost:50,units:50/.107539,steps:2,max:4,next:"add",lv:{add:.086031,tp:.215078,kill:.026885},
   fills:[["11/10","Mua T1",.123032,25],["24/10","Mua T2",.095512,25]],note:"T3 cần close ≤ 0.086031 (đã qua ngày sớm nhất 27/10). Close 30/10 không in đáy mới, nên người mới có tín hiệu mua lần đầu; danh mục vẫn theo thang của mình.",contract:"0x020bfc650a365f8bb26819deaabf3e21291018b4"},
- {id:"hmm",t:"HMM",grp:"core",slot:"Slot 4",st:"DCA 1/4",px:.005936894,avg:.00567919,cost:25,units:25/.00567919,steps:1,max:4,next:"add",lv:{add:.00454335,tp:.01135838,kill:.0014198,tp0:.00851879},
+ {id:"hmm",t:"HMM",grp:"core",slot:"Slot 4",st:"DCA 1/4",px:.006335562,avg:.00567919,cost:25,units:25/.00567919,steps:1,max:4,next:"add",lv:{add:.00454335,tp:.01135838,kill:.0014198,tp0:.00851879},
   fills:[["25/10","Mua T1",.00567919,25]],note:"Trần slot $85. Mốc TP0 thử nghiệm (×1.5) chỉ ghi trên giấy, không bán thật.",contract:"0x7fe995a80075df3dc8ae11a9b82c7fe4202cd87f"},
- {id:"microduck",t:"MicroDuck",grp:"micro",slot:"Micro 2",st:"Còn 50%",px:.004943797,avg:.00269974,cost:5,units:10/.00269974/2,steps:1,max:1,next:"trail",lv:{trail:.0030852,tp5:.0134987},
-  fills:[["22/10","Mua micro",.00269974,10],["24/10","Bán 50% (×2.13)",.00575446,-10.66]],note:"Đã thu lại vốn, lãi thực +$5.66. Mức thoát 0.0030852 tính lại 30/10 từ đỉnh 0.00753783 (28/10) và σ₁₄ = 29.8%. Mức này không khoá; việc có khoá hay không đang chờ bạn quyết.",contract:"0xd5f1afea47b1a9eab414d2ee740cf1d6d039e725"},
- {id:"kitsu",t:"KITSU",grp:"micro",slot:"Micro 1",st:"Micro 1/1",px:.0004645534,avg:.00058143,cost:10,units:10/.00058143,steps:1,max:1,next:"tp",lv:{tp:.00116286,kill:.000145},
-  fills:[["15/10","Mua micro",.00058143,10]],note:"Bán hết nếu pool < $25k hai phiên (hiện $77k), holder < 4,830 (hiện 5,767) hoặc có rủi ro bảo mật. Close 30/10 −16.2%.",contract:"0x8d4dfaaa4198b6486e0293fec914c2b6a821d4dc"},
- {id:"pons",t:"PONS",grp:"core",slot:"Slot 2",st:"DCA 4/4",px:.2339592,avg:.2735879,cost:100,units:100/.2735879,steps:4,max:4,next:"tp",lv:{tp:.547176,kill:.068397},
+ {id:"microduck",t:"MicroDuck",grp:"micro",slot:"Micro 2",st:"Còn 50%",px:.00624889,avg:.00269974,cost:5,units:10/.00269974/2,steps:1,max:1,next:"trail",lv:{trail:.0033732,tp5:.0134987},
+  fills:[["22/10","Mua micro",.00269974,10],["24/10","Bán 50% (×2.13)",.00575446,-10.66]],note:"Đã thu lại vốn, lãi thực +$5.66. Mức thoát 0.0033732 tính lại 04/11 (σ₁₄ = 26.8%). Đã đủ điều kiện nâng hạng (vốn hoá close 04/11 ~$5.7M); chờ tín hiệu mua lần đầu kiểu meme vừa để gợi ý mua lại (R2). Mức này không khoá; việc có khoá hay không đang chờ bạn quyết.",contract:"0xd5f1afea47b1a9eab414d2ee740cf1d6d039e725"},
+ {id:"kitsu",t:"KITSU",grp:"micro",slot:"Micro 1",st:"Micro 1/1",px:.0005625227,avg:.00058143,cost:10,units:10/.00058143,steps:1,max:1,next:"tp",lv:{tp:.00116286,kill:.000145},
+  fills:[["15/10","Mua micro",.00058143,10]],note:"Bán hết nếu pool < $25k hai phiên, holder < 4,830 hoặc có rủi ro bảo mật. Kiểm 04/11: pool $84k, 5,824 holder, chưa chạm điều kiện nào.",contract:"0x8d4dfaaa4198b6486e0293fec914c2b6a821d4dc"},
+ {id:"pons",t:"PONS",grp:"core",slot:"Slot 2",st:"DCA 4/4",px:.222192,avg:.2735879,cost:100,units:100/.2735879,steps:4,max:4,next:"tp",lv:{tp:.547176,kill:.068397},
   fills:[["—","Mua T1",.370303,25],["—","Mua T2",.284587,25],["22/10","Mua T3",.247937,25],["29/10","Mua T4",.2286731,25]],note:"Slot đủ, không mua thêm. Close 30/10 bật tín hiệu mua lần đầu mới; vì hết lần mua nên chỉ ghi vào rổ gợi ý ở 0.2339592.",contract:"0x39dbed3a2bd333467115de45665cc57f813c4571"},
- {id:"ai",t:"AI",grp:"core",slot:"Slot 1",st:"DCA 4/4",px:.06046822,avg:.0720156,cost:100,units:100/.0720156,steps:4,max:4,next:"tp",lv:{tp:.1440312,kill:.018004},
+ {id:"ai",t:"AI",grp:"core",slot:"Slot 1",st:"DCA 4/4",px:.05947313,avg:.0720156,cost:100,units:100/.0720156,steps:4,max:4,next:"tp",lv:{tp:.1440312,kill:.018004},
   fills:[["—","Mua T1",.103576,25],["—","Mua T2",.0791361,25],["23/10","Mua T3",.0662226,25],["26/10","Mua T4",.05509108,25]],note:"Slot đủ, không mua thêm. AI cũng đang có vị thế giấy mua lại trong rổ gợi ý (vào 0.0644 ngày 27/10).",contract:"0x2e8c31162b855a2ffa90f6f8634643ad6f111e18"}
 ];
 const FR=[
@@ -260,28 +260,31 @@ const FR=[
  ["FR-RH003","S","29/10","Số token dưới close 30/9: ≥9 / 6–8 / 3–5 / ≤2 / dư",".40/.32/.18/.05/.05","Đã chấm: dải ≥9 (12/12). Brier đa dải .500. Cùng cụm với FR-RH001"],
  ["FR-RH002","T","07/10","PONS có 2 close liên tiếp ≥ 0.5450",".30","Đã chấm: KHÔNG. Brier .090"],
  ["FR-RH009","S","15/11","≥1 trong 9 meme RH lớn nhất có close ≥ 2× giá 16/10",".50","Đã chấm: CÓ (BabyCashCat ×3.5, 18/10). Brier .25, base .0625, skill −3.0"],
- ["FR-RH004","S","31/10","≥1 trong 6 token S1 chạm mục tiêu O1",".28","Đến hạn ở close 31/10 (phiên tới). Chưa token nào chạm"],
- ["FR-RH005","S","31/10","≥1 trong 3 token C1 chạm mục tiêu O1",".45","Đến hạn ở close 31/10 (phiên tới). Không token nào gần mục tiêu"],
- ["FR-RH010","S","15/11","≥1 trong AI/PONS/CASHCAT chạm mức chốt lời ×2",".15","Mở. Gần nhất PONS cần +134%"],
- ["FR-RH011","S","15/11","KITSU có close ≥ 0.00116286 (×2 giá vốn)",".18","Mở. Close 0.000465 (×0.80), cần +150%"],
+ ["FR-RH004","S","31/10","≥1 trong 6 token S1 chạm mục tiêu O1",".28","Đã chấm: KHÔNG. Cao nhất là BOW (close 0.00631, cần 0.00658). Brier .078, base .110, skill +0.29"],
+ ["FR-RH005","S","31/10","≥1 trong 3 token C1 chạm mục tiêu O1",".45","Đã chấm: KHÔNG. Brier .203, base .336, skill +0.40. Cùng cụm CL-RH2 với FR-RH004"],
+ ["FR-RH010","S","15/11","≥1 trong AI/PONS/CASHCAT chạm mức chốt lời ×2",".15","Mở. Gần nhất CASHCAT cần +102%"],
+ ["FR-RH011","S","15/11","KITSU có close ≥ 0.00116286 (×2 giá vốn)",".18","Mở. Close 0.000563 (×0.97), cần +107%"],
  ["FR-RH006","S","15/11","Chỉ số meme RH theo 6 dải từ $481.5M",".27/.20/.19/.16/.13/.05","Tạm dừng: HOOD Sword Inu mất ô vốn hoá từ 22/10"],
  ["FR-RH007","S","14/01/27","Chỉ số có close ≥ $722M (×1.5) trong 90 ngày",".45","Mở"],
  ["FR-RH008","C","14/04/27","Chỉ số lấy lại đỉnh $1,344M trong 180 ngày",".08","Mở"]
 ];
-const SHADOW=[["MicroDuck","21/10",.00302566,"✓ 23/10","✓ 23/10","20/11","×1.63","×1.32","Cả A và C đã chốt 50% ở close 28/10"],["KITSU","21/10",.000600936,"","","20/11","×0.77","×0.77",""],["ASTEROID","21/10",.0006544,"","","20/11","×0.73","×0.73",""],["This Is Not A Website","21/10",.0008237,"","","20/11","×0.66","×0.66",""],["PCC","26/10",.000947693,"","","25/11","×0.92","×0.92",""],["富贵","26/10",.000812848,"✓ 27/10","✓ 28/10","25/11","×1.10","×0.87","A đã chốt 50%; cách mức thoát 0.9%"],["SHROOM","28/10",.00436297,"","","27/11","×0.62","×0.62",""],["ZEAL","29/10",.000754804,"","","28/11","×1.20","×1.20","Thêm 25% của C ở ≥ 0.000981"],["GME","30/10",.00084356,"","","29/11","×1.00","×1.00","Mới; volume 7.4×"]];
-const FLOWS={days:["27/10","28/10","29/10","30/10"],rows:[["PONS",[473,992,-587,-146]],["AI",[-27,808,-693,-265]],["CASHCAT",[189,524,-9,4.6]],["MicroDuck",[-18.5,71,-139,-28.8]],["HMM",[16,-11,-36,-8.6]],["KITSU",[3.9,5.4,-4.4,-2.9]]]};
-const DECIDE=["Mức trailing của MicroDuck hạ từ 0.0034610 xuống 0.0030770 vì σ₁₄ tăng, dù đỉnh không đổi. Có khoá mức trailing để nó chỉ được đi lên không?","Radar micro tính mức giảm ≥ 85% theo ATH trong phiên. Theo giá đóng cửa, ZEAL chỉ −81% và GME −83%. Dùng định nghĩa nào?"];
-const RULES=["R1 (26/10): slot và tiền về tiền mặt khi một vị thế thoát hết; vào lại chỉ khi giảm ≥ 40% từ đỉnh sau khi thoát và có close không in đáy mới. TP0 ×1.5 chạy trên giấy.","R2 (28/10): rổ gợi ý không dùng vốn, gồm token bật tín hiệu đúng luật mà danh mục không còn chỗ, kể cả mua lại token đang nắm hoặc đã chốt 50%.","Microcap chỉ mua một lần. Không mua thêm KITSU hay MicroDuck.","Tiền mặt luôn giữ $100 dự trữ cố định, không bao giờ dùng."];
+const SHADOW=[["MicroDuck","21/10",.00302566,"✓ 23/10","✓ 23/10","20/11","×2.28","×1.67","Cả A và C đã chốt 50% ở close 28/10"],["KITSU","21/10",.000600936,"","","20/11","×0.94","×0.94","Radar bật lại 04/11 (2.3×), không ghi lại"],["ASTEROID","21/10",.0006544,"","","20/11","×0.52","×0.52",""],["This Is Not A Website","21/10",.0008237,"","","20/11","×1.08","×1.08",""],["PCC","26/10",.000947693,"","","25/11","×0.66","×0.66",""],["富贵","26/10",.000812848,"✓ 27/10","✓ 28/10","25/11","×1.55 (đóng)","×1.04","A đóng 02/11"],["SHROOM","28/10",.00436297,"","","27/11","×0.55","×0.55",""],["ZEAL","29/10",.000754804,"","","28/11","×1.18","×1.18",""],["GME","30/10",.00084356,"","","29/11","×0.95","×0.95","Radar bật lại 04/11 (2.3×), không ghi lại"]];
+const FLOWS={days:["31/10","01/11","02/11","03/11","04/11"],rows:[["PONS",[null,-56,-401,-207,-128]],["AI",[null,-176,-238,54,-30]],["CASHCAT",[null,286,439,222,-142]],["MicroDuck",[null,11.5,-14.5,-30,30]],["HMM",[-15.4,-3.4,-13.6,7,5]],["KITSU",[null,0,1.1,1.9,-1.7]]]};
+const DECIDE=["Radar tính mức giảm ≥ 85% (điều kiện VÀO lệnh, không phải điều kiện thoát) theo ATH trong phiên. Theo giá đóng cửa, ZEAL chỉ −81% và GME −83%. Dùng định nghĩa nào?"];
+const RULES=["R5 (03/11): Phanh vốn. Giá trị danh mục < $400 (−20% vốn) thì dừng mọi lệnh mua mới bằng tiền thật (mua lần đầu và slot thêm R4). Quét, rổ gợi ý, chốt lời, trailing, bán hết vẫn chạy. Tắt phanh khi giá trị danh mục ≥ $420 trong 2 close liên tiếp. DCA của token đang nắm: chờ bạn xác nhận (đề xuất: cũng bị khoá).","R4 (02/11): Slot thêm mở bằng lãi đã chốt. Mỗi $100 lãi đã chốt mở 1 slot (4 × $25), tối đa 2 slot thêm (tổng 6 slot core). Chỉ dùng cho token meme vừa có tín hiệu đúng luật trong rổ gợi ý và qua cờ cứng; không dùng cho radar micro. Lỗ của slot thêm trừ vào quỹ lời, không trừ vốn gốc; quỹ lời dưới $100 thì không mở slot thêm mới.","R4 (02/11): Sau lần chốt 50% đầu tiên, token ngừng DCA. Slot vẫn giữ tới khi thoát hết; lãi từ lần chốt đi vào quỹ lời.","R3 (02/11): Radar micro là kênh khám phá. Token radar micro gắn nhãn vé số và không tự động được cấp vốn; muốn mua thật phải duyệt riêng.","R3 (02/11): Cờ cứng top-10 < 40%. Token có 10 ví lớn nhất nắm từ 40% trở lên không được vào rổ gợi ý hay danh mục.","R3 (02/11): Trailing tiếp tục tính lại mỗi phiên theo biến động 14 ngày (không khoá mức), để token mạnh có chỗ dao động.","R3 (02/11): Theo dõi win rate, profit factor, expectancy và max drawdown cho cả vị thế giấy và danh mục thật.","R1 (26/10): slot và tiền về tiền mặt khi một vị thế thoát hết; vào lại chỉ khi giảm ≥ 40% từ đỉnh sau khi thoát và có close không in đáy mới. TP0 ×1.5 chạy trên giấy.","R2 (28/10): rổ gợi ý không dùng vốn, gồm token bật tín hiệu đúng luật mà danh mục không còn chỗ, kể cả mua lại token đang nắm hoặc đã chốt 50%.","Chốt lời từng phần: 50% ở ×2, rồi 15% ở ×5 và ×10 (microcap 10% ở ×5, ×10, ×30, ×100); phần còn lại theo trailing.","Microcap chỉ mua một lần. Tiền mặt luôn giữ $100 dự trữ cố định."];
 const FIND=["Base rate v1 bị chi phối bởi 49 token cũ (86% số episode S1). Đề xuất v2: chỉ token native, mỗi đợt giảm tính một episode.","Với token volume rất thấp (KITSU), close CoinGecko và close pool có thể lệch tới ~8%. Cần quy tắc feed riêng cho nhóm này.","Hai feed có thể bất đồng về việc một close có phải đáy mới hay không. Quy tắc cần nói rõ dùng feed nào.","Quy tắc hai-close khiến CASHCAT thoát thấp hơn mốc 20.2% trong giai đoạn cũ; một close sẽ là −19.1% thay vì −27.2%.","Top-10 holder 97% (UP) và 96% (NET) nhiều khả năng là ví contract; top-10 PONS hiển thị 82% ngày 28/10 cũng cần kiểm."];
 const FOOT="Bàn quản lý theo luật của một khung phân tích có hệ thống, không phải lời khuyên đầu tư. Giá trị dựa trên giá đóng cửa CoinGecko; giá trị MicroDuck là ước tính từ số token còn lại. Hệ thống chưa chứng minh được lợi thế.";
 
 const LOGO={ai:"https://coin-images.coingecko.com/coins/images/102176647/small/5ou9sb7h478ezv28urbjpzf1fl3e.?1788401429",pons:"https://coin-images.coingecko.com/coins/images/102174571/small/jhitvkisdq8fhxvimdkpcw7y3dx5.?1784093932",cashcat:"https://coin-images.coingecko.com/coins/images/102174280/small/cashcat-logo.jpg?1782922765",hmm:"https://coin-images.coingecko.com/coins/images/102174672/small/fmu02lq7zai1iyp4qqwfnmu5wr1v.?1784552285",kitsu:"https://coin-images.coingecko.com/coins/images/102174287/small/kitsu-logo.jpg?1782940070",microduck:"https://coin-images.coingecko.com/coins/images/102176663/small/bvw8hqnmvgvs61nw2h4et0zj00jx.?1788422151",zeal:"https://coin-images.coingecko.com/coins/images/102176778/small/zeal_400x400.jpg?1788687773",gme:"https://coin-images.coingecko.com/coins/images/102176793/small/logo-512_%281%29.png?1792544829",fugui:"https://coin-images.coingecko.com/coins/images/102178312/small/puppy.jpg?1789275783",pcc:"https://coin-images.coingecko.com/coins/images/102176801/small/IMG_1919.jpeg?1788768859",shroom:"https://coin-images.coingecko.com/coins/images/102176720/small/shroom.jpg?1788592860"};
 /* lịch sử giá trị danh mục theo từng phiên (giá đóng cửa) */
-const NAV_HIST=[["24/10",467.39],["25/10",471.14],["26/10",463.85],["27/10",496.21],["28/10",535.72],["29/10",471.24],["30/10",471.39]];
+const NAV_HIST=[["24/10",467.39],["25/10",471.14],["26/10",463.85],["27/10",496.21],["28/10",535.72],["29/10",471.24],["30/10",471.39],["31/10",471.20],["01/11",476.23],["02/11",456.78],["03/11",463.79],["04/11",478.00]];
 /* 7 giá đóng cửa gần nhất (24/10 → 30/10) */
-const SPARK={ai:[.0550954,.0600519,.0550911,.0643656,.0831025,.0596157,.0604682],pons:[.23377,.240131,.245553,.267438,.28969,.2286731,.2339592],cashcat:[.095512,.0942838,.0924189,.104196,.102814,.0897069,.0924244],hmm:[.00547482,.00567919,.00584059,.00707222,.00722594,.00667682,.00593689],kitsu:[.000596899,.000579642,.000453144,.000547976,.000690654,.000554629,.000464553],microduck:[.00575446,.00486782,.00394782,.00467107,.00753783,.00462873,.0049438]};
+const SPARK={ai:[.0596157,.0604682,.0622542,.0607031,.0554361,.0569872,.0594731],pons:[.2286731,.2339592,.2318077,.2388211,.2057005,.2037147,.222192],cashcat:[.0897069,.0924244,.0923409,.0953242,.1009933,.1070424,.1062627],hmm:[.00667682,.00593689,.00527914,.0054186,.00496162,.00561433,.00633556],kitsu:[.000554629,.000464553,.000491861,.000503547,.000524952,.000563195,.000562523],microduck:[.00462873,.0049438,.00525567,.00656277,.00600971,.00559819,.00624889]};
 /* dự báo đã chấm: p = xác suất cho kết quả xảy ra; hit = kết quả; cl = cụm tương quan */
-const SCORED=[{id:"FR-RH001",p:.62,hit:1,brier:.144,cl:"CL-RH1",kind:"bin"},{id:"FR-RH003",p:.40,hit:1,brier:.500,cl:"CL-RH1",kind:"multi"},{id:"FR-RH002",p:.30,hit:0,brier:.090,cl:"FR-RH002",kind:"bin"},{id:"FR-RH009",p:.50,hit:1,brier:.250,cl:"FR-RH009",kind:"bin",base:.0625}];
+const SCORED=[{id:"FR-RH001",p:.62,hit:1,brier:.144,cl:"CL-RH1",kind:"bin"},{id:"FR-RH003",p:.40,hit:1,brier:.500,cl:"CL-RH1",kind:"multi"},{id:"FR-RH002",p:.30,hit:0,brier:.090,cl:"FR-RH002",kind:"bin"},{id:"FR-RH009",p:.50,hit:1,brier:.250,cl:"FR-RH009",kind:"bin",base:.0625},{id:"FR-RH004",p:.28,hit:0,brier:.0784,cl:"CL-RH2",kind:"bin",base:.1102},{id:"FR-RH005",p:.45,hit:0,brier:.2025,cl:"CL-RH2",kind:"bin",base:.3364}];
+
+/* vị thế giấy để đo hiệu quả: [tên, nguồn, bội số hiện tại gồm phần đã chốt, trạng thái] — đánh giá theo giá đóng cửa 01/11, chưa trừ phí */
+const PAPER=[["MicroDuck","radar micro",2.278,"đã chốt 50% ở ×2.49"],["富贵","radar micro",1.554,"đã đóng 02/11: 50% ở ×2.07, 50% ở ×1.04"],["ZEAL","radar micro",1.177,"mở"],["AMC","meme vừa",1.153,"mở"],["This Is Not A Website","radar micro",1.076,"mở"],["GME","radar micro",.953,"mở"],["PONS","mua lại",.950,"mở"],["KITSU","radar micro",.936,"mở"],["AI","mua lại",.924,"mở"],["PCC","radar micro",.660,"mở"],["SHROOM","radar micro",.552,"mở"],["ASTEROID","radar micro",.516,"mở"]];
 
 const ATTN_NEAR=10,ATTN_LOSS=-20;
 const $=id=>document.getElementById(id);
@@ -377,7 +380,7 @@ function card(p){
      <div class="h4">Lệnh đã khớp</div>
      <table class="tbl"><tr><th>Ngày</th><th>Lệnh</th><th class="n">Giá</th><th class="n">$</th></tr>${p.fills.map(f=>`<tr><td>${f[0]}</td><td>${esc(f[1])}</td><td class="n">${f[2]}</td><td class="n ${f[3]<0?"pos":""}">${f[3]<0?"+"+Math.abs(f[3]).toFixed(2):"−"+f[3].toFixed(2)}</td></tr>`).join("")}</table>
      <div class="h4">Số lượng và giá vốn</div><p style="margin:0;font-size:13px">${Math.round(p.units).toLocaleString("vi-VN")} token · vốn còn lại ${money(p.cost)} · giá vốn trung bình ${fp(p.avg)}</p>
-     ${flows.length?`<div class="h4">Dòng tiền lệnh lớn</div><p style="margin:0;font:12.5px var(--mono)">${flows.map((x,i)=>`${FLOWS.days[i]}: <span class="${x<0?"neg":"pos"}">${x<0?"−":"+"}$${Math.abs(x)}k</span>`).join(" · ")}</p>`:""}
+     ${flows.length?`<div class="h4">Dòng tiền lệnh lớn</div><p style="margin:0;font:12.5px var(--mono)">${flows.map((x,i)=>x==null?`${FLOWS.days[i]}: —`:`${FLOWS.days[i]}: <span class="${x<0?"neg":"pos"}">${x<0?"−":"+"}$${Math.abs(x)}k</span>`).join(" · ")}</p>`:""}
      <div class="h4">Ghi chú</div><p style="margin:0;font-size:13px;color:var(--muted)">${esc(p.note)}</p>
      <div class="h4">Contract</div><code>${p.contract}</code><button type="button" class="copy" data-copy="${p.contract}">Copy</button>
    </div></article>`;
@@ -398,7 +401,7 @@ render();
 (function(){
   const core=POS.filter(p=>p.grp==="core"),micro=POS.filter(p=>p.grp==="micro"),sv=a=>a.reduce((s,p)=>s+p.val,0);
   const segs=[["Core",sv(core),"var(--b)"],["Microcap",sv(micro),"var(--a)"],["Tiền mặt dùng được",SUM.cash-SUM.reserve,"var(--g)"],["Dự trữ",SUM.reserve,"var(--n)"]];
-  $("alloc-sub").textContent=`Tổng ${money(NAV)}. Trong đó ${(sv(POS)/NAV*100).toFixed(0)}% đang nằm trong token.`;
+  $("alloc-sub").innerHTML=`Tổng ${money(NAV)}. Trong đó ${(sv(POS)/NAV*100).toFixed(0)}% đang nằm trong token. Quỹ lời (R4): <b>${money(SUM.real)}</b> / $100 để mở slot thêm đầu tiên (${Math.floor(SUM.real/100)} / 2 slot thêm đang mở). Phanh vốn (R5): ngưỡng <b>$400</b>, danh mục ${money(NAV)}, ${NAV<400?"<b class=\"neg\">ĐANG BẬT</b>":"chưa bật, còn cách "+((NAV/400-1)*100).toFixed(1)+"%"}.`;
   const mx=Math.max(...POS.map(p=>p.val));
   const list=(a,t,col)=>`<div><div class="h4" style="margin-top:4px">${t} · ${money(sv(a))}</div>${[...a].sort((x,y)=>y.val-x.val).map(p=>`<div class="arow"><span style="display:flex;align-items:center;gap:6px">${ava(p.id,p.t,"sm")}${esc(p.t)}</span><span class="bar"><i style="width:${p.val/mx*100}%;background:${col}"></i></span><span class="v">${money(p.val)}</span></div>`).join("")}</div>`;
   $("alloc").innerHTML=`<div class="alloc2">${segs.map(s=>`<div style="flex:${s[1]};background:${s[2]}" title="${s[0]} ${money(s[1])}">${s[1]/NAV>.12?`<span>${s[0]}</span><b>${money(s[1])} · ${(s[1]/NAV*100).toFixed(0)}%</b>`:""}</div>`).join("")}</div>${segs.filter(s=>s[1]/NAV<=.12).map(s=>`<div style="font-size:12.5px;margin:-4px 0 8px"><i style="display:inline-block;width:10px;height:10px;border-radius:3px;background:${s[2]};margin-right:6px"></i>${s[0]}: <b style="font:500 12.5px var(--mono)">${money(s[1])} · ${(s[1]/NAV*100).toFixed(1)}%</b> (phần hẹp trên thanh)</div>`).join("")}
@@ -420,14 +423,30 @@ render();
    <div><span>Dự báo đã chấm</span><b>${SCORED.length}</b><small>${clusters} quan sát độc lập (các dự báo cùng cụm tính là 1)</small></div>
    <div><span>Đúng hướng</span><b>${right}/${dir.length}</b><small>tính theo quan sát độc lập; không tính dự báo đặt đúng 50%</small></div>
    <div><span>Brier trung bình (nhị phân)</span><b>${mb.toFixed(3)}</b><small>thấp hơn là tốt hơn; tung đồng xu = 0.250</small></div>
-   <div><span>So với base rate</span><b class="neg">${sk.length?sk.map(s=>{const v=1-s.brier/s.base;return(v<0?"−":"+")+Math.abs(v).toFixed(1)}).join(", "):"—"}</b><small>${sk.length} dự báo có base rate; kỹ năng âm là kém hơn base rate</small></div>
+   <div><span>So với base rate</span><b>${sk.length?sk.map(s=>{const v=1-s.brier/s.base;return`<span class="${v<0?"neg":"pos"}">${v<0?"−":"+"}${Math.abs(v).toFixed(1)}</span>`}).join(", "):"—"}</b><small>${sk.length} dự báo có base rate; dương là tốt hơn base rate, âm là kém hơn</small></div>
   </div>
   <div class="qual" style="margin-top:10px">
    <div><span>Thử nghiệm mua thêm khi tăng (C)</span><b>C thua A 2/2</b><small>MicroDuck và 富贵; sổ 9/10 token, chưa chấm</small></div>
    <div><span>Rổ 12 token gốc so với BTC</span><b class="neg">−60.6% / −6.9%</b><small>30/9 → 29/10 (FR-RH001)</small></div>
    <div><span>Danh mục so với vốn</span><b class="${NAV<SUM.cap?"neg":"pos"}">${sp((NAV/SUM.cap-1)*100)}</b><small>từ khi làm mới vốn ngày 11/10</small></div>
    <div><span>Mẫu còn quá nhỏ</span><b>${clusters} / ~30</b><small>cần khoảng 30 quan sát để kết luận có ý nghĩa</small></div>
+  </div><div class="qual" style="margin-top:10px"><div style="grid-column:1/-1"><span>Kiểm định radar micro trên 405 meme RH (02/11)</span><b class="neg">Không có lợi thế chọn token</b><small>Lần đầu mỗi token, 10 phiên sau: radar 0/8 chạm ×1.5, đối chứng 4/24 (17%). Giá sau 10 phiên trung vị: radar ×0.74, đối chứng ×0.65. Mẫu nhỏ; chỉ đo 10 phiên.</small></div>
   </div>`;
+})();
+
+/* hiệu quả giao dịch */
+(function(){
+  const st=a=>{const g=a.filter(m=>m>1).reduce((s,m)=>s+(m-1),0),l=a.filter(m=>m<1).reduce((s,m)=>s+(1-m),0);return{n:a.length,win:a.filter(m=>m>1).length,pf:l?g/l:null,exp:(g-l)/a.length}};
+  const all=st(PAPER.map(p=>p[2])),ex=st(PAPER.filter(p=>p[0]!=="MicroDuck").map(p=>p[2]));
+  let pk=-1,dd=0;NAV_HIST.forEach(([d,v])=>{pk=Math.max(pk,v);dd=Math.min(dd,v/pk-1)});
+  const f=x=>x==null?"—":x.toFixed(2);
+  const box=document.createElement("div");box.className="qual";box.style.marginTop="10px";
+  box.innerHTML=`<div><span>Win rate (giấy)</span><b>${all.win}/${all.n}</b><small>${(all.win/all.n*100).toFixed(0)}% vị thế đang trên giá vào</small></div>
+   <div><span>Profit factor (giấy)</span><b class="${all.pf>=1?"pos":"neg"}">${f(all.pf)}</b><small>bỏ MicroDuck: <span class="${ex.pf>=1?"pos":"neg"}">${f(ex.pf)}</span></small></div>
+   <div><span>Expectancy mỗi vị thế (giấy)</span><b class="${all.exp>=0?"pos":"neg"}">${sp(all.exp*100)}</b><small>bỏ MicroDuck: <span class="${ex.exp>=0?"pos":"neg"}">${sp(ex.exp*100)}</span></small></div>
+   <div><span>Max drawdown danh mục thật</span><b class="neg">${sp(dd*100)}</b><small>từ đỉnh $${Math.max(...NAV_HIST.map(x=>x[1])).toFixed(2)} trong lịch sử phiên</small></div>
+   <div style="grid-column:1/-1"><small>Vị thế giấy (${PAPER.length}): ${PAPER.map(p=>`${esc(p[0])} ×${p[2].toFixed(2)}`).join(" · ")}. ${PAPER.filter(p=>p[3].startsWith("đã đóng")).length} vị thế đã đóng hoàn toàn; phần còn lại đánh giá theo giá đóng cửa và sẽ thay đổi. Lãi gần như chỉ đến từ MicroDuck.</small></div>`;
+  $("quality").appendChild(box);
 })();
 
 /* hồ sơ */
@@ -436,7 +455,7 @@ render();
   $("ledger").innerHTML=`<tr><th>Ngày</th><th>Token</th><th>Lệnh</th><th class="n">Giá</th><th class="n">$</th></tr>`+fills.map(f=>`<tr><td>${f[0]}</td><td><b>${esc(f[1])}</b></td><td>${esc(f[2])}</td><td class="n">${f[3]}</td><td class="n ${f[4]<0?"pos":""}">${f[4]<0?"+"+Math.abs(f[4]).toFixed(2):"−"+f[4].toFixed(2)}</td></tr>`).join("")+`<tr><td colspan="5" style="color:var(--muted);font-size:12px">"—": ngày khớp không có trong sổ hiện tại. Cột $: tiền ra (−), tiền về (+).</td></tr>`;
   $("fr").innerHTML=`<tr><th>Mã</th><th>Loại</th><th>Hạn</th><th>Nội dung</th><th class="n">Xác suất</th><th>Trạng thái</th></tr>`+FR.map(r=>`<tr><td><b>${r[0]}</b></td><td>${r[1]}</td><td>${r[2]}</td><td>${esc(r[3])}</td><td class="n">${r[4]}</td><td>${esc(r[5])}</td></tr>`).join("");
   $("shadow").innerHTML=`<tr><th>Token</th><th>Vào</th><th class="n">Giá vào</th><th>+25% ở ×1.3</th><th>+25% ở ×1.6</th><th>Hết hạn</th><th class="n">A</th><th class="n">C</th><th>Ghi chú</th></tr>`+SHADOW.map(r=>`<tr><td><b>${esc(r[0])}</b></td><td>${r[1]}</td><td class="n">${fp(r[2])}</td><td>${r[3]||"—"}</td><td>${r[4]||"—"}</td><td>${r[5]}</td><td class="n">${r[6]}</td><td class="n">${r[7]}</td><td>${esc(r[8])}</td></tr>`).join("");
-  $("flows").innerHTML=`<tr><th>Token</th>${FLOWS.days.map(d=>`<th class="n">${d}</th>`).join("")}</tr>`+FLOWS.rows.map(([t,v])=>`<tr><td><b>${t}</b></td>${v.map(x=>`<td class="n ${x<0?"neg":"pos"}">${x<0?"−":"+"}$${Math.abs(x)}k</td>`).join("")}</tr>`).join("");
+  $("flows").innerHTML=`<tr><th>Token</th>${FLOWS.days.map(d=>`<th class="n">${d}</th>`).join("")}</tr>`+FLOWS.rows.map(([t,v])=>`<tr><td><b>${t}</b></td>${v.map(x=>x==null?`<td class="n" style="color:var(--muted)">—</td>`:`<td class="n ${x<0?"neg":"pos"}">${x<0?"−":"+"}$${Math.abs(x)}k</td>`).join("")}</tr>`).join("");
   $("rules").innerHTML=RULES.map(x=>`<li>${esc(x)}</li>`).join("");$("find").innerHTML=FIND.map(x=>`<li>${esc(x)}</li>`).join("");$("foot").textContent=FOOT;
 })();
 
