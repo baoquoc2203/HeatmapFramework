@@ -203,14 +203,14 @@
 const tokens = {
   BTC: {
     full:'Bitcoin', symbol:'\u20bf', color:'#F7931A',
-    tagline:'The read has flipped sides again, and the flip is already being contested. The gate was lost, ZONE_BTC_0008 was INVALIDATED on Oct 23, and Read B\u2032 was confirmed on Oct 25\u201326 \u2014 but confirmed by TWO IN-BAND closes, so markdown is the formal read at LOW CONFIDENCE rather than cleanly. Then Oct 27 dipped to $79,496.78, the THIRD intraday pierce of the $79,779.60 spring low without a close under it, and settled $80,906.28 (+0.95%) at 78.2% of range on 0.737\u00d7 volume \u2014 0.80% above the C/D line and clear of its band. That puts the failed-breakdown count at 1 of 2 CLEAN. Tonight\u2019s settle decides it and carries the FOMC statement and the US GDP release inside the same bar; every outcome range is pre-registered rather than pre-judged.',
-    phase:'Markdown (formal, LOW-CONF) \u00b7 C/D boundary', phaseSub:'Failed-breakdown 1 of 2 CLEAN \u2014 a second close \u2265 $80,376.15 tonight ends the markdown read and returns the range \u00b7 two closes < $79,780 complete continuation, 0 of 2',
-    conf:'23 / 36 / 20', confLabel:'Confidence \u00b7 T (Tier 1 only) / S / C (never blended)',
-    confSub:'T \u22122 on FR-B066 resolving as an independent loss \u00b7 risk HIGH while markdown stands at LOW-CONF, falling to MEDIUM\u2013HIGH if tonight completes the failed breakdown \u00b7 position FLAT, reserve 75%, nothing armed on day 26 of the window \u00b7 TR-BTC-003\u2019s unarmed hypothetical is marked \u22123.800% on the tranche \u2014 which is how the framework scores the decision NOT to arm \u00b7 ZONE_BTC_0010 demand newly registered far below, standoff 1 of 3 \u00b7 October ETF re-based to \u2212$202.1M after Oct 26 was verified at +$110.34M.',
-    price:'$80,906', priceSub:'Oct 27, 2026 settled close (+0.95% on 0.74\u00d7 vol) \u00b7 Oct MTD; Sep settled $83,622 (Oct 28 candle excluded)',
+    tagline:'The break ran, and then one bar took it all back. October SETTLED at $77,530.55, \u22127.28%, after the gate was lost, ZONE_BTC_0008 was INVALIDATED on Oct 23 and the Oct 29\u201330 break ran to $76,256.58. Then Nov 4 opened $77,453.13, undercut the ZONE_BTC_0010 demand floor by 0.63% to $75,729.73 \u2014 still $778.72 above the Sep 15 swing low \u2014 and reversed to close $80,512.26, +3.950%, at 87.2% of a $5,481.88 range (2.51 ATR) on 1.503\u00d7 volume, the heaviest since Oct 30. That close is 0.32% above the $80,255.76 range floor and clear of its margin band, which puts the failed-breakdown count at 1 of 2 CLEAN and TOUCHES ZONE_BTC_0011 with its invalidation also 1 of 2. The log move +3.874% is 2.64\u03c320 and fires AO-007 shock E1. Event-day neutrality applies: one close is a setup, not a confirmation, so Read B\u2032 (markdown) stays formally primary and Read A\u2033 (spring \u2192 reclaim) is the alternate until a second close decides. Reported context \u2014 a post-midterm risk-on session in US equities and a short-liquidation burst \u2014 is recorded as reported, not verified; the relayed liquidation figures disagree with each other.',
+    phase:'Markdown (Read B\u2032) formally primary \u00b7 reversal test in progress', phaseSub:'Failed breakdown 1 of 2 CLEAN \u2014 one more close \u2265 $80,376.15 confirms it, makes Read A\u2033 primary, ends the markdown regime, INVALIDATES ZONE_BTC_0011 and makes D-009 NOT DURABLE \u00b7 a close back under $80,255.76 resets the counter and turns Nov 4 into an upthrust into supply \u00b7 two closes < $76,206.11 complete continuation, 0 of 2',
+    conf:'23 / 32 / 20', confLabel:'Confidence \u00b7 T (Tier 1 only) / S / C (never blended)',
+    confSub:'T 23 / S 32 / C 20, UNCHANGED from S119 and all three revisited after the Nov 5 close \u2014 the fall from the 36 this dashboard last carried happened over the sessions between S112 and S119, not on this one \u00b7 risk HIGH and TWO-SIDED \u2014 0.32% above the level that decides the regime, so a whipsaw either way is likely \u00b7 aggressiveness 2/10, position FLAT, reserve 75%, nothing armed on day 34 of the Oct 3 \u2013 Nov 15 window \u00b7 TR-BTC-004 is PROPOSED and NOT ARMED at the Q3 default, so a qualifying close tonight fills nothing; arming is a time-sensitive referral that must precede the close \u00b7 FR-B079 (Nov 9) puts Band D at 46%, B 24%, C 22%, A 3% \u2014 D is primary because the close sits only 0.08\u03c35 above the C/D edge \u00b7 FR-B074 resolved Band C at skill \u22120.0860 and opens cluster CL-B8; SC-013 MISSED on the same \u201cunanticipated gate crossing\u201d label as SC-010/011 \u00b7 S120 also published the finding that FIX-B1 would have scored that miss WORSE (\u22120.338), so the label is re-pointed to Tier 3.5 \u2014 funding and OI dark for a 43rd session, order-book bid share 43.9% \u00b7 Fear & Greed and the Nov 4 institutional flow both NOT OBTAINED.',
+    price:'$80,512', priceSub:'Nov 4, 2026 settled close (+3.95% on 1.50\u00d7 vol) \u00b7 Nov MTD; Oct settled $77,530.55, \u22127.28% \u00b7 the Nov 5 candle is live and is the one every structural question resolves on',
     reports:[
       {label:'Heatmap', href:'btc-dashboard.html'},
-      {label:'\ud83d\udcca Market GPS (Oct 28 \u00b7 S112)', href:'BTC_report_S112_oct28.html'},
+      {label:'\ud83d\udcca Market GPS (Nov 5 \u00b7 S120)', href:'BTC_report_S120_nov05.html'},
     ]
   },
   ADA: {
@@ -242,10 +242,10 @@ function applyToken(key){
   document.getElementById('phaseVal').textContent = t.phase;
   document.getElementById('phaseSub').textContent = t.phaseSub;
   // Confidence is reported per horizon class and never blended. Both assets label T as "Tier 1 only" with a
-  // Q4 cap of 35, because each has had its derivatives tier dark for weeks — BTC 35 sessions, ADA 64. BTC
-  // (S112) T 23 / S 36 / C 20, T down two on an independent loss; ADA (Oct 28) T 35 / S 42 / C 58, unchanged.
-  // Both carry risk HIGH with the FOMC decision inside tonight's candle on both assets. When a report omits
-  // the score the dash returns rather than a stale or invented number.
+  // Q4 cap of 35, because each has had its derivatives tier dark for weeks — BTC 43 sessions, ADA 71. BTC
+  // (S120) T 23 / S 32 / C 20, unchanged from S119; ADA (Nov 5) T 35 / S 34 / C 58, S down
+  // eight. BTC carries risk HIGH and two-sided, ADA VERY HIGH. When a report omits the score the dash returns
+  // rather than a stale or invented number.
   document.getElementById('confLabel').textContent = t.confLabel || 'Model Confidence';
   document.getElementById('confVal').textContent = t.conf;
   document.getElementById('confSub').textContent = t.confSub;
