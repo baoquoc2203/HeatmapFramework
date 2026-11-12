@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ADA Cardano — Monthly Map &amp; Forecast Report · Nov 12, 2026</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--pg:#f8f7f4;--cd:#fff;--tx:#1a1a18;--tx2:#5f5f5b;--tx3:#8a8a86;--rule:#ecebe6;--bord:rgba(0,0,0,.1);--hd:#f3f2ee;
+--buy:#3f7d1e;--buy-bg:#dcfce7;--sell:#b03a1c;--sell-bg:#fee2e2;--hold:#57575e;--hold-bg:#eeece6;--warn-bg:#fdf3df;--warn-b:#d99a2b;--warn-t:#5a3a0e;
+--info-bg:#eaf1f8;--info-b:#6d97c4;--info-t:#1f3d5c;--up:#5b9a34;--wi:#b9b6ac;--dn:#c0563a;--fan:#6d97c4;--line:#2f6fb0;--zs:#c0563a;--zd:#3f7d1e}
+@media (prefers-color-scheme:dark){:root{--pg:#1b1b1e;--cd:#26262a;--tx:#f0eee9;--tx2:#b0b0b8;--tx3:#8a8a92;--rule:#35353c;--bord:rgba(255,255,255,.12);--hd:#2e2e34;
+--buy:#9bc65c;--buy-bg:#16371f;--sell:#ee9878;--sell-bg:#43180a;--hold:#a8a8b0;--hold-bg:#2e2e33;--warn-bg:#3a2405;--warn-b:#8a6a20;--warn-t:#ecd5ab;
+--info-bg:#15263a;--info-b:#3f6a96;--info-t:#c9dcf0;--up:#8fc45e;--wi:#5b5b62;--dn:#e07e60;--fan:#7fb3e8;--line:#7fb3e8;--zs:#e07e60;--zd:#9bc65c}}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--pg);color:var(--tx);padding:22px 16px;max-width:980px;margin:0 auto;line-height:1.5}
+h1{font-size:20px;font-weight:650;margin-bottom:4px}
+.meta{font-size:12px;color:var(--tx2);margin-bottom:16px}
+.mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-variant-numeric:tabular-nums}
+.hero{display:flex;gap:18px;align-items:baseline;flex-wrap:wrap;margin-bottom:12px}
+.hero .p{font-size:30px;font-weight:650}.hero .c{font-size:13px;color:var(--tx2)}
+pre.loc{background:var(--cd);border:1px solid var(--bord);border-radius:10px;padding:12px 14px;font-size:12px;overflow-x:auto;margin-bottom:12px;line-height:1.55}
+.banner{border-radius:10px;padding:12px 15px;margin-bottom:12px;font-size:13px;line-height:1.62;border:1.5px solid var(--warn-b);background:var(--warn-bg);color:var(--warn-t)}
+.banner.info{border-color:var(--info-b);background:var(--info-bg);color:var(--info-t)}
+.section{background:var(--cd);border:1px solid var(--bord);border-radius:12px;padding:18px 20px;margin-bottom:16px}
+.section h2{font-size:15px;font-weight:650;margin-bottom:12px}
+.section h2 .n{color:var(--tx3);font-weight:600;margin-right:6px}
+h3{font-size:13.5px;font-weight:650;margin:14px 0 8px}
+p.body{font-size:13px;line-height:1.66;margin-bottom:10px}
+.sn{font-size:12px;color:var(--tx2);line-height:1.6;margin-bottom:12px}
+.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}
+table{width:100%;border-collapse:collapse;font-size:12.5px;min-width:520px}
+th{text-align:left;padding:6px 8px;background:var(--hd);font-size:11.5px;font-weight:650;color:var(--tx2)}
+td{padding:7px 8px;border-top:1px solid var(--rule);vertical-align:top}
+.bdg{display:inline-block;padding:2px 7px;border-radius:5px;font-size:10.5px;font-weight:700;white-space:nowrap}
+.b-gn{background:var(--buy-bg);color:var(--buy)}.b-rd{background:var(--sell-bg);color:var(--sell)}.b-gy{background:var(--hold-bg);color:var(--hold)}
+.calg{display:grid;grid-template-columns:repeat(auto-fill,minmax(84px,1fr));gap:6px;margin:6px 0 10px}
+.cal{font:inherit;color:inherit;border:1px solid var(--bord);border-radius:8px;padding:7px 6px;text-align:left;cursor:pointer;display:flex;flex-direction:column;gap:1px;background:var(--hold-bg)}
+.cal.b{background:var(--buy-bg)}.cal.s{background:var(--sell-bg)}.cal.real{background:transparent;border-style:dashed}.cal.real.b{background:var(--buy-bg)}
+.cal:focus-visible{outline:2px solid var(--line);outline-offset:2px}.cal[aria-pressed="true"]{outline:2px solid var(--tx)}
+.cm{font-size:12px;font-weight:650}.cs{font-size:10.5px;font-weight:700;color:var(--tx2)}.cal.b .cs{color:var(--buy)}.cal.s .cs{color:var(--sell)}.cr{font-size:10.5px;color:var(--tx2);font-family:ui-monospace,Menlo,monospace}
+#cald{font-size:12.5px;line-height:1.6;background:var(--hd);border-radius:8px;padding:10px 12px;min-height:44px}
+svg{width:100%;height:auto;display:block}
+.gl{stroke:var(--rule);stroke-width:1}.ax{fill:var(--tx2);font-size:10.5px}.f90{fill:var(--fan);opacity:.14}.f50{fill:var(--fan);opacity:.28}
+.zs{fill:var(--zs);opacity:.18}.zd{fill:var(--zd);opacity:.2}.zt{fill:var(--tx2);font-size:10px}.th{stroke:var(--tx3);stroke-dasharray:3 4;stroke-width:1}
+.med{stroke:var(--fan);stroke-width:1.5;stroke-dasharray:6 4}.rl{fill:none;stroke:var(--line);stroke-width:2.2}.rd{fill:var(--line)}.an{fill:#e0a030}.at{fill:var(--tx);font-size:11px;font-weight:600}.hv{stroke:var(--sell);stroke-dasharray:2 3;stroke-width:1}
+.mc{border-top:1px solid var(--rule);font-size:12.5px}.mc summary{display:grid;grid-template-columns:96px 92px 1fr 92px;gap:10px;align-items:center;padding:7px 2px;cursor:pointer;list-style:none}
+.mc summary::-webkit-details-marker{display:none}.mc p{padding:0 4px 8px;color:var(--tx2);line-height:1.6}.mn{font-weight:650}
+.bar{display:flex;height:9px;border-radius:5px;overflow:hidden;background:var(--rule)}.bar i{display:block;height:100%}.bar .u{background:var(--up)}.bar .w{background:var(--wi)}.bar .d{background:var(--dn)}
+@media(max-width:560px){.mc summary{grid-template-columns:78px 1fr;}.mc summary .bar{grid-column:1/3}.hero .p{font-size:25px}}
+.foot{font-size:11.5px;color:var(--tx3);text-align:center;margin:18px 0 6px}
+</style>
+</head>
+<body>
+<h1 id="top">ADA Cardano — Monthly Map &amp; Forecast Report</h1>
+<div class="meta">Crypto Reconnaissance Engine · Thu Nov 12, 2026 · ticker 01:04 UTC (08:04 ICT) · last settled close <b>$0.17448 (Nov 11)</b> · Nov 12 candle live, about 23h left, excluded from all determinations · built on the Nov 12 00:59 UTC CRE v3.2 report · timeline Jun 2026 → Dec 2028 · replaces the Nov 5 map</div>
+
+<div class="hero"><span class="p mono">$0.17448</span><span class="c">Nov 11 settle, +0.26% · live $0.17414 (−0.19%, determines nothing) · CoinGecko $0.174353, −0.073%: agreement</span></div>
+<pre class="loc">WYCKOFF CYCLE MAP:
+A (Accumulation) ──> B (Markup) ──> C (Distribution) ──> D (Markdown)
+Current Location: [██████████████████] ──> D — markdown, sitting on the Z007 floor ($0.1740) on closes
+Current Phase:    markdown, confirmed · four-close shelf $0.17403–$0.17751 under the lost Oct 30 low
+   ⟷ ALT (edge pending): Phase A not started — no climactic low; first higher low ($0.17184) is one bar old
+Current Action:   HOLD BUY 1–2 · BUY 3 and BUY 4 stopped out · nothing armed · aggressiveness 1/10</pre>
+
+<div class="banner"><b>The floor of the last confirmed demand zone is 0.28% under the settle.</b> Tonight’s Nov 12 settle, pre-registered in the Nov 12 report: a close below $0.17374 is Z007 invalidation 1 of 2, clean, and STR-ADA-003 down 1 of 2; $0.17374–$0.17426 is LOW-CONFIDENCE (counts by side on Crypto.com); below $0.17274 is BUY 2’s stop 1 of 2. The live print, $0.17414, is <b>inside that LOW-CONF band</b>, 0.08% above the floor, with about 23 hours left — it determines nothing. Upside markers: a close at or above $0.17544 fails the Nov 10 Rx breakdown (tracked, unscored); closes above $0.17989 and then $0.18347 would be the first automatic-rally candidate.</div>
+
+<div class="banner info"><b>The week since the Nov 5 map, from settled closes.</b> Nov 4 $0.19744 (+3.89% on 12.97M): the rally tagged the broken Z010 floor and closed under it — reversal stayed 0 of 2. Nov 5 $0.18098 (−8.34% on 11.74M): <b>Z007 touched</b> (low $0.17790), Oct 30 low lost 1 of 2. Nov 6 $0.18411: <b>Z007 CONFIRMED</b> (precedent; strict Nov 7); STR-ADA-003 registered. Nov 8 $0.17518 (−3.68%): FR-ADA-010 resolved Band D, −4.4909 as pre-published; Oct 30 low retired; BUY 3 stop 1 of 2. Nov 9 $0.17751: <b>BUY 3 exited</b> (−6.38% on its implied fill); FR-ADA-011 registered. Nov 10 $0.17403: lowest close in the archive, 0.017% above the floor (LOW-CONF, feeds split); US CPI +0.4% m/m. Nov 11 $0.17448: floor held on a clean close, first higher low since Nov 7.</div>
+
+<div class="section"><h2><span class="n">01</span>Executive summary</h2>
+<p class="body"><b>The tape reproduces.</b> Crypto.com’s fresh pull matches all 50 settled closes Sep 24–Nov 11 in the archive (101 rows, Aug 3 → Nov 11), zero revisions. CoinGecko, labels shifted back a day, sits below Crypto.com again on Nov 11 (−0.073%), same side of every gate.</p>
+<p class="body"><b>The structure.</b> Markdown is primary. Since the Nov 5 map the Phase A candidate at the Oct 30 low failed: the Nov 4 rally died at the broken Z010 floor, Nov 5 fell into Z007, and the Oct 30 low was retired on closes. Z007 confirmed on Nov 6–7, but price has since slid to its floor: four closes between $0.17403 and $0.17751, the lowest closes since mid-August. The alternate — Phase A from here — has not started: no climactic low, and the first higher low is one bar old.</p>
+<p class="body"><b>November is −9.55%</b> on the Nov 11 settle ($0.19290 → $0.17448), after October’s −21.80%. BTC is −4.54% for the month on the same basis, so ADA is underperforming; no cause is asserted.</p>
+<p class="body"><b>The buckets, from the Nov 11 close.</b> November reads 6 / 91 / 3 (up &gt;25% / within / down &gt;25%) with 19 candles left, December 2026 17 / 72 / 11, December 2028 41 / 21 / 38. Width under zero drift, not direction. σ fell to 64.5% annualised from 73.0% a week ago because high-volatility late-September days rolled out of the 48-return window, not because the tape calmed. Labels are unchanged: 7 BUY, 6 SELL, 13 HOLD in 26 forecast months — but December 2026’s SELL is conditional on a profit, and both held tranches are underwater, so today it reads HOLD.</p>
+<p class="body"><b>The book.</b> HOLD BUY 1–2, nothing armed, aggressiveness 1/10, risk Very High. BUY 4 (Nov 2) and BUY 3 (Nov 9) are out. BUY 2’s line, two closes below $0.173, is 0.85% under the settle — about 0.13 ATR. The 25% reserve and the capital freed by BUY 3 and BUY 4 are uncommitted by default.</p></div>
+
+<div class="section"><h2><span class="n">02</span>Current market structure</h2>
+<p class="sn">Primary: markdown at the floor of confirmed demand. Alternate: Phase A — edge pending, not started. Both per the Nov 12 report.</p>
+<div class="tw"><table><tr><th>Session</th><th>High</th><th>Low</th><th>Close</th><th>Day</th><th>Volume</th><th>Read</th></tr>
+<tr><td>Nov 4</td><td class="mono">$0.20155</td><td class="mono">$0.18283</td><td class="mono">$0.19744</td><td>+3.89%</td><td>12.97M</td><td>rally into the broken Z010 floor · reversal 0 of 2</td></tr>
+<tr><td>Nov 5</td><td class="mono">$0.19967</td><td class="mono">$0.17790</td><td class="mono">$0.18098</td><td>−8.34%</td><td>11.74M</td><td>Z007 touched · Oct 30 low lost 1 of 2</td></tr>
+<tr><td>Nov 6</td><td class="mono">$0.18974</td><td class="mono">$0.18082</td><td class="mono">$0.18411</td><td>+1.73%</td><td>7.59M</td><td>Z007 CONFIRMED (precedent) · STR-ADA-003 registered</td></tr>
+<tr><td>Nov 7</td><td class="mono">$0.18575</td><td class="mono">$0.17939</td><td class="mono">$0.18187</td><td>−1.22%</td><td>1.99M</td><td>Z007 strict 2 of 2 · lowest volume in the archive</td></tr>
+<tr><td>Nov 8</td><td class="mono">$0.18173</td><td class="mono">$0.17146</td><td class="mono">$0.17518</td><td>−3.68%</td><td>2.95M</td><td>FR-ADA-010 → D · Oct 30 low retired · BUY 3 1 of 2</td></tr>
+<tr><td>Nov 9</td><td class="mono">$0.18347</td><td class="mono">$0.17152</td><td class="mono">$0.17751</td><td>+1.33%</td><td>4.08M</td><td>BUY 3 exited · equal lows · FR-ADA-011 registered</td></tr>
+<tr><td>Nov 10</td><td class="mono">$0.17989</td><td class="mono">$0.17045</td><td class="mono">$0.17403</td><td>−1.96%</td><td>6.92M</td><td>archive-low close · floor LOW-CONF (feeds split)</td></tr>
+<tr><td>Nov 11</td><td class="mono">$0.18090</td><td class="mono">$0.17184</td><td class="mono">$0.17448</td><td>+0.26%</td><td>5.56M</td><td>floor held, clean · first higher low since Nov 7</td></tr>
+<tr><td>Nov 12 live</td><td class="mono">$0.17562</td><td class="mono">$0.17381</td><td class="mono">$0.17414</td><td>−0.19%</td><td>0.43M</td><td>inside the LOW-CONF band · ~23h left · determines nothing</td></tr></table></div>
+<h3>Level ladder</h3>
+<div class="tw"><table><tr><th>Level</th><th>vs Nov 11 close</th><th>vs live</th><th>Status</th></tr>
+<tr><td class="mono">$0.24310–$0.25224</td><td>+39.33%</td><td>+39.60%</td><td>Z011 supply, WATCHING.</td></tr>
+<tr><td class="mono">$0.21810</td><td>+25.00%</td><td>+25.24%</td><td>Fan “up” threshold (map only).</td></tr>
+<tr><td class="mono">$0.20117</td><td>+15.30%</td><td>+15.52%</td><td>Z010 floor reclaim, 0 of 2 — STR-ADA-003’s upside barrier.</td></tr>
+<tr><td class="mono">$0.18347 / $0.17989</td><td>+5.15% / +3.10%</td><td>+5.36% / +3.30%</td><td>Automatic-rally candidate: closes above $0.17989, then $0.18347.</td></tr>
+<tr><td class="mono">$0.1740–$0.1805</td><td>−0.28% / +3.45%</td><td>−0.08% / +3.65%</td><td>Z007 demand, CONFIRMED, on the floor. Invalidation 0 of 2 (two closes below $0.1740).</td></tr>
+<tr><td class="mono">$0.17448</td><td>—</td><td>+0.20%</td><td>Nov 11 settle.</td></tr>
+<tr><td class="mono">$0.17414</td><td>−0.19%</td><td>—</td><td>LIVE · determines nothing.</td></tr>
+<tr><td class="mono">$0.173</td><td>−0.85%</td><td>−0.65%</td><td>BUY 2 stop, two consecutive closes below.</td></tr>
+<tr><td class="mono">$0.1596</td><td>−8.53%</td><td>−8.35%</td><td>BUY 1 / thesis invalidation, two closes below.</td></tr>
+<tr><td class="mono">$0.150–$0.156</td><td>−14.03% / −10.59%</td><td>−13.86% / −10.42%</td><td>Z002 demand, WATCHING — the next registered zone below Z007.</td></tr>
+<tr><td class="mono">$0.13086</td><td>−25.00%</td><td>−24.85%</td><td>Fan “down” threshold (map only).</td></tr></table></div>
+<p class="sn" style="margin-top:10px"><b>Cross-asset.</b> BTC settled $74,009.22 on Nov 11 (+0.29%, Crypto.com); the $59,129 kill level is 20.11% below. No attribution for either asset’s moves. Tier 3.5 (funding, OI, liquidations, long/short): NOT OBTAINED — 77 sessions dark as of the Nov 12 report, none obtained here.</p></div>
+
+<div class="section"><h2><span class="n">03</span>Buy / sell month calendar — Jun 2026 to Dec 2028</h2>
+<p class="sn">Every month the framework maps, coloured by the action it authorises; the letter says where the label comes from (A anchor window · H halving clock · Y year-end · S speculative). 7 BUY, 6 SELL and 13 HOLD in the 26 forecast months, plus 5 realised. Labels are conditional by design and unchanged since the Nov 5 map; December 2026’s SELL currently reads HOLD because no profit exists to take. None of these labels comes from the up / within / down percentages. Tap a month for detail.</p>
+<div class="calg" id="calg">
+<button class="cal real" data-d="Jun 2026 · realised close $0.14420  · CoinGecko basis (Jul 1 00:00 point)."><span class="cm">Jun 26</span><span class="cs">realised</span><span class="cr">close</span></button>
+<button class="cal real" data-d="Jul 2026 · realised close $0.16805 (+16.54%) · CoinGecko basis."><span class="cm">Jul 26</span><span class="cs">realised</span><span class="cr">+16.54%</span></button>
+<button class="cal real" data-d="Aug 2026 · realised close $0.19781 (+17.71%) · mixed: CoinGecko Jul close → Crypto.com Aug 31."><span class="cm">Aug 26</span><span class="cs">realised</span><span class="cr">+17.71%</span></button>
+<button class="cal real" data-d="Sep 2026 · realised close $0.24669 (+24.71%) · Crypto.com."><span class="cm">Sep 26</span><span class="cs">realised</span><span class="cr">+24.71%</span></button>
+<button class="cal real b" data-d="Oct 2026 · realised close $0.19290 (-21.80%) · Crypto.com · labelled BUY (A); window closed with no ruling, reserve not deployed."><span class="cm">Oct 26</span><span class="cs">BUY ·A</span><span class="cr">-21.80%</span></button>
+<button class="cal b" data-d="Nov 2026 · BUY (A) · up 6% / within 91% / down 3% · central 50% $0.1580–$0.1927 · Buffer month of the closed Oct 4–17 window. It authorises nothing by itself: the 25% reserve and the capital freed by BUY 4’s exit stay uncommitted until you rule. Structure decides first: price sits on the Z007 floor ($0.1740), 0.85% above BUY 2’s line ($0.173)."><span class="cm">Nov 26</span><span class="cs">BUY ·A</span><span class="cr">6/91/3</span></button>
+<button class="cal s" data-d="Dec 2026 · SELL (Y) · up 17% / within 72% / down 11% · central 50% $0.1485–$0.2049 · Year-end reduction, only if there is a profit to take. On the Nov 11 marks both held tranches are underwater (BUY 1 −4.13%, BUY 2 −0.30%), so today this reads HOLD. The Dec 9 FOMC (with projections) and Dec 10 CPI land mid-month in thin liquidity."><span class="cm">Dec 26</span><span class="cs">SELL ·Y</span><span class="cr">17/72/11</span></button>
+<button class="cal h" data-d="Jan 2027 · HOLD · up 23% / within 60% / down 17% · central 50% $0.1422–$0.2141 · No action authorised. Q1 2027 is the post-window assessment: whether a base confirms in Q4 2026 sets the 2027 regime."><span class="cm">Jan 27</span><span class="cs">HOLD</span><span class="cr">23/60/17</span></button>
+<button class="cal h" data-d="Feb 2027 · HOLD · up 26% / within 53% / down 21% · central 50% $0.1376–$0.2213 · No action authorised. Q1 2027 is the post-window assessment: whether a base confirms in Q4 2026 sets the 2027 regime."><span class="cm">Feb 27</span><span class="cs">HOLD</span><span class="cr">26/53/21</span></button>
+<button class="cal h" data-d="Mar 2027 · HOLD · up 29% / within 47% / down 24% · central 50% $0.1333–$0.2284 · No action authorised. Q1 2027 is the post-window assessment: whether a base confirms in Q4 2026 sets the 2027 regime."><span class="cm">Mar 27</span><span class="cs">HOLD</span><span class="cr">29/47/24</span></button>
+<button class="cal h" data-d="Apr 2027 · HOLD · up 31% / within 43% / down 26% · central 50% $0.1297–$0.2348 · No action authorised. The halving clock is not yet in its pre-event stretch; WAIT is the position."><span class="cm">Apr 27</span><span class="cs">HOLD</span><span class="cr">31/43/26</span></button>
+<button class="cal h" data-d="May 2027 · HOLD · up 32% / within 41% / down 27% · central 50% $0.1264–$0.2409 · No action authorised. The halving clock is not yet in its pre-event stretch; WAIT is the position."><span class="cm">May 27</span><span class="cs">HOLD</span><span class="cr">32/41/27</span></button>
+<button class="cal h" data-d="Jun 2027 · HOLD · up 33% / within 38% / down 29% · central 50% $0.1235–$0.2466 · No action authorised. The halving clock is not yet in its pre-event stretch; WAIT is the position."><span class="cm">Jun 27</span><span class="cs">HOLD</span><span class="cr">33/38/29</span></button>
+<button class="cal b" data-d="Jul 2027 · BUY (H) · up 34% / within 36% / down 30% · central 50% $0.1207–$0.2522 · Six to nine months before the April 2028 halving, where pre-event accumulation has historically begun. A regime label, conditional on a base existing by then. Not a signal."><span class="cm">Jul 27</span><span class="cs">BUY ·H</span><span class="cr">34/36/30</span></button>
+<button class="cal b" data-d="Aug 2027 · BUY (H) · up 35% / within 34% / down 31% · central 50% $0.1182–$0.2576 · Six to nine months before the April 2028 halving, where pre-event accumulation has historically begun. A regime label, conditional on a base existing by then. Not a signal."><span class="cm">Aug 27</span><span class="cs">BUY ·H</span><span class="cr">35/34/31</span></button>
+<button class="cal b" data-d="Sep 2027 · BUY (H) · up 36% / within 32% / down 32% · central 50% $0.1159–$0.2627 · Six to nine months before the April 2028 halving, where pre-event accumulation has historically begun. A regime label, conditional on a base existing by then. Not a signal."><span class="cm">Sep 27</span><span class="cs">BUY ·H</span><span class="cr">36/32/32</span></button>
+<button class="cal b" data-d="Oct 2027 · BUY (H) · up 36% / within 31% / down 33% · central 50% $0.1137–$0.2677 · Six to nine months before the April 2028 halving, where pre-event accumulation has historically begun. A regime label, conditional on a base existing by then. Not a signal."><span class="cm">Oct 27</span><span class="cs">BUY ·H</span><span class="cr">36/31/33</span></button>
+<button class="cal h" data-d="Nov 2027 · HOLD · up 37% / within 30% / down 33% · central 50% $0.1117–$0.2725 · No action authorised. The halving clock is not yet in its pre-event stretch; WAIT is the position."><span class="cm">Nov 27</span><span class="cs">HOLD</span><span class="cr">37/30/33</span></button>
+<button class="cal s" data-d="Dec 2027 · SELL (Y) · up 37% / within 29% / down 34% · central 50% $0.1097–$0.2774 · Year-end reduction, conditional on a profit existing then; underwater it becomes HOLD. Thin December liquidity distorts execution."><span class="cm">Dec 27</span><span class="cs">SELL ·Y</span><span class="cr">37/29/34</span></button>
+<button class="cal h" data-d="Jan 2028 · HOLD · up 38% / within 28% / down 34% · central 50% $0.1079–$0.2822 · No action authorised. In this framework WAIT is a position, and most months are one."><span class="cm">Jan 28</span><span class="cs">HOLD</span><span class="cr">38/28/34</span></button>
+<button class="cal h" data-d="Feb 2028 · HOLD · up 38% / within 27% / down 35% · central 50% $0.1062–$0.2865 · No action authorised. In this framework WAIT is a position, and most months are one."><span class="cm">Feb 28</span><span class="cs">HOLD</span><span class="cr">38/27/35</span></button>
+<button class="cal s" data-d="Mar 2028 · SELL (H) · up 38% / within 27% / down 35% · central 50% $0.1046–$0.2911 · The month before the halving, where froth has historically peaked. The clearest distribution logic on the forward map."><span class="cm">Mar 28</span><span class="cs">SELL ·H</span><span class="cr">38/27/35</span></button>
+<button class="cal s" data-d="Apr 2028 · SELL (H) · up 39% / within 25% / down 36% · central 50% $0.1030–$0.2955 · The halving month, historically a sell-the-news event."><span class="cm">Apr 28</span><span class="cs">SELL ·H</span><span class="cr">39/25/36</span></button>
+<button class="cal h" data-d="May 2028 · HOLD · up 39% / within 25% / down 36% · central 50% $0.1015–$0.3000 · No action authorised. In this framework WAIT is a position, and most months are one."><span class="cm">May 28</span><span class="cs">HOLD</span><span class="cr">39/25/36</span></button>
+<button class="cal h" data-d="Jun 2028 · HOLD · up 39% / within 25% / down 36% · central 50% $0.1001–$0.3043 · No action authorised. In this framework WAIT is a position, and most months are one."><span class="cm">Jun 28</span><span class="cs">HOLD</span><span class="cr">39/25/36</span></button>
+<button class="cal b" data-d="Jul 2028 · BUY (H) · up 40% / within 23% / down 37% · central 50% $0.0986–$0.3086 · Months 3–4 after the halving, where re-accumulation has historically resumed after the sell-the-news unwind. Conditional and speculative."><span class="cm">Jul 28</span><span class="cs">BUY ·H</span><span class="cr">40/23/37</span></button>
+<button class="cal b" data-d="Aug 2028 · BUY (H) · up 40% / within 23% / down 37% · central 50% $0.0973–$0.3130 · Months 3–4 after the halving, where re-accumulation has historically resumed after the sell-the-news unwind. Conditional and speculative."><span class="cm">Aug 28</span><span class="cs">BUY ·H</span><span class="cr">40/23/37</span></button>
+<button class="cal h" data-d="Sep 2028 · HOLD · up 40% / within 23% / down 37% · central 50% $0.0960–$0.3171 · No action authorised. In this framework WAIT is a position, and most months are one."><span class="cm">Sep 28</span><span class="cs">HOLD</span><span class="cr">40/23/37</span></button>
+<button class="cal h" data-d="Oct 2028 · HOLD · up 40% / within 22% / down 38% · central 50% $0.0947–$0.3213 · No action authorised. In this framework WAIT is a position, and most months are one."><span class="cm">Oct 28</span><span class="cs">HOLD</span><span class="cr">40/22/38</span></button>
+<button class="cal s" data-d="Nov 2028 · SELL (S) · up 40% / within 22% / down 38% · central 50% $0.0936–$0.3254 · Markup distribution if the cycle actually delivered. The most speculative cells on the map: placeholders for a decision, not a decision."><span class="cm">Nov 28</span><span class="cs">SELL ·S</span><span class="cr">40/22/38</span></button>
+<button class="cal s" data-d="Dec 2028 · SELL (S) · up 41% / within 21% / down 38% · central 50% $0.0924–$0.3296 · Markup distribution if the cycle actually delivered. The most speculative cells on the map: placeholders for a decision, not a decision."><span class="cm">Dec 28</span><span class="cs">SELL ·S</span><span class="cr">41/21/38</span></button>
+</div>
+<div id="cald" aria-live="polite">Tap a month to see its label, bucket split, range and reasoning.</div>
+<div class="tw" style="margin-top:12px"><table><tr><th>Src</th><th>Signal</th><th>Months</th><th>Why — derivation, not seasonality</th></tr>
+<tr><td>A</td><td><span class="bdg b-gn">BUY</span></td><td>Nov 2026</td><td>Buffer month of the Oct 4–17 window, which closed with no ruling. It authorises nothing by itself; reserve use is with you.</td></tr>
+<tr><td>H</td><td><span class="bdg b-gn">BUY</span></td><td>Jul–Oct 2027</td><td>Six to nine months before the April 2028 halving. Conditional on a base existing by then.</td></tr>
+<tr><td>H</td><td><span class="bdg b-gn">BUY</span></td><td>Jul, Aug 2028</td><td>Months 3–4 after the halving. Conditional and speculative.</td></tr>
+<tr><td>H</td><td><span class="bdg b-rd">SELL</span></td><td>Mar, Apr 2028</td><td>Pre-halving froth and sell-the-news.</td></tr>
+<tr><td>Y</td><td><span class="bdg b-rd">SELL</span></td><td>Dec 2026, Dec 2027</td><td>Year-end reduction only if a profit exists; underwater these become HOLD — which is where December 2026 sits on the Nov 11 marks.</td></tr>
+<tr><td>S</td><td><span class="bdg b-rd">SELL</span></td><td>Nov, Dec 2028</td><td>Placeholders for a decision, 750–781 days out.</td></tr>
+<tr><td>—</td><td><span class="bdg b-gy">HOLD</span></td><td>13 months</td><td>No action authorised. WAIT is a position.</td></tr></table></div></div>
+
+<div class="section"><h2><span class="n">04</span>Monthly timeline — realised history and a driftless fan</h2>
+<p class="sn">June to October 2026 are realised monthly closes. From November the chart is a driftless volatility fan anchored at the Nov 11 settle, $0.17448, with σ = 3.3742%/day (64.5% annualised; 48 log returns, Sep 24–Nov 11 closes). Buckets: up more than 25% (above $0.21810), within ±25% ($0.13086–$0.21810), down more than 25% (below $0.13086). The median is flat by construction.</p>
+<svg viewBox="0 0 900 390" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="ADA monthly closes June to October 2026 and a driftless volatility fan to December 2028">
+<line x1="62" x2="860" y1="309.8" y2="309.8" class="gl"/><text x="56" y="313.3" class="ax" text-anchor="end">0.05</text>
+<line x1="62" x2="860" y1="247.0" y2="247.0" class="gl"/><text x="56" y="250.5" class="ax" text-anchor="end">0.1</text>
+<line x1="62" x2="860" y1="184.3" y2="184.3" class="gl"/><text x="56" y="187.8" class="ax" text-anchor="end">0.2</text>
+<line x1="62" x2="860" y1="147.5" y2="147.5" class="gl"/><text x="56" y="151.0" class="ax" text-anchor="end">0.3</text>
+<line x1="62" x2="860" y1="101.3" y2="101.3" class="gl"/><text x="56" y="104.8" class="ax" text-anchor="end">0.5</text>
+<line x1="62" x2="860" y1="38.5" y2="38.5" class="gl"/><text x="56" y="42.0" class="ax" text-anchor="end">1</text>
+<polygon points="178.2,196.6 195.0,174.7 221.6,161.1 248.2,151.4 274.8,144.1 301.4,137.1 328.0,131.1 354.6,125.4 381.2,120.2 407.8,115.3 434.4,110.6 461.0,106.3 487.6,102.1 514.2,98.1 540.8,94.2 567.4,90.5 594.0,87.1 620.6,83.6 647.2,80.3 673.8,76.9 700.4,73.8 727.0,70.7 753.6,67.6 780.2,64.7 806.8,61.8 833.4,59.0 860.0,56.2 860.0,330.0 833.4,330.0 806.8,330.0 780.2,328.5 753.6,325.6 727.0,322.6 700.4,319.4 673.8,316.3 647.2,313.0 620.6,309.7 594.0,306.2 567.4,302.8 540.8,299.0 514.2,295.1 487.6,291.2 461.0,286.9 434.4,282.7 407.8,278.0 381.2,273.0 354.6,267.9 328.0,262.1 301.4,256.1 274.8,249.1 248.2,241.9 221.6,232.2 195.0,218.5 178.2,196.6" class="f90"/>
+<polygon points="178.2,196.6 195.0,187.6 221.6,182.0 248.2,178.1 274.8,175.1 301.4,172.2 328.0,169.7 354.6,167.4 381.2,165.3 407.8,163.3 434.4,161.3 461.0,159.6 487.6,157.8 514.2,156.2 540.8,154.6 567.4,153.1 594.0,151.7 620.6,150.3 647.2,148.9 673.8,147.5 700.4,146.3 727.0,145.0 753.6,143.7 780.2,142.5 806.8,141.3 833.4,140.2 860.0,139.0 860.0,254.2 833.4,253.1 806.8,251.9 780.2,250.7 753.6,249.5 727.0,248.3 700.4,247.0 673.8,245.7 647.2,244.3 620.6,243.0 594.0,241.5 567.4,240.1 540.8,238.6 514.2,237.0 487.6,235.4 461.0,233.7 434.4,231.9 407.8,230.0 381.2,227.9 354.6,225.8 328.0,223.5 301.4,221.0 274.8,218.1 248.2,215.2 221.6,211.2 195.0,205.6 178.2,196.6" class="f50"/>
+<rect x="178.2" y="163.2" width="123.2" height="3.3" class="zs"/><text x="305.4" y="168.4" class="zt">Z011 supply</text>
+<rect x="178.2" y="193.5" width="123.2" height="3.3" class="zd"/><text x="305.4" y="198.7" class="zt">Z007 demand</text>
+<rect x="178.2" y="206.8" width="123.2" height="3.6" class="zd"/><text x="305.4" y="212.0" class="zt">Z002 demand</text>
+<line x1="178.2" x2="860" y1="176.4" y2="176.4" class="th"/><text x="860" y="172.4" class="ax" text-anchor="end">+25% $0.2181</text>
+<line x1="178.2" x2="860" y1="222.7" y2="222.7" class="th"/><text x="860" y="218.7" class="ax" text-anchor="end">−25% $0.1309</text>
+<line x1="178.2" x2="860" y1="196.6" y2="196.6" class="med"/>
+<polyline points="62.0,213.9 88.6,200.0 115.2,185.3 141.8,165.3 168.4,187.5 178.2,196.6" class="rl"/>
+<circle cx="62.0" cy="213.9" r="3.5" class="rd"/>
+<circle cx="88.6" cy="200.0" r="3.5" class="rd"/>
+<circle cx="115.2" cy="185.3" r="3.5" class="rd"/>
+<circle cx="141.8" cy="165.3" r="3.5" class="rd"/>
+<circle cx="168.4" cy="187.5" r="3.5" class="rd"/>
+<circle cx="178.2" cy="196.6" r="5" class="an"/><text x="174.2" y="238.6" class="at" text-anchor="end">Nov 11 settle $0.17448</text>
+<line x1="660.5" x2="660.5" y1="22" y2="330" class="hv"/><text x="664.5" y="32" class="ax">~Apr 2028 halving</text>
+<text x="62.0" y="348" class="ax" text-anchor="middle">Jun 26</text>
+<text x="168.4" y="348" class="ax" text-anchor="middle">Oct 26</text>
+<text x="248.2" y="348" class="ax" text-anchor="middle">Jan 27</text>
+<text x="407.8" y="348" class="ax" text-anchor="middle">Jul 27</text>
+<text x="567.4" y="348" class="ax" text-anchor="middle">Jan 28</text>
+<text x="727.0" y="348" class="ax" text-anchor="middle">Jul 28</text>
+<text x="860.0" y="348" class="ax" text-anchor="middle">Dec 28</text>
+<text x="62" y="382" class="ax">Log scale. Inner band 25th–75th, outer 5th–95th percentile (clipped at the $0.04 floor), zero drift. Zones drawn Nov–Mar only.</text>
+</svg>
+<h3>This month · structure, not probability</h3>
+<div class="tw"><table><tr><th>Determination</th><th>Branches, pre-registered in the CRE reports</th><th>Live now (determines nothing)</th></tr>
+<tr><td>Z007 floor $0.1740 · tonight</td><td>&lt; $0.17374 → invalidation 1 of 2, clean, and STR-ADA-003 down 1 of 2 · $0.17374–$0.17426 LOW-CONF · above → stays 0 of 2.</td><td>$0.17414 — inside the LOW-CONF band</td></tr>
+<tr><td>BUY 2 stop $0.173 · tonight</td><td>&lt; $0.17274 → 1 of 2, clean · $0.17274–$0.17326 LOW-CONF (split feeds → half size first).</td><td>0.65% above the line</td></tr>
+<tr><td>FR-ADA-011 · Nov 14</td><td>D → SC-ADA-005 hit, pre-published −5.7688 (diff −0.0525) · A +0.1540 · B/C +0.1880. A non-D result needs a close ≥ $0.21188 (21.4% above).</td><td>Band D, 2 of 5 closes</td></tr>
+<tr><td>P1 kill-check · Nov 14</td><td>Pre-registered Nov 12: on D it fires under all three readings (ratio mean −3.0987 governs). If it fires, FR-ADA-012 is built zero-adjustment at baseline weights.</td><td>On the D branch</td></tr>
+<tr><td>STR-ADA-003 · by Nov 25</td><td>Z007 invalidated first 62% / Z010 floor reclaimed first 24% / neither 9% / R 5%. Pre-published: down +0.0935 · up −0.0482 · neither −0.0143.</td><td>Both counters 0 of 2</td></tr>
+<tr><td>AO-ADA-005 · Nov 14 (overlay)</td><td>YES if the Nov 14 settle &lt; $0.19005: +0.2369 · NO −0.1723.</td><td>8.92% under anchor → YES branch</td></tr></table></div>
+<div class="tw" style="margin-top:10px"><table><tr><th>When</th><th>Dated item</th><th>State</th></tr>
+<tr><td>Nov 12 settle</td><td>Z007 floor and BUY 2 counters; U1-T2 (floor $0.18098, display only)</td><td>Live inside the LOW-CONF band</td></tr>
+<tr><td>Nov 13 15:54 UTC</td><td>Mercury direct — FAKEOUT-RISK flag ends (overlay)</td><td>Overlay only</td></tr>
+<tr><td>Nov 14 settle</td><td>FR-ADA-011, P1 kill-check, AO-ADA-005; FR-ADA-012 registers on that close</td><td>Interim D · interim YES</td></tr>
+<tr><td>Nov 17 11:48 UTC</td><td>First Quarter Moon — DISTURBANCE zone (overlay)</td><td>No directional call</td></tr>
+<tr><td>Nov 18 settle</td><td>AO-ADA-006 anchor (Full Moon Nov 24 14:53 UTC, window Nov 19–29)</td><td>Registered, overlay only</td></tr>
+<tr><td>Nov 25 settle</td><td>STR-ADA-003 expires</td><td>Open</td></tr>
+<tr><td>Nov 30 settle</td><td>November monthly close</td><td>−9.55% on the Nov 11 settle</td></tr></table></div>
+<h3>Month by month · up / within / down, expected range, narrative, action</h3>
+<p class="sn">Tap a month. Bar = up · within · down, measured from the Nov 11 close.</p>
+<details class="mc"><summary><span class="mn">Jun 2026</span><span class="bdg b-gy">realised</span><span class="mono">$0.14420</span><span class="mono">—</span></summary><p>CoinGecko basis (Jul 1 00:00 point).</p></details>
+<details class="mc"><summary><span class="mn">Jul 2026</span><span class="bdg b-gy">realised</span><span class="mono">$0.16805</span><span class="mono">+16.54%</span></summary><p>CoinGecko basis.</p></details>
+<details class="mc"><summary><span class="mn">Aug 2026</span><span class="bdg b-gy">realised</span><span class="mono">$0.19781</span><span class="mono">+17.71%</span></summary><p>mixed: CoinGecko Jul close → Crypto.com Aug 31.</p></details>
+<details class="mc"><summary><span class="mn">Sep 2026</span><span class="bdg b-gy">realised</span><span class="mono">$0.24669</span><span class="mono">+24.71%</span></summary><p>Crypto.com.</p></details>
+<details class="mc"><summary><span class="mn">Oct 2026</span><span class="bdg b-gy">realised</span><span class="mono">$0.19290</span><span class="mono">-21.80%</span></summary><p>Crypto.com · labelled BUY (A); window closed with no ruling, reserve not deployed.</p></details>
+<details class="mc"><summary><span class="mn">Nov 2026</span><span class="bdg b-gn">BUY · A</span><span class="bar"><i class="u" style="width:6%"></i><i class="w" style="width:91%"></i><i class="d" style="width:3%"></i></span><span class="mono">6 / 91 / 3</span></summary><p><b>Expected range (central 50%):</b> $0.1580–$0.1927 · 5th–95th $0.1370–$0.2222 · horizon 19 days from the Nov 11 candle.</p><p>Buffer month of the closed Oct 4–17 window. It authorises nothing by itself: the 25% reserve and the capital freed by BUY 4’s exit stay uncommitted until you rule. Structure decides first: price sits on the Z007 floor ($0.1740), 0.85% above BUY 2’s line ($0.173).</p></details>
+<details class="mc"><summary><span class="mn">Dec 2026</span><span class="bdg b-rd">SELL · Y</span><span class="bar"><i class="u" style="width:17%"></i><i class="w" style="width:72%"></i><i class="d" style="width:11%"></i></span><span class="mono">17 / 72 / 11</span></summary><p><b>Expected range (central 50%):</b> $0.1485–$0.2049 · 5th–95th $0.1178–$0.2583 · horizon 50 days from the Nov 11 candle.</p><p>Year-end reduction, only if there is a profit to take. On the Nov 11 marks both held tranches are underwater (BUY 1 −4.13%, BUY 2 −0.30%), so today this reads HOLD. The Dec 9 FOMC (with projections) and Dec 10 CPI land mid-month in thin liquidity.</p></details>
+<details class="mc"><summary><span class="mn">Jan 2027</span><span class="bdg b-gy">HOLD</span><span class="bar"><i class="u" style="width:23%"></i><i class="w" style="width:60%"></i><i class="d" style="width:17%"></i></span><span class="mono">23 / 60 / 17</span></summary><p><b>Expected range (central 50%):</b> $0.1422–$0.2141 · 5th–95th $0.1059–$0.2875 · horizon 81 days from the Nov 11 candle.</p><p>No action authorised. Q1 2027 is the post-window assessment: whether a base confirms in Q4 2026 sets the 2027 regime.</p></details>
+<details class="mc"><summary><span class="mn">Feb 2027</span><span class="bdg b-gy">HOLD</span><span class="bar"><i class="u" style="width:26%"></i><i class="w" style="width:53%"></i><i class="d" style="width:21%"></i></span><span class="mono">26 / 53 / 21</span></summary><p><b>Expected range (central 50%):</b> $0.1376–$0.2213 · 5th–95th $0.0977–$0.3115 · horizon 109 days from the Nov 11 candle.</p><p>No action authorised. Q1 2027 is the post-window assessment: whether a base confirms in Q4 2026 sets the 2027 regime.</p></details>
+<details class="mc"><summary><span class="mn">Mar 2027</span><span class="bdg b-gy">HOLD</span><span class="bar"><i class="u" style="width:29%"></i><i class="w" style="width:47%"></i><i class="d" style="width:24%"></i></span><span class="mono">29 / 47 / 24</span></summary><p><b>Expected range (central 50%):</b> $0.1333–$0.2284 · 5th–95th $0.0905–$0.3365 · horizon 140 days from the Nov 11 candle.</p><p>No action authorised. Q1 2027 is the post-window assessment: whether a base confirms in Q4 2026 sets the 2027 regime.</p></details>
+<details class="mc"><summary><span class="mn">Apr 2027</span><span class="bdg b-gy">HOLD</span><span class="bar"><i class="u" style="width:31%"></i><i class="w" style="width:43%"></i><i class="d" style="width:26%"></i></span><span class="mono">31 / 43 / 26</span></summary><p><b>Expected range (central 50%):</b> $0.1297–$0.2348 · 5th–95th $0.0846–$0.3598 · horizon 170 days from the Nov 11 candle.</p><p>No action authorised. The halving clock is not yet in its pre-event stretch; WAIT is the position.</p></details>
+<details class="mc"><summary><span class="mn">May 2027</span><span class="bdg b-gy">HOLD</span><span class="bar"><i class="u" style="width:32%"></i><i class="w" style="width:41%"></i><i class="d" style="width:27%"></i></span><span class="mono">32 / 41 / 27</span></summary><p><b>Expected range (central 50%):</b> $0.1264–$0.2409 · 5th–95th $0.0794–$0.3833 · horizon 201 days from the Nov 11 candle.</p><p>No action authorised. The halving clock is not yet in its pre-event stretch; WAIT is the position.</p></details>
+<details class="mc"><summary><span class="mn">Jun 2027</span><span class="bdg b-gy">HOLD</span><span class="bar"><i class="u" style="width:33%"></i><i class="w" style="width:38%"></i><i class="d" style="width:29%"></i></span><span class="mono">33 / 38 / 29</span></summary><p><b>Expected range (central 50%):</b> $0.1235–$0.2466 · 5th–95th $0.0751–$0.4056 · horizon 231 days from the Nov 11 candle.</p><p>No action authorised. The halving clock is not yet in its pre-event stretch; WAIT is the position.</p></details>
+<details class="mc"><summary><span class="mn">Jul 2027</span><span class="bdg b-gn">BUY · H</span><span class="bar"><i class="u" style="width:34%"></i><i class="w" style="width:36%"></i><i class="d" style="width:30%"></i></span><span class="mono">34 / 36 / 30</span></summary><p><b>Expected range (central 50%):</b> $0.1207–$0.2522 · 5th–95th $0.0711–$0.4285 · horizon 262 days from the Nov 11 candle.</p><p>Six to nine months before the April 2028 halving, where pre-event accumulation has historically begun. A regime label, conditional on a base existing by then. Not a signal.</p></details>
+<details class="mc"><summary><span class="mn">Aug 2027</span><span class="bdg b-gn">BUY · H</span><span class="bar"><i class="u" style="width:35%"></i><i class="w" style="width:34%"></i><i class="d" style="width:31%"></i></span><span class="mono">35 / 34 / 31</span></summary><p><b>Expected range (central 50%):</b> $0.1182–$0.2576 · 5th–95th $0.0675–$0.4512 · horizon 293 days from the Nov 11 candle.</p><p>Six to nine months before the April 2028 halving, where pre-event accumulation has historically begun. A regime label, conditional on a base existing by then. Not a signal.</p></details>
+<details class="mc"><summary><span class="mn">Sep 2027</span><span class="bdg b-gn">BUY · H</span><span class="bar"><i class="u" style="width:36%"></i><i class="w" style="width:32%"></i><i class="d" style="width:32%"></i></span><span class="mono">36 / 32 / 32</span></summary><p><b>Expected range (central 50%):</b> $0.1159–$0.2627 · 5th–95th $0.0643–$0.4731 · horizon 323 days from the Nov 11 candle.</p><p>Six to nine months before the April 2028 halving, where pre-event accumulation has historically begun. A regime label, conditional on a base existing by then. Not a signal.</p></details>
+<details class="mc"><summary><span class="mn">Oct 2027</span><span class="bdg b-gn">BUY · H</span><span class="bar"><i class="u" style="width:36%"></i><i class="w" style="width:31%"></i><i class="d" style="width:33%"></i></span><span class="mono">36 / 31 / 33</span></summary><p><b>Expected range (central 50%):</b> $0.1137–$0.2677 · 5th–95th $0.0614–$0.4958 · horizon 354 days from the Nov 11 candle.</p><p>Six to nine months before the April 2028 halving, where pre-event accumulation has historically begun. A regime label, conditional on a base existing by then. Not a signal.</p></details>
+<details class="mc"><summary><span class="mn">Nov 2027</span><span class="bdg b-gy">HOLD</span><span class="bar"><i class="u" style="width:37%"></i><i class="w" style="width:30%"></i><i class="d" style="width:33%"></i></span><span class="mono">37 / 30 / 33</span></summary><p><b>Expected range (central 50%):</b> $0.1117–$0.2725 · 5th–95th $0.0588–$0.5177 · horizon 384 days from the Nov 11 candle.</p><p>No action authorised. The halving clock is not yet in its pre-event stretch; WAIT is the position.</p></details>
+<details class="mc"><summary><span class="mn">Dec 2027</span><span class="bdg b-rd">SELL · Y</span><span class="bar"><i class="u" style="width:37%"></i><i class="w" style="width:29%"></i><i class="d" style="width:34%"></i></span><span class="mono">37 / 29 / 34</span></summary><p><b>Expected range (central 50%):</b> $0.1097–$0.2774 · 5th–95th $0.0563–$0.5405 · horizon 415 days from the Nov 11 candle.</p><p>Year-end reduction, conditional on a profit existing then; underwater it becomes HOLD. Thin December liquidity distorts execution.</p></details>
+<details class="mc"><summary><span class="mn">Jan 2028</span><span class="bdg b-gy">HOLD</span><span class="bar"><i class="u" style="width:38%"></i><i class="w" style="width:28%"></i><i class="d" style="width:34%"></i></span><span class="mono">38 / 28 / 34</span></summary><p><b>Expected range (central 50%):</b> $0.1079–$0.2822 · 5th–95th $0.0540–$0.5634 · horizon 446 days from the Nov 11 candle.</p><p>No action authorised. In this framework WAIT is a position, and most months are one.</p></details>
+<details class="mc"><summary><span class="mn">Feb 2028</span><span class="bdg b-gy">HOLD</span><span class="bar"><i class="u" style="width:38%"></i><i class="w" style="width:27%"></i><i class="d" style="width:35%"></i></span><span class="mono">38 / 27 / 35</span></summary><p><b>Expected range (central 50%):</b> $0.1062–$0.2865 · 5th–95th $0.0520–$0.5849 · horizon 475 days from the Nov 11 candle.</p><p>No action authorised. In this framework WAIT is a position, and most months are one.</p></details>
+<details class="mc"><summary><span class="mn">Mar 2028</span><span class="bdg b-rd">SELL · H</span><span class="bar"><i class="u" style="width:38%"></i><i class="w" style="width:27%"></i><i class="d" style="width:35%"></i></span><span class="mono">38 / 27 / 35</span></summary><p><b>Expected range (central 50%):</b> $0.1046–$0.2911 · 5th–95th $0.0501–$0.6081 · horizon 506 days from the Nov 11 candle.</p><p>The month before the halving, where froth has historically peaked. The clearest distribution logic on the forward map.</p></details>
+<details class="mc"><summary><span class="mn">Apr 2028</span><span class="bdg b-rd">SELL · H</span><span class="bar"><i class="u" style="width:39%"></i><i class="w" style="width:25%"></i><i class="d" style="width:36%"></i></span><span class="mono">39 / 25 / 36</span></summary><p><b>Expected range (central 50%):</b> $0.1030–$0.2955 · 5th–95th $0.0483–$0.6307 · horizon 536 days from the Nov 11 candle.</p><p>The halving month, historically a sell-the-news event.</p></details>
+<details class="mc"><summary><span class="mn">May 2028</span><span class="bdg b-gy">HOLD</span><span class="bar"><i class="u" style="width:39%"></i><i class="w" style="width:25%"></i><i class="d" style="width:36%"></i></span><span class="mono">39 / 25 / 36</span></summary><p><b>Expected range (central 50%):</b> $0.1015–$0.3000 · 5th–95th $0.0465–$0.6542 · horizon 567 days from the Nov 11 candle.</p><p>No action authorised. In this framework WAIT is a position, and most months are one.</p></details>
+<details class="mc"><summary><span class="mn">Jun 2028</span><span class="bdg b-gy">HOLD</span><span class="bar"><i class="u" style="width:39%"></i><i class="w" style="width:25%"></i><i class="d" style="width:36%"></i></span><span class="mono">39 / 25 / 36</span></summary><p><b>Expected range (central 50%):</b> $0.1001–$0.3043 · 5th–95th $0.0450–$0.6772 · horizon 597 days from the Nov 11 candle.</p><p>No action authorised. In this framework WAIT is a position, and most months are one.</p></details>
+<details class="mc"><summary><span class="mn">Jul 2028</span><span class="bdg b-gn">BUY · H</span><span class="bar"><i class="u" style="width:40%"></i><i class="w" style="width:23%"></i><i class="d" style="width:37%"></i></span><span class="mono">40 / 23 / 37</span></summary><p><b>Expected range (central 50%):</b> $0.0986–$0.3086 · 5th–95th $0.0434–$0.7011 · horizon 628 days from the Nov 11 candle.</p><p>Months 3–4 after the halving, where re-accumulation has historically resumed after the sell-the-news unwind. Conditional and speculative.</p></details>
+<details class="mc"><summary><span class="mn">Aug 2028</span><span class="bdg b-gn">BUY · H</span><span class="bar"><i class="u" style="width:40%"></i><i class="w" style="width:23%"></i><i class="d" style="width:37%"></i></span><span class="mono">40 / 23 / 37</span></summary><p><b>Expected range (central 50%):</b> $0.0973–$0.3130 · 5th–95th $0.0420–$0.7253 · horizon 659 days from the Nov 11 candle.</p><p>Months 3–4 after the halving, where re-accumulation has historically resumed after the sell-the-news unwind. Conditional and speculative.</p></details>
+<details class="mc"><summary><span class="mn">Sep 2028</span><span class="bdg b-gy">HOLD</span><span class="bar"><i class="u" style="width:40%"></i><i class="w" style="width:23%"></i><i class="d" style="width:37%"></i></span><span class="mono">40 / 23 / 37</span></summary><p><b>Expected range (central 50%):</b> $0.0960–$0.3171 · 5th–95th $0.0406–$0.7490 · horizon 689 days from the Nov 11 candle.</p><p>No action authorised. In this framework WAIT is a position, and most months are one.</p></details>
+<details class="mc"><summary><span class="mn">Oct 2028</span><span class="bdg b-gy">HOLD</span><span class="bar"><i class="u" style="width:40%"></i><i class="w" style="width:22%"></i><i class="d" style="width:38%"></i></span><span class="mono">40 / 22 / 38</span></summary><p><b>Expected range (central 50%):</b> $0.0947–$0.3213 · 5th–95th $0.0394–$0.7736 · horizon 720 days from the Nov 11 candle.</p><p>No action authorised. In this framework WAIT is a position, and most months are one.</p></details>
+<details class="mc"><summary><span class="mn">Nov 2028</span><span class="bdg b-rd">SELL · S</span><span class="bar"><i class="u" style="width:40%"></i><i class="w" style="width:22%"></i><i class="d" style="width:38%"></i></span><span class="mono">40 / 22 / 38</span></summary><p><b>Expected range (central 50%):</b> $0.0936–$0.3254 · 5th–95th $0.0382–$0.7978 · horizon 750 days from the Nov 11 candle.</p><p>Markup distribution if the cycle actually delivered. The most speculative cells on the map: placeholders for a decision, not a decision.</p></details>
+<details class="mc"><summary><span class="mn">Dec 2028</span><span class="bdg b-rd">SELL · S</span><span class="bar"><i class="u" style="width:41%"></i><i class="w" style="width:21%"></i><i class="d" style="width:38%"></i></span><span class="mono">41 / 21 / 38</span></summary><p><b>Expected range (central 50%):</b> $0.0924–$0.3296 · 5th–95th $0.0370–$0.8230 · horizon 781 days from the Nov 11 candle.</p><p>Markup distribution if the cycle actually delivered. The most speculative cells on the map: placeholders for a decision, not a decision.</p></details>
+</div>
+
+<div class="section"><h2><span class="n">05</span>Wyckoff path — where the structure is and what each level means</h2>
+<p class="sn">A path with conditions, not a prediction. Levels come from the CRE reports; none is added here.</p>
+<div class="tw"><table><tr><th>Stage</th><th>Window</th><th>What it looks like, and what breaks it</th></tr>
+<tr><td>Breakout, climax, AR <span class="bdg b-gy">DONE</span></td><td>Aug 20 – Oct 8</td><td>BC $0.28217 Oct 6; climax confirmed Oct 8, AR $0.22384.</td></tr>
+<tr><td>Failure into markdown <span class="bdg b-gy">DONE</span></td><td>Oct 15 – Oct 28</td><td>AR broken Oct 17–18; Z010 confirmed; reclaim failed Oct 22; six closes inside Z010.</td></tr>
+<tr><td>Z010 invalidated <span class="bdg b-gy">DONE</span></td><td>Oct 29 – Oct 30</td><td>Two closes below $0.20117; DURABLE 10 of 10.</td></tr>
+<tr><td>Oct 30 base attempt failed <span class="bdg b-gy">DONE</span></td><td>Oct 31 – Nov 8</td><td>Nov 4 rally rejected at the broken Z010 floor; Nov 5 −8.34%; Oct 30 low retired on closes.</td></tr>
+<tr><td>Z007 confirmed <span class="bdg b-gy">DONE</span></td><td>Nov 5 – Nov 7</td><td>Touched Nov 5, confirmed Nov 6 (precedent) and Nov 7 (strict). BUY 3 exited Nov 9.</td></tr>
+<tr><td>On the Z007 floor <span class="bdg b-gn">LIVE</span></td><td>Nov 8 → now</td><td>Four closes $0.17403–$0.17751. <b>Breaks down</b> on two closes below $0.1740 (Z007 INVALIDATED, STR-ADA-003 down) and two below $0.173 (BUY 2 exits); Z002 ($0.150–$0.156) is next. <b>Phase A begins</b> with a climactic low, or an automatic rally above $0.17989 then $0.18347, then a test holding $0.17045.</td></tr>
+<tr><td>Thesis line</td><td>settled closes</td><td>BUY 1: two closes below $0.1596.</td></tr>
+<tr><td>Beyond 2027 →</td><td></td><td>The halving clock takes over as the organising layer.</td></tr></table></div>
+<p class="sn" style="margin-top:10px"><b>What this does and does not decide.</b> An automatic rally would promote the Phase A read; it would not authorise capital. No tranche is registered on it, and there is no re-entry rule for BUY 3 or BUY 4.</p></div>
+
+<div class="section"><h2><span class="n">06</span>Macro cycle roadmap</h2>
+<p class="sn">Dated events only. None overrides Wyckoff structure; these modify confidence, not direction.</p>
+<div class="tw"><table><tr><th>When</th><th>Event</th><th>Why it matters</th></tr>
+<tr><td>Nov 10</td><td>US CPI (October)</td><td>+0.4% m/m, core +0.3% (above forecasts, per the Nov 11 report; not re-verified here). ADA settled −1.96% that day; no effect is claimed. <span class="bdg b-gy">Passed — hot</span></td></tr>
+<tr><td>Dec 9</td><td>FOMC + projections</td><td>Last decision of the year after a September hike and an October hold at 3.75%–4.00%. New Moon falls the same day (overlay only). <span class="bdg b-gy">Upcoming</span></td></tr>
+<tr><td>Dec 10</td><td>US CPI (November)</td><td>The day after the decision; thin year-end liquidity. <span class="bdg b-gy">Upcoming</span></td></tr>
+<tr><td>Jan 27, 2027</td><td>FOMC</td><td>No projections. <span class="bdg b-gy">Scheduled</span></td></tr>
+<tr><td>Feb 9, 2027</td><td>Next Mercury retrograde</td><td>Overlay only; an ADA Rx claim would need registration before it (open referral).</td></tr>
+<tr><td>Q1 2027</td><td>Post-window assessment</td><td>Whether a base confirms sets the 2027 regime. Every 2027 label is conditional on this.</td></tr>
+<tr><td>Mid 2027</td><td>Pre-halving clock starts</td><td>The April 2028 halving enters the twelve-month window.</td></tr>
+<tr><td>~Apr 2028</td><td>BTC halving</td><td>Historically sell-the-news — the source of the Mar/Apr 2028 SELL labels.</td></tr>
+<tr><td>H2 2028</td><td>Post-halving</td><td>Beyond what this campaign’s structure can specify.</td></tr></table></div>
+<p class="sn" style="margin-top:10px"><b>Zero-weight layers, disclosed.</b> Shmita carries no weight. Mercury stations direct Nov 13 15:54:32 UTC; the Moon (ephem, Nov 12 12:00 UTC) is 9.6% lit and waning, inside the New Moon window to Nov 14. Overlay register (ADA): resolved n = 3, mean −0.0787; open AO-ADA-005, AO-ADA-006. The overlay changes nothing here.</p></div>
+
+<div class="section"><h2><span class="n">07</span>Execution plan</h2>
+<div class="banner" style="margin-bottom:12px"><b>Still with you.</b> Post-window use of the 25% reserve · BUY 3 and BUY 4’s freed capital (uncommitted by default; no re-entry rule) · Q3 defaults now recorded for R-ADA-S, R-ADA-P, R-ADA-F and R-ADA-D, each of which you may override · ADA Mercury-tilt shadow tree and an ADA Rx claim before Feb 9, 2027 · any AR-linked entry, which would need your sizing and registration before its trigger close.</div>
+<div class="tw"><table><tr><th>Tranche</th><th>Fill</th><th>Nov 11 close</th><th>Live</th><th>Stop</th><th>Stop vs entry</th><th>Stop vs close</th></tr>
+<tr><td>BUY 1</td><td class="mono">$0.18200 ASSUMED</td><td>−4.13%</td><td>−4.32%</td><td>2 closes &lt; $0.1596</td><td>−12.31%</td><td>−8.53%</td></tr>
+<tr><td>BUY 2</td><td class="mono">$0.17500 implied</td><td>−0.30%</td><td>−0.49%</td><td>2 closes &lt; $0.1730</td><td>−1.14%</td><td>−0.85%</td></tr>
+<tr><td>BUY 3</td><td class="mono">$0.18961 implied</td><td colspan="2">EXITED Nov 9 settle $0.17751 (−6.38%)</td><td>—</td><td>—</td><td>—</td></tr>
+<tr><td>BUY 4</td><td class="mono">$0.19365 implied</td><td colspan="2">EXITED Nov 2 settle $0.18869 (−2.56%)</td><td>—</td><td>—</td><td>—</td></tr>
+<tr><td>TR-ADA-001 (trim)</td><td class="mono">sold $0.25976</td><td>32.83% in favour</td><td>32.96% in favour</td><td colspan="3">(entry − price) ÷ entry · filled Oct 4</td></tr></table></div>
+<div class="tw" style="margin-top:10px"><table><tr><th>Parameter</th><th>Specification</th></tr>
+<tr><td>Action today</td><td>HOLD BUY 1–2. Nothing armed. Dry powder: 25% reserve + 2.5% uncommitted + BUY 3 and BUY 4’s freed capital.</td></tr>
+<tr><td>Confidence and risk</td><td>As of the Nov 12 report: aggressiveness 1/10, risk Very High, T (Tier 1 only) 35 at its Q4 cap / S 34 / C 58, not blended.</td></tr>
+<tr><td>Tonight</td><td>Z007 floor and BUY 2 counters — see the §04 panel. Live is in the floor’s LOW-CONF band.</td></tr>
+<tr><td>Confirmation triggers</td><td>Markdown: two closes below $0.1740 (Z007 INVALIDATED), two below $0.173 (BUY 2 exits). Phase A: climactic low or closes above $0.17989 then $0.18347, then a test holding $0.17045.</td></tr>
+<tr><td>Hard invalidation</td><td>BUY 2: two closes below $0.173, 0.85% under the settle (~0.13 ATR). BUY 1 / thesis: two closes below $0.1596.</td></tr>
+<tr><td>Open forecasts</td><td>FR-ADA-011 (Nov 14) · STR-ADA-003 (Nov 25). Overlay: AO-ADA-005 (Nov 14), AO-ADA-006 (Nov 29). A Z007 invalidation on Nov 12–14 closes would decide STR-ADA-003 down while FR-ADA-011 resolves D — flagged as a correlated pair (A27) if they share a deciding close.</td></tr>
+<tr><td>Prohibited</td><td>No determination on the live Nov 12 candle. No pre-emptive stop action. No reserve or freed-capital use without your ruling. No unregistered entry on an automatic rally.</td></tr></table></div></div>
+
+<div class="section"><h2><span class="n">08</span>Principal risks</h2>
+<div class="tw"><table><tr><th>Risk</th><th>Description</th><th>Severity</th></tr>
+<tr><td>Z007 floor</td><td>0.28% under the settle (about 0.04 ATR); live is inside its LOW-CONF band. Two closes below invalidate the last confirmed demand zone; the next is Z002, 10.59% lower.</td><td>High</td></tr>
+<tr><td>BUY 2 stop</td><td>0.85% under the settle; one ordinary down day reaches it.</td><td>High</td></tr>
+<tr><td>Persistent downtrend</td><td>October −21.80%, November −9.55% so far, lowest closes since mid-August.</td><td>High</td></tr>
+<tr><td>Scoring artifact</td><td>DEGENERATE trees: FR-ADA-011 D pre-published −5.77; the P1 kill-check fires on D. FR-ADA-012 then moves to zero-adjustment.</td><td>Decision</td></tr>
+<tr><td>Capital by default</td><td>Reserve and freed BUY 3/BUY 4 capital undefined until you rule.</td><td>Decision</td></tr>
+<tr><td>Feed straddle at the floor</td><td>Nov 10 closed on opposite sides of $0.1740 on the two feeds; the authoritative feed governs, LOW-CONF tags apply.</td><td>Medium</td></tr>
+<tr><td>Event risk</td><td>Dec 9 FOMC with projections; Dec 10 CPI.</td><td>Medium</td></tr>
+<tr><td>Fan read as a forecast</td><td>Up / within / down describes width under zero drift.</td><td>Structural</td></tr>
+<tr><td>Tier 3.5 dark</td><td>No ADA funding, OI or liquidations for 77 sessions.</td><td>Medium</td></tr></table></div></div>
+
+<div class="section"><h2><span class="n">09</span>Appendix — last map scored, register, methodology, provenance</h2>
+<h3>The Nov 5 map, scored against what happened</h3>
+<div class="tw"><table><tr><th>Nov 5 map item</th><th>What it showed</th><th>Outcome</th></tr>
+<tr><td>Z010 reversal tonight (Nov 4)</td><td>Live 2.33% under $0.20117; high tagged it</td><td>Settled $0.19744 → stays 0 of 2, as the live branch showed</td></tr>
+<tr><td>Oct 30 low $0.18235</td><td>Live 7.81% above; SC candidate</td><td>Held Nov 4; lost Nov 5; retired on closes by Nov 8</td></tr>
+<tr><td>BUY 3 stop $0.18050</td><td>8.18% below live</td><td>Stopped 2 of 2 Nov 8–9, exited $0.17751</td></tr>
+<tr><td>Phase A alternate</td><td>Needed an automatic rally on settled closes</td><td>Failed: Nov 4 rally rejected, Nov 5 −8.34%</td></tr>
+<tr><td>FR-ADA-010</td><td>Interim D; D pre-published −4.4909</td><td>D, −4.4909, SC-ADA-004 hit</td></tr>
+<tr><td>AO-ADA-005</td><td>Interim NO</td><td>Now interim YES (−8.19% vs anchor); resolves Nov 14</td></tr>
+<tr><td>Nov 10 CPI</td><td>Upcoming</td><td>+0.4% m/m, core +0.3%</td></tr>
+<tr><td>November card</td><td>13 / 80 / 7 from $0.19005</td><td>−8.19% from that anchor on Nov 11 → “within” so far (cards are not scored)</td></tr></table></div>
+<h3>Register, as of the Nov 12 report</h3>
+<p class="sn">T class (Tier 1 only, ratio skill as written): 9 scored, mean −1.1515, wins 1 of 9; excluding the two DEGENERATE trees (U6a) −0.1329 (n = 7); SC 4 of 4. FR-ADA-007 D +0.2946 · FR-ADA-008 D −0.5860 · FR-ADA-009 D −4.9423 · FR-ADA-010 D −4.4909. Structure claims 2 of 2, mean +0.0763. Open: FR-ADA-011 (anchor $0.17751; 3/7/7/78 + R5 against 0.26/1.32/1.32/92.10 + R5; DEGENERATE; Nov 14) and STR-ADA-003 (Nov 25). FR-ADA-012 previewed at proxy anchor $0.17448. Overlay, separate: resolved n = 3, −0.0787; open AO-ADA-005, AO-ADA-006. Calibration (U1, display only): U1-T1 YES at a 46.6% table rate. The 31 monthly cards are not registered forecasts.</p>
+<h3>Methodology</h3>
+<p class="sn"><b>Volatility.</b> σ = 3.3742%/day from 48 daily log returns of settled Crypto.com closes, Sep 24–Nov 11 (64.5% annualised); the live Nov 12 session is excluded. Driftless on purpose. <b>Anchor and horizon.</b> Anchor = Nov 11 settle $0.17448; horizon = days from the Nov 11 candle to each month-end candle (November 19, December 2028 781). <b>Buckets.</b> up = 1 − Φ(ln 1.25 / σ√t); down = Φ(ln 0.75 / σ√t); within = 100 − up − down. Cards show 25th–75th percentiles; the chart’s outer band is 5th–95th, clipped at $0.04. <b>Labels.</b> From dated cycle anchors only (A, H, Y, S); never blended into the percentages. <b>Realised months.</b> June and July are CoinGecko 00:00 points ($0.14420, $0.16805); August–October are Crypto.com settles.</p>
+<h3>Corrections this session</h3>
+<div class="tw"><table><tr><th>#</th><th>Before (Nov 5 map)</th><th>After</th></tr>
+<tr><td>MC1</td><td>Nov 4 settle shown as live $0.19659</td><td>Settled $0.19744 (+3.89%, 12.97M)</td></tr>
+<tr><td>MC2</td><td>BUY 3 implied fill $0.18960</td><td>$0.18961, per the campaign record (Nov 10 report); 0.0005% difference, from rescaled marks</td></tr>
+<tr><td>MC3</td><td>Dated item: Nov 24 Full Moon “no claim registered”</td><td>AO-ADA-006 registered after that map (per the Nov 12 report; anchor Nov 18 close)</td></tr>
+<tr><td>MC4</td><td>σ 73.0% annualised</td><td>64.5%: the window rolled forward eight days; not an error, disclosed so the narrower fan is not read as calmer conditions</td></tr></table></div>
+<h3>Provenance</h3>
+<p class="sn"><b>Fetched this session:</b> Crypto.com ADA_USDT and BTC_USDT 1D (50 candles each) and the ADA ticker (01:04:34 UTC); CoinGecko ADA daily OHLC (14 days); ephem moon phases. <b>Carried from the Nov 12 report and campaign record, not re-derived:</b> register and skill scores, FR-ADA-011, STR-ADA-003 and AO-ADA-006 parameters, the P1 kill-check readings, counters, durability, confidence, risk, ATR figures, the Tier 3.5 session count, tranche fills, the CPI print and the BTC kill level. <b>Not obtained:</b> ADA funding, open interest, liquidations, long/short, Fear &amp; Greed and flows; any verified cause for the Nov 4–11 moves. <b>Harness:</b> archive stale-checked against the feed, numbers recomputed, SVG bounds and tag balance checked before write.</p></div>
+<p class="foot">Structural orientation and probabilistic output — not financial advice.</p>
+<script>
+(function(){var g=document.getElementById('calg'),d=document.getElementById('cald');
+g.addEventListener('click',function(e){var b=e.target.closest('.cal');if(!b)return;
+g.querySelectorAll('.cal').forEach(function(x){x.setAttribute('aria-pressed','false')});b.setAttribute('aria-pressed','true');d.textContent=b.getAttribute('data-d');});})();
+</script>
+</body>
+</html>

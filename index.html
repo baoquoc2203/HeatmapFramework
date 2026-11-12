@@ -168,20 +168,20 @@
     <div class="card gold">
       <div class="c-icon">◎</div>
       <div class="c-label">Portfolio value</div>
-      <div class="c-val">$478.00</div>
-      <div class="c-sub">Nov 4 UTC close, +3.06% on the session · a $500 book plus $5.66 realised · peaked at $535.72 on Oct 28, max drawdown −14.7% · no orders placed</div>
+      <div class="c-val">$367.12</div>
+      <div class="c-sub">Nov 11 UTC close, −1.21% on the session and <b>−26.6% against capital</b> · peaked at $535.72 on Oct 28, max drawdown now <b>−31.5%</b> · the R5 capital brake is <b>ON</b> and lifts only on two closes ≥ $420, which needs +14.4%</div>
     </div>
     <div class="card green">
       <div class="c-icon">◈</div>
       <div class="c-label">Positions</div>
-      <div class="c-val">4 / 4 core · 2 micro</div>
-      <div class="c-sub">AI and PONS full at DCA 4/4 · CASHCAT 2/4, next add on a close ≤ 0.086031 · HMM 1/4 and now +11.6% over cost · KITSU micro 1/1 · MicroDuck half sold at ×2.13, trailing recomputed to 0.0033732 on Nov 4</div>
+      <div class="c-val">4 / 4 core · 1 micro</div>
+      <div class="c-sub">AI, PONS and now CASHCAT all full at DCA 4/4 — CASHCAT took its fourth and last buy at the Nov 11 close, $25 at 0.05546, which R5 allowed because the brake does not lock DCA · HMM 1/4 · KITSU micro 1/1 · <b>MicroDuck fully exited Nov 8</b>, the second half at ×1.05 after the first at ×2.49</div>
     </div>
     <div class="card purple">
       <div class="c-icon">⬡</div>
       <div class="c-label">Cash</div>
-      <div class="c-val">$215.66</div>
-      <div class="c-sub">$100 of it held as reserve · $290 of cost deployed across the six positions, 55% of the book now in tokens · realised +$5.66, all of it the MicroDuck half-sale — the R4 profit fund needs $100 to open the first extra slot, so 0 of 2 are open · the R5 capital brake sits at $400 and is 19.5% away</div>
+      <div class="c-val">$171.56</div>
+      <div class="c-sub">$100 of it held as reserve · 53% of the book now in tokens · realised +$6.56, all of it MicroDuck — the R4 profit fund still needs $100 to open the first extra slot, so 0 of 2 are open · the R5 brake is already <b>triggered</b>, so no new first buys and no R4 slot adds in real money until the book is back over $420 twice</div>
     </div>
   </div>
 
@@ -192,7 +192,7 @@
       <a href="ro-signals.html">📡 Radar tín hiệu <span class="arr">&rarr;</span></a>
     </div>
     <div class="snapshot-note">
-      <b>Note:</b> the two pages are in Vietnamese and carry their own light/dark toggle. Every figure here is the <b>Nov 4 UTC close</b> snapshot they publish, session D33 — Nov 5 is the pending session. Three new rule numbers landed since the last snapshot, seven entries in all: R3 (micro radar is a discovery channel, its picks labelled lottery tickets and never auto-funded; a hard top-10 &lt; 40% flag; trailing recomputed each session rather than locked; and win rate, profit factor, expectancy and max drawdown now tracked), R4 (extra slots opened out of realised profit, and DCA stops after the first 50% take), and R5 (a capital brake that halts new real-money buys below $400). Classification follows fixed rules on settled closes; the book's own scorecard states it has <b>not yet demonstrated an edge</b>, and a Nov 2 backtest over 405 Robinhood Chain memes found the micro radar has <b>no token-selection advantage</b> — 0 of 8 first signals reached ×1.5 in the following ten sessions against 4 of 24 for the control. Not financial advice.
+      <b>Note:</b> the two pages are in Vietnamese and carry their own light/dark toggle. Every figure here is the <b>Nov 11 UTC close</b> snapshot they publish, session D39 — Nov 12 is the pending session. The rule set is the one that landed Nov 2–3 (R3 discovery-only micro radar with a hard top-10 &lt; 40% flag, R4 profit-funded extra slots and no DCA after a first 50% take, R5 the capital brake) and this is the week the brake actually fired. Two new items this session: a pool-scan layer for tokens with no CoinGecko id, running in watch-only mode pending a ruling, and a BTC overlay that moved to <b>Alert</b> on Bitcoin’s second close under its Sep 15 low — the page states plainly that the overlay changed no order. Classification follows fixed rules on settled closes, and the book’s own scorecard is now openly bad: paper win rate <b>2 of 13</b>, profit factor <b>0.30</b>, expectancy <b>−23.3%</b> per position, and the Nov 2 backtest over 405 Robinhood Chain memes still stands — the micro radar has <b>no token-selection advantage</b>. Not financial advice.
     </div>
   </div>
   </section>
@@ -203,28 +203,29 @@
 const tokens = {
   BTC: {
     full:'Bitcoin', symbol:'\u20bf', color:'#F7931A',
-    tagline:'The break ran, and then one bar took it all back. October SETTLED at $77,530.55, \u22127.28%, after the gate was lost, ZONE_BTC_0008 was INVALIDATED on Oct 23 and the Oct 29\u201330 break ran to $76,256.58. Then Nov 4 opened $77,453.13, undercut the ZONE_BTC_0010 demand floor by 0.63% to $75,729.73 \u2014 still $778.72 above the Sep 15 swing low \u2014 and reversed to close $80,512.26, +3.950%, at 87.2% of a $5,481.88 range (2.51 ATR) on 1.503\u00d7 volume, the heaviest since Oct 30. That close is 0.32% above the $80,255.76 range floor and clear of its margin band, which puts the failed-breakdown count at 1 of 2 CLEAN and TOUCHES ZONE_BTC_0011 with its invalidation also 1 of 2. The log move +3.874% is 2.64\u03c320 and fires AO-007 shock E1. Event-day neutrality applies: one close is a setup, not a confirmation, so Read B\u2032 (markdown) stays formally primary and Read A\u2033 (spring \u2192 reclaim) is the alternate until a second close decides. Reported context \u2014 a post-midterm risk-on session in US equities and a short-liquidation burst \u2014 is recorded as reported, not verified; the relayed liquidation figures disagree with each other.',
-    phase:'Markdown (Read B\u2032) formally primary \u00b7 reversal test in progress', phaseSub:'Failed breakdown 1 of 2 CLEAN \u2014 one more close \u2265 $80,376.15 confirms it, makes Read A\u2033 primary, ends the markdown regime, INVALIDATES ZONE_BTC_0011 and makes D-009 NOT DURABLE \u00b7 a close back under $80,255.76 resets the counter and turns Nov 4 into an upthrust into supply \u00b7 two closes < $76,206.11 complete continuation, 0 of 2',
+    tagline:'The spring never got its second close, and the floor it swept has been eaten since. Nov 5 settled $76,093.97 and Nov 6 $75,848.19, which INVALIDATED ZONE_BTC_0010 \u2014 the demand zone the Nov 4 bar had swept \u2014 and CONFIRMED ZONE_BTC_0011 as supply on the same two closes. Price then kept going: Nov 10 $73,793.96 and Nov 11 $74,009.22 both settled under the Sep 15 swing low $74,951.01, which completes the markdown EXTENSION 2 of 2 CLEAN. But the same two closes both held above $73,521.06, which CONFIRMS ZONE_BTC_0007 as demand under the touch-bar precedent, strict reading still 1 of 2. Two pre-registered events on one close, as the S125 table had allowed. The Nov 11 bar itself settled +0.292% at 49.9% of a 0.65 ATR range on 0.993\u00d7 volume \u2014 an inside day after a 20-session low, whose own low dipped INTO the zone without closing below it. So the structure arrived at the next marked floor and that floor answered on the same bar.',
+    phase:'Markdown extension CONFIRMED \u00b7 standing on confirmed demand', phaseSub:'Read B\u2032 now means one thing only: ZONE_BTC_0007 fails, two closes < $73,014.49 (\u22121.34%) \u00b7 the alternate is a reclaim, two closes \u2265 $74,951.01 (+1.27%), which would turn the confirmed extension into a failed one \u00b7 SCL-B008 scores which completes first by Nov 25 and prices it .44 against .50 \u2014 slightly AGAINST the primary read, on a base rate computed from BTC\u2019s own first-passage history',
     conf:'23 / 32 / 20', confLabel:'Confidence \u00b7 T (Tier 1 only) / S / C (never blended)',
-    confSub:'T 23 / S 32 / C 20, UNCHANGED from S119 and all three revisited after the Nov 5 close \u2014 the fall from the 36 this dashboard last carried happened over the sessions between S112 and S119, not on this one \u00b7 risk HIGH and TWO-SIDED \u2014 0.32% above the level that decides the regime, so a whipsaw either way is likely \u00b7 aggressiveness 2/10, position FLAT, reserve 75%, nothing armed on day 34 of the Oct 3 \u2013 Nov 15 window \u00b7 TR-BTC-004 is PROPOSED and NOT ARMED at the Q3 default, so a qualifying close tonight fills nothing; arming is a time-sensitive referral that must precede the close \u00b7 FR-B079 (Nov 9) puts Band D at 46%, B 24%, C 22%, A 3% \u2014 D is primary because the close sits only 0.08\u03c35 above the C/D edge \u00b7 FR-B074 resolved Band C at skill \u22120.0860 and opens cluster CL-B8; SC-013 MISSED on the same \u201cunanticipated gate crossing\u201d label as SC-010/011 \u00b7 S120 also published the finding that FIX-B1 would have scored that miss WORSE (\u22120.338), so the label is re-pointed to Tier 3.5 \u2014 funding and OI dark for a 43rd session, order-book bid share 43.9% \u00b7 Fear & Greed and the Nov 4 institutional flow both NOT OBTAINED.',
-    price:'$80,512', priceSub:'Nov 4, 2026 settled close (+3.95% on 1.50\u00d7 vol) \u00b7 Nov MTD; Oct settled $77,530.55, \u22127.28% \u00b7 the Nov 5 candle is live and is the one every structural question resolves on',
+    confSub:'Unchanged for a seventh session \u00b7 risk HIGH and TWO-SIDED \u2014 0.81% above confirmed demand, 1.27% below the reclaim, and either side can complete in two closes \u00b7 aggressiveness 2/10, position FLAT, reserve 75% on day 41 of the Oct 3 \u2013 Nov 15 window, which now has THREE SESSIONS LEFT and an untouched reserve \u00b7 TR-BTC-005 is PROPOSED and NOT ARMED: a 5% BUY 3 test of the confirmed zone that would fill only on a strict confirmation tonight, expiring with the window on Nov 15 \u00b7 FR-B085 (Nov 16) puts Band D at 91% \u00b7 the two new durability counters open at 0/10 and fail on OPPOSITE events, so exactly one can survive \u2014 and the campaign runs 10 resolved, 5 durable \u00b7 macro got worse while the structure decided: hot October CPI, the 10-year near 5%, eight straight days of IBIT redemptions, ETF flow \u2212$95.0M on Nov 10 and \u2212$1.58B month to date \u00b7 funding, OI and liquidations dark for a 49th session \u00b7 Fear & Greed NOT OBTAINED.',
+    price:'$74,009', priceSub:'Nov 11, 2026 settled close (+0.29% on 0.99\u00d7 vol) \u00b7 Nov MTD; Oct settled $77,530.55 \u00b7 the Nov 12 candle is live and resolves the strict confirmation',
     reports:[
       {label:'Heatmap', href:'btc-dashboard.html'},
-      {label:'\ud83d\udcca Market GPS (Nov 5 \u00b7 S120)', href:'BTC_report_S120_nov05.html'},
+      {label:'\ud83d\udcca Market GPS (Nov 12 \u00b7 S126)', href:'BTC_report_S126_nov12.html'},
     ]
   },
   ADA: {
     full:'Cardano', symbol:'\u20b3', logo:'cardano-logo.svg', color:'#2a52d4',
-    tagline:'Z010 is gone, and what the structure is standing on now is a low rather than a zone. Two closes below $0.20117 \u2014 Oct 29 at $0.19042 (\u22127.59% on 11.24M, the heaviest volume since Oct 5) and Oct 30 at $0.19539 \u2014 INVALIDATED the only confirmed demand zone, and that is final. The pre-registered race STR-ADA-002 resolved invalidated-first at +0.0778, so markdown is no longer merely primary: it is primary and confirmed. October then closed $0.19290, \u221221.80%, the first down month since June. What replaced the zone is the Oct 30 low $0.18235, a selling-climax candidate that has held three settled-day tests \u2014 Nov 2 (+2.20%), Nov 3 (+1.70%) and the live Nov 4 sweep to $0.18283 (+0.26%). It is an ALTERNATE, not the read, and its edge stays pending: the best settled close since Oct 30 is the climax bar itself, so the automatic rally Phase A needs has not printed. BUY 4 exited Nov 2 on its single-close stop.',
-    phase:'Markdown primary and CONFIRMED \u00b7 Z010 invalidated, final', phaseSub:'ALT Phase A selling climax at the Oct 30 low $0.18235 \u2014 edge PENDING until an automatic rally prints on settled closes, then a secondary test that holds the low \u00b7 ONE close below $0.18235 kills the candidate and points at Z007 \u00b7 no open structure claim',
+    tagline:'The base attempt failed and the structure walked down to the next zone. Nov 4 rallied +3.89% straight into the broken Z010 floor and closed UNDER it, so the reversal stayed 0 of 2; Nov 5 fell \u22128.34% into ADA-Z007; and on Nov 8 the Oct 30 low \u2014 the selling-climax candidate this dashboard carried a week ago \u2014 was RETIRED on closes. It is gone, not pending. Z007 itself was touched Nov 5 and CONFIRMED Nov 6 (precedent) and Nov 7 (strict), and price has since slid onto its floor: four closes between $0.17403 and $0.17751, the lowest closes since mid-August. Nov 10 settled $0.17403, the lowest close in the archive, 0.017% above the floor with the two feeds on OPPOSITE sides of it; Nov 11 held the floor on a clean close and printed the first higher low since Nov 7. BUY 3 exited Nov 9 at \u22126.38%, after BUY 4 exited Nov 2. November is \u22129.55% on top of October\u2019s \u221221.80%.',
+    phase:'Markdown confirmed \u00b7 on the floor of the last confirmed demand zone', phaseSub:'The $0.1740 floor is 0.28% under the settle, about 0.04 ATR \u2014 two closes below INVALIDATE Z007 and the next registered zone, Z002, is 10.59% lower \u00b7 BUY 2\u2019s line is 0.85% away, about 0.13 ATR \u00b7 ALT Phase A has NOT STARTED: no climactic low, the first higher low is one bar old, and an automatic rally would need closes above $0.17989 then $0.18347 and then a test holding $0.17045',
     conf:'35 / 34 / 58', confLabel:'Confidence \u00b7 T (Tier 1 only, Q4 cap) / S / C (never blended)',
-    confSub:'S fell 8 points, 42 \u2192 34 \u00b7 aggressiveness down to 1/10, risk VERY HIGH \u00b7 deployed 72.5% less BUY 4\u2019s freed capital, which is uncommitted by default alongside the 25% reserve; nothing armed and no re-entry rule for BUY 4 exists \u00b7 BUY 3 is now the nearest stop at \u22125.02%, about one ATR, and its $0.18050 line is also ADA-Z007\u2019s roof, so the two closes that exit the tranche test the zone from inside \u00b7 open: FR-ADA-010 (Nov 8) and the AO-ADA-005 overlay (Nov 14), both anchored at $0.19005 \u00b7 FR-ADA-009 resolved Band D at \u22124.9423, which the map publishes as an ARTIFACT of a 0.0194 baseline Brier rather than a real loss \u2014 it moved the T-class mean from \u22120.1329 to \u22120.7341, and R-ADA-S is now decisive and still unruled \u00b7 the Oct 28 FOMC outcome was finally retrieved (held at 3.75%\u20134.00%, 10\u20132) and no effect is claimed \u00b7 feed offset OPEN, not closed: CoinGecko below Crypto.com on all seven settles Oct 28\u2013Nov 3 \u00b7 Tier 3.5 dark for a 71st session.',
-    price:'$0.19005', priceSub:'Nov 3, 2026 settled close (+0.72% on 4.62M) \u00b7 Nov MTD; Oct settled $0.19290, \u221221.80% \u00b7 live Nov 4 $0.19659 (+3.44%), excluded from every determination',
+    confSub:'Unchanged \u00b7 aggressiveness 1/10, risk VERY HIGH \u00b7 HOLD BUY 1\u20132 and nothing armed; the 25% reserve plus the capital freed by BUY 3 and BUY 4 stays uncommitted by default, and neither exited tranche has a re-entry rule \u00b7 the cone re-anchors to the Nov 12 map: spot $0.17448, \u03c3 3.3742%/day, thresholds \u00b125% at $0.21810 / $0.13086 \u2014 \u03c3 fell from 73.0% to 64.5% annualised only because the high-volatility late-September days rolled OUT of the 48-return window, not because the tape calmed \u00b7 reproduction check: all 208 published cone figures (26 months \u00d7 8) reproduce from spot, \u03c3 and z = 1.6449, zero mismatches \u00b7 open: FR-ADA-011 (Nov 14, D branch pre-published at \u22125.7688 as a baseline artifact, with the P1 kill-check firing on it) and STR-ADA-003 (Nov 25, Z007 invalidated first 62% against a Z010 reclaim 24%) \u00b7 Crypto.com reproduced all 50 settled closes Sep 24 \u2013 Nov 11 with zero revisions \u00b7 Tier 3.5 dark for a 77th session.',
+    price:'$0.17448', priceSub:'Nov 11, 2026 settled close (+0.26% on 5.56M) \u00b7 Nov MTD, \u22129.55%; Oct settled $0.19290, \u221221.80% \u00b7 live Nov 12 $0.17414 sits INSIDE the Z007 floor\u2019s LOW-CONF band and determines nothing',
     reports:[
       {label:'Heatmap', href:'ada-dashboard.html'},
-      {label:'\ud83d\udd2d Monthly map (Nov 5)', href:'ADA_monthly_map_nov5.html'},
+      {label:'\ud83d\udd2d Monthly map (Nov 12)', href:'ADA_monthly_map_nov12.html'},
     ]
   }
+
 };
 
 function applyToken(key){
@@ -242,9 +243,9 @@ function applyToken(key){
   document.getElementById('phaseVal').textContent = t.phase;
   document.getElementById('phaseSub').textContent = t.phaseSub;
   // Confidence is reported per horizon class and never blended. Both assets label T as "Tier 1 only" with a
-  // Q4 cap of 35, because each has had its derivatives tier dark for weeks — BTC 43 sessions, ADA 71. BTC
-  // (S120) T 23 / S 32 / C 20, unchanged from S119; ADA (Nov 5) T 35 / S 34 / C 58, S down
-  // eight. BTC carries risk HIGH and two-sided, ADA VERY HIGH. When a report omits the score the dash returns
+  // Q4 cap of 35, because each has had its derivatives tier dark for weeks — BTC 49 sessions, ADA 77. BTC
+  // (S126) T 23 / S 32 / C 20 and ADA (Nov 12) T 35 / S 34 / C 58 are both unchanged this session. BTC
+  // carries risk HIGH and two-sided, ADA VERY HIGH. When a report omits the score the dash returns a dash
   // rather than a stale or invented number.
   document.getElementById('confLabel').textContent = t.confLabel || 'Model Confidence';
   document.getElementById('confVal').textContent = t.conf;

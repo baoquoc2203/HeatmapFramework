@@ -170,6 +170,38 @@ footer{margin-top:20px;font-size:12px;color:var(--muted);line-height:1.65;max-wi
 .ro-ava{width:40px;height:40px;border-radius:50%;overflow:hidden;border:2px solid var(--line);flex:0 0 auto;background:var(--panel2);display:grid;place-items:center;font:800 13px var(--sans);color:var(--muted);position:relative;align-self:center}
 .ro-ava img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 
+.btcbox{margin:14px 0 0;background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:12px 16px}
+.btcbox .hd{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.btcbox h3{margin:0;font-size:15px;font-weight:800}
+.btcbox h3 small{font-weight:500;font-size:12px;color:var(--muted);margin-left:6px}
+.btcbox .lv{display:flex;gap:6px;flex-wrap:wrap}
+.btcbox .lv span{font-size:12px;font-weight:700;border-radius:999px;padding:4px 10px;border:1px solid var(--line);color:var(--muted);opacity:.6}
+.btcbox .lv span.on{opacity:1;color:#111;border-color:transparent}
+.btcbox ul{margin:8px 0 6px;padding-left:18px;font-size:13px}
+.btcbox .cond{display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:12.5px}
+.btcbox .cond div{background:var(--panel2);border-radius:10px;padding:8px 10px}
+.btcbox .cond b{display:block;font-size:11.5px;color:var(--muted);font-weight:600;margin-bottom:2px}
+.btcbox p{margin:8px 0 0;font-size:12.5px;color:var(--muted)}
+@media (max-width:640px){.btcbox .cond{grid-template-columns:1fr}}
+
+.bz{margin:14px 0 0;background:var(--panel,var(--card));border:1px solid var(--line);border-radius:18px;padding:14px 16px}
+.bz-hd{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.bz-hd h3{margin:0;font-size:15px;font-weight:800}
+.bz-tag{font-size:11.5px;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:2px 9px}
+.bz-grid{display:grid;grid-template-columns:240px minmax(0,1fr);gap:14px;align-items:center;margin-top:8px}
+.bz-g{width:100%;height:auto;display:block}
+.bz-c{width:100%;height:auto;display:block}
+.bz-k{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:10px}
+.bz-k>div{display:grid;grid-template-columns:auto 1fr;gap:0 10px;align-items:center;background:var(--panel2,var(--soft));border-radius:12px;padding:8px 12px}
+.bz-k b{font-size:13px}.bz-k small{grid-column:2;font-size:11.5px;color:var(--muted)}
+.bz-dots{grid-row:1/3;display:flex;gap:4px}
+.bz-dots i{width:13px;height:13px;border-radius:50%;border:2px solid;display:block}
+.bz-beta{grid-row:1/3;font-weight:800;font-size:18px;color:#e2606a}
+.bz-why{margin-top:8px}
+.bz-why summary{cursor:pointer;font-size:12.5px;color:var(--muted)}
+.bz-why ul{margin:6px 0 0;padding-left:18px;font-size:13px}
+@media (max-width:720px){.bz-grid{grid-template-columns:1fr}.bz-left{max-width:260px;margin:0 auto}.bz-k{grid-template-columns:1fr}}
+
 </style>
 </head>
 <body>
@@ -181,6 +213,7 @@ footer{margin-top:20px;font-size:12px;color:var(--muted);line-height:1.65;max-wi
 </header>
 <div class="stats" id="stats"></div>
 <p class="lead" id="lead"></p>
+<section id="btc" class="bz" aria-label="Mức ủng hộ của BTC"></section>
 <section class="stage">
   <div class="space" id="space" aria-label="Radar 3D. Di chuột hoặc kéo ngón tay để xem hành động; chạm để ghim; kéo bằng chuột để xoay.">
     <div class="overlay-top"><div class="chips" id="chips" role="group" aria-label="Lọc nhóm"></div></div>
@@ -323,46 +356,84 @@ function Space(host,o){
 
 </script>
 <script>
-const DATE="04/11/2026";
-const LEAD="Phiên 04/11 tăng (BTC +4.0%, danh mục +3.1%). PONS bật lại tín hiệu mua lần đầu cho người mới. KITSU có tín hiệu radar micro cho người mới (vé số theo R3). HMM +12.8%, lên trên giá vốn. ZZZ có dạng tín hiệu meme vừa nhưng volume trung bình $999k, sát ngưỡng $1M nên bị loại.";
+const DATE="11/11/2026";
+const LEAD="Phiên close 11/11. Không có tín hiệu mua mới cho người mới. Danh mục mua CASHCAT lần 4 (cuối). BTC đóng dưới đáy 15/09 lần thứ hai: mức BTC chuyển Báo động. Từ phiên này có thêm lớp quét pool cho token chưa có trên CoinGecko, chỉ để theo dõi.";
+/* Mức ủng hộ của BTC: đồng hồ 4 mức + biểu đồ giá BTC với các vùng đổi mức. Lớp phủ, không đổi lệnh. */
+function renderBTC(el,B){
+  const COL=["#22b97f","#4f95e0","#e5a32b","#e2606a"],LAB=["Ủng hộ","Trung lập","Rủi ro","Báo động"];
+  const f=n=>"$"+Math.round(n).toLocaleString("en-US"),pc=(a,b)=>((a/b-1)*100);
+  /* đồng hồ */
+  const cx=110,cy=112,R=88,w=22,arc=(a0,a1)=>{const p=a=>[cx+R*Math.cos(a*Math.PI/180),cy-R*Math.sin(a*Math.PI/180)];const [x0,y0]=p(a0),[x1,y1]=p(a1);return`M${x0.toFixed(1)},${y0.toFixed(1)} A${R},${R} 0 0,1 ${x1.toFixed(1)},${y1.toFixed(1)}`};
+  let g=`<svg viewBox="-48 0 316 150" class="bz-g" role="img" aria-label="Mức ủng hộ của BTC: ${LAB[B.level]}">`;
+  for(let i=0;i<4;i++){const a0=180-i*45-1,a1=180-(i+1)*45+1;g+=`<path d="${arc(a0,a1)}" stroke="${COL[i]}" stroke-width="${w}" fill="none" opacity="${i===B.level?1:.28}" stroke-linecap="butt"/>`;
+    const am=(180-(i+.5)*45)*Math.PI/180;g+=`<text x="${(cx+(R+24)*Math.cos(am)).toFixed(1)}" y="${(cy-(R+24)*Math.sin(am)+4).toFixed(1)}" text-anchor="${i===0?"end":i===3?"start":"middle"}" dx="${i===0?8:i===3?-8:0}" font-size="10.5" font-weight="${i===B.level?800:500}" fill="${i===B.level?COL[i]:"var(--muted)"}">${LAB[i]}</text>`}
+  const na=(180-(B.level+.5)*45)*Math.PI/180;g+=`<line x1="${cx}" y1="${cy}" x2="${(cx+(R-30)*Math.cos(na)).toFixed(1)}" y2="${(cy-(R-30)*Math.sin(na)).toFixed(1)}" stroke="var(--text)" stroke-width="4" stroke-linecap="round"/><circle cx="${cx}" cy="${cy}" r="7" fill="var(--text)"/>`;
+  g+=`<text x="${cx}" y="${cy+30}" text-anchor="middle" font-size="19" font-weight="800" fill="${COL[B.level]}">${LAB[B.level].toUpperCase()}</text></svg>`;
+  /* biểu đồ giá với vùng */
+  const W=560,H=190,pl=8,pr=118,pt=12,pb=22,cs=B.closes.map(x=>x[1]);
+  const lo=Math.min(...cs,B.lv.alarm)*0.985,hi=Math.max(...cs,B.lv.support)*1.008;
+  const X=i=>pl+i*(W-pl-pr)/(cs.length-1),Y=v=>pt+(hi-v)/(hi-lo)*(H-pt-pb);
+  const zones=[[B.lv.support,hi,0],[B.lv.neutral,B.lv.support,1],[B.lv.alarm,B.lv.neutral,2],[lo,B.lv.alarm,3]];
+  let c=`<svg viewBox="0 0 ${W} ${H}" class="bz-c" role="img" aria-label="Giá BTC 20 phiên và các vùng đổi mức">`;
+  zones.forEach(([a,b,i])=>c+=`<rect x="${pl}" y="${Y(b).toFixed(1)}" width="${W-pl-pr}" height="${(Y(a)-Y(b)).toFixed(1)}" fill="${COL[i]}" opacity="${i===B.level?.22:.09}"/>`);
+  const L3=[[B.lv.support,0,"Ủng hộ"],[B.lv.neutral,1,"Trung lập"],[B.lv.alarm,3,"Báo động"]].map(([v,i,t])=>({v,i,t,y:Y(v),ly:Y(v)}));
+  for(let k=1;k<L3.length;k++)if(L3[k].ly-L3[k-1].ly<27)L3[k].ly=L3[k-1].ly+27;
+  const over=L3[L3.length-1].ly+12-(H-4);if(over>0)L3.forEach(o=>o.ly-=over);
+  L3.forEach(({v,i,t,y,ly})=>{c+=`<line x1="${pl}" x2="${W-pr}" y1="${y.toFixed(1)}" y2="${y.toFixed(1)}" stroke="${COL[i]}" stroke-width="1.5" stroke-dasharray="5 4"/>
+    ${Math.abs(ly-y)>1?`<path d="M${W-pr},${y.toFixed(1)} L${W-pr+4},${(ly-4).toFixed(1)}" stroke="${COL[i]}" stroke-width="1" fill="none"/>`:""}
+    <text x="${W-pr+6}" y="${(ly-2).toFixed(1)}" font-size="11" font-weight="700" fill="${COL[i]}">${t}</text><text x="${W-pr+6}" y="${(ly+11).toFixed(1)}" font-size="10.5" fill="var(--muted)">${f(v)} · ${pc(v,B.price)>0?"+":"−"}${Math.abs(pc(v,B.price)).toFixed(1)}%</text>`});
+  const d=cs.map((v,i)=>`${i?"L":"M"}${X(i).toFixed(1)},${Y(v).toFixed(1)}`).join(" ");
+  c+=`<path d="${d}" fill="none" stroke="var(--text)" stroke-width="2.2" stroke-linejoin="round"/>`;
+  const lx=X(cs.length-1),ly=Y(B.price);
+  c+=`<circle cx="${lx}" cy="${ly}" r="9" fill="${COL[B.level]}" opacity=".3"/><circle cx="${lx}" cy="${ly}" r="5" fill="${COL[B.level]}" stroke="var(--text)" stroke-width="1.5"/>`;
+  c+=`<text x="${lx-8}" y="${(ly+22).toFixed(1)}" text-anchor="end" font-size="11.5" font-weight="800" fill="var(--text)">${f(B.price)}</text>`;
+  c+=`<text x="${pl}" y="${H-5}" font-size="10" fill="var(--muted)">${B.closes[0][0]}</text><text x="${W-pr}" y="${H-5}" font-size="10" text-anchor="end" fill="var(--muted)">${B.closes[B.closes.length-1][0]}</text></svg>`;
+  /* bộ đếm 2 close */
+  const dots=(s,col)=>{const n=+s.split("/")[0];return[0,1].map(k=>`<i style="background:${k<n?col:"transparent"};border-color:${col}"></i>`).join("")};
+  const cnt=`<div class="bz-k"><div><span class="bz-dots">${dots(B.cnt.up,COL[1])}</span><b>Lên Trung lập</b><small>2 close ≥ ${f(B.lv.neutral)} · ${B.cnt.up}</small></div>
+    <div><span class="bz-dots">${dots(B.cnt.down,COL[3])}</span><b>Xuống Báo động</b><small>2 close &lt; ${f(B.lv.alarm)} · ${B.cnt.down}</small></div>
+    <div><span class="bz-beta">×${B.beta}</span><b>Danh mục giảm so với BTC</b><small>trung vị 4 ngày BTC giảm ≥ 2%</small></div></div>`;
+  el.innerHTML=`<div class="bz-hd"><h3>Mức ủng hộ của BTC</h3><span class="bz-tag">lớp phủ · không đổi lệnh</span></div>
+   <div class="bz-grid"><div class="bz-left">${g}</div><div class="bz-right">${c}</div></div>${cnt}
+   <details class="bz-why"><summary>Vì sao ở mức này · ${B.src}</summary><ul>${B.why.map(w=>`<li>${w}</li>`).join("")}</ul></details>`;
+}
+
+const BTCV={src:"Crypto.com close 11/11; cấu trúc theo báo cáo S124 (chưa có S125)",level:3,price:74009.22,lv:{alarm:74951.01,neutral:76206.11,support:80255.76},cnt:{up:"0/2",down:"2/2"},beta:"2.4",closes:[["23/10",81190.05],["24/10",80877.0],["25/10",80148.0],["26/10",80143.58],["27/10",80906.28],["28/10",81351.41],["29/10",77976.96],["30/10",77314.18],["31/10",77530.55],["01/11",78346.24],["02/11",76807.53],["03/11",77452.93],["04/11",80512.26],["05/11",76093.97],["06/11",75848.19],["07/11",75872.99],["08/11",74854.99],["09/11",75361.37],["10/11",73793.96],["11/11",74009.22]],why:["11/11 BTC đóng $74,009 (+0.3%), vẫn dưới đáy 15/09 ($74,951) 1.26%. Đây là close thứ hai liên tiếp dưới mức, ngoài biên sai số: mức chuyển sang Báo động","Để quay lại Rủi ro cần 2 close liên tiếp ≥ $74,951 (−1.3% tới mức). Lên Trung lập cần 2 close ≥ $76,206","CoinGecko $73,974, lệch 0.05% so với Crypto.com: hai feed khớp","Cấu trúc (Markdown, WAIT, rủi ro HIGH) lấy từ báo cáo S124; chưa có báo cáo BTC mới","Đây là lớp phủ cảnh báo, không đổi lệnh. Dự báo BW-001 (danh mục 14/11 thấp hơn $416.59, P .62) tới hạn sau 3 phiên"]};
 const LOT=["Vé số","Radar micro là kênh khám phá, không tự động được cấp vốn. Kiểm định 02/11 trên 405 meme RH: lần radar bật đầu tiên 0/8 chạm ×1.5 trong 10 phiên, đối chứng 17%."];
 const SIG=[
- {id:"amc",g:"gy",t:"AMC",sub:"meme vừa",px:.007190065,ch:-10.9,act:"tp",trig:.0124705,st:"Tín hiệu mua lần đầu 01/11 ở 0.006235, hiện ×1.15. Vị thế giấy (danh mục hết slot).",lv:{kill:.0015588,add:.0049882,cost:.00623525,tp:.0124705},det:[["Kiểm tra","Pool $966k, 28,907 holder, top-10 33.2%"],["Thang mua","0.006235 → ≤ 0.004988 → ≤ 0.004434 → ≤ 0.004093"],["Contract","0x385f4f8ae47651ce5f58f5265395a669f8281e18"]]},
- {id:"pons-gy",g:"gy",t:"PONS",sub:"mua lại",px:.222192,ch:9.1,act:"add",trig:.187167,st:"Tín hiệu mua lần đầu 30/10 ở 0.2340, hiện ×0.95. Vị thế giấy. Tín hiệu mới 04/11 không mở thêm vị thế giấy thứ hai.",lv:{kill:.0584898,add:.187167,cost:.2339592,tp:.4679184},det:[["Thang mua","0.2340 → ≤ 0.1872 → ≤ 0.1664 → ≤ 0.1536"],["Contract","0x39dbed3a2bd333467115de45665cc57f813c4571"]]},
- {id:"ai-gy",g:"gy",t:"AI",sub:"mua lại",px:.05947313,ch:4.4,act:"add",trig:.0515,st:"Tín hiệu mua lần đầu 27/10 ở 0.0644, hiện ×0.92. Vị thế giấy.",lv:{kill:.0161,add:.0515,cost:.0643656,tp:.1287},det:[["Thang mua","0.0644 → ≤ 0.0515 → ≤ 0.0458 → ≤ 0.0423"],["Contract","0x2e8c31162b855a2ffa90f6f8634643ad6f111e18"]]},
- {id:"zeal",g:"gy",t:"ZEAL",sub:"microcap",px:.0008885639,ch:3.6,act:"tp",trig:.00151,st:"Vào 29/10 ở 0.000755, hiện ×1.18.",lv:{kill:.000189,cost:.000754804,tp:.00151},det:[LOT,["Contract","0x9fa1c5e90a11294f83a9f135b81ad1b537a5ffdc"]]},
- {id:"gme",g:"gy",t:"GME",sub:"microcap",px:.0008042059,ch:16.8,act:"tp",trig:.00168712,st:"Vào 30/10 ở 0.000844, hiện ×0.95. Radar bật lại 04/11.",lv:{kill:.00021089,cost:.00084356,tp:.00168712},det:[LOT,["Contract","0xef67e3064bef1a27e81925ec7132f23e533bd5f6"]]},
- {id:"pcc",g:"gy",t:"PCC",sub:"microcap",px:.0006256383,ch:-4.8,act:"exit",trig:.000237,st:"Vào 26/10 ở 0.000948, hiện ×0.66.",lv:{kill:.000237,cost:.000947693,tp:.001895},det:[LOT,["Contract","0xbf3e53713a53e9c3d5d1ddc25dd2c65669244663"]]},
- {id:"shroom",g:"gy",t:"SHROOM",sub:"microcap",px:.002408315,ch:3.5,act:"exit",trig:.00109,st:"Vào 28/10 ở 0.00436, hiện ×0.55.",lv:{kill:.00109,cost:.00436297,tp:.00873},det:[LOT,["Contract","0xab093def657f15df31b33922a95e047add645b29"]]},
- {id:"hmm",g:"dm",t:"HMM",sub:"1/4",px:.006335562,ch:12.8,act:"add",trig:.00454335,st:"Đã mua $25, giá vốn 0.00568, hiện +11.6%. Mốc TP0 thử nghiệm ×1.5 ở 0.00852.",lv:{kill:.00142,add:.00454335,cost:.00567919,tp:.01136},det:[["Contract","0x7fe995a80075df3dc8ae11a9b82c7fe4202cd87f"]]},
- {id:"cashcat",g:"dm",t:"CASHCAT",sub:"2/4",px:.1062627,ch:-.7,act:"add",trig:.086031,st:"Đã mua $50, giá vốn 0.1075, hiện −1.2%.",lv:{kill:.0269,add:.086031,cost:.107539,tp:.2151},det:[["Contract","0x020bfc650a365f8bb26819deaabf3e21291018b4"]]},
- {id:"microduck",g:"dm",t:"MicroDuck",sub:"microcap",px:.00624889,ch:11.6,act:"exit",trig:.0033732,st:"Đã chốt 50% ở ×2.13 và thu lại vốn. Phần còn lại ×2.31. Chốt tiếp 10% ở ×5 (0.0135).",lv:{cost:.00269974,trail:.0033732,tp:.0134987},det:[["Contract","0xd5f1afea47b1a9eab414d2ee740cf1d6d039e725"]]},
- {id:"kitsu",g:"dm",t:"KITSU",sub:"microcap",px:.0005625227,ch:-.1,act:"tp",trig:.00116286,st:"Mua 1 lần $10, giá vốn 0.000581, hiện −3.3%. Pool $84k, 5,824 holder.",lv:{kill:.000145,cost:.00058143,tp:.00116286},det:[["Contract","0x8d4dfaaa4198b6486e0293fec914c2b6a821d4dc"]]},
- {id:"pons",g:"dm",t:"PONS",sub:"4/4",px:.222192,ch:9.1,act:"tp",trig:.547176,st:"Đã mua $100, giá vốn 0.2736, hiện −18.8%. Không mua thêm.",lv:{kill:.0684,cost:.2735879,tp:.547176},det:[["Contract","0x39dbed3a2bd333467115de45665cc57f813c4571"]]},
- {id:"ai-dm",g:"dm",t:"AI",sub:"4/4",px:.05947313,ch:4.4,act:"tp",trig:.1440312,st:"Đã mua $100, giá vốn 0.0720, hiện −17.4%. Không mua thêm.",lv:{kill:.0180,cost:.0720156,tp:.1440312},det:[["Contract","0x2e8c31162b855a2ffa90f6f8634643ad6f111e18"]]},
- {id:"pons-new",g:"td",t:"PONS",sub:"người mới",px:.222192,ch:9.1,now:1,act:"buy",trig:.222192,st:"Close 03/11 in đáy mới, close 04/11 không in đáy mới: tín hiệu mua lần đầu cho người mới.",lv:{kill:.055548,add:.177754,cost:.222192,tp:.444384},det:[["Thang người mới","0.2222 → ≤ 0.1778 → ≤ 0.1580 → ≤ 0.1459"]]},
- {id:"kitsu-new",g:"td",t:"KITSU",sub:"người mới",px:.0005625227,ch:-.1,now:1,act:"buy",trig:.0005625227,st:"Radar micro bật 04/11: giá trong vùng 0.00050–0.00061, không in đáy mới, volume 2.3× trung vị. Vé số theo R3: mua 1 lần, quy mô nhỏ.",lv:{kill:.000140631,cost:.0005625227,tp:.0011250454},det:[LOT,["Contract","0x8d4dfaaa4198b6486e0293fec914c2b6a821d4dc"]]},
- {id:"hmm-new",g:"td",t:"HMM",sub:"người mới",px:.006335562,ch:12.8,act:"tp",trig:.0112287,st:"Tín hiệu người mới bật 03/11 ở 0.005614, hiện ×1.13.",lv:{kill:.0014036,add:.0044915,cost:.005614331,tp:.0112287},det:[["Thang người mới","0.005614 → ≤ 0.004491 → ≤ 0.003992 → ≤ 0.003685"]]},
- {id:"md-up",g:"td",t:"MicroDuck",sub:"nâng hạng",ev:1,act:"event",st:"Đủ điều kiện xét như meme vừa (vốn hoá ~$5.7M). Chưa có tín hiệu mua lần đầu.",ev_t:"Chờ tín hiệu mua lần đầu kiểu meme vừa",det:[]},
- {id:"boner",g:"td",t:"BONER",ev:1,act:"event",st:"Volume trung bình 7 ngày $541k.",ev_t:"Chờ volume trung bình 7 ngày ≥ $1M",det:[["Contract","0x98096d17e191b3da1d5f99a6d7b3584351b11e18"]]},
- {id:"zzz",g:"td",t:"ZZZ",ev:1,act:"event",st:"Có dạng tín hiệu mua lần đầu kiểu meme vừa ngày 04/11 (vốn hoá $6.8M) nhưng volume trung bình 7 ngày $999k, sát dưới ngưỡng $1M.",ev_t:"Chờ volume trung bình 7 ngày ≥ $1M",det:[]},
- {id:"hood",g:"td",t:"HOOD Sword Inu",ev:1,act:"event",st:"Mới 29 close.",ev_t:"Chờ đủ 30 close",det:[]}
+ {id:"ubik",g:"gy",t:"UBIK",sub:"meme vừa 1/4",px:.0050111654,ch:-7.0,act:"add",trig:.004205,st:"Vị thế giấy vào 09/11 ở 0.005256, hiện ×0.95. Lần 2 khi close ≤ 0.004205 (cần giảm 16.1%), sớm nhất 12/11. Chỉ là vị thế giấy vì danh mục hết slot và phanh R5 đang bật.",lv:{kill:.0013141,add:.004205,cost:.00525626,tp:.0105125},det:[["Kiểm tra 09/11","Pool $246k, 8,217 holder, top-10 33.2%, ví dev 0%, không honeypot"],["Thang mua","0.005256 → ≤ 0.004205 → ≤ 0.003738 → ≤ 0.003450, cách nhau ≥ 3 ngày"],["Contract","0x812486eaea648819853f8e372dc9f1516c7868bd"]]},
+ {id:"ai-gy",g:"gy",t:"AI",sub:"mua lại 4/4",px:.030406684,ch:3.5,act:"tp",trig:.0755206,st:"Vị thế giấy khớp lần 4 (cuối) ở close 11/11 (0.03041). Giá vốn giấy 0.03776, hiện ×0.81. Chốt 50% khi close ≥ 0.07552.",lv:{kill:.0094401,cost:.0377603,tp:.0755206},det:[["Contract","0x2e8c31162b855a2ffa90f6f8634643ad6f111e18"]]},
+ {id:"pons-gy",g:"gy",t:"PONS",sub:"mua lại 3/4",px:.15070177,ch:2.8,act:"add",trig:.1485037,st:"Vị thế giấy, giá vốn 0.1856, hiện ×0.81. Close 11/11 (0.1507) bật lên trên mức lần 4 nên chưa khớp; lần 4 khi close ≤ 0.1485 (cần giảm 1.5%).",lv:{kill:.0464074,add:.1485037,cost:.1856297,tp:.3712594},det:[["Contract","0x39dbed3a2bd333467115de45665cc57f813c4571"]]},
+ {id:"amc",g:"gy",t:"AMC",sub:"meme vừa 3/4",px:.0041615557,ch:6.4,act:"add",trig:.0038839,st:"Vị thế giấy, giá vốn 0.004855, hiện ×0.86. Lần 4 (cuối) khi close ≤ 0.003884 (cần giảm 6.7%), sớm nhất 13/11.",lv:{kill:.0012137,add:.0038839,cost:.0048548,tp:.0097097},det:[["Contract","0x385f4f8ae47651ce5f58f5265395a669f8281e18"]]},
+ {id:"gme",g:"gy",t:"GME",sub:"microcap",px:.00053622488,ch:8.7,act:"tp",trig:.00168712,st:"Vào 30/10 ở 0.000844, hiện ×0.64.",lv:{kill:.00021089,cost:.00084356,tp:.00168712},det:[LOT,["Contract","0xef67e3064bef1a27e81925ec7132f23e533bd5f6"]]},
+ {id:"zeal",g:"gy",t:"ZEAL",sub:"microcap",px:.00058605016,ch:5.9,act:"tp",trig:.00151,st:"Vào 29/10 ở 0.000755, hiện ×0.78.",lv:{kill:.000189,cost:.000754804,tp:.00151},det:[LOT,["Contract","0x9fa1c5e90a11294f83a9f135b81ad1b537a5ffdc"]]},
+ {id:"shroom",g:"gy",t:"SHROOM",sub:"microcap",px:.001164,ch:6.7,act:"exit",trig:.00109,st:"Vào 28/10 ở 0.00436, hiện ×0.27. Giá theo pool on-chain: CoinGecko ghi 0.00521 (+367%) ở close 11/11, là lỗi dữ liệu. Cách mức bán hết 6.4%.",lv:{kill:.00109,cost:.00436297,tp:.00873},det:[LOT,["Contract","0xab093def657f15df31b33922a95e047add645b29"]]},
+ {id:"cashcat",g:"dm",t:"CASHCAT",sub:"4/4",px:.055459655,ch:-9.2,act:"tp",trig:.1587518,st:"Mua lần 4 (cuối) ở close 11/11 (0.05546). Giá vốn mới 0.07938, hiện −30.1%. Chốt 50% khi close ≥ 0.15875.",lv:{kill:.019844,cost:.0793759,tp:.1587518},det:[["Contract","0x020bfc650a365f8bb26819deaabf3e21291018b4"]]},
+ {id:"hmm",g:"dm",t:"HMM",sub:"1/4",px:.0051070685,ch:-10.3,act:"add",trig:.00454335,st:"Đã mua $25, giá vốn 0.00568, hiện −10.1%. Mua lần 2 khi close ≤ 0.004543 (cần giảm 11.0%); chốt 50% khi close ≥ 0.01136.",lv:{kill:.00142,add:.00454335,cost:.00567919,tp:.01135838},det:[["Contract","0x7fe995a80075df3dc8ae11a9b82c7fe4202cd87f"]]},
+ {id:"kitsu",g:"dm",t:"KITSU",sub:"microcap",px:.00034343142,ch:-4.7,act:"tp",trig:.00116286,st:"Mua 1 lần $10, giá vốn 0.000581, hiện −40.9%. Pool $61k, 5,820 holder (ngưỡng bán hết: pool < $25k hai phiên hoặc holder < 4,830).",lv:{kill:.000145,cost:.00058143,tp:.00116286},det:[["Contract","0x8d4dfaaa4198b6486e0293fec914c2b6a821d4dc"]]},
+ {id:"pons",g:"dm",t:"PONS",sub:"4/4",px:.15070177,ch:2.8,act:"tp",trig:.547176,st:"Đã mua $100, giá vốn 0.2736, hiện −44.9%.",lv:{kill:.0684,cost:.2735879,tp:.547176},det:[["Contract","0x39dbed3a2bd333467115de45665cc57f813c4571"]]},
+ {id:"ai-dm",g:"dm",t:"AI",sub:"4/4",px:.030406684,ch:3.5,act:"tp",trig:.1440312,st:"Đã mua $100, giá vốn 0.0720, hiện −57.8%.",lv:{kill:.0180,cost:.0720156,tp:.1440312},det:[["Contract","0x2e8c31162b855a2ffa90f6f8634643ad6f111e18"]]},
+ {id:"hmm-new",g:"td",wait:"12/11",t:"HMM",sub:"người mới 1/4",px:.0051070685,ch:-10.3,act:"add",trig:.0056325,st:"Tín hiệu người mới 09/11 ở 0.00704. Giá đã dưới mức lần 2 (0.005633); khớp ở close sớm nhất 12/11 nếu vẫn ≤ mức.",lv:{kill:.0017602,add:.0056325,cost:.00704064,tp:.0140813},det:[["Thang người mới","0.00704 → ≤ 0.00563 → ≤ 0.00501 → ≤ 0.00462"]]},
+ {id:"ai-new",g:"td",t:"AI",sub:"người mới 1/4",px:.030406684,ch:3.5,act:"add",trig:.0268327,st:"Tín hiệu người mới 09/11 ở 0.03354. Lần 2 khi close ≤ 0.02683 (cần giảm 11.8%), sớm nhất 12/11. Close 11/11 lại khớp mẫu mua lần đầu, nhưng dựa trên một đáy mới chỉ thấp hơn 0.02% (trong biên sai số), nên không phát tín hiệu mới.",lv:{kill:.0083852,add:.0268327,cost:.03354088,tp:.0670818},det:[["Thang người mới","0.03354 → ≤ 0.02683 → ≤ 0.02385 → ≤ 0.02202"]]},
+ {id:"cc-new",g:"td",wait:"12/11",t:"CASHCAT",sub:"người mới 2/4",px:.055459655,ch:-9.2,act:"add",trig:.06886,st:"Tín hiệu người mới 06/11 ở 0.0968, lần 2 ở close 09/11. Giá đã dưới mức lần 3 (0.06886); khớp ở close sớm nhất 12/11 nếu vẫn ≤ mức.",lv:{kill:.0242086,add:.06886,cost:.09683442,tp:.1936688},det:[["Thang người mới","0.09683 → ≤ 0.07747 → ≤ 0.06886 → ≤ 0.06356"]]},
+ {id:"md-re",g:"td",t:"MicroDuck",sub:"mua lại",px:.0034808313,ch:8.9,act:"rebuy",trig:.0023892,st:"Danh mục đã thoát hết MicroDuck ngày 08/11. Đỉnh sau khi thoát là close 09/11 (0.003982). Theo R1, xét vào lại khi close ≤ 0.002389 (−40% từ đỉnh) rồi có close không in đáy mới. Mức này đi lên nếu giá lập đỉnh mới.",lv:{add:.0023892,tp:.003981925},det:[]},
+ {id:"kitsu-new",g:"td",t:"KITSU",sub:"người mới",px:.00034343142,ch:-4.7,act:"tp",trig:.0011250454,st:"Tín hiệu radar micro 04/11 ở 0.000563 (vé số), hiện ×0.61.",lv:{kill:.000140631,cost:.0005625227,tp:.0011250454},det:[LOT]}
 ];
-const AVOID=["DEGEN: token Base được bắc cầu sang Robinhood Chain, không phải meme native; top-10 trên RH 99.7% (ví cầu nối).","BUN: 10 ví lớn nhất giữ 82.9% (cờ top-10 < 40%).","PIPEDOG: 10 ví lớn nhất giữ 40.6%, vượt ngưỡng cờ cứng top-10 < 40% (luật R3, 02/11).","COUPONS: 10 ví lớn nhất giữ 62%, 1,034 holder.","MESH, FAB, PARE, BOW, PRISM: giao dịch dưới chuẩn hoặc đã giảm trên 80%.","NET: token rebase, giá không phản ánh lời lỗ thật.","Quantum Inu, Cat wif Hood: sập 97–99.98% trong một ngày.","Token tiện ích STONKBROKER, UP, INDEX: không có slot."];
+const AVOID=["Lớp quét pool (mới, chỉ theo dõi, feed đơn GeckoTerminal): WALLET 0x0339…9e1b đóng 11/11 0.01514 (+26.1%), FDV ~$15M, pool $1.6M, volume pool ~$0.15–0.26M/ngày (dưới ngưỡng $1M). HPHONE FDV $8.8M, volume $5.6M nhưng số người mua = người bán = 527: dấu hiệu bot. Nhiều token mới tạo 11–12/11 (RSPWN, Saxon, FTDIP, Rex, SPIN, Max) tăng hàng trăm tới hàng nghìn % với vốn hoá dưới $1M: chưa đủ dữ liệu.","CẢNH BÁO TOKEN GIẢ: có contract tên AI, PONS, CASHCAT mới tạo 11–12/11, volume ~$50M/ngày nhưng chỉ ~7 lệnh mua và 7 lệnh bán. Không phải token đang theo dõi; luôn đối chiếu đủ địa chỉ contract.","“Anthropic” (0x4cf2…2b07) tạo 12/11, FDV $10M với thanh khoản $9.1M (gần bằng FDV), +84%: quá mới, không đủ dữ liệu.","SHROOM và MOW: CoinGecko ghi tăng +367% và +208,016% ở close 11/11, là lỗi dữ liệu; không dùng.","PCC (giấy): bán hết ở close 10/11 sau 2 close liên tiếp dưới mức bán hết; giá 0.0000109, ×0.01. Token −93.8% trong một phiên.","DEGEN: bật mẫu mua lần đầu ở close 10/11 nhưng là token Base bắc cầu, không phải meme native.","ANSEM-CAT: +103% ngày 10/11, nhưng dữ liệu CoinGecko từng có bước nhảy ×183 nên vẫn bị loại.","BUN: tín hiệu meme vừa 09/11 nhưng 10 ví lớn nhất giữ 82.9%.","NOVAAI: volume trung bình 7 ngày $361k; BONER $896k (chưa đủ $1M).","DOGO (DogBull): radar bật 07/11 nhưng volume CoinGecko chỉ $5–50/ngày trong khi pool $315k; dữ liệu volume không đáng tin nên tín hiệu bị loại.","DOPE: mới 24 close, dữ liệu volume trống.","ANSEM-CAT: dữ liệu CoinGecko có bước nhảy giá ×183 không đáng tin; tín hiệu ngày 05/11 bị loại vì dữ liệu.","BONER: −56.8% trong phiên 05/11.","Kitsu Inu the Office Dog of Robinhood (ít nhất 4 contract, tạo 04–05/11): token khác, không phải KITSU. Chỉ contract 0x8d4dfaaa4198b6486e0293fec914c2b6a821d4dc là KITSU đang theo dõi.","DEGEN: token Base được bắc cầu sang Robinhood Chain, không phải meme native; top-10 trên RH 99.7% (ví cầu nối).","BUN: 10 ví lớn nhất giữ 82.9% (cờ top-10 < 40%).","PIPEDOG: 10 ví lớn nhất giữ 40.6%, vượt ngưỡng cờ cứng top-10 < 40% (luật R3, 02/11).","COUPONS: 10 ví lớn nhất giữ 62%, 1,034 holder.","MESH, FAB, PARE, BOW, PRISM: giao dịch dưới chuẩn hoặc đã giảm trên 80%.","NET: token rebase, giá không phản ánh lời lỗ thật.","Quantum Inu, Cat wif Hood: sập 97–99.98% trong một ngày.","Token tiện ích STONKBROKER, UP, INDEX: không có slot."];
 const FOOT="Tín hiệu theo luật của một khung phân tích có hệ thống, không phải lời khuyên đầu tư. Hệ thống chưa chứng minh được lợi thế: rổ 12 token gốc giảm 60.6% từ 30/9 đến 29/10 trong khi BTC giảm 6.9%. Token trên Robinhood Chain biến động 10–40% mỗi ngày và có thể mất toàn bộ vốn. Robinhood Markets không phát hành và không bảo trợ các token này. Luôn so khớp toàn bộ địa chỉ contract trước khi giao dịch vì có địa chỉ giả giống phần đầu và đuôi.";
 
-const LOGO={amc:"https://coin-images.coingecko.com/coins/images/102176700/small/amc.jpg?1788511294",pipedog:"https://coin-images.coingecko.com/coins/images/102174876/small/pipedog.png?1785289835",boner:"https://coin-images.coingecko.com/coins/images/102176671/small/boner.jpg?1788451067",ai:"https://coin-images.coingecko.com/coins/images/102176647/small/5ou9sb7h478ezv28urbjpzf1fl3e.?1788401429",pons:"https://coin-images.coingecko.com/coins/images/102174571/small/jhitvkisdq8fhxvimdkpcw7y3dx5.?1784093932",cashcat:"https://coin-images.coingecko.com/coins/images/102174280/small/cashcat-logo.jpg?1782922765",hmm:"https://coin-images.coingecko.com/coins/images/102174672/small/fmu02lq7zai1iyp4qqwfnmu5wr1v.?1784552285",kitsu:"https://coin-images.coingecko.com/coins/images/102174287/small/kitsu-logo.jpg?1782940070",microduck:"https://coin-images.coingecko.com/coins/images/102176663/small/bvw8hqnmvgvs61nw2h4et0zj00jx.?1788422151",zeal:"https://coin-images.coingecko.com/coins/images/102176778/small/zeal_400x400.jpg?1788687773",gme:"https://coin-images.coingecko.com/coins/images/102176793/small/logo-512_%281%29.png?1792544829",fugui:"https://coin-images.coingecko.com/coins/images/102178312/small/puppy.jpg?1789275783",pcc:"https://coin-images.coingecko.com/coins/images/102176801/small/IMG_1919.jpeg?1788768859",shroom:"https://coin-images.coingecko.com/coins/images/102176720/small/shroom.jpg?1788592860"};
+const LOGO={ubik:"https://coin-images.coingecko.com/coins/images/102176699/small/ubik.webp?1788510522",amc:"https://coin-images.coingecko.com/coins/images/102176700/small/amc.jpg?1788511294",pipedog:"https://coin-images.coingecko.com/coins/images/102174876/small/pipedog.png?1785289835",boner:"https://coin-images.coingecko.com/coins/images/102176671/small/boner.jpg?1788451067",ai:"https://coin-images.coingecko.com/coins/images/102176647/small/5ou9sb7h478ezv28urbjpzf1fl3e.?1788401429",pons:"https://coin-images.coingecko.com/coins/images/102174571/small/jhitvkisdq8fhxvimdkpcw7y3dx5.?1784093932",cashcat:"https://coin-images.coingecko.com/coins/images/102174280/small/cashcat-logo.jpg?1782922765",hmm:"https://coin-images.coingecko.com/coins/images/102174672/small/fmu02lq7zai1iyp4qqwfnmu5wr1v.?1784552285",kitsu:"https://coin-images.coingecko.com/coins/images/102174287/small/kitsu-logo.jpg?1782940070",microduck:"https://coin-images.coingecko.com/coins/images/102176663/small/bvw8hqnmvgvs61nw2h4et0zj00jx.?1788422151",zeal:"https://coin-images.coingecko.com/coins/images/102176778/small/zeal_400x400.jpg?1788687773",gme:"https://coin-images.coingecko.com/coins/images/102176793/small/logo-512_%281%29.png?1792544829",fugui:"https://coin-images.coingecko.com/coins/images/102178312/small/puppy.jpg?1789275783",pcc:"https://coin-images.coingecko.com/coins/images/102176801/small/IMG_1919.jpeg?1788768859",shroom:"https://coin-images.coingecko.com/coins/images/102176720/small/shroom.jpg?1788592860"};
 const avaHTML=(key,t)=>`<span class="ro-ava">${LOGO[key]?`<img src="${LOGO[key]}" alt="" referrerpolicy="no-referrer" onerror="this.remove()">`:""}${t.replace(/[^A-Za-z0-9\u4e00-\u9fff]/g,"").slice(0,2)}</span>`;
 const $=id=>document.getElementById(id);
 const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const fp=v=>v==null?"—":String(Number(v.toPrecision(4)));
 const G={gy:{t:"Có thể mua",c:"var(--violet)",hex:0xa78bfa},dm:{t:"Đang nắm",c:"var(--mint)",hex:0x45e0c1},td:{t:"Theo dõi",c:"var(--blue)",hex:0x6da9ff}};
-SIG.forEach(s=>{s.dist=s.now?0:s.ev?null:(s.trig/s.px-1)*100});
+SIG.forEach(s=>{s.dist=s.now?0:s.ev?null:(s.trig/s.px-1)*100;s.below=s.act==="add"&&s.dist>0&&!!s.wait});
 const ACT={buy:s=>`Mua 1 lần ở ${fp(s.trig)} (giá đóng cửa hôm nay)`,add:s=>`Mua thêm khi giá đóng cửa ≤ ${fp(s.trig)}`,tp:s=>`Chốt 50% khi giá đóng cửa ≥ ${fp(s.trig)}`,
  exit:s=>s.lv&&s.lv.trail?`Thoát phần còn lại nếu giá đóng cửa ≤ ${fp(s.trig)}`:`Bán hết nếu 2 giá đóng cửa ≤ ${fp(s.trig)}`,rebuy:s=>`Xét mua lại khi giá đóng cửa ≤ ${fp(s.trig)}, rồi có close không in đáy mới`,event:s=>s.ev_t};
 const SHORT={buy:"Mua",add:"Mua thêm",tp:"Chốt lời",exit:"Thoát",rebuy:"Mua lại",event:"Chờ"};
-const dtxt=s=>s.now?"hôm nay":s.ev?"chờ":(s.dist>0?"+":"−")+Math.abs(s.dist).toFixed(Math.abs(s.dist)<10?1:0)+"%";
-const prio=s=>s.now?-1:s.ev?999:Math.abs(s.dist);
+const dtxt=s=>s.below?"chờ "+s.wait:s.now?"hôm nay":s.ev?"chờ":(s.dist>0?"+":"−")+Math.abs(s.dist).toFixed(Math.abs(s.dist)<10?1:0)+"%";
+const prio=s=>s.below?0:s.now?-1:s.ev?999:Math.abs(s.dist);
 const ORDER=[...SIG].sort((a,b)=>prio(a)-prio(b));
 let filter="all",current=ORDER[0].id;
 const visible=id=>{const s=SIG.find(x=>x.id===id);return filter==="all"||s.g===filter};
@@ -371,17 +442,18 @@ const visible=id=>{const s=SIG.find(x=>x.id===id);return filter==="all"||s.g===f
 const R=6,MAXD=150,rad=d=>d==null?R*1.02:Math.max(1.15,Math.min(R*.93,Math.log(1+Math.abs(d)/2)/Math.log(1+MAXD/2)*R));
 const SECT={gy:[-150,-30],dm:[-30,90],td:[90,210]};
 const P=[];
-Object.keys(SECT).forEach(g=>{const it=SIG.filter(s=>s.g===g).map(s=>({s,r:s.now?.75:rad(s.dist)})).sort((a,b)=>a.r-b.r);
+Object.keys(SECT).forEach(g=>{const it=SIG.filter(s=>s.g===g).map(s=>({s,r:s.now?.75:s.below?rad(1):rad(s.dist)})).sort((a,b)=>a.r-b.r);
   const [a,b]=SECT[g],n=it.length,ord=[];for(let i=0,j=n-1;i<=j;i++,j--){ord.push(i);if(i!==j)ord.push(j)}
   it.forEach((p,k)=>{p.ang=a+12+(b-a-24)*(ord.indexOf(k)+.5)/n;p.lo=a+8;p.hi=b-8;P.push(p)})});
 const xz=p=>[p.r*Math.cos(p.ang*Math.PI/180),p.r*Math.sin(p.ang*Math.PI/180)];
 for(let k=0;k<150;k++)for(let i=0;i<P.length;i++)for(let j=i+1;j<P.length;j++){const A=P[i],B=P[j];if(A.s.now||B.s.now)continue;const [x1,z1]=xz(A),[x2,z2]=xz(B);
   if(Math.hypot(x1-x2,z1-z2)<1.05){const sg=A.ang<=B.ang?1:-1;if(A.s.g===B.s.g){A.ang=Math.max(A.lo,Math.min(A.hi,A.ang-1.2*sg));B.ang=Math.max(B.lo,Math.min(B.hi,B.ang+1.2*sg))}}}
-const hgt=s=>s.now?.9:s.ev?0:Math.sign(s.dist)*(.35+.85*Math.min(1,Math.log(1+Math.abs(s.dist)/8)/Math.log(20)));
+const hgt=s=>s.now?.9:s.below?-.35:s.ev?0:Math.sign(s.dist)*(.35+.85*Math.min(1,Math.log(1+Math.abs(s.dist)/8)/Math.log(20)));
 P.forEach(p=>{const [x,z]=xz(p);p.s.x=x;p.s.z=z;p.s.y=hgt(p.s);p.s.ang=Math.atan2(z,x)});
 
 /* header */
-$("date").textContent=DATE;$("lead").textContent=LEAD;$("foot").textContent=FOOT;$("avoid").innerHTML=AVOID.map(a=>`<li>${esc(a)}</li>`).join("");
+$("date").textContent=DATE;
+renderBTC($("btc"),BTCV);$("lead").textContent=LEAD;$("foot").textContent=FOOT;$("avoid").innerHTML=AVOID.map(a=>`<li>${esc(a)}</li>`).join("");
 $("stats").innerHTML=[["Tín hiệu hôm nay",SIG.filter(s=>s.now).length],["Có thể mua",SIG.filter(s=>s.g==="gy").length],["Đang nắm",SIG.filter(s=>s.g==="dm").length],["Theo dõi",SIG.filter(s=>s.g==="td").length],["Gần hành động nhất",ORDER.filter(s=>!s.now&&!s.ev)[0].t+" "+dtxt(ORDER.filter(s=>!s.now&&!s.ev)[0])]].map(([k,v])=>`<div class="stat"><span>${k}</span><b>${esc(v)}</b></div>`).join("");
 $("chips").innerHTML=[["all","Tất cả",null],["gy",G.gy.t,G.gy.c],["dm",G.dm.t,G.dm.c],["td",G.td.t,G.td.c]].map(([k,t,c])=>`<button type="button" class="chip" data-f="${k}" aria-pressed="${k==="all"}">${c?`<i style="background:${c}"></i>`:""}${t}</button>`).join("");
 
@@ -423,16 +495,16 @@ function show(id,hover){
    <div class="ro-name">${avaHTML(s.id.split("-")[0]==="md"?"microduck":s.id.split("-")[0]==="cc"?"cashcat":s.id.split("-")[0],s.t)}<h2>${esc(s.t)}</h2>${s.sub?`<small>${esc(s.sub)}</small>`:""}</div>
    ${s.px!=null?`<div class="ro-px">$${fp(s.px)}<span style="color:${s.ch<0?"var(--red)":"var(--muted)"}">${ch}</span></div>`:""}
    <div class="today ${s.now?"go":""}"><div class="l">Hôm nay</div><div class="v">${s.now?SHORT[s.act]:s.g==="dm"?"Giữ, chưa làm gì":"Chưa làm gì"}</div></div>
-   <div class="next">Hành động kế tiếp<b>${esc(ACT[s.act](s))}</b>${s.now?`<span class="dist" style="color:var(--amber)">Đã bật ở giá đóng cửa ${DATE.slice(0,5)}</span>`:s.ev?`<span class="dist" style="color:var(--muted)">Không phụ thuộc mức giá</span>`:`<span class="dist" style="color:${d>0?"var(--green)":"var(--red)"}">${d>0?"▲ Giá cần tăng":"▼ Giá cần giảm"} ${Math.abs(d).toFixed(Math.abs(d)<10?1:0)}%</span>`}</div>
+   <div class="next">Hành động kế tiếp<b>${esc(ACT[s.act](s))}</b>${s.below?`<span class="dist" style="color:var(--amber)">Đã dưới mức · khớp ở close sớm nhất ${s.wait} nếu vẫn ≤ mức</span>`:s.now?`<span class="dist" style="color:var(--amber)">Đã bật ở giá đóng cửa ${DATE.slice(0,5)}</span>`:s.ev?`<span class="dist" style="color:var(--muted)">Không phụ thuộc mức giá</span>`:`<span class="dist" style="color:${d>0?"var(--green)":"var(--red)"}">${d>0?"▲ Giá cần tăng":"▼ Giá cần giảm"} ${Math.abs(d).toFixed(Math.abs(d)<10?1:0)}%</span>`}</div>
    ${ladder(s)}<p class="ro-st">${esc(s.st)}</p>
    ${s.det&&s.det.length?`<dl class="ro-det">${s.det.map(([k,v])=>`<dt>${esc(k)}</dt><dd>${k==="Contract"?`<code>${esc(v)}</code><button type="button" class="copy" data-copy="${esc(v)}">Copy</button>`:esc(v)}</dd>`).join("")}</dl>`:""}`;
-  $("lockbar").innerHTML=`<span class="n" style="color:${s.now?"var(--amber)":col}">${esc(s.t)} <small style="font-weight:500;font-size:12px;color:var(--muted)">${esc(s.sub||"")}</small></span><span class="t" style="color:${s.now?"var(--amber)":"var(--muted)"}">${s.now?"Hôm nay: "+SHORT[s.act]:"Hôm nay: chưa làm gì"}</span><span class="a">${esc(ACT[s.act](s))}</span><span class="d" style="color:${s.now?"var(--amber)":s.ev?"var(--muted)":d>0?"var(--green)":"var(--red)"}">${s.now?"Đã bật":s.ev?"Không phụ thuộc mức giá":(d>0?"▲ cần tăng ":"▼ cần giảm ")+Math.abs(d).toFixed(Math.abs(d)<10?1:0)+"%"}</span>`;
+  $("lockbar").innerHTML=`<span class="n" style="color:${s.now?"var(--amber)":col}">${esc(s.t)} <small style="font-weight:500;font-size:12px;color:var(--muted)">${esc(s.sub||"")}</small></span><span class="t" style="color:${s.now?"var(--amber)":"var(--muted)"}">${s.now?"Hôm nay: "+SHORT[s.act]:"Hôm nay: chưa làm gì"}</span><span class="a">${esc(ACT[s.act](s))}</span><span class="d" style="color:${s.now||s.below?"var(--amber)":s.ev?"var(--muted)":d>0?"var(--green)":"var(--red)"}">${s.below?"Đã dưới mức, chờ "+s.wait:s.now?"Đã bật":s.ev?"Không phụ thuộc mức giá":(d>0?"▲ cần tăng ":"▼ cần giảm ")+Math.abs(d).toFixed(Math.abs(d)<10?1:0)+"%"}</span>`;
   document.querySelectorAll(".row").forEach(r=>r.classList.toggle("on",r.dataset.id===id));
 }
 function drawList(){
   let o=`<h3>Tất cả tín hiệu, gần hành động nhất ở trên</h3>`;
   ["gy","dm","td"].forEach(g=>{if(filter!=="all"&&filter!==g)return;
-    o+=`<div class="gh"><i style="background:${G[g].c}"></i>${G[g].t}</div>`+ORDER.filter(s=>s.g===g).map(s=>`<button type="button" class="row" data-id="${s.id}"><span class="mk" style="background:${s.now?"var(--amber)":G[s.g].c}"></span><span class="nm">${esc(s.t)}${s.sub?`<small>${esc(s.sub)}</small>`:""}</span><span class="ds" style="color:${s.now?"var(--amber)":s.ev?"var(--muted)":s.dist>0?"var(--green)":"var(--red)"}">${s.now?"Hôm nay":s.ev?"Chờ":(s.dist>0?"▲ ":"▼ ")+dtxt(s).replace(/^[+−]/,"")}</span><span class="ac">${esc(ACT[s.act](s))}</span><span class="px">${s.px!=null?"$"+fp(s.px):""}</span></button>`).join("")});
+    o+=`<div class="gh"><i style="background:${G[g].c}"></i>${G[g].t}</div>`+ORDER.filter(s=>s.g===g).map(s=>`<button type="button" class="row" data-id="${s.id}"><span class="mk" style="background:${s.now?"var(--amber)":G[s.g].c}"></span><span class="nm">${esc(s.t)}${s.sub?`<small>${esc(s.sub)}</small>`:""}</span><span class="ds" style="color:${s.now||s.below?"var(--amber)":s.ev?"var(--muted)":s.dist>0?"var(--green)":"var(--red)"}">${s.below?"Chờ "+s.wait:s.now?"Hôm nay":s.ev?"Chờ":(s.dist>0?"▲ ":"▼ ")+dtxt(s).replace(/^[+−]/,"")}</span><span class="ac">${esc(ACT[s.act](s))}</span><span class="px">${s.px!=null?"$"+fp(s.px):""}</span></button>`).join("")});
   $("list").innerHTML=o;
 }
 drawList();
