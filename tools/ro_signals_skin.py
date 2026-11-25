@@ -108,15 +108,15 @@ JS = r'''
     try{return localStorage.getItem('cre-lang')==='en'?'en':'vi';}catch(e){return 'vi';} })();
   const TT=(vi,en)=>LANG==='en'?en:vi;
   const PAGES=[
-    {k:'radar',  t:'Radar',        g:TT('Khám phá','Discovery'), els:['#stats','.stage'], e:'Signal terminal / Robinhood Chain', h:'See the signal. <em>Read the context.</em>', p:'Chọn token trên radar để xem thông tin hiện có. Bộ lọc và cách hiển thị không thay đổi logic tín hiệu.',
+    {k:'radar',  t:'Radar',        g:TT('Khám phá','Discovery'), els:['#stats','.stage'], e:TT('Bảng tín hiệu','Signal terminal')+' / Robinhood Chain', h:TT('Xem tín hiệu. <em>Đọc bối cảnh.</em>','See the signal. <em>Read the context.</em>'), p:TT('Chọn token trên radar để xem thông tin hiện có. Bộ lọc và cách hiển thị không thay đổi logic tín hiệu.','Pick a token on the radar to see what is known about it. Filters and display options do not change the signal logic.'),
      i:'<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><path d="M12 12l6-6"/>'},
-    {k:'list',   t:TT('Danh sách','Signal list'), g:TT('Khám phá','Discovery'), els:['#list'], e:'Signal terminal / '+TT('danh sách','list'), h:TT('Tín hiệu &amp; <em>token</em>','Signals &amp; <em>tokens</em>'), p:'Danh sách hiện có, hiển thị gọn để so sánh.',
+    {k:'list',   t:TT('Danh sách','Signal list'), g:TT('Khám phá','Discovery'), els:['#list'], e:TT('Bảng tín hiệu / danh sách','Signal terminal / list'), h:TT('Tín hiệu &amp; <em>token</em>','Signals &amp; <em>tokens</em>'), p:TT('Danh sách hiện có, hiển thị gọn để so sánh.','The current list, laid out compactly for comparison.'),
      i:'<path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/>'},
-    {k:'flow',   t:TT('Dòng tiền','Money flow'), g:TT('Dòng tiền & nghiên cứu','Flow & research'), els:['#mf'], e:'Flow / '+TT('lệnh lớn &amp; cá voi','large orders &amp; whales'), h:TT('Dòng tiền <em>lệnh lớn</em>','Large-order <em>flow</em>'), p:'Giá đóng cửa, dòng lệnh lớn theo ngày và dấu cá voi. Lớp quan sát, không phải tín hiệu giao dịch độc lập.',
+    {k:'flow',   t:TT('Dòng tiền','Money flow'), g:TT('Dòng tiền & nghiên cứu','Flow & research'), els:['#mf'], e:TT('Dòng tiền / lệnh lớn &amp; cá voi','Flow / large orders &amp; whales'), h:TT('Dòng tiền <em>lệnh lớn</em>','Large-order <em>flow</em>'), p:TT('Giá đóng cửa, dòng lệnh lớn theo ngày và dấu cá voi. Lớp quan sát, không phải tín hiệu giao dịch độc lập.','Closes, daily large-order flow and whale marks. An observation layer, not a standalone trading signal.'),
      i:'<path d="M3 12h4l3-8 4 16 3-8h4"/>'},
-    {k:'breakout',t:'Breakout',    g:TT('Dòng tiền & nghiên cứu','Flow & research'), els:['#brk'], e:'Discovery layer', h:'Breakout <em>discovery</em>', p:'Token mới được phát hiện qua lớp breakout. Khám phá và theo dõi, không phải lệnh mua.',
+    {k:'breakout',t:'Breakout',    g:TT('Dòng tiền & nghiên cứu','Flow & research'), els:['#brk'], e:TT('Lớp khám phá','Discovery layer'), h:TT('Khám phá <em>breakout</em>','Breakout <em>discovery</em>'), p:TT('Token mới được phát hiện qua lớp breakout. Khám phá và theo dõi, không phải lệnh mua.','New tokens found by the breakout layer. For discovery and watching, not buy orders.'),
      i:'<path d="M3 17l6-6 4 4 8-8"/><path d="M14 7h7v7"/>'},
-    {k:'btc',    t:TT('Bối cảnh BTC','BTC context'), g:TT('Bối cảnh','Context'), els:['#btc'], e:'Market backdrop', h:TT('Bối cảnh <em>BTC</em>','BTC <em>context</em>'), p:'Lớp phủ chế độ thị trường. Không tự động thay đổi tín hiệu token.',
+    {k:'btc',    t:TT('Bối cảnh BTC','BTC context'), g:TT('Bối cảnh','Context'), els:['#btc'], e:TT('Bối cảnh thị trường','Market backdrop'), h:TT('Bối cảnh <em>BTC</em>','BTC <em>context</em>'), p:TT('Lớp phủ chế độ thị trường. Không tự động thay đổi tín hiệu token.','Market-regime overlay. It does not change token signals by itself.'),
      i:'<path d="M12 3v18M7 7h7a3 3 0 010 6H7h8a3 3 0 010 6H7"/>'}
   ];
   PAGES.forEach(P=>{ P.nodes=P.els.map(s=>q('.app>'+s)||q(s)).filter(Boolean); });
@@ -126,7 +126,7 @@ JS = r'''
   let groups=''; [...new Set(PAGES.map(P=>P.g))].forEach(g=>{ groups+=`<div class="sk-lbl">${g}</div><nav class="sk-nav">${PAGES.filter(P=>P.g===g).map(link).join('')}</nav>`; });
   const side=document.createElement('aside'); side.className='sk-side'; side.setAttribute('aria-label',TT('Điều hướng','Navigation'));
   side.innerHTML=`<a class="sk-brand" href="index.html" title="${TT('Về trang chủ CRE','Back to the CRE home page')}"><span class="mk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="8"/><path d="M12 12l5-5"/></svg></span>
-      <span><b>Robinhood Chain<br><em>${TT('Rổ tín hiệu','Signal basket')}</em></b><small>Discovery &amp; research terminal</small></span></a>
+      <span><b>Robinhood Chain<br><em>${TT('Rổ tín hiệu','Signal basket')}</em></b><small>${TT('Khám phá &amp; nghiên cứu','Discovery &amp; research terminal')}</small></span></a>
     ${groups}
     <div class="sk-lbl">${TT('Trang riêng','Pages')}</div><nav class="sk-nav"><a class="sk-ni" href="robinhood.html"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 13h4v8H3zM10 9h4v12h-4zM17 4h4v17h-4z"/></svg><span>${TT('Danh mục','Portfolio')}</span><span class="c">↗</span></a></nav>
     <div class="sk-lbl">${TT('Tài sản','Assets')}</div><nav class="sk-nav"><a class="sk-ni" href="btc-dashboard.html"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v18M7 7h7a3 3 0 010 6H7h8a3 3 0 010 6H7"/></svg><span>Bitcoin</span><span class="c">↗</span></a><a class="sk-ni" href="ada-dashboard.html"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="2"/></svg><span>Cardano</span><span class="c">↗</span></a></nav>

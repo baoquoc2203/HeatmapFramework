@@ -216,10 +216,10 @@ JS = r'''<script id="cre-shell-js">
 
   const heat=[kpi,q('.wrap>.controls'),q('.wrap>.chart-card'),...legends];
   const P=[{k:'heatmap',t:'Heatmap',nodes:heat,e:TT('Heatmap tháng / ','Monthly heatmap / ')+ASSET,h:TT(`${ASSET} <em>theo chu kỳ</em>`,`${ASSET} <em>through the cycle</em>`),i:'<rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 10h18M3 15h18M9 4v16M15 4v16"/>'},
-           {k:'levels',t:TT('Mức giá','Levels'),nodes:[lad],e:'Level ladder / '+ASSET,h:TT(`Thang <em>mức giá</em>`,`Level <em>ladder</em>`),c:String(rows.length),i:'<path d="M4 6h16M4 12h10M4 18h6"/>'}];
-  if(cone) P.push({k:'cone',t:'Cone',nodes:[cone],e:'Volatility cone / ADA',h:TT(`Cone <em>biến động</em>`,`Volatility <em>cone</em>`),c:'26T',i:'<path d="M3 12h18"/><path d="M3 12l18-8M3 12l18 8"/>'});
-  if(secs[0]) P.push({k:'weekly',t:TT('Wyckoff tuần','Weekly Wyckoff'),nodes:[secs[0]],e:'Wyckoff / weekly',h:TT(`Chu kỳ <em>Wyckoff</em> tuần`,`Weekly <em>Wyckoff</em> cycle`),c:'Nov 25',i:'<path d="M3 17l5-6 4 3 4-7 5 5"/>'});
-  if(secs[1]) P.push({k:'scenario',t:TT('Kịch bản 14N','14-day scenarios'),nodes:[secs[1]],e:'Range floor / scenarios',h:TT(`Kịch bản <em>7–14 ngày</em>`,`<em>7–14 day</em> scenarios`),c:'Nov 25',i:'<path d="M3 12h6l3-6 3 12 3-6h3"/>'});
+           {k:'levels',t:TT('Mức giá','Levels'),nodes:[lad],e:TT('Thang mức giá / ','Level ladder / ')+ASSET,h:TT(`Thang <em>mức giá</em>`,`Level <em>ladder</em>`),c:String(rows.length),i:'<path d="M4 6h16M4 12h10M4 18h6"/>'}];
+  if(cone) P.push({k:'cone',t:'Cone',nodes:[cone],e:TT('Cone biến động / ADA','Volatility cone / ADA'),h:TT(`Cone <em>biến động</em>`,`Volatility <em>cone</em>`),c:'26T',i:'<path d="M3 12h18"/><path d="M3 12l18-8M3 12l18 8"/>'});
+  if(secs[0]) P.push({k:'weekly',t:TT('Wyckoff tuần','Weekly Wyckoff'),nodes:[secs[0]],e:TT('Wyckoff / tuần','Wyckoff / weekly'),h:TT(`Chu kỳ <em>Wyckoff</em> tuần`,`Weekly <em>Wyckoff</em> cycle`),c:'Nov 25',i:'<path d="M3 17l5-6 4 3 4-7 5 5"/>'});
+  if(secs[1]) P.push({k:'scenario',t:TT('Kịch bản 14N','14-day scenarios'),nodes:[secs[1]],e:TT('Đáy range / kịch bản','Range floor / scenarios'),h:TT(`Kịch bản <em>7–14 ngày</em>`,`<em>7–14 day</em> scenarios`),c:'Nov 25',i:'<path d="M3 12h6l3-6 3 12 3-6h3"/>'});
   const all=P.flatMap(p=>p.nodes).filter(Boolean);
 
   // ── prose: hide long legend sentences and analysis notes; colour keys stay ──
