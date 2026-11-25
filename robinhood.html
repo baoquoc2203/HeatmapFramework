@@ -331,8 +331,11 @@ const TITLE={overview:'Tổng quan',positions:'Vị thế',score:'Bảng điểm
 const item=([k,t,c])=>`<a class="ni" href="#${k}" data-v="${k}"><svg viewBox="0 0 24 24" aria-hidden="true">${ICON[k]}</svg><span>${t}</span>${c?`<span class="cnt ${c[1]||''}">${esc(c[0])}</span>`:''}</a>`;
 const OUT=`<a class="ni" href="ro-signals.html"><svg viewBox="0 0 24 24" aria-hidden="true">${ICON.radar}</svg><span>Rổ tín hiệu</span><span class="cnt ${fresh?'hot':''}">${fresh?fresh+' mới':'↗'}</span></a>`;
 $('sideNav').innerHTML=NAV.map(([g,items])=>`<div class="slabel" style="margin-top:6px">${g}</div><ul class="snav">${items.map(i=>'<li>'+item(i)+'</li>').join('')}</ul>`).join('')+
-  `<div class="slabel" style="margin-top:6px">Trang riêng</div><ul class="snav"><li>${OUT}</li></ul>`;
-$('mobNav').innerHTML='<ul>'+NAV.flatMap(g=>g[1]).map(i=>'<li>'+item(i)+'</li>').join('')+'<li>'+OUT+'</li></ul>';
+  `<div class="slabel" style="margin-top:6px">Trang riêng</div><ul class="snav"><li>${OUT}</li></ul>`+
+  `<div class="slabel" style="margin-top:6px">Tài sản</div><ul class="snav">`+
+  `<li><a class="ni" href="btc-dashboard.html"><svg viewBox="0 0 24 24" aria-hidden="true">${ICON.btc}</svg><span>Bitcoin</span><span class="cnt">↗</span></a></li>`+
+  `<li><a class="ni" href="ada-dashboard.html"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="2"/></svg><span>Cardano</span><span class="cnt">↗</span></a></li></ul>`;
+$('mobNav').innerHTML='<ul>'+NAV.flatMap(g=>g[1]).map(i=>'<li>'+item(i)+'</li>').join('')+'<li>'+OUT+'</li><li><a class="ni" href="btc-dashboard.html"><span>BTC ↗</span></a></li><li><a class="ni" href="ada-dashboard.html"><span>ADA ↗</span></a></li></ul>';
 $('closeChip').textContent='CLOSE · '+K.date+' UTC';
 $('statusTxt').textContent='Close '+K.date+' UTC · '+sess;
 

@@ -125,12 +125,13 @@ JS = r'''
       <span><b>Robinhood Chain<br><em>Rổ tín hiệu</em></b><small>Discovery &amp; research terminal</small></span></a>
     ${groups}
     <div class="sk-lbl">Trang riêng</div><nav class="sk-nav"><a class="sk-ni" href="robinhood.html"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 13h4v8H3zM10 9h4v12h-4zM17 4h4v17h-4z"/></svg><span>Danh mục</span><span class="c">↗</span></a></nav>
+    <div class="sk-lbl">Tài sản</div><nav class="sk-nav"><a class="sk-ni" href="btc-dashboard.html"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v18M7 7h7a3 3 0 010 6H7h8a3 3 0 010 6H7"/></svg><span>Bitcoin</span><span class="c">↗</span></a><a class="sk-ni" href="ada-dashboard.html"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="2"/></svg><span>Cardano</span><span class="c">↗</span></a></nav>
     <div class="sk-sp"></div>
     <div class="sk-state"><b>Dữ liệu <span>Lịch sử</span></b>Close ${date} UTC</div>
     <div class="sk-btns"><a class="sk-btn" href="index.html">← Trang chủ</a><button class="sk-btn" type="button" data-proxy="themeBtn" aria-label="Đổi giao diện sáng / tối">◐</button><button class="sk-btn" type="button" data-proxy="csvBtn">↓ CSV</button></div>`;
   document.body.insertBefore(side,document.body.firstChild);
   const tabs=document.createElement('nav'); tabs.className='sk-tabs'; tabs.setAttribute('aria-label','Chức năng');
-  tabs.innerHTML='<div class="in">'+PAGES.map(link).join('')+'<a class="sk-ni" href="robinhood.html"><span>Danh mục ↗</span></a></div>';
+  tabs.innerHTML='<div class="in">'+PAGES.map(link).join('')+'<a class="sk-ni" href="robinhood.html"><span>Danh mục ↗</span></a><a class="sk-ni" href="btc-dashboard.html"><span>BTC ↗</span></a><a class="sk-ni" href="ada-dashboard.html"><span>ADA ↗</span></a></div>';
   q('.app>.top').appendChild(tabs);
   const ph=document.createElement('div'); ph.className='sk-ph';
   q('.app>.top').insertAdjacentElement('afterend',ph);
