@@ -74,10 +74,11 @@ body{display:grid;grid-template-columns:228px minmax(0,1fr);min-height:100vh}
 .sk-ph p{margin:0;font-size:12.5px;color:var(--muted);max-width:760px}
 .sk-ph .r{font:600 10px var(--mono);letter-spacing:.08em;color:var(--muted);text-align:right;line-height:1.7;white-space:nowrap}
 .sk-off{display:none!important}
+/* explanatory prose is hidden; numbers, charts, tables, legends and fake-token warnings stay */
+#lead,#mf .mf-hd p,#mf-note,#mf-ev,#brk .mf-hd p,#brk p:not([style*="--red"]),#brk h3,#btc .bz-why,.app>.more{display:none!important}
 .app>section{margin-top:14px}
 .app>.readout,.stage .readout{top:76px}
-#lead{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;cursor:pointer;max-width:110ch}
-#lead.sk-open{-webkit-line-clamp:unset}
+
 .sk-tabs{display:none}
 @media (max-width:860px){
   body{display:block}
@@ -103,7 +104,7 @@ JS = r'''
   const q=s=>document.querySelector(s), app=q('.app'); if(!app) return;
   const date=(q('#date')||{}).textContent||'';
   const PAGES=[
-    {k:'radar',  t:'Radar',        g:'Khám phá', els:['#stats','#lead','.stage'], e:'Signal terminal / Robinhood Chain', h:'See the signal. <em>Read the context.</em>', p:'Chọn token trên radar để xem thông tin hiện có. Bộ lọc và cách hiển thị không thay đổi logic tín hiệu.',
+    {k:'radar',  t:'Radar',        g:'Khám phá', els:['#stats','.stage'], e:'Signal terminal / Robinhood Chain', h:'See the signal. <em>Read the context.</em>', p:'Chọn token trên radar để xem thông tin hiện có. Bộ lọc và cách hiển thị không thay đổi logic tín hiệu.',
      i:'<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><path d="M12 12l6-6"/>'},
     {k:'list',   t:'Danh sách',    g:'Khám phá', els:['#list'], e:'Signal terminal / danh sách', h:'Tín hiệu &amp; <em>token</em>', p:'Danh sách hiện có, hiển thị gọn để so sánh.',
      i:'<path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/>'},
@@ -112,9 +113,7 @@ JS = r'''
     {k:'breakout',t:'Breakout',    g:'Dòng tiền & nghiên cứu', els:['#brk'], e:'Discovery layer', h:'Breakout <em>discovery</em>', p:'Token mới được phát hiện qua lớp breakout. Khám phá và theo dõi, không phải lệnh mua.',
      i:'<path d="M3 17l6-6 4 4 8-8"/><path d="M14 7h7v7"/>'},
     {k:'btc',    t:'Bối cảnh BTC', g:'Bối cảnh', els:['#btc'], e:'Market backdrop', h:'Bối cảnh <em>BTC</em>', p:'Lớp phủ chế độ thị trường. Không tự động thay đổi tín hiệu token.',
-     i:'<path d="M12 3v18M7 7h7a3 3 0 010 6H7h8a3 3 0 010 6H7"/>'},
-    {k:'method', t:'Phương pháp',  g:'Bối cảnh', els:['.more'], e:'Transparency &amp; limitations', h:'Phương <em>pháp</em>', p:'Cách đọc radar, định nghĩa và giới hạn kiểm định của trang gốc.',
-     i:'<path d="M6 4h12v16H6z"/><path d="M9 8h6M9 12h6M9 16h3"/>'}
+     i:'<path d="M12 3v18M7 7h7a3 3 0 010 6H7h8a3 3 0 010 6H7"/>'}
   ];
   PAGES.forEach(P=>{ P.nodes=P.els.map(s=>q('.app>'+s)||q(s)).filter(Boolean); });
   const cnt={list:(q('#list')?q('#list').querySelectorAll('.row').length:0)||'', breakout:'BR-001',
@@ -127,7 +126,7 @@ JS = r'''
     ${groups}
     <div class="sk-lbl">Trang riêng</div><nav class="sk-nav"><a class="sk-ni" href="robinhood.html"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 13h4v8H3zM10 9h4v12h-4zM17 4h4v17h-4z"/></svg><span>Danh mục</span><span class="c">↗</span></a></nav>
     <div class="sk-sp"></div>
-    <div class="sk-state"><b>Dữ liệu <span>Lịch sử</span></b>Close ${date} UTC. Ảnh chụp theo giá đóng cửa, không phải feed trực tiếp.</div>
+    <div class="sk-state"><b>Dữ liệu <span>Lịch sử</span></b>Close ${date} UTC</div>
     <div class="sk-btns"><a class="sk-btn" href="index.html">← Trang chủ</a><button class="sk-btn" type="button" data-proxy="themeBtn" aria-label="Đổi giao diện sáng / tối">◐</button><button class="sk-btn" type="button" data-proxy="csvBtn">↓ CSV</button></div>`;
   document.body.insertBefore(side,document.body.firstChild);
   const tabs=document.createElement('nav'); tabs.className='sk-tabs'; tabs.setAttribute('aria-label','Chức năng');
@@ -135,7 +134,6 @@ JS = r'''
   q('.app>.top').appendChild(tabs);
   const ph=document.createElement('div'); ph.className='sk-ph';
   q('.app>.top').insertAdjacentElement('afterend',ph);
-  const lead=q('#lead'); if(lead){ lead.title='Bấm để xem đầy đủ'; lead.addEventListener('click',()=>lead.classList.toggle('sk-open')); }
   side.addEventListener('click',e=>{ const b=e.target.closest('[data-proxy]'); if(b){ const t=document.getElementById(b.dataset.proxy); t&&t.click(); } });
 
   const all=PAGES.flatMap(P=>P.nodes);
@@ -143,7 +141,7 @@ JS = r'''
     const P=PAGES.find(x=>x.k===k)||PAGES[0];
     all.forEach(n=>n.classList.toggle('sk-off',!P.nodes.includes(n)));
     document.querySelectorAll('.sk-ni[data-k]').forEach(a=>a.dataset.k===P.k?a.setAttribute('aria-current','page'):a.removeAttribute('aria-current'));
-    ph.innerHTML=`<div><div class="e">${P.e}</div><h2>${P.h}</h2><p>${P.p}</p></div><div class="r">${date} · UTC CLOSE<br>HISTORICAL SNAPSHOT</div>`;
+    ph.innerHTML=`<div><div class="e">${P.e}</div><h2>${P.h}</h2></div><div class="r">${date} · UTC CLOSE<br>HISTORICAL SNAPSHOT</div>`;
     document.title=P.t+' · Rổ tín hiệu · Robinhood Chain';
     try{ if(location.hash.slice(1)!==P.k) history.pushState(null,'','#'+P.k); }catch(e){}
     // the radar and the flow chart size themselves from their box: let them re-measure now that it is visible
@@ -162,4 +160,4 @@ s = s.replace('</head>', CSS + '</head>', 1)
 i = s.rindex('</body>')
 s = s[:i] + JS + s[i:]
 P.write_text(s, encoding='utf-8')
-print('ro-signals.html skinned · pages: radar, list, flow, breakout, btc, method')
+print('ro-signals.html skinned · pages: radar, list, flow, breakout, btc')
