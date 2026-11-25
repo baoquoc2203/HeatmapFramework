@@ -84,6 +84,13 @@
     font-size:9.5px;font-weight:700;}
   .sc-note{font-size:11px;color:var(--txt2);line-height:1.6;margin-top:10px;}
   .sc-note b{color:var(--txt);}
+  .sc-more{margin-top:12px;border:1px solid var(--bord);border-radius:9px;background:var(--card);}
+  .sc-more>summary{cursor:pointer;list-style:none;padding:9px 13px;font-size:10px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--txt2);}
+  .sc-more>summary::-webkit-details-marker{display:none}
+  .sc-more>summary::before{content:'+';display:inline-block;width:14px;color:var(--amber)}
+  .sc-more[open]>summary::before{content:'−'}
+  .sc-more>.sc-tab,.sc-more>.sc-score{margin:0 10px 10px;width:calc(100% - 20px)}
+  .sc-tab tr.hl td{background:color-mix(in srgb,var(--amber) 9%,transparent)}
   .sc-score{margin-top:12px;padding:11px 13px;border:1px solid var(--bord);border-radius:9px;
     background:var(--card);font-size:11.5px;color:var(--txt2);line-height:1.7;}
   .sc-score .h{font-size:10px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;
@@ -131,6 +138,9 @@
     .nav-assets a{padding:6px 9px;font-size:12px;}
   }
 </style>
+
+
+
 
 
 
@@ -222,6 +232,23 @@ button.zoom-btn.active{background:var(--mint);color:var(--bg);border-color:var(-
 .sh-tier{font:700 9px var(--mono);letter-spacing:.06em;border:1px solid var(--line2);border-radius:5px;padding:1px 5px;color:var(--txt2)}
 .sh-bk{display:flex;height:8px;border-radius:4px;overflow:hidden;min-width:120px;background:var(--p3)}
 .sh-bk i{display:block;height:100%}
+/* heatmap module: toolbar, chart and legend read as one card */
+.wrap>.controls.sh-bar{margin:12px 0 0;gap:0;padding:4px;background:var(--card);border:1px solid var(--bord);border-bottom:0;border-radius:12px 12px 0 0;flex-wrap:wrap}
+.sh-bar>.ctrl-group{background:transparent;border:0;border-radius:0;padding:5px 10px;gap:4px;border-right:1px solid var(--bord)}
+.sh-bar>.ctrl-group:last-of-type{border-right:0}
+.sh-bar .ctrl-label{font:700 9px var(--mono);letter-spacing:.14em;color:var(--t3);margin-right:4px}
+.sh-bar button.toggle,.sh-bar button.zoom-btn{padding:5px 9px;background:transparent}
+.sh-bar button.zoom-btn.active{background:var(--mint);color:var(--bg)}
+.wrap>.chart-card.sh-card{border-radius:0;border-top:1px solid var(--bord)}
+.sh-leg{background:var(--card);border:1px solid var(--bord);border-top:0;border-radius:0 0 12px 12px;padding:0 14px;margin-bottom:6px}
+.sh-leg>summary{display:flex;align-items:center;gap:14px;padding:10px 0;cursor:pointer;list-style:none;font:600 10.5px var(--mono);color:var(--txt2)}
+.sh-leg>summary::-webkit-details-marker{display:none}
+.sh-leg>summary .t{flex:none;font:700 9px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--t3)}
+.sh-leg>summary .t::after{content:' +';color:var(--mint)}
+.sh-leg[open]>summary .t::after{content:' −'}
+.sh-leg>summary>.legend-row{margin:0;flex:1;min-width:0}
+.sh-leg>.legend-row{margin:0;padding:8px 0;border-top:1px dashed var(--bord)}
+.sh-leg>.legend-row:last-child{padding-bottom:12px}
 @media (max-width:1100px){.sh-kpis{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media (max-width:860px){
   body{display:block}
@@ -239,6 +266,10 @@ button.zoom-btn.active{background:var(--mint);color:var(--bg);border-color:var(-
   .sh-tbl .hs{display:none}
   .ctrl-group{flex-wrap:wrap;max-width:100%}
   .sc-tab{display:block;overflow-x:auto;max-width:100%}
+  .wrap>.controls.sh-bar{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none}
+  .sh-bar::-webkit-scrollbar{display:none}
+  .sh-bar>.ctrl-group{flex:none;flex-wrap:nowrap;padding:5px 8px}
+  .sh-leg>summary{flex-wrap:wrap;gap:8px}
 }
 </style>
 </head>
@@ -349,12 +380,12 @@ button.zoom-btn.active{background:var(--mint);color:var(--bg);border-color:var(-
   <div class="wyk-head">
     <div>
       <h2>Wyckoff cycle — events &amp; phases</h2>
-      <div class="wyk-sub">ADA/USD · <b>weekly</b> · Jan 2024 → 5 Nov 2026 · schematic layout after Bogomazov / Pruden · <b style="color:var(--amber)">Nov 5 vintage</b> — neither the Nov 12 nor the Nov 25 monthly map carries a weekly series, so this panel and the scenario panel below were NOT advanced with it</div>
+      <div class="wyk-sub">ADA/USD · <b>weekly</b> · Jan 2024 → 23 Nov 2026 · schematic layout after Bogomazov / Pruden · <b>Nov 25 vintage</b></div>
     </div>
     <div class="wyk-px">
       <div class="p" id="wykP">—</div>
       <div class="d" id="wykD">—</div>
-      <div class="src">CoinGecko · 149 weekly bars · live spot<br>separate feed from the monthly Crypto.com series above</div>
+      <div class="src">CoinGecko · 152 weekly bars · live spot<br>separate feed from the monthly Crypto.com series above</div>
     </div>
   </div>
 
@@ -393,25 +424,23 @@ button.zoom-btn.active{background:var(--mint);color:var(--bg);border-color:var(-
     <span><i style="background:var(--markup)"></i>Markup</span>
     <span><i style="background:var(--dist)"></i>Distribution</span>
     <span><i style="background:var(--markdown)"></i>Markdown</span>
-    <span style="margin-left:8px;border-left:1px solid var(--bord);padding-left:12px"><span class="wyk-bx">SOS</span>&nbsp;event confirmed by a measured price–volume signature</span>
-    <span><span class="wyk-bx i">UTAD?</span>&nbsp;<b>Phase D failed.</b> The w/c Sep 28 bar closed $0.26202, above the $0.25429 confirmation, and price ran to $0.2794 on Oct 6 — but that was the top. It then closed $0.20505 on Oct 25, under the old range ceiling $0.20882, broke the BU/LPS low $0.19103 and reached $0.18539 on Nov 4. So the $0.2794 high is relabelled <b>UTAD?</b>, the old SOS becomes <b>SOS?</b>, and Phase D is marked <b>✗</b>.</span>
-  <span><span class="wyk-bx i">UTAD</span>&nbsp;the 2024–25 distribution is also interpretive — the Aug 2025 push to $1.01446 never exceeded the range high of $1.30450; the alternative read is that it is only an LPSY and the Mar 2025 UT at $1.13332, on the heaviest volume in 149 weeks, is the real UTAD</span>
+    <span style="margin-left:8px;border-left:1px solid var(--bord);padding-left:12px"><span class="wyk-bx">SOS</span>&nbsp;event confirmed by price &amp; volume signature</span>
+    <span><span class="wyk-bx i">UTAD</span>&nbsp;event is interpretive</span>
   </div>
   <div class="legend-row">
-    <span><i class="wyk-sw" style="border-color:var(--amber)"></i>Support / resistance drawn from the labelled events</span>
-    <span><i class="wyk-sw" style="border-color:var(--txt)"></i>Swing line — ZigZag on real weekly highs/lows, 16% threshold</span>
-    <span style="color:var(--txt2)">Two readings are open, and $0.17173 decides between them: (1) the accumulation range survives and Phase D was a false break — the decline ran on thinning volume, ~245M/day last week against 615M on the Sep 21–Oct 11 advance; (2) the whole Jun–Oct 2026 range is <b>re-distribution</b> inside the markdown, $0.2794 the UTAD and $0.18539 the SOW. A weekly close below $0.17173 confirms (2). Phase E has not started — that column stays hatched and empty, no projection is drawn.</span>
+    <span><i class="wyk-sw" style="border-color:var(--amber)"></i>Support / resistance</span>
+    <span><i class="wyk-sw" style="border-color:var(--txt)"></i>Swing line — ZigZag on real weekly highs/lows, 16%</span>
   </div>
 </div>
 
 <div class="wyk-sec">
   <div class="wyk-head">
     <div>
-      <h2>Range test &rarr; scenarios — the next 7–14 days</h2>
-      <div class="wyk-sub">ADA/USD · <b>daily</b> · 15/09 → 04/11 thực tế · 05/11 → 19/11 kịch bản · each branch is tied to a trigger level, not to a forecast</div>
+      <h2>Range floor &rarr; scenarios — Wyckoff 7–14 ngày tới</h2>
+      <div class="wyk-sub">ADA/USD · <b>daily</b> (UTC) · 24/09 → 25/11 thực tế · 26/11 → 10/12 kịch bản</div>
     </div>
     <div class="wyk-px">
-      <div class="src">σ ngày 3.06% (đo 30 phiên)<br>Không phải dự báo — mỗi nhánh gắn với một mức kích hoạt</div>
+      <div class="src">σ ngày 4.10% (đo 30 phiên)<br>Không phải dự báo — mỗi nhánh gắn với một mức kích hoạt</div>
     </div>
   </div>
 
@@ -434,48 +463,86 @@ button.zoom-btn.active{background:var(--mint);color:var(--bg);border-color:var(-
   </div>
 
   <div class="legend-row">
-    <span><i class="wyk-sw" style="border-color:var(--markup);border-top-style:dashed"></i>A · Lấy lại range</span>
-    <span><i class="wyk-sw" style="border-color:var(--amber);border-top-style:dashed"></i>B · Test trong range</span>
-    <span><i class="wyk-sw" style="border-color:var(--dist);border-top-style:dashed"></i>C · SOW / tái phân phối</span>
+    <span><i class="wyk-sw" style="border-color:var(--markup);border-top-style:dashed"></i>A · Spring xác nhận</span>
+    <span><i class="wyk-sw" style="border-color:var(--amber);border-top-style:dashed"></i>B · Giằng co tại đáy</span>
+    <span><i class="wyk-sw" style="border-color:var(--dist);border-top-style:dashed"></i>C · Thủng đáy → markdown</span>
     <span><i class="wyk-sw" style="border-color:var(--acc);border-top-width:8px"></i>Biên ±1σ</span>
-    <span><i class="wyk-sw" style="border-color:var(--tt-accent)"></i>Ngưỡng lấy lại 0.20882</span>
-    <span><i class="wyk-sw" style="border-color:var(--dist)"></i>Ngưỡng phủ định 0.17173</span>
-  </div>
-
-  <div class="sc-score">
-    <div class="h">Chấm điểm kịch bản 01/10 → 15/10</div>
-    <b>04/10</b> · đóng tuần $0.26202 &gt; $0.25429 → <b>A kích hoạt</b>. 06/10 lên $0.2794, chạm vùng đích A ($0.26177–$0.28706).
-    Nhưng tiêu chí “xác nhận mạnh hơn” — volume tuần vượt 4,112M — <b>không đạt</b>: tuần kích hoạt chỉ 3,500M.<br>
-    <b>08/10</b> · đóng ngày $0.23456 &lt; $0.24051 → A mất hiệu lực, <b>chuyển B</b>. <b>15/10</b> (mốc 14 ngày) · đóng $0.2305 → nằm trong vùng B.
-    <b>16/10</b> · đóng ngày $0.22579 &lt; $0.22721 → <b>nghiêng C</b>. <b>25/10</b> · đóng tuần $0.20505 &lt; $0.20882 → <b>C kích hoạt</b>, rồi giá xuyên qua cả vùng C xuống $0.18539.<br>
-    <b>Bài học:</b> một phiên đóng tuần vượt ngưỡng 3% mà volume thấp hơn tuần SOS gốc là xác nhận giả. Các mức chuyển kịch bản báo đúng thứ tự A → B → C, nhưng chỉ sau khi giá đã rơi 16% từ đỉnh. Lần này điều kiện volume được gắn vào ngay mức kích hoạt.
+    <span><i class="wyk-sw" style="border-color:var(--tt-accent)"></i>Ngưỡng xác nhận 0.15614</span>
+    <span><i class="wyk-sw" style="border-color:var(--dist)"></i>Đáy range 0.13883</span>
   </div>
 
   <table class="sc-tab">
-    <thead><tr><th style="width:132px">Kịch bản</th><th>Kích hoạt khi</th><th style="width:112px">Vùng ngày 19/11</th>
+    <thead><tr><th style="width:140px">Kịch bản</th><th>Kích hoạt khi</th><th style="width:112px">Vùng ngày 10/12</th>
     <th style="width:86px">Xác suất nền*</th><th>Ý nghĩa Wyckoff</th><th style="width:170px">Mất hiệu lực khi</th></tr></thead>
     <tbody>
-    <tr><td class="k" style="color:var(--markup)">A · Lấy lại range<br><span class="sc-rk" style="color:var(--markup)">Tích cực</span></td>
-      <td>Đóng tuần <b>08/11</b> hoặc <b>15/11</b> trên <b>0.20882</b>, <em>và</em> volume tuần đó vượt 2,022M (trung bình 3 tuần gần nhất). Đáy giữ trên 0.18539.</td>
-      <td class="z">0.20882–0.22890</td><td class="p" id="scPA">—</td>
-      <td>Cú thủng $0.19103 chỉ là test sâu trên volume cạn; range tích lũy còn nguyên. Đích gần là đỉnh hồi 21/10 ($0.22890).</td>
-      <td>Đóng ngày dưới 0.18539 → chuyển B.</td></tr>
-    <tr><td class="k" style="color:var(--amber)">B · Test trong range<br><span class="sc-rk" style="color:var(--amber)">Cơ sở</span></td>
-      <td>Không có phiên đóng tuần trên 0.20882; giá dao động 0.172–0.209 với volume tiếp tục cạn, giữ trên 0.17173.</td>
-      <td class="z">0.17173–0.20882</td><td class="p" id="scPB">—</td>
-      <td>Secondary test trong Phase B: cung cạn dần, điều kiện cần cho một Phase C mới. Volume 7 ngày ~245M/ngày, chưa bằng nửa mức 615M của đợt tăng.</td>
-      <td>Đóng ngày dưới 0.17173 → nghiêng C.</td></tr>
-    <tr><td class="k" style="color:var(--dist)">C · SOW / tái phân phối<br><span class="sc-rk" style="color:var(--dist)">Rủi ro</span></td>
-      <td>Đóng tuần dưới <b>0.17173</b>, nhất là nếu volume tuần tăng lên (cung mở rộng thay vì cạn).</td>
-      <td class="z">0.15417–0.17173</td><td class="p" id="scPC">—</td>
-      <td>Range 06–10/2026 là tái phân phối: $0.2794 là UTAD, $0.18539 là SOW. Luận điểm tích lũy bị phủ định; đích tiếp theo là đáy Phase B $0.15417, rồi đáy range $0.13883.</td>
-      <td>Đóng tuần lại trên 0.18539 → quay về B.</td></tr>
+    <tr><td class="k" style="color:var(--markup)">A · Spring xác nhận<br><span class="sc-rk" style="color:var(--markup)">Tích cực</span></td>
+      <td>Đóng tuần <b>29/11</b> hoặc <b>06/12</b> trên <b>0.15614</b>, <em>và</em> volume tuần đó vượt 1,716M (trung bình 3 tuần gần nhất). Đáy giữ trên 0.13731.</td>
+      <td class="z">0.15614–0.17173</td><td class="p" id="scPA">—</td>
+      <td>21/11 là spring, 25/11 là test; range 06–11/2026 là một tích lũy lớn hơn và chuyển sang Phase D. Đích gần là mức phủ định cũ 0.17173, giờ là kháng cự.</td>
+      <td>Đóng ngày dưới 0.13731 → chuyển B.</td></tr>
+    <tr><td class="k" style="color:var(--amber)">B · Giằng co tại đáy<br><span class="sc-rk" style="color:var(--amber)">Trung tính</span></td>
+      <td>Không có phiên đóng tuần trên 0.15614 hay dưới 0.13883; giá kẹt trong 0.139–0.156.</td>
+      <td class="z">0.13883–0.15614</td><td class="p" id="scPB">—</td>
+      <td>Phase C chưa có kết quả: cung đã cạn nhưng cầu chưa xuất hiện. Có thể kéo dài nhiều tuần.</td>
+      <td>Đóng ngày dưới 0.13883 → nghiêng C.</td></tr>
+    <tr><td class="k" style="color:var(--dist)">C · Thủng đáy → markdown<br><span class="sc-rk" style="color:var(--dist)">Theo xu hướng</span></td>
+      <td>Đóng tuần dưới <b>0.13883</b>.</td>
+      <td class="z">0.1249–0.13883</td><td class="p" id="scPC">—</td>
+      <td>Phase E của tái phân phối: 21/11 không phải spring mà là bước đầu của cú phá. Dưới 0.13471 không còn mức hỗ trợ nào trong dữ liệu 2024–2026, nên đáy vùng (0.1249) là biên −1σ, không phải mức trên chart.</td>
+      <td>Đóng tuần lại trên 0.13883 → quay về B.</td></tr>
     </tbody>
   </table>
 
+  <details class="sc-more">
+    <summary>Hành trình Wyckoff từng ngày · 26/09 → 25/11</summary>
+    <table class="sc-tab">
+    <thead><tr><th style="width:62px">Ngày</th><th style="width:110px">Nhãn</th><th style="width:118px">Giá</th><th style="width:88px">Vol</th><th>Bằng chứng</th><th>Ý nghĩa</th></tr></thead>
+    <tbody>
+<tr><td class="z">26/09</td><td class="k">UT?</td><td class="z">H 0.26177</td><td class="z">671M</td><td>Đỉnh mới trên 0.25429, phiên sau đóng cửa thấp hơn.</td><td>Upthrust trong range: vượt đỉnh nhưng không giữ được.</td></tr>
+<tr><td class="z">04/10</td><td class="k">Phá vỡ giả</td><td class="z">C 0.26202</td><td class="z">277M</td><td>Phiên tạo ra "đóng tuần xác nhận" trên 0.25429, nhưng volume 277M <b>thấp nhất</b> đợt 21/09–11/10.</td><td>Phá vỡ không có cầu — cảnh báo tôi đã bỏ lỡ.</td></tr>
+<tr><td class="z">05–06/10</td><td class="k">UTAD?</td><td class="z">H 0.27940</td><td class="z">1,006M → 792M</td><td>Volume 05/10 cao nhất từ 22/08; 06/10 đóng cửa ở 14% biên độ nến.</td><td>Cú bẫy mua cuối cùng, đỉnh của cả range.</td></tr>
+<tr><td class="z">08/10</td><td class="k">SOW?</td><td class="z">L 0.22544</td><td class="z">571M</td><td>Rơi 19.3% trong 2 ngày, quay lại dưới 0.25429; volume chưa mở rộng.</td><td>Dấu hiệu yếu đầu tiên.</td></tr>
+<tr class="hl"><td class="z"><b>10/10</b></td><td class="k">LPSY?</td><td class="z">H 0.25635</td><td class="z">527M</td><td>Hồi về vùng 0.25429–0.26177 rồi thất bại; đỉnh thấp hơn UTAD 8.2%, volume giảm.</td><td><b>Last Point of Supply</b>: từ đây giá chỉ tạo đỉnh thấp dần.</td></tr>
+<tr><td class="z">21/10</td><td class="k">LPSY 2?</td><td class="z">H 0.22890</td><td class="z">272M</td><td>Đỉnh thấp hơn 10/10 thêm 10.7%.</td><td>Mỗi nhịp hồi thấp hơn nhịp trước.</td></tr>
+<tr><td class="z">23/10</td><td class="k">Mất 0.20882</td><td class="z">C 0.20829</td><td class="z">266M</td><td>Phiên đầu tiên đóng dưới trần range cũ.</td><td>Kịch bản C ngày 01/10 kích hoạt.</td></tr>
+<tr><td class="z">29–30/10</td><td class="k">SOW 2?</td><td class="z">L 0.18677</td><td class="z">330M → 460M</td><td>Thủng 0.19103 với volume tăng.</td><td>Cung mở rộng khi phá hỗ trợ.</td></tr>
+<tr><td class="z">04/11</td><td class="k">LPSY 3?</td><td class="z">H 0.19985</td><td class="z">247M</td><td>Hồi lên 0.19985, dưới trần range cũ 0.20882; phiên sau đóng 0.18079 (−9.5%).</td><td>Nhịp hồi thứ ba thấp dần. Cái tôi gọi là "ST?" hôm 04/11 hoá ra là một LPSY.</td></tr>
+<tr><td class="z">08/11</td><td class="k">Test 0.17173</td><td class="z">L 0.17274</td><td class="z">115M</td><td>Chạm sát mức phủ định rồi giữ; volume thấp nhất trong 63 phiên.</td><td>Cung cạn ngay trên hỗ trợ — nhưng không có cầu theo sau.</td></tr>
+<tr><td class="z">13–14/11</td><td class="k">SOW 3?</td><td class="z">L 0.14480</td><td class="z">272M → 259M</td><td>13/11 đóng dưới 0.17173; 14/11 rơi 13.4% trong một phiên.</td><td>Mức phân xử bị phá. Volume không bùng nổ: cầu rút đi hơn là cung tháo chạy.</td></tr>
+<tr class="hl"><td class="z">15/11</td><td class="k">Đóng tuần 0.15463</td><td class="z">L 0.14376</td><td class="z">456M</td><td>Volume cao nhất kể từ 30/10; phiên bật 6.8%. Đóng tuần dưới 0.17173.</td><td><b>Kịch bản C kích hoạt, luận điểm tích lũy bị phủ định.</b></td></tr>
+<tr><td class="z">16–19/11</td><td class="k">Hồi yếu</td><td class="z">H 0.15562</td><td class="z">214–231M</td><td>Bốn phiên liền đỉnh quanh 0.155.</td><td>Đáy Phase B cũ 0.15417 đã thành kháng cự.</td></tr>
+<tr><td class="z">21/11</td><td class="k">Spring?</td><td class="z">L 0.13471 · C 0.14407</td><td class="z">422M</td><td>Thủng đáy range 0.13883 3.0% trong phiên rồi đóng lại phía trên; volume cao thứ hai từ 31/10.</td><td>Chữ ký của spring hoặc shakeout — nhưng cũng là hình dạng thường thấy ngay trước khi hỗ trợ gãy.</td></tr>
+<tr><td class="z">23/11</td><td class="k">Hồi</td><td class="z">H 0.15398</td><td class="z">237M</td><td>Hồi lên vùng 0.154 rồi thất bại.</td><td>Kháng cự 0.154–0.156 giữ nguyên.</td></tr>
+<tr><td class="z">25/11</td><td class="k">Test?</td><td class="z">L 0.13731</td><td class="z">204M</td><td>Đáy cao hơn 21/11 1.9%, volume giảm còn một nửa. Nến chưa đóng.</td><td>Đúng mẫu "test của spring" — chỉ có giá trị nếu sau đó giá vượt 0.15614 với volume tăng.</td></tr>
+    </tbody></table>
+  </details>
+
+  <details class="sc-more">
+    <summary>Chấm điểm kịch bản · 04/11 → 19/11 · 01/10 → 15/10</summary>
+    <div class="sc-score">
+      <div class="h">Chấm điểm kịch bản 04/11 → 19/11</div>
+      <b>05/11</b> · đóng ngày $0.18079 &lt; $0.18539 → A mất hiệu lực, <b style="color:var(--amber)">chuyển B</b>.
+      <b>08/11</b> · đóng tuần $0.17457 — giữ trên $0.17173 chỉ 1.7%.
+      <b>13/11</b> · đóng ngày $0.16717 &lt; $0.17173 → <b style="color:var(--dist)">nghiêng C</b>.<br>
+      <b>15/11</b> · đóng tuần $0.15463 &lt; $0.17173 → <b style="color:var(--dist)">C kích hoạt</b>. Theo đúng quy tắc tôi đặt ra, luận điểm tích lũy bị phủ định.<br>
+      <b>19/11</b> (mốc) · đóng $0.15137 — <b>dưới cả ba vùng</b>, thấp hơn đáy vùng C 1.8%. Xác suất nền cho kết quả này chỉ khoảng 2.0%.<br>
+      <b>Bài học:</b> hai lần liên tiếp, kịch bản tôi gọi là "cơ sở" đều lạc quan hơn thị trường. Lần này tôi không chọn kịch bản cơ sở theo cảm tính; xếp hạng bên dưới đi theo xu hướng.
+    </div>
+    <div class="sc-score">
+      <div class="h">Chấm điểm kịch bản 01/10 → 15/10</div>
+      <b>04/10</b> · đóng tuần $0.26202 &gt; $0.25429 → <b style="color:var(--markup)">A kích hoạt</b>. 06/10 lên $0.2794, chạm vùng đích A ($0.26177–$0.28706).<br>
+      Nhưng tiêu chí "xác nhận mạnh hơn" — volume tuần vượt 4,112M — <b>không đạt</b>: tuần kích hoạt chỉ 3,500M.<br>
+      <b>08/10</b> · đóng ngày $0.23456 &lt; $0.24051 → A mất hiệu lực, <b style="color:var(--amber)">chuyển B</b>.
+      <b>15/10</b> (mốc 14 ngày) · đóng $0.2305 → nằm trong vùng B.
+      <b>16/10</b> · đóng ngày $0.22579 &lt; $0.22721 → <b style="color:var(--dist)">nghiêng C</b>.<br>
+      <b>25/10</b> · đóng tuần $0.20505 &lt; $0.20882 → <b style="color:var(--dist)">C kích hoạt</b>, rồi giá xuyên qua cả vùng C xuống $0.18539.<br>
+      <b>Bài học:</b> một phiên đóng tuần vượt ngưỡng 3% mà volume thấp hơn tuần SOS gốc là xác nhận giả. Các mức chuyển kịch bản báo đúng thứ tự A → B → C, nhưng chỉ sau khi giá đã rơi 16% từ đỉnh. Lần này tôi gắn điều kiện volume vào ngay mức kích hoạt.
+    </div>
+  </details>
+
   <div class="sc-note">
-    <b>*Xác suất nền</b> là xác suất giá đóng ngày 19/11 nằm trong vùng đó <em>nếu giá đi ngẫu nhiên</em> với σ ngày 3.06% đo từ 30 phiên gần nhất. Đây là mốc so sánh thống kê, không phải xác suất do Wyckoff đưa ra. Ba vùng nằm liền nhau từ $0.15417 tới $0.22890 nên phủ <b id="scPIn">—</b> kết quả; <b id="scPOut">—</b> còn lại nằm trên $0.22890 hoặc dưới $0.15417.
-    <b>Cách đọc nhánh:</b> chỉ các mức kích hoạt và vùng đích là có căn cứ trên chart; các điểm gãy giữa đường nhánh chỉ minh hoạ thứ tự sự kiện. Hai mốc quyết định là phiên đóng tuần <b>08/11</b> và <b>15/11</b>. Đây là phân tích cấu trúc, không phải khuyến nghị đầu tư.
+    <b>*Xác suất nền</b> là xác suất giá đóng ngày 10/12 nằm trong vùng đó <em>nếu giá đi ngẫu nhiên</em> với σ ngày 4.10% đo từ 30 phiên gần nhất (biến động đã tăng từ 3.06%). Đây là mốc so sánh thống kê, không phải xác suất do Wyckoff đưa ra. Ba vùng nằm liền nhau từ $0.1249 tới $0.17173 nên phủ <b id="scPIn">—</b> kết quả; <b id="scPOut">—</b> còn lại nằm trên $0.17173 hoặc dưới $0.1249.
+    Hai mốc quyết định là phiên đóng tuần <b>29/11</b> và <b>06/12</b>. Đây là phân tích cấu trúc, không phải khuyến nghị đầu tư.
   </div>
 </div>
 
@@ -1241,7 +1308,7 @@ function showTip(e, idx){
     ${state.layers.shmita ? `<div class="tt-row"><span class="tt-label">Shmita</span><span>${shmOn?(mo.y<=2022?'Yes (5782)':'Yes (5789)'):'No'}</span></div>`:''}
     ${state.layers.levels && inCore ? `<div class="tt-row" style="border-top:1px solid rgba(128,128,128,.2);margin-top:4px;padding-top:4px;"><span class="tt-label" style="color:#5bbf86">Cycle thesis</span><span style="color:#5bbf86">core window CLOSED Oct 17 · hold by default</span></div>`:''}
     ${hasCone&&pr?`<div style="border-top:1px solid rgba(128,128,128,.2);margin-top:4px;padding-top:4px;">
-    <div class="tt-row"><span class="tt-label" style="color:var(--amber)">Nov 5 cone</span><span style="color:var(--txt2)">σ ${(coneSigma(idx)*100).toFixed(1)}%</span></div>
+    <div class="tt-row"><span class="tt-label" style="color:var(--amber)">Nov 25 cone</span><span style="color:var(--txt2)">σ ${(coneSigma(idx)*100).toFixed(1)}%</span></div>
     <div class="tt-row"><span class="tt-label">95th</span><span>${f(conePct(idx,Z_OUT))}</span></div>
     <div class="tt-row"><span class="tt-label">50% range</span><span>${f(conePct(idx,-Z_IN))} – ${f(conePct(idx,Z_IN))}</span></div>
     <div class="tt-row"><span class="tt-label">median (flat)</span><span>${f(CONE_SPOT)}</span></div>
@@ -1516,7 +1583,9 @@ const B=[
 ["2026-09-28",0.25502,0.26202,0.23903,0.26202,3500],
 ["2026-10-05",0.25973,0.27940,0.22544,0.25146,4662],["2026-10-12",0.25204,0.25475,0.21183,0.21926,2520],
 ["2026-10-19",0.22099,0.22890,0.20315,0.20505,1801],["2026-10-26",0.20390,0.20770,0.18677,0.19173,1744],
-["2026-11-02",0.19293,0.19834,0.18539,0.19471,596]];
+["2026-11-02",0.19293,0.19985,0.17274,0.17457,1516],
+["2026-11-09",0.17500,0.18232,0.14376,0.15463,1797],["2026-11-16",0.15534,0.15562,0.13471,0.14404,1836],
+["2026-11-23",0.14467,0.15398,0.13731,0.14462,755]];
 
 // swing-line vertices — every value is a real weekly high or low
 const ZIG=[["2024-01-01",0.63521],["2024-01-22",0.4524],["2024-03-11",0.80097],["2024-04-15",0.43177],
@@ -1531,8 +1600,8 @@ const ZIG=[["2024-01-01",0.63521],["2024-01-22",0.4524],["2024-03-11",0.80097],[
 ["2026-01-12",0.43357],["2026-02-02",0.24991],["2026-02-23",0.3214],["2026-03-02",0.25255],
 ["2026-03-16",0.31259],["2026-04-13",0.2364],["2026-05-04",0.28706],["2026-06-01",0.14969],
 ["2026-06-15",0.18908],["2026-06-22",0.13883],["2026-06-29",0.19961],["2026-07-27",0.15417],
-["2026-08-03",0.20882],["2026-08-10",0.17521],["2026-08-17",0.25429],["2026-08-31",0.19232],["2026-09-07",0.22936],["2026-09-14",0.19103],["2026-09-21",0.26177],["2026-09-28",0.23903],["2026-10-05",0.2794],["2026-11-02",0.18539]];
-const NOW=0.19556;   // live spot, drawn half a slot past the last vertex
+["2026-08-03",0.20882],["2026-08-10",0.17521],["2026-08-17",0.25429],["2026-08-31",0.19232],["2026-09-07",0.22936],["2026-09-14",0.19103],["2026-09-21",0.26177],["2026-09-28",0.23903],["2026-10-05",0.2794],["2026-11-09",0.14376],["2026-11-16",0.13471]];
+const NOW=0.14636;   // live spot, drawn half a slot past the last vertex
 
 // s:+1 label above, -1 below.  f:false = interpretive (dashed box)
 const EV=[
@@ -1555,17 +1624,19 @@ const EV=[
  {d:"2026-08-17",p:0.25429,k:"SOS?",         s:+1,f:false,dx:-18},
  {d:"2026-10-05",p:0.27940,k:"UTAD?",        s:+1,f:false,dx:16},
  {d:"2026-09-14",p:0.19103,k:"BU/LPS (thủng)",s:-1,f:false,dx:-30},
- {d:"2026-11-02",p:0.18539,k:"SOW?",         s:-1,f:false,dx:14}
+ {d:"2026-11-09",p:0.14376,k:"SOW?",         s:-1,f:false,dx:-22},
+ {d:"2026-11-16",p:0.13471,k:"Spring?",      s:-1,f:false,dx:20}
 ];
+
 // row 1 = cycle stage, row 2 = Wyckoff phase within the range.
 // `c` maps each stage onto the SAME colour the heatmap's Wyckoff row uses above,
 // so the two readings of the same structure are visually one system.
 const STAGE=[
- {k:"BASE",            c:"acc",from:"2024-01-01",to:"2024-10-28"},
- {k:"MARKUP",          c:"up",from:"2024-11-04",to:"2024-11-11"},
- {k:"DISTRIBUTION",    c:"dn",from:"2024-11-18",to:"2025-09-29"},
- {k:"MARKDOWN",        c:"mdn",from:"2025-10-06",to:"2026-05-25"},
- {k:"TRADING RANGE ?", c:"amber",from:"2026-06-01",to:"2026-11-02"}
+ {k:"BASE",        c:"acc",from:"2024-01-01",to:"2024-10-28"},
+ {k:"MARKUP",      c:"up",from:"2024-11-04",to:"2024-11-11"},
+ {k:"DISTRIBUTION",c:"dn",from:"2024-11-18",to:"2025-09-29"},
+ {k:"MARKDOWN",    c:"mdn",from:"2025-10-06",to:"2026-05-25"},
+ {k:"TRADING RANGE ?",c:"amber",from:"2026-06-01",to:"2026-11-23"}
 ];
 const PH=[
  {k:"A",from:"2024-11-18",to:"2025-01-20"},{k:"B",from:"2025-01-27",to:"2025-07-28"},
@@ -1573,7 +1644,8 @@ const PH=[
  {k:"E",from:"2025-10-06",to:"2026-05-25"},
  {k:"A",from:"2026-06-01",to:"2026-06-22"},{k:"B",from:"2026-06-29",to:"2026-08-03"},
  {k:"C?",from:"2026-08-10",to:"2026-08-10"},{k:"D ✗",from:"2026-08-17",to:"2026-10-05"},
- {k:"B/C ?",from:"2026-10-12",to:"2026-11-02"},
+ {k:"D?",from:"2026-10-12",to:"2026-11-09"},
+ {k:"C/E ?",from:"2026-11-16",to:"2026-11-23"},
  {k:"E",from:null,to:null}
 ];
 const LV=[
@@ -1583,8 +1655,8 @@ const LV=[
  {y:0.52366,from:"2025-06-16",to:"2025-10-06",g:"S",t:"ST in Phase B  0.52366"},
  {y:0.27940,from:"2026-10-05",to:null,        g:"R",t:"UTAD?  0.27940"},
  {y:0.20882,from:"2026-06-29",to:null,        g:"R",t:"0.20882"},
- {y:0.17173,from:"2026-08-17",to:null,        g:"S",t:"Phase C low  0.17173"},
- {y:0.13883,from:"2026-06-22",to:null,        g:"S",t:"ST in B  0.13883"}
+ {y:0.17173,from:"2026-08-17",to:null,        g:"S",t:"Phase C low (thủng)  0.17173"},
+ {y:0.13883,from:"2026-06-22",to:null,        g:"S",t:"Đáy range  0.13883"}
 ];
 
 const IDX={};B.forEach((b,i)=>IDX[b[0]]=i);
@@ -1875,7 +1947,7 @@ resize();
 })();
 
 // ===== 7-14 day Wyckoff scenario panel (daily) =====
-// Ported from the Nov 5 standalone page into the dashboard, which is where this work belongs. The chart
+// Ported from the standalone Wyckoff page (Nov 25 vintage) into the dashboard, which is where this work belongs. The chart
 // logic is the page's own and is unchanged; what changed is that every hardcoded light-theme colour now
 // resolves through the dashboard's CSS variables, so the panel follows the theme toggle exactly as the
 // weekly panel above it does.
@@ -1898,63 +1970,75 @@ const FM='ui-monospace,Menlo,Consolas,monospace';
 // ===== 7–14 day Wyckoff scenario panel (daily, schematic style) =====
 (function(){
 const DB=[
-["2026-09-15",0.20853,0.20853,0.19405,0.19522,400],["2026-09-16",0.19535,0.19576,0.19103,0.19272,455],
-["2026-09-17",0.19616,0.20285,0.19522,0.20091,418],["2026-09-18",0.20251,0.22662,0.20251,0.22662,563],
-["2026-09-19",0.22447,0.23441,0.22161,0.22793,650],["2026-09-20",0.22778,0.23198,0.21913,0.22840,472],
-["2026-09-21",0.22789,0.24635,0.22721,0.24623,645],["2026-09-22",0.24504,0.25318,0.24440,0.25317,871],
-["2026-09-23",0.25402,0.25978,0.23596,0.23862,876],["2026-09-24",0.23845,0.24905,0.23419,0.24750,631],
-["2026-09-25",0.24759,0.25761,0.24716,0.25761,633],["2026-09-26",0.25862,0.26177,0.25022,0.25220,671],
-["2026-09-27",0.25398,0.25790,0.25055,0.25263,431],["2026-09-28",0.25502,0.25502,0.24099,0.24538,543],
-["2026-09-29",0.24719,0.25374,0.24051,0.24469,617],["2026-09-30",0.24440,0.25368,0.24266,0.24777,479],
-["2026-10-01",0.24650,0.25347,0.24489,0.24591,506],["2026-10-02",0.24629,0.25701,0.23903,0.24212,563],
-["2026-10-03",0.24428,0.24764,0.24314,0.24451,515],["2026-10-04",0.24389,0.26202,0.24316,0.26202,277],
-["2026-10-05",0.25973,0.27493,0.25973,0.27168,1006],["2026-10-06",0.27041,0.27940,0.26602,0.26791,792],
-["2026-10-07",0.26745,0.26745,0.25273,0.25420,702],["2026-10-08",0.25538,0.25694,0.22544,0.23456,571],
-["2026-10-09",0.23203,0.24104,0.23203,0.24104,668],["2026-10-10",0.24296,0.25635,0.24296,0.25076,527],
-["2026-10-11",0.24898,0.25559,0.24536,0.25146,396],["2026-10-12",0.25204,0.25475,0.23718,0.23718,379],
-["2026-10-13",0.23286,0.23996,0.22666,0.23654,491],["2026-10-14",0.23576,0.23774,0.22685,0.22946,346],
-["2026-10-15",0.23004,0.23109,0.21879,0.23050,473],["2026-10-16",0.22978,0.23161,0.22254,0.22579,357],
-["2026-10-17",0.22550,0.22550,0.21699,0.21903,242],["2026-10-18",0.21933,0.22143,0.21183,0.21926,232],
-["2026-10-19",0.22099,0.22210,0.21667,0.21825,257],["2026-10-20",0.21800,0.22569,0.21554,0.22398,235],
-["2026-10-21",0.22377,0.22890,0.22212,0.22644,272],["2026-10-22",0.22512,0.22582,0.21093,0.21155,297],
-["2026-10-23",0.21203,0.21780,0.20829,0.20829,266],["2026-10-24",0.21068,0.21180,0.20339,0.20641,250],
-["2026-10-25",0.20799,0.20884,0.20315,0.20505,224],["2026-10-26",0.20390,0.20634,0.20128,0.20496,211],
-["2026-10-27",0.20640,0.20640,0.20229,0.20522,205],["2026-10-28",0.20569,0.20770,0.20180,0.20578,208],
-["2026-10-29",0.20586,0.20621,0.19061,0.19150,330],["2026-10-30",0.19020,0.19494,0.18677,0.19432,460],
-["2026-10-31",0.19511,0.19625,0.19204,0.19310,195],["2026-11-01",0.19282,0.19383,0.19136,0.19173,135],
-["2026-11-02",0.19293,0.19366,0.18756,0.18836,174],["2026-11-03",0.18846,0.19107,0.18640,0.19090,185],
-["2026-11-04",0.18996,0.19834,0.18539,0.19471,237]];
-const SPOT=0.19556, SIG=0.03063, HZ=14;           // spot, daily σ of log returns (30 sessions), horizon
-const T0=DB.length, NT=DB.length+1+HZ;   // slot T0 = today (no candle yet)
-const D0=Date.UTC(2026,10,5);
+["2026-09-24",0.23845,0.24905,0.23419,0.24750,631],["2026-09-25",0.24759,0.25761,0.24716,0.25761,633],
+["2026-09-26",0.25862,0.26177,0.25022,0.25220,671],["2026-09-27",0.25398,0.25790,0.25055,0.25263,431],
+["2026-09-28",0.25502,0.25502,0.24099,0.24538,543],["2026-09-29",0.24719,0.25374,0.24051,0.24469,617],
+["2026-09-30",0.24440,0.25368,0.24266,0.24777,479],["2026-10-01",0.24650,0.25347,0.24489,0.24591,506],
+["2026-10-02",0.24629,0.25701,0.23903,0.24212,563],["2026-10-03",0.24428,0.24764,0.24314,0.24451,515],
+["2026-10-04",0.24389,0.26202,0.24316,0.26202,277],["2026-10-05",0.25973,0.27493,0.25973,0.27168,1006],
+["2026-10-06",0.27041,0.27940,0.26602,0.26791,792],["2026-10-07",0.26745,0.26745,0.25273,0.25420,702],
+["2026-10-08",0.25538,0.25694,0.22544,0.23456,571],["2026-10-09",0.23203,0.24104,0.23203,0.24104,668],
+["2026-10-10",0.24296,0.25635,0.24296,0.25076,527],["2026-10-11",0.24898,0.25559,0.24536,0.25146,396],
+["2026-10-12",0.25204,0.25475,0.23718,0.23718,379],["2026-10-13",0.23286,0.23996,0.22666,0.23654,491],
+["2026-10-14",0.23576,0.23774,0.22685,0.22946,346],["2026-10-15",0.23004,0.23109,0.21879,0.23050,473],
+["2026-10-16",0.22978,0.23161,0.22254,0.22579,357],["2026-10-17",0.22550,0.22550,0.21699,0.21903,242],
+["2026-10-18",0.21933,0.22143,0.21183,0.21926,232],["2026-10-19",0.22099,0.22210,0.21667,0.21825,257],
+["2026-10-20",0.21800,0.22569,0.21554,0.22398,235],["2026-10-21",0.22377,0.22890,0.22212,0.22644,272],
+["2026-10-22",0.22512,0.22582,0.21093,0.21155,297],["2026-10-23",0.21203,0.21780,0.20829,0.20829,266],
+["2026-10-24",0.21068,0.21180,0.20339,0.20641,250],["2026-10-25",0.20799,0.20884,0.20315,0.20505,224],
+["2026-10-26",0.20390,0.20634,0.20128,0.20496,211],["2026-10-27",0.20640,0.20640,0.20229,0.20522,205],
+["2026-10-28",0.20569,0.20770,0.20180,0.20578,208],["2026-10-29",0.20586,0.20621,0.19061,0.19150,330],
+["2026-10-30",0.19020,0.19494,0.18677,0.19432,460],["2026-10-31",0.19511,0.19625,0.19204,0.19310,195],
+["2026-11-01",0.19282,0.19383,0.19136,0.19173,135],["2026-11-02",0.19293,0.19366,0.18756,0.18836,174],
+["2026-11-03",0.18846,0.19107,0.18640,0.19090,185],["2026-11-04",0.18996,0.19985,0.18539,0.19985,247],
+["2026-11-05",0.19730,0.19921,0.18079,0.18079,306],["2026-11-06",0.18070,0.18805,0.18070,0.18503,328],
+["2026-11-07",0.18394,0.18494,0.18029,0.18089,161],["2026-11-08",0.18159,0.18159,0.17274,0.17457,115],
+["2026-11-09",0.17500,0.18232,0.17221,0.17779,215],["2026-11-10",0.17723,0.17924,0.17213,0.17337,187],
+["2026-11-11",0.17384,0.17927,0.17384,0.17428,199],["2026-11-12",0.17435,0.17454,0.16935,0.17351,209],
+["2026-11-13",0.17420,0.17526,0.16717,0.16717,272],["2026-11-14",0.16849,0.16849,0.14480,0.14480,259],
+["2026-11-15",0.14767,0.15614,0.14376,0.15463,456],["2026-11-16",0.15534,0.15534,0.15079,0.15326,231],
+["2026-11-17",0.15302,0.15508,0.15139,0.15428,215],["2026-11-18",0.15525,0.15525,0.14911,0.14911,228],
+["2026-11-19",0.15131,0.15562,0.15020,0.15137,214],["2026-11-20",0.15175,0.15203,0.13898,0.14342,270],
+["2026-11-21",0.14294,0.14541,0.13471,0.14407,422],["2026-11-22",0.14426,0.14603,0.14126,0.14404,256],
+["2026-11-23",0.14467,0.15398,0.14246,0.14688,237],["2026-11-24",0.14847,0.14935,0.14293,0.14457,314],
+["2026-11-25",0.14443,0.14462,0.13731,0.14462,204]];
+const SPOT=0.14636, SIG=0.04102, HZ=15;           // spot, daily σ of log returns (30 sessions), horizon
+const T0=DB.length-1, NT=DB.length+HZ;   // slot T0 = live 25/11 candle (UTC)
+const D0=Date.UTC(2026,10,25);
 const dl=d=>new Date(D0+d*864e5).toISOString().slice(5,10).split('-').reverse().join('/');
 const IX={};DB.forEach((b,i)=>IX[b[0]]=i);
 
 // swing line: ZigZag 4.5% on real daily highs/lows
-const ZIG2=[["2026-09-15",0.20853],["2026-09-16",0.19103],["2026-09-19",0.23441],["2026-09-20",0.21913],["2026-09-23",0.25978],["2026-09-24",0.23419],["2026-09-26",0.26177],["2026-10-02",0.23903],["2026-10-06",0.2794],["2026-10-08",0.22544],["2026-10-10",0.25635],["2026-10-15",0.21879],["2026-10-16",0.23161],["2026-10-18",0.21183],["2026-10-21",0.2289],["2026-10-30",0.18677],["2026-10-31",0.19625],["2026-11-04",0.18539]];
+const ZIG2=[["2026-09-24",0.23419],["2026-09-26",0.26177],["2026-10-02",0.23903],["2026-10-04",0.26202],["2026-10-05",0.25973],["2026-10-06",0.2794],["2026-10-08",0.22544],["2026-10-10",0.25635],["2026-10-15",0.21879],["2026-10-16",0.23161],["2026-10-18",0.21183],["2026-10-21",0.2289],["2026-10-30",0.18677],["2026-11-04",0.19985],["2026-11-08",0.17274],["2026-11-09",0.18232],["2026-11-15",0.14376],["2026-11-19",0.15562],["2026-11-21",0.13471],["2026-11-23",0.15398],["2026-11-25",0.13731]];
 const EV2=[
- {d:"2026-09-16",p:0.19103,k:"BU/LPS (thủng)",s:-1,f:false,dx:22},
- {d:"2026-09-26",p:0.26177,k:"UT?",   s:+1,f:false,dx:-10},
- {d:"2026-10-06",p:0.27940,k:"UTAD?", s:+1,f:false,dx:0},
- {d:"2026-10-21",p:0.22890,k:"LPSY?", s:+1,f:false,dx:0},
- {d:"2026-11-04",p:0.18539,k:"SOW / ST?",s:-1,f:false,dx:-26}
+ {d:"2026-09-26",p:0.26177,k:"UT?",       s:+1,f:false,dx:-14},
+ {d:"2026-10-04",p:0.26202,k:"Phá vỡ giả",s:+1,f:false,dx:-36},
+ {d:"2026-10-06",p:0.27940,k:"UTAD?",     s:+1,f:false,dx:0},
+ {d:"2026-10-08",p:0.22544,k:"SOW?",      s:-1,f:false,dx:0},
+ {d:"2026-10-10",p:0.25635,k:"LPSY?",     s:+1,f:false,dx:22},
+ {d:"2026-10-21",p:0.22890,k:"LPSY 2?",   s:+1,f:false,dx:0},
+ {d:"2026-10-30",p:0.18677,k:"SOW 2?",    s:-1,f:false,dx:-14},
+ {d:"2026-11-04",p:0.19985,k:"LPSY 3?",   s:+1,f:false,dx:0},
+ {d:"2026-11-15",p:0.14376,k:"SOW 3?",    s:-1,f:false,dx:-18},
+ {d:"2026-11-21",p:0.13471,k:"Spring?",   s:-1,f:false,dx:-8},
+ {d:"2026-11-25",p:0.13731,k:"Test?",     s:-1,f:false,dx:22}
 ];
 const LV=[
- {y:0.27940,g:"R",t:"UTAD? · đỉnh range 06/10  0.27940"},
- {y:0.22890,g:"R",t:"LPSY? 21/10  0.22890"},
- {y:0.20882,g:"R",t:"NGƯỠNG LẤY LẠI RANGE  0.20882 · đóng tuần",key:true},
- {y:0.19103,g:"S",t:"BU/LPS cũ (đã thủng)  0.19103"},
- {y:0.18539,g:"S",t:"Đáy 04/11  0.18539"},
- {y:0.17173,g:"S",t:"NGƯỠNG PHỦ ĐỊNH  0.17173 · đóng tuần",key:true,red:true},
- {y:0.15417,g:"S",t:"Đáy Phase B 28/07  0.15417"}
+ {y:0.27940,g:"R",t:"UTAD? 06/10  0.27940"},
+ {y:0.22890,g:"R",t:"LPSY 2? 21/10  0.22890"},
+ {y:0.20882,g:"R",t:"Trần range cũ  0.20882"},
+ {y:0.17173,g:"R",t:"Mức phủ định cũ — thủng 15/11  0.17173"},
+ {y:0.15614,g:"R",t:"NGƯỠNG XÁC NHẬN SPRING  0.15614 · đóng tuần",key:true},
+ {y:0.13883,g:"S",t:"ĐÁY RANGE 06/2026  0.13883 · đóng tuần",key:true,red:true},
+ {y:0.13471,g:"S",t:"Spring? 21/11 · đáy chu kỳ  0.13471"}
 ];
 // day offsets from 01/10; interior vertices are illustrative, zones are real chart levels
 const SC=[
- {k:"A",c:"up",z:[0.20882,0.22890],pts:[[0,SPOT],[1,0.1900],[3,0.2010],[6,0.2080],[10,0.2170],[14,0.2200]]},
- {k:"B",c:"amber",z:[0.17173,0.20882],pts:[[0,SPOT],[1,0.1980],[3,0.1930],[6,0.1820],[9,0.1800],[12,0.1880],[14,0.1900]]},
- {k:"C",c:"dn",z:[0.15417,0.17173],pts:[[0,SPOT],[2,0.1900],[4,0.1800],[7,0.1700],[10,0.1650],[14,0.1600]]}
+ {k:"A",c:"up",z:[0.15614,0.17173],pts:[[0,SPOT],[2,0.1400],[4,0.1520],[7,0.1580],[11,0.1620],[15,0.1650]]},
+ {k:"B",c:"amber",z:[0.13883,0.15614],pts:[[0,SPOT],[2,0.1500],[4,0.1450],[7,0.1400],[10,0.1430],[13,0.1500],[15,0.1480]]},
+ {k:"C",c:"dn",z:[0.12486,0.13883],pts:[[0,SPOT],[2,0.1420],[4,0.1370],[7,0.1330],[11,0.1300],[15,0.1280]]}
 ];
-const DEC=[{d:3,t:"Đóng tuần 08/11"},{d:10,t:"Đóng tuần 15/11"}];
+const DEC=[{d:4,t:"Đóng tuần 29/11"},{d:11,t:"Đóng tuần 06/12"}];
 
 const cone=(d,k)=>SPOT*Math.exp(k*SIG*Math.sqrt(d));
 const at=(s,d)=>{const P=s.pts;for(let j=1;j<P.length;j++)if(d<=P[j][0]){
@@ -1966,7 +2050,7 @@ function Phi(z){const t=1/(1+0.2316419*Math.abs(z)),d=0.3989423*Math.exp(-z*z/2)
 const zz=v=>Math.log(v/SPOT)/(SIG*Math.sqrt(HZ));
 const pr=(a,b)=>Phi(zz(b))-Phi(zz(a));
 const pc=v=>(v*100).toFixed(1)+'%';
-const QA=pr(0.20882,0.22890),QB=pr(0.17173,0.20882),QC=pr(0.15417,0.17173);
+const QA=pr(0.15614,0.17173),QB=pr(0.13883,0.15614),QC=pr(cone(HZ,-1),0.13883);
 document.getElementById('scPA').textContent=pc(QA);
 document.getElementById('scPB').textContent=pc(QB);
 document.getElementById('scPC').textContent=pc(QC);
@@ -2013,7 +2097,7 @@ function dr(){
     cx.fillStyle=K.txt2;cx.fillText(g.toFixed(2),xR+8,yy+3);}
   // dates
   cx.textAlign="center";cx.fillStyle=K.txt2;cx.font="10px "+FM;
-  for(let i=0;i<NT;i+=4){const lab=i<T0?DB[i][0].slice(5).split('-').reverse().join('/'):dl(i-T0);
+  for(let i=0;i<NT;i+=4){const lab=i<=T0?DB[i][0].slice(5).split('-').reverse().join('/'):dl(i-T0);
     const X=x(i);if(X>PL+14&&X<xR-14)cx.fillText(lab,X,H-9);}
 
   // stage / phase header rows (schematic style)
@@ -2021,16 +2105,20 @@ function dr(){
   cx.font="800 13px "+FS;cx.fillStyle=K.acc;
   cx.fillText("TRADING RANGE ?",(PL+xT)/2,PT-50);
   cx.fillText("KỊCH BẢN 14 NGÀY",(xT+xR)/2,PT-50);
-  cx.font="700 12px "+FS;cx.fillStyle=K.amber;
-  cx.fillText("Phase D ✗  →  B/C ?",(PL+xT)/2,PT-30);
-  cx.fillStyle=K.txt2;cx.fillText("Phase B / C ?",(xT+xR)/2,PT-30);
+  cx.font="700 12px "+FS;
+  const SEG=[["2026-09-24","2026-10-04","Phase D ✗"],["2026-10-05","2026-10-07","C?"],["2026-10-08","2026-11-14","Phase D · tái phân phối"],["2026-11-15","2026-11-25","Spring? / E?"]];
+  SEG.forEach(([a,b,t],j)=>{const x0=j?x(IX[a])-bw/2:PL,x1=x(IX[b])+bw/2;
+    if(j){const X=Math.round(x0)+.5;cx.strokeStyle=K.amber;cx.globalAlpha=.5;cx.setLineDash([4,4]);cx.lineWidth=1;
+      cx.beginPath();cx.moveTo(X,PT-22);cx.lineTo(X,H-PBT);cx.stroke();cx.setLineDash([]);cx.globalAlpha=1;}
+    cx.fillStyle=K.amber;cx.textAlign="center";cx.fillText(t,(x0+x1)/2,PT-30);});
+  cx.fillStyle=K.txt2;cx.fillText("Phase C ?  /  E ?",(xT+xR)/2,PT-30);
   // heavy divider at today, light dividers at the two weekly closes
   const vl=(X,col,dash,w,top)=>{X=Math.round(X)+.5;cx.strokeStyle=col;cx.setLineDash(dash);cx.lineWidth=w;
     cx.beginPath();cx.moveTo(X,top);cx.lineTo(X,H-PBT);cx.stroke();cx.setLineDash([]);};
   vl(xT,K.txt,[7,4],1.4,PT-44);
   DEC.forEach(q=>vl(x(T0+q.d),K.acc,[3,4],1,PT));
   cx.font="700 10.5px "+FS;
-  cx.textAlign="right";cx.fillStyle=K.txt;cx.fillText("Hôm nay 05/11",xT-5,PT-9);
+  cx.textAlign="right";cx.fillStyle=K.txt;cx.fillText("Nến hiện tại 25/11 (UTC)",xT-5,PT-9);
   cx.textAlign="left";cx.fillStyle=K.acc;
   DEC.forEach(q=>cx.fillText(q.t,x(T0+q.d)+5,PT-9));
 
@@ -2099,7 +2187,7 @@ cv.addEventListener('mousemove',ev=>{
   if(!G)return;const r=cv.getBoundingClientRect(),px=ev.clientX-r.left,py=ev.clientY-r.top;
   const i=Math.max(0,Math.min(NT-1,Math.floor((px-PL)/G.bw)));hov=i;dr();
   const f4=v=>v.toFixed(4);
-  if(i<T0){const b=DB[i],e=EV2.filter(v=>v.d===b[0]);
+  if(i<=T0){const b=DB[i],e=EV2.filter(v=>v.d===b[0]);
     tp.innerHTML=`<div class="th">${b[0]}</div>`+
       `<div class="r"><span>O</span><span>${f4(b[1])}</span></div><div class="r"><span>H</span><span>${f4(b[2])}</span></div>`+
       `<div class="r"><span>L</span><span>${f4(b[3])}</span></div>`+
@@ -2206,8 +2294,8 @@ new MutationObserver(()=>{window.__scReadTheme();dr();})
   const P=[{k:'heatmap',t:'Heatmap',nodes:heat,e:TT('Heatmap tháng / ','Monthly heatmap / ')+ASSET,h:TT(`${ASSET} <em>theo chu kỳ</em>`,`${ASSET} <em>through the cycle</em>`),i:'<rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 10h18M3 15h18M9 4v16M15 4v16"/>'},
            {k:'levels',t:TT('Mức giá','Levels'),nodes:[lad],e:'Level ladder / '+ASSET,h:TT(`Thang <em>mức giá</em>`,`Level <em>ladder</em>`),c:String(rows.length),i:'<path d="M4 6h16M4 12h10M4 18h6"/>'}];
   if(cone) P.push({k:'cone',t:'Cone',nodes:[cone],e:'Volatility cone / ADA',h:TT(`Cone <em>biến động</em>`,`Volatility <em>cone</em>`),c:'26T',i:'<path d="M3 12h18"/><path d="M3 12l18-8M3 12l18 8"/>'});
-  if(secs[0]) P.push({k:'weekly',t:TT('Wyckoff tuần','Weekly Wyckoff'),nodes:[secs[0]],e:'Wyckoff / weekly',h:TT(`Chu kỳ <em>Wyckoff</em> tuần`,`Weekly <em>Wyckoff</em> cycle`),c:'Nov 5',i:'<path d="M3 17l5-6 4 3 4-7 5 5"/>'});
-  if(secs[1]) P.push({k:'scenario',t:TT('Kịch bản 14N','14-day scenarios'),nodes:[secs[1]],e:'Range test / scenarios',h:TT(`Kịch bản <em>7–14 ngày</em>`,`<em>7–14 day</em> scenarios`),c:'Nov 5',i:'<path d="M3 12h6l3-6 3 12 3-6h3"/>'});
+  if(secs[0]) P.push({k:'weekly',t:TT('Wyckoff tuần','Weekly Wyckoff'),nodes:[secs[0]],e:'Wyckoff / weekly',h:TT(`Chu kỳ <em>Wyckoff</em> tuần`,`Weekly <em>Wyckoff</em> cycle`),c:'Nov 25',i:'<path d="M3 17l5-6 4 3 4-7 5 5"/>'});
+  if(secs[1]) P.push({k:'scenario',t:TT('Kịch bản 14N','14-day scenarios'),nodes:[secs[1]],e:'Range floor / scenarios',h:TT(`Kịch bản <em>7–14 ngày</em>`,`<em>7–14 day</em> scenarios`),c:'Nov 25',i:'<path d="M3 12h6l3-6 3 12 3-6h3"/>'});
   const all=P.flatMap(p=>p.nodes).filter(Boolean);
 
   // ── prose: hide long legend sentences and analysis notes; colour keys stay ──
@@ -2217,6 +2305,21 @@ new MutationObserver(()=>{window.__scReadTheme();dr();})
   const rep=q('.wrap .controls a.zoom-btn[href*="report"],.wrap .controls a.zoom-btn[href*="monthly_map"]'), repHref=rep?rep.getAttribute('href'):null;
   if(rep) rep.closest('.ctrl-group').classList.add('sh-hide');
   const tt=q('#themeToggle'); if(tt) tt.closest('.ctrl-group').classList.add('sh-hide');   // theme lives in the sidebar now
+
+  // ── heatmap module: one toolbar on the chart, legend folded under it (first key row stays visible) ──
+  const ctl=q('.wrap>.controls'), card=q('.wrap>.chart-card');
+  if(ctl&&card){
+    ctl.classList.add('sh-bar'); card.classList.add('sh-card');
+    ctl.querySelectorAll(':scope>.ctrl-group:not(.sh-hide)').forEach((g,i,a)=>{ if(i===a.length-1) g.style.borderRight='0'; });
+    const vis=legends.filter(r=>!r.classList.contains('sh-hide'));
+    if(vis.length){
+      const d=document.createElement('details'); d.className='sh-leg';
+      const s=document.createElement('summary'); s.innerHTML=`<span class="t">${TT('Chú giải','Legend')}</span>`;
+      card.insertAdjacentElement('afterend',d); d.appendChild(s); s.appendChild(vis[0]); vis.slice(1).forEach(r=>d.appendChild(r));
+      if(vis.length===1) s.querySelector('.t').classList.add('sh-hide');
+      heat.push(d); all.push(d);
+    }
+  }
 
   // ── sidebar, top bar, page header ──
   const link=p=>`<a class="sh-ni" href="#${p.k}" data-k="${p.k}"><svg viewBox="0 0 24 24" aria-hidden="true">${p.i}</svg><span>${p.t}</span>${p.c?`<span class="c">${p.c}</span>`:''}</a>`;

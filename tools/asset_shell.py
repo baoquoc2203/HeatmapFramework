@@ -99,6 +99,23 @@ button.zoom-btn.active{background:var(--mint);color:var(--bg);border-color:var(-
 .sh-tier{font:700 9px var(--mono);letter-spacing:.06em;border:1px solid var(--line2);border-radius:5px;padding:1px 5px;color:var(--txt2)}
 .sh-bk{display:flex;height:8px;border-radius:4px;overflow:hidden;min-width:120px;background:var(--p3)}
 .sh-bk i{display:block;height:100%}
+/* heatmap module: toolbar, chart and legend read as one card */
+.wrap>.controls.sh-bar{margin:12px 0 0;gap:0;padding:4px;background:var(--card);border:1px solid var(--bord);border-bottom:0;border-radius:12px 12px 0 0;flex-wrap:wrap}
+.sh-bar>.ctrl-group{background:transparent;border:0;border-radius:0;padding:5px 10px;gap:4px;border-right:1px solid var(--bord)}
+.sh-bar>.ctrl-group:last-of-type{border-right:0}
+.sh-bar .ctrl-label{font:700 9px var(--mono);letter-spacing:.14em;color:var(--t3);margin-right:4px}
+.sh-bar button.toggle,.sh-bar button.zoom-btn{padding:5px 9px;background:transparent}
+.sh-bar button.zoom-btn.active{background:var(--mint);color:var(--bg)}
+.wrap>.chart-card.sh-card{border-radius:0;border-top:1px solid var(--bord)}
+.sh-leg{background:var(--card);border:1px solid var(--bord);border-top:0;border-radius:0 0 12px 12px;padding:0 14px;margin-bottom:6px}
+.sh-leg>summary{display:flex;align-items:center;gap:14px;padding:10px 0;cursor:pointer;list-style:none;font:600 10.5px var(--mono);color:var(--txt2)}
+.sh-leg>summary::-webkit-details-marker{display:none}
+.sh-leg>summary .t{flex:none;font:700 9px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--t3)}
+.sh-leg>summary .t::after{content:' +';color:var(--mint)}
+.sh-leg[open]>summary .t::after{content:' −'}
+.sh-leg>summary>.legend-row{margin:0;flex:1;min-width:0}
+.sh-leg>.legend-row{margin:0;padding:8px 0;border-top:1px dashed var(--bord)}
+.sh-leg>.legend-row:last-child{padding-bottom:12px}
 @media (max-width:1100px){.sh-kpis{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media (max-width:860px){
   body{display:block}
@@ -116,6 +133,10 @@ button.zoom-btn.active{background:var(--mint);color:var(--bg);border-color:var(-
   .sh-tbl .hs{display:none}
   .ctrl-group{flex-wrap:wrap;max-width:100%}
   .sc-tab{display:block;overflow-x:auto;max-width:100%}
+  .wrap>.controls.sh-bar{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none}
+  .sh-bar::-webkit-scrollbar{display:none}
+  .sh-bar>.ctrl-group{flex:none;flex-wrap:nowrap;padding:5px 8px}
+  .sh-leg>summary{flex-wrap:wrap;gap:8px}
 }
 </style>'''
 
@@ -197,8 +218,8 @@ JS = r'''<script id="cre-shell-js">
   const P=[{k:'heatmap',t:'Heatmap',nodes:heat,e:TT('Heatmap tháng / ','Monthly heatmap / ')+ASSET,h:TT(`${ASSET} <em>theo chu kỳ</em>`,`${ASSET} <em>through the cycle</em>`),i:'<rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 10h18M3 15h18M9 4v16M15 4v16"/>'},
            {k:'levels',t:TT('Mức giá','Levels'),nodes:[lad],e:'Level ladder / '+ASSET,h:TT(`Thang <em>mức giá</em>`,`Level <em>ladder</em>`),c:String(rows.length),i:'<path d="M4 6h16M4 12h10M4 18h6"/>'}];
   if(cone) P.push({k:'cone',t:'Cone',nodes:[cone],e:'Volatility cone / ADA',h:TT(`Cone <em>biến động</em>`,`Volatility <em>cone</em>`),c:'26T',i:'<path d="M3 12h18"/><path d="M3 12l18-8M3 12l18 8"/>'});
-  if(secs[0]) P.push({k:'weekly',t:TT('Wyckoff tuần','Weekly Wyckoff'),nodes:[secs[0]],e:'Wyckoff / weekly',h:TT(`Chu kỳ <em>Wyckoff</em> tuần`,`Weekly <em>Wyckoff</em> cycle`),c:'Nov 5',i:'<path d="M3 17l5-6 4 3 4-7 5 5"/>'});
-  if(secs[1]) P.push({k:'scenario',t:TT('Kịch bản 14N','14-day scenarios'),nodes:[secs[1]],e:'Range test / scenarios',h:TT(`Kịch bản <em>7–14 ngày</em>`,`<em>7–14 day</em> scenarios`),c:'Nov 5',i:'<path d="M3 12h6l3-6 3 12 3-6h3"/>'});
+  if(secs[0]) P.push({k:'weekly',t:TT('Wyckoff tuần','Weekly Wyckoff'),nodes:[secs[0]],e:'Wyckoff / weekly',h:TT(`Chu kỳ <em>Wyckoff</em> tuần`,`Weekly <em>Wyckoff</em> cycle`),c:'Nov 25',i:'<path d="M3 17l5-6 4 3 4-7 5 5"/>'});
+  if(secs[1]) P.push({k:'scenario',t:TT('Kịch bản 14N','14-day scenarios'),nodes:[secs[1]],e:'Range floor / scenarios',h:TT(`Kịch bản <em>7–14 ngày</em>`,`<em>7–14 day</em> scenarios`),c:'Nov 25',i:'<path d="M3 12h6l3-6 3 12 3-6h3"/>'});
   const all=P.flatMap(p=>p.nodes).filter(Boolean);
 
   // ── prose: hide long legend sentences and analysis notes; colour keys stay ──
@@ -208,6 +229,21 @@ JS = r'''<script id="cre-shell-js">
   const rep=q('.wrap .controls a.zoom-btn[href*="report"],.wrap .controls a.zoom-btn[href*="monthly_map"]'), repHref=rep?rep.getAttribute('href'):null;
   if(rep) rep.closest('.ctrl-group').classList.add('sh-hide');
   const tt=q('#themeToggle'); if(tt) tt.closest('.ctrl-group').classList.add('sh-hide');   // theme lives in the sidebar now
+
+  // ── heatmap module: one toolbar on the chart, legend folded under it (first key row stays visible) ──
+  const ctl=q('.wrap>.controls'), card=q('.wrap>.chart-card');
+  if(ctl&&card){
+    ctl.classList.add('sh-bar'); card.classList.add('sh-card');
+    ctl.querySelectorAll(':scope>.ctrl-group:not(.sh-hide)').forEach((g,i,a)=>{ if(i===a.length-1) g.style.borderRight='0'; });
+    const vis=legends.filter(r=>!r.classList.contains('sh-hide'));
+    if(vis.length){
+      const d=document.createElement('details'); d.className='sh-leg';
+      const s=document.createElement('summary'); s.innerHTML=`<span class="t">${TT('Chú giải','Legend')}</span>`;
+      card.insertAdjacentElement('afterend',d); d.appendChild(s); s.appendChild(vis[0]); vis.slice(1).forEach(r=>d.appendChild(r));
+      if(vis.length===1) s.querySelector('.t').classList.add('sh-hide');
+      heat.push(d); all.push(d);
+    }
+  }
 
   // ── sidebar, top bar, page header ──
   const link=p=>`<a class="sh-ni" href="#${p.k}" data-k="${p.k}"><svg viewBox="0 0 24 24" aria-hidden="true">${p.i}</svg><span>${p.t}</span>${p.c?`<span class="c">${p.c}</span>`:''}</a>`;
