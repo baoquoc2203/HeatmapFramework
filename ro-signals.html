@@ -289,6 +289,7 @@ body{font:400 14px/1.55 var(--sans);letter-spacing:-.003em}
 
 
 
+
 <style id="cre-skin">
 /* ── CRE skin: sidebar shell around the original page (layout only) ── */
 body{display:grid;grid-template-columns:228px minmax(0,1fr);min-height:100vh}
@@ -981,6 +982,7 @@ if(store.get("rhs.view")==="2d"||!space.webgl)setFlat(true);
 
 
 
+
 <script id="cre-skin-js">
 /* CRE skin — layout only. Moves nothing into new code: it assigns the page's own sections to
    sidebar pages and shows one at a time. The radar, list, breakout, flow chart and BTC overlay
@@ -988,16 +990,20 @@ if(store.get("rhs.view")==="2d"||!space.webgl)setFlat(true);
 (function(){
   const q=s=>document.querySelector(s), app=q('.app'); if(!app) return;
   const date=(q('#date')||{}).textContent||'';
+  // language: site-wide cre-lang key, ?lang= override; EN swaps this shell only — the upstream page text stays as published
+  const LANG=(()=>{ const u=new URLSearchParams(location.search).get('lang'); if(u==='en'||u==='vi'){ try{localStorage.setItem('cre-lang',u);}catch(e){} return u; }
+    try{return localStorage.getItem('cre-lang')==='en'?'en':'vi';}catch(e){return 'vi';} })();
+  const TT=(vi,en)=>LANG==='en'?en:vi;
   const PAGES=[
-    {k:'radar',  t:'Radar',        g:'Khám phá', els:['#stats','.stage'], e:'Signal terminal / Robinhood Chain', h:'See the signal. <em>Read the context.</em>', p:'Chọn token trên radar để xem thông tin hiện có. Bộ lọc và cách hiển thị không thay đổi logic tín hiệu.',
+    {k:'radar',  t:'Radar',        g:TT('Khám phá','Discovery'), els:['#stats','.stage'], e:'Signal terminal / Robinhood Chain', h:'See the signal. <em>Read the context.</em>', p:'Chọn token trên radar để xem thông tin hiện có. Bộ lọc và cách hiển thị không thay đổi logic tín hiệu.',
      i:'<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><path d="M12 12l6-6"/>'},
-    {k:'list',   t:'Danh sách',    g:'Khám phá', els:['#list'], e:'Signal terminal / danh sách', h:'Tín hiệu &amp; <em>token</em>', p:'Danh sách hiện có, hiển thị gọn để so sánh.',
+    {k:'list',   t:TT('Danh sách','Signal list'), g:TT('Khám phá','Discovery'), els:['#list'], e:'Signal terminal / '+TT('danh sách','list'), h:TT('Tín hiệu &amp; <em>token</em>','Signals &amp; <em>tokens</em>'), p:'Danh sách hiện có, hiển thị gọn để so sánh.',
      i:'<path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/>'},
-    {k:'flow',   t:'Dòng tiền',    g:'Dòng tiền & nghiên cứu', els:['#mf'], e:'Flow / lệnh lớn &amp; cá voi', h:'Dòng tiền <em>lệnh lớn</em>', p:'Giá đóng cửa, dòng lệnh lớn theo ngày và dấu cá voi. Lớp quan sát, không phải tín hiệu giao dịch độc lập.',
+    {k:'flow',   t:TT('Dòng tiền','Money flow'), g:TT('Dòng tiền & nghiên cứu','Flow & research'), els:['#mf'], e:'Flow / '+TT('lệnh lớn &amp; cá voi','large orders &amp; whales'), h:TT('Dòng tiền <em>lệnh lớn</em>','Large-order <em>flow</em>'), p:'Giá đóng cửa, dòng lệnh lớn theo ngày và dấu cá voi. Lớp quan sát, không phải tín hiệu giao dịch độc lập.',
      i:'<path d="M3 12h4l3-8 4 16 3-8h4"/>'},
-    {k:'breakout',t:'Breakout',    g:'Dòng tiền & nghiên cứu', els:['#brk'], e:'Discovery layer', h:'Breakout <em>discovery</em>', p:'Token mới được phát hiện qua lớp breakout. Khám phá và theo dõi, không phải lệnh mua.',
+    {k:'breakout',t:'Breakout',    g:TT('Dòng tiền & nghiên cứu','Flow & research'), els:['#brk'], e:'Discovery layer', h:'Breakout <em>discovery</em>', p:'Token mới được phát hiện qua lớp breakout. Khám phá và theo dõi, không phải lệnh mua.',
      i:'<path d="M3 17l6-6 4 4 8-8"/><path d="M14 7h7v7"/>'},
-    {k:'btc',    t:'Bối cảnh BTC', g:'Bối cảnh', els:['#btc'], e:'Market backdrop', h:'Bối cảnh <em>BTC</em>', p:'Lớp phủ chế độ thị trường. Không tự động thay đổi tín hiệu token.',
+    {k:'btc',    t:TT('Bối cảnh BTC','BTC context'), g:TT('Bối cảnh','Context'), els:['#btc'], e:'Market backdrop', h:TT('Bối cảnh <em>BTC</em>','BTC <em>context</em>'), p:'Lớp phủ chế độ thị trường. Không tự động thay đổi tín hiệu token.',
      i:'<path d="M12 3v18M7 7h7a3 3 0 010 6H7h8a3 3 0 010 6H7"/>'}
   ];
   PAGES.forEach(P=>{ P.nodes=P.els.map(s=>q('.app>'+s)||q(s)).filter(Boolean); });
@@ -1005,22 +1011,27 @@ if(store.get("rhs.view")==="2d"||!space.webgl)setFlat(true);
     flow:((q('#mf-rng [aria-pressed="true"]')||{}).textContent||'').trim()};
   const link=P=>`<a class="sk-ni" href="#${P.k}" data-k="${P.k}"><svg viewBox="0 0 24 24" aria-hidden="true">${P.i}</svg><span>${P.t}</span>${cnt[P.k]?`<span class="c">${cnt[P.k]}</span>`:''}</a>`;
   let groups=''; [...new Set(PAGES.map(P=>P.g))].forEach(g=>{ groups+=`<div class="sk-lbl">${g}</div><nav class="sk-nav">${PAGES.filter(P=>P.g===g).map(link).join('')}</nav>`; });
-  const side=document.createElement('aside'); side.className='sk-side'; side.setAttribute('aria-label','Điều hướng');
-  side.innerHTML=`<a class="sk-brand" href="index.html" title="Về trang chủ CRE"><span class="mk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="8"/><path d="M12 12l5-5"/></svg></span>
-      <span><b>Robinhood Chain<br><em>Rổ tín hiệu</em></b><small>Discovery &amp; research terminal</small></span></a>
+  const side=document.createElement('aside'); side.className='sk-side'; side.setAttribute('aria-label',TT('Điều hướng','Navigation'));
+  side.innerHTML=`<a class="sk-brand" href="index.html" title="${TT('Về trang chủ CRE','Back to the CRE home page')}"><span class="mk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="8"/><path d="M12 12l5-5"/></svg></span>
+      <span><b>Robinhood Chain<br><em>${TT('Rổ tín hiệu','Signal basket')}</em></b><small>Discovery &amp; research terminal</small></span></a>
     ${groups}
-    <div class="sk-lbl">Trang riêng</div><nav class="sk-nav"><a class="sk-ni" href="robinhood.html"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 13h4v8H3zM10 9h4v12h-4zM17 4h4v17h-4z"/></svg><span>Danh mục</span><span class="c">↗</span></a></nav>
-    <div class="sk-lbl">Tài sản</div><nav class="sk-nav"><a class="sk-ni" href="btc-dashboard.html"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v18M7 7h7a3 3 0 010 6H7h8a3 3 0 010 6H7"/></svg><span>Bitcoin</span><span class="c">↗</span></a><a class="sk-ni" href="ada-dashboard.html"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="2"/></svg><span>Cardano</span><span class="c">↗</span></a></nav>
+    <div class="sk-lbl">${TT('Trang riêng','Pages')}</div><nav class="sk-nav"><a class="sk-ni" href="robinhood.html"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 13h4v8H3zM10 9h4v12h-4zM17 4h4v17h-4z"/></svg><span>${TT('Danh mục','Portfolio')}</span><span class="c">↗</span></a></nav>
+    <div class="sk-lbl">${TT('Tài sản','Assets')}</div><nav class="sk-nav"><a class="sk-ni" href="btc-dashboard.html"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v18M7 7h7a3 3 0 010 6H7h8a3 3 0 010 6H7"/></svg><span>Bitcoin</span><span class="c">↗</span></a><a class="sk-ni" href="ada-dashboard.html"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="2"/></svg><span>Cardano</span><span class="c">↗</span></a></nav>
     <div class="sk-sp"></div>
-    <div class="sk-state"><b>Dữ liệu <span>Lịch sử</span></b>Close ${date} UTC</div>
-    <div class="sk-btns"><a class="sk-btn" href="index.html">← Trang chủ</a><button class="sk-btn" type="button" data-proxy="themeBtn" aria-label="Đổi giao diện sáng / tối">◐</button><button class="sk-btn" type="button" data-proxy="csvBtn">↓ CSV</button></div>`;
+    <div class="sk-state"><b>${TT('Dữ liệu','Data')} <span>${TT('Lịch sử','Historical')}</span></b>Close ${date} UTC</div>
+    <div class="sk-btns"><a class="sk-btn" href="index.html">${TT('← Trang chủ','← Home')}</a><button class="sk-btn" type="button" data-lang>${LANG==='en'?'VI':'EN'}</button><button class="sk-btn" type="button" data-proxy="themeBtn" aria-label="${TT('Đổi giao diện sáng / tối','Toggle light / dark')}">◐</button><button class="sk-btn" type="button" data-proxy="csvBtn">↓ CSV</button></div>`;
   document.body.insertBefore(side,document.body.firstChild);
-  const tabs=document.createElement('nav'); tabs.className='sk-tabs'; tabs.setAttribute('aria-label','Chức năng');
-  tabs.innerHTML='<div class="in">'+PAGES.map(link).join('')+'<a class="sk-ni" href="robinhood.html"><span>Danh mục ↗</span></a><a class="sk-ni" href="btc-dashboard.html"><span>BTC ↗</span></a><a class="sk-ni" href="ada-dashboard.html"><span>ADA ↗</span></a></div>';
+  const tabs=document.createElement('nav'); tabs.className='sk-tabs'; tabs.setAttribute('aria-label',TT('Chức năng','Sections'));
+  tabs.innerHTML='<div class="in">'+PAGES.map(link).join('')+'<a class="sk-ni" href="robinhood.html"><span>'+TT('Danh mục','Portfolio')+' ↗</span></a><a class="sk-ni" href="btc-dashboard.html"><span>BTC ↗</span></a><a class="sk-ni" href="ada-dashboard.html"><span>ADA ↗</span></a></div>';
   q('.app>.top').appendChild(tabs);
+  const lb=document.createElement('button'); lb.type='button'; lb.className='ghost sk-langm'; lb.setAttribute('data-lang',''); lb.textContent=LANG==='en'?'VI':'EN';
+  lb.addEventListener('click',()=>{ const nx=LANG==='en'?'vi':'en'; try{localStorage.setItem('cre-lang',nx);}catch(err){} const u=new URL(location.href); u.searchParams.set('lang',nx); location.href=u.toString(); });
+  const tl=q('.app>.top .tools'); tl&&tl.insertBefore(lb,tl.firstChild);
+  if(LANG==='en'){ const dl=q('.app>.top a[href="robinhood.html"]'); if(dl) dl.textContent='Portfolio'; }
   const ph=document.createElement('div'); ph.className='sk-ph';
   q('.app>.top').insertAdjacentElement('afterend',ph);
-  side.addEventListener('click',e=>{ const b=e.target.closest('[data-proxy]'); if(b){ const t=document.getElementById(b.dataset.proxy); t&&t.click(); } });
+  side.addEventListener('click',e=>{ const b=e.target.closest('[data-proxy]'); if(b){ const t=document.getElementById(b.dataset.proxy); t&&t.click(); }
+    if(e.target.closest('[data-lang]')){ const nx=LANG==='en'?'vi':'en'; try{localStorage.setItem('cre-lang',nx);}catch(err){} const u=new URL(location.href); u.searchParams.set('lang',nx); location.href=u.toString(); } });
 
   const all=PAGES.flatMap(P=>P.nodes);
   function go(k,top){
@@ -1028,7 +1039,7 @@ if(store.get("rhs.view")==="2d"||!space.webgl)setFlat(true);
     all.forEach(n=>n.classList.toggle('sk-off',!P.nodes.includes(n)));
     document.querySelectorAll('.sk-ni[data-k]').forEach(a=>a.dataset.k===P.k?a.setAttribute('aria-current','page'):a.removeAttribute('aria-current'));
     ph.innerHTML=`<div><div class="e">${P.e}</div><h2>${P.h}</h2></div><div class="r">${date} · UTC CLOSE<br>HISTORICAL SNAPSHOT</div>`;
-    document.title=P.t+' · Rổ tín hiệu · Robinhood Chain';
+    document.title=P.t+' · '+TT('Rổ tín hiệu','Signal basket')+' · Robinhood Chain';
     try{ if(location.hash.slice(1)!==P.k) history.pushState(null,'','#'+P.k); }catch(e){}
     // the radar and the flow chart size themselves from their box: let them re-measure now that it is visible
     requestAnimationFrame(()=>{ dispatchEvent(new Event('resize')); });

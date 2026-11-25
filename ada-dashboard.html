@@ -136,6 +136,11 @@
 
 
 
+
+
+
+
+
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link id="cre-shell-fonts" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style id="cre-shell">
 /* ── CRE shell: site palette + sidebar app around the original dashboard ── */
@@ -2129,6 +2134,11 @@ new MutationObserver(()=>{window.__scReadTheme();dr();})
 (function(){
   const q=s=>document.querySelector(s), wrap=q('.wrap'); if(!wrap) return;
   const ASSET=document.body.dataset.asset;
+  // language: one site-wide key (cre-lang), overridable with ?lang=en|vi; EN swaps the interface only
+  const LANG=(()=>{ const u=new URLSearchParams(location.search).get('lang'); if(u==='en'||u==='vi'){ try{localStorage.setItem('cre-lang',u);}catch(e){} return u; }
+    try{return localStorage.getItem('cre-lang')==='en'?'en':'vi';}catch(e){return 'vi';} })();
+  const TT=(vi,en)=>LANG==='en'?en:vi;
+  document.documentElement.lang=LANG;
   const isADA=ASSET==='ADA';
   const M=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
   const cur=currentIdx, close=price[cur], prev=price[cur-1], mo=months[cur];
@@ -2142,7 +2152,8 @@ new MutationObserver(()=>{window.__scReadTheme();dr();})
   const mchg=prev?(close/prev-1)*100:null;
 
   // ── level ladder: lines + zones, ordered by price ──
-  const KL={res:'Kháng cự',sup:'Hỗ trợ',gate:'Ngưỡng',ema:'Trung bình',zone:'Vùng',dist:'Cung',hard:'Dừng lỗ',entry:'Vào lệnh'};
+  const KL=LANG==='en'?{res:'Resistance',sup:'Support',gate:'Trigger',ema:'Average',zone:'Zone',dist:'Supply',hard:'Stop',entry:'Entry'}
+                     :{res:'Kháng cự',sup:'Hỗ trợ',gate:'Ngưỡng',ema:'Trung bình',zone:'Vùng',dist:'Cung',hard:'Dừng lỗ',entry:'Vào lệnh'};
   const rows=[...levelLines.map(L=>({p:L.p,lo:L.p,hi:L.p,kind:L.kind,tier:L.tier,tag:L.tag,label:L.label,zone:false})),
               ...levelZones.map(Z=>({p:(Z.lo+Z.hi)/2,lo:Z.lo,hi:Z.hi,kind:Z.kind,tier:Z.tier,tag:Z.tag,label:Z.label,zone:true}))].sort((a,b)=>b.hi-a.hi);
   const above=levelLines.filter(L=>L.p>close).sort((a,b)=>a.p-b.p)[0], below=levelLines.filter(L=>L.p<close).sort((a,b)=>b.p-a.p)[0];
@@ -2155,23 +2166,23 @@ new MutationObserver(()=>{window.__scReadTheme();dr();})
   const fngV=(typeof fng!=='undefined'&&fng)?fng[cur]:null;
   let coneK='';
   if(isADA&&typeof coneProbs==='function'){ const pr=coneProbs(cur); if(pr){ const u=Math.round(pr.bull*100), d=Math.round(pr.bear*100);
-    coneK=`<div class="sh-k"><div class="k">Cone ${M[mo.m]}</div><div class="v">${u} / ${100-u-d} / ${d}</div><div class="s">lên · giữa · xuống ±25%</div></div>`; } }
+    coneK=`<div class="sh-k"><div class="k">Cone ${M[mo.m]}</div><div class="v">${u} / ${100-u-d} / ${d}</div><div class="s">${TT('lên · giữa · xuống ±25%','up · within · down ±25%')}</div></div>`; } }
   kpi.innerHTML=`
-    <div class="sh-k"><div class="k">Close ${M[mo.m]} ${mo.y} · MTD</div><div class="v big">${fmt(close)}</div><div class="s"><span class="${cls(mchg)}">${mchg==null?'—':sgn(mchg)}</span> so với close ${M[months[cur-1].m]}</div></div>
-    <div class="sh-k"><div class="k">Wyckoff</div><div class="v">${KIND[block.kind]||'—'}</div><div class="s">tháng ${M[mo.m]} · đang chạy</div></div>
-    <div class="sh-k"><div class="k">Mức gần trên</div><div class="v">${above?fmt(above.p):'—'}</div><div class="s">${above?`<span class="sh-up">${sgn((above.p/close-1)*100)}</span> · ${esc(clean(above.tag))}`:''}</div></div>
-    <div class="sh-k"><div class="k">Mức gần dưới</div><div class="v">${below?fmt(below.p):'—'}</div><div class="s">${below?`<span class="sh-dn">${sgn((below.p/close-1)*100)}</span> · ${esc(clean(below.tag))}`:''}</div></div>
-    ${coneK||`<div class="sh-k"><div class="k">Fear &amp; Greed</div><div class="v">${fngV==null?'—':fngV}</div><div class="s">${M[mo.m]} ${mo.y} · trọng số 0</div></div>`}`;
+    <div class="sh-k"><div class="k">Close ${M[mo.m]} ${mo.y} · MTD</div><div class="v big">${fmt(close)}</div><div class="s"><span class="${cls(mchg)}">${mchg==null?'—':sgn(mchg)}</span> ${TT('so với close','vs close')} ${M[months[cur-1].m]}</div></div>
+    <div class="sh-k"><div class="k">Wyckoff</div><div class="v">${KIND[block.kind]||'—'}</div><div class="s">${M[mo.m]} · ${TT('đang chạy','in progress')}</div></div>
+    <div class="sh-k"><div class="k">${TT('Mức gần trên','Nearest above')}</div><div class="v">${above?fmt(above.p):'—'}</div><div class="s">${above?`<span class="sh-up">${sgn((above.p/close-1)*100)}</span> · ${esc(clean(above.tag))}`:''}</div></div>
+    <div class="sh-k"><div class="k">${TT('Mức gần dưới','Nearest below')}</div><div class="v">${below?fmt(below.p):'—'}</div><div class="s">${below?`<span class="sh-dn">${sgn((below.p/close-1)*100)}</span> · ${esc(clean(below.tag))}`:''}</div></div>
+    ${coneK||`<div class="sh-k"><div class="k">Fear &amp; Greed</div><div class="v">${fngV==null?'—':fngV}</div><div class="s">${M[mo.m]} ${mo.y} · ${TT('trọng số 0','zero weight')}</div></div>`}`;
   wrap.insertBefore(kpi, q('.wrap>.controls'));
 
   const lad=document.createElement('section'); lad.className='sh-panel';
-  lad.innerHTML=`<div class="sh-pt"><h3>Thang mức giá</h3><div class="m">${rows.length} mức · khoảng cách so với close ${M[mo.m]} ${fmt(close)}</div></div>
-    <div style="overflow-x:auto"><table class="sh-tbl"><thead><tr><th>Mức</th><th>Loại</th><th class="hs">Tier</th><th>Khoảng cách</th><th style="text-align:left">Nhãn</th></tr></thead><tbody>${
+  lad.innerHTML=`<div class="sh-pt"><h3>${TT('Thang mức giá','Level ladder')}</h3><div class="m">${rows.length} ${TT('mức · khoảng cách so với close','levels · distance from close')} ${M[mo.m]} ${fmt(close)}</div></div>
+    <div style="overflow-x:auto"><table class="sh-tbl"><thead><tr><th>${TT('Mức','Level')}</th><th>${TT('Loại','Type')}</th><th class="hs">Tier</th><th>${TT('Khoảng cách','Distance')}</th><th style="text-align:left">${TT('Nhãn','Tag')}</th></tr></thead><tbody>${
     rows.map((r,i)=>{ const ref=r.zone?(close>r.hi?r.hi:close<r.lo?r.lo:close):r.p, d=(ref/close-1)*100, inside=r.zone&&close>=r.lo&&close<=r.hi;
       const col=getComputedStyle(document.documentElement).getPropertyValue('--txt2');
       return `<tr class="r${inside?' cur':''}" tabindex="0" data-i="${i}"><td>${r.zone?fmt(r.lo)+' – '+fmt(r.hi):fmt(r.p)}</td>
-        <td style="text-align:right"><span class="sh-sw" style="background:${lvlColor(r.kind)}"></span>${KL[r.kind]||r.kind}${r.zone?' · vùng':''}</td>
-        <td class="hs"><span class="sh-tier">T${r.tier}</span></td><td class="${inside?'':cls(d)}">${inside?'trong vùng':sgn(d)}</td><td class="l">${esc(r.tag)}</td></tr>
+        <td style="text-align:right"><span class="sh-sw" style="background:${lvlColor(r.kind)}"></span>${KL[r.kind]||r.kind}${r.zone?TT(' · vùng',' · zone'):''}</td>
+        <td class="hs"><span class="sh-tier">T${r.tier}</span></td><td class="${inside?'':cls(d)}">${inside?TT('trong vùng','inside'):sgn(d)}</td><td class="l">${esc(r.tag)}</td></tr>
         <tr class="x" hidden data-x="${i}"><td colspan="5">${esc(r.label)}</td></tr>`; }).join('')}</tbody></table></div>`;
   lad.addEventListener('click',e=>{ const r=e.target.closest('tr.r'); if(!r) return; const x=lad.querySelector(`tr[data-x="${r.dataset.i}"]`); x.hidden=!x.hidden; });
   lad.addEventListener('keydown',e=>{ const r=e.target.closest('tr.r'); if(r&&e.key==='Enter'){ const x=lad.querySelector(`tr[data-x="${r.dataset.i}"]`); x.hidden=!x.hidden; } });
@@ -2184,19 +2195,19 @@ new MutationObserver(()=>{window.__scReadTheme();dr();})
     const rr=[]; for(let i=trajStart;i<N;i++){ const pr=coneProbs(i); if(!pr) continue; const u=Math.round(pr.bull*100), d=Math.round(pr.bear*100);
       rr.push({i,m:months[i],t:coneDays(i),p5:conePct(i,-zo),p25:conePct(i,-zi),p75:conePct(i,zi),p95:conePct(i,zo),u,w:100-u-d,d}); }
     const f4=v=>'$'+v.toFixed(4);
-    cone.innerHTML=`<div class="sh-pt"><h3>Cone theo tháng</h3><div class="m">neo ${fmt(CONE_SPOT)} · σ ${(CONE_SIGMA_D*100).toFixed(4)}%/ngày · ngưỡng ±25%</div></div>
-      <div style="overflow-x:auto"><table class="sh-tbl"><thead><tr><th>Tháng</th><th class="hs">Ngày</th><th>5th</th><th>25th</th><th>75th</th><th>95th</th><th>Lên / giữa / xuống</th><th class="hs"></th></tr></thead><tbody>${
+    cone.innerHTML=`<div class="sh-pt"><h3>${TT('Cone theo tháng','Cone by month')}</h3><div class="m">${TT('neo','anchor')} ${fmt(CONE_SPOT)} · σ ${(CONE_SIGMA_D*100).toFixed(4)}%/${TT('ngày','day')} · ${TT('ngưỡng','thresholds')} ±25%</div></div>
+      <div style="overflow-x:auto"><table class="sh-tbl"><thead><tr><th>${TT('Tháng','Month')}</th><th class="hs">${TT('Ngày','Days')}</th><th>5th</th><th>25th</th><th>75th</th><th>95th</th><th>${TT('Lên / giữa / xuống','Up / within / down')}</th><th class="hs"></th></tr></thead><tbody>${
       rr.map(r=>`<tr${r.i===cur?' class="cur"':''}><td>${M[r.m.m]} ${r.m.y}</td><td class="hs">${r.t}</td><td>${f4(r.p5)}</td><td>${f4(r.p25)}</td><td>${f4(r.p75)}</td><td>${f4(r.p95)}</td>
         <td>${r.u} / ${r.w} / ${r.d}</td><td class="hs"><div class="sh-bk"><i style="width:${r.u}%;background:var(--good)"></i><i style="width:${r.w}%;background:var(--p3)"></i><i style="width:${r.d}%;background:var(--bad)"></i></div></td></tr>`).join('')}</tbody></table></div>`;
     wrap.appendChild(cone);
   }
 
   const heat=[kpi,q('.wrap>.controls'),q('.wrap>.chart-card'),...legends];
-  const P=[{k:'heatmap',t:'Heatmap',nodes:heat,e:'Heatmap tháng / '+ASSET,h:`${ASSET} <em>theo chu kỳ</em>`,i:'<rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 10h18M3 15h18M9 4v16M15 4v16"/>'},
-           {k:'levels',t:'Mức giá',nodes:[lad],e:'Level ladder / '+ASSET,h:`Thang <em>mức giá</em>`,c:String(rows.length),i:'<path d="M4 6h16M4 12h10M4 18h6"/>'}];
-  if(cone) P.push({k:'cone',t:'Cone',nodes:[cone],e:'Volatility cone / ADA',h:`Cone <em>biến động</em>`,c:'26T',i:'<path d="M3 12h18"/><path d="M3 12l18-8M3 12l18 8"/>'});
-  if(secs[0]) P.push({k:'weekly',t:'Wyckoff tuần',nodes:[secs[0]],e:'Wyckoff / weekly',h:`Chu kỳ <em>Wyckoff</em> tuần`,c:'Nov 5',i:'<path d="M3 17l5-6 4 3 4-7 5 5"/>'});
-  if(secs[1]) P.push({k:'scenario',t:'Kịch bản 14N',nodes:[secs[1]],e:'Range test / scenarios',h:`Kịch bản <em>7–14 ngày</em>`,c:'Nov 5',i:'<path d="M3 12h6l3-6 3 12 3-6h3"/>'});
+  const P=[{k:'heatmap',t:'Heatmap',nodes:heat,e:TT('Heatmap tháng / ','Monthly heatmap / ')+ASSET,h:TT(`${ASSET} <em>theo chu kỳ</em>`,`${ASSET} <em>through the cycle</em>`),i:'<rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 10h18M3 15h18M9 4v16M15 4v16"/>'},
+           {k:'levels',t:TT('Mức giá','Levels'),nodes:[lad],e:'Level ladder / '+ASSET,h:TT(`Thang <em>mức giá</em>`,`Level <em>ladder</em>`),c:String(rows.length),i:'<path d="M4 6h16M4 12h10M4 18h6"/>'}];
+  if(cone) P.push({k:'cone',t:'Cone',nodes:[cone],e:'Volatility cone / ADA',h:TT(`Cone <em>biến động</em>`,`Volatility <em>cone</em>`),c:'26T',i:'<path d="M3 12h18"/><path d="M3 12l18-8M3 12l18 8"/>'});
+  if(secs[0]) P.push({k:'weekly',t:TT('Wyckoff tuần','Weekly Wyckoff'),nodes:[secs[0]],e:'Wyckoff / weekly',h:TT(`Chu kỳ <em>Wyckoff</em> tuần`,`Weekly <em>Wyckoff</em> cycle`),c:'Nov 5',i:'<path d="M3 17l5-6 4 3 4-7 5 5"/>'});
+  if(secs[1]) P.push({k:'scenario',t:TT('Kịch bản 14N','14-day scenarios'),nodes:[secs[1]],e:'Range test / scenarios',h:TT(`Kịch bản <em>7–14 ngày</em>`,`<em>7–14 day</em> scenarios`),c:'Nov 5',i:'<path d="M3 12h6l3-6 3 12 3-6h3"/>'});
   const all=P.flatMap(p=>p.nodes).filter(Boolean);
 
   // ── prose: hide long legend sentences and analysis notes; colour keys stay ──
@@ -2212,24 +2223,25 @@ new MutationObserver(()=>{window.__scReadTheme();dr();})
   const ext=(h,t,i,c,curA)=>`<a class="sh-ni" href="${h}"${curA?' aria-current="page"':''}><svg viewBox="0 0 24 24" aria-hidden="true">${i}</svg><span>${t}</span>${c?`<span class="c">${c}</span>`:''}</a>`;
   const IC={btc:'<path d="M12 3v18M7 7h7a3 3 0 010 6H7h8a3 3 0 010 6H7"/>',ada:'<circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="2"/>',
     pf:'<path d="M3 13h4v8H3zM10 9h4v12h-4zM17 4h4v17h-4z"/>',sig:'<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><path d="M12 12l6-6"/>',rep:'<path d="M6 3h9l3 3v15H6z"/><path d="M9 11h6M9 15h6"/>'};
-  const side=document.createElement('aside'); side.className='sh-side'; side.setAttribute('aria-label','Điều hướng');
+  const side=document.createElement('aside'); side.className='sh-side'; side.setAttribute('aria-label',TT('Điều hướng','Navigation'));
   const mark=isADA?'<img src="cardano-logo.svg" alt="">':'₿';
-  side.innerHTML=`<a class="sh-brand" href="index.html" title="Về trang chủ CRE"><span class="mk">${mark}</span><span><b>${isADA?'Cardano':'Bitcoin'}<br><em>Framework</em></b><small>CRE · heatmap tháng</small></span></a>
+  side.innerHTML=`<a class="sh-brand" href="index.html" title="${TT('Về trang chủ CRE','Back to the CRE home page')}"><span class="mk">${mark}</span><span><b>${isADA?'Cardano':'Bitcoin'}<br><em>Framework</em></b><small>${TT('CRE · heatmap tháng','CRE · monthly heatmap')}</small></span></a>
     <div><div class="sh-lbl">${ASSET}</div><nav class="sh-nav">${P.map(link).join('')}${repHref?ext(repHref,isADA?'Monthly map':'Market GPS',IC.rep,'↗'):''}</nav></div>
-    <div><div class="sh-lbl">Tài sản</div><nav class="sh-nav">${ext('btc-dashboard.html','Bitcoin',IC.btc,'',!isADA)}${ext('ada-dashboard.html','Cardano',IC.ada,'',isADA)}</nav></div>
-    <div><div class="sh-lbl">Robinhood Chain</div><nav class="sh-nav">${ext('robinhood.html','Danh mục',IC.pf,'↗')}${ext('ro-signals.html','Rổ tín hiệu',IC.sig,'↗')}</nav></div>
+    <div><div class="sh-lbl">${TT('Tài sản','Assets')}</div><nav class="sh-nav">${ext('btc-dashboard.html','Bitcoin',IC.btc,'',!isADA)}${ext('ada-dashboard.html','Cardano',IC.ada,'',isADA)}</nav></div>
+    <div><div class="sh-lbl">Robinhood Chain</div><nav class="sh-nav">${ext('robinhood.html',TT('Danh mục','Portfolio'),IC.pf,'↗')}${ext('ro-signals.html',TT('Rổ tín hiệu','Signal basket'),IC.sig,'↗')}</nav></div>
     <div class="sh-sp"></div>
-    <div class="sh-state"><b>Dữ liệu <span>${M[mo.m]} ${mo.y} MTD</span></b>${fmt(close)} · ${KIND[block.kind]||''}</div>
-    <div class="sh-btns"><a class="sh-btn" href="index.html">← Trang chủ</a><button class="sh-btn" type="button" data-proxy="themeToggle" aria-label="Đổi giao diện sáng / tối">◐</button></div>`;
+    <div class="sh-state"><b>${TT('Dữ liệu','Data')} <span>${M[mo.m]} ${mo.y} MTD</span></b>${fmt(close)} · ${KIND[block.kind]||''}</div>
+    <div class="sh-btns"><a class="sh-btn" href="index.html">${TT('← Trang chủ','← Home')}</a><button class="sh-btn" type="button" data-lang>${LANG==='en'?'VI':'EN'}</button><button class="sh-btn" type="button" data-proxy="themeToggle" aria-label="${TT('Đổi giao diện sáng / tối','Toggle light / dark')}">◐</button></div>`;
   document.body.insertBefore(side,document.body.firstChild);
   const top=document.createElement('header'); top.className='sh-top';
   top.innerHTML=`<strong id="shTitle"></strong><span class="ctx">${isADA?'Cardano':'Bitcoin'} · CRE framework</span><span class="sp"></span>
     <span class="sh-chip"><i></i>${M[mo.m].toUpperCase()} ${mo.y} · MTD ${fmt(close)}</span>
-    <button class="sh-btn" type="button" data-proxy="themeToggle" aria-label="Đổi giao diện sáng / tối" style="flex:none">◐</button>
-    <nav class="sh-tabs" aria-label="Chức năng"><div class="in">${P.map(link).join('')}${ext(isADA?'btc-dashboard.html':'ada-dashboard.html',isADA?'BTC ↗':'ADA ↗',isADA?IC.btc:IC.ada,'')}${ext('robinhood.html','Robinhood ↗',IC.pf,'')}</div></nav>`;
+    <button class="sh-btn" type="button" data-lang style="flex:none">${LANG==='en'?'VI':'EN'}</button><button class="sh-btn" type="button" data-proxy="themeToggle" aria-label="${TT('Đổi giao diện sáng / tối','Toggle light / dark')}" style="flex:none">◐</button>
+    <nav class="sh-tabs" aria-label="${TT('Chức năng','Sections')}"><div class="in">${P.map(link).join('')}${ext(isADA?'btc-dashboard.html':'ada-dashboard.html',isADA?'BTC ↗':'ADA ↗',isADA?IC.btc:IC.ada,'')}${ext('robinhood.html','Robinhood ↗',IC.pf,'')}</div></nav>`;
   wrap.insertBefore(top,wrap.firstChild);
   const ph=document.createElement('div'); ph.className='sh-ph'; top.insertAdjacentElement('afterend',ph);
-  document.addEventListener('click',e=>{ const b=e.target.closest('[data-proxy]'); if(b){ const t=document.getElementById(b.dataset.proxy); t&&t.click(); } });
+  document.addEventListener('click',e=>{ const b=e.target.closest('[data-proxy]'); if(b){ const t=document.getElementById(b.dataset.proxy); t&&t.click(); }
+    if(e.target.closest('[data-lang]')){ const nx=LANG==='en'?'vi':'en'; try{localStorage.setItem('cre-lang',nx);}catch(err){} const u=new URL(location.href); u.searchParams.set('lang',nx); location.href=u.toString(); } });
 
   function go(k,scroll){
     const p=P.find(x=>x.k===k)||P[0];

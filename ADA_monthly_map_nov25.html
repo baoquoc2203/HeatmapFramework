@@ -50,7 +50,22 @@ svg{width:100%;height:auto;display:block}
 .foot{font-size:11.5px;color:var(--tx3);text-align:center;margin:18px 0 6px}
 </style>
 </head>
-<body>
+<body><div id="cre-back-wrap"><style>
+#cre-back{position:fixed;top:14px;left:14px;z-index:9999;display:inline-flex;align-items:center;gap:6px;padding:8px 12px;border-radius:9px;
+  font:600 12px ui-monospace,SFMono-Regular,Menlo,monospace;color:#edf2f5;background:rgba(17,24,32,.88);border:1px solid rgba(173,191,211,.24);
+  text-decoration:none;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);box-shadow:0 6px 20px rgba(0,0,0,.25)}
+#cre-back:hover{border-color:#54d6b4;color:#54d6b4}
+body{padding-top:52px!important}
+@media print{#cre-back{display:none}body{padding-top:0!important}}
+</style><a id="cre-back" href="ada-dashboard.html">← <span id="cre-back-t"></span></a><script>
+(function(){ var a=document.getElementById('cre-back'), en=false;
+  try{ en=(new URLSearchParams(location.search).get('lang')||localStorage.getItem('cre-lang'))==='en'; }catch(e){}
+  document.getElementById('cre-back-t').textContent=en?'Back':'Quay lại';
+  a.title=en?'Back to the previous page':'Quay lại trang trước';
+  // go back when we came from this site, otherwise open the asset's dashboard
+  a.addEventListener('click',function(e){ var r=document.referrer; if(history.length>1&&r&&r.indexOf(location.origin)===0){ e.preventDefault(); history.back(); } });
+})();
+</script></div>
 <h1 id="top">ADA Cardano — Monthly Map &amp; Forecast Report</h1>
 <div class="meta">Crypto Reconnaissance Engine · Wed Nov 25, 2026, 16:05 ICT · ticker 09:03 UTC Nov 25 · last settled close <b>$0.14454 (Nov 24)</b> · Nov 25 candle live, about 14h55m left, excluded from all determinations · built on the Nov 25 08:51 UTC CRE v3.2 report (ENGINE FALLBACK, Q3-ENG-1) · timeline Jun 2026 → Dec 2028 · replaces the Nov 19 map</div>
 

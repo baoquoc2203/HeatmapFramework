@@ -7,7 +7,22 @@ pre{background:#0f141b;border:1px solid var(--line);padding:10px 12px;overflow-x
 table{border-collapse:collapse;width:100%;margin:8px 0;font-size:13px}td,th{border:1px solid var(--line);padding:5px 7px;vertical-align:top;text-align:left}th{background:#162029;color:var(--mute);font-weight:600}
 .wrap{overflow-x:auto}.mute{color:var(--mute)}
 footer{margin-top:30px;color:var(--mute);font-size:12px;border-top:1px solid var(--line);padding-top:10px}
-</style></head><body><main>
+</style></head><body><div id="cre-back-wrap"><style>
+#cre-back{position:fixed;top:14px;left:14px;z-index:9999;display:inline-flex;align-items:center;gap:6px;padding:8px 12px;border-radius:9px;
+  font:600 12px ui-monospace,SFMono-Regular,Menlo,monospace;color:#edf2f5;background:rgba(17,24,32,.88);border:1px solid rgba(173,191,211,.24);
+  text-decoration:none;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);box-shadow:0 6px 20px rgba(0,0,0,.25)}
+#cre-back:hover{border-color:#54d6b4;color:#54d6b4}
+body{padding-top:52px!important}
+@media print{#cre-back{display:none}body{padding-top:0!important}}
+</style><a id="cre-back" href="btc-dashboard.html">← <span id="cre-back-t"></span></a><script>
+(function(){ var a=document.getElementById('cre-back'), en=false;
+  try{ en=(new URLSearchParams(location.search).get('lang')||localStorage.getItem('cre-lang'))==='en'; }catch(e){}
+  document.getElementById('cre-back-t').textContent=en?'Back':'Quay lại';
+  a.title=en?'Back to the previous page':'Quay lại trang trước';
+  // go back when we came from this site, otherwise open the asset's dashboard
+  a.addEventListener('click',function(e){ var r=document.referrer; if(history.length>1&&r&&r.indexOf(location.origin)===0){ e.preventDefault(); history.back(); } });
+})();
+</script></div><main>
 <section id="gps"><h1>MARKET GPS · Bitcoin — Session 138 · Wed 25 Nov 2026 · CRE v3.2 + FIX-B1 + Astro Intelligence</h1>
 <pre>[SYSTEM STATUS: OPERATIONAL — cre-engine CONNECTED · tests 60/60 before and after writes // SYSTEMIC BIAS EVALUATED]
 [Feed: Crypto.com BTC_USDT 1D · ticker stamp 2026-11-25T08:51:18.010Z · last settled close Nov 24, $59,828.13 · live candle excluded]

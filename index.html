@@ -13,6 +13,8 @@
   body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--txt);min-height:100vh;
     background-image:radial-gradient(1200px 500px at 70% -10%, rgba(80,70,160,.12), transparent);}
 
+  .lang-btn{order:3;margin-left:auto;font:600 11px ui-monospace,Menlo,monospace;color:var(--txt2);background:transparent;border:1px solid var(--bord);border-radius:8px;padding:6px 10px;cursor:pointer}
+  .lang-btn:hover{color:var(--txt)}
   /* top nav */
   .nav{position:sticky;top:0;z-index:50;display:flex;align-items:center;gap:26px;padding:14px 22px;
     border-bottom:1px solid var(--bord);background:rgba(7,7,11,.82);
@@ -64,6 +66,7 @@
   .card .c-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:12px;}
   .card .c-val{font-size:34px;font-weight:800;letter-spacing:-.01em;line-height:1;}
   .card .c-sub{font-size:12px;color:var(--txt2);margin-top:8px;}
+  .card .c-sub:empty{display:none;}
   .card .c-icon{position:absolute;top:18px;right:18px;width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;}
   .card.green .c-label{color:var(--green);} .card.green .c-icon{background:rgba(52,211,154,.12);}
   .card.purple .c-label{color:var(--purple);} .card.purple .c-icon{background:rgba(168,127,240,.12);}
@@ -95,8 +98,9 @@
     <div class="logo">📡</div>
     <span class="wordmark">CRE</span>
   </a>
+  <button class="lang-btn" id="langBtn" type="button" aria-label="EN / VI"></button>
   <nav class="nav-sections" aria-label="Sections">
-    <a href="#wyckoff"   data-sec="wyckoff"><em>1.0</em>Wyckoff framework</a>
+    <a href="#wyckoff"   data-sec="wyckoff"><em>1.0</em><span data-vi="Khung Wyckoff">Wyckoff framework</span></a>
     <a href="#robinhood" data-sec="robinhood"><em>2.0</em>Robinhood Chain</a>
   </nav>
 </div>
@@ -105,8 +109,7 @@
 
   <section id="wyckoff">
   <div class="section-head">
-    <div class="s-title">Wyckoff framework</div>
-    <div class="s-sub">Two majors tracked month by month on settled closes: phase, pre-registered levels and zones, scored forecasts, and a driftless volatility cone.</div>
+    <div class="s-title" data-vi="Khung Wyckoff">Wyckoff framework</div>
   </div>
 
   <div class="selector-row">
@@ -123,14 +126,13 @@
     <div class="h-text">
       <div class="ticker" id="ticker">BTC</div>
       <div class="full" id="fullname">Bitcoin</div>
-      <div class="tagline" id="tagline"></div>
     </div>
   </div>
 
   <div class="cards">
     <div class="card green">
       <div class="c-icon">📈</div>
-      <div class="c-label">Wyckoff Phase</div>
+      <div class="c-label" data-vi="Pha Wyckoff">Wyckoff Phase</div>
       <div class="c-val" id="phaseVal"></div>
       <div class="c-sub" id="phaseSub"></div>
     </div>
@@ -142,18 +144,15 @@
     </div>
     <div class="card gold">
       <div class="c-icon">$</div>
-      <div class="c-label">Latest Tracked Price</div>
+      <div class="c-label" data-vi="Giá theo dõi mới nhất">Latest Tracked Price</div>
       <div class="c-val" id="priceVal"></div>
       <div class="c-sub" id="priceSub"></div>
     </div>
   </div>
 
   <div class="below">
-    <div class="b-title">Reports for <span id="belowToken">BTC</span></div>
+    <div class="b-title"><span data-vi="Trang của">Reports for</span> <span id="belowToken">BTC</span></div>
     <div class="report-links" id="reportLinks"></div>
-    <div class="snapshot-note">
-      <b>Note:</b> prices and scores are the latest <b>tracked snapshots</b> from this project's dated reports — not a live feed (this is a static page). Wyckoff phase, confidence, and stance are the framework's own most recent reported calls. Structural analysis — not financial advice.
-    </div>
   </div>
 
   </section>
@@ -161,44 +160,48 @@
   <section id="robinhood">
   <div class="section-head spaced">
     <div class="s-title">Robinhood Chain</div>
-    <div class="s-sub">A separate book, not a third asset in the framework above: a rule-based microcap portfolio classified on UTC closes. It has no Wyckoff phase, no confidence score and no monthly cone, so it is not shown as one — the figures below are the ones the book actually publishes.</div>
   </div>
 
   <div class="cards">
     <div class="card gold">
       <div class="c-icon">◎</div>
-      <div class="c-label">Portfolio value</div>
+      <div class="c-label" data-vi="Giá trị danh mục">Portfolio value</div>
       <div class="c-val">$301.41</div>
-      <div class="c-sub">Nov 24 UTC close, −2.94% on the session and <b>−39.7% against capital</b> · peaked at $535.72 on Oct 28, max drawdown <b>−43.7%</b> · the R5 capital brake is still <b>ON</b> and needs +39.3% to reach $420</div>
+      <div class="c-sub"><span data-vi="24/11 · −2.94% phiên · −39.7% so với vốn">Nov 24 · −2.94% session · −39.7% vs capital</span></div>
     </div>
     <div class="card green">
       <div class="c-icon">◈</div>
-      <div class="c-label">Positions</div>
+      <div class="c-label" data-vi="Vị thế">Positions</div>
       <div class="c-val">3 core · 1 micro</div>
-      <div class="c-sub">CASHCAT and PONS full at DCA 4/4, HMM 1/4 — the only holding above cost (+0.8%) · KITSU micro 1/1 · <b>AI sold out Nov 21</b> on its two-close kill line, −$78.82, after MicroDuck closed Nov 8</div>
+      <div class="c-sub">CASHCAT · PONS · HMM · KITSU</div>
     </div>
     <div class="card purple">
       <div class="c-icon">⬡</div>
-      <div class="c-label">Cash</div>
+      <div class="c-label" data-vi="Tiền mặt">Cash</div>
       <div class="c-val">$192.74</div>
-      <div class="c-sub">$100 of it held as reserve · 36% of the book in tokens · realised <b>−$72.26</b> (AI −$78.82, MicroDuck +$6.56) and −$126.33 unrealised · the brake stops new real-money first buys; DCA of held tokens still runs</div>
+      <div class="c-sub"><span data-vi="$100 dự trữ · đã chốt −$72.26">$100 reserve · realised −$72.26</span></div>
     </div>
   </div>
 
   <div class="below">
-    <div class="b-title">Pages for Robinhood Chain</div>
+    <div class="b-title" data-vi="Trang Robinhood Chain">Pages for Robinhood Chain</div>
     <div class="report-links">
-      <a href="robinhood.html">⚡ Danh mục <span class="arr">&rarr;</span></a>
-      <a href="ro-signals.html">📡 Rổ tín hiệu <span class="arr">&rarr;</span></a>
+      <a href="robinhood.html" data-vi="⚡ Danh mục <span class=&quot;arr&quot;>&rarr;</span>">⚡ Portfolio <span class="arr">&rarr;</span></a>
+      <a href="ro-signals.html" data-vi="📡 Rổ tín hiệu <span class=&quot;arr&quot;>&rarr;</span>">📡 Signal basket <span class="arr">&rarr;</span></a>
     </div>
-    <div class="snapshot-note">
-      <b>Note:</b> the Robinhood pages are in Vietnamese; the two full pages carry their own light/dark toggle, the dashboard follows the site's. <b>⚡ Dashboard</b> is the compact view — portfolio value, positions on a kill-to-take-profit rail, today's radar and the scorecard — generated from the two full pages by <code>tools/ro_extract.js</code>, so it never holds a number they do not. Every figure here is the <b>Nov 24 UTC close</b>, session D52. Since the last snapshot the scan universe widened to every native Robinhood Chain token (1,047), a breakout layer was added in watch-only mode, and the radar flagged CHUMP — paper only, because R3 treats micro radar picks as lottery tickets and R5 blocks new real-money buys. Fake contracts reusing the names BONER, TEXEL, AI, PONS and CASHCAT are in circulation; the dashboard lists them. The book's own scorecard: paper win rate <b>4 of 18</b>, profit factor <b>0.26</b>, and it states it has <b>not demonstrated an edge</b>. Not financial advice.</div>
   </div>
   </section>
 
 </div>
 
 <script>
+// language: site-wide cre-lang key (default vi), ?lang=en|vi override; the interface switches, data text stays as published
+const LANG=(()=>{ const u=new URLSearchParams(location.search).get('lang'); if(u==='en'||u==='vi'){ try{localStorage.setItem('cre-lang',u);}catch(e){} return u; }
+  try{return localStorage.getItem('cre-lang')==='en'?'en':'vi';}catch(e){return 'vi';} })();
+document.documentElement.lang=LANG;
+if(LANG==='vi') document.querySelectorAll('[data-vi]').forEach(e=>e.innerHTML=e.dataset.vi);
+(function(){ const b=document.getElementById('langBtn'); b.textContent=LANG==='en'?'VI':'EN';
+  b.addEventListener('click',()=>{ const nx=LANG==='en'?'vi':'en'; try{localStorage.setItem('cre-lang',nx);}catch(e){} const u=new URL(location.href); u.searchParams.set('lang',nx); location.href=u.toString(); }); })();
 const tokens = {
   BTC: {
     full:'Bitcoin', symbol:'\u20bf', color:'#F7931A',
@@ -206,7 +209,7 @@ const tokens = {
     phase:'Markdown \u00b7 continuation primary after a lower high', phaseSub:'$57,803 is now two things at once \u2014 the SCL-B010 continuation barrier (two closes below, 0 of 2) and the FR-A008 cycle line (one close below by Nov 30) \u2014 and it is 3.38% away \u00b7 the alternate is a Phase A range, SC $55,119 \u2192 AR $64,604, and it needs a secondary test on clearly lighter volume than the climax that holds the SC low \u00b7 the reclaim needs two closes \u2265 $62,773, +4.92%',
     conf:'23 / 32 / 20', confLabel:'Confidence \u00b7 T (Tier 1 only) / S / C (never blended)',
     confSub:'Unchanged \u00b7 risk HIGH \u2014 ATR 5.71%, 3.38% from the continuation line, derivatives dark for a 61st session \u00b7 aggressiveness 2/10, position FLAT, reserve 75%, nothing armed; referral #22 (no post-window entry rule) at its Q3 default, paper-only \u00b7 SCL-B010 (by Dec 4): continuation .50 / reclaim .25 / neither .20 \u00b7 FR-B097 (Nov 29) Band D 92% \u2014 the twelfth identical tree, A25 FIRED and DEGENERATE at 5.21\u03c35; CL-B9 holds 20 straight Band D hits and still counts as ONE observation, so a month of correct band calls adds nothing to the 11-in-39 record until the cluster closes \u00b7 durability 14 resolved, 8 durable; ZONE_BTC_0011 now DURABLE \u00b7 ETF: nothing dated after Nov 18 (\u2212$306.4M) obtained \u00b7 Fear & Greed 10 on Nov 19, relayed, disclosure only.',
-    price:'$59,828', priceSub:'Nov 24, 2026 settled close (\u22122.36% on 1.39\u00d7 vol) \u00b7 Nov MTD, \u221222.83%; Oct settled $77,530.55 \u00b7 the Nov 25 candle is live and excluded',
+    price:'$59,828', priceShort:'Nov 24 settle · Nov MTD −22.83%', priceShortVi:'Close 24/11 · tháng 11 −22.83%', priceSub:'Nov 24, 2026 settled close (\u22122.36% on 1.39\u00d7 vol) \u00b7 Nov MTD, \u221222.83%; Oct settled $77,530.55 \u00b7 the Nov 25 candle is live and excluded',
     reports:[
       {label:'Heatmap', href:'btc-dashboard.html'},
       {label:'\ud83d\udcca Market GPS (Nov 25 \u00b7 S138)', href:'BTC_report_S138_nov25.html'},
@@ -218,7 +221,7 @@ const tokens = {
     phase:'Markdown \u00b7 boxed between Z003 demand and Z013 supply \u00b7 sleeve flat', phaseSub:'A 5.63% box: confirmed Z003 demand $0.135\u2013$0.142 below (top \u22121.76%), Z013 supply $0.150\u2013$0.156 above (floor +3.78%, confirmed but UNSCORED) \u00b7 ALT Phase A is extended, not confirmed: SC Nov 14 \u2192 AR $0.15665 \u2192 sweep $0.13337 \u2192 reclaim \u2192 given back; the registered trigger, closes above $0.16857 then $0.17567, is +16.63% away and was not moved \u00b7 a close under $0.13337 ends the alternate as written',
     conf:'35 / 34 / 58', confLabel:'Confidence \u00b7 T (Tier 1 only, Q4 cap) / S / C (never blended)',
     confSub:'Unchanged, with C now FLAGGED FOR REVIEW after the thesis loss \u00b7 aggressiveness 0/10, risk High (market), ADA exposure nil \u00b7 no label on the calendar can authorise an entry while Q3-ADA-E stands, so November\u2019s BUY and December\u2019s SELL both read WAIT \u00b7 STR-ADA-005 (by Dec 5): Z003 breaks first 45% / Z013 reclaimed first 31% / neither 19% \u00b7 cone re-anchored to the Nov 25 map: spot $0.14454, \u03c3 3.7237%/day (71.1% annualised) \u2014 the map\u2019s generator was rewritten and now uses the exact normal quantiles and a $0.04 floor clip; both adopted, and all 208 published cone figures reproduce inside the page \u00b7 BTC is 1.17% above the $59,129 kill level these maps carry \u00b7 map built on the engine fallback (Q3-ENG-1) \u00b7 Tier 3.5 dark for 89 sessions.',
-    price:'$0.14454', priceSub:'Nov 24, 2026 settled close (\u22122.75% on 5.80M) \u00b7 Nov MTD, \u221225.07%; Oct settled $0.19290, \u221221.80% \u00b7 live Nov 25 $0.14262 dipped into the Z003 top and determines nothing',
+    price:'$0.14454', priceShort:'Nov 24 settle · Nov MTD −25.07%', priceShortVi:'Close 24/11 · tháng 11 −25.07%', priceSub:'Nov 24, 2026 settled close (\u22122.75% on 5.80M) \u00b7 Nov MTD, \u221225.07%; Oct settled $0.19290, \u221221.80% \u00b7 live Nov 25 $0.14262 dipped into the Z003 top and determines nothing',
     reports:[
       {label:'Heatmap', href:'ada-dashboard.html'},
       {label:'\ud83d\udd2d Monthly map (Nov 25)', href:'ADA_monthly_map_nov25.html'},
@@ -238,19 +241,18 @@ function applyToken(key){
   av.style.background = t.color;
   document.getElementById('ticker').textContent = key;
   document.getElementById('fullname').textContent = t.full;
-  document.getElementById('tagline').textContent = t.tagline;
   document.getElementById('phaseVal').textContent = t.phase;
-  document.getElementById('phaseSub').textContent = t.phaseSub;
+  document.getElementById('phaseSub').textContent = '';
   // Confidence is reported per horizon class and never blended. Both assets label T as "Tier 1 only" with a
   // Q4 cap of 35, because each has had its derivatives tier dark for weeks — BTC 61 sessions, ADA 89. BTC
   // (S138) T 23 / S 32 / C 20 and ADA (Nov 25) T 35 / S 34 / C 58 are both unchanged; ADA's C is flagged
   // for review after the thesis loss. BTC carries risk HIGH; ADA risk High (market) with exposure nil. When a report omits the score the dash returns a dash
   // rather than a stale or invented number.
-  document.getElementById('confLabel').textContent = t.confLabel || 'Model Confidence';
+  document.getElementById('confLabel').textContent = LANG==='vi'?'Độ tin cậy · T / S / C':'Confidence · T / S / C';
   document.getElementById('confVal').textContent = t.conf;
-  document.getElementById('confSub').textContent = t.confSub;
+  document.getElementById('confSub').textContent = '';
   document.getElementById('priceVal').textContent = t.price;
-  document.getElementById('priceSub').textContent = t.priceSub;
+  document.getElementById('priceSub').textContent = (LANG==='vi'?t.priceShortVi:t.priceShort)||'';
   document.getElementById('belowToken').textContent = key;
   const linksEl = document.getElementById('reportLinks');
   linksEl.innerHTML = t.reports.map(r=>`<a href="${r.href}">${r.label} <span class="arr">&rarr;</span></a>`).join('');
