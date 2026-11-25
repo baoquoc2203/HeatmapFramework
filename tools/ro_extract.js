@@ -47,7 +47,7 @@ function evalPage(file, exportExpr) {
 const desk = evalPage('ro-desk.html', `({
   date: DATE, session: SESSION, sum: SUM, nav: +NAV.toFixed(2), unreal: +UNREAL.toFixed(2),
   alerts: ALERTS, decide: DECIDE, rules: RULES.slice(0, 4), foot: FOOT,
-  navHist: NAV_HIST, paper: PAPER, scored: SCORED,
+  navHist: NAV_HIST, paper: PAPER, scored: SCORED, fr: FR,
   closed: CLOSED.map(c => ({ t: c.t, pnl: +c.fills.reduce((s, f) => s - f[3], 0).toFixed(2),
                              last: c.fills[c.fills.length - 1][0], why: c.fills[c.fills.length - 1][1] })),
   btc: { level: BTCV.level, label: ["Ủng hộ","Trung lập","Rủi ro","Báo động"][BTCV.level], price: BTCV.price,
