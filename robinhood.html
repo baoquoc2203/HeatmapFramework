@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Robinhood Chain · Danh mục &amp; tín hiệu</title>
+<title>Robinhood Chain · Danh mục</title>
 <meta name="description" content="Danh mục meme Robinhood Chain và rổ tín hiệu: giá trị danh mục, vị thế, radar token, breakout, dòng lệnh lớn và bối cảnh BTC, theo giá đóng cửa.">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -151,56 +151,12 @@ h1 em{font-style:normal;color:var(--mint)}
 .copy:hover{color:var(--t1)}
 .closed{display:flex;gap:16px;flex-wrap:wrap;padding:11px 14px;border-top:1px solid var(--line);font:11.5px var(--mono);color:var(--t2)}
 
-/* radar workspace */
-.ws{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(320px,.85fr);gap:10px}
-.mapp{position:relative;padding:12px;min-height:520px;display:flex;flex-direction:column}
-.mh{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
-.mh h3{font-size:14px;font-weight:700;letter-spacing:-.01em}
-.mh p{font-size:10.5px;color:var(--t2)}
-.live{font:700 9.5px var(--mono);letter-spacing:.12em;color:var(--mint);display:flex;align-items:center;gap:6px;white-space:nowrap}
-.live i{width:6px;height:6px;border-radius:50%;background:var(--mint);animation:pulse 1.8s infinite}
-@keyframes pulse{0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--mint) 55%,transparent)}100%{box-shadow:0 0 0 8px transparent}}
-.chips{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0}
-.fc{font:600 10.5px var(--mono);padding:5px 10px;border-radius:7px;border:1px solid var(--line2);background:var(--p2);color:var(--t2);cursor:pointer}
-.fc[aria-pressed="true"]{color:var(--t1);border-color:var(--mint);background:color-mix(in srgb,var(--mint) 10%,var(--p2))}
-.stage{position:relative;flex:1;border:1px solid var(--line);border-radius:10px;overflow:hidden;
-  background:radial-gradient(ellipse at 50% 55%,color-mix(in srgb,var(--mint) 7%,transparent),transparent 62%),var(--bg);min-height:400px}
-.stage::before{content:"";position:absolute;inset:0;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:36px 36px;opacity:.55;pointer-events:none}
-.stage svg{position:relative;display:block;width:100%;height:100%}
-.stage .corner{position:absolute;top:9px;font:600 9.5px var(--mono);letter-spacing:.1em;color:var(--t3);border:1px solid var(--line2);border-radius:6px;padding:3px 7px;background:color-mix(in srgb,var(--bg) 70%,transparent)}
-.node{cursor:pointer}
-.node:focus{outline:none}
-.node:focus-visible circle.core{stroke:var(--t1);stroke-width:2}
-.node text{font:600 10.5px var(--mono);fill:var(--t1);paint-order:stroke;stroke:var(--bg);stroke-width:3px;stroke-linejoin:round}
-.node.dimmed{opacity:.16}
-.mlegend{display:flex;gap:14px;flex-wrap:wrap;font:500 10px var(--mono);color:var(--t2);margin-top:9px}
-.mlegend i{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px}
-.readout{padding:14px;display:flex;flex-direction:column;gap:12px}
-.ro-h{display:flex;align-items:center;gap:12px}
-.ro-h .av{width:44px;height:44px;border-radius:11px;font-size:11px}
-.ro-h h3{font-size:20px;letter-spacing:-.03em;line-height:1.1}
-.ro-h .px{margin-left:auto;text-align:right}
-.ro-h .px b{display:block;font:600 17px var(--mono);letter-spacing:-.03em}
+/* shared bits */
 .pill{display:inline-flex;font:700 9.5px var(--mono);letter-spacing:.1em;text-transform:uppercase;border-radius:6px;padding:4px 8px;border:1px solid var(--line2);color:var(--t2)}
 .pill.buy{color:var(--bg);background:var(--mint);border-color:var(--mint)}
-.box{border:1px solid var(--line2);border-radius:10px;padding:11px 12px;background:var(--p2)}
-.box .k{font:700 9.5px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--t2)}
-.box h4{font-size:13.5px;margin:3px 0 5px}
-.box p{font-size:11.5px;color:var(--t2);line-height:1.6}
-.kv{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
-.kv>div{border:1px solid var(--line);border-radius:9px;padding:8px 10px;background:var(--p2);min-width:0}
-.kv .k{font-size:10px;color:var(--t2)}
-.kv .v{font:600 12.5px var(--mono);margin-top:2px;overflow-wrap:anywhere}
 .det{font-size:11.5px;color:var(--t2);line-height:1.6}
 .det b{color:var(--t1)}
 .det p+p{margin-top:6px}
-
-/* list */
-.lbar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:12px 14px;border-bottom:1px solid var(--line)}
-.lbar .chips{margin:0}
-.lbar select{background:var(--p2);border:1px solid var(--line2);border-radius:7px;padding:5px 8px;font:600 10.5px var(--mono);color:var(--t1)}
-.gtag{font:700 9px var(--mono);letter-spacing:.08em;text-transform:uppercase;border-radius:5px;padding:2px 6px;margin-left:4px;border:1px solid currentColor;opacity:.9}
-.st-cell{max-width:420px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap!important;text-align:left!important;color:var(--t2)}
 
 /* paper ledger / forecasts */
 .pl{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,2fr) 62px;gap:12px;align-items:center;padding:7px 14px;border-bottom:1px solid var(--line)}
@@ -219,32 +175,14 @@ h1 em{font-style:normal;color:var(--mint)}
 .stats>div{padding:12px 14px;border-bottom:1px solid var(--line)}
 .stats>div:nth-child(even){border-left:1px solid var(--line)}
 
-/* flow heatmap */
-.hm{overflow-x:auto}
-.hm table{border-collapse:separate;border-spacing:2px;width:100%;min-width:640px}
-.hm th{font:600 9.5px var(--mono);color:var(--t3);padding:4px;text-align:center;white-space:nowrap}
-.hm th.l{text-align:left;color:var(--t1);font-size:11px;padding-right:10px}
-.hm td{height:30px;border-radius:4px;font:600 9.5px var(--mono);text-align:center;color:var(--t1);min-width:34px;cursor:default}
-.hm td.na{background:var(--p2);color:var(--t3)}
-.hm td.tot{background:transparent;text-align:right;padding-left:10px;font-size:11px}
-.scale{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font:500 10px var(--mono);color:var(--t2);padding:0 14px 12px}
-.scale .bar{height:8px;width:160px;border-radius:4px;background:linear-gradient(90deg,var(--bad),var(--p3),var(--good))}
-
-/* warn / rules */
+/* warn */
 .warn{border:1px solid color-mix(in srgb,var(--bad) 42%,transparent);background:color-mix(in srgb,var(--bad) 7%,var(--p1));border-radius:10px;padding:11px 13px;font-size:11.5px;color:var(--t2)}
-.warn b{color:var(--bad)}
-.rules{list-style:none;counter-reset:r}
-.rules li{counter-increment:r;display:grid;grid-template-columns:30px 1fr;gap:8px;padding:11px 14px;border-bottom:1px solid var(--line);font-size:12.5px;color:var(--t2)}
-.rules li:last-child{border-bottom:0}
-.rules li::before{content:counter(r,decimal-leading-zero);font:700 10.5px var(--mono);color:var(--mint);padding-top:2px}
-.rules li b{color:var(--t1)}
 .foot{margin-top:18px;padding-top:12px;border-top:1px solid var(--line);font-size:11px;color:var(--t3);line-height:1.6}
 
 /* responsive */
 @media (max-width:1180px){
   .metrics.m5{grid-template-columns:repeat(3,minmax(0,1fr))}
   .s8,.s7,.s5,.s4,.s6{grid-column:span 12}
-  .ws{grid-template-columns:1fr}
 }
 @media (max-width:860px){
   .shell{grid-template-columns:minmax(0,1fr)}
@@ -258,8 +196,6 @@ h1 em{font-style:normal;color:var(--mint)}
   .content{padding:16px 14px 36px}
   .metrics,.metrics.m5{grid-template-columns:repeat(2,minmax(0,1fr))}
   .metrics.m5 .metric:first-child{grid-column:span 2}
-  .mapp{min-height:0}
-  .stage{flex:none;min-height:0;aspect-ratio:640/420}
 }
 @media (max-width:600px){
   h1{font-size:21px}
@@ -267,14 +203,11 @@ h1 em{font-style:normal;color:var(--mint)}
   .tbl .hs{display:none}
   .rail{width:80px}
   .tbl td:first-child{white-space:normal}
-  .kv{grid-template-columns:repeat(2,minmax(0,1fr))}
   .fcr{grid-template-columns:72px minmax(0,1fr) 54px}
   .fcr .hs{display:none}
   .stats{grid-template-columns:1fr}
   .stats>div:nth-child(even){border-left:0}
   .pl{grid-template-columns:minmax(0,1fr) minmax(0,1.3fr) 54px}
-  .node text{font-size:16px;stroke-width:4px}   /* largest size with no label/label or label/node overlap (checked 14–17) */
-  .stage .corner{font-size:8.5px}
 }
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
@@ -284,7 +217,7 @@ h1 em{font-style:normal;color:var(--mint)}
   <aside class="side" aria-label="Điều hướng">
     <a class="brand" href="index.html" title="Về trang chủ CRE">
       <span class="mark"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 12l5-5M12 4v2M20 12h-2"/></svg></span>
-      <span><b>Robinhood Chain<br><em>Danh mục · Tín hiệu</em></b><small>MEME-DCA v1 · CRE</small></span>
+      <span><b>Robinhood Chain<br><em>Danh mục</em></b><small>MEME-DCA v1 · CRE</small></span>
     </a>
     <nav aria-label="Chức năng" id="sideNav"></nav>
     <div class="sp"></div>
@@ -294,7 +227,7 @@ h1 em{font-style:normal;color:var(--mint)}
 
   <div class="main">
     <header class="top">
-      <strong id="topTitle">Tổng quan</strong><span class="ctx">Robinhood Chain · danh mục &amp; rổ tín hiệu</span>
+      <strong id="topTitle">Tổng quan</strong><span class="ctx">Robinhood Chain · dashboard &amp; bàn quản lý</span>
       <span class="sp"></span>
       <span class="chip n"><i></i><span id="closeChip">CLOSE</span></span>
       <button class="btn" id="theme2" type="button" aria-label="Đổi giao diện sáng / tối" style="display:none">◐</button>
@@ -311,7 +244,7 @@ h1 em{font-style:normal;color:var(--mint)}
           <div class="panel s8"><div class="pt"><h2>Giá trị danh mục<small>USD · close UTC</small></h2><div class="m n" id="navMeta"></div></div>
             <div class="cw" id="navWrap"><svg id="nav" role="img" aria-label="Giá trị danh mục theo phiên"></svg><div class="tip" id="navTip"></div></div></div>
           <div class="panel s4"><div class="pt"><h2>Vị thế</h2><a class="m" href="#positions" data-go="positions">chi tiết →</a></div><div id="ovPos"></div>
-            <div class="pt" style="border-top:1px solid var(--line)"><h2>Tín hiệu mới</h2><a class="m" href="#radar" data-go="radar">radar →</a></div><div class="pb" id="ovSig"></div></div>
+            <div class="pt" style="border-top:1px solid var(--line)"><h2>Tín hiệu mới</h2><a class="m" href="ro-signals.html">rổ tín hiệu ↗</a></div><div class="pb" id="ovSig"></div></div>
         </div>
       </section>
 
@@ -331,41 +264,6 @@ h1 em{font-style:normal;color:var(--mint)}
         </div>
       </section>
 
-      <!-- ═════ TÍN HIỆU ═════ -->
-      <section class="page" data-page="radar" hidden>
-        <div class="ph"><div><div class="eye">Signal terminal / Robinhood Chain</div><h1>See the signal. <em>Read the context.</em></h1><p>Chọn token trên radar để xem thông tin hiện có. Bộ lọc và cách hiển thị không thay đổi logic tín hiệu.</p></div><div class="side-note n" id="radarNote"></div></div>
-        <div class="metrics" id="radarKpi"></div>
-        <div class="sec-h">Radar workspace <span>chọn node · bấm để ghim</span></div>
-        <div class="ws">
-          <div class="panel mapp">
-            <div class="mh"><div><h3>Bản đồ token</h3><p>Vòng trong: đang nắm · giữa: rổ giấy · ngoài: radar micro &amp; breakout. Cỡ node = biến động phiên.</p></div><span class="live"><i></i>SNAPSHOT</span></div>
-            <div class="chips" id="mapChips" role="group" aria-label="Lọc nhóm"></div>
-            <div class="stage" id="stage"><span class="corner" style="left:9px" id="stageL"></span><span class="corner" style="right:9px">2D ORBIT</span><svg id="map" viewBox="0 0 640 420" preserveAspectRatio="xMidYMid meet" role="group" aria-label="Bản đồ token"></svg></div>
-            <div class="mlegend" id="mapLegend"></div>
-          </div>
-          <div class="panel readout" id="readout" aria-live="polite"></div>
-        </div>
-      </section>
-
-      <section class="page" data-page="list" hidden>
-        <div class="ph"><div><div class="eye">Signal terminal / danh sách</div><h1>Tín hiệu &amp; <em>token</em></h1><p>Mỗi token một dòng. Bấm một dòng để mở nó trên radar.</p></div></div>
-        <div class="panel"><div class="lbar"><div class="chips" id="listChips" role="group" aria-label="Lọc nhóm"></div>
-          <label class="dim" style="font-size:10.5px;margin-left:auto">Sắp xếp <select id="sortSel"><option value="def">Mặc định</option><option value="ch">Biến động phiên</option><option value="x">×giá vào</option><option value="az">Tên A–Z</option></select></label></div>
-          <div style="overflow-x:auto"><table class="tbl" id="listT"></table></div></div>
-      </section>
-
-      <section class="page" data-page="breakout" hidden>
-        <div class="ph"><div><div class="eye">Discovery layer</div><h1>Breakout <em>discovery</em></h1><p id="brkIntro"></p></div><div class="side-note n">BR-001 · CHỈ THEO DÕI</div></div>
-        <div id="brk" style="display:flex;flex-direction:column;gap:10px"></div>
-      </section>
-
-      <section class="page" data-page="flow" hidden>
-        <div class="ph"><div><div class="eye">Flow / lệnh lớn</div><h1>Dòng <em>lệnh lớn</em></h1><p>Mua ròng trừ bán ròng của các lệnh vượt ngưỡng trong ngày UTC, nghìn USD. Lớp quan sát, không phải tín hiệu giao dịch.</p></div></div>
-        <div class="panel"><div class="pt"><h2>Ròng theo ngày<small>$k</small></h2><div class="m n" id="flowMeta"></div></div><div class="pb hm" id="hm"></div>
-          <div class="scale"><span>bán ròng</span><span class="bar"></span><span>mua ròng</span><span class="dim">· “—” = không lấy được dữ liệu phiên đó</span></div>
-          <div class="pb note" id="flowNote" style="border-top:1px solid var(--line)"></div></div>
-      </section>
-
       <!-- ═════ BỐI CẢNH ═════ -->
       <section class="page" data-page="btc" hidden>
         <div class="ph"><div><div class="eye">Market backdrop</div><h1>Bối cảnh <em>BTC</em></h1><p>Lớp phủ chế độ thị trường. Không tự động đổi tín hiệu token hay lệnh nào.</p></div></div>
@@ -376,10 +274,6 @@ h1 em{font-style:normal;color:var(--mint)}
         </div>
       </section>
 
-      <section class="page" data-page="rules" hidden>
-        <div class="ph"><div><div class="eye">Transparency</div><h1>Luật <em>đang chạy</em></h1><p>Bộ luật của danh mục và các lớp quét, theo thứ tự trang gốc ghi.</p></div></div>
-        <div class="panel"><ol class="rules" id="rulesL"></ol></div>
-      </section>
 
       <footer class="foot" id="foot"></footer>
     </main>
@@ -417,25 +311,6 @@ const BRAKE=400, RELEASE=420, brakeOn=nav<BRAKE, need=(RELEASE/nav-1)*100;   // 
 const LV=['Ủng hộ','Trung lập','Rủi ro','Báo động'], LVC=['ok','info','warn','bad'];
 const sess=(K.session.match(/D\d+/)||[''])[0];
 
-/* ── token universe: one record per token across every signal group, plus the breakout rows ── */
-const GRANK={dm:0,gy:1,td:2};
-const byTok={};
-S.sig.forEach(s=>{ const k=s.t; (byTok[k]=byTok[k]||{t:k,groups:new Set(),recs:[]}); byTok[k].groups.add(s.g); byTok[k].recs.push(s); });
-const brkRows=(S.breakout.tables[0]||[]).slice(1);
-const brkTok=brkRows.map(r=>{ const [name,contract]=r[0].split('\n'); const t=name.split('·')[0].trim();
-  const ch=parseFloat(String(r[2]).replace('−','-').replace(/[^\d.\-]/g,''));
-  return {t, name:name.trim(), contract:(contract||'').trim(), px:parseFloat(r[1]), chTxt:r[2], ch, vol:r[3], mcap:r[4], holders:r[5], now:r[6]}; });
-const toks=Object.values(byTok).map(o=>{
-  const rec=o.recs.slice().sort((a,b)=>GRANK[a.g]-GRANK[b.g])[0];            // held > newcomer > watch
-  const gy=o.recs.find(r=>r.g==='gy');
-  const cat=o.groups.has('dm')?'held':gy?(/microcap/i.test(gy.sub)?'micro':'paper'):'watch';
-  return {t:o.t, cat, rec, gy, groups:[...o.groups], now:o.recs.some(r=>r.now), ch:rec.ch, px:rec.px};
-});
-brkTok.forEach(b=>toks.push({t:b.t, cat:'brk', brk:b, groups:['brk'], now:false, ch:b.ch, px:b.px}));
-// the record a token is read from: a held token is read from its real position, everything else from the newcomer basket
-const pick=t=>t.cat==='held'?t.rec:(t.gy||t.rec);
-const CAT={held:['Đang nắm','--mint'],paper:['Rổ giấy','--blue'],micro:['Radar micro','--violet'],brk:['Breakout','--warn'],watch:['Theo dõi','--t2']};
-
 /* ═════════ navigation ═════════ */
 const ICON={
   overview:'<path d="M3 13h4v8H3zM10 9h4v12h-4zM17 4h4v17h-4z"/>',
@@ -453,13 +328,14 @@ const ALL=stp(K.paper.map(p=>p[2]));                                   // same a
 const fresh=S.sig.filter(s=>s.now).length;
 const NAV=[
   ['Danh mục',[['overview','Tổng quan',brakeOn?['R5','bad']:null],['positions','Vị thế',[String(K.pos.length)]],['score','Bảng điểm',[ALL.win+'/'+ALL.n]]]],
-  ['Tín hiệu',[['radar','Radar',fresh?[fresh+' mới','hot']:null],['list','Danh sách',[String(toks.length)]],['breakout','Breakout',['BR-001']],['flow','Lệnh lớn',[K.flows.days.length+'N']]]],
-  ['Bối cảnh',[['btc','BTC',[LV[B.level],B.level>=2?'bad':'']],['rules','Luật',[String(K.rules.length)]]]]
+  ['Bối cảnh',[['btc','BTC',[LV[B.level],B.level>=2?'bad':'']]]]
 ];
-const TITLE={overview:'Tổng quan',positions:'Vị thế',score:'Bảng điểm',radar:'Signal radar',list:'Danh sách tín hiệu',breakout:'Breakout discovery',flow:'Dòng lệnh lớn',btc:'Bối cảnh BTC',rules:'Luật'};
+const TITLE={overview:'Tổng quan',positions:'Vị thế',score:'Bảng điểm',btc:'Bối cảnh BTC'};
 const item=([k,t,c])=>`<a class="ni" href="#${k}" data-v="${k}"><svg viewBox="0 0 24 24" aria-hidden="true">${ICON[k]}</svg><span>${t}</span>${c?`<span class="cnt ${c[1]||''}">${esc(c[0])}</span>`:''}</a>`;
-$('sideNav').innerHTML=NAV.map(([g,items])=>`<div class="slabel" style="margin-top:6px">${g}</div><ul class="snav">${items.map(i=>'<li>'+item(i)+'</li>').join('')}</ul>`).join('');
-$('mobNav').innerHTML='<ul>'+NAV.flatMap(g=>g[1]).map(i=>'<li>'+item(i)+'</li>').join('')+'</ul>';
+const OUT=`<a class="ni" href="ro-signals.html"><svg viewBox="0 0 24 24" aria-hidden="true">${ICON.radar}</svg><span>Rổ tín hiệu</span><span class="cnt ${fresh?'hot':''}">${fresh?fresh+' mới':'↗'}</span></a>`;
+$('sideNav').innerHTML=NAV.map(([g,items])=>`<div class="slabel" style="margin-top:6px">${g}</div><ul class="snav">${items.map(i=>'<li>'+item(i)+'</li>').join('')}</ul>`).join('')+
+  `<div class="slabel" style="margin-top:6px">Trang riêng</div><ul class="snav"><li>${OUT}</li></ul>`;
+$('mobNav').innerHTML='<ul>'+NAV.flatMap(g=>g[1]).map(i=>'<li>'+item(i)+'</li>').join('')+'<li>'+OUT+'</li></ul>';
 $('closeChip').textContent='CLOSE · '+K.date+' UTC';
 $('statusTxt').textContent='Close '+K.date+' UTC · phiên '+sess+'. Ảnh chụp theo giá đóng cửa, không phải feed trực tiếp.';
 
@@ -475,7 +351,7 @@ $('ovKpi').innerHTML=`
 $('navMeta').innerHTML=`${hist.length} phiên · drawdown tối đa <span class="dn">${sgn(dd*100,1)}</span> từ ${pkDate}`;
 $('ovPos').innerHTML=K.pos.slice().sort((a,b)=>b.val-a.val).map(p=>`<div class="pl" style="grid-template-columns:minmax(0,1fr) auto auto"><div class="nm">${esc(p.t)}<small>${esc(p.st)}</small></div><div class="n">${usd(p.val)}</div><div class="n ${cls(p.pct)}" style="text-align:right;min-width:56px">${sgn(p.pct,1)}</div></div>`).join('');
 const newSig=S.sig.filter(s=>s.now);
-$('ovSig').innerHTML=newSig.length?newSig.map(s=>`<div class="tc" style="cursor:pointer" data-open="${esc(s.t)}" role="button" tabindex="0"><span class="av">${esc(ini(s.t))}</span><div style="min-width:0"><b>${esc(s.t)}</b> <span class="pill buy" style="margin-left:4px">${esc(S.acts[s.act]||s.act)}</span><div class="n mu" style="font-size:11px">${px(s.px)} · <span class="${cls(s.ch)}">${sgn(s.ch,1)}</span> · ${esc(s.sub)}</div></div></div>`).join('<div style="height:8px"></div>')
+$('ovSig').innerHTML=newSig.length?newSig.map(s=>`<a class="tc" style="text-decoration:none" href="ro-signals.html"><span class="av">${esc(ini(s.t))}</span><div style="min-width:0"><b>${esc(s.t)}</b> <span class="pill buy" style="margin-left:4px">${esc(S.acts[s.act]||s.act)}</span><div class="n mu" style="font-size:11px">${px(s.px)} · <span class="${cls(s.ch)}">${sgn(s.ch,1)}</span> · ${esc(s.sub)}</div></div></a>`).join('<div style="height:8px"></div>')
   :'<span class="mu">Không có tín hiệu mới ở close này.</span>';
 
 function navChart(){
@@ -558,130 +434,6 @@ function navChart(){
   $('fcList').innerHTML=K.scored.map(x=>`<div class="fcr"><span class="n" style="font-weight:600">${esc(x.id)}</span><span class="mu" style="min-width:0">${esc(txt[x.id]||'')}</span><span class="hit ${x.hit?'y':'no'}">${x.hit?'CÓ':'KHÔNG'}</span><span class="n mu hs" style="text-align:right">p ${x.p.toFixed(2)} · ${x.brier.toFixed(3)}</span></div>`).join('');
 })();
 
-/* ═════════ RADAR ═════════ */
-const micro=toks.filter(t=>t.cat==='micro');
-$('radarKpi').innerHTML=`
-  <div class="metric"><div class="k">Vũ trụ quét</div><div class="v n up">${K.universe?K.universe.toLocaleString('en-US'):'—'}</div><div class="s">token native Robinhood Chain</div></div>
-  <div class="metric"><div class="k">Radar micro</div><div class="v n">${String(micro.length).padStart(2,'0')}</div><div class="s n">token theo dõi${micro.some(t=>t.now)?' · mới: '+esc(micro.filter(t=>t.now).map(t=>t.t).join(' · ')):''}</div></div>
-  <div class="metric"><div class="k">Breakout mới</div><div class="v n">${String(brkTok.length).padStart(2,'0')}</div><div class="s n">${esc(brkTok.map(b=>b.t).join(' · '))} · chỉ khám phá</div></div>
-  <div class="metric"><div class="k">BTC regime</div><div class="v n ${B.level>=2?'dn':''}">${esc(LV[B.level]).toUpperCase()}</div><div class="s n">${usd(B.price)}</div></div>`;
-$('radarNote').innerHTML=esc(K.date)+' · UTC CLOSE<br>HISTORICAL SNAPSHOT';
-$('stageL').textContent='RH-NATIVE / '+(K.universe?K.universe.toLocaleString('en-US'):'—')+' TOKEN';
-
-const FILTERS=[['all','Tất cả'],['micro','Radar micro'],['held','Đang nắm'],['paper','Rổ giấy'],['brk','Breakout'],['new','Mới']];
-const matchF=(t,f)=>f==='all'||(f==='new'?t.now:t.cat===f);
-let mapFilter='all', listFilter='all', pinned=null;
-const chipsHtml=cur=>FILTERS.map(([k,l])=>`<button type="button" class="fc" data-f="${k}" aria-pressed="${k===cur}">${l}</button>`).join('');
-
-function drawMap(){
-  const svg=$('map'), W=640, H=420, cx=W/2, cy=H/2+6;
-  // concentric orbits by status — held inside, paper basket in the middle, micro radar and breakouts outside
-  const RING={held:[.30,.30],paper:[.56,.55],micro:[.84,.82],brk:[.98,.95]};
-  const groups={}; toks.forEach(t=>{ const r=t.cat==='watch'?'micro':t.cat; (groups[r]=groups[r]||[]).push(t); });
-  let g='';
-  [['held',.30],['paper',.56],['micro',.84]].forEach(([k,f])=>{ g+=`<ellipse cx="${cx}" cy="${cy}" rx="${W*.46*f}" ry="${H*.42*f}" fill="none" stroke="${css('--line2')}" ${k==='held'?'':'stroke-dasharray="3 5"'}/>`; });
-  g+=`<circle cx="${cx}" cy="${cy}" r="3" fill="${css('--mint')}"/><text x="${cx}" y="${cy+16}" text-anchor="middle" font-size="9" fill="${css('--t3')}" font-family="var(--mono)">RH</text>`;
-  const pos={};
-  const OFF={held:0.4,paper:0.0,micro:0.3,brk:-0.95};   // fixed start angles so orbits never stack labels on one bearing
-  Object.entries(groups).forEach(([ring,list])=>{ const [fx,fy]=RING[ring], off=OFF[ring];
-    list.forEach((t,i)=>{ const a=off+i*2*Math.PI/list.length; pos[t.t]=[cx+Math.cos(a)*W*.46*fx, cy+Math.sin(a)*H*.42*fy]; }); });
-  toks.forEach(t=>{ const [x,y]=pos[t.t], c=css(CAT[t.cat][1]), r=5+Math.min(9,Math.sqrt(Math.abs(t.ch||0))*0.9);
-    const dim=!matchF(t,mapFilter), sel=pinned===t.t, flip=x>W*0.78;
-    g+=`<g class="node${dim?' dimmed':''}" tabindex="${dim?-1:0}" role="button" aria-label="${esc(t.t)} · ${CAT[t.cat][0]}" data-t="${esc(t.t)}">
-      ${t.now||sel?`<circle cx="${x}" cy="${y}" r="${r+7}" fill="none" stroke="${c}" stroke-opacity="${sel?.95:.45}" stroke-width="${sel?2:1.5}"/>`:''}
-      <circle cx="${x}" cy="${y}" r="${r+3}" fill="${c}" fill-opacity=".16"/>
-      <circle class="core" cx="${x}" cy="${y}" r="${r}" fill="${c}"/>
-      <text x="${flip?x-r-6:x+r+6}" y="${y+4}" text-anchor="${flip?'end':'start'}">${esc(t.t)}</text>
-      <circle cx="${x}" cy="${y}" r="${r+12}" fill="transparent"/></g>`; });
-  svg.innerHTML=g;
-}
-function readout(name){
-  const t=toks.find(x=>x.t===name)||toks[0]; if(!t) return;
-  const c=CAT[t.cat];
-  if(t.cat==='brk'){ const b=t.brk;
-    $('readout').innerHTML=`<div class="eye">Token đang chọn · breakout</div>
-      <div class="ro-h"><span class="av" style="color:var(${c[1]})">${esc(ini(b.t))}</span><div><h3>${esc(b.t)}</h3><div class="mu" style="font-size:11px">${esc(b.name)}</div></div><div class="px"><b>${px(b.px)}</b><span class="n up" style="font-size:11px">${esc(b.chTxt)} phiên</span></div></div>
-      <div class="box"><div class="k">Lớp hiện tại</div><h4>Chỉ theo dõi · không mua theo breakout</h4><p>${esc(S.breakout.intro)}</p></div>
-      <div class="kv"><div><div class="k">Volume / trung vị 7N</div><div class="v">${esc(b.vol)}</div></div><div><div class="k">Vốn hoá</div><div class="v">${esc(b.mcap)}</div></div><div><div class="k">Holder · top-10</div><div class="v">${esc(b.holders)}</div></div></div>
-      <a class="btn" href="#breakout" data-go="breakout" style="align-self:flex-start">Xem lớp breakout →</a>
-      ${b.contract?`<div class="ctr"><span class="dim" style="flex:none">CONTRACT</span><span>${esc(b.contract)}</span><button class="copy" type="button" data-c="${esc(b.contract)}">copy</button></div>`:''}`; return; }
-  const r=pick(t), lv=r.lv||{}, lq=r.lq, cost=lv.cost, x=cost?r.px/cost:null;
-  const levels=[['Giá vào / vốn',cost],['Chốt 50%',lv.tp],['Bán hết',lv.kill]].concat(lv.add?[['Mua thêm',lv.add]]:[]);
-  $('readout').innerHTML=`<div class="eye">Token đang chọn · ${esc(c[0])}</div>
-    <div class="ro-h"><span class="av" style="color:var(${c[1]})">${esc(ini(t.t))}</span><div><h3>${esc(t.t)}</h3><div class="mu n" style="font-size:10.5px">${esc(r.sub)} · ${t.groups.map(g=>esc(S.groups[g]||g)).join(' · ')}</div></div>
-      <div class="px"><b>${px(r.px)}</b><span class="n ${cls(r.ch)}" style="font-size:11px">${sgn(r.ch,1)} phiên</span></div></div>
-    <div class="box"><div class="k">Đọc hiện tại · luật đang có</div><h4><span class="pill ${r.now?'buy':''}">${esc(S.acts[r.act]||r.act)}</span>${x!=null?` <span class="n mu" style="font-size:12px;margin-left:6px">×${x.toFixed(2)} giá vào</span>`:''}</h4><p>${esc(r.st)}</p></div>
-    <div class="kv">${levels.map(([k,v])=>`<div><div class="k">${k}</div><div class="v">${px(v)}</div><div class="k n">${v&&r.px?sgn((v/r.px-1)*100,0)+' từ close':''}</div></div>`).join('')}</div>
-    ${lq?`<div class="kv"><div><div class="k">Vốn hoá</div><div class="v">${big(lq.m)}</div></div><div><div class="k">Volume</div><div class="v">${big(lq.v)}</div></div><div><div class="k">Từ đỉnh</div><div class="v dn">${sgn(lq.dd*100,0)}</div></div></div>`:''}
-    ${r.det&&r.det.length?`<div class="det">${r.det.map(d=>`<p><b>${esc(d[0])}.</b> ${esc(d[1])}</p>`).join('')}</div>`:''}
-    ${r.contract?`<div class="ctr"><span class="dim" style="flex:none">CONTRACT</span><span>${esc(r.contract)}</span><button class="copy" type="button" data-c="${esc(r.contract)}">copy</button></div>`:''}`;
-}
-function setPinned(name){ pinned=name; drawMap(); readout(name); }
-$('mapChips').innerHTML=chipsHtml(mapFilter);
-$('mapChips').addEventListener('click',e=>{ const b=e.target.closest('.fc'); if(!b) return; mapFilter=b.dataset.f; $('mapChips').innerHTML=chipsHtml(mapFilter); drawMap(); });
-$('mapLegend').innerHTML=Object.entries(CAT).filter(([k])=>toks.some(t=>t.cat===k)).map(([k,[l,c]])=>`<span><i style="background:var(${c})"></i>${l} · ${toks.filter(t=>t.cat===k).length}</span>`).join('')+'<span class="dim">vòng sáng = tín hiệu mới / đang chọn</span>';
-const mapEl=$('map');
-mapEl.addEventListener('click',e=>{ const n=e.target.closest('.node'); if(n&&!n.classList.contains('dimmed')) setPinned(n.dataset.t); });
-mapEl.addEventListener('keydown',e=>{ const n=e.target.closest('.node'); if(n&&(e.key==='Enter'||e.key===' ')){ e.preventDefault(); const k=n.dataset.t; setPinned(k); const f=[...mapEl.querySelectorAll('.node')].find(z=>z.dataset.t===k); f&&f.focus(); } });
-mapEl.addEventListener('pointerover',e=>{ const n=e.target.closest('.node'); if(n&&!n.classList.contains('dimmed')&&e.pointerType==='mouse') readout(n.dataset.t); });
-mapEl.addEventListener('pointerleave',()=>{ if(pinned) readout(pinned); });
-setPinned((toks.find(t=>t.now)||micro[0]||toks[0]).t);
-
-/* ═════════ LIST ═════════ */
-function drawList(){
-  const sort=$('sortSel').value, xv=t=>{const r=t.cat==='brk'?null:pick(t); return r&&r.lv&&r.lv.cost?r.px/r.lv.cost:null;};
-  let L=toks.filter(t=>matchF(t,listFilter));
-  if(sort==='ch') L=L.slice().sort((a,b)=>Math.abs(b.ch||0)-Math.abs(a.ch||0));
-  else if(sort==='az') L=L.slice().sort((a,b)=>a.t.localeCompare(b.t));
-  else if(sort==='x') L=L.slice().sort((a,b)=>(xv(b)??-1)-(xv(a)??-1));
-  $('listT').innerHTML=`<thead><tr><th>Token</th><th>Nhóm</th><th>Close</th><th>Phiên</th><th class="hs">×giá vào</th><th class="hs">Hành động</th><th class="hs" style="text-align:left">Ghi chú</th></tr></thead><tbody>`+
-    (L.length?L.map(t=>{ const r=t.cat==='brk'?null:pick(t), x=xv(t);
-      return `<tr class="r" tabindex="0" data-t="${esc(t.t)}"><td><div class="tc"><span class="av" style="color:var(${CAT[t.cat][1]})">${esc(ini(t.t))}</span><div class="tok">${esc(t.t)}${t.now?'<span class="gtag" style="color:var(--mint)">mới</span>':''}<small>${esc(r?r.sub:t.brk.name)}</small></div></div></td>
-        <td><span class="gtag" style="color:var(${CAT[t.cat][1]});margin-left:0">${CAT[t.cat][0]}</span></td>
-        <td class="n">${px(t.px)}</td><td class="n ${cls(t.ch)}">${t.cat==='brk'?esc(t.brk.chTxt):sgn(t.ch,1)}</td>
-        <td class="n hs">${x!=null?'×'+x.toFixed(2):'—'}</td><td class="hs"><span class="pill ${t.now?'buy':''}">${esc(r?(S.acts[r.act]||r.act):'Theo dõi')}</span></td>
-        <td class="st-cell hs" title="${esc(r?r.st:S.breakout.intro)}">${esc(r?r.st:S.breakout.intro)}</td></tr>`; }).join('')
-      :'<tr><td colspan="7" class="mu" style="text-align:center;padding:24px">Không có token trong nhóm này.</td></tr>')+'</tbody>';
-}
-$('listChips').innerHTML=chipsHtml(listFilter);
-$('listChips').addEventListener('click',e=>{ const b=e.target.closest('.fc'); if(!b) return; listFilter=b.dataset.f; $('listChips').innerHTML=chipsHtml(listFilter); drawList(); });
-$('sortSel').addEventListener('change',drawList);
-const openOnRadar=name=>{ setPinned(name); go('radar',true); };
-$('listT').addEventListener('click',e=>{ const r=e.target.closest('tr.r'); if(r) openOnRadar(r.dataset.t); });
-$('listT').addEventListener('keydown',e=>{ const r=e.target.closest('tr.r'); if(r&&e.key==='Enter') openOnRadar(r.dataset.t); });
-drawList();
-
-/* ═════════ BREAKOUT ═════════ */
-(function(){
-  const BK=S.breakout; $('brkIntro').textContent=BK.intro;
-  const fake=BK.paras.find(p=>/^Token giả/.test(p)), rule=BK.paras.find(p=>/^Token thuộc vũ trụ quét/.test(p));
-  const read=BK.paras.find(p=>/^Đọc đúng mức/.test(p)), about=BK.paras.filter(p=>/^(Texel là gì|Ngách)/.test(p));
-  const bt=BK.tables[1]||[];
-  $('brk').innerHTML=brkTok.map(b=>`<div class="panel"><div class="pt"><h2>Breakout discovery</h2><div class="m">BR-001 · CHỈ THEO DÕI</div></div><div class="pb" style="display:flex;flex-direction:column;gap:12px">
-      <div class="box" style="display:flex;align-items:center;gap:12px"><span class="av" style="width:46px;height:46px;border-radius:11px;color:var(--warn)">${esc(ini(b.t))}</span>
-        <div style="min-width:0"><div style="font-size:19px;font-weight:700;letter-spacing:-.03em">${esc(b.t)} <span class="pill" style="color:var(--warn);border-color:var(--warn);vertical-align:3px">breakout mới</span></div><div class="mu" style="font-size:11px">${esc(b.name)} · close ${esc(K.date)}</div><div class="n mu" style="font-size:10.5px;overflow-wrap:anywhere">${esc(b.contract)}</div></div></div>
-      <div class="kv"><div><div class="k">Close</div><div class="v">${px(b.px)}</div></div><div><div class="k">Phiên</div><div class="v up">${esc(b.chTxt)}</div></div><div><div class="k">Volume / trung vị 7N</div><div class="v">${esc(b.vol)}</div></div>
-        <div><div class="k">Vốn hoá</div><div class="v">${esc(b.mcap)}</div></div><div><div class="k">Holder · top-10</div><div class="v">${esc(b.holders)}</div></div><div><div class="k">Hiện tại</div><div class="v">${esc(b.now)}</div></div></div>
-      ${fake?`<div class="warn"><b>Token giả cùng tên.</b> ${esc(fake.replace(/^Token giả:\s*/,''))} Luôn đối chiếu contract đầy đủ.</div>`:''}
-      ${about.length?`<div class="det">${about.map(p=>`<p>${esc(p).replace(/^([^.:]+[.:])/,'<b>$1</b>')}</p>`).join('')}</div>`:''}
-    </div></div>`).join('')+
-    `<div class="grid"><div class="panel s5"><div class="pt"><h2>${esc(BK.heads[0]||'Luật')}</h2></div><div class="pb det">${esc(rule||'')}</div></div>
-     <div class="panel s7"><div class="pt"><h2>Kiểm định lịch sử</h2><div class="m">+3 / +7 phiên · 14 phiên</div></div><div style="overflow-x:auto"><table class="tbl">
-       ${bt.map((row,i)=>`<tr>${row.map((c,j)=>i===0?`<th${j===0?' style="text-align:left;white-space:normal;min-width:220px"':''}>${esc(c)}</th>`:`<td class="${j?'n':''}" ${j===0?'style="white-space:normal;font-size:11.5px;min-width:220px"':''}>${esc(c)}</td>`).join('')}</tr>`).join('')}</table></div>
-       ${read?`<div class="pb det" style="border-top:1px solid var(--line)">${esc(read).replace(/^(Đọc đúng mức:)/,'<b>$1</b>')}</div>`:''}</div></div>`;
-})();
-
-/* ═════════ FLOW HEATMAP ═════════ */
-(function(){
-  const F=K.flows, all=F.rows.flatMap(r=>r[1]).filter(v=>v!=null), mx=Math.max(...all.map(Math.abs));
-  const col=v=>{ const a=Math.min(1,Math.sqrt(Math.abs(v)/mx)); return `background:color-mix(in srgb,var(${v<0?'--bad':'--good'}) ${Math.round(a*85)}%,var(--p3))`; };
-  $('flowMeta').textContent=F.days[0]+' → '+F.days[F.days.length-1]+' · '+F.rows.length+' token';
-  $('hm').innerHTML=`<table><thead><tr><th class="l"></th>${F.days.map(d=>`<th>${esc(d.slice(0,5))}</th>`).join('')}<th style="text-align:right">tổng</th></tr></thead><tbody>`+
-    F.rows.map(([t,v])=>{ const tot=v.filter(x=>x!=null).reduce((s,x)=>s+x,0);
-      return `<tr><th class="l">${esc(t)}</th>${v.map((x,i)=>x==null?`<td class="na" title="${esc(t)} · ${F.days[i]} · không có dữ liệu">—</td>`:`<td style="${col(x)}" title="${esc(t)} · ${F.days[i]} · ${x<0?'−':'+'}$${Math.abs(x)}k">${Math.abs(x)>=Math.max(20,mx*.18)?(x<0?'−':'+')+Math.round(Math.abs(x)):''}</td>`).join('')}<td class="tot n ${cls(tot)}">${tot<0?'−':'+'}$${Math.abs(tot).toFixed(0)}k</td></tr>`; }).join('')+'</tbody></table>';
-  $('flowNote').textContent=K.flowNote;
-})();
-
 /* ═════════ BTC ═════════ */
 // lines that ask for a ruling or describe the analyst's own workflow belong to the chat session, not to this page
 const CHATTY=/chờ bạn quyết|vẫn chờ|đề xuất|mình chưa|số cũ|trang chưa/i;
@@ -707,8 +459,7 @@ function btcChart(){
   svg.innerHTML=g;
 }
 
-/* ═════════ RULES / FOOT ═════════ */
-$('rulesL').innerHTML=K.rules.map(r=>`<li><span>${esc(r).replace(/^([^:]{2,60}:)/,'<b>$1</b>')}</span></li>`).join('');
+/* ═════════ FOOT ═════════ */
 $('foot').innerHTML=esc(K.foot)+' Robinhood Markets không phát hành và không bảo trợ các token này; luôn so khớp toàn bộ địa chỉ contract. '+
   'Dữ liệu: close '+esc(K.date)+' · sinh bởi <span class="n">tools/ro_extract.js</span> từ hai trang gốc của sổ.';
 
@@ -718,7 +469,7 @@ function go(k,top){
   if(!TITLE[k]) k='overview';
   pages.forEach(p=>p.hidden=p.dataset.page!==k);
   document.querySelectorAll('.ni').forEach(a=>a.dataset.v===k?a.setAttribute('aria-current','page'):a.removeAttribute('aria-current'));
-  $('topTitle').textContent=TITLE[k]; document.title=TITLE[k]+' · Robinhood Chain';
+  $('topTitle').textContent=TITLE[k]; document.title=TITLE[k]+' · Robinhood Chain · Danh mục';
   try{ if(location.hash.slice(1)!==k) history.pushState(null,'','#'+k); }catch(e){}
   requestAnimationFrame(()=>{ if(k==='overview') navChart(); if(k==='btc') btcChart(); });
   if(innerWidth<=860){ const a=document.querySelector(`#mobNav .ni[data-v="${k}"]`); a&&a.scrollIntoView({block:'nearest',inline:'center'}); }
@@ -727,11 +478,9 @@ function go(k,top){
 document.addEventListener('click',e=>{
   const c=e.target.closest('.copy');
   if(c){ e.preventDefault(); e.stopPropagation(); (navigator.clipboard?navigator.clipboard.writeText(c.dataset.c):Promise.reject()).then(()=>{c.textContent='✓';setTimeout(()=>c.textContent='copy',1200);},()=>{}); return; }
-  const o=e.target.closest('[data-open]'); if(o){ openOnRadar(o.dataset.open); return; }
   const a=e.target.closest('a.ni,[data-go]');
   if(a&&!(e.metaKey||e.ctrlKey||e.shiftKey||e.button)){ e.preventDefault(); go(a.dataset.v||a.dataset.go,true); }
 });
-document.addEventListener('keydown',e=>{ const o=e.target.closest&&e.target.closest('[data-open]'); if(o&&(e.key==='Enter'||e.key===' ')){ e.preventDefault(); openOnRadar(o.dataset.open); } });
 addEventListener('popstate',()=>go(location.hash.slice(1),false));
 // charts redraw whenever their box changes width — this also covers a page that first lays out at zero width
 const watch=(el,fn)=>{ let w=-1; new ResizeObserver(()=>{ const n=el.clientWidth; if(n&&Math.abs(n-w)>4){ w=n; fn(); } }).observe(el); };
@@ -740,7 +489,7 @@ addEventListener('resize',()=>{ $('theme2').style.display=innerWidth<=860?'':'no
 const th=()=>{ const l=document.documentElement.getAttribute('data-theme')!=='light';
   if(l) document.documentElement.setAttribute('data-theme','light'); else document.documentElement.removeAttribute('data-theme');
   try{ localStorage.setItem('cre-theme',l?'light':'dark'); }catch(e){}
-  navChart(); btcChart(); drawMap(); readout(pinned); };
+  navChart(); btcChart(); };
 $('theme').addEventListener('click',th); $('theme2').addEventListener('click',th);
 $('theme2').style.display=innerWidth<=860?'':'none';
 go(location.hash.slice(1)||'overview',false);

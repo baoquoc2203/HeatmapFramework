@@ -3,7 +3,7 @@
 //   osascript -l JavaScript tools/ro_extract.js
 //
 // Reads ro-desk.html and ro-signals.html (the upstream pages, copied in verbatim),
-// executes their inline scripts against an inert DOM stub so every data constant
+// executes their inline scripts (not the CRE skin layer) against an inert DOM stub so every data constant
 // is evaluated exactly as the page itself evaluates it, and writes the result into
 // robinhood.html between its RO-DATA markers. Nothing is computed here that the pages do not compute: this
 // file only SELECTS fields. Re-run it after every upstream update.
@@ -26,7 +26,7 @@ const stub = () => new Proxy(function () {}, {
 });
 function evalPage(file, exportExpr) {
   const html = read(file);
-  const src = [...html.matchAll(/<script(?![^>]*\bsrc=)(?![^>]*type="application\/)[^>]*>([\s\S]*?)<\/script>/g)]
+  const src = [...html.matchAll(/<script(?![^>]*\bsrc=)(?![^>]*type="application\/)(?![^>]*id="cre-skin)[^>]*>([\s\S]*?)<\/script>/g)]
     .map(m => m[1]).join('\n;\n');
   const g = {
     document: stub(), localStorage: { getItem: () => null, setItem() {} },
