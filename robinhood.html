@@ -521,7 +521,7 @@ function go(k,top){
 document.addEventListener('click',e=>{
   const c=e.target.closest('.copy');
   if(c){ e.preventDefault(); e.stopPropagation(); (navigator.clipboard?navigator.clipboard.writeText(c.dataset.c):Promise.reject()).then(()=>{c.textContent='✓';setTimeout(()=>c.textContent='copy',1200);},()=>{}); return; }
-  const a=e.target.closest('a.ni,[data-go]');
+  const a=e.target.closest('a.ni[data-v],[data-go]');
   if(a&&!(e.metaKey||e.ctrlKey||e.shiftKey||e.button)){ e.preventDefault(); go(a.dataset.v||a.dataset.go,true); }
 });
 addEventListener('popstate',()=>go(location.hash.slice(1),false));
