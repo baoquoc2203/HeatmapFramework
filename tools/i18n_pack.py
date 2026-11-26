@@ -126,6 +126,81 @@ EN = {
   'Bán hết khi thanh khoản cạn, 2 close liên tiếp dưới 25% giá vốn, hoặc có rủi ro bảo mật. Đây không phải mức lỗ tối đa được bảo đảm.': 'Sell all when liquidity dries up, on 2 consecutive closes below 25% of cost, or on a security risk. This is not a guaranteed maximum loss.',
   'Giá vốn trong nhóm "Đang nắm" là của danh mục gốc. Nếu mua ở giá khác, tự tính lại: mỗi bậc mua thêm = 80% giá vốn trung bình của bạn, chốt 50% ở 2× giá vốn của bạn. Quy mô gợi ý: 5% vốn meme mỗi lần, tối đa 20% một token, microcap 2%. Mua trễ cho kết quả kém hơn: chờ thêm 2–3 phiên sau tín hiệu làm tỷ lệ lệnh có lãi giảm từ 20.9% xuống 14.6%.': 'The cost in the "Holding" group is the original portfolio\'s. If you bought at a different price, recompute: each add step = 80% of your average cost, take 50% at 2× your cost. Suggested size: 5% of meme capital per buy, at most 20% in one token, microcap 2%. Buying late does worse: waiting 2–3 more sessions after the signal cut the share of winning trades from 20.9% to 14.6%.',
   'Tín hiệu theo luật của một khung phân tích có hệ thống, không phải lời khuyên đầu tư. Hệ thống chưa chứng minh được lợi thế: rổ 12 token gốc giảm 60.6% từ 30/9 đến 29/10 trong khi BTC giảm 6.9%. Token trên Robinhood Chain biến động 10–40% mỗi ngày và có thể mất toàn bộ vốn. Robinhood Markets không phát hành và không bảo trợ các token này. Luôn so khớp toàn bộ địa chỉ contract trước khi giao dịch vì có địa chỉ giả giống phần đầu và đuôi.': 'Rule-based signals from a systematic framework, not investment advice. The system has not proven an edge: the original 12-token basket fell 60.6% from 30/9 to 29/10 while BTC fell 6.9%. Tokens on Robinhood Chain move 10–40% a day and can lose all their value. Robinhood Markets does not issue or endorse these tokens. Always match the full contract address before trading, because fake addresses copy the first and last characters.',
+  'Giữ, chưa làm gì': 'Hold, no action',
+  'Chưa làm gì': 'No action',
+  'Không phụ thuộc mức giá': 'Not tied to a price level',
+  'Về giá vốn': 'Back to cost',
+  '×1.5 giá vốn': '×1.5 cost',
+  '×5 giá vốn': '×5 cost',
+  'Chốt 50% (×2), trước mức bán hết': 'Take 50% (×2), before the sell-all level',
+  'Chạm mức mua thêm trong 14 phiên': 'Hit the add level within 14 sessions',
+  'Bán hết (2 close), trước khi chạm ×2': 'Sell all (2 closes), before hitting ×2',
+  'Chạm mốc mua lại trong 14 phiên': 'Hit the re-buy level within 14 sessions',
+  'Quay lại đỉnh sau khi thoát': 'Back to the peak after exit',
+  'R/R: tới chốt 50% so với tới bán hết': 'R/R: to take-50% vs to sell-all',
+  'Số phiên tới ×2 khi chạm': 'Sessions to ×2 when hit',
+  'chưa quan sát': 'not observed',
+  'Lợi nhuận 30 phiên của analog': 'Analog 30-session return',
+  'Có lãi sau 30 phiên': 'In profit after 30 sessions',
+  'Đáy trong 30 phiên (so giá hiện tại)': '30-session low (vs current price)',
+  'Trường hợp xấu (5%)': 'Bad case (5%)',
+  'Loại tín hiệu này từng cho kết quả ra sao': 'How this signal type has performed',
+  'Chưa có ước lượng': 'No estimate yet',
+  'Thanh khoản: không có dữ liệu': 'Liquidity: no data',
+  'Mốc mua lại': 'Re-buy level',
+  'Giá vốn': 'Cost',
+  'Đỉnh': 'Peak',
+  'Mức chốt 50%': 'Take-50% level',
+  'Mức bán hết': 'Sell-all level',
+  'Chốt lời': 'Take profit',
+  'Thoát': 'Exit',
+  'Mua lại': 'Re-buy',
+  'Chờ': 'Wait',
+  'chờ': 'wait',
+  'Mua thêm': 'Add',
+  'mới': 'new',
+  'Meme vừa': 'Mid meme',
+  'vòng chân rộng = dễ về giá vốn hơn': 'wider ring = easier to get back to cost',
+  'Đã copy địa chỉ contract': 'Contract address copied',
+  'Trình duyệt không cho copy tự động': 'The browser blocked automatic copying',
+  'Đã xuất CSV': 'CSV exported',
+  'Token giả cần tránh': 'Fake token to avoid',
+  'Thang người mới': 'Newcomer ladder',
+  '◆ Dòng tiền XANH': '◆ Flow GREEN',
+  '◆ Dòng tiền ĐỎ': '◆ Flow RED',
+  'Token · ngày bật': 'Token · fire date',
+  'Close lúc bật': 'Close at fire',
+  'Vì sao ở mức này ·': 'Why this level ·',
+  'Bàn quản lý': 'Management desk',
+  'PONS không thuộc category meme của CoinGecko: dùng analog meme vừa theo giả định.': "PONS is not in CoinGecko's meme category: the mid-meme analog is used as an assumption.",
+  'Close CoinGecko 11/11 bị lỗi (×4.7 không kèm volume) nên chuỗi dữ liệu của engine dừng ở 10/11.': "The CoinGecko 11/11 close is faulty (×4.7 with no volume), so the engine's data series stops at 10/11.",
+  'Vốn hoá $0.32M, dưới dải micro: dùng analog micro.': 'Market cap $0.32M, below the micro band: the micro analog is used.',
+  'XANH · cân nhắc mua lướt': 'GREEN · consider a short-term buy',
+  'ĐỎ · đang mua đuổi': 'RED · chasing',
+  '◆ XANH: cân nhắc mua lướt (giữ ≤ 3 phiên)': '◆ GREEN: consider a short-term buy (hold ≤ 3 sessions)',
+  'Nền đỏ: lệnh lớn đang mua đuổi': 'Red background: large orders are chasing',
+  'Thiếu một phần dữ liệu ngày này': "Part of this day's data is missing",
+  'vùng quá bán (≤ 20)': 'oversold zone (≤ 20)',
+  'vùng quá mua (≥ 80)': 'overbought zone (≥ 80)',
+  'Luật hiện tại': 'Current rule',
+  'Chỉ mua khi BTC > SMA20': 'Buy only when BTC > SMA20',
+  'Chỉ mua khi ≥ 40% token tăng 7 ngày': 'Buy only when ≥ 40% of tokens rose over 7 days',
+  'Chờ close cao nhất 3 phiên': 'Wait for a 3-session closing high',
+  'Thêm TP0 25% ở ×1.5': 'Add TP0 25% at ×1.5',
+  'Không DCA (mua 1 lần)': 'No DCA (single buy)',
+  'DCA chỉ khi BTC > SMA20': 'DCA only when BTC > SMA20',
+  'Thoát sau 30 phiên nếu chưa ×1.2': 'Exit after 30 sessions if not yet ×1.2',
+  'Chỉ mua khi đã giảm ≥ 50%': 'Buy only after a ≥ 50% fall',
+  'DCA thưa hơn (≤ 65% giá vốn)': 'Sparser DCA (≤ 65% of cost)',
+  'Radar micro hiện tại': 'Current micro radar',
+  'Volume ≥ 4× trung vị': 'Volume ≥ 4× median',
+  'Chỉ khi BTC > SMA20': 'Only when BTC > SMA20',
+  'Chỉ khi đã giảm ≥ 93%': 'Only after a ≥ 93% fall',
+  '01/07 → 11/11, mỗi điểm 7 ngày': '01/07 → 11/11, one point per 7 days',
+  '×1.5 trong 14 phiên': '×1.5 within 14 sessions',
+  '×2 trong 14 phiên': '×2 within 14 sessions',
+  '×1.5 trong 30 phiên': '×1.5 within 30 sessions',
+  '×2 trong 30 phiên': '×2 within 30 sessions',
   # ADA — 14-day scenario panel
   'Range floor → scenarios — Wyckoff 7–14 ngày tới': 'Range floor → scenarios — Wyckoff, the next 7–14 days',
   '(UTC) · 24/09 → 25/11 thực tế · 26/11 → 10/12 kịch bản': '(UTC) · 24/09 → 25/11 actual · 26/11 → 10/12 scenarios',
@@ -209,6 +284,15 @@ EN = {
 }
 
 EN_RULES = [  # [regex, replacement] — generated strings; numbers pass through
+  ['^Lệnh lớn: mua (\\S+), bán (\\S+) → (\\S+)$', 'Large orders: buy $1, sell $2 → $3'],
+  ['^Cá voi \\(ví ròng ≥ (\\S+)\\): (\\S+) · ★ dấu cá voi$', 'Whales (wallet net ≥ $1): $2 · ★ whale mark'],
+  ['^Cá voi \\(ví ròng ≥ (\\S+)\\): (\\S+)$', 'Whales (wallet net ≥ $1): $2'],
+  ['^Thoát phần còn lại nếu giá đóng cửa ≤ (\\S+)$', 'Exit the rest if close ≤ $1'],
+  ['^Bán hết nếu 2 giá đóng cửa ≤ (\\S+)$', 'Sell all on 2 closes ≤ $1'],
+  ['^(.+) · mới$', '$1 · new'],
+  ['^Vốn hoá đã xuống (\\S+) nên analog là microcap; luật vị thế vẫn là meme vừa lúc vào\\.$', 'Market cap has fallen to $1, so the analog is microcap; the position rules stay mid meme as at entry.'],
+  ['^Crypto\\.com close (\\S+); cấu trúc theo báo cáo BTC (\\S+) \\((.+), engine kết nối\\)$', 'Crypto.com close $1; structure per BTC report $2 ($3, engine connected)'],
+  ['^Kiểm lại trên (\\d+) token × (\\d+) ngày \\(([^,()]+), giữ nguyên như lúc đăng ký\\)$', 'Backtest on $1 tokens × $2 days ($3, unchanged since registration)'],
   [r'^Chốt 50% khi giá đóng cửa ≥ (\S+)$', 'Take 50% when close ≥ $1'],
   [r'^Mua thêm khi giá đóng cửa ≤ (\S+)$', 'Add when close ≤ $1'],
   [r'^Xét mua lại khi giá đóng cửa ≤ (\S+), rồi có close không in đáy mới$', 'Consider re-buying when close ≤ $1, then a close with no new low'],
@@ -252,6 +336,62 @@ EN_RULES = [  # [regex, replacement] — generated strings; numbers pass through
   [r'^là xác suất giá đóng ngày (\S+) nằm trong vùng đó$', 'is the probability that the $1 daily close lands in that zone'],
 ]
 
+EN_PHRASE = [  # composite text nodes: applied in order of length; kept only when no Vietnamese is left
+  ['Đủ 4 điều kiện XANH hôm nay. Nếu vào, coi là lệnh lướt: giữ tối đa 3 phiên, không bình quân giá.', 'All 4 GREEN conditions are met today. If you enter, treat it as a short-term trade: hold at most 3 sessions, no averaging down.'],
+  ['Lệnh lớn 3 ngày đang mua ròng và giá vừa tăng: đây là kiểu ngày mà sau đó giá thường giảm thêm. Không mua đuổi.', '3-day large orders are net buying and price just rose: the kind of day after which price usually falls further. Do not chase.'],
+  ['Không có tín hiệu XANH hay ĐỎ hôm nay.', 'No GREEN or RED signal today.'],
+  ['XANH gần nhất: ', 'Last GREEN: '],
+  ['Chưa có XANH trong ', 'No GREEN in the '],
+  [' ngày có dữ liệu.', ' days with data.'],
+  ['; sau ', '; after '],
+  ['Lệnh lớn ròng ', 'Net large orders, '],
+  [' ngày (có dữ liệu)', ' days (with data)'],
+  ['▲ Giá cần tăng ', '▲ Price needs to rise '],
+  ['▼ Giá cần giảm ', '▼ Price needs to fall '],
+  ['▲ cần tăng ', '▲ needs to rise '],
+  ['▼ cần giảm ', '▼ needs to fall '],
+  [' · về giá vốn ', ' · back to cost '],
+  [' · bán hết trước ', ' · sold out first '],
+  ['Cửa thắng 30 phiên, analog ', '30-session odds, analog '],
+  ['meme vừa', 'mid meme'],
+  ['trung vị ', 'median '],
+  [' trung vị', ' median'],
+  [' số ngày', ' of days'],
+  ['Mẫu mỏng', 'Thin sample'],
+  ['Tin cậy khá', 'Fairly reliable'],
+  ['Tin cậy vừa', 'Moderately reliable'],
+  ['Thanh khoản rất thấp', 'Very low liquidity'],
+  ['Thanh khoản thấp', 'Low liquidity'],
+  ['Thanh khoản vừa', 'Moderate liquidity'],
+  ['Thanh khoản tốt', 'Good liquidity'],
+  ['/ngày', '/day'],
+  ['Vốn hoá ', 'Market cap '],
+  [' từ đỉnh', ' from peak'],
+  ['Mua lần đầu meme vừa', 'Mid-meme first buy'],
+  [' lệnh trên ', ' trades on '],
+  [' token, sau phí: ', ' tokens, after fees: '],
+  ['% có lãi, kỳ vọng ', '% profitable, expectancy '],
+  [' trên mỗi đô đã vào (KTC 90% ', ' per dollar invested (90% CI '],
+  [' đến ', ' to '],
+  ['% chạm ×2 (trung vị ', '% hit ×2 (median '],
+  [' phiên), ', ' sessions), '],
+  ['% bị bán hết; đáy trung vị ×', '% were sold out; median low ×'],
+  [' giá vào. ', ' of entry. '],
+  ['Thang mục tiêu sau tín hiệu: INSUFFICIENT DATA (', 'Target ladder after the signal: INSUFFICIENT DATA ('],
+  [' lệnh đủ 30 phiên).', ' trades with a full 30 sessions).'],
+  ['Trong ', 'Of '],
+  [' lệnh đủ 30 phiên: ', ' trades with a full 30 sessions: '],
+  [' chạm ×', ' hit ×'],
+  ['Kiểm lại trên lịch sử Robinhood Chain (sau phí): tín hiệu mua lần đầu của meme vừa có ', 'Backtest on Robinhood Chain history (after fees): the mid-meme first-buy signal has '],
+  [' lệnh, ', ' trades, '],
+  ['. Chưa có bằng chứng về lợi thế.', '. No evidence of an edge yet.'],
+  [' giá vốn mới', ' new cost'], ['chờ ', 'wait '],
+  [' phiên', ' sessions'],
+  [' ngày', ' days'],
+  [' · nguồn ', ' · source '],
+  ['(mới bật)', '(just fired)'],
+]
+
 EN_SUB = [  # phrase swaps for short generated strings and attributes (longest first)
   ['Di chuột hoặc kéo ngón tay để xem token; chạm để ghim', 'Hover or drag a finger to see a token; tap to pin'],
   ['P(về giá vốn trong 30 phiên)', 'P(back to cost within 30 sessions)'], ['KTC 90%', '90% CI'],
@@ -261,9 +401,9 @@ EN_SUB = [  # phrase swaps for short generated strings and attributes (longest f
   ['đã bán hết', 'sold out'], ['Mức ủng hộ của BTC: ', 'BTC support level: '], ['Báo động', 'Alert'], ['Rủi ro', 'Risk'],
   ['Trung lập', 'Neutral'], ['Ủng hộ', 'Supportive'],
   ['bán hết sau 2 close dưới mức', 'sold all after 2 closes below the level'], ['mở, đủ 4 lần (giá vốn ', 'open, all 4 buys (cost '],
-  ['(giấy vì R5 bật)', '(paper because R5 is on)'], ['(vé số, giấy)', '(lottery ticket, paper)'], ['TP0 giấy', 'TP0 paper'],
+  ['(giấy vì R5 bật)', '(paper because R5 is on)'], ['(vé số, giấy; volume mỏng)', '(lottery ticket, paper; thin volume)'], ['(vé số, giấy)', '(lottery ticket, paper)'], ['TP0 giấy', 'TP0 paper'],
   ['đã đóng ', 'closed '], ['mở từ ', 'open since '], ['mở ', 'opened '], [' chạm ', ' hit '], [' ở ', ' at '],
-  [' (diễn giải)', ' (interpretive)'], ['kéo bằng chuột để xoay bản 3D', 'drag with the mouse to rotate the 3D view'],
+  [' (diễn giải)', ' (interpretive)'], ['ngày-token', 'token-days'], ['kéo bằng chuột để xoay bản 3D', 'drag with the mouse to rotate the 3D view'],
 ]
 
 # ── EN → VI (shown when the page is in Vietnamese) ───────────────────────────────────────
@@ -314,13 +454,16 @@ JS = r'''<script id="cre-i18n">
    embedded-panel labels, canvas text, hover tooltips, aria-labels, generated signal labels. */
 (function(){
   var L; try{ var u=new URLSearchParams(location.search).get('lang'); L=(u==='en'||u==='vi')?u:(localStorage.getItem('cre-lang')==='en'?'en':'vi'); }catch(e){ L='vi'; }
-  var D=__DATA__, M=D[L].map, R=D[L].rules.map(function(r){return [new RegExp(r[0]),r[1]];}), S=D[L].sub, C=new Map();
+  var D=__DATA__, M=D[L].map, R=D[L].rules.map(function(r){return [new RegExp(r[0]),r[1]];}), S=D[L].sub, F=D[L].phrase||[], C=new Map();
+  var VIR=/[ăâđêôơưạảấầẩẫậắằẳẵặẹẻẽếềểễệỉịọỏốồổỗộớờởỡợụủứừửữựỳỵỷỹáàãéèíìóòõúùýĂÂĐÊÔƠƯ]/i;
   function tr(s,attr){
     if(s==null) return s; s=String(s); var t=s.trim(); if(!t) return s;
     if(C.has(t)){ var c=C.get(t); return c===t?s:s.replace(t,c); }
     var o=Object.prototype.hasOwnProperty.call(M,t)?M[t]:null;
     if(o==null){ o=t; for(var i=0;i<R.length;i++){ if(R[i][0].test(o)){ o=o.replace(R[i][0],R[i][1]); break; } } }
     if(o===t&&attr){ for(var j=0;j<S.length;j++){ if(o.indexOf(S[j][0])>-1) o=o.split(S[j][0]).join(S[j][1]); } }
+    if(o===t&&!attr&&F.length&&(L!=='en'||VIR.test(t))){ var q=t; for(var k=0;k<F.length;k++){ if(q.indexOf(F[k][0])>-1) q=q.split(F[k][0]).join(F[k][1]); }
+      if(q!==t&&(L!=='en'||!VIR.test(q))) o=q; }
     if(C.size<5000) C.set(t,o);
     return o===t?s:s.replace(t,o);
   }
@@ -350,7 +493,7 @@ JS = r'''<script id="cre-i18n">
 
 
 def build():
-    data = {'en': {'map': EN, 'rules': EN_RULES, 'sub': sorted(EN_SUB, key=lambda p: -len(p[0]))},
+    data = {'en': {'map': EN, 'rules': EN_RULES, 'sub': sorted(EN_SUB, key=lambda p: -len(p[0])), 'phrase': sorted(EN_PHRASE, key=lambda p: -len(p[0]))},
             'vi': {'map': VI, 'rules': VI_RULES, 'sub': VI_SUB}}
     # JS regex replacement uses $1; Python-side patterns are written for JS directly
     return JS.replace('__DATA__', json.dumps(data, ensure_ascii=False))

@@ -26,8 +26,9 @@ s = re.sub(r'\n?<style id="cre-skin">[\s\S]*?</style>', '', s)
 s = re.sub(r'\n?<script id="cre-skin-js">[\s\S]*?</script>', '', s)
 
 # the merged portfolio page replaces the separate desk page as this page's companion
-s = s.replace('href="ro-desk.html" style="text-decoration:none">Bàn quản lý</a>',
-              'href="robinhood.html" style="text-decoration:none">Danh mục</a>')
+# (upstream has linked it as ro-desk.html and as the desk's download filename — match either)
+s = re.sub(r'href="[^"]*" style="text-decoration:none">Bàn quản lý</a>',
+           'href="robinhood.html" style="text-decoration:none">Danh mục</a>', s)
 
 for need in ('<div class="app">', 'id="stats"', 'class="stage"', 'id="list"', 'id="brk"', 'id="mf"', 'id="btc"', 'class="more"'):
     if need not in s:
